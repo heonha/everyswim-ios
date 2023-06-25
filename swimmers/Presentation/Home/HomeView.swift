@@ -10,9 +10,11 @@ import SwiftUI
 struct HomeView: View {
     
     var body: some View {
+        NavigationView {
         mainBody
             .ignoresSafeArea(edges: .bottom)
             .background(ThemeColor.primary)
+        }
     }
     
 }
@@ -20,61 +22,63 @@ struct HomeView: View {
 extension HomeView {
     
     private var mainBody: some View {
-        VStack {
-            profileView()
-                .frame(height: 100)
-                .padding(.horizontal, 24)
             
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.white)
+            VStack {
+                profileView()
+                    .frame(height: 100)
+                    .padding(.horizontal, 24)
+                    .background(ThemeColor.primary)
+
+                recordView()
                 
-                VStack {
-                    mySwimCenter()
-                    
-                    HStack {
-                        recordsCell(.swim, score: 1240)
-                        recordsCell(.kcal, score: 2330)
-                        recordsCell(.lap, score: 50)
-                    }
-                    
-                    weeklyRecords()
-                    
-                    HStack {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(ThemeColor.cellBackground)
-                                .frame(height: 75)
-                            HStack {
-                                Image(systemName: "figure.pool.swim")
-                                    .font(.system(size: 36))
-                                Text("자유형")
-                                    .font(.custom(.godoB, size: 22))
-                            }
-                            .foregroundColor(Color.init(hex: "2752EE"))
-                        }
-  
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(ThemeColor.cellBackground)
-                                .frame(height: 75)
-                            HStack {
-                                Image(systemName: "water.waves")
-                                    .font(.system(size: 27))
-                                Text("23km/h")
-                                    .font(.custom(.godoB, size: 22))
-                            }
-                            .foregroundColor(Color.init(hex: "2752EE"))
-                        }
-                    }
-                    
-                    
-                    Spacer()
-                    
-                    
-                }
-                .padding([.horizontal, .top], 14)
             }
+            .background(ThemeColor.primary)
+    }
+    
+    private func tripleRecordView() -> some View {
+        
+        HStack {
+            recordsCell(.swim, score: 1240)
+            recordsCell(.kcal, score: 2330)
+            recordsCell(.lap, score: 50)
+        }
+    }
+    
+    private func smallRecordCell(title: String, symbolName: String) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(ThemeColor.cellBackground)
+                .frame(height: 75)
+            HStack {
+                Image(systemName: "figure.pool.swim")
+                    .font(.system(size: 36))
+                Text("자유형")
+                    .font(.custom(.godoB, size: 22))
+            }
+            .foregroundColor(Color.init(hex: "2752EE"))
+        }
+    }
+    
+    private func recordView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+            
+            VStack {
+                mySwimCenter()
+    
+                tripleRecordView()
+                
+                weeklyRecords()
+                
+                HStack {
+                    smallRecordCell(title: "자유형", symbolName: "figure.pool.swim")
+                    smallRecordCell(title: "23km/h", symbolName: "water.waves")
+                }
+                
+                Spacer()
+            }
+            .padding([.horizontal, .top], 14)
         }
     }
     
@@ -175,7 +179,7 @@ extension HomeView {
     private func mySwimCenter() -> some View {
         Group {
             NavigationLink {
-                MySwimCenterView()
+                MySwimmingPoolView()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
