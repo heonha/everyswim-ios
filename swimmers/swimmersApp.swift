@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import NMapsMap
 
 @main
 struct swimmersApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    NMFAuthManager.shared().clientId = Keys.NAVER_CLIENT_KEY
+                }
         }
     }
 }

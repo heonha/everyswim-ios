@@ -19,6 +19,8 @@
 		392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C72A48807B00E591A8 /* SearchBarModifier.swift */; };
 		392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C92A48828800E591A8 /* SwimmingPoolCell.swift */; };
 		392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */; };
+		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
+		39437DA22A48949700FDA9DA /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* Keys.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -32,9 +34,11 @@
 		398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC72A484D1300E0FA9B /* ThemeFont.swift */; };
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
+		81984978731F99A172D3969B /* Pods_swimmers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.debug.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.debug.xcconfig"; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		392083C72A48807B00E591A8 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		392083C92A48828800E591A8 /* SwimmingPoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolCell.swift; sourceTree = "<group>"; };
 		392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolType.swift; sourceTree = "<group>"; };
+		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
+		39437DA12A48949700FDA9DA /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +68,8 @@
 		398B1BCB2A48500100E0FA9B /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swimmers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D920C7E5BEB9778F19F79D49 /* Pods-swimmers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.release.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,12 +77,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81984978731F99A172D3969B /* Pods_swimmers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20024A8524F89D496E5E814C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */,
+				D920C7E5BEB9778F19F79D49 /* Pods-swimmers.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		392083B82A485B5D00E591A8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +106,9 @@
 		392083B92A485B6600E591A8 /* Pool */ = {
 			isa = PBXGroup;
 			children = (
+				39437D9D2A48943200FDA9DA /* Maps */,
 				392083CF2A48862500E591A8 /* Types */,
 				392083BC2A485B9400E591A8 /* NearByPoolView.swift */,
-				392083C52A48805000E591A8 /* SwimmingPoolMapView.swift */,
 				392083C92A48828800E591A8 /* SwimmingPoolCell.swift */,
 			);
 			path = Pool;
@@ -137,12 +155,31 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
+		39437D9D2A48943200FDA9DA /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				392083C52A48805000E591A8 /* SwimmingPoolMapView.swift */,
+				39437D9E2A48944000FDA9DA /* NaverMapService.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		39437DA02A48948E00FDA9DA /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				39437DA12A48949700FDA9DA /* Keys.swift */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		398B1B982A483DA300E0FA9B = {
 			isa = PBXGroup;
 			children = (
 				398B1BC12A4845A700E0FA9B /* .gitignore */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
 				398B1BA22A483DA300E0FA9B /* Products */,
+				20024A8524F89D496E5E814C /* Pods */,
+				558413656F6ED88D1CF53D5D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +194,7 @@
 		398B1BA32A483DA300E0FA9B /* swimmers */ = {
 			isa = PBXGroup;
 			children = (
+				39437DA02A48948E00FDA9DA /* Secrets */,
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
 				398B1BA42A483DA300E0FA9B /* swimmersApp.swift */,
 				398B1BB22A483E0C00E0FA9B /* Presentation */,
@@ -228,6 +266,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		558413656F6ED88D1CF53D5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,9 +281,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "swimmers" */;
 			buildPhases = (
+				192AB908721EA0BB85BECCAF /* [CP] Check Pods Manifest.lock */,
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
 				398B1B9F2A483DA300E0FA9B /* Resources */,
+				030EFA0B91D6F70122F8E5AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +348,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		030EFA0B91D6F70122F8E5AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swimmers/Pods-swimmers-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swimmers/Pods-swimmers-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-swimmers/Pods-swimmers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		192AB908721EA0BB85BECCAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swimmers-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		398B1B9D2A483DA300E0FA9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -312,9 +402,11 @@
 				392083C22A485E7700E591A8 /* DailyRecordBar.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */,
+				39437DA22A48949700FDA9DA /* Keys.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
+				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
@@ -443,6 +535,7 @@
 		};
 		398B1BB02A483DA400E0FA9B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -450,8 +543,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swimmers/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swimmers",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -476,6 +573,7 @@
 		};
 		398B1BB12A483DA400E0FA9B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D920C7E5BEB9778F19F79D49 /* Pods-swimmers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -483,8 +581,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swimmers/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swimmers",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
