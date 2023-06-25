@@ -14,7 +14,7 @@ struct swimmersApp: App {
         WindowGroup {
             MainView()
                 .onAppear {
-                    NMFAuthManager.shared().clientId = Keys.NAVER_CLIENT_KEY
+                    NMFAuthManager.shared().clientId = Keys.NAVER_CLIENT_ID
                 }
         }
     }

@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import MapKit
+import CoreLocation
 
 struct SwimmingPoolMapView: View {
     
     @State private var text = ""
-    @State private var mapRect = MKMapRect(x: 0, y: 0, width: 300, height: 300)
-    
+    @State private var locationManager = CLLocationManager()
+
     var body: some View {
         ZStack {
             VStack {
@@ -22,7 +22,12 @@ struct SwimmingPoolMapView: View {
                 }
                 .frame(height: 50)
                 
-                Map(mapRect: $mapRect)
+                NaverMapView(userLatitude: locationManager.location?.coordinate.latitude ?? 0, userLongitude: locationManager.location?.coordinate.longitude ?? 0)
+                    .onAppear {
+                        locationManager.requestWhenInUseAuthorization()
+                        locationManager.startUpdatingLocation()
+                        print("userLatitude: \(locationManager.location?.coordinate.latitude), userLongitude: \(locationManager.location?.coordinate.longitude)")
+                    }
             }
             
         }
