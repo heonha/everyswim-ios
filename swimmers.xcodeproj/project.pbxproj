@@ -11,6 +11,12 @@
 		398B1BA72A483DA300E0FA9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA62A483DA300E0FA9B /* ContentView.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
+		398B1BB42A483E1700E0FA9B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB32A483E1700E0FA9B /* HomeView.swift */; };
+		398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */; };
+		398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */; };
+		398B1BBE2A4842B200E0FA9B /* MySwimCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BBD2A4842B200E0FA9B /* MySwimCenterView.swift */; };
+		398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BBF2A4842C900E0FA9B /* MainView.swift */; };
+		398B1BC22A4845A700E0FA9B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BC12A4845A700E0FA9B /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		398B1BA62A483DA300E0FA9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		398B1BB32A483E1700E0FA9B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		398B1BBD2A4842B200E0FA9B /* MySwimCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySwimCenterView.swift; sourceTree = "<group>"; };
+		398B1BBF2A4842C900E0FA9B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		398B1BC12A4845A700E0FA9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,7 @@
 		398B1B982A483DA300E0FA9B = {
 			isa = PBXGroup;
 			children = (
+				398B1BC12A4845A700E0FA9B /* .gitignore */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
 				398B1BA22A483DA300E0FA9B /* Products */,
 			);
@@ -53,6 +66,10 @@
 			children = (
 				398B1BA42A483DA300E0FA9B /* swimmersApp.swift */,
 				398B1BA62A483DA300E0FA9B /* ContentView.swift */,
+				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
+				398B1BB22A483E0C00E0FA9B /* Presentation */,
+				398B1BB82A483E7B00E0FA9B /* Extensions */,
+				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BA82A483DA400E0FA9B /* Assets.xcassets */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
 			);
@@ -65,6 +82,31 @@
 				398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		398B1BB22A483E0C00E0FA9B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				398B1BB32A483E1700E0FA9B /* HomeView.swift */,
+				398B1BBD2A4842B200E0FA9B /* MySwimCenterView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		398B1BB52A483E4000E0FA9B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		398B1BB82A483E7B00E0FA9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */,
+				398B1BC22A4845A700E0FA9B /* .gitignore in Resources */,
 				398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				398B1BB42A483E1700E0FA9B /* HomeView.swift in Sources */,
+				398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */,
+				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
+				398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */,
+				398B1BBE2A4842B200E0FA9B /* MySwimCenterView.swift in Sources */,
 				398B1BA72A483DA300E0FA9B /* ContentView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
 			);
@@ -195,7 +243,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -275,6 +323,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +353,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
