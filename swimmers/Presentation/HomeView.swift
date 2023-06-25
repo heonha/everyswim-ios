@@ -24,6 +24,13 @@ struct HomeView: View {
 
                         mySwimCenter()
                         
+                        HStack {
+                            recordsCell(.swim)
+                            recordsCell(.kcal)
+                            recordsCell(.lap)
+                        }
+                        
+                        
                         Spacer()
                         
                     }
@@ -37,6 +44,76 @@ struct HomeView: View {
             
         }
         .background(ThemeColor.primary)
+    }
+    
+    func recordsCell(_ type: RecordCellType) -> some View {
+        Group {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(ThemeColor.cellBackground)
+                    .frame(height: 128)
+                
+                VStack(spacing: 4) {
+                    Group {
+                        Image(systemName: type.symbolName())
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(type.getSymbolColor())
+                    }
+                    .frame(width: 50, height: 27)
+ 
+                    
+                    Text("1,240")
+                        .font(.system(size: 30, weight: .bold))
+                    
+                    Text(type.getUnit())
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(.init(hex: "000000").opacity(0.3))
+                }
+            }
+        }
+    }
+    
+    enum RecordCellType: String {
+        
+        case swim
+        case kcal
+        case lap
+        
+        func symbolName() -> String {
+            switch self {
+            case .swim:
+                return "figure.pool.swim"
+            case .kcal:
+                return "flame"
+            case .lap:
+                return "flag.checkered"
+            }
+        }
+        
+        func getSymbolColor() -> Color {
+            switch self {
+            case .swim:
+                return ThemeColor.primary
+            case .kcal:
+                return ThemeColor.caloriesRed
+            case .lap:
+                return Color.black
+            }
+        }
+        
+        func getUnit() -> String {
+            switch self {
+            case .swim:
+                return "Meters"
+            case .kcal:
+                return "Kcal"
+            case .lap:
+                return "Lap"
+            }
+        }
+        
+        
     }
     
     
