@@ -15,7 +15,6 @@
 		392083BD2A485B9400E591A8 /* SearchPoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BC2A485B9400E591A8 /* SearchPoolView.swift */; };
 		392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BF2A485BB300E591A8 /* MyInfoView.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
-		398B1BA72A483DA300E0FA9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA62A483DA300E0FA9B /* ContentView.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
 		398B1BB42A483E1700E0FA9B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB32A483E1700E0FA9B /* HomeView.swift */; };
@@ -41,7 +40,6 @@
 		392083BF2A485BB300E591A8 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
-		398B1BA62A483DA300E0FA9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		398B1BB32A483E1700E0FA9B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -53,7 +51,6 @@
 		398B1BC32A4848D400E0FA9B /* RecordCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellType.swift; sourceTree = "<group>"; };
 		398B1BC52A484CF500E0FA9B /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		398B1BC72A484D1300E0FA9B /* ThemeFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFont.swift; sourceTree = "<group>"; };
-		398B1BCA2A484FE900E0FA9B /* swimmers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swimmers.entitlements; sourceTree = "<group>"; };
 		398B1BCB2A48500100E0FA9B /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -118,10 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
-				398B1BCA2A484FE900E0FA9B /* swimmers.entitlements */,
 				398B1BA42A483DA300E0FA9B /* swimmersApp.swift */,
-				398B1BA62A483DA300E0FA9B /* ContentView.swift */,
-				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
 				398B1BB22A483E0C00E0FA9B /* Presentation */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
@@ -142,6 +136,7 @@
 		398B1BB22A483E0C00E0FA9B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 				392083B92A485B6600E591A8 /* Map */,
 				392083B82A485B5D00E591A8 /* Home */,
@@ -170,14 +165,8 @@
 		398B1BC92A484D5500E0FA9B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */,
-				392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */,
-				392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */,
-				392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */,
 				398B1BA82A483DA400E0FA9B /* Assets.xcassets */,
 				398B1BCF2A48500D00E0FA9B /* Font */,
-				398B1BCB2A48500100E0FA9B /* GodoB.otf */,
-				398B1BCC2A48500100E0FA9B /* GodoM.otf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -185,6 +174,12 @@
 		398B1BCF2A48500D00E0FA9B /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				398B1BCB2A48500100E0FA9B /* GodoB.otf */,
+				398B1BCC2A48500100E0FA9B /* GodoM.otf */,
+				392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */,
+				392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */,
+				392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */,
+				392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -276,7 +271,6 @@
 				398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */,
 				398B1BBE2A4842B200E0FA9B /* MySwimCenterView.swift in Sources */,
 				392083B72A48586C00E591A8 /* Weekdays.swift in Sources */,
-				398B1BA72A483DA300E0FA9B /* ContentView.swift in Sources */,
 				392083BD2A485B9400E591A8 /* SearchPoolView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
 			);
@@ -404,11 +398,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = swimmers/swimmers.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swimmers/Preview Content\"";
-				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
@@ -425,6 +419,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,11 +431,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = swimmers/swimmers.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"swimmers/Preview Content\"";
-				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
@@ -457,6 +452,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
