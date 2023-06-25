@@ -2,7 +2,7 @@
 #macos
 ../DS_Store
 
-../Secrets/*
+Secrets/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift
