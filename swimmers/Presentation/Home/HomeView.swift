@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    
     var body: some View {
         mainBody
             .ignoresSafeArea(edges: .bottom)
@@ -34,14 +33,45 @@ extension HomeView {
                     mySwimCenter()
                     
                     HStack {
-                        recordsCell(.swim)
-                        recordsCell(.kcal)
-                        recordsCell(.lap)
+                        recordsCell(.swim, score: 1240)
+                        recordsCell(.kcal, score: 2330)
+                        recordsCell(.lap, score: 50)
                     }
                     
                     weeklyRecords()
                     
+                    HStack {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(ThemeColor.cellBackground)
+                                .frame(height: 75)
+                            HStack {
+                                Image(systemName: "figure.pool.swim")
+                                    .font(.system(size: 36))
+                                Text("자유형")
+                                    .font(.custom(.godoB, size: 22))
+                            }
+                            .foregroundColor(Color.init(hex: "2752EE"))
+                        }
+  
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(ThemeColor.cellBackground)
+                                .frame(height: 75)
+                            HStack {
+                                Image(systemName: "water.waves")
+                                    .font(.system(size: 27))
+                                Text("23km/h")
+                                    .font(.custom(.godoB, size: 22))
+                            }
+                            .foregroundColor(Color.init(hex: "2752EE"))
+                        }
+                    }
+                    
+                    
                     Spacer()
+                    
+                    
                 }
                 .padding([.horizontal, .top], 14)
             }
@@ -79,16 +109,14 @@ extension HomeView {
                         .padding(.trailing, 16)
                     }
                     
-                    Spacer()
-                    
                     HStack(spacing: 10) {
-                        recordBar(.sun, score: 10)
-                        recordBar(.mon, score: 30)
-                        recordBar(.tue, score: 20)
-                        recordBar(.wed, score: 15, isPressed: true)
-                        recordBar(.thu, score: 20)
-                        recordBar(.fri, score: 50)
-                        recordBar(.sat, score: 10)
+                        DailyRecordBar(day: .sun, score: 10)
+                        DailyRecordBar(day: .mon, score: 21)
+                        DailyRecordBar(day: .tue, score: 45)
+                        DailyRecordBar(day: .wed, score: 90, isPressed: true)
+                        DailyRecordBar(day: .thu, score: 76)
+                        DailyRecordBar(day: .fri, score: 65)
+                        DailyRecordBar(day: .sat, score: 32)
                     }
                     .padding(.horizontal, 24)
                     
@@ -100,25 +128,7 @@ extension HomeView {
 
     }
     
-    private func recordBar(_ weekday: Weekdays, score: CGFloat, isPressed: Bool = false) -> some View {
-        let color = isPressed ? Color.init(hex: "2752EE") : Color(hex: "000000").opacity(0.1)
-        
-        return VStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.clear)
-                .frame(height: score)
-            
-            RoundedRectangle(cornerRadius: 8)
-                .fill(color)
-            
-            Text(weekday.rawValue)
-                .font(.custom(.sfProBold, size: 17))
-                .foregroundColor(ThemeColor.grayTint)
-        }
-        
-    }
-    
-    private func recordsCell(_ type: RecordCellType) -> some View {
+    private func recordsCell(_ type: RecordCellType, score: Int) -> some View {
         Group {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
@@ -134,7 +144,7 @@ extension HomeView {
                     }
                     .frame(width: 50, height: 27)
  
-                    Text("1,240")
+                    Text("\(score)")
                         .font(.custom(.sfProBold, size: 30))
                     
                     Text(type.getUnit())
