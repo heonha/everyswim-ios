@@ -11,8 +11,8 @@
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
 		392083B52A4853F800E591A8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */; };
-		392083B72A48586C00E591A8 /* Weekdays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083B62A48586C00E591A8 /* Weekdays.swift */; };
-		392083BD2A485B9400E591A8 /* SearchPoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BC2A485B9400E591A8 /* SearchPoolView.swift */; };
+		392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083B62A48586C00E591A8 /* WeekdayType.swift */; };
+		392083BD2A485B9400E591A8 /* NearByPoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BC2A485B9400E591A8 /* NearByPoolView.swift */; };
 		392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BF2A485BB300E591A8 /* MyInfoView.swift */; };
 		392083C22A485E7700E591A8 /* DailyRecordBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C12A485E7700E591A8 /* DailyRecordBar.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
@@ -21,7 +21,6 @@
 		398B1BB42A483E1700E0FA9B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB32A483E1700E0FA9B /* HomeView.swift */; };
 		398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */; };
 		398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */; };
-		398B1BBE2A4842B200E0FA9B /* MySwimmingPoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BBD2A4842B200E0FA9B /* MySwimmingPoolView.swift */; };
 		398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BBF2A4842C900E0FA9B /* MainView.swift */; };
 		398B1BC22A4845A700E0FA9B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BC12A4845A700E0FA9B /* .gitignore */; };
 		398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC32A4848D400E0FA9B /* RecordCellType.swift */; };
@@ -36,8 +35,8 @@
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
-		392083B62A48586C00E591A8 /* Weekdays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekdays.swift; sourceTree = "<group>"; };
-		392083BC2A485B9400E591A8 /* SearchPoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPoolView.swift; sourceTree = "<group>"; };
+		392083B62A48586C00E591A8 /* WeekdayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayType.swift; sourceTree = "<group>"; };
+		392083BC2A485B9400E591A8 /* NearByPoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByPoolView.swift; sourceTree = "<group>"; };
 		392083BF2A485BB300E591A8 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		392083C12A485E7700E591A8 /* DailyRecordBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecordBar.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +46,6 @@
 		398B1BB32A483E1700E0FA9B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		398B1BBD2A4842B200E0FA9B /* MySwimmingPoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySwimmingPoolView.swift; sourceTree = "<group>"; };
 		398B1BBF2A4842C900E0FA9B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		398B1BC12A4845A700E0FA9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		398B1BC32A4848D400E0FA9B /* RecordCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellType.swift; sourceTree = "<group>"; };
@@ -72,10 +70,8 @@
 		392083B82A485B5D00E591A8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				392083C32A4869E600E591A8 /* Pool */,
+				392083C42A487DEA00E591A8 /* Types */,
 				398B1BB32A483E1700E0FA9B /* HomeView.swift */,
-				398B1BC32A4848D400E0FA9B /* RecordCellType.swift */,
-				392083B62A48586C00E591A8 /* Weekdays.swift */,
 				392083C12A485E7700E591A8 /* DailyRecordBar.swift */,
 			);
 			path = Home;
@@ -84,7 +80,7 @@
 		392083B92A485B6600E591A8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				392083BC2A485B9400E591A8 /* SearchPoolView.swift */,
+				392083BC2A485B9400E591A8 /* NearByPoolView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -97,12 +93,13 @@
 			path = MyInfo;
 			sourceTree = "<group>";
 		};
-		392083C32A4869E600E591A8 /* Pool */ = {
+		392083C42A487DEA00E591A8 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				398B1BBD2A4842B200E0FA9B /* MySwimmingPoolView.swift */,
+				398B1BC32A4848D400E0FA9B /* RecordCellType.swift */,
+				392083B62A48586C00E591A8 /* WeekdayType.swift */,
 			);
-			path = Pool;
+			path = Types;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -147,8 +144,8 @@
 		398B1BB22A483E0C00E0FA9B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				392083B82A485B5D00E591A8 /* Home */,
 				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
+				392083B82A485B5D00E591A8 /* Home */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 				392083B92A485B6600E591A8 /* Map */,
 			);
@@ -281,9 +278,8 @@
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */,
-				398B1BBE2A4842B200E0FA9B /* MySwimmingPoolView.swift in Sources */,
-				392083B72A48586C00E591A8 /* Weekdays.swift in Sources */,
-				392083BD2A485B9400E591A8 /* SearchPoolView.swift in Sources */,
+				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
+				392083BD2A485B9400E591A8 /* NearByPoolView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DailyRecordBar: View {
     
-    var day: Weekdays
+    var day: WeekdayType
     var score: CGFloat
     @State var isPressed = false
     @State private var barHeight: CGFloat = 0
@@ -30,7 +30,9 @@ struct DailyRecordBar: View {
                 .foregroundColor(ThemeColor.grayTint)
         }
         .onAppear {
-            barHeight = score
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                barHeight = score
+            }
         }
     }
 }

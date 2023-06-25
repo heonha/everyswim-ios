@@ -11,9 +11,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-        mainBody
-            .ignoresSafeArea(edges: .bottom)
-            .background(ThemeColor.primary)
+            mainBody
         }
     }
     
@@ -22,21 +20,80 @@ struct HomeView: View {
 extension HomeView {
     
     private var mainBody: some View {
-            
-            VStack {
+
+        VStack {
                 profileView()
                     .frame(height: 100)
                     .padding(.horizontal, 24)
                     .background(ThemeColor.primary)
 
-                recordView()
-                
+                bodyView()
             }
             .background(ThemeColor.primary)
+            .ignoresSafeArea(edges: .bottom)
+
+    }
+    
+    private func bodyView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+            
+            VStack {
+                mySwimmingPoolView()
+    
+                tripleRecordView()
+                
+                weeklyRecords()
+                
+                HStack {
+                    smallRecordCell(title: "자유형", symbolName: "figure.pool.swim")
+                    smallRecordCell(title: "23km/h", symbolName: "water.waves")
+                }
+                
+                Spacer()
+            }
+            .padding([.horizontal, .top], 14)
+        }
+    }
+    
+    private func mySwimmingPoolView() -> some View {
+            NavigationLink {
+                
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(ThemeColor.cellBackground)
+                        .frame(height: 47)
+                    
+                    HStack {
+                        Image(systemName: "mappin.circle")
+                            .resizable()
+                            .frame(width: 21, height: 21)
+                            .foregroundColor(ThemeColor.grayTint)
+                            .padding(.leading)
+                        
+                        Text("나의 수영장")
+                            .font(.system(size: 14))
+                            .foregroundColor(ThemeColor.grayTint)
+                        
+                        
+                        Text("구로 50 플러스 수영장")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.black)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 14))
+                            .foregroundColor(ThemeColor.grayTint)
+                            .padding(.trailing)
+                    }
+                }
+            }
     }
     
     private func tripleRecordView() -> some View {
-        
         HStack {
             recordsCell(.swim, score: 1240)
             recordsCell(.kcal, score: 2330)
@@ -59,76 +116,53 @@ extension HomeView {
         }
     }
     
-    private func recordView() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-            
-            VStack {
-                mySwimCenter()
-    
-                tripleRecordView()
-                
-                weeklyRecords()
-                
-                HStack {
-                    smallRecordCell(title: "자유형", symbolName: "figure.pool.swim")
-                    smallRecordCell(title: "23km/h", symbolName: "water.waves")
-                }
-                
-                Spacer()
-            }
-            .padding([.horizontal, .top], 14)
-        }
-    }
-    
     private func weeklyRecords() -> some View {
         
-        ZStack {
-            RoundedRectangle(cornerRadius: 14)
-                .fill(ThemeColor.cellBackground)
-            
-                VStack {
-                    HStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(ThemeColor.cellBackground)
+                
+                    VStack {
                         HStack {
-                            Image(systemName: "timelapse")
-                                .resizable()
-                                .frame(width: 23, height: 23)
-                                .foregroundColor(.init(hex: "0E2FD8").opacity(0.65))
-                            Text("주간 기록")
-                                .font(.custom(.godoB, size: 16))
+                            HStack {
+                                Image(systemName: "timelapse")
+                                    .resizable()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.init(hex: "0E2FD8").opacity(0.65))
+                                Text("주간 기록")
+                                    .font(.custom(.godoB, size: 16))
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
+                                
+                            } label: {
+                                Text("Weekly")
+                                    .font(.custom(.sfProBold, size: 14))
+                                Image(systemName: "chevron.down")
+                                    .font(.system(size: 12))
+                            }
+                            .foregroundColor(ThemeColor.grayTint)
+                            .padding(.trailing, 16)
                         }
+                        
+                        HStack(spacing: 10) {
+                            DailyRecordBar(day: .sun, score: 10)
+                            DailyRecordBar(day: .mon, score: 21)
+                            DailyRecordBar(day: .tue, score: 45)
+                            DailyRecordBar(day: .wed, score: 90, isPressed: true)
+                            DailyRecordBar(day: .thu, score: 76)
+                            DailyRecordBar(day: .fri, score: 65)
+                            DailyRecordBar(day: .sat, score: 32)
+                        }
+                        .padding(.horizontal, 24)
                         
                         Spacer()
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Weekly")
-                                .font(.custom(.sfProBold, size: 14))
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 12))
-                        }
-                        .foregroundColor(ThemeColor.grayTint)
-                        .padding(.trailing, 16)
                     }
-                    
-                    HStack(spacing: 10) {
-                        DailyRecordBar(day: .sun, score: 10)
-                        DailyRecordBar(day: .mon, score: 21)
-                        DailyRecordBar(day: .tue, score: 45)
-                        DailyRecordBar(day: .wed, score: 90, isPressed: true)
-                        DailyRecordBar(day: .thu, score: 76)
-                        DailyRecordBar(day: .fri, score: 65)
-                        DailyRecordBar(day: .sat, score: 32)
-                    }
-                    .padding(.horizontal, 24)
-                    
-                    Spacer()
-                }
-                .padding()
-        }
-        .frame(height: 200)
+                    .padding()
+            }
+            .frame(height: 200)
 
     }
     
@@ -176,43 +210,6 @@ extension HomeView {
         }
     }
     
-    private func mySwimCenter() -> some View {
-        Group {
-            NavigationLink {
-                MySwimmingPoolView()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(ThemeColor.cellBackground)
-                        .frame(height: 47)
-                    
-                    HStack {
-                        Image(systemName: "mappin.circle")
-                            .resizable()
-                            .frame(width: 21, height: 21)
-                            .foregroundColor(ThemeColor.grayTint)
-                            .padding(.leading)
-                        
-                        Text("나의 수영장")
-                            .font(.system(size: 14))
-                            .foregroundColor(ThemeColor.grayTint)
-                        
-                        
-                        Text("구로 50 플러스 수영장")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color.black)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 14))
-                            .foregroundColor(ThemeColor.grayTint)
-                            .padding(.trailing)
-                    }
-                }
-            }
-        }
-    }
     
 }
 

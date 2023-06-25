@@ -19,7 +19,7 @@ struct MainView: View {
                         Label("수영", systemImage: "figure.pool.swim")
                     }
                 
-                SearchPoolView()
+                NearByPoolView()
                     .tag(1)
                     .tabItem {
                         Label("수영장찾기", systemImage: "map")

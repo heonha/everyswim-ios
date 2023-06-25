@@ -1,5 +1,5 @@
 //
-//  Weekdays.swift
+//  WeekdayType.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/06/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Weekdays: String {
+enum WeekdayType: String {
     case sun = "일"
     case mon = "월"
     case tue = "화"

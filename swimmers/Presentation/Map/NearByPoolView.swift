@@ -1,5 +1,5 @@
 //
-//  SearchPoolView.swift
+//  NearByPoolView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/06/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchPoolView: View {
+struct NearByPoolView: View {
     
     @State private var text = ""
     
@@ -37,7 +37,7 @@ struct SearchPoolView: View {
     
 }
 
-extension SearchPoolView {
+extension NearByPoolView {
     
     private func mainBody() -> some View {
         ZStack {
@@ -158,7 +158,7 @@ extension SearchPoolView {
 struct SearchPoolView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SearchPoolView()
+            NearByPoolView()
         }
     }
 }
