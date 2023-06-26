@@ -9,7 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State var selectedTab = 0
+    enum MainTabs {
+        case home
+        case pool
+        case myinfo
+    }
+    
+    @State var selectedTab: MainTabs = .home
+    @StateObject var viewModel = MainViewModel.shared
     
     var body: some View {
             TabView(selection: $selectedTab) {
@@ -31,6 +38,7 @@ struct MainView: View {
                         Label("내 정보", systemImage: "person.circle.fill")
                     }
             }
+            .environmentObject(viewModel)
 
     }
 }
