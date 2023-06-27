@@ -20,23 +20,25 @@ struct MainView: View {
     
     var body: some View {
             TabView(selection: $selectedTab) {
+                    
                 HomeView()
-                    .tag(0)
                     .tabItem {
                         Label("수영", systemImage: "figure.pool.swim")
                     }
                 
-                NearByPoolView()
-                    .tag(1)
+                PoolsViewContainer()
                     .tabItem {
                         Label("수영장찾기", systemImage: "map")
                     }
                 
                 MyInfoView()
-                    .tag(2)
                     .tabItem {
                         Label("내 정보", systemImage: "person.circle.fill")
                     }
+            }
+            .onAppear {
+                UITabBar.appearance().backgroundColor = .systemBackground
+                UITabBar.appearance().isTranslucent = true
             }
             .environmentObject(viewModel)
 

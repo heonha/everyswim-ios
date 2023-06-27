@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchBarModifier: ViewModifier {
     
+    var clearButtonMode: UITextField.ViewMode = .whileEditing
+    
     func body(content: Content) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -26,6 +28,9 @@ struct SearchBarModifier: ViewModifier {
             }
             .padding(.horizontal)
             .foregroundColor(ThemeColor.grayTint)
+        }
+        .onAppear {
+            UITextField.appearance().clearButtonMode = clearButtonMode
         }
     }
 }
