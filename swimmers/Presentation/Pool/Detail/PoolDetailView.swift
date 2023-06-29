@@ -30,71 +30,76 @@ extension PoolDetailView {
                 .frame(height: 300)
                 .padding(.bottom, -40)
             
-            VStack(spacing: -8) {
+            informationView()
+
+        }
+    }
+    
+    private func informationView() -> some View {
+        VStack(spacing: -8) {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.white)
+                .frame(height: 28)
+
+            ScrollView(.vertical, showsIndicators: false) {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.white)
-                    .frame(height: 28)
-
-                ScrollView(.vertical, showsIndicators: false) {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white)
-                    
-                    Group {
-                        VStack {
-                            // 수영장 이름, 현위치에서의 거리
-                            HStack {
-                                Text("구로 50플러스 수영장")
-                                    .font(.custom(.sfProBold, size: 22))
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text("500m")
-                                    .font(.custom(.sfProMedium, size: 12))
-                                    .foregroundColor(.black.opacity(0.38))
-                            }
-                            .padding(.top, 14)
-                            
-                            // 주소
-                            addressView()
-                            
-                            Divider()
-                            
-                            // 레인
-                            HStack {
-                                Spacer()
-                                
-                                Text("25 m")
-                                
-                                Text("5 레인")
-                            }
-                            .font(.custom(.sfProBold, size: 14))
-                            .foregroundColor(Color(hex: "878787"))
-                            
-                            
-                            
-                            // 리뷰
-                            reviewContainerView()
-                            
-                            // 영업시간
-                            workingTimesView()
-                            
-                            
-                            // 위치 (지도)
-                            poolMapView()
-                                .frame(height: 190)
-                            
-                            // 홈페이지 이동
-                            contactButtonsView()
-                                .frame(height: 52)
-                            
-                            
+                
+                Group {
+                    VStack {
+                        // 수영장 이름, 현위치에서의 거리
+                        HStack {
+                            Text("구로 50플러스 수영장")
+                                .font(.custom(.sfProBold, size: 22))
+                                .foregroundColor(.black)
                             Spacer()
+                            Text("500m")
+                                .font(.custom(.sfProMedium, size: 12))
+                                .foregroundColor(.black.opacity(0.38))
                         }
+                        .padding(.top, 14)
+                        
+                        // 주소
+                        addressView()
+                        
+                        Divider()
+                        
+                        // 레인
+                        HStack {
+                            Spacer()
+                            
+                            Text("25 m")
+                            
+                            Text("5 레인")
+                        }
+                        .font(.custom(.sfProBold, size: 14))
+                        .foregroundColor(Color(hex: "878787"))
+                        
+                        
+                        
+                        // 리뷰
+                        reviewContainerView()
+                        
+                        // 영업시간
+                        workingTimesView()
+                        
+                        
+                        // 위치 (지도)
+                        poolMapView()
+                            .frame(height: 190)
+                        
+                        // 홈페이지 이동
+                        contactButtonsView()
+                            .frame(height: 52)
+                        
+                        
+                        Spacer()
                     }
-                    .padding(.horizontal, 16)
-                    
                 }
-                .background(Color.white)
+                .padding(.horizontal, 16)
+                
             }
+            .background(Color.white)
         }
     }
     

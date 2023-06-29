@@ -8,13 +8,14 @@
 import SwiftUI
 import CoreLocation
 
-struct PoolsViewContainer: View {
+struct PoolsMapViewContainer: View {
+    
     
     @State private var text = ""
     @State private var locationManager = CLLocationManager()
     
     // Drag Guesture
-    @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.75
+    @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.50
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
     @State private var isLocationAuthed = false
@@ -23,6 +24,9 @@ struct PoolsViewContainer: View {
     @State private var slidingAnimation: Animation = Animation.spring(response: 0.5,
                                                                       dampingFraction: 1,
                                                                       blendDuration: 0.7)
+    
+    // pool list interection
+    @State private var showDetail = false
     
     var body: some View {
         NavigationView {
@@ -33,7 +37,15 @@ struct PoolsViewContainer: View {
 }
 
 // MARK: - Views
-extension PoolsViewContainer {
+extension PoolsMapViewContainer {
+    
+    private var topInterectionView: some View {
+        
+        RoundedRectangle(cornerRadius: 8)
+            .fill(Color.init(uiColor: .red))
+            .frame(height: 20)
+    
+    }
     
     var mainBody: some View {
         ZStack {
@@ -79,40 +91,16 @@ extension PoolsViewContainer {
     }
     
     private var poolListView: some View {
-        PoolListView()
-            .cornerRadius(16)
-            .offset(y: startingOffsetY)
-            .offset(y: currentDragOffsetY)
-            .offset(y: endingOffsetY)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        withAnimation(slidingAnimation) {
-                            currentDragOffsetY = value.translation.height
-                        }
-                    }
-                    .onEnded { value in
-                        withAnimation(slidingAnimation) {
-                            if currentDragOffsetY < -150 {
-                                let topPadding: CGFloat = 60
-                                endingOffsetY = -startingOffsetY + topPadding
-                                currentDragOffsetY = 0
-                                
-                            } else if endingOffsetY <= 60 && currentDragOffsetY > 150 {
-                                endingOffsetY = 0
-                                currentDragOffsetY = 0
-                                
-                            } else {
-                                currentDragOffsetY = 0
-                            }
-                        }
-                    }
-            )
+        poolListContainerView
+                .offset(y: startingOffsetY)
+                .offset(y: currentDragOffsetY)
+                .offset(y: endingOffsetY)
+
     }
 }
 
 // MARK: - Map View Handler
-extension PoolsViewContainer {
+extension PoolsMapViewContainer {
     
     private func naverMapView(lat: CGFloat, lon: CGFloat) -> some View {
         NaverMapView(userLatitude: lat, userLongitude: lon)
@@ -135,13 +123,73 @@ extension PoolsViewContainer {
         }
     }
     
+    private var poolListContainerView: some View {
+        VStack(spacing: 0) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.white)
+                    .frame(height: 25)
+                RoundedRectangle(cornerRadius: 100)
+                    .fill(Color.init(uiColor: .systemFill))
+                    .frame(width: 36, height: 5)
+                    .padding(.vertical)
+
+            }
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            withAnimation(slidingAnimation) {
+                                currentDragOffsetY = value.translation.height
+                            }
+                        }
+                        .onEnded { value in
+                            withAnimation(slidingAnimation) {
+                                if currentDragOffsetY < -150 {
+                                    let topPadding: CGFloat = 60
+                                    endingOffsetY = -startingOffsetY + topPadding
+                                    currentDragOffsetY = 0
+                                    
+                                } else if endingOffsetY <= 60 && currentDragOffsetY > 150 {
+                                    endingOffsetY = 0
+                                    currentDragOffsetY = 0
+                                
+                            } else {
+                                currentDragOffsetY = 0
+                            }
+                        }
+                    }
+            )
+            
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
+                    SwimmingPoolCell(pool: ._50plus)
+                        .onTapGesture {
+                            showDetail.toggle()
+                        }
+                    
+                    SwimmingPoolCell(pool: .gochukdom)
+                    
+                    SwimmingPoolCell(pool: .guronam)
+                }
+            }
+            .padding(.horizontal, 14)
+            Spacer()
+        }
+        .background(Color.white)
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.25), radius: 2, x: -1, y: -1)
+        .fullScreenCover(isPresented: $showDetail) {
+            PoolDetailView()
+        }
+    }
+    
     
 }
 
 struct SwimmingPoolMapView_Previews: PreviewProvider {
     static var previews: some View {
         TabView {
-            PoolsViewContainer()
+            PoolsMapViewContainer()
                 .tabItem {
                     Label("수영장찾기", systemImage: "person")
                 }

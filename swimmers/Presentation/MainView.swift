@@ -26,7 +26,7 @@ struct MainView: View {
                         Label("수영", systemImage: "figure.pool.swim")
                     }
                 
-                PoolsViewContainer()
+                PoolsMapViewContainer()
                     .tabItem {
                         Label("수영장찾기", systemImage: "map")
                     }

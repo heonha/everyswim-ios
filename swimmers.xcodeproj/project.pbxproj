@@ -15,7 +15,7 @@
 		392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BC2A485B9400E591A8 /* PoolListView.swift */; };
 		392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BF2A485BB300E591A8 /* MyInfoView.swift */; };
 		392083C22A485E7700E591A8 /* DailyRecordBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C12A485E7700E591A8 /* DailyRecordBar.swift */; };
-		392083C62A48805000E591A8 /* PoolsViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C52A48805000E591A8 /* PoolsViewContainer.swift */; };
+		392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */; };
 		392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C72A48807B00E591A8 /* SearchBarModifier.swift */; };
 		392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C92A48828800E591A8 /* SwimmingPoolCell.swift */; };
 		392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */; };
@@ -51,7 +51,7 @@
 		392083BC2A485B9400E591A8 /* PoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListView.swift; sourceTree = "<group>"; };
 		392083BF2A485BB300E591A8 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		392083C12A485E7700E591A8 /* DailyRecordBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecordBar.swift; sourceTree = "<group>"; };
-		392083C52A48805000E591A8 /* PoolsViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsViewContainer.swift; sourceTree = "<group>"; };
+		392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsMapViewContainer.swift; sourceTree = "<group>"; };
 		392083C72A48807B00E591A8 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		392083C92A48828800E591A8 /* SwimmingPoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolCell.swift; sourceTree = "<group>"; };
 		392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolType.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				39ADB2812A4AEA1200AED318 /* Detail */,
-				392083C52A48805000E591A8 /* PoolsViewContainer.swift */,
+				392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */,
 				39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */,
 				39ADB2802A4AEA0000AED318 /* List */,
 				39437D9D2A48943200FDA9DA /* NaverMap */,
@@ -444,7 +444,7 @@
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
-				392083C62A48805000E591A8 /* PoolsViewContainer.swift in Sources */,
+				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
