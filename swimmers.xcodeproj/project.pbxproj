@@ -114,9 +114,9 @@
 		392083B92A485B6600E591A8 /* Pool */ = {
 			isa = PBXGroup;
 			children = (
-				39ADB2812A4AEA1200AED318 /* Detail */,
 				392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */,
 				39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */,
+				39ADB2812A4AEA1200AED318 /* Detail */,
 				39ADB2802A4AEA0000AED318 /* List */,
 				39437D9D2A48943200FDA9DA /* NaverMap */,
 				392083CF2A48862500E591A8 /* Types */,

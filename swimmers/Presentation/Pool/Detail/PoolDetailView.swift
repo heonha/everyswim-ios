@@ -11,9 +11,11 @@ struct PoolDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @State var test = ""
+    
     var body: some View {
         mainBody
-            .frame(width: Constant.deviceSize.width)
+            .ignoresSafeArea()
     }
 }
 
@@ -21,49 +23,70 @@ extension PoolDetailView {
     
     var mainBody: some View {
         VStack(spacing: 0) {
-            topBar()
-                .padding(.horizontal, 8)
+            //            topBar()
+            //                .frame(height: 44)
             
-            Image("pool1")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 300)
-                .padding(.bottom, -40)
-            
-            informationView()
-
+            ScrollView(.vertical, showsIndicators: false) {
+                Image("pool1")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: Constant.deviceSize.width, height: 300)
+                    .overlay {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                
+                                Button {
+                                    dismiss()
+                                } label: {
+                                    Image(systemName: "xmark.square.fill")
+                                        .font(.system(size: 30))
+                                        .foregroundColor(.white.opacity(0.95))
+                                        .shadow(color: .black.opacity(0.2),
+                                                radius: 1, x: 1, y: 1)
+                                }
+                                .padding(.top, 44 + 16)
+                                .padding(.trailing, 20)
+                            }
+                            Spacer()
+                        }
+                    }
+                informationView()
+            }
         }
+        
     }
     
     private func informationView() -> some View {
         VStack(spacing: -8) {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
-                .frame(height: 28)
-
-            ScrollView(.vertical, showsIndicators: false) {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                
-                Group {
-                    VStack {
-                        // 수영장 이름, 현위치에서의 거리
-                        HStack {
-                            Text("구로 50플러스 수영장")
-                                .font(.custom(.sfProBold, size: 22))
-                                .foregroundColor(.black)
-                            Spacer()
-                            Text("500m")
-                                .font(.custom(.sfProMedium, size: 12))
-                                .foregroundColor(.black.opacity(0.38))
+            Group {
+                VStack {
+                    // 수영장 이름, 현위치에서의 거리
+                    HStack {
+                        Text("구로 50플러스 수영장")
+                            .font(.custom(.sfProBold, size: 22))
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 17, weight: .bold))
+                                .foregroundColor(.red)
                         }
-                        .padding(.top, 14)
-                        
-                        // 주소
-                        addressView()
-                        
-                        Divider()
-                        
+                        .padding(.trailing, 8)
+                    }
+                    .padding(.top, 14)
+                    .padding(.bottom, 2)
+                    
+                    // 주소
+                    addressView()
+                    
+                    Divider()
+                    
+                    Group {
                         // 레인
                         HStack {
                             Spacer()
@@ -75,32 +98,35 @@ extension PoolDetailView {
                         .font(.custom(.sfProBold, size: 14))
                         .foregroundColor(Color(hex: "878787"))
                         
-                        
-                        
                         // 리뷰
                         reviewContainerView()
+                            .padding(.bottom, 8)
                         
                         // 영업시간
                         workingTimesView()
+                            .padding(.vertical, 8)
                         
-                        
-                        // 위치 (지도)
-                        poolMapView()
-                            .frame(height: 190)
                         
                         // 홈페이지 이동
                         contactButtonsView()
                             .frame(height: 52)
+                            .padding(.vertical, 8)
+                        
+                        // 위치 (지도)
+                        poolMapView()
+                            .frame(height: 190)
+                            .padding(.vertical, 8)
                         
                         
                         Spacer()
                     }
                 }
-                .padding(.horizontal, 16)
-                
             }
+            .padding(.horizontal, 16)
+            
             .background(Color.white)
         }
+        .cornerRadius(8)
     }
     
     private func workingTimesView() -> some View {
@@ -125,7 +151,7 @@ extension PoolDetailView {
                         HStack {
                             Text("평일")
                                 .font(.custom(.sfProBold, size: 14))
-                            .frame(width: 70)
+                                .frame(width: 70)
                             
                             Text("00:00 ~ 00:00")
                                 .font(.custom(.sfProLight, size: 14))
@@ -134,7 +160,7 @@ extension PoolDetailView {
                         HStack {
                             Text("토요일")
                                 .font(.custom(.sfProBold, size: 14))
-                            .frame(width: 70)
+                                .frame(width: 70)
                             
                             Text("00:00 ~ 00:00")
                                 .font(.custom(.sfProLight, size: 14))
@@ -145,7 +171,7 @@ extension PoolDetailView {
                         HStack {
                             Text("평일")
                                 .font(.custom(.sfProBold, size: 14))
-                            .frame(width: 70)
+                                .frame(width: 70)
                             
                             Text("휴무")
                                 .font(.custom(.sfProLight, size: 14))
@@ -186,7 +212,7 @@ extension PoolDetailView {
             }
         }
     }
-
+    
     
     private func commentView(userName: String, message: String) -> some View {
         HStack {
@@ -286,32 +312,11 @@ extension PoolDetailView {
             Rectangle()
                 .fill(Color.white)
             
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(ThemeColor.grayTint)
-                }
-                
-                Spacer()
-                
-                Text("구로 50플러스 수영장")
-                    .font(.custom(.sfProBold, size: 17))
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "heart.fill")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(.red)
-                }
-            }
+            
+            Text("구로 50플러스 수영장")
+                .font(.custom(.sfProBold, size: 17))
+            
         }
-        .frame(height: 44)
         
     }
 }
