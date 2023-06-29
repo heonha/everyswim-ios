@@ -10,11 +10,12 @@ import SwiftUI
 struct SearchBarModifier: ViewModifier {
     
     var clearButtonMode: UITextField.ViewMode = .whileEditing
+    var fillColor: Color = ThemeColor.cellBackground
     
     func body(content: Content) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(ThemeColor.cellBackground)
+                .fill(fillColor)
                 .frame(height: 42.5)
             
             HStack(spacing: 6) {
@@ -25,6 +26,7 @@ struct SearchBarModifier: ViewModifier {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .textCase(.none)
+                    .foregroundColor(.black)
             }
             .padding(.horizontal)
             .foregroundColor(ThemeColor.grayTint)

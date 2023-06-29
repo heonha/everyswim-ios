@@ -13,7 +13,8 @@ struct PoolsMapViewContainer: View {
     
     @State private var text = ""
     @State private var locationManager = CLLocationManager()
-    
+    @FocusState private var searchFocused: Bool
+
     // Drag Guesture
     @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.50
     @State private var currentDragOffsetY: CGFloat = 0
@@ -44,7 +45,7 @@ extension PoolsMapViewContainer {
         RoundedRectangle(cornerRadius: 8)
             .fill(Color.init(uiColor: .red))
             .frame(height: 20)
-    
+        
     }
     
     var mainBody: some View {
@@ -80,7 +81,9 @@ extension PoolsMapViewContainer {
     private func searchField(_ text: Binding<String>) -> some View {
         VStack {
             TextField("\(currentDragOffsetY)", text: $text)
-                .modifier(SearchBarModifier())
+                .focused($searchFocused)
+                .modifier(SearchBarModifier(fillColor: .clear))
+                .background(.regularMaterial)
                 .cornerRadius(8)
                 .padding(.top, 8)
                 .padding(.horizontal, 16)
@@ -88,14 +91,17 @@ extension PoolsMapViewContainer {
                 .shadow(color: .black.opacity(0.10), radius: 2, x: -1, y: -1)
             Spacer()
         }
+        .onSubmit {
+            searchFocused.toggle()
+        }
     }
     
     private var poolListView: some View {
         poolListContainerView
-                .offset(y: startingOffsetY)
-                .offset(y: currentDragOffsetY)
-                .offset(y: endingOffsetY)
-
+            .offset(y: startingOffsetY)
+            .offset(y: currentDragOffsetY)
+            .offset(y: endingOffsetY)
+        
     }
 }
 
@@ -109,6 +115,9 @@ extension PoolsMapViewContainer {
                 locationManager.startUpdatingLocation()
                 locationAuthorizedCheck(status: locationManager.authorizationStatus)
                 print("lat: \(lat), lon: \(lon)")
+            }
+            .onTapGesture {
+                searchFocused = false
             }
     }
     
@@ -133,25 +142,25 @@ extension PoolsMapViewContainer {
                     .fill(Color.init(uiColor: .systemFill))
                     .frame(width: 36, height: 5)
                     .padding(.vertical)
-
+                
             }
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            withAnimation(slidingAnimation) {
-                                currentDragOffsetY = value.translation.height
-                            }
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        withAnimation(slidingAnimation) {
+                            currentDragOffsetY = value.translation.height
                         }
-                        .onEnded { value in
-                            withAnimation(slidingAnimation) {
-                                if currentDragOffsetY < -150 {
-                                    let topPadding: CGFloat = 60
-                                    endingOffsetY = -startingOffsetY + topPadding
-                                    currentDragOffsetY = 0
-                                    
-                                } else if endingOffsetY <= 60 && currentDragOffsetY > 150 {
-                                    endingOffsetY = 0
-                                    currentDragOffsetY = 0
+                    }
+                    .onEnded { value in
+                        withAnimation(slidingAnimation) {
+                            if currentDragOffsetY < -150 {
+                                let topPadding: CGFloat = 60
+                                endingOffsetY = -startingOffsetY + topPadding
+                                currentDragOffsetY = 0
+                                
+                            } else if endingOffsetY <= 60 && currentDragOffsetY > 150 {
+                                endingOffsetY = 0
+                                currentDragOffsetY = 0
                                 
                             } else {
                                 currentDragOffsetY = 0

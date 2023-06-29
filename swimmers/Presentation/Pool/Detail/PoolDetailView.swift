@@ -22,39 +22,33 @@ struct PoolDetailView: View {
 extension PoolDetailView {
     
     var mainBody: some View {
-        VStack(spacing: 0) {
-            //            topBar()
-            //                .frame(height: 44)
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                Image("pool1")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: Constant.deviceSize.width, height: 300)
-                    .overlay {
-                        VStack {
-                            HStack {
-                                Spacer()
-                                
-                                Button {
-                                    dismiss()
-                                } label: {
-                                    Image(systemName: "xmark.square.fill")
-                                        .font(.system(size: 30))
-                                        .foregroundColor(.white.opacity(0.95))
-                                        .shadow(color: .black.opacity(0.2),
-                                                radius: 1, x: 1, y: 1)
-                                }
-                                .padding(.top, 44 + 16)
-                                .padding(.trailing, 20)
-                            }
+        ScrollView(.vertical, showsIndicators: false) {
+            Image("pool1")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: Constant.deviceSize.width, height: 300)
+                .overlay {
+                    VStack {
+                        HStack {
                             Spacer()
+                            
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark.square.fill")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(.white.opacity(0.95))
+                                    .shadow(color: .black.opacity(0.2),
+                                            radius: 1, x: 1, y: 1)
+                            }
+                            .padding(.top, 44 + 16)
+                            .padding(.trailing, 20)
                         }
+                        Spacer()
                     }
-                informationView()
-            }
+                }
+            informationView()
         }
-        
     }
     
     private func informationView() -> some View {
