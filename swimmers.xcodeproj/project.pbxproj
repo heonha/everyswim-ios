@@ -37,6 +37,7 @@
 		39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2712A492F2B00AED318 /* MainViewModel.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* Constant.swift */; };
 		39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */; };
+		39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */; };
 		81984978731F99A172D3969B /* Pods_swimmers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		39ADB2712A492F2B00AED318 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsViewModel.swift; sourceTree = "<group>"; };
+		39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swimmers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D920C7E5BEB9778F19F79D49 /* Pods-swimmers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.release.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,12 +114,12 @@
 		392083B92A485B6600E591A8 /* Pool */ = {
 			isa = PBXGroup;
 			children = (
+				39ADB2812A4AEA1200AED318 /* Detail */,
 				392083C52A48805000E591A8 /* PoolsViewContainer.swift */,
 				39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */,
-				392083BC2A485B9400E591A8 /* PoolListView.swift */,
+				39ADB2802A4AEA0000AED318 /* List */,
 				39437D9D2A48943200FDA9DA /* NaverMap */,
 				392083CF2A48862500E591A8 /* Types */,
-				392083C92A48828800E591A8 /* SwimmingPoolCell.swift */,
 			);
 			path = Pool;
 			sourceTree = "<group>";
@@ -275,6 +277,23 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		39ADB2802A4AEA0000AED318 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				392083BC2A485B9400E591A8 /* PoolListView.swift */,
+				392083C92A48828800E591A8 /* SwimmingPoolCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		39ADB2812A4AEA1200AED318 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		558413656F6ED88D1CF53D5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +438,7 @@
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
 				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
+				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,

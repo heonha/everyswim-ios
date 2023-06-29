@@ -10,6 +10,7 @@ import SwiftUI
 struct PoolListView: View {
     
     @State private var text = ""
+    @State private var showDetail = false
     
     var body: some View {
         NavigationView {
@@ -31,16 +32,21 @@ extension PoolListView {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     SwimmingPoolCell(pool: ._50plus)
+                        .onTapGesture {
+                            showDetail.toggle()
+                        }
                     
                     SwimmingPoolCell(pool: .gochukdom)
                     
                     SwimmingPoolCell(pool: .guronam)
                 }
             }
-            
             Spacer()
         }
         .padding(.all, 14)
+        .fullScreenCover(isPresented: $showDetail) {
+            PoolDetailView()
+        }
         
     }
 
@@ -48,8 +54,6 @@ extension PoolListView {
 
 struct SearchPoolView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
             PoolListView()
-        }
     }
 }

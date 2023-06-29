@@ -13,11 +13,14 @@ struct NaverMapView: UIViewRepresentable {
     @ObservedObject var viewModel = MapSceneViewModel()
     @State var userLatitude: Double
     @State var userLongitude: Double
+    var isMiniMode = true
     
     func makeUIView(context: Context) -> NMFNaverMapView {
         let nmapView = NMFNaverMapView()
         nmapView.showZoomControls = false
-        nmapView.showLocationButton = true
+        
+        nmapView.showLocationButton = !isMiniMode
+        nmapView.showScaleBar = !isMiniMode
         
         nmapView.mapView.zoomLevel = 17
         nmapView.mapView.mapType = .basic
