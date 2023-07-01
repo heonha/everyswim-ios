@@ -28,13 +28,13 @@
 		398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */; };
 		398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */; };
 		398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BBF2A4842C900E0FA9B /* MainView.swift */; };
-		398B1BC22A4845A700E0FA9B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BC12A4845A700E0FA9B /* .gitignore */; };
 		398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC32A4848D400E0FA9B /* RecordCellType.swift */; };
 		398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC52A484CF500E0FA9B /* Font+Extension.swift */; };
 		398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC72A484D1300E0FA9B /* ThemeFont.swift */; };
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
 		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
+		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2712A492F2B00AED318 /* MainViewModel.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* Constant.swift */; };
 		39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */; };
@@ -66,7 +66,6 @@
 		398B1BB62A483E4E00E0FA9B /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		398B1BBF2A4842C900E0FA9B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		398B1BC12A4845A700E0FA9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		398B1BC32A4848D400E0FA9B /* RecordCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellType.swift; sourceTree = "<group>"; };
 		398B1BC52A484CF500E0FA9B /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		398B1BC72A484D1300E0FA9B /* ThemeFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFont.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39ADB2712A492F2B00AED318 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsViewModel.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 		398B1B982A483DA300E0FA9B = {
 			isa = PBXGroup;
 			children = (
+				39A5E8E02A502DA80062509F /* .gitignore */,
 				39A5E8DB2A502A150062509F /* .swiftlint.yml */,
-				398B1BC12A4845A700E0FA9B /* .gitignore */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
 				398B1BA22A483DA300E0FA9B /* Products */,
 				20024A8524F89D496E5E814C /* Pods */,
@@ -206,14 +206,14 @@
 		398B1BA32A483DA300E0FA9B /* swimmers */ = {
 			isa = PBXGroup;
 			children = (
-				39437DA02A48948E00FDA9DA /* Secrets */,
-				398B1BD02A4851A800E0FA9B /* Info.plist */,
 				398B1BA42A483DA300E0FA9B /* swimmersApp.swift */,
 				398B1BB22A483E0C00E0FA9B /* Presentation */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
+				39437DA02A48948E00FDA9DA /* Secrets */,
 				398B1BC92A484D5500E0FA9B /* Resources */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
+				398B1BD02A4851A800E0FA9B /* Info.plist */,
 			);
 			path = swimmers;
 			sourceTree = "<group>";
@@ -230,11 +230,11 @@
 			isa = PBXGroup;
 			children = (
 				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
+				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 				392083B82A485B5D00E591A8 /* Home */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 				392083B92A485B6600E591A8 /* Pool */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
-				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -370,8 +370,8 @@
 				398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */,
 				398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */,
 				392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */,
+				39A5E8E22A502DA80062509F /* .gitignore in Resources */,
 				392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */,
-				398B1BC22A4845A700E0FA9B /* .gitignore in Resources */,
 				398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */,
 				392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */,
 				398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */,
