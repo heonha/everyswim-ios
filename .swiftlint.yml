@@ -1,3 +1,4 @@
+
 excluded:
   - ${PWD}/Carthage
   - ${PWD}/Pods
@@ -18,10 +19,10 @@ disabled_rules:
   - line_length
   - multiline_function_chains
   - unused_import
+  - type_name
 
 opt_in_rules:
   - array_init
-  - attributes
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
@@ -62,12 +63,12 @@ custom_rules:
     severity: warning
 
 
-attributes:
-  always_on_same_line:
-    - "@IBSegueAction"
-    - "@IBAction"
-    - "@NSManaged"
-    - "@objc"
+#attributes:
+#  always_on_same_line:
+#    - "@IBSegueAction"
+#    - "@IBAction"
+#    - "@NSManaged"
+#    - "@objc"
 
 force_cast: warning
 force_try: warning

@@ -14,7 +14,7 @@ struct PoolsMapViewContainer: View {
     @State private var text = ""
     @State private var locationManager = CLLocationManager()
     @FocusState private var searchFocused: Bool
-
+    
     // Drag Guesture
     @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.50
     @State private var currentDragOffsetY: CGFloat = 0
@@ -22,9 +22,7 @@ struct PoolsMapViewContainer: View {
     @State private var isLocationAuthed = false
     
     // Animation
-    @State private var slidingAnimation: Animation = Animation.spring(response: 0.5,
-                                                                      dampingFraction: 1,
-                                                                      blendDuration: 0.7)
+    @State private var slidingAnimation: Animation = .spring(response: 0.5, dampingFraction: 1, blendDuration: 0.7)
     
     // pool list interection
     @State private var showDetail = false
@@ -53,8 +51,9 @@ extension PoolsMapViewContainer {
             Rectangle()
                 .fill(Color.secondary)
             
-            naverMapView(lat: locationManager.location?.coordinate.latitude ?? 0,
-                         lon: locationManager.location?.coordinate.longitude ?? 0)
+            naverMapView(
+                lat: locationManager.location?.coordinate.latitude ?? 0,
+                lon: locationManager.location?.coordinate.longitude ?? 0)
             
             searchField($text)
             
@@ -151,7 +150,7 @@ extension PoolsMapViewContainer {
                             currentDragOffsetY = value.translation.height
                         }
                     }
-                    .onEnded { value in
+                    .onEnded { _ in
                         withAnimation(slidingAnimation) {
                             if currentDragOffsetY < -150 {
                                 let topPadding: CGFloat = 60

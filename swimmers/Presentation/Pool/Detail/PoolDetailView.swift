@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PoolDetailView: View {
     
-    @Environment(\.dismiss) private var dismiss
     
     @State var test = ""
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         mainBody
@@ -39,7 +39,9 @@ extension PoolDetailView {
                                     .font(.system(size: 30))
                                     .foregroundColor(.white.opacity(0.95))
                                     .shadow(color: .black.opacity(0.2),
-                                            radius: 1, x: 1, y: 1)
+                                            radius: 1,
+                                            x: 1,
+                                            y: 1)
                             }
                             .padding(.top, 44 + 16)
                             .padding(.trailing, 20)

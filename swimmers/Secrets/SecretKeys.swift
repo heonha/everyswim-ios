@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Keys {
+enum SecretKeys {
     static let NAVER_CLIENT_ID = "cd92f7ybte"
 }

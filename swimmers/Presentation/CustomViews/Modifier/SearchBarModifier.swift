@@ -36,23 +36,10 @@ struct SearchBarModifier: ViewModifier {
         }
     }
 }
-//
-//struct SearchBarModifier_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchBarModifier()
-//    }
-//}
-//
-//
-//struct BorderedCaption: ViewModifier {
-//    func body(content: Content) -> some View {
-//        content
-//            .font(.caption2)
-//            .padding(10)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 15)
-//                    .stroke(lineWidth: 1)
-//            )
-//            .foregroundColor(Color.blue)
-//    }
-//}
+
+struct SearchBarModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        TextField("placeholder", text: .constant("this is text"))
+            .modifier(SearchBarModifier())
+    }
+}

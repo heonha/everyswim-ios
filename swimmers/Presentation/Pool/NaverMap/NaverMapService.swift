@@ -79,4 +79,3 @@ struct MapScene_Previews: PreviewProvider {
     }
 }
 #endif
-
