@@ -12,9 +12,8 @@ Pods/
 Podfile.lock
 
 # Xcode
-../xcshareddata/
-../xcuserdata/
-*.workspaces
+swimmers.xcworkspace
+swimmers.xcodeproj/xcshareddata/
 
 ################################################################################################################
 
