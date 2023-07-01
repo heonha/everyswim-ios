@@ -1,8 +1,22 @@
 
-#macos
+
+
+# macos
 ../DS_Store
 
-Keys.swift
+# Secrets
+../Secrets/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Xcode
+../xcshareddata/
+../xcuserdata/
+*.workspaces
+
+################################################################################################################
 
 # Created by https://www.toptal.com/developers/gitignore/api/swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift
