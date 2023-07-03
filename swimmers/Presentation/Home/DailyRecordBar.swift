@@ -20,7 +20,7 @@ struct DailyRecordBar: View {
                 .fill(Color.clear)
             
             RoundedRectangle(cornerRadius: 8)
-                .fill(isPressed ? Color.init(hex: "2752EE") : Color(hex: "000000").opacity(0.1))
+                .fill(isPressed ? ThemeColor.primary : Color(hex: "000000").opacity(0.1))
                 .frame(height: barHeight)
                 .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 0.7),
                            value: barHeight * 0.9)

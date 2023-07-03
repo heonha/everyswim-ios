@@ -104,7 +104,7 @@ extension HomeView {
     private func smallRecordCell(title: String, symbolName: String) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(ThemeColor.cellBackground)
+                .fill(ThemeColor.primary)
                 .frame(height: 75)
             HStack {
                 Image(systemName: symbolName)
@@ -112,7 +112,7 @@ extension HomeView {
                 Text(title)
                     .font(.custom(.godoB, size: 22))
             }
-            .foregroundColor(Color.init(hex: "2752EE"))
+            .foregroundColor(.white)
         }
     }
     
@@ -128,7 +128,7 @@ extension HomeView {
                         Image(systemName: "timelapse")
                             .resizable()
                             .frame(width: 23, height: 23)
-                            .foregroundColor(.init(hex: "0E2FD8").opacity(0.65))
+                            .foregroundColor(ThemeColor.primary)
                         Text("주간 기록")
                             .font(.custom(.godoB, size: 16))
                     }
