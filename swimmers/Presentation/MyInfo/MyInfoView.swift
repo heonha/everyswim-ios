@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyInfoView: View {
-        
+    
     var body: some View {
         ZStack {
             VStack {
@@ -22,34 +22,7 @@ struct MyInfoView: View {
                 .frame(height: 166)
                 
                 ScrollView(showsIndicators: false) {
-                    ZStack {
-                        
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(.regularMaterial)
-                        
-                        VStack(spacing: 8) {
-                            // List A - 회원정보 변경 / 목표 수정 / 알림 설정 / 건강정보 연동 (워치)
-                            navigationLinkButton(.changeUserInfo)
-                            navigationLinkButton(.editChallange)
-                            navigationLinkButton(.setupAlert)
-                            navigationLinkButton(.syncHealth)
-                                .padding(.bottom, 32)
-
-                            // List B - 앱 공유하기 / 문의 보내기 / 도움말
-                            navigationLinkButton(.shareApp)
-                            navigationLinkButton(.sendContact)
-                            navigationLinkButton(.questions)
-                                .padding(.bottom, 32)
-                  
-                            // List 3
-                            navigationLinkButton(.logout)
-                            navigationLinkButton(.deleteAccount)
-                        }
-                        .padding(.vertical)
-                        
-                    }
-                    .padding(.vertical)
-
+                    navigationButtons
                 }
                 
                 Spacer()
@@ -57,6 +30,36 @@ struct MyInfoView: View {
             }
             .padding(.horizontal)
         }
+    }
+    
+    private var navigationButtons: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.regularMaterial)
+            
+            VStack(spacing: 8) {
+                // List A - 회원정보 변경 / 목표 수정 / 알림 설정 / 건강정보 연동 (워치)
+                navigationLinkButton(.changeUserInfo)
+                navigationLinkButton(.editChallange)
+                navigationLinkButton(.setupAlert)
+                navigationLinkButton(.syncHealth)
+                    .padding(.bottom, 32)
+                
+                // List B - 앱 공유하기 / 문의 보내기 / 도움말
+                navigationLinkButton(.shareApp)
+                navigationLinkButton(.sendContact)
+                navigationLinkButton(.questions)
+                    .padding(.bottom, 32)
+                
+                // List 3
+                navigationLinkButton(.logout)
+                navigationLinkButton(.deleteAccount)
+            }
+            .padding(.vertical)
+            
+        }
+        .padding(.vertical)
+        
     }
     
     private func navigationLinkButton(_ type: MyInfoButtonType) -> some View {
@@ -117,7 +120,7 @@ struct MyInfoView: View {
             }
             .frame(width: 187, height: 24)
             
-
+            
         }
     }
     
@@ -148,7 +151,7 @@ struct MyInfoView: View {
                 }
             }
             .frame(width: 20, height: 20)
-
+            
         }
     }
 }
