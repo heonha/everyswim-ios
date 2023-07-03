@@ -20,13 +20,14 @@ disabled_rules:
   - multiline_function_chains
   - unused_import
   - type_name
+  
 
 opt_in_rules:
   - array_init
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
-  - colon # promote to error
+#  - colon # promote to error
   - convenience_type
   - discouraged_object_literal
   - empty_collection_literal

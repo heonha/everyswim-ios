@@ -21,6 +21,7 @@
 		392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */; };
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
+		39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolType.swift; sourceTree = "<group>"; };
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonType.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				392083BF2A485BB300E591A8 /* MyInfoView.swift */,
+				39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				398B1BB42A483E1700E0FA9B /* HomeView.swift in Sources */,
 				398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */,
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
+				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				392083C22A485E7700E591A8 /* DailyRecordBar.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* ThemeColor.swift in Sources */,
