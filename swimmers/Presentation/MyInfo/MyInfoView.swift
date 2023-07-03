@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MyInfoView: View {
     
+    @State private var showModal = false
+    
     var body: some View {
-        ZStack {
+        NavigationView {
             VStack {
                 VStack {
                     topBar()
@@ -42,7 +44,7 @@ struct MyInfoView: View {
                 navigationLinkButton(.changeUserInfo)
                 navigationLinkButton(.editChallange)
                 navigationLinkButton(.setupAlert)
-                navigationLinkButton(.syncHealth)
+                modalSheetButton(.syncHealth)
                     .padding(.bottom, 32)
                 
                 // List B - 앱 공유하기 / 문의 보내기 / 도움말
@@ -62,34 +64,54 @@ struct MyInfoView: View {
         
     }
     
-    private func navigationLinkButton(_ type: MyInfoButtonType) -> some View {
+    private func infoButtonStyle(_ type: MyInfoButtonType) -> some View {
         let data = type.getUIData()
         
-        return NavigationLink {
-            type.destination()
-        } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(.white.opacity(0.95))
-                    .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 1)
+        return ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.white.opacity(0.95))
+                .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 1)
+            
+            HStack {
+                Image(systemName: data.symbolName)
+                    .font(.system(size: 16))
+                    .foregroundColor(Color(hex: "747474"))
                 
-                HStack {
-                    Image(systemName: data.symbolName)
-                        .font(.system(size: 16))
-                        .foregroundColor(Color(hex: "747474"))
-                    
-                    Text(data.title)
-                        .font(.custom(.sfProLight, size: 16))
-                        .foregroundColor(.black)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal, 12)
+                Text(data.title)
+                    .font(.custom(.sfProLight, size: 16))
+                    .foregroundColor(.black)
                 
+                Spacer()
             }
+            .padding(.horizontal, 12)
+            
+        }
+    }
+    
+    
+    private func modalSheetButton(_ type: MyInfoButtonType) -> some View {
+        Button {
+            showModal.toggle()
+        } label: {
+            infoButtonStyle(type)
         }
         .frame(height: 42)
         .padding(.horizontal, 12)
+        .sheet(isPresented: $showModal) {
+            type.destination()
+            
+        }
+    }
+    
+    private func navigationLinkButton(_ type: MyInfoButtonType) -> some View {
+        NavigationLink {
+            type.destination()
+        } label: {
+            infoButtonStyle(type)
+        }
+        .frame(height: 42)
+        .padding(.horizontal, 12)
+        
     }
     
     private func profileView() -> some View {
@@ -155,6 +177,7 @@ struct MyInfoView: View {
         }
     }
 }
+
 
 struct MyInfoView_Previews: PreviewProvider {
     static var previews: some View {

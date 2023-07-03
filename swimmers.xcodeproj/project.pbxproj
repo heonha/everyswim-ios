@@ -25,6 +25,8 @@
 		39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE02A52CACB00986E01 /* HealthKitManager.swift */; };
 		39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE32A52CFB200986E01 /* String+Extension.swift */; };
 		39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE52A52D01200986E01 /* Date+Extension.swift */; };
+		39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE72A52D19500986E01 /* SyncHealthView.swift */; };
+		39572CEA2A52F0F700986E01 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE92A52F0F700986E01 /* HomeViewModel.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		39572CE22A52CBA300986E01 /* swimmers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swimmers.entitlements; sourceTree = "<group>"; };
 		39572CE32A52CFB200986E01 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		39572CE52A52D01200986E01 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		39572CE72A52D19500986E01 /* SyncHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncHealthView.swift; sourceTree = "<group>"; };
+		39572CE92A52F0F700986E01 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				392083C42A487DEA00E591A8 /* Types */,
 				398B1BB32A483E1700E0FA9B /* HomeView.swift */,
 				392083C12A485E7700E591A8 /* DailyRecordBar.swift */,
+				39572CE92A52F0F700986E01 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			children = (
 				392083BF2A485BB300E591A8 /* MyInfoView.swift */,
 				39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */,
+				39572CE72A52D19500986E01 /* SyncHealthView.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -487,10 +493,12 @@
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
 				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
+				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */,
+				39572CEA2A52F0F700986E01 /* HomeViewModel.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,

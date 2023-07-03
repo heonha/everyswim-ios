@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum PresentType {
+    case navigationLink
+    case modalView
+}
+
 enum MyInfoButtonType {
     case changeUserInfo
     case editChallange
@@ -43,28 +48,22 @@ enum MyInfoButtonType {
         }
     }
     
-    func destination() -> some View {
+    func presentType() -> PresentType {
         switch self {
-        case .changeUserInfo:
-            return EmptyView()
-        case .editChallange:
-            return EmptyView()
-        case .setupAlert:
-            return EmptyView()
         case .syncHealth:
-            return EmptyView()
-        case .shareApp:
-            return EmptyView()
-        case .sendContact:
-            return EmptyView()
-        case .questions:
-            return EmptyView()
-        case .logout:
-            return EmptyView()
-        case .deleteAccount:
-            return EmptyView()
+            return .modalView
+        default:
+            return .navigationLink
         }
     }
     
+    func destination() -> some View {
+        switch self {
+        case .syncHealth:
+            return AnyView(SyncHealthView())
+        default:
+            return AnyView(EmptyView())
+        }
+    }
     
 }
