@@ -37,7 +37,7 @@ struct MainView: View {
                     }
             }
             .onAppear {
-                UITabBar.appearance().backgroundColor = .systemBackground
+                UITabBar.appearance().backgroundColor = .clear
                 UITabBar.appearance().isTranslucent = true
             }
             .environmentObject(viewModel)

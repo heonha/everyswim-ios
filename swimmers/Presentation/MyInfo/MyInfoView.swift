@@ -37,7 +37,7 @@ struct MyInfoView: View {
     private var navigationButtons: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
-                .fill(.regularMaterial)
+                .fill(Color(hex: "F8F9FF"))
             
             VStack(spacing: 8) {
                 // List A - 회원정보 변경 / 목표 수정 / 알림 설정 / 건강정보 연동 (워치)
@@ -134,7 +134,7 @@ struct MyInfoView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.regularMaterial)
+                    .fill(ThemeColor.secondaryBackground)
                 
                 Text("heonha@heon.dev")
                     .tint(Color(hex: "000000").opacity(0.40))

@@ -21,148 +21,91 @@ extension HomeView {
     
     private var mainBody: some View {
         
-        VStack {
-            profileView()
-                .frame(height: 100)
-                .padding(.horizontal, 24)
-                .background(ThemeColor.primary)
+        ZStack {
+            VStack {
+                profileView()
+                    .frame(height: 100)
+                    .padding(.horizontal, 24)
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.white)
+                            .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
+                        
+                        HStack(spacing: 30) {
+                            Text("1,100 M")
+                                .font(.custom(.sfProBold, size: 24))
+                                .foregroundColor(.black)
+                            
+                            Text("30 Lap")
+                                .font(.custom(.sfProBold, size: 21))
+                                .foregroundColor(.black.opacity(0.3))
+                        }
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Text("3일 전")
+                                .font(.custom(.sfProLight, size: 12))
+                                .foregroundColor(.black.opacity(0.3))
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.custom(.sfProBold, size: 14))
+                                .foregroundColor(.black.opacity(0.3))
+                            
+                            Rectangle()
+                                .fill(.clear)
+                                .frame(width: 4)
+                        }
+                    }
+                    .frame(height: 48)
+                    .padding(.horizontal, 24)
+                }
+                
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.clear)
+                    .frame(height: 30)
+            }
+            
+            Spacer()
             
             bodyView()
+            
+            Spacer()
+
         }
-        .background(ThemeColor.primary)
-        .ignoresSafeArea(edges: .bottom)
+        .background(LinearGradient(gradient: .init(colors: [Color(hex: "3284FE").opacity(0.08), Color(hex: "FFFFFF")]), startPoint: .top, endPoint: .bottom))
         
     }
     
     private func bodyView() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-            
-            VStack {
-                mySwimmingPoolView()
-                
-                tripleRecordView()
-                
-                weeklyRecords()
-                
-                HStack {
-                    smallRecordCell(title: "자유형", symbolName: "figure.pool.swim")
-                    smallRecordCell(title: "23km/h", symbolName: "water.waves")
-                }
-                
-                Spacer()
-            }
-            .padding([.horizontal, .top], 14)
-        }
-    }
-    
-    private func mySwimmingPoolView() -> some View {
-        NavigationLink {
-            
-        } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(ThemeColor.cellBackground)
-                    .frame(height: 47)
-                
-                HStack {
-                    Image(systemName: "mappin.circle")
-                        .resizable()
-                        .frame(width: 21, height: 21)
-                        .foregroundColor(ThemeColor.grayTint)
-                        .padding(.leading)
-                    
-                    Text("나의 수영장")
-                        .font(.system(size: 14))
-                        .foregroundColor(ThemeColor.grayTint)
-                    
-                    
-                    Text("구로 50 플러스 수영장")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.black)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 14))
-                        .foregroundColor(ThemeColor.grayTint)
-                        .padding(.trailing)
-                }
-            }
-        }
-    }
-    
-    private func tripleRecordView() -> some View {
-        HStack {
-            recordsCell(.swim, score: 1240)
-            recordsCell(.kcal, score: 2330)
-            recordsCell(.lap, score: 50)
-        }
-    }
-    
-    private func smallRecordCell(title: String, symbolName: String) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(ThemeColor.primary)
-                .frame(height: 75)
-            HStack {
-                Image(systemName: symbolName)
-                    .font(.system(size: 36))
-                Text(title)
-                    .font(.custom(.godoB, size: 22))
-            }
-            .foregroundColor(.white)
-        }
-    }
-    
-    private func weeklyRecords() -> some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 14)
-                .fill(ThemeColor.cellBackground)
-            
-            VStack {
-                HStack {
-                    HStack {
-                        Image(systemName: "timelapse")
-                            .resizable()
-                            .frame(width: 23, height: 23)
-                            .foregroundColor(ThemeColor.primary)
-                        Text("주간 기록")
-                            .font(.custom(.godoB, size: 16))
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
+        VStack {
+            Spacer()
                         
-                    } label: {
-                        Text("Weekly")
-                            .font(.custom(.sfProBold, size: 14))
-                        Image(systemName: "chevron.down")
-                            .font(.system(size: 12))
-                    }
-                    .foregroundColor(ThemeColor.grayTint)
-                    .padding(.trailing, 16)
-                }
-                
-                HStack(spacing: 10) {
-                    DailyRecordBar(day: .sun, score: 10)
-                    DailyRecordBar(day: .mon, score: 21)
-                    DailyRecordBar(day: .tue, score: 45)
-                    DailyRecordBar(day: .wed, score: 90, isPressed: true)
-                    DailyRecordBar(day: .thu, score: 76)
-                    DailyRecordBar(day: .fri, score: 65)
-                    DailyRecordBar(day: .sat, score: 32)
-                }
-                .padding(.horizontal, 24)
-                
-                Spacer()
-            }
-            .padding()
+            centerRecordView()
+
+            Spacer()
         }
-        .frame(height: 200)
+        .padding([.horizontal, .top], 14)
+    }
+    
+    private func centerRecordView() -> some View {
+        VStack(spacing: 16) {
+            HStack(spacing: 16) {
+                recordsCell(.swim, score: 1240)
+                recordsCell(.speed, score: 19)
+            }
+            HStack(spacing: 16) {
+                recordsCell(.kcal, score: 2330)
+                recordsCell(.lap, score: 50)
+            }
+        }
+        .frame(width: Constant.deviceSize.width / 1.5)
         
     }
     
@@ -170,8 +113,9 @@ extension HomeView {
         Group {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(ThemeColor.cellBackground)
+                    .fill(Color.white.opacity(0.95))
                     .frame(height: 128)
+                    .shadow(color: .black.opacity(0.16), radius: 5, x: 1, y: 1)
                 
                 VStack(spacing: 4) {
                     Group {
@@ -195,18 +139,30 @@ extension HomeView {
     
     private func profileView() -> some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text("Heon Ha")
-                Text("이번주에는 모든 목표를 달성했어요!🔥")
+            VStack(alignment: .leading, spacing: 8) {
+                Text("반가워요, Heon Ha!👋")
+                    .font(.custom(.sfProBold, size: 16))
+                    .foregroundColor(.black.opacity(0.30))
+                
+                Text("오늘도 화이팅 해볼까요?")
+                    .font(.custom(.sfProBold, size: 21))
+                    .foregroundColor(.black)
             }
             .font(.system(size: 18, weight: .bold))
             .foregroundColor(.white)
             
             Spacer()
             
-            Image("user")
-                .resizable()
-                .frame(width: 50, height: 50)
+            ZStack {
+                Image("Avatar")
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+            }
+            .frame(width: 56, height: 56)
+            .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
+
+
         }
     }
     
@@ -215,6 +171,8 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
+        MainView()
+
         HomeView()
     }
 }

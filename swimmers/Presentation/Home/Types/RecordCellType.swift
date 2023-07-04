@@ -11,6 +11,7 @@ enum RecordCellType: String {
     case swim
     case kcal
     case lap
+    case speed
     
     func symbolName() -> String {
         switch self {
@@ -20,6 +21,8 @@ enum RecordCellType: String {
             return "flame"
         case .lap:
             return "flag.checkered"
+        case .speed:
+            return "water.waves"
         }
     }
     
@@ -31,6 +34,8 @@ enum RecordCellType: String {
             return ThemeColor.caloriesRed
         case .lap:
             return Color.black
+        case .speed:
+            return ThemeColor.primary
         }
     }
     
@@ -42,6 +47,8 @@ enum RecordCellType: String {
             return "Kcal"
         case .lap:
             return "Lap"
+        case .speed:
+            return "km/h"
         }
     }
     
