@@ -95,7 +95,6 @@ identifier_name:
 #  ignores_comments: true
 
 multiline_arguments:
-  first_argument_location: next_line
   only_enforce_after_first_closure_on_first_line: true
 
 private_over_fileprivate:

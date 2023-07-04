@@ -39,6 +39,7 @@
 		398B1BC82A484D1300E0FA9B /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC72A484D1300E0FA9B /* ThemeFont.swift */; };
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
+		399168DE2A53FB4400D0B3F9 /* Kcal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* Kcal.swift */; };
 		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2712A492F2B00AED318 /* MainViewModel.swift */; };
@@ -85,6 +86,7 @@
 		398B1BCB2A48500100E0FA9B /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		399168DD2A53FB4400D0B3F9 /* Kcal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kcal.swift; sourceTree = "<group>"; };
 		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39ADB2712A492F2B00AED318 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				398B1BB32A483E1700E0FA9B /* HomeView.swift */,
 				392083C12A485E7700E591A8 /* DailyRecordBar.swift */,
 				39572CE92A52F0F700986E01 /* HomeViewModel.swift */,
+				399168DD2A53FB4400D0B3F9 /* Kcal.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
+				399168DE2A53FB4400D0B3F9 /* Kcal.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

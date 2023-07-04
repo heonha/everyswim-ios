@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @ObservedObject private var viewModel = HomeViewModel()
+    
     var body: some View {
         NavigationView {
             mainBody
@@ -80,7 +82,19 @@ extension HomeView {
 
         }
         .background(LinearGradient(gradient: .init(colors: [Color(hex: "3284FE").opacity(0.08), Color(hex: "FFFFFF")]), startPoint: .top, endPoint: .bottom))
-        
+        .onAppear {
+            self.viewModel.loadStats()
+            print(self.viewModel.kcals)
+        }
+//        .overlay {
+//            List(viewModel.kcals, id: \.id) { kcal in
+//                VStack {
+//                    Text("\(kcal.count)")
+//                    Text("\(kcal.date)")
+//                        .foregroundColor(.gray)
+//                }
+//            }
+//        }
     }
     
     private func bodyView() -> some View {
@@ -101,7 +115,7 @@ extension HomeView {
                 recordsCell(.speed, score: 19)
             }
             HStack(spacing: 16) {
-                recordsCell(.kcal, score: 2330)
+                recordsCell(.kcal, score: Int(viewModel.kcalPerWeek))
                 recordsCell(.lap, score: 50)
             }
         }

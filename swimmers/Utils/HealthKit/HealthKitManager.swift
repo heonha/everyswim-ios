@@ -26,8 +26,7 @@ class HealthKitManager: ObservableObject {
     func calculateKcal(completion: @escaping (HKStatisticsCollection?) -> Void) {
         
         // 요청할 데이터 타입
-        let healthDataType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
-        
+        guard let healthDataType = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned) else { return }
         
         // 7일 전이 시작 일자.
         let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
@@ -51,15 +50,23 @@ class HealthKitManager: ObservableObject {
                                             anchorDate: anchorDate,
                                             intervalComponents: daily)
         
-        query!.initialResultsHandler = { query, staticsCollection, error in
+        guard let query = query else { return }
+        
+        query.initialResultsHandler = { query, staticsCollection, error in
+            if let error = error {
+                completion(nil)
+            }
             completion(staticsCollection)
         }
         
         if let healthStore = healthStore, let query = self.query {
             healthStore.execute(query)
         }
-        
 
+    }
+    
+    func startQuery() {
+        
     }
     
     
