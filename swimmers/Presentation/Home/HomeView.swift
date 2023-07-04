@@ -14,6 +14,12 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             mainBody
+                .onAppear {
+                    self.viewModel.loadStats()
+                }
+                .task {
+                    await viewModel.getSwimmingRecords()
+                }
         }
     }
     
@@ -82,19 +88,6 @@ extension HomeView {
 
         }
         .background(LinearGradient(gradient: .init(colors: [Color(hex: "3284FE").opacity(0.08), Color(hex: "FFFFFF")]), startPoint: .top, endPoint: .bottom))
-        .onAppear {
-            self.viewModel.loadStats()
-            print(self.viewModel.kcals)
-        }
-//        .overlay {
-//            List(viewModel.kcals, id: \.id) { kcal in
-//                VStack {
-//                    Text("\(kcal.count)")
-//                    Text("\(kcal.date)")
-//                        .foregroundColor(.gray)
-//                }
-//            }
-//        }
     }
     
     private func bodyView() -> some View {
@@ -111,12 +104,12 @@ extension HomeView {
     private func centerRecordView() -> some View {
         VStack(spacing: 16) {
             HStack(spacing: 16) {
-                recordsCell(.swim, score: 1240)
-                recordsCell(.speed, score: 19)
+                recordsCell(.swim, score: Int(viewModel.strokePerMonth))
+                recordsCell(.speed, score: 0)
             }
             HStack(spacing: 16) {
                 recordsCell(.kcal, score: Int(viewModel.kcalPerWeek))
-                recordsCell(.lap, score: 50)
+                recordsCell(.lap, score: 0)
             }
         }
         .frame(width: Constant.deviceSize.width / 1.5)
@@ -140,7 +133,7 @@ extension HomeView {
                     }
                     .frame(width: 50, height: 27)
                     
-                    Text("\(score)")
+                    Text(score < 0 ? "-" : "\(score)")
                         .font(.custom(.sfProBold, size: 30))
                     
                     Text(type.getUnit())

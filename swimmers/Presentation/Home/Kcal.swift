@@ -12,3 +12,9 @@ struct Kcal: Identifiable {
     let count: Double
     let date: Date
 }
+
+struct Stroke: Identifiable {
+    let id = UUID()
+    let count: Double
+    let date: Date
+}

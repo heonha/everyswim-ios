@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SyncHealthView: View {
     
-    @ObservedObject private var hkManager: HealthKitManager = .init()
+    private var hkManager: HealthKitManager = .init()
     
     var body: some View {
         
@@ -38,19 +38,8 @@ struct SyncHealthView: View {
             Spacer()
             
             Button {
-                print("건강정보 가져오기")
-                hkManager.requestAuthorization { success in
-                    switch success {
-                    case .none:
-                        return
-                    case .some(let result):
-                        if result {
-                            print("건강 권한 승인 완료")
-                        } else {
-                            print("건강 권한 거부됨")
-                        }
-                    }
-                }
+//                hkManager.checkAuthorizationStatus()
+//                hkManager.checkAuth()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
