@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Kcal: Identifiable {
+struct HealthStatus: Identifiable {
     let id = UUID()
     let count: Double
     let date: Date

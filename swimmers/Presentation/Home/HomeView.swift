@@ -14,11 +14,9 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             mainBody
-                .onAppear {
-                    self.viewModel.loadStats()
-                }
                 .task {
-                    await viewModel.getSwimmingRecords()
+                    await viewModel.loadHealthCollection()
+                    await viewModel.loadSwimmingDataCollection()
                 }
         }
     }
