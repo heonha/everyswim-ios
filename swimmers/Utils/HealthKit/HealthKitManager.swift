@@ -21,6 +21,7 @@ class HealthKitManager {
     
     init() {
         if HKHealthStore.isHealthDataAvailable() {
+            print("INIT: HealthKitManager")
             healthStore = HKHealthStore()
         } else {
             healthStore = nil
@@ -151,6 +152,11 @@ extension HealthKitManager {
 
 // MARK: - 권한 관련
 extension HealthKitManager {
+
+    func checkAuthorizationStatus() -> HKAuthorizationStatus? {
+        return healthStore?.authorizationStatus(for: .workoutType())
+    }
+
     
     func requestAuthorization() async -> Bool {
         let write: Set<HKSampleType> = [.workoutType()]
@@ -160,7 +166,6 @@ extension HealthKitManager {
         guard res != nil else {
             return false
         }
-        
         return true
     }
     
@@ -210,10 +215,6 @@ extension HealthKitManager {
             HKObjectType.quantityType(forIdentifier: HKDataTypeId.activeEnergyBurned)!, // 활동 에너지
             HKObjectType.quantityType(forIdentifier: HKDataTypeId.swimmingStrokeCount)!, // 스트로크
             HKObjectType.quantityType(forIdentifier: HKDataTypeId.distanceSwimming)!, // 수영 거리
-            
-            // 기타
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.basalEnergyBurned)!, // 휴식 에너지
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.vo2Max)! // 산소 소비량
         ]
         
         return set

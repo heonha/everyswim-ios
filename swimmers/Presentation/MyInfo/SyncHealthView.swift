@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct SyncHealthView: View {
     
     private var hkManager: HealthKitManager = .init()
+    
+    @State private var isAuth = false
+    @State private var authStatus: HKAuthorizationStatus = .notDetermined
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         
@@ -30,7 +35,7 @@ struct SyncHealthView: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                 
-                Text("기존의 기록을 반영하려면\nApple 건강 데이터를 가져오세요.")
+                Text(switchButtonText(authStatus).message)
                     .multilineTextAlignment(.center)
                     .font(.custom(.sfProMedium, size: 18))
             }
@@ -38,14 +43,22 @@ struct SyncHealthView: View {
             Spacer()
             
             Button {
-//                hkManager.checkAuthorizationStatus()
-//                hkManager.checkAuth()
+                switch authStatus {
+                case .notDetermined:
+                    Task { await hkManager.requestAuthorization() }
+                case .sharingAuthorized:
+                    dismiss()
+                case .sharingDenied:
+                    UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy&path=TRACKING")!, options: [:], completionHandler: nil) // 심사 때 거부될 수 있음.
+                @unknown default:
+                    return
+                }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color(hex: "2752EE"))
                     
-                    Text("계속하기")
+                    Text(switchButtonText(authStatus).button)
                         .font(.custom(.sfProBold, size: 18))
                         .foregroundColor(.white)
                 }
@@ -55,6 +68,27 @@ struct SyncHealthView: View {
     
         }
         .padding()
+        .onAppear {
+            self.authStatus = hkManager.checkAuthorizationStatus() ?? .notDetermined
+        }
+        
+  
+    }
+    
+    private func switchButtonText(_ status: HKAuthorizationStatus) -> (message: String, button: String) {
+        
+        switch status {
+        case .notDetermined:
+            return (message: "기존의 기록을 반영하려면\nApple 건강 데이터를 가져오세요.", button: "계속하기")
+        case .sharingDenied:
+            return (message: "현재 권한이 거부되어있어요😢\n설정 - 개인정보 보호 및 보안 - 건강 - Swimmers를 클릭해서 권한을 승인해주세요.", button: "설정 열기  ")
+        case .sharingAuthorized:
+            return (message: "이미 권한이 승인 되었습니다.", button: "닫기")
+        @unknown default:
+            return (message: "기존의 기록을 반영하려면\nApple 건강 데이터를 가져오세요.", button: "계속하기")
+        }
+        
+        
     }
 }
 
