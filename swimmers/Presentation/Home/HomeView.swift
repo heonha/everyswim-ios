@@ -16,9 +16,9 @@ struct HomeView: View {
             mainBody
                 .task {
                     await viewModel.loadHealthCollection()
-                    await viewModel.loadSwimmingDataCollection()
                 }
         }
+        .tint(.black)
     }
     
 }
@@ -35,8 +35,9 @@ extension HomeView {
                 
                 Spacer()
                 
-                Button {
-                    
+                NavigationLink {
+                    SwimmingHistoryView()
+                        .environmentObject(viewModel)
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
