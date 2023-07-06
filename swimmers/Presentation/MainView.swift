@@ -54,8 +54,11 @@ struct MainView_Previews: PreviewProvider {
 
 struct SwimmingData {
     
-    let lapLength: Int
-    let duration: Int
-    let time: Int
-    
+    let duration: String
+    let startTime: String
+    let endTime: String
+    let distance: Double?
+    let activeKcal: Double?
+    let restKcal: Double?
+    let stroke: Double?
 }

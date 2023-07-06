@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SwimmingRecordCell: View {
+    
+    let swimmingData: SwimmingData
+    
     var body: some View {
         
         ZStack {

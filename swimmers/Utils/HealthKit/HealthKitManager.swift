@@ -34,8 +34,99 @@ class HealthKitManager {
     
 }
 
+// MARK: - Swimming Data
+extension HealthKitManager {
+    
+    func loadSwimmingDataCollection() async -> [SwimmingData] {
+        print("Swimming Data 가져오기")
+        
+        let result = await self.requestAuthorization()
+        
+        if result == false { return [] }
+        
+        let records = await readSwimmingWorkoutData()
+        
+        guard let records = records else { return [] }
+        // TODO: 수영 데이터 분석하기
+        var swimmingData = [SwimmingData]()
+        
+        for record in records {
+            // 운동 한 기간 (운동 지속시간)
+            let duration = record.duration.stringFromTimeInterval()
+            
+            // 운동 날짜 및 시간
+            let rawLocalDate = record.startDate.toLocalTime()
+            let date = rawLocalDate.toStringYYYYMMdd()
+            let startDate = record.startDate.toStringOnlyTime()
+            let endDate = record.endDate.toStringOnlyTime()
+            print("SWIM DEBUG: Local: [\(date) \(startDate) ~ \(endDate)] \(duration)")
+            
+            // 거리
+            if #available(iOS 16.0, *) {
+                let allStat = allStatDataHandler(record)
+                let data = SwimmingData(duration: duration,
+                                        startTime: startDate,
+                                        endTime: endDate,
+                                        distance: allStat.distance,
+                                        activeKcal: allStat.activeKcal,
+                                        restKcal: allStat.restKcal,
+                                        stroke: allStat.stroke)
+                
+                swimmingData.append(data)
+                
+            } else {
+                let data = SwimmingData(duration: duration,
+                                        startTime: startDate,
+                                        endTime: endDate,
+                                        distance: nil,
+                                        activeKcal: nil,
+                                        restKcal: nil,
+                                        stroke: nil)
+                swimmingData.append(data)
+            }
+        }
+        return swimmingData
+    }
+    
+    @available (iOS 16.0, *)
+    private func allStatDataHandler(_ record: HKWorkout) -> SwimmingAllStatData {
+            let allStat = record.allStatistics
+
+            //거리
+            let distance = allStat[.init(.distanceSwimming)]?.sumQuantity()?.doubleValue(for: .meter())
+            
+            // 스트로크 수
+            let stroke = allStat[.init(.swimmingStrokeCount)]?.sumQuantity()?.doubleValue(for: .count())
+            
+            // 활동에너지
+            let activeKcal = allStat[.init(.activeEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
+
+            // 휴식에너지
+            let restKcal = allStat[.init(.basalEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
+
+        print("DEBUG allStatistics: 거리 \(distance)")
+        print("DEBUG allStatistics: 스트로크 \(stroke)")
+        print("DEBUG allStatistics: 활동에너지 \(activeKcal)")
+        print("DEBUG allStatistics: 휴식에너지 \(restKcal)")
+        
+        return SwimmingAllStatData(distance: distance, stroke: stroke, activeKcal: activeKcal, restKcal: restKcal)
+    }
+    
+    
+    
+}
+
+struct SwimmingAllStatData {
+    let distance: Double?
+    let stroke: Double?
+    let activeKcal: Double?
+    let restKcal: Double?
+}
+
+
 // MARK: - 일반 건강 데이터 가져오기
 extension HealthKitManager {
+    
     
     func getHealthData(dataType: HKQueryDataType, queryRange: HKDateType, completion: @escaping (HKStatCollection?) -> Void) {
         calculateHealthData(dataType: dataType, queryRange: queryRange, completion: completion)
@@ -75,7 +166,7 @@ extension HealthKitManager {
 // MARK: - 수영 운동기록 가져오기
 extension HealthKitManager {
         
-    func readWorkouts() async -> [HKWorkout]? {
+    func readSwimmingWorkoutData() async -> [HKWorkout]? {
         
         print("Swimming Data가져오기 준비")
         // predicate

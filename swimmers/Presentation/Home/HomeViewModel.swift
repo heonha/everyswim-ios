@@ -16,7 +16,7 @@ final class HomeViewModel: ObservableObject {
     private var kcals: [HealthStatus] = []
     private var stroke: [HealthStatus] = []
     
-    @Published var swimRecords: [HKWorkout] = []
+    @Published var swimRecords: [SwimmingData] = []
     @Published var kcalPerWeek: Double = 0.0
     @Published var strokePerMonth: Double = 0.0
     
@@ -24,54 +24,17 @@ final class HomeViewModel: ObservableObject {
         hkManager = HealthKitManager()
     }
     
-    func loadSwimmingDataCollection() async {
-        print("Swimming Data 가져오기")
-        guard let hkManager = hkManager else {
-            return
-        }
-        
-        let result = await hkManager.requestAuthorization()
-        
-        if result {
-            let records = await hkManager.readWorkouts()
-            
-            // TODO: 수영 데이터 분석하기
-            if let records = records {
-                print("-------------------------------")
-                print("SWIM! Swimming Data를 가져왔습니다. \(records)")
-                print("-------------------------------")
-                
-                for record in records {
-                    let duration = record.duration.stringFromTimeInterval()
-                    let rawLocalDate = record.startDate.toLocalTime()
-                    let date = rawLocalDate.toStringYYYYMMdd()
-                    let startDate = record.startDate.toStringOnlyTime()
-                    let endDate = record.endDate.toStringOnlyTime()
-                    print("SWIM DEBUG: Local: [\(date) \(startDate) ~ \(endDate)] \(duration)")
-                }
-                
-                
-//                print("SWIM DEBUG duration: \(records[0].duration)")
-//                if #available(iOS 16.0, *) {
-//                    print("SWIM! allStatistics: \(records[0].allStatistics)") // 칼로리, 스트로크 카운트, 근데 null임.
-//                    print("SWIM! workoutActivities: \(records[0].workoutActivities)") // 기본 정보들
-//
-//                }
-//                print("SWIM DEBUG workoutActivityType: \(records[0].workoutActivityType)") // HKWorkoutActivityType(rawValue: 46)
-//                print("SWIM DEBUG workoutEvents: \(records[0].workoutEvents)") // workoutEvents, Segment, Duration 등등
-
-                DispatchQueue.main.async {
-                    self.swimRecords = records
-                }
-            } else {
-                print("Swimmming Data를 가져오기 못했습니다.")
+    func fetchSwimmingData() async {
+        let swimmingData = await hkManager?.loadSwimmingDataCollection()
+        if let swimmingData = swimmingData {
+            DispatchQueue.main.async {
+                self.swimRecords = swimmingData
             }
         } else {
-            print("권한이 거부되었습니다.")
+            return
         }
-        
     }
-    
+        
     func loadHealthCollection() async {
         self.kcals = []
         self.stroke = []
@@ -235,3 +198,55 @@ final class HomeViewModel: ObservableObject {
 // HKWorkoutEventTypeSegment, <_NSConcreteDateInterval: 0x282d6b6c0> (Start Date) 2023-06-04 23:58:33 +0000 + (Duration) 27.018217 seconds = (End Date) 2023-06-04  23:59:00 +0000])
 //
 //
+
+enum StrokeStyle {
+    
+    case backstroke
+    case breaststroke
+    case butterfly
+    case freestyle
+    case mixed
+    case kickboard
+    case unknown
+    
+    func name() -> String {
+        switch self {
+        case .backstroke:
+            return "배영"
+        case .breaststroke:
+            return "평영"
+        case .butterfly:
+            return "접영"
+        case .freestyle:
+            return "자유형"
+        case .mixed:
+            return "혼영"
+        case .kickboard:
+            return "보드영"
+        case .unknown:
+            return "알수없음영"
+        }
+    }
+    
+}
+
+
+//enum WorkoutType: Int {
+//    case 0 = "pause"
+////    A constant indicating that the workout has paused.
+//    case 1 = "resume"
+////    A constant indicating that the workout has resumed.
+//    case 2 = "motionPaused"
+////    A constant indicating that the system has automatically paused a workout session.
+//    case 3 = "motionResumed"
+////    A constant indicating that the system has automatically resumed a workout session.
+//    case 4 = "pauseOrResumeRequest"
+////    A constant indicating that the user has requested a pause or resume.
+//    case 5 = "lap"
+////    A constant indicating a lap.
+//    case 6 = "segment"
+////    A constant indicating a period of time of interest during a workout.
+//    case 7 = "marker"
+////    A constant indicating a point of interest during a workout session.
+//}
+
