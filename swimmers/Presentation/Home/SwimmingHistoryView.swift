@@ -21,7 +21,7 @@ extension SwimmingHistoryView {
     
     private var mainBody: some View {
         ScrollView {
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 ForEach(viewModel.swimRecords, id: \.id) { record in
                     SwimmingRecordCell(data: record)
                         .padding(.horizontal, 21)
