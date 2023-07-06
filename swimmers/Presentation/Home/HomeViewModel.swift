@@ -40,14 +40,25 @@ final class HomeViewModel: ObservableObject {
                 print("-------------------------------")
                 print("SWIM! Swimming Data를 가져왔습니다. \(records)")
                 print("-------------------------------")
-                print("SWIM DEBUG duration: \(records[0].duration)")
-                if #available(iOS 16.0, *) {
-                    print("SWIM! allStatistics: \(records[0].allStatistics)") // 칼로리, 스트로크 카운트, 근데 null임.
-                    print("SWIM! workoutActivities: \(records[0].workoutActivities)") // 기본 정보들
-
+                
+                for record in records {
+                    let duration = record.duration.stringFromTimeInterval()
+                    let rawLocalDate = record.startDate.toLocalTime()
+                    let date = rawLocalDate.toStringYYYYMMdd()
+                    let startDate = record.startDate.toStringOnlyTime()
+                    let endDate = record.endDate.toStringOnlyTime()
+                    print("SWIM DEBUG: Local: [\(date) \(startDate) ~ \(endDate)] \(duration)")
                 }
-                print("SWIM DEBUG workoutActivityType: \(records[0].workoutActivityType)") // HKWorkoutActivityType(rawValue: 46)
-                print("SWIM DEBUG workoutEvents: \(records[0].workoutEvents)") // workoutEvents, Segment, Duration 등등
+                
+                
+//                print("SWIM DEBUG duration: \(records[0].duration)")
+//                if #available(iOS 16.0, *) {
+//                    print("SWIM! allStatistics: \(records[0].allStatistics)") // 칼로리, 스트로크 카운트, 근데 null임.
+//                    print("SWIM! workoutActivities: \(records[0].workoutActivities)") // 기본 정보들
+//
+//                }
+//                print("SWIM DEBUG workoutActivityType: \(records[0].workoutActivityType)") // HKWorkoutActivityType(rawValue: 46)
+//                print("SWIM DEBUG workoutEvents: \(records[0].workoutEvents)") // workoutEvents, Segment, Duration 등등
 
                 DispatchQueue.main.async {
                     self.swimRecords = records
