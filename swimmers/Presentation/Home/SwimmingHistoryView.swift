@@ -19,12 +19,11 @@ struct SwimmingHistoryView: View {
 
 extension SwimmingHistoryView {
     
-    
     private var mainBody: some View {
         ScrollView {
             VStack(spacing: 12) {
-                ForEach(viewModel.swimRecords.indices) { index in
-                    SwimmingRecordCell(swimmingData: viewModel.swimRecords[index])
+                ForEach(viewModel.swimRecords, id: \.id) { record in
+                    SwimmingRecordCell(data: record)
                         .padding(.horizontal, 21)
                 }
             }
@@ -32,9 +31,6 @@ extension SwimmingHistoryView {
             .padding(.bottom, 4)
         }
         .navigationTitle("수영 기록")
-        .task {
-            await viewModel.fetchSwimmingData()
-        }
     }
 }
 

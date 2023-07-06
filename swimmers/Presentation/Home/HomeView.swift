@@ -16,6 +16,7 @@ struct HomeView: View {
             mainBody
                 .task {
                     await viewModel.loadHealthCollection()
+                    await viewModel.fetchSwimmingData()
                 }
         }
         .tint(.black)
@@ -38,6 +39,7 @@ extension HomeView {
                 NavigationLink {
                     SwimmingHistoryView()
                         .environmentObject(viewModel)
+
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)

@@ -38,35 +38,26 @@ class HealthKitManager {
 extension HealthKitManager {
     
     func loadSwimmingDataCollection() async -> [SwimmingData] {
-        print("Swimming Data 가져오기")
         
         let result = await self.requestAuthorization()
-        
         if result == false { return [] }
         
         let records = await readSwimmingWorkoutData()
-        
+        var swimmingData: [SwimmingData] = []
+
         guard let records = records else { return [] }
-        // TODO: 수영 데이터 분석하기
-        var swimmingData = [SwimmingData]()
-        
+
         for record in records {
             // 운동 한 기간 (운동 지속시간)
-            let duration = record.duration.stringFromTimeInterval()
-            
-            // 운동 날짜 및 시간
-            let rawLocalDate = record.startDate.toLocalTime()
-            let date = rawLocalDate.toStringYYYYMMdd()
-            let startDate = record.startDate.toStringOnlyTime()
-            let endDate = record.endDate.toStringOnlyTime()
-            print("SWIM DEBUG: Local: [\(date) \(startDate) ~ \(endDate)] \(duration)")
-            
+            let duration = record.duration
+            let startDate = record.startDate
+            let endDate = record.endDate
             // 거리
             if #available(iOS 16.0, *) {
                 let allStat = allStatDataHandler(record)
                 let data = SwimmingData(duration: duration,
-                                        startTime: startDate,
-                                        endTime: endDate,
+                                        startDate: startDate,
+                                        endDate: endDate,
                                         distance: allStat.distance,
                                         activeKcal: allStat.activeKcal,
                                         restKcal: allStat.restKcal,
@@ -76,8 +67,8 @@ extension HealthKitManager {
                 
             } else {
                 let data = SwimmingData(duration: duration,
-                                        startTime: startDate,
-                                        endTime: endDate,
+                                        startDate: startDate,
+                                        endDate: endDate,
                                         distance: nil,
                                         activeKcal: nil,
                                         restKcal: nil,
@@ -90,37 +81,17 @@ extension HealthKitManager {
     
     @available (iOS 16.0, *)
     private func allStatDataHandler(_ record: HKWorkout) -> SwimmingAllStatData {
+        
             let allStat = record.allStatistics
-
-            //거리
+        
             let distance = allStat[.init(.distanceSwimming)]?.sumQuantity()?.doubleValue(for: .meter())
-            
-            // 스트로크 수
             let stroke = allStat[.init(.swimmingStrokeCount)]?.sumQuantity()?.doubleValue(for: .count())
-            
-            // 활동에너지
             let activeKcal = allStat[.init(.activeEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
-
-            // 휴식에너지
             let restKcal = allStat[.init(.basalEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
-
-        print("DEBUG allStatistics: 거리 \(distance)")
-        print("DEBUG allStatistics: 스트로크 \(stroke)")
-        print("DEBUG allStatistics: 활동에너지 \(activeKcal)")
-        print("DEBUG allStatistics: 휴식에너지 \(restKcal)")
         
         return SwimmingAllStatData(distance: distance, stroke: stroke, activeKcal: activeKcal, restKcal: restKcal)
     }
     
-    
-    
-}
-
-struct SwimmingAllStatData {
-    let distance: Double?
-    let stroke: Double?
-    let activeKcal: Double?
-    let restKcal: Double?
 }
 
 
@@ -158,6 +129,7 @@ extension HealthKitManager {
         query.initialResultsHandler = { _, staticsCollection, _ in
             completion(staticsCollection)
         }
+        
         healthStore?.execute(query)
     }
     
@@ -167,17 +139,12 @@ extension HealthKitManager {
 extension HealthKitManager {
         
     func readSwimmingWorkoutData() async -> [HKWorkout]? {
-        
-        print("Swimming Data가져오기 준비")
-        // predicate
+
         let swimming = HKQuery.predicateForWorkouts(with: .swimming)
         
-        // sortDescriptors
         let sortDescriptors: [NSSortDescriptor]? = [.init(keyPath: \HKSample.startDate, ascending: false)]
         
-        print("Swimming 가져오기 준비 완료")
         let samples = try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
-            print("Swimming 가져오기를 시작합니다.")
             
             let query = HKSampleQuery(sampleType: .workoutType(),
                                       predicate: swimming,
@@ -193,8 +160,7 @@ extension HealthKitManager {
                 
                 continuation.resume(returning: samples)
             }
-            
-            print("Swimming 가져오기: 쿼리를 시작합니다. \(query)")
+
             healthStore?.execute(query)
         }
         
@@ -344,7 +310,7 @@ extension HealthKitManager {
             // 활동
             HKObjectType.quantityType(forIdentifier: HKDataTypeId.activeEnergyBurned)!, // 활동 에너지
             HKObjectType.quantityType(forIdentifier: HKDataTypeId.swimmingStrokeCount)!, // 스트로크
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.distanceSwimming)!, // 수영 거리
+            HKObjectType.quantityType(forIdentifier: HKDataTypeId.distanceSwimming)! // 수영 거리
         ]
         
         return set

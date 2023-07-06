@@ -9,38 +9,29 @@ import SwiftUI
 
 struct SwimmingRecordCell: View {
     
-    let swimmingData: SwimmingData
+    private let data: SwimmingData
+    
+    init(data: SwimmingData) {
+        self.data = data
+    }
     
     var body: some View {
         
         ZStack {
-            VStack(alignment: .leading) {
-                // 프로필
-                // 사진 | 이름 / 시간 <-> 위치
+            VStack {
 
-                profileStack()
+                profileStack(timeString: data.getWorkoutTime())
                     .padding(.bottom, 8)
                 
-                // 타이틀
-                HStack {
-                    Text("월요일 오전 수영")
-                        .font(.custom(.sfProBold, size: 17))
-                        .foregroundColor(.black)
-                    
-                    Spacer()
-                }
                 
                 Spacer()
-                
                 
                 // 기록
                 HStack {
                     
-                    Spacer()
-
                     // 미터
                     HStack(alignment: .bottom) {
-                        Text("1,240")
+                        Text(String(data.distance ?? 0))
                             .font(.custom(.sfProBold, size: 18))
                             .foregroundColor(.black)
 
@@ -49,11 +40,9 @@ struct SwimmingRecordCell: View {
                             .foregroundColor(.black.opacity(0.5))
                     }
                     
-                    
                     Rectangle()
                         .fill(Color.black.opacity(0.2))
                         .frame(width: 1.5, height: 32)
-
 
                     // 페이스
                     HStack(alignment: .bottom) {
@@ -78,7 +67,7 @@ struct SwimmingRecordCell: View {
                     HStack(alignment: .bottom) {
                         Spacer()
 
-                        Text("1시간 41분")
+                        Text(String(data.getDuration()))
                             .font(.custom(.sfProBold, size: 16))
                             .foregroundColor(.black)
                         
@@ -86,11 +75,9 @@ struct SwimmingRecordCell: View {
 
                     }
                     
-                    Spacer()
 
                 }
             }
-            
             
             HStack {
                 Spacer()
@@ -106,8 +93,18 @@ struct SwimmingRecordCell: View {
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
     }
     
+    private func title(_ title: String) {
+        HStack {
+            Text(title)
+                .font(.custom(.sfProBold, size: 17))
+                .foregroundColor(.black)
+            
+            Spacer()
+        }
+    }
     
-    private func profileStack() -> some View {
+    
+    private func profileStack(timeString: String) -> some View {
         HStack {
             Image("Avatar")
                 .resizable()
@@ -117,7 +114,7 @@ struct SwimmingRecordCell: View {
                 Text("Heon Ha")
                     .font(.custom(.sfProBold, size: 15))
                     .foregroundColor(.black)
-                Text("2023년 06월 05일 오전 08:06")
+                Text(timeString)
                     .font(.custom(.sfProLight, size: 13))
                     .foregroundColor(.black.opacity(0.5))
             }

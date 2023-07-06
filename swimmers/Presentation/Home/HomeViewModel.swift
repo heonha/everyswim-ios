@@ -229,24 +229,3 @@ enum StrokeStyle {
     }
     
 }
-
-
-//enum WorkoutType: Int {
-//    case 0 = "pause"
-////    A constant indicating that the workout has paused.
-//    case 1 = "resume"
-////    A constant indicating that the workout has resumed.
-//    case 2 = "motionPaused"
-////    A constant indicating that the system has automatically paused a workout session.
-//    case 3 = "motionResumed"
-////    A constant indicating that the system has automatically resumed a workout session.
-//    case 4 = "pauseOrResumeRequest"
-////    A constant indicating that the user has requested a pause or resume.
-//    case 5 = "lap"
-////    A constant indicating a lap.
-//    case 6 = "segment"
-////    A constant indicating a period of time of interest during a workout.
-//    case 7 = "marker"
-////    A constant indicating a point of interest during a workout session.
-//}
-
