@@ -45,17 +45,20 @@ extension HealthKitManager {
         let records = await readSwimmingWorkoutData()
         var swimmingData: [SwimmingData] = []
 
-        guard let records = records else { return [] }
+        guard let workouts = records else { return [] }
 
-        for record in records {
+        for workout in workouts {
             // 운동 한 기간 (운동 지속시간)
-            let duration = record.duration
-            let startDate = record.startDate
-            let endDate = record.endDate
+            let id = workout.uuid
+            let duration = workout.duration
+            let startDate = workout.startDate
+            let endDate = workout.endDate
+            
             // 거리
             if #available(iOS 16.0, *) {
-                let allStat = allStatDataHandler(record)
-                let data = SwimmingData(duration: duration,
+                let allStat = allStatDataHandler(workout)
+                let data = SwimmingData(id: id,
+                                        duration: duration,
                                         startDate: startDate,
                                         endDate: endDate,
                                         distance: allStat.distance,
@@ -66,7 +69,8 @@ extension HealthKitManager {
                 swimmingData.append(data)
                 
             } else {
-                let data = SwimmingData(duration: duration,
+                let data = SwimmingData(id: id,
+                                        duration: duration,
                                         startDate: startDate,
                                         endDate: endDate,
                                         distance: nil,
@@ -188,6 +192,7 @@ extension HealthKitManager {
                                       predicate: swimming,
                                       limit: HKObjectQueryNoLimit,
                                       sortDescriptors: sortDescriptors) { _, samples, error in
+                
                 if let error = error {
                     print("Swimming 가져오기 Error: \(error.localizedDescription).")
                     continuation.resume(throwing: error)
@@ -207,6 +212,31 @@ extension HealthKitManager {
             return nil
         }
         
+        return workouts
+    }
+    
+    func getWorkoutRoute(workout: HKWorkout) async -> [HKWorkoutRoute]? {
+        let byWorkout = HKQuery.predicateForObjects(from: workout)
+
+        let samples = try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
+            healthStore?.execute(HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: byWorkout, anchor: nil, limit: HKObjectQueryNoLimit, resultsHandler: { (query, samples, deletedObjects, anchor, error) in
+                if let hasError = error {
+                    continuation.resume(throwing: hasError)
+                    return
+                }
+
+                guard let samples = samples else {
+                    return
+                }
+
+                continuation.resume(returning: samples)
+            }))
+        }
+
+        guard let workouts = samples as? [HKWorkoutRoute] else {
+            return nil
+        }
+
         return workouts
     }
     

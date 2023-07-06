@@ -20,16 +20,18 @@ struct SwimmingRecordCell: View {
             VStack {
 
                 profileStack(timeString: data.getWorkoutTime())
-                    .padding(.bottom, 8)
+                    .frame(minHeight: 30)
 
                 Spacer()
                 
                 recordTitle("월요일 오전 수영")
-                
+                    .frame(minHeight: 30)
+
                 Spacer()
 
                 // 기록
                 recordStack
+                    .frame(minHeight: 40)
             }
             
             rightChevronSymbol
@@ -52,7 +54,7 @@ struct SwimmingRecordCell: View {
     private func recordTitle(_ title: String) -> some View {
         HStack {
             Text(title)
-                .font(.custom(.sfProBold, size: 17))
+                .font(.custom(.sfProBold, size: 18))
                 .foregroundColor(.black)
             
             Spacer()
@@ -61,33 +63,34 @@ struct SwimmingRecordCell: View {
     
     private var recordStack: some View {
         HStack {
-            Spacer()
 
             // 미터
             HStack {
-                Text(String(data.distance ?? 0))
-                    .font(.custom(.sfProBold, size: 18))
+                Text(String(data.getDistance()))
+                    .font(.custom(.sfProBold, size: 20))
                     .foregroundColor(.black)
 
                 Text("M")
-                    .font(.custom(.sfProBold, size: 14))
+                    .font(.custom(.sfProBold, size: 16))
                     .foregroundColor(.black.opacity(0.5))
             }
+            .frame(maxWidth: 100)
   
-            Spacer()
+            Divider()
             
             // 페이스
             HStack(alignment: .bottom) {
-                Text("2:15")
-                    .font(.custom(.sfProBold, size: 18))
+                Text(data.getTotalKcal())
+                    .font(.custom(.sfProBold, size: 20))
                     .foregroundColor(.black)
 
-                Text("/25m")
-                    .font(.custom(.sfProBold, size: 14))
+                Text("kcal")
+                    .font(.custom(.sfProBold, size: 16))
                     .foregroundColor(.black.opacity(0.5))
             }
+            .frame(maxWidth: 100)
 
-            Spacer()
+            Divider()
 
             // 시간
             HStack {
@@ -95,7 +98,7 @@ struct SwimmingRecordCell: View {
                     .font(.custom(.sfProBold, size: 16))
                     .foregroundColor(.black)
             }
-            Spacer()
+            .frame(maxWidth: 100)
 
 
         }
@@ -105,7 +108,7 @@ struct SwimmingRecordCell: View {
         HStack {
             Image("Avatar")
                 .resizable()
-                .frame(width: 40, height: 40)
+                .frame(width: 30, height: 30)
                 .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text("Heon Ha")
@@ -137,16 +140,21 @@ struct SwimmingRecordCell: View {
 struct SwimmingRecordCell_Previews: PreviewProvider {
     
     static let swimmingData = [
-        SwimmingData(duration: 6503, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(duration: 1234, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(duration: 4567, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(duration: 10, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460)
+        SwimmingData(id: UUID(), duration: 6503, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
+        SwimmingData(id: UUID(), duration: 1234, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
+        SwimmingData(id: UUID(), duration: 4567, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
+        SwimmingData(id: UUID(), duration: 10, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460)
     ]
     
     static var previews: some View {
-        NavigationView {
-            SwimmingHistoryView()
-                .environmentObject(HomeViewModel(swimRecords: swimmingData))
+        ScrollView {
+            VStack {
+                ForEach(swimmingData) { data in
+                    SwimmingRecordCell(data: data)
+                        .padding(.horizontal, 21)
+                }
+            }
         }
+
     }
 }

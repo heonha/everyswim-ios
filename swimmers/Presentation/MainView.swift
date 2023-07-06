@@ -21,7 +21,7 @@ struct MainView: View {
     var body: some View {
             TabView(selection: $selectedTab) {
                     
-                HomeView()
+                HomeRecordsView()
                     .tabItem {
                         Label("수영", systemImage: "figure.pool.swim")
                     }

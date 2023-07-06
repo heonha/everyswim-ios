@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  HomeRecordsView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/06/25.
@@ -7,24 +7,20 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeRecordsView: View {
     
-    @ObservedObject private var viewModel = HomeViewModel()
+    @ObservedObject private var viewModel = HomeRecordsViewModel()
     
     var body: some View {
         NavigationView {
             mainBody
-                .task {
-                    await viewModel.loadHealthCollection()
-                    await viewModel.fetchSwimmingData()
-                }
         }
         .tint(.black)
     }
     
 }
 
-extension HomeView {
+extension HomeRecordsView {
     
     private var mainBody: some View {
         
@@ -181,6 +177,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
 
-        HomeView()
+        HomeRecordsView()
     }
 }

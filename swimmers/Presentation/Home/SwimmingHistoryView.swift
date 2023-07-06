@@ -10,7 +10,11 @@ import SwiftUI
 
 struct SwimmingHistoryView: View {
     
-    @EnvironmentObject var viewModel: HomeViewModel
+    @StateObject private var viewModel: SwimmingHistoryViewModel
+    
+    init(viewModel: SwimmingHistoryViewModel = .init()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         mainBody
@@ -38,7 +42,7 @@ struct SwimmingHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             SwimmingHistoryView()
-                .environmentObject(HomeViewModel())
+                .environmentObject(HomeRecordsViewModel())
         }
     }
 }

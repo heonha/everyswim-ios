@@ -9,20 +9,21 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class HomeViewModel: ObservableObject {
+final class HomeRecordsViewModel: ObservableObject {
     
     private var hkManager: HealthKitManager?
     
     private var kcals: [HealthStatus] = []
     private var stroke: [HealthStatus] = []
     
-    @Published var swimRecords: [SwimmingData] = []
+    @Published var swimRecords: [SwimmingData]
     @Published var kcalPerWeek: Double = 0.0
     @Published var strokePerMonth: Double = 0.0
     
-    init(swimRecords: [SwimmingData]? = nil) {
+    init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
         self.swimRecords = swimRecords ?? []
         hkManager = HealthKitManager()
+        Task { await loadHealthCollection() }
     }
     
     func fetchSwimmingData() async {
