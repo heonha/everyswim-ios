@@ -74,8 +74,47 @@ extension HealthKitManager {
 
 // MARK: - 수영 운동기록 가져오기
 extension HealthKitManager {
-    
+        
     func readWorkouts() async -> [HKWorkout]? {
+        
+        print("Swimming Data가져오기 준비")
+        // predicate
+        let swimming = HKQuery.predicateForWorkouts(with: .swimming)
+        
+        // sortDescriptors
+        let sortDescriptors: [NSSortDescriptor]? = [.init(keyPath: \HKSample.startDate, ascending: false)]
+        
+        print("Swimming 가져오기 준비 완료")
+        let samples = try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
+            print("Swimming 가져오기를 시작합니다.")
+            
+            let query = HKSampleQuery(sampleType: .workoutType(),
+                                      predicate: swimming,
+                                      limit: HKObjectQueryNoLimit,
+                                      sortDescriptors: sortDescriptors) { _, samples, error in
+                if let error = error {
+                    print("Swimming 가져오기 Error: \(error.localizedDescription).")
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let samples = samples else { print("수영 데이터 샘플값이 nil입니다."); return }
+                
+                continuation.resume(returning: samples)
+            }
+            
+            print("Swimming 가져오기: 쿼리를 시작합니다. \(query)")
+            healthStore?.execute(query)
+        }
+        
+        guard let workouts = samples as? [HKWorkout] else {
+            return nil
+        }
+        
+        return workouts
+    }
+    
+    func readWorkoutActivity() async -> [HKWorkout]? {
         
         print("Swimming Data가져오기 준비")
         // predicate

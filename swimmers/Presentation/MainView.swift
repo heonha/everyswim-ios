@@ -37,7 +37,7 @@ struct MainView: View {
                     }
             }
             .onAppear {
-                UITabBar.appearance().backgroundColor = .clear
+//                UITabBar.appearance().backgroundColor = .clear
                 UITabBar.appearance().isTranslucent = true
             }
             .environmentObject(viewModel)
@@ -49,4 +49,13 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
+}
+
+
+struct SwimmingData {
+    
+    let lapLength: Int
+    let duration: Int
+    let time: Int
+    
 }
