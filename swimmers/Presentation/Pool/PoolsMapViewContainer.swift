@@ -51,9 +51,12 @@ extension PoolsMapViewContainer {
             Rectangle()
                 .fill(Color.secondary)
             
-            naverMapView(
-                lat: locationManager.location?.coordinate.latitude ?? 0,
-                lon: locationManager.location?.coordinate.longitude ?? 0)
+//            naverMapView(
+//                lat: locationManager.location?.coordinate.latitude ?? 0,
+//                lon: locationManager.location?.coordinate.longitude ?? 0)
+            
+            naverMapView(lat: 37.488445, lon: 126.841984)
+
             
             searchField($text)
             

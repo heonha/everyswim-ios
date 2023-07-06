@@ -15,6 +15,7 @@ struct NaverMapView: UIViewRepresentable {
     @State var userLongitude: Double
     var isMiniMode = true
     
+    // 맵 설정
     func makeUIView(context: Context) -> NMFNaverMapView {
         let nmapView = NMFNaverMapView()
         nmapView.showZoomControls = false
@@ -26,9 +27,7 @@ struct NaverMapView: UIViewRepresentable {
         nmapView.mapView.mapType = .basic
         nmapView.mapView.touchDelegate = context.coordinator
         nmapView.mapView.positionMode = .normal
-        
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: userLatitude, lng: userLongitude))
-        nmapView.mapView.moveCamera(cameraUpdate)
+        setMarkers(mapView: nmapView.mapView)
         
         return nmapView
     }
@@ -49,24 +48,36 @@ struct NaverMapView: UIViewRepresentable {
         func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
             print("\(latlng.lat), \(latlng.lng)")
         }
-        
-        // 특정 탭
-        func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
-            if symbol.caption == "서울특별시청" {
-                print("서울시청 탭")
-                return true
-
-            } else {
-                print("symbol 탭")
-                return false
-            }
-        }
     }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(viewModel: self.viewModel)
     }
+    
 }
+
+// MARK: - 부가설정
+
+extension NaverMapView {
+    
+    // 마커
+    private func setMarkers(mapView: NMFMapView) {
+        let marker = NMFMarker()
+        marker.captionText = "구로50플러스수영장"
+        marker.position = NMGLatLng(lat: 37.488445, lng: 126.841984)
+        marker.mapView = mapView
+        marker.iconImage = NMF_MARKER_IMAGE_BLUE
+        marker.touchHandler = { (_: NMFOverlay) -> Bool in
+            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: marker.position.lat, lng: marker.position.lng))
+            cameraUpdate.animation = .easeIn
+            mapView.moveCamera(cameraUpdate)
+
+            return true
+        }
+    }
+    
+}
+
 
 class MapSceneViewModel: ObservableObject {
     
@@ -75,7 +86,7 @@ class MapSceneViewModel: ObservableObject {
 #if DEBUG
 struct MapScene_Previews: PreviewProvider {
     static var previews: some View {
-        NaverMapView(userLatitude: 0, userLongitude: 0)
+        NaverMapView(userLatitude: 37.488445, userLongitude: 126.841984)
     }
 }
 #endif
