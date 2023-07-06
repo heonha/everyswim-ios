@@ -34,6 +34,9 @@
 		396D2AB02A559D290042D4D4 /* SwimmingRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AAF2A559D290042D4D4 /* SwimmingRecordCell.swift */; };
 		396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AB12A5673680042D4D4 /* HKCalculator.swift */; };
 		396D2ABA2A5677690042D4D4 /* swimmersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AB92A5677690042D4D4 /* swimmersTests.swift */; };
+		396D2AC12A5677AA0042D4D4 /* HKCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */; };
+		396D2AC32A5677BC0042D4D4 /* CustomCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */; };
+		396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -97,6 +100,9 @@
 		396D2AB12A5673680042D4D4 /* HKCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculator.swift; sourceTree = "<group>"; };
 		396D2AB72A5677690042D4D4 /* swimmersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swimmersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		396D2AB92A5677690042D4D4 /* swimmersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersTests.swift; sourceTree = "<group>"; };
+		396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculatorTests.swift; sourceTree = "<group>"; };
+		396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalculatorTests.swift; sourceTree = "<group>"; };
+		396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -252,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				396D2AB92A5677690042D4D4 /* swimmersTests.swift */,
+				396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */,
+				396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */,
 			);
 			path = swimmersTests;
 			sourceTree = "<group>";
@@ -333,6 +341,7 @@
 				398B1BC52A484CF500E0FA9B /* Font+Extension.swift */,
 				39572CE32A52CFB200986E01 /* String+Extension.swift */,
 				39572CE52A52D01200986E01 /* Date+Extension.swift */,
+				396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -556,6 +565,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396D2AC32A5677BC0042D4D4 /* CustomCalculatorTests.swift in Sources */,
+				396D2AC12A5677AA0042D4D4 /* HKCalculatorTests.swift in Sources */,
 				396D2ABA2A5677690042D4D4 /* swimmersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,6 +610,7 @@
 				399168DE2A53FB4400D0B3F9 /* HealthStatus.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
+				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,6 @@ enum HKCalculator {
     
     static func duration(_ interval: TimeInterval) {
         // TODO: 초 -> 분으로 -> 60분이상이면 시간으로
-
     }
     
     static func allStatictics(_ data: [HKQuantityType: HKStatistics]) {
@@ -40,20 +39,5 @@ enum HKCalculator {
 //                (Duration) 18.785561 seconds =
 //                (End Date) 2023-06-04 23:16:21 +0000 {
 //             HKSwimmingStrokeStyle = 3;
-    }
-}
-
-extension TimeInterval {
-    
-    func stringFromTimeInterval() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .full
-
-        let formattedString = formatter.string(from: self)!
-        print(formattedString)
-        
-        return formattedString
-        
     }
 }
