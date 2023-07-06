@@ -33,6 +33,7 @@
 		396D2AAE2A5599120042D4D4 /* SwimmingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AAD2A5599120042D4D4 /* SwimmingHistoryView.swift */; };
 		396D2AB02A559D290042D4D4 /* SwimmingRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AAF2A559D290042D4D4 /* SwimmingRecordCell.swift */; };
 		396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AB12A5673680042D4D4 /* HKCalculator.swift */; };
+		396D2ABA2A5677690042D4D4 /* swimmersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AB92A5677690042D4D4 /* swimmersTests.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -54,6 +55,16 @@
 		39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */; };
 		81984978731F99A172D3969B /* Pods_swimmers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		396D2ABB2A5677690042D4D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 398B1B992A483DA300E0FA9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 398B1BA02A483DA300E0FA9B;
+			remoteInfo = swimmers;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.debug.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +95,8 @@
 		396D2AAD2A5599120042D4D4 /* SwimmingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingHistoryView.swift; sourceTree = "<group>"; };
 		396D2AAF2A559D290042D4D4 /* SwimmingRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingRecordCell.swift; sourceTree = "<group>"; };
 		396D2AB12A5673680042D4D4 /* HKCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculator.swift; sourceTree = "<group>"; };
+		396D2AB72A5677690042D4D4 /* swimmersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swimmersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		396D2AB92A5677690042D4D4 /* swimmersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersTests.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +123,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		396D2AB42A5677690042D4D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398B1B9E2A483DA300E0FA9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,12 +248,21 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
+		396D2AB82A5677690042D4D4 /* swimmersTests */ = {
+			isa = PBXGroup;
+			children = (
+				396D2AB92A5677690042D4D4 /* swimmersTests.swift */,
+			);
+			path = swimmersTests;
+			sourceTree = "<group>";
+		};
 		398B1B982A483DA300E0FA9B = {
 			isa = PBXGroup;
 			children = (
 				39A5E8E02A502DA80062509F /* .gitignore */,
 				39A5E8DB2A502A150062509F /* .swiftlint.yml */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
+				396D2AB82A5677690042D4D4 /* swimmersTests */,
 				398B1BA22A483DA300E0FA9B /* Products */,
 				20024A8524F89D496E5E814C /* Pods */,
 				558413656F6ED88D1CF53D5D /* Frameworks */,
@@ -244,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				398B1BA12A483DA300E0FA9B /* swimmers.app */,
+				396D2AB72A5677690042D4D4 /* swimmersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -357,6 +387,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		396D2AB62A5677690042D4D4 /* swimmersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "swimmersTests" */;
+			buildPhases = (
+				396D2AB32A5677690042D4D4 /* Sources */,
+				396D2AB42A5677690042D4D4 /* Frameworks */,
+				396D2AB52A5677690042D4D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				396D2ABC2A5677690042D4D4 /* PBXTargetDependency */,
+			);
+			name = swimmersTests;
+			productName = swimmersTests;
+			productReference = 396D2AB72A5677690042D4D4 /* swimmersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		398B1BA02A483DA300E0FA9B /* swimmers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "swimmers" */;
@@ -387,6 +435,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					396D2AB62A5677690042D4D4 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 398B1BA02A483DA300E0FA9B;
+					};
 					398B1BA02A483DA300E0FA9B = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -406,11 +458,19 @@
 			projectRoot = "";
 			targets = (
 				398B1BA02A483DA300E0FA9B /* swimmers */,
+				396D2AB62A5677690042D4D4 /* swimmersTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		396D2AB52A5677690042D4D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398B1B9F2A483DA300E0FA9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +552,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		396D2AB32A5677690042D4D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				396D2ABA2A5677690042D4D4 /* swimmersTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398B1B9D2A483DA300E0FA9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,7 +604,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		396D2ABC2A5677690042D4D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 398B1BA02A483DA300E0FA9B /* swimmers */;
+			targetProxy = 396D2ABB2A5677690042D4D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		396D2ABE2A5677690042D4D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swimmers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/swimmers";
+			};
+			name = Debug;
+		};
+		396D2ABF2A5677690042D4D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swimmers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/swimmers";
+			};
+			name = Release;
+		};
 		398B1BAD2A483DA400E0FA9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -738,6 +852,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "swimmersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				396D2ABE2A5677690042D4D4 /* Debug */,
+				396D2ABF2A5677690042D4D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "swimmers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -43,4 +43,17 @@ enum HKCalculator {
     }
 }
 
- 
+extension TimeInterval {
+    
+    func stringFromTimeInterval() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .full
+
+        let formattedString = formatter.string(from: self)!
+        print(formattedString)
+        
+        return formattedString
+        
+    }
+}
