@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeRecordsView: View {
     
     @ObservedObject private var viewModel = HomeRecordsViewModel()
-    @State private var showViews: [Bool] = Array(repeating: false, count: 5)
+    @State private var showViews: [Bool] = Array(repeating: false, count: 3)
     
     var body: some View {
         NavigationView {
@@ -22,22 +22,7 @@ struct HomeRecordsView: View {
 }
 
 extension HomeRecordsView {
-    
-    private func animateView() {
-        withAnimation(.easeInOut.delay(0.1)) {
-            showViews[0] = true
-        }
-        
-        withAnimation(.easeInOut.delay(0.20)) {
-            showViews[1] = true
-        }
-        
-        withAnimation(.easeInOut.delay(0.25)) {
-            showViews[2] = true
-        }
 
-        
-    }
     
     private var mainBody: some View {
         
@@ -62,10 +47,12 @@ extension HomeRecordsView {
                         .fill(Color.clear)
                         .frame(height: 30)
                     
-                    pushHistoryView()
+            }
+            .overlay(alignment: .bottom) {
+                pushHistoryView()
+                    .padding(.bottom)
                     .opacity(showViews[2] ? 1 : 0)
                     .offset(y: showViews[2] ? 0 : 200)
-
             }
             .onAppear(perform: animateView)
 
@@ -148,7 +135,6 @@ extension HomeRecordsView {
             }
         }
         .frame(width: Constant.deviceSize.width / 1.5)
-        
     }
     
     private func recordsCell(_ type: RecordCellType, score: Int) -> some View {
@@ -206,6 +192,20 @@ extension HomeRecordsView {
         }
     }
     
+    private func animateView() {
+        withAnimation(.easeInOut.delay(0.1)) {
+            showViews[0] = true
+        }
+        
+        withAnimation(.easeInOut.delay(0.20)) {
+            showViews[1] = true
+        }
+        
+        withAnimation(.easeInOut.delay(0.25)) {
+            showViews[2] = true
+        }
+        
+    }
     
 }
 

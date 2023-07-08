@@ -17,38 +17,43 @@ struct ChallangeRingView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            progressRing
-            
             detailStack
+            
+            progressRing
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 25)
+        .background {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.20), radius: 4, x: 1, y: 1)
+        }
     }
     
     private var detailStack: some View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(rings) { ring in
-                    Label {
-                        HStack(alignment: .bottom, spacing: 2) {
-                            Text(ring.progressLabel())
-                                .font(.custom(.sfProBold, size: 20))
-                                .foregroundColor(ring.keyColor)
-                                .shadow(color: .black.opacity(0.4), radius: 0.3, x: 0.5, y: 0.5)
-
-                            Text("\(ring.unit)")
-                                .font(.custom(.sfProBold, size: 14))
-                                .foregroundColor(.black.opacity(0.5))
-                                .padding(.trailing, 6)
-                        }
-                    } icon: {
-                        Group {
-                            Image(systemName: ring.keyIcon)
-                                .font(.title3)
-                        }
-                        .frame(width: 40)
+                Label {
+                    HStack(alignment: .bottom, spacing: 2) {
+                        Text(ring.progressLabel())
+                            .font(.custom(.sfProBold, size: 20))
+                            .foregroundColor(ring.keyColor)
+                            .shadow(color: .black.opacity(0.4), radius: 0.3, x: 0.5, y: 0.5)
+                        
+                        Text("\(ring.unit)")
+                            .font(.custom(.sfProBold, size: 14))
+                            .foregroundColor(.black.opacity(0.5))
+                            .padding(.trailing, 6)
                     }
+                } icon: {
+                    Group {
+                        Image(systemName: ring.keyIcon)
+                            .font(.title3)
+                    }
+                    .frame(width: 40)
                 }
-                
+            }
+
         }
     }
         
