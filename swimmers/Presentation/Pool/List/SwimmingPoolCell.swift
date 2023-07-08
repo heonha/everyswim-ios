@@ -21,8 +21,6 @@ extension SwimmingPoolCell {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
             
             Image(pool.getImage())
                 .resizable()
@@ -39,22 +37,16 @@ extension SwimmingPoolCell {
     private func informationContainer() -> some View {
         VStack {
             Spacer()
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                    .shadow(color: .black.opacity(0.25), radius: 1, x: 1, y: 2)
+            VStack(spacing: 4) {
+                poolNameView()
                 
-                VStack(spacing: 4) {
-                    poolNameView()
-                    
-                    addressView()
-                    
-                    openTimeView()
-                }
-                .padding(.horizontal, 8)
+                addressView()
+                
+                openTimeView()
             }
+            .padding(.horizontal, 8)
             .frame(height: 74)
+            .background(CellBackground(cornerRadius: 0, material: .ultraThickMaterial))
         }
     }
     
@@ -72,7 +64,7 @@ extension SwimmingPoolCell {
                 .foregroundColor(.init(hex: "3284FE"))
             
             Text("서울특별시 구로구 오류로 36-25 50플러스남부캠퍼스(지하2층)")
-                .foregroundColor(.init(hex: "000000").opacity(0.42))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
             
             Spacer()
         }
@@ -82,12 +74,12 @@ extension SwimmingPoolCell {
     private func openTimeView() -> some View {
         HStack {
             Text("평일 07:00~21:00")
-                .foregroundColor(.init(hex: "000000").opacity(0.42))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
                 .padding(.leading, 8)
             Text("토요일 09:00~18:00")
-                .foregroundColor(.init(hex: "000000").opacity(0.42))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
             Text("일요일 휴무")
-                .foregroundColor(.init(hex: "000000").opacity(0.42))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
             Spacer()
         }
         .font(.custom(.sfProLight, size: 12))

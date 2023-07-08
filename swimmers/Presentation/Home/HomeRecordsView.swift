@@ -15,62 +15,57 @@ struct HomeRecordsView: View {
     var body: some View {
         NavigationView {
             mainBody
+                .background(BackgroundObject())
         }
         .tint(.black)
-
+        
+        
     }
 }
 
 extension HomeRecordsView {
-
     
     private var mainBody: some View {
         
-        ZStack {
             ScrollView {
                 profileView()
                     .frame(height: 100)
                     .padding(.horizontal, 24)
-                                
-                    ChallangeRingView(rings: $viewModel.rings)
-                        .frame(height: 170)
-                        .padding(.horizontal)
-                        .opacity(showViews[0] ? 1 : 0)
-                        .offset(y: showViews[0] ? 0 : 200)
-                                        
-                    bodyView()
+                
+                recentHistoryCell()
+                    .padding(.bottom)
+                    .opacity(showViews[2] ? 1 : 0)
+                    .offset(y: showViews[2] ? 0 : 200)
+                    .padding(.bottom, 14)
+
+                ChallangeRingView(rings: $viewModel.rings)
+                    .frame(height: 170)
+                    .padding(.horizontal)
+                    .opacity(showViews[0] ? 1 : 0)
+                    .offset(y: showViews[0] ? 0 : 200)
+                    .padding(.bottom, 14)
+                
+                bodyView()
                     .opacity(showViews[1] ? 1 : 0)
                     .offset(y: showViews[1] ? 0 : 200)
                 
                 kcalView()
                     .opacity(showViews[2] ? 1 : 0)
                     .offset(y: showViews[2] ? 0 : 200)
-
-                    
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.clear)
-                        .frame(height: 30)
-            }
-            .overlay(alignment: .bottom) {
-                pushHistoryView()
-                    .padding(.bottom)
-                    .opacity(showViews[2] ? 1 : 0)
-                    .offset(y: showViews[2] ? 0 : 200)
+                
+                
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.clear)
+                    .frame(height: 30)
             }
             .onAppear(perform: animateView)
-
-        }
-        .background {
-            Color("primaryBackgroundColor")
-        }
-
+            
     }
     
     private func kcalView() -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.16), radius: 5, x: 1, y: 1)
+            CellBackground()
+            
             HStack {
                 Image(systemName: "flame")
                     .font(.system(size: 29))
@@ -80,8 +75,8 @@ extension HomeRecordsView {
                 HStack(alignment: .bottom) {
                     Text("2,683")
                         .font(.custom(.sfProBold, size: 24))
-                        .foregroundColor(.black)
-
+                        .foregroundColor(.init(uiColor: .label))
+                    
                     Text("kcal")
                         .font(.custom(.sfProBold, size: 16))
                         .foregroundColor(.gray)
@@ -93,25 +88,21 @@ extension HomeRecordsView {
         .padding(.horizontal)
     }
     
-    private func pushHistoryView() -> some View {
+    private func recentHistoryCell() -> some View {
         NavigationLink {
             SwimmingHistoryView()
                 .environmentObject(viewModel)
-            
         } label: {
             ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                    .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
                 
                 HStack(spacing: 30) {
                     Text("1,100 M")
                         .font(.custom(.sfProBold, size: 24))
-                        .foregroundColor(.black)
+                        .foregroundColor(.init(uiColor: .label))
                     
                     Text("30 Lap")
                         .font(.custom(.sfProBold, size: 21))
-                        .foregroundColor(.black.opacity(0.3))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                 }
                 
                 HStack {
@@ -119,17 +110,18 @@ extension HomeRecordsView {
                     
                     Text("3일 전")
                         .font(.custom(.sfProLight, size: 12))
-                        .foregroundColor(.black.opacity(0.3))
-                    
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
+
                     Image(systemName: "chevron.right")
                         .font(.custom(.sfProBold, size: 14))
-                        .foregroundColor(.black.opacity(0.3))
-                    
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
+
                     Rectangle()
                         .fill(.clear)
                         .frame(width: 4)
                 }
             }
+            .background(CellBackground(cornerRadius: 16))
             .frame(height: 48)
             .padding(.horizontal, 24)
         }
@@ -143,9 +135,9 @@ extension HomeRecordsView {
             }
             Spacer()
         }
-        .padding([.horizontal, .top], 14)
+        .padding([.horizontal], 14)
     }
-
+    
     
     private func centerRecordView() -> some View {
         VStack(spacing: 16) {
@@ -163,28 +155,27 @@ extension HomeRecordsView {
     
     private func recordsCell(_ type: RecordCellType, score: Int) -> some View {
         Group {
-            ZStack {
+            VStack(spacing: 4) {
+                Group {
+                    Image(systemName: type.symbolName())
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(type.getSymbolColor())
+                }
+                .frame(width: 50, height: 27)
+                
+                Text(score < 0 ? "-" : "\(score)")
+                    .font(.custom(.sfProBold, size: 30))
+                
+                Text(type.getUnit())
+                    .font(.custom(.sfProBold, size: 17))
+                    .foregroundColor(.init(hex: "000000").opacity(0.3))
+            }
+            .background {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.white.opacity(0.95))
                     .frame(height: 128)
                     .shadow(color: .black.opacity(0.16), radius: 5, x: 1, y: 1)
-                
-                VStack(spacing: 4) {
-                    Group {
-                        Image(systemName: type.symbolName())
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(type.getSymbolColor())
-                    }
-                    .frame(width: 50, height: 27)
-                    
-                    Text(score < 0 ? "-" : "\(score)")
-                        .font(.custom(.sfProBold, size: 30))
-                    
-                    Text(type.getUnit())
-                        .font(.custom(.sfProBold, size: 17))
-                        .foregroundColor(.init(hex: "000000").opacity(0.3))
-                }
             }
         }
     }
@@ -194,11 +185,11 @@ extension HomeRecordsView {
             VStack(alignment: .leading, spacing: 8) {
                 Text("반가워요, Heon Ha!👋")
                     .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.black.opacity(0.30))
+                    .foregroundColor(Color.init(uiColor: .secondaryLabel))
                 
                 Text("오늘도 화이팅 해볼까요?")
                     .font(.custom(.sfProBold, size: 21))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.init(uiColor: .label))
             }
             .font(.system(size: 18, weight: .bold))
             .foregroundColor(.white)

@@ -27,6 +27,7 @@ struct NaverMapView: UIViewRepresentable {
         nmapView.mapView.mapType = .basic
         nmapView.mapView.touchDelegate = context.coordinator
         nmapView.mapView.positionMode = .normal
+        nmapView.mapView.isDark()
         setMarkers(mapView: nmapView.mapView)
         
         return nmapView

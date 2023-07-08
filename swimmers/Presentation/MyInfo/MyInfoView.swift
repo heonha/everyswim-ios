@@ -19,7 +19,6 @@ struct MyInfoView: View {
                         .padding(8)
                     
                     profileView()
-                    
                 }
                 .frame(height: 166)
                 
@@ -31,6 +30,7 @@ struct MyInfoView: View {
                 
             }
             .padding(.horizontal)
+            .background(BackgroundObject())
         }
     }
     
@@ -39,7 +39,7 @@ struct MyInfoView: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(.ultraThinMaterial)
             
-            VStack(spacing: 8) {
+            VStack(spacing: 16) {
                 // List A - 회원정보 변경 / 목표 수정 / 알림 설정 / 건강정보 연동 (워치)
                 navigationLinkButton(.changeUserInfo)
                 navigationLinkButton(.editChallange)
@@ -68,19 +68,17 @@ struct MyInfoView: View {
         let data = type.getUIData()
         
         return ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(.white.opacity(0.95))
-                .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 1)
+            CellBackground()
             
             HStack {
                 Image(systemName: data.symbolName)
                     .font(.system(size: 16))
-                    .foregroundColor(Color(hex: "747474"))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
                 
                 Text(data.title)
                     .font(.custom(.sfProLight, size: 16))
-                    .foregroundColor(.black)
-                
+                    .foregroundColor(.init(uiColor: .label))
+
                 Spacer()
             }
             .padding(.horizontal, 12)
@@ -95,7 +93,7 @@ struct MyInfoView: View {
         } label: {
             infoButtonStyle(type)
         }
-        .frame(height: 42)
+        .frame(height: 50)
         .padding(.horizontal, 12)
         .sheet(isPresented: $showModal) {
             type.destination()
@@ -109,7 +107,7 @@ struct MyInfoView: View {
         } label: {
             infoButtonStyle(type)
         }
-        .frame(height: 42)
+        .frame(height: 50)
         .padding(.horizontal, 12)
         
     }
@@ -130,15 +128,16 @@ struct MyInfoView: View {
             
             Text("Heon Ha")
                 .font(.custom(.sfProBold, size: 20))
+                .foregroundColor(.init(uiColor: .label))
                 .lineLimit(1)
             
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(.ultraThinMaterial)
-
+                
                 Text("heonha@heon.dev")
-                    .tint(Color(hex: "000000").opacity(0.40))
-                    .font(.custom(.sfProLight, size: 14))
+                    .font(.custom(.sfProLight, size: 15))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
             }
             .frame(width: 187, height: 24)
             
@@ -150,12 +149,13 @@ struct MyInfoView: View {
         HStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.ultraThinMaterial)
+                    .fill(.regularMaterial)
 
                 Text("수력 4년차")
                     .font(.custom(.sfProBold, size: 14))
+                    .foregroundColor(.init(uiColor: .label))
             }
-            .frame(width: 74, height: 24)
+            .frame(width: 74, height: 36)
             
             Spacer()
             

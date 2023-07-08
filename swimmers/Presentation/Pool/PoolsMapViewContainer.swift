@@ -16,7 +16,7 @@ struct PoolsMapViewContainer: View {
     @FocusState private var searchFocused: Bool
     
     // Drag Guesture
-    @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.50
+    @State private var startingOffsetY: CGFloat = Constant.deviceSize.height * 0.49
     @State private var currentDragOffsetY: CGFloat = 0
     @State private var endingOffsetY: CGFloat = 0
     @State private var isLocationAuthed = false
@@ -38,25 +38,15 @@ struct PoolsMapViewContainer: View {
 // MARK: - Views
 extension PoolsMapViewContainer {
     
-    private var topInterectionView: some View {
-        
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color.init(uiColor: .red))
-            .frame(height: 20)
-        
-    }
-    
+ 
     var mainBody: some View {
         ZStack {
             Rectangle()
-                .fill(Color.secondary)
-            
-//            naverMapView(
-//                lat: locationManager.location?.coordinate.latitude ?? 0,
-//                lon: locationManager.location?.coordinate.longitude ?? 0)
-            
-            naverMapView(lat: 37.488445, lon: 126.841984)
+                .fill(.ultraThinMaterial)
 
+            naverMapView(
+                lat: locationManager.location?.coordinate.latitude ?? 0,
+                lon: locationManager.location?.coordinate.longitude ?? 0)
             
             searchField($text)
             
@@ -105,6 +95,13 @@ extension PoolsMapViewContainer {
             .offset(y: endingOffsetY)
         
     }
+    
+    private var topInterectionView: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(Color.init(uiColor: .systemRed))
+            .frame(height: 20)
+    }
+    
 }
 
 // MARK: - Map View Handler
@@ -138,7 +135,7 @@ extension PoolsMapViewContainer {
         VStack(spacing: 0) {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.white)
+                    .fill(.clear)
                     .frame(height: 25)
                 RoundedRectangle(cornerRadius: 100)
                     .fill(Color.init(uiColor: .systemFill))
@@ -186,7 +183,7 @@ extension PoolsMapViewContainer {
             .padding(.horizontal, 14)
             Spacer()
         }
-        .background(Color.white)
+        .background(Color.init(uiColor: .systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.25), radius: 2, x: -1, y: -1)
         .fullScreenCover(isPresented: $showDetail) {

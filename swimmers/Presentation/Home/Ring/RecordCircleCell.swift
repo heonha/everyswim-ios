@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecordCircleCell: View {
     
+    @Environment(\.colorScheme) var colorScheme
     let ring: ChallangeRing
     
     var body: some View {
@@ -17,10 +18,8 @@ struct RecordCircleCell: View {
     
     var mainBody: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.white)
-                .shadow(color: .black.opacity(0.16), radius: 5, x: 1, y: 1)
-
+            CellBackground()
+            
             HStack {
                 Image(systemName: ring.keyIcon)
                     .font(.system(size: 29))
@@ -30,11 +29,11 @@ struct RecordCircleCell: View {
                 HStack(alignment: .bottom) {
                     Text(ring.progressLabel())
                         .font(.custom(.sfProBold, size: 24))
-                        .foregroundColor(.black)
+                        .foregroundColor(.init(uiColor: .label))
 
                     Text(ring.unit)
                         .font(.custom(.sfProBold, size: 16))
-                        .foregroundColor(.gray)
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                         .offset(y: -2)
                 }
 
