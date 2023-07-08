@@ -24,17 +24,30 @@ struct SwimmingHistoryView: View {
 extension SwimmingHistoryView {
     
     private var mainBody: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                ForEach(viewModel.swimRecords, id: \.id) { record in
-                    SwimmingRecordCell(data: record)
-                        .padding(.horizontal, 21)
+        ZStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(viewModel.swimRecords, id: \.id) { record in
+                        SwimmingRecordCell(data: record)
+                            .padding(.horizontal, 21)
+                    }
                 }
+                .padding(.top)
+                .padding(.bottom, 4)
             }
-            .padding(.top)
-            .padding(.bottom, 4)
+            .navigationTitle("수영 기록")
+ 
         }
-        .navigationTitle("수영 기록")
+        .background {
+            LinearGradient(
+                gradient:
+                    Gradient(colors: [
+                        Color(hex: "3284FE").opacity(0.08),
+                        Color(hex: "FFFFFF")]),
+                startPoint: .top,
+                endPoint: .bottom)
+            .ignoresSafeArea()
+        }
     }
 }
 

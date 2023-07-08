@@ -37,7 +37,7 @@ struct SwimmingRecordCell: View {
             rightChevronSymbol
         }
         .padding()
-        .background(Color.white)
+        .background(.ultraThinMaterial)
         .cornerRadius(8)
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
     }

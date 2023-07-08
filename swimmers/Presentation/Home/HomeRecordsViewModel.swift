@@ -16,16 +16,39 @@ final class HomeRecordsViewModel: ObservableObject {
     private var kcals: [HealthStatus] = []
     private var stroke: [HealthStatus] = []
     
+    let emptyRing = [
+        ChallangeRing(type: .distance, count: 0, maxCount: 1),
+        ChallangeRing(type: .lap, count: 0, maxCount: 1),
+        ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
+    ]
+    
     @Published var swimRecords: [SwimmingData]
+    @Published var rings: [ChallangeRing] = []
+    
     @Published var kcalPerWeek: Double = 0.0
     @Published var strokePerMonth: Double = 0.0
     
     init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
+        self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
-        hkManager = HealthKitManager()
+        self.hkManager = HealthKitManager()
         Task { await loadHealthCollection() }
+        #if DEBUG
+        self.rings = fetchRingData()
+        #endif
     }
     
+#if DEBUG
+    func fetchRingData() -> [ChallangeRing] {
+       return [
+            ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
+            ChallangeRing(type: .lap, count: 45, maxCount: 60),
+            ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
+        ]
+        
+    }
+#endif
+
     func fetchSwimmingData() async {
         let swimmingData = await hkManager?.loadSwimmingDataCollection()
         if let swimmingData = swimmingData {

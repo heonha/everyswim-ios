@@ -10,89 +10,127 @@ import SwiftUI
 struct HomeRecordsView: View {
     
     @ObservedObject private var viewModel = HomeRecordsViewModel()
+    @State private var showViews: [Bool] = Array(repeating: false, count: 5)
     
     var body: some View {
         NavigationView {
             mainBody
         }
         .tint(.black)
+
     }
-    
 }
 
 extension HomeRecordsView {
     
+    private func animateView() {
+        withAnimation(.easeInOut.delay(0.1)) {
+            showViews[0] = true
+        }
+        
+        withAnimation(.easeInOut.delay(0.20)) {
+            showViews[1] = true
+        }
+        
+        withAnimation(.easeInOut.delay(0.25)) {
+            showViews[2] = true
+        }
+
+        
+    }
+    
     private var mainBody: some View {
         
         ZStack {
-            VStack {
+            ScrollView {
                 profileView()
                     .frame(height: 100)
                     .padding(.horizontal, 24)
-                
-                Spacer()
-                
-                NavigationLink {
-                    SwimmingHistoryView()
-                        .environmentObject(viewModel)
+                                
+                    ChallangeRingView(rings: $viewModel.rings)
+                        .frame(height: 150)
+                        .opacity(showViews[0] ? 1 : 0)
+                        .offset(y: showViews[0] ? 0 : 200)
+                    
+                    Spacer()
+                    
+                    bodyView()
+                    .opacity(showViews[1] ? 1 : 0)
+                    .offset(y: showViews[1] ? 0 : 200)
+                    
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.clear)
+                        .frame(height: 30)
+                    
+                    pushHistoryView()
+                    .opacity(showViews[2] ? 1 : 0)
+                    .offset(y: showViews[2] ? 0 : 200)
 
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.white)
-                            .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
-                        
-                        HStack(spacing: 30) {
-                            Text("1,100 M")
-                                .font(.custom(.sfProBold, size: 24))
-                                .foregroundColor(.black)
-                            
-                            Text("30 Lap")
-                                .font(.custom(.sfProBold, size: 21))
-                                .foregroundColor(.black.opacity(0.3))
-                        }
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Text("3일 전")
-                                .font(.custom(.sfProLight, size: 12))
-                                .foregroundColor(.black.opacity(0.3))
-                            
-                            Image(systemName: "chevron.right")
-                                .font(.custom(.sfProBold, size: 14))
-                                .foregroundColor(.black.opacity(0.3))
-                            
-                            Rectangle()
-                                .fill(.clear)
-                                .frame(width: 4)
-                        }
-                    }
-                    .frame(height: 48)
-                    .padding(.horizontal, 24)
-                }
-                
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.clear)
-                    .frame(height: 30)
             }
-            
-            Spacer()
-            
-            bodyView()
-            
-            Spacer()
+            .onAppear(perform: animateView)
 
         }
-        .background(LinearGradient(gradient: .init(colors: [Color(hex: "3284FE").opacity(0.08), Color(hex: "FFFFFF")]), startPoint: .top, endPoint: .bottom))
+        .background {
+            LinearGradient(
+                gradient:
+                    Gradient(colors: [
+                        Color(hex: "3284FE").opacity(0.08),
+                        Color(hex: "FFFFFF")]),
+                startPoint: .top,
+                endPoint: .bottom)
+            .ignoresSafeArea()
+        }
+
+    }
+    
+    private func pushHistoryView() -> some View {
+        NavigationLink {
+            SwimmingHistoryView()
+                .environmentObject(viewModel)
+            
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.white)
+                    .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
+                
+                HStack(spacing: 30) {
+                    Text("1,100 M")
+                        .font(.custom(.sfProBold, size: 24))
+                        .foregroundColor(.black)
+                    
+                    Text("30 Lap")
+                        .font(.custom(.sfProBold, size: 21))
+                        .foregroundColor(.black.opacity(0.3))
+                }
+                
+                HStack {
+                    Spacer()
+                    
+                    Text("3일 전")
+                        .font(.custom(.sfProLight, size: 12))
+                        .foregroundColor(.black.opacity(0.3))
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.custom(.sfProBold, size: 14))
+                        .foregroundColor(.black.opacity(0.3))
+                    
+                    Rectangle()
+                        .fill(.clear)
+                        .frame(width: 4)
+                }
+            }
+            .frame(height: 48)
+            .padding(.horizontal, 24)
+        }
     }
     
     private func bodyView() -> some View {
         VStack {
             Spacer()
-                        
+            
             centerRecordView()
-
+            
             Spacer()
         }
         .padding([.horizontal, .top], 14)
@@ -165,8 +203,6 @@ extension HomeRecordsView {
             }
             .frame(width: 56, height: 56)
             .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
-
-
         }
     }
     
@@ -176,7 +212,7 @@ extension HomeRecordsView {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-
+        
         HomeRecordsView()
     }
 }

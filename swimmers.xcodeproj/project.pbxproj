@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */; };
+		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
 		392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */; };
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
@@ -74,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.debug.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.debug.xcconfig"; sourceTree = "<group>"; };
+		391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRingView.swift; sourceTree = "<group>"; };
+		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
@@ -162,14 +166,32 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		391C12B12A58D74C001C2286 /* Ring */ = {
+			isa = PBXGroup;
+			children = (
+				391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */,
+				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
+			);
+			path = Ring;
+			sourceTree = "<group>";
+		};
+		391C12B22A58D779001C2286 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				396D2AAD2A5599120042D4D4 /* SwimmingHistoryView.swift */,
+				396D2ACD2A56DDA10042D4D4 /* SwimmingHistoryViewModel.swift */,
+				396D2AAF2A559D290042D4D4 /* SwimmingRecordCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		392083B82A485B5D00E591A8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
-				396D2AAD2A5599120042D4D4 /* SwimmingHistoryView.swift */,
-				396D2ACD2A56DDA10042D4D4 /* SwimmingHistoryViewModel.swift */,
-				396D2AAF2A559D290042D4D4 /* SwimmingRecordCell.swift */,
+				391C12B12A58D74C001C2286 /* Ring */,
+				391C12B22A58D779001C2286 /* History */,
 				392083C42A487DEA00E591A8 /* Types */,
 			);
 			path = Home;
@@ -596,6 +618,7 @@
 				398B1BB42A483E1700E0FA9B /* HomeRecordsView.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				398B1BC02A4842C900E0FA9B /* MainView.swift in Sources */,
+				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimmingAllStatData.swift in Sources */,
@@ -606,6 +629,7 @@
 				396D2AB02A559D290042D4D4 /* SwimmingRecordCell.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
+				391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */,
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
