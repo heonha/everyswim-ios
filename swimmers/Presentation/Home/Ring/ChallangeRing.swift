@@ -28,10 +28,13 @@ struct ChallangeRing: Identifiable {
             return "/ \(Int(maxCount))회"
         case .countPerWeek:
             return "/ \(Int(maxCount))회"
-
         }
     }
     
+    func progressPercentString() -> String {
+        return "\((progress() * 100).toIntString())%"
+    }
+
     func progress() -> Double {
         if count / maxCount == 0 {
             return 0.001
@@ -47,11 +50,11 @@ struct ChallangeRing: Identifiable {
     var keyColor: Color {
         switch type {
         case .distance:
-            return Color(hex: "FB104F")
+            return ThemeColor.secondaryBlue
         case .lap:
-            return Color(hex: "93F503")
+            return ThemeColor.primary
         case .countPerWeek:
-            return Color(hex: "00D8FE")
+            return Color(hex: "1ab8cd")
         }
     }
     

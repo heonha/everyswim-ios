@@ -33,20 +33,23 @@ extension HomeRecordsView {
                     .padding(.horizontal, 24)
                                 
                     ChallangeRingView(rings: $viewModel.rings)
-                        .frame(height: 150)
+                        .frame(height: 170)
+                        .padding(.horizontal)
                         .opacity(showViews[0] ? 1 : 0)
                         .offset(y: showViews[0] ? 0 : 200)
-                    
-                    Spacer()
-                    
+                                        
                     bodyView()
                     .opacity(showViews[1] ? 1 : 0)
                     .offset(y: showViews[1] ? 0 : 200)
+                
+                kcalView()
+                    .opacity(showViews[2] ? 1 : 0)
+                    .offset(y: showViews[2] ? 0 : 200)
+
                     
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.clear)
                         .frame(height: 30)
-                    
             }
             .overlay(alignment: .bottom) {
                 pushHistoryView()
@@ -58,16 +61,36 @@ extension HomeRecordsView {
 
         }
         .background {
-            LinearGradient(
-                gradient:
-                    Gradient(colors: [
-                        Color(hex: "3284FE").opacity(0.08),
-                        Color(hex: "FFFFFF")]),
-                startPoint: .top,
-                endPoint: .bottom)
-            .ignoresSafeArea()
+            Color("primaryBackgroundColor")
         }
 
+    }
+    
+    private func kcalView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.16), radius: 5, x: 1, y: 1)
+            HStack {
+                Image(systemName: "flame")
+                    .font(.system(size: 29))
+                    .foregroundColor(ThemeColor.caloriesRed)
+                    .padding(.leading)
+                
+                HStack(alignment: .bottom) {
+                    Text("2,683")
+                        .font(.custom(.sfProBold, size: 24))
+                        .foregroundColor(.black)
+
+                    Text("kcal")
+                        .font(.custom(.sfProBold, size: 16))
+                        .foregroundColor(.gray)
+                        .offset(y: -2)
+                }
+            }
+        }
+        .frame(height: 60)
+        .padding(.horizontal)
     }
     
     private func pushHistoryView() -> some View {
@@ -113,15 +136,16 @@ extension HomeRecordsView {
     }
     
     private func bodyView() -> some View {
-        VStack {
+        VStack(spacing: 16) {
             Spacer()
-            
-            centerRecordView()
-            
+            ForEach(viewModel.rings) { ring in
+                RecordCircleCell(ring: ring)
+            }
             Spacer()
         }
         .padding([.horizontal, .top], 14)
     }
+
     
     private func centerRecordView() -> some View {
         VStack(spacing: 16) {

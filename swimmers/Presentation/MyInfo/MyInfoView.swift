@@ -15,7 +15,7 @@ struct MyInfoView: View {
         NavigationView {
             VStack {
                 VStack {
-                    topBar()
+                    header()
                         .padding(8)
                     
                     profileView()
@@ -37,7 +37,7 @@ struct MyInfoView: View {
     private var navigationButtons: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color(hex: "F8F9FF"))
+                .fill(.ultraThinMaterial)
             
             VStack(spacing: 8) {
                 // List A - 회원정보 변경 / 목표 수정 / 알림 설정 / 건강정보 연동 (워치)
@@ -134,8 +134,8 @@ struct MyInfoView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(ThemeColor.secondaryBackground)
-                
+                    .fill(.ultraThinMaterial)
+
                 Text("heonha@heon.dev")
                     .tint(Color(hex: "000000").opacity(0.40))
                     .font(.custom(.sfProLight, size: 14))
@@ -146,12 +146,12 @@ struct MyInfoView: View {
         }
     }
     
-    private func topBar() -> some View {
+    private func header() -> some View {
         HStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.regularMaterial)
-                
+                    .fill(.ultraThinMaterial)
+
                 Text("수력 4년차")
                     .font(.custom(.sfProBold, size: 14))
             }
@@ -164,7 +164,7 @@ struct MyInfoView: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.regularMaterial)
+                        .fill(.ultraThinMaterial)
                         .shadow(color: .black.opacity(0.25), radius: 3, x: 0, y: 1)
                     
                     Image(systemName: "pencil")
