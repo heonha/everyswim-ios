@@ -21,9 +21,14 @@ struct EachChallangeCircleCell: View {
             CellBackground()
             
             HStack {
-                Image(systemName: ring.keyIcon)
-                    .font(.system(size: 29))
+                Image(ring.keyIcon)
+                    .resizable()
+                    .renderingMode(.template)
                     .foregroundColor(ring.keyColor)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 28, height: 28)
+                    .foregroundColor(ring.keyColor)
+                
                     .padding(.leading)
                 
                 HStack(alignment: .bottom) {

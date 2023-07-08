@@ -1,5 +1,5 @@
 //
-//  ThemeFont.swift
+//  AppFont.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/06/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ThemeFont: String {
+enum AppFont: String {
     case godoB = "GodoB"
     case godoM = "GodoM"
     case sfPro = "SF Pro"

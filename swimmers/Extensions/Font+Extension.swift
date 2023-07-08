@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Font {
 
-    static func custom(_ name: ThemeFont, size: CGFloat) -> Font {
+    static func custom(_ name: AppFont, size: CGFloat) -> Font {
         return Font.custom(name.rawValue, size: size)
     }
 

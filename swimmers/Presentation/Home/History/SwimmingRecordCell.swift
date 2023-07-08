@@ -32,22 +32,22 @@ struct SwimmingRecordCell: View {
                 recordStack
                     .frame(minHeight: 40)
             }
-            
-            rightChevronSymbol
         }
         .padding()
+        .overlay(alignment: .trailing, content: rightChevronSymbol)
         .background(CellBackground(cornerRadius: 8))
         .cornerRadius(8)
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
     }
     
-    private var rightChevronSymbol: some View {
-        HStack {
-            Spacer()
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14))
-                .foregroundColor(.init(uiColor: .secondaryLabel))
-        }
+    private func rightChevronSymbol() -> some View {
+        Image("chevron.right")
+            .resizable()
+            .renderingMode(.template)
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.init(uiColor: .secondaryLabel))
+            .frame(width: 14, height: 14)
+            .padding(.trailing)
     }
     
     private func recordTitle(_ title: String) -> some View {
@@ -60,45 +60,35 @@ struct SwimmingRecordCell: View {
         }
     }
     
+    private func recordView(title: String, titleSize: CGFloat = 20, unit: String = "") -> some View {
+        HStack(alignment: .bottom) {
+            Text(title)
+                .font(.custom(.sfProBold, size: titleSize))
+                .foregroundColor(.init(uiColor: .label))
+
+            Text(unit)
+                .font(.custom(.sfProBold, size: 16))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
+        }
+    }
+    
     private var recordStack: some View {
         HStack {
-
             // 미터
-            HStack {
-                Text(String(data.getDistance()))
-                    .font(.custom(.sfProBold, size: 20))
-                    .foregroundColor(.init(uiColor: .label))
+            recordView(title: data.getDistance(), unit: "m")
+                .frame(maxWidth: 90)
 
-                Text("M")
-                    .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-            }
-            .frame(maxWidth: 100)
-  
             Divider()
             
             // 페이스
-            HStack(alignment: .bottom) {
-                Text(data.getTotalKcal())
-                    .font(.custom(.sfProBold, size: 20))
-                    .foregroundColor(.init(uiColor: .label))
-
-                Text("kcal")
-                    .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-            }
-            .frame(maxWidth: 100)
+            recordView(title: data.getTotalKcal(), unit: "kcal")
+                .frame(maxWidth: 150)
 
             Divider()
 
             // 시간
-            HStack {
-                Text(String(data.getDuration()))
-                    .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.init(uiColor: .label))
-            }
-            .frame(maxWidth: 100)
-
+            recordView(title: data.getDuration(), titleSize: 16)
+                .frame(maxWidth: 90)
 
         }
     }

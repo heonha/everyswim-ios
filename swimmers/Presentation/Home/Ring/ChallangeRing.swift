@@ -23,16 +23,16 @@ struct ChallangeRing: Identifiable {
     var unit: String {
         switch type {
         case .distance:
-            return "/ \(Int(maxCount))m"
+            return "/ \(maxCount.toStringWithoutDecimal())m"
         case .lap:
-            return "/ \(Int(maxCount))회"
+            return "/ \(maxCount.toStringWithoutDecimal())회"
         case .countPerWeek:
-            return "/ \(Int(maxCount))회"
+            return "/ \(maxCount.toStringWithoutDecimal())회"
         }
     }
     
     func progressPercentString() -> String {
-        return "\((progress() * 100).toIntString())%"
+        return "\((progress() * 100).toStringWithoutDecimal())%"
     }
 
     func progress() -> Double {
@@ -44,15 +44,15 @@ struct ChallangeRing: Identifiable {
     }
     
     func progressLabel() -> String {
-        return "\(Int(count))"
+        return count.toStringWithoutDecimal()
     }
     
     var keyColor: Color {
         switch type {
         case .distance:
-            return ThemeColor.secondaryBlue
+            return AppColor.secondaryBlue
         case .lap:
-            return ThemeColor.primary
+            return AppColor.primary
         case .countPerWeek:
             return Color(hex: "1ab8cd")
         }

@@ -130,18 +130,18 @@ extension PoolDetailView {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text("영업시간")
-                        .foregroundColor(ThemeColor.grayTint)
+                        .foregroundColor(AppColor.grayTint)
                         .font(.custom(.sfProBold, size: 17))
                     Spacer()
                     
                     Text("정보수정요청")
-                        .foregroundColor(ThemeColor.grayTint)
+                        .foregroundColor(AppColor.grayTint)
                         .font(.custom(.sfProMedium, size: 14))
                 }
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(ThemeColor.cellBackground)
+                        .fill(AppColor.cellBackground)
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -186,17 +186,17 @@ extension PoolDetailView {
                 
                 HStack(alignment: .center, spacing: 4) {
                     Text("리뷰")
-                        .foregroundColor(ThemeColor.grayTint)
+                        .foregroundColor(AppColor.grayTint)
                         .font(.custom(.sfProBold, size: 17))
                     
                     Text("(1,234)")
-                        .foregroundColor(ThemeColor.grayTint)
+                        .foregroundColor(AppColor.grayTint)
                         .font(.custom(.sfProMedium, size: 12))
                 }
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(ThemeColor.cellBackground)
+                        .fill(AppColor.cellBackground)
                     
                     VStack(alignment: .leading) {
                         commentView(userName: "heonha", message: "수영장 깨끗하고 좋아요!")
@@ -226,7 +226,7 @@ extension PoolDetailView {
     private func poolMapView() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(ThemeColor.cellBackground)
+                .fill(AppColor.cellBackground)
             VStack {
                 NaverMapView(userLatitude: 0, userLongitude: 0, isMiniMode: true)
                     .padding(9)
@@ -255,7 +255,7 @@ extension PoolDetailView {
     private func contactButtonsView() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(ThemeColor.cellBackground)
+                .fill(AppColor.cellBackground)
             
             HStack(spacing: 17) {
                 

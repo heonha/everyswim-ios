@@ -17,9 +17,9 @@ class TestObjects {
     ]
     
     static let swimmingData = [
-        SwimmingData(id: UUID(), duration: 6503, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
+        SwimmingData(id: UUID(), duration: 6503, startDate: Date(), endDate: Date(), distance: 1500, activeKcal: 1000, restKcal: 500, stroke: 460),
         SwimmingData(id: UUID(), duration: 1234, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(id: UUID(), duration: 4567, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
+        SwimmingData(id: UUID(), duration: 4567, startDate: Date(), endDate: Date(), distance: 9500, activeKcal: 1000, restKcal: 500, stroke: 460),
         SwimmingData(id: UUID(), duration: 10, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460)
     ]
     

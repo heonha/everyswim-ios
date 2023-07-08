@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "door.right.hand.open.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

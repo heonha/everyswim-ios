@@ -15,6 +15,7 @@ struct HomeRecordsView: View {
     var body: some View {
         NavigationView {
             mainBody
+                .navigationBarTitleDisplayMode(.inline)
                 .background(BackgroundObject())
         }
         .tint(.black)
@@ -69,9 +70,12 @@ extension HomeRecordsView {
             CellBackground()
             
             HStack {
-                Image(systemName: "flame")
-                    .font(.system(size: 29))
-                    .foregroundColor(ThemeColor.caloriesRed)
+                Image("flame")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(AppColor.caloriesRed)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30, height: 30)
                     .padding(.leading)
                 
                 HStack(alignment: .bottom) {

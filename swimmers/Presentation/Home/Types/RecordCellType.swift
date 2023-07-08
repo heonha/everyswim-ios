@@ -29,13 +29,13 @@ enum RecordCellType: String {
     func getSymbolColor() -> Color {
         switch self {
         case .swim:
-            return ThemeColor.primary
+            return AppColor.primary
         case .kcal:
-            return ThemeColor.caloriesRed
+            return AppColor.caloriesRed
         case .lap:
             return Color.black
         case .speed:
-            return ThemeColor.primary
+            return AppColor.primary
         }
     }
     

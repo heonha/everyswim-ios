@@ -22,7 +22,12 @@ struct SwimmingData: Identifiable {
     }
     
     func getDistance() -> String {
-        return String(Int(distance ?? 0))
+        if let distance = distance {
+            return distance.toStringWithoutDecimal()
+        } else {
+            return "-"
+        }
+       
     }
     
     func getWorkoutTime() -> String {
@@ -35,7 +40,7 @@ struct SwimmingData: Identifiable {
         
         let totalKcal = active + rest
         
-        return String(Int(totalKcal))
+        return totalKcal.toStringWithoutDecimal()
     }
 }
 

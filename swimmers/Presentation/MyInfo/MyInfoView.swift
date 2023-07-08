@@ -30,6 +30,7 @@ struct MyInfoView: View {
                 
             }
             .padding(.horizontal)
+            .navigationBarTitleDisplayMode(.inline)
             .background(BackgroundObject())
         }
     }
@@ -71,8 +72,11 @@ struct MyInfoView: View {
             CellBackground()
             
             HStack {
-                Image(systemName: data.symbolName)
-                    .font(.system(size: 16))
+                Image(data.symbolName)
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 18, height: 18)
                     .foregroundColor(.init(uiColor: .secondaryLabel))
                 
                 Text(data.title)

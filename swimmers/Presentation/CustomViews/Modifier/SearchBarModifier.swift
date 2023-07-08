@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBarModifier: ViewModifier {
     
     var clearButtonMode: UITextField.ViewMode = .whileEditing
-    var fillColor: Color = ThemeColor.cellBackground
+    var fillColor: Color = AppColor.cellBackground
     
     func body(content: Content) -> some View {
         ZStack {
@@ -29,7 +29,7 @@ struct SearchBarModifier: ViewModifier {
                     .foregroundColor(.black)
             }
             .padding(.horizontal)
-            .foregroundColor(ThemeColor.grayTint)
+            .foregroundColor(AppColor.grayTint)
         }
         .onAppear {
             UITextField.appearance().clearButtonMode = clearButtonMode

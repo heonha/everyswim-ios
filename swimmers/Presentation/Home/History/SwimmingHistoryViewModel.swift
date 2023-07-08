@@ -20,7 +20,15 @@ final class SwimmingHistoryViewModel: ObservableObject {
     init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
         self.swimRecords = swimRecords ?? []
         hkManager = healthKitManager
-        Task { await fetchSwimmingData() }
+        
+        Task {
+            await fetchSwimmingData()
+            
+            #if targetEnvironment(simulator)
+             await testSwimmingData()
+            #endif
+        }
+        
     }
     
     func fetchSwimmingData() async {

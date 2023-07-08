@@ -25,13 +25,13 @@ struct BackgroundObject: View {
     var lightBody: some View {
         VStack {
             Circle()
-                .fill(ThemeColor.primary)
+                .fill(AppColor.primary)
                 .scaleEffect(0.6)
                 .offset(x: 20)
                 .blur(radius: 150)
 
             Circle()
-                .fill(ThemeColor.secondaryBlue)
+                .fill(AppColor.secondaryBlue)
                 .scaleEffect(0.6, anchor: .leading)
                 .offset(y: -20)
                 .blur(radius: 150)
@@ -43,13 +43,13 @@ struct BackgroundObject: View {
     var darkBody: some View {
         VStack {
             Circle()
-                .fill(ThemeColor.primary)
+                .fill(AppColor.primary)
                 .scaleEffect(0.6)
                 .offset(x: 20)
                 .blur(radius: 150)
 
             Circle()
-                .fill(ThemeColor.secondaryBlue)
+                .fill(AppColor.secondaryBlue)
                 .scaleEffect(0.6, anchor: .leading)
                 .offset(y: -20)
                 .blur(radius: 150)
