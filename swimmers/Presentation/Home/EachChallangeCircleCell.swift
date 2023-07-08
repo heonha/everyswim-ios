@@ -1,5 +1,5 @@
 //
-//  RecordCircleCell.swift
+//  EachChallangeCircleCell.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/08.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecordCircleCell: View {
+struct EachChallangeCircleCell: View {
     
     @Environment(\.colorScheme) var colorScheme
     let ring: ChallangeRing
@@ -59,8 +59,8 @@ struct RecordCircleCell_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            ForEach(DebugObjects.rings) { ring in
-                RecordCircleCell(ring: ring)
+            ForEach(TestObjects.rings) { ring in
+                EachChallangeCircleCell(ring: ring)
                     .padding(.horizontal)
             }
         }

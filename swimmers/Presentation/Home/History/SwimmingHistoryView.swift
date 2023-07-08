@@ -38,24 +38,18 @@ extension SwimmingHistoryView {
             .navigationTitle("수영 기록")
  
         }
-        .background {
-            LinearGradient(
-                gradient:
-                    Gradient(colors: [
-                        Color(hex: "3284FE").opacity(0.08),
-                        Color(hex: "FFFFFF")]),
-                startPoint: .top,
-                endPoint: .bottom)
-            .ignoresSafeArea()
-        }
+        .background(BackgroundObject())
     }
 }
 
 struct SwimmingHistoryView_Previews: PreviewProvider {
+    
+    static let viewModel = SwimmingHistoryViewModel()
+    
     static var previews: some View {
-        ZStack {
-            SwimmingHistoryView()
-                .environmentObject(HomeRecordsViewModel())
-        }
+        SwimmingHistoryView(viewModel: viewModel)
+            .task {
+                await viewModel.testSwimmingData()
+            }
     }
 }

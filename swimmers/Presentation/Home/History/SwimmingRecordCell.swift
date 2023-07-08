@@ -28,7 +28,6 @@ struct SwimmingRecordCell: View {
                     .frame(minHeight: 30)
 
                 Spacer()
-
                 // 기록
                 recordStack
                     .frame(minHeight: 40)
@@ -37,7 +36,7 @@ struct SwimmingRecordCell: View {
             rightChevronSymbol
         }
         .padding()
-        .background(Color.white.opacity(0.95))
+        .background(CellBackground(cornerRadius: 8))
         .cornerRadius(8)
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
     }
@@ -47,7 +46,7 @@ struct SwimmingRecordCell: View {
             Spacer()
             Image(systemName: "chevron.right")
                 .font(.system(size: 14))
-                .foregroundColor(.black.opacity(0.5))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
         }
     }
     
@@ -55,7 +54,7 @@ struct SwimmingRecordCell: View {
         HStack {
             Text(title)
                 .font(.custom(.sfProBold, size: 18))
-                .foregroundColor(.black)
+                .foregroundColor(.init(uiColor: .label))
             
             Spacer()
         }
@@ -68,11 +67,11 @@ struct SwimmingRecordCell: View {
             HStack {
                 Text(String(data.getDistance()))
                     .font(.custom(.sfProBold, size: 20))
-                    .foregroundColor(.black)
+                    .foregroundColor(.init(uiColor: .label))
 
                 Text("M")
                     .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.black.opacity(0.5))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
             }
             .frame(maxWidth: 100)
   
@@ -82,11 +81,11 @@ struct SwimmingRecordCell: View {
             HStack(alignment: .bottom) {
                 Text(data.getTotalKcal())
                     .font(.custom(.sfProBold, size: 20))
-                    .foregroundColor(.black)
+                    .foregroundColor(.init(uiColor: .label))
 
                 Text("kcal")
                     .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.black.opacity(0.5))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
             }
             .frame(maxWidth: 100)
 
@@ -96,7 +95,7 @@ struct SwimmingRecordCell: View {
             HStack {
                 Text(String(data.getDuration()))
                     .font(.custom(.sfProBold, size: 16))
-                    .foregroundColor(.black)
+                    .foregroundColor(.init(uiColor: .label))
             }
             .frame(maxWidth: 100)
 
@@ -113,10 +112,10 @@ struct SwimmingRecordCell: View {
             VStack(alignment: .leading) {
                 Text("Heon Ha")
                     .font(.custom(.sfProBold, size: 15))
-                    .foregroundColor(.black)
+                    .foregroundColor(.init(uiColor: .label))
                 Text(timeString)
                     .font(.custom(.sfProLight, size: 13))
-                    .foregroundColor(.black.opacity(0.5))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
             }
             
             Spacer()
@@ -125,10 +124,10 @@ struct SwimmingRecordCell: View {
                 HStack(spacing: 2) {
                     Image(systemName: "location.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.black.opacity(0.5))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                     Text("서울특별시")
                         .font(.custom(.sfProLight, size: 12))
-                        .foregroundColor(.black.opacity(0.5))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                 }
                 
                 Spacer()
@@ -139,22 +138,14 @@ struct SwimmingRecordCell: View {
 
 struct SwimmingRecordCell_Previews: PreviewProvider {
     
-    static let swimmingData = [
-        SwimmingData(id: UUID(), duration: 6503, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(id: UUID(), duration: 1234, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(id: UUID(), duration: 4567, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460),
-        SwimmingData(id: UUID(), duration: 10, startDate: Date(), endDate: Date(), distance: 500, activeKcal: 1000, restKcal: 500, stroke: 460)
-    ]
-    
     static var previews: some View {
         ScrollView {
             VStack {
-                ForEach(swimmingData) { data in
+                ForEach(TestObjects.swimmingData) { data in
                     SwimmingRecordCell(data: data)
                         .padding(.horizontal, 21)
                 }
             }
         }
-
     }
 }

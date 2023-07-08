@@ -93,7 +93,7 @@ extension HomeRecordsView {
     private func bodyView() -> some View {
         VStack(spacing: 16) {
             ForEach(viewModel.rings) { ring in
-                RecordCircleCell(ring: ring)
+                EachChallangeCircleCell(ring: ring)
             }
             Spacer()
         }

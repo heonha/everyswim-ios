@@ -76,7 +76,7 @@ struct ChallangeRing: Identifiable {
 struct ChallangeRing_Previews: PreviewProvider {
     
     static var previews: some View {
-        ChallangeRingView(rings: .constant(DebugObjects.rings))
+        ChallangeRingView(rings: .constant(TestObjects.rings))
     }
 }
 #endif

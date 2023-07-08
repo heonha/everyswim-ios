@@ -66,7 +66,7 @@ struct ChallangeRingView: View {
 struct ChallangeProgressCircle_Previews: PreviewProvider {
     
     static var previews: some View {
-        ChallangeRingView(rings: .constant(DebugObjects.rings))
+        ChallangeRingView(rings: .constant(TestObjects.rings))
     }
     
 }

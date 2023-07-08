@@ -54,7 +54,7 @@ struct BackgroundObject: View {
                 .offset(y: -20)
                 .blur(radius: 150)
         }
-        .opacity(0.8)
+        .opacity(0.6)
 
     }
 }

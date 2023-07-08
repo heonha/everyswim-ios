@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */; };
 		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
-		391C12B42A590AAE001C2286 /* RecordCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B32A590AAE001C2286 /* RecordCircleCell.swift */; };
+		391C12B42A590AAE001C2286 /* EachChallangeCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */; };
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
 		391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B72A5915ED001C2286 /* BackgroundObject.swift */; };
 		391C12BA2A591835001C2286 /* CellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B92A591835001C2286 /* CellBackground.swift */; };
 		391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BB2A592989001C2286 /* AnimatedRingView.swift */; };
-		391C12BF2A592A24001C2286 /* DebugObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BE2A592A24001C2286 /* DebugObjects.swift */; };
+		391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BE2A592A24001C2286 /* TestObjects.swift */; };
 		391C12C12A592AEA001C2286 /* RecentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */; };
 		392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */; };
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
@@ -85,12 +85,12 @@
 		148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.debug.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.debug.xcconfig"; sourceTree = "<group>"; };
 		391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRingView.swift; sourceTree = "<group>"; };
 		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
-		391C12B32A590AAE001C2286 /* RecordCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCircleCell.swift; sourceTree = "<group>"; };
+		391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachChallangeCircleCell.swift; sourceTree = "<group>"; };
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		391C12B72A5915ED001C2286 /* BackgroundObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundObject.swift; sourceTree = "<group>"; };
 		391C12B92A591835001C2286 /* CellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackground.swift; sourceTree = "<group>"; };
 		391C12BB2A592989001C2286 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
-		391C12BE2A592A24001C2286 /* DebugObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugObjects.swift; sourceTree = "<group>"; };
+		391C12BE2A592A24001C2286 /* TestObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObjects.swift; sourceTree = "<group>"; };
 		391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHistoryCell.swift; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
@@ -185,9 +185,7 @@
 			children = (
 				391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */,
 				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
-				391C12B32A590AAE001C2286 /* RecordCircleCell.swift */,
 				391C12BB2A592989001C2286 /* AnimatedRingView.swift */,
-				391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */,
 			);
 			path = Ring;
 			sourceTree = "<group>";
@@ -205,7 +203,7 @@
 		391C12BD2A592A0F001C2286 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
-				391C12BE2A592A24001C2286 /* DebugObjects.swift */,
+				391C12BE2A592A24001C2286 /* TestObjects.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -215,6 +213,8 @@
 			children = (
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
+				391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */,
+				391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */,
 				391C12B12A58D74C001C2286 /* Ring */,
 				391C12B22A58D779001C2286 /* History */,
 				392083C42A487DEA00E591A8 /* Types */,
@@ -383,8 +383,8 @@
 				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
 				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 				392083B82A485B5D00E591A8 /* Home */,
-				392083BE2A485BA800E591A8 /* MyInfo */,
 				392083B92A485B6600E591A8 /* Pool */,
+				392083BE2A485BA800E591A8 /* MyInfo */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
 			);
 			path = Presentation;
@@ -668,7 +668,7 @@
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
-				391C12BF2A592A24001C2286 /* DebugObjects.swift in Sources */,
+				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
 				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
 				396D2AAE2A5599120042D4D4 /* SwimmingHistoryView.swift in Sources */,
 				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
@@ -689,7 +689,7 @@
 				399168DE2A53FB4400D0B3F9 /* HealthStatus.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
-				391C12B42A590AAE001C2286 /* RecordCircleCell.swift in Sources */,
+				391C12B42A590AAE001C2286 /* EachChallangeCircleCell.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

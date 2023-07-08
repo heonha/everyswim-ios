@@ -49,6 +49,6 @@ struct AnimatedRingView_Previews: PreviewProvider {
     static let index: Int = 0
     
     static var previews: some View {
-        AnimatedRingView(ring: DebugObjects.rings[index], index: index)
+        AnimatedRingView(ring: TestObjects.rings[index], index: index)
     }
 }

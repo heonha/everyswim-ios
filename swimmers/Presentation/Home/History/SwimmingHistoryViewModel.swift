@@ -35,3 +35,15 @@ final class SwimmingHistoryViewModel: ObservableObject {
     }
     
 }
+
+#if DEBUG
+// Test Stub
+extension SwimmingHistoryViewModel {
+    func testSwimmingData() async {
+        DispatchQueue.main.async {
+            self.swimRecords = TestObjects.swimmingData
+        }
+    }
+}
+
+#endif

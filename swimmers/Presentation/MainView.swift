@@ -7,13 +7,13 @@
 
 import SwiftUI
 
+enum MainTabs {
+    case home
+    case pool
+    case myinfo
+}
+
 struct MainView: View {
-    
-    enum MainTabs {
-        case home
-        case pool
-        case myinfo
-    }
     
     @State var selectedTab: MainTabs = .home
     @StateObject var viewModel = MainViewModel.shared
