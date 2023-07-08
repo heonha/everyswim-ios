@@ -32,12 +32,14 @@ struct SyncHealthView: View {
             VStack(spacing: 12) {
                 Text("Apple 건강에서\n기록 가져오기")
                     .font(.custom(.sfProBold, size: 24))
-                    .foregroundColor(.black)
+                    .foregroundColor(.init(uiColor: .label))
                     .multilineTextAlignment(.center)
                 
                 Text(switchButtonText(authStatus).message)
                     .multilineTextAlignment(.center)
                     .font(.custom(.sfProMedium, size: 18))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
+
             }
             
             Spacer()

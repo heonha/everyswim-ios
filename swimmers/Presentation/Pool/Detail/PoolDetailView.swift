@@ -27,30 +27,25 @@ extension PoolDetailView {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: Constant.deviceSize.width, height: 300)
-                .overlay {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark.square.fill")
-                                    .font(.system(size: 30))
-                                    .foregroundColor(.white.opacity(0.95))
-                                    .shadow(color: .black.opacity(0.2),
-                                            radius: 1,
-                                            x: 1,
-                                            y: 1)
-                            }
-                            .padding(.top, 44 + 16)
-                            .padding(.trailing, 20)
-                        }
-                        Spacer()
-                    }
-                }
+                .overlay(alignment: .topTrailing, content: closeButton)
             informationView()
         }
+    }
+    
+    private func closeButton() -> some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "xmark.square.fill")
+                .font(.system(size: 30))
+                .foregroundColor(.init(uiColor: .systemBackground).opacity(0.8))
+                .shadow(color: .black.opacity(0.2),
+                        radius: 1,
+                        x: 1,
+                        y: 1)
+        }
+        .padding(.top, 44 + 16)
+        .padding(.trailing, 20)
     }
     
     private func informationView() -> some View {
@@ -61,7 +56,7 @@ extension PoolDetailView {
                     HStack {
                         Text("구로 50플러스 수영장")
                             .font(.custom(.sfProBold, size: 22))
-                            .foregroundColor(.black)
+                            .foregroundColor(.init(uiColor: .label))
                         
                         Spacer()
                         
@@ -70,7 +65,7 @@ extension PoolDetailView {
                         } label: {
                             Image(systemName: "heart.fill")
                                 .font(.system(size: 17, weight: .bold))
-                                .foregroundColor(.red)
+                                .foregroundColor(.init(uiColor: .systemRed))
                         }
                         .padding(.trailing, 8)
                     }
@@ -120,7 +115,7 @@ extension PoolDetailView {
             }
             .padding(.horizontal, 16)
             
-            .background(Color.white)
+            .background(BackgroundObject())
         }
         .cornerRadius(8)
     }
@@ -140,8 +135,7 @@ extension PoolDetailView {
                 }
                 
                 ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(AppColor.cellBackground)
+                    CellBackground(cornerRadius: 8)
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -175,6 +169,8 @@ extension PoolDetailView {
                     }
                     .padding(8)
                 }
+                .foregroundColor(.init(uiColor: .label))
+
             }
             
         }
@@ -186,17 +182,16 @@ extension PoolDetailView {
                 
                 HStack(alignment: .center, spacing: 4) {
                     Text("리뷰")
-                        .foregroundColor(AppColor.grayTint)
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                         .font(.custom(.sfProBold, size: 17))
                     
                     Text("(1,234)")
-                        .foregroundColor(AppColor.grayTint)
+                        .foregroundColor(.init(uiColor: .tertiaryLabel))
                         .font(.custom(.sfProMedium, size: 12))
                 }
                 
                 ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(AppColor.cellBackground)
+                    CellBackground(cornerRadius: 12)
                     
                     VStack(alignment: .leading) {
                         commentView(userName: "heonha", message: "수영장 깨끗하고 좋아요!")
@@ -242,21 +237,20 @@ extension PoolDetailView {
         HStack {
             Image(systemName: "mappin.circle.fill")
                 .font(.system(size: 14))
-                .foregroundColor(Color(hex: "3284FE"))
-            
+                .foregroundColor(.init(uiColor: .systemBlue))
+
             Text("서울특별시 구로구 오류로 36-25 50플러스남부캠퍼스(지하2층)")
                 .font(.custom(.sfProMedium, size: 12))
-                .foregroundColor(.black.opacity(0.42))
-            
+                .foregroundColor(.init(uiColor: .secondaryLabel))
+
             Spacer()
         }
     }
     
     private func contactButtonsView() -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(AppColor.cellBackground)
-            
+            CellBackground(cornerRadius: 8)
+
             HStack(spacing: 17) {
                 
                 externalLinkButton(type: .call) {
@@ -280,8 +274,8 @@ extension PoolDetailView {
             action()
         } label: {
             ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(type.backgroundColor())
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(type.backgroundColor())
                 
                 HStack {
                     type.symbolImage()
@@ -305,9 +299,8 @@ extension PoolDetailView {
     
     private func topBar() -> some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-            
+            CellBackground(cornerRadius: 8)
+
             
             Text("구로 50플러스 수영장")
                 .font(.custom(.sfProBold, size: 17))

@@ -80,8 +80,8 @@ struct MyInfoView: View {
                     .foregroundColor(.init(uiColor: .secondaryLabel))
                 
                 Text(data.title)
-                    .font(.custom(.sfProLight, size: 16))
-                    .foregroundColor(.init(uiColor: .label))
+                    .font(.custom(.sfProMedium, size: 16))
+                    .tint(.init(uiColor: .label))
 
                 Spacer()
             }
@@ -141,7 +141,8 @@ struct MyInfoView: View {
                 
                 Text("heonha@heon.dev")
                     .font(.custom(.sfProLight, size: 15))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
+                    .tint(.init(uiColor: .secondaryLabel))
+                    .disabled(true)
             }
             .frame(width: 187, height: 24)
             
