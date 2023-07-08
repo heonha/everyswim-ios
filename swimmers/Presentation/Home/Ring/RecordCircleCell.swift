@@ -53,23 +53,18 @@ struct RecordCircleCell: View {
     }
 }
 
+
+#if DEBUG
 struct RecordCircleCell_Previews: PreviewProvider {
     
-    static let rings = [
-        ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
-        ChallangeRing(type: .lap, count: 45, maxCount: 60),
-        ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
-    ]
-    
-    
     static var previews: some View {
-        
         VStack {
-            ForEach(rings) { ring in
+            ForEach(DebugObjects.rings) { ring in
                 RecordCircleCell(ring: ring)
                     .padding(.horizontal)
             }
         }
-        
     }
+    
 }
+#endif

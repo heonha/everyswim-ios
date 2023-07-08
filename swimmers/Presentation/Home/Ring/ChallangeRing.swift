@@ -72,15 +72,11 @@ struct ChallangeRing: Identifiable {
 
 }
 
+#if DEBUG
 struct ChallangeRing_Previews: PreviewProvider {
     
-    static let rings = [
-        ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
-        ChallangeRing(type: .lap, count: 45, maxCount: 60),
-        ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
-    ]
-    
     static var previews: some View {
-        ChallangeRingView(rings: .constant(rings))
+        ChallangeRingView(rings: .constant(DebugObjects.rings))
     }
 }
+#endif

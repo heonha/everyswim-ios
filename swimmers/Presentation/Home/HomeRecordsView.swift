@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeRecordsView: View {
     
     @ObservedObject private var viewModel = HomeRecordsViewModel()
-    @State private var showViews: [Bool] = Array(repeating: false, count: 3)
+    @State private var showViews: [Bool] = Array(repeating: false, count: 4)
     
     var body: some View {
         NavigationView {
@@ -27,29 +27,30 @@ extension HomeRecordsView {
     
     private var mainBody: some View {
         
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 profileView()
                     .frame(height: 100)
                     .padding(.horizontal, 24)
                 
-                recentHistoryCell()
-                    .padding(.bottom)
-                    .opacity(showViews[2] ? 1 : 0)
-                    .offset(y: showViews[2] ? 0 : 200)
+                RecentHistoryCell(destination: AnyView(SwimmingHistoryView()))
+                    .opacity(showViews[0] ? 1 : 0)
+                    .offset(y: showViews[0] ? 0 : 200)
                     .padding(.bottom, 14)
 
                 ChallangeRingView(rings: $viewModel.rings)
                     .frame(height: 170)
                     .padding(.horizontal)
-                    .opacity(showViews[0] ? 1 : 0)
-                    .offset(y: showViews[0] ? 0 : 200)
+                    .opacity(showViews[1] ? 1 : 0)
+                    .offset(y: showViews[1] ? 0 : 200)
                     .padding(.bottom, 14)
                 
                 bodyView()
-                    .opacity(showViews[1] ? 1 : 0)
-                    .offset(y: showViews[1] ? 0 : 200)
+                    .padding([.horizontal], 14)
+                    .opacity(showViews[2] ? 1 : 0)
+                    .offset(y: showViews[2] ? 0 : 200)
                 
-                kcalView()
+                kcalCell()
+                    .padding(.horizontal)
                     .opacity(showViews[2] ? 1 : 0)
                     .offset(y: showViews[2] ? 0 : 200)
                 
@@ -62,7 +63,8 @@ extension HomeRecordsView {
             
     }
     
-    private func kcalView() -> some View {
+    private func kcalCell() -> some View {
+            
         ZStack {
             CellBackground()
             
@@ -85,57 +87,16 @@ extension HomeRecordsView {
             }
         }
         .frame(height: 60)
-        .padding(.horizontal)
-    }
-    
-    private func recentHistoryCell() -> some View {
-        NavigationLink {
-            SwimmingHistoryView()
-                .environmentObject(viewModel)
-        } label: {
-            ZStack {
-                
-                HStack(spacing: 30) {
-                    Text("1,100 M")
-                        .font(.custom(.sfProBold, size: 24))
-                        .foregroundColor(.init(uiColor: .label))
-                    
-                    Text("30 Lap")
-                        .font(.custom(.sfProBold, size: 21))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
-                }
-                
-                HStack {
-                    Spacer()
-                    
-                    Text("3일 전")
-                        .font(.custom(.sfProLight, size: 12))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
 
-                    Image(systemName: "chevron.right")
-                        .font(.custom(.sfProBold, size: 14))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
-
-                    Rectangle()
-                        .fill(.clear)
-                        .frame(width: 4)
-                }
-            }
-            .background(CellBackground(cornerRadius: 16))
-            .frame(height: 48)
-            .padding(.horizontal, 24)
-        }
     }
     
     private func bodyView() -> some View {
         VStack(spacing: 16) {
-            Spacer()
             ForEach(viewModel.rings) { ring in
                 RecordCircleCell(ring: ring)
             }
             Spacer()
         }
-        .padding([.horizontal], 14)
     }
     
     
@@ -224,10 +185,10 @@ extension HomeRecordsView {
     
 }
 
+#if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-        
-        HomeRecordsView()
     }
 }
+#endif
