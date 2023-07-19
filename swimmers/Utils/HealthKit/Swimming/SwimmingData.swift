@@ -30,8 +30,12 @@ struct SwimmingData: Identifiable {
        
     }
     
-    func getWorkoutTime() -> String {
-        HKCalculator.dateHandeler(from: startDate, to: endDate)
+    func getDate() -> String {
+        HKCalculator.dateHandeler(from: startDate)
+    }
+    
+    func getDurationTime() -> String {
+        HKCalculator.timeHandler(from: startDate, to: endDate)
     }
     
     func getTotalKcal() -> String {

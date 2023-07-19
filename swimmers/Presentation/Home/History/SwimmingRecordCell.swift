@@ -19,13 +19,16 @@ struct SwimmingRecordCell: View {
         ZStack {
             VStack {
 
-                profileStack(timeString: data.getWorkoutTime())
-                    .frame(minHeight: 30)
+                HStack {
+                    profileStack()
+                        .frame(minHeight: 30)
 
-                Spacer()
-                
-                recordTitle("월요일 오전 수영")
-                    .frame(minHeight: 30)
+                    Spacer()
+                    
+                    recordTitle(date: data.getDate(), time: data.getDurationTime())
+                        .frame(minHeight: 30)
+                }
+
 
                 Spacer()
                 // 기록
@@ -34,7 +37,7 @@ struct SwimmingRecordCell: View {
             }
         }
         .padding()
-        .overlay(alignment: .trailing, content: rightChevronSymbol)
+//        .overlay(alignment: .trailing, content: rightChevronSymbol)
         .background(CellBackground(cornerRadius: 8))
         .cornerRadius(8)
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
@@ -50,13 +53,23 @@ struct SwimmingRecordCell: View {
             .padding(.trailing)
     }
     
-    private func recordTitle(_ title: String) -> some View {
+    private func recordTitle(date: String, time: String) -> some View {
         HStack {
-            Text(title)
-                .font(.custom(.sfProBold, size: 18))
-                .foregroundColor(.init(uiColor: .label))
-            
             Spacer()
+
+            VStack(alignment: .trailing, spacing: 8) {
+                Text(date)
+                    .font(.custom(.sfProMedium, size: 18))
+                    .foregroundColor(.init(uiColor: .label))
+                
+                Text(time)
+                    .font(.custom(.sfProMedium, size: 15))
+                    .foregroundColor(.init(uiColor: .secondaryLabel))
+                
+                locationLabel()
+                
+            }
+
         }
     }
     
@@ -69,6 +82,7 @@ struct SwimmingRecordCell: View {
             Text(unit)
                 .font(.custom(.sfProBold, size: 16))
                 .foregroundColor(.init(uiColor: .secondaryLabel))
+            
         }
     }
     
@@ -92,36 +106,31 @@ struct SwimmingRecordCell: View {
 
         }
     }
-    
-    private func profileStack(timeString: String) -> some View {
-        HStack {
+        
+    private func profileStack() -> some View {
+        VStack(spacing: 4) {
             Image("Avatar")
                 .resizable()
                 .frame(width: 30, height: 30)
                 .clipShape(Circle())
+            
             VStack(alignment: .leading) {
                 Text("Heon Ha")
                     .font(.custom(.sfProBold, size: 15))
                     .foregroundColor(.init(uiColor: .label))
-                Text(timeString)
-                    .font(.custom(.sfProLight, size: 13))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
             }
+        }
+    }
+    
+    private func locationLabel() -> some View {
+        HStack(spacing: 2) {
+            Image(systemName: "location.fill")
+                .font(.system(size: 12))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
             
-            Spacer()
-
-            VStack {
-                HStack(spacing: 2) {
-                    Image(systemName: "location.fill")
-                        .font(.system(size: 12))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
-                    Text("서울특별시")
-                        .font(.custom(.sfProLight, size: 12))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
-                }
-                
-                Spacer()
-            }
+            Text("서울특별시")
+                .font(.custom(.sfProLight, size: 12))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
         }
     }
 }
