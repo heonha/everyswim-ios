@@ -25,7 +25,7 @@ struct SwimmingRecordCell: View {
 
                     Spacer()
                     
-                    recordTitle(date: data.getDate(), time: data.getDurationTime())
+                    recordTitle(date: data.date, time: data.durationTime)
                         .frame(minHeight: 30)
                 }
 
@@ -62,12 +62,11 @@ struct SwimmingRecordCell: View {
                     .font(.custom(.sfProMedium, size: 18))
                     .foregroundColor(.init(uiColor: .label))
                 
-                Text(time)
-                    .font(.custom(.sfProMedium, size: 15))
+                Text("\(data.durationString) (\(time))")
+                    .font(.custom(.sfProMedium, size: 14))
                     .foregroundColor(.init(uiColor: .secondaryLabel))
                 
-                locationLabel()
-                
+                relativeTime()
             }
 
         }
@@ -89,19 +88,19 @@ struct SwimmingRecordCell: View {
     private var recordStack: some View {
         HStack {
             // 미터
-            recordView(title: data.getDistance(), unit: "m")
+            recordView(title: data.unwrappedDistance.toString(), unit: "m")
                 .frame(maxWidth: 90)
 
             Divider()
             
             // 페이스
-            recordView(title: data.getTotalKcal(), unit: "kcal")
+            recordView(title: data.totalKcal.toString(), unit: "kcal")
                 .frame(maxWidth: 150)
 
             Divider()
 
-            // 시간
-            recordView(title: data.getDuration(), titleSize: 16)
+            // TODO: 랩 데이터 넣기
+            recordView(title: "20", unit: "Lap")
                 .frame(maxWidth: 90)
 
         }
@@ -114,11 +113,20 @@ struct SwimmingRecordCell: View {
                 .frame(width: 30, height: 30)
                 .clipShape(Circle())
             
-            VStack(alignment: .leading) {
                 Text("Heon Ha")
                     .font(.custom(.sfProBold, size: 15))
                     .foregroundColor(.init(uiColor: .label))
-            }
+                
+                locationLabel()
+        }
+    }
+    
+    private func relativeTime() -> some View {
+        HStack(spacing: 2) {
+            // TODO: 상대 날짜 데이터로 바꾸기
+            Text("30일 전")
+                .font(.custom(.sfProLight, size: 14))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
         }
     }
     

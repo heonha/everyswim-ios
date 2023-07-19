@@ -14,7 +14,8 @@ extension Double {
         return Int(self)
     }
     
-    func toStringWithoutDecimal() -> String {
+    /// 소수점을 제외하고 문자열로 변환합니다.
+    func toString() -> String {
         let intVal = self.toInt()
         return "\(intVal.formattedString())"
     }

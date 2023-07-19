@@ -33,32 +33,32 @@ extension HomeRecordsView {
                     .frame(height: 100)
                     .padding(.horizontal, 24)
                 
-                RecentHistoryCell(destination: AnyView(SwimmingHistoryView()))
-                    .opacity(showViews[0] ? 1 : 0)
-                    .offset(y: showViews[0] ? 0 : 200)
-                    .padding(.bottom, 14)
+                Group {
+                    RecentHistoryCell(destination: AnyView(SwimmingHistoryView()))
+                        .opacity(showViews[0] ? 1 : 0)
+                        .offset(y: showViews[0] ? 0 : 200)
+                        .padding(.bottom, 14)
+                    
+                    ChallangeRingView(rings: $viewModel.rings)
+                        .frame(height: 170)
+                        .opacity(showViews[1] ? 1 : 0)
+                        .offset(y: showViews[1] ? 0 : 200)
+                        .padding(.bottom, 14)
+                    
+                    bodyView()
+                        .opacity(showViews[2] ? 1 : 0)
+                        .offset(y: showViews[2] ? 0 : 200)
+                    
+                    kcalCell()
+                        .opacity(showViews[2] ? 1 : 0)
+                        .offset(y: showViews[2] ? 0 : 200)
+                    
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.clear)
+                        .frame(height: 30)
+                }
+                .padding(.horizontal, 20)
 
-                ChallangeRingView(rings: $viewModel.rings)
-                    .frame(height: 170)
-                    .padding(.horizontal)
-                    .opacity(showViews[1] ? 1 : 0)
-                    .offset(y: showViews[1] ? 0 : 200)
-                    .padding(.bottom, 14)
-                
-                bodyView()
-                    .padding([.horizontal], 14)
-                    .opacity(showViews[2] ? 1 : 0)
-                    .offset(y: showViews[2] ? 0 : 200)
-                
-                kcalCell()
-                    .padding(.horizontal)
-                    .opacity(showViews[2] ? 1 : 0)
-                    .offset(y: showViews[2] ? 0 : 200)
-                
-                
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.clear)
-                    .frame(height: 30)
             }
             .onAppear(perform: animateView)
             

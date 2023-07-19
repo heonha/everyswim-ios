@@ -16,14 +16,15 @@ struct ChallangeRingView: View {
     }
     
     var body: some View {
-        HStack(spacing: 30) {
-            detailStack
+        ZStack {
+            CellBackground()
             
-            progressRing
+            HStack(spacing: 30) {
+                detailStack
+                
+                progressRing
+            }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 25)
-        .background(CellBackground())
     }
     
     private var detailStack: some View {
@@ -67,6 +68,8 @@ struct ChallangeProgressCircle_Previews: PreviewProvider {
     
     static var previews: some View {
         ChallangeRingView(rings: .constant(TestObjects.rings))
+            .frame(height: 170)
+
     }
     
 }

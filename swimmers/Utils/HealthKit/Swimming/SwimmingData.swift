@@ -17,34 +17,33 @@ struct SwimmingData: Identifiable {
     let restKcal: Double?
     let stroke: Double?
     
-    func getDuration() -> String {
+    var durationString: String {
         return HKCalculator.duration(duration)
     }
     
-    func getDistance() -> String {
+    var unwrappedDistance: Double {
         if let distance = distance {
-            return distance.toStringWithoutDecimal()
+            return distance
         } else {
-            return "-"
+            return 0
         }
-       
     }
     
-    func getDate() -> String {
+    var date: String {
         HKCalculator.dateHandeler(from: startDate)
     }
     
-    func getDurationTime() -> String {
+    var durationTime: String {
         HKCalculator.timeHandler(from: startDate, to: endDate)
     }
     
-    func getTotalKcal() -> String {
+    var totalKcal: Double {
         let active = activeKcal ?? 0
         let rest = restKcal ?? 0
         
         let totalKcal = active + rest
         
-        return totalKcal.toStringWithoutDecimal()
+        return totalKcal
     }
 }
 

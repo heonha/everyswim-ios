@@ -11,6 +11,7 @@ import SwiftUI
 struct SwimmingHistoryView: View {
     
     @StateObject private var viewModel: SwimmingHistoryViewModel
+    @State var showView = false
     
     init(viewModel: SwimmingHistoryViewModel = .init()) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -18,18 +19,32 @@ struct SwimmingHistoryView: View {
     
     var body: some View {
         mainBody
+            .onAppear {
+                animateView()
+            }
     }
 }
 
 extension SwimmingHistoryView {
     
     private var mainBody: some View {
-        ZStack {
+        VStack {
+            
+            HStack {
+                Spacer()
+                
+                sortMenu
+                    .padding(.trailing, 21)
+            }
+            
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
                         SwimmingRecordCell(data: record)
                             .padding(.horizontal, 21)
+                            .opacity(showView ? 1 : 0)
+                            .offset(y: showView ? 0 : 200)
+
                     }
                 }
                 .padding(.top)
@@ -45,7 +60,51 @@ extension SwimmingHistoryView {
     @Sendable
     private func refreshAction() async {
         HapticManager.shared.triggerHapticFeedback(style: .rigid)
-        await viewModel.fetchData()
+        viewModel.fetchData()
+    }
+    
+    // TODO: 애니메이션 싱크 맞추기
+    private func animateView() {
+        showView = false
+        withAnimation(.easeInOut.delay(0.1)) {
+            showView = true
+        }
+    }
+    
+    // TODO: 오름차순 / 내림차순 구현
+    private var sortMenu: some View {
+        Menu {
+            sortButton(.date)
+            
+            sortButton(.distance)
+            
+            sortButton(.duration)
+            
+            sortButton(.kcal)
+
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(.thickMaterial)
+                
+                Text("\(viewModel.sort.title) ↓")
+                    .foregroundColor(.init(uiColor: .label))
+            }
+        }
+        .frame(width: 100, height: 30)
+    }
+    private func sortButton(_ type: SortType) -> some View {
+        Button {
+            viewModel.sort = type
+                viewModel.fetchData()
+                animateView()
+        } label: {
+            if viewModel.sort == type {
+                Image(systemName: "checkmark")
+            }
+
+            Text(type.title)
+        }
     }
         
 }
@@ -57,8 +116,8 @@ struct SwimmingHistoryView_Previews: PreviewProvider {
     
     static var previews: some View {
         SwimmingHistoryView(viewModel: viewModel)
-            .task {
-                await viewModel.fetchData()
+            .onAppear {
+                viewModel.fetchData()
             }
     }
 }

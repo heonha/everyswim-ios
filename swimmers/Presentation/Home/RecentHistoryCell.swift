@@ -45,7 +45,6 @@ struct RecentHistoryCell: View {
             }
             .background(CellBackground(cornerRadius: 16))
             .frame(height: 48)
-            .padding(.horizontal, 24)
         }
     }
     
