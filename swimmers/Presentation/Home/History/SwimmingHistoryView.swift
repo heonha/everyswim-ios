@@ -35,14 +35,19 @@ extension SwimmingHistoryView {
                 .padding(.top)
                 .padding(.bottom, 4)
             }
-            .refreshable {
-                await viewModel.fetchData()
-            }
+            .refreshable(action: refreshAction)
  
         }
         .navigationTitle("수영 기록")
         .background(BackgroundObject())
     }
+    
+    @Sendable
+    private func refreshAction() async {
+        HapticManager.shared.triggerHapticFeedback(style: .rigid)
+        await viewModel.fetchData()
+    }
+        
 }
 
 #if DEBUG

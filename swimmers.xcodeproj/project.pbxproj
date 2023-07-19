@@ -51,6 +51,7 @@
 		396D2ACA2A56C8E50042D4D4 /* SwimmingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimmingData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D2ACE2A56DDA10042D4D4 /* SwimmingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACD2A56DDA10042D4D4 /* SwimmingHistoryViewModel.swift */; };
+		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		396D2AC92A56C8E50042D4D4 /* SwimmingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingData.swift; sourceTree = "<group>"; };
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D2ACD2A56DDA10042D4D4 /* SwimmingHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingHistoryViewModel.swift; sourceTree = "<group>"; };
+		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				398B1BC72A484D1300E0FA9B /* AppFont.swift */,
 				391C12C62A59374D001C2286 /* AppImage.swift */,
 				39ADB27C2A4AE4FA00AED318 /* Constant.swift */,
+				397AB5A82A68204E008015F2 /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */,
 				396D2AB02A559D290042D4D4 /* SwimmingRecordCell.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
+				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
 				391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */,
