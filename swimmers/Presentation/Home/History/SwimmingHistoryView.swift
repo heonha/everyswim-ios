@@ -35,13 +35,17 @@ extension SwimmingHistoryView {
                 .padding(.top)
                 .padding(.bottom, 4)
             }
-            .navigationTitle("수영 기록")
+            .refreshable {
+                await viewModel.fetchData()
+            }
  
         }
+        .navigationTitle("수영 기록")
         .background(BackgroundObject())
     }
 }
 
+#if DEBUG
 struct SwimmingHistoryView_Previews: PreviewProvider {
     
     static let viewModel = SwimmingHistoryViewModel()
@@ -49,7 +53,8 @@ struct SwimmingHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         SwimmingHistoryView(viewModel: viewModel)
             .task {
-                await viewModel.testSwimmingData()
+                await viewModel.fetchData()
             }
     }
 }
+#endif

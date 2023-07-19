@@ -22,19 +22,24 @@ final class SwimmingHistoryViewModel: ObservableObject {
         hkManager = healthKitManager
         
         Task {
-            await fetchSwimmingData()
-            
-            #if targetEnvironment(simulator)
-             await testSwimmingData()
-            #endif
+            await fetchData()
         }
         
     }
     
-    func fetchSwimmingData() async {
+    func fetchData() async {
+    #if targetEnvironment(simulator)
+        await testSwimmingData()
+    #else
+        await fetchSwimmingData()
+    #endif
+    }
+    
+    
+    private func fetchSwimmingData() async {
         let swimmingData = await hkManager?.loadSwimmingDataCollection()
         if let swimmingData = swimmingData {
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.swimRecords = swimmingData
             }
         } else {
@@ -47,7 +52,7 @@ final class SwimmingHistoryViewModel: ObservableObject {
 #if DEBUG
 // Test Stub
 extension SwimmingHistoryViewModel {
-    func testSwimmingData() async {
+    private func testSwimmingData() async {
         DispatchQueue.main.async {
             self.swimRecords = TestObjects.swimmingData
         }
