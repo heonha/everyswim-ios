@@ -7,11 +7,13 @@
 
 // 수영 히스토리
 import SwiftUI
+import Combine
 
 struct SwimmingHistoryView: View {
     
     @StateObject private var viewModel: SwimmingHistoryViewModel
-    @State var showView = false
+    @State private var showView = false
+    @State private var cancellables = Set<AnyCancellable>()
     
     init(viewModel: SwimmingHistoryViewModel = .init()) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -21,8 +23,11 @@ struct SwimmingHistoryView: View {
         mainBody
             .onAppear {
                 animateView()
+                viewRefreshSubscriber()
             }
+            .animation(.easeInOut.delay(0.1), value: viewModel.animationRefreshPublisher)
     }
+    
 }
 
 extension SwimmingHistoryView {
@@ -42,7 +47,7 @@ extension SwimmingHistoryView {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
                         SwimmingRecordCell(data: record)
                             .padding(.horizontal, 21)
-                            .opacity(showView ? 1 : 0)
+                            .opacity( showView ? 1 : 0)
                             .offset(y: showView ? 0 : 200)
 
                     }
@@ -56,22 +61,8 @@ extension SwimmingHistoryView {
         .navigationTitle("수영 기록")
         .background(BackgroundObject())
     }
+
     
-    @Sendable
-    private func refreshAction() async {
-        HapticManager.shared.triggerHapticFeedback(style: .rigid)
-        viewModel.fetchData()
-    }
-    
-    // TODO: 애니메이션 싱크 맞추기
-    private func animateView() {
-        showView = false
-        withAnimation(.easeInOut.delay(0.1)) {
-            showView = true
-        }
-    }
-    
-    // TODO: 오름차순 / 내림차순 구현
     private var sortMenu: some View {
         Menu {
             sortButton(.date)
@@ -81,7 +72,6 @@ extension SwimmingHistoryView {
             sortButton(.duration)
             
             sortButton(.kcal)
-
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
@@ -93,11 +83,11 @@ extension SwimmingHistoryView {
         }
         .frame(width: 100, height: 30)
     }
-    private func sortButton(_ type: SortType) -> some View {
+    
+    private func sortButton(_ type: RecordSortType) -> some View {
         Button {
             viewModel.sort = type
-                viewModel.fetchData()
-                animateView()
+            viewModel.fetchData()
         } label: {
             if viewModel.sort == type {
                 Image(systemName: "checkmark")
@@ -107,6 +97,31 @@ extension SwimmingHistoryView {
         }
     }
         
+}
+
+// MARK: Handler
+extension SwimmingHistoryView {
+    
+    @Sendable
+    private func refreshAction() async {
+        HapticManager.triggerHapticFeedback(style: .rigid)
+        viewModel.fetchData()
+    }
+    
+    private func viewRefreshSubscriber() {
+        viewModel.$animationRefreshPublisher
+            .sink { _ in
+                animateView()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func animateView() {
+        showView = false
+        withAnimation(.easeInOut.delay(0.05)) {
+            showView = true
+        }
+    }
 }
 
 #if DEBUG

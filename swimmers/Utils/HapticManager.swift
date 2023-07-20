@@ -8,12 +8,11 @@
 import SwiftUI
 import CoreHaptics
 
-class HapticManager {
-    static let shared = HapticManager()
-
+final class HapticManager {
+    
     private init() {}
 
-    func triggerHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+    static func triggerHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
             return
         }
@@ -22,4 +21,5 @@ class HapticManager {
         generator.prepare()
         generator.impactOccurred()
     }
+    
 }

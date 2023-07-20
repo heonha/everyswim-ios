@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ChallangeProgressView: View {
     
-    let rings = [SwimmingData]()
+    let rings [SwimmingData] = []
     
     var body: some View {
 
         ZStack {
             HStack(spacing: 20) {
-                ForEach(rings.indices, id: \.self) { index in
+                ForEach(rings.indices, id: \.self) { _ in
                     Circle()
                         .stroke(lineWidth: 10)
                         .fill(Color.gray.opacity(0.3))
