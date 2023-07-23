@@ -9,25 +9,9 @@ import Foundation
 
 extension Date {
     
-    /// YYYY-MM-DD
-    func toStringYYYYMMdd() -> String {
+    func toString(_ type: DateToStringType) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        return dateFormatter.string(from: self)
-    }
-    
-    func toStringYYYYMMddKr() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-
-        return dateFormatter.string(from: self)
-    }
-
-    
-    func toStringOnlyTime() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = type.format
 
         return dateFormatter.string(from: self)
     }
