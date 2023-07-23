@@ -25,7 +25,8 @@ struct SwimmingHistoryView: View {
                 animateView()
                 viewRefreshSubscriber()
             }
-            .animation(.easeInOut.delay(0.1), value: viewModel.animationRefreshPublisher)
+            .animation(.easeInOut.delay(0.1),
+                       value: viewModel.animationRefreshPublisher)
     }
     
 }

@@ -53,5 +53,14 @@ extension Date {
         let timezoneEpochOffset = (epochDate + Double(timezoneOffset))
         return Date(timeIntervalSince1970: timezoneEpochOffset)
     }
+    
+    /// 기준일로부터 상대 날짜 반환
+    static func relativeDate(from currentDate: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        let relativeDateString = formatter.localizedString(for: currentDate, relativeTo: Date.now)
+        
+        return relativeDateString
+    }
         
 }

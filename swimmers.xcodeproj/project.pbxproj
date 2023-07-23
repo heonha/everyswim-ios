@@ -538,11 +538,12 @@
 			};
 			buildConfigurationList = 398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "swimmers" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 398B1B982A483DA300E0FA9B;
 			productRefGroup = 398B1BA22A483DA300E0FA9B /* Products */;

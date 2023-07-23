@@ -20,12 +20,12 @@ final class SwimmingHistoryViewModel: ObservableObject {
     @AppStorage(Defaults.recordViewSort) var sort: RecordSortType = .date
     @AppStorage(Defaults.recordViewAscending) var ascending = true
     
-    init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
+    init(swimRecords: [SwimmingData]? = nil,
+         healthKitManager: HealthKitManager = HealthKitManager()) {
         self.swimRecords = swimRecords ?? []
-        hkManager = healthKitManager
+        self.hkManager = healthKitManager
         
-        fetchData()
-        
+        self.fetchData()
     }
     
     func fetchData() {

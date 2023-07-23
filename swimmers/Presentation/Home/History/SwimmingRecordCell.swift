@@ -124,7 +124,7 @@ struct SwimmingRecordCell: View {
     private func relativeTime() -> some View {
         HStack(spacing: 2) {
             // TODO: 상대 날짜 데이터로 바꾸기
-            Text("30일 전")
+            Text(Date.relativeDate(from: data.startDate))
                 .font(.custom(.sfProLight, size: 14))
                 .foregroundColor(.init(uiColor: .secondaryLabel))
         }

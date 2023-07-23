@@ -12,6 +12,7 @@ import HealthKit
 final class HomeRecordsViewModel: ObservableObject {
     
     private var hkManager: HealthKitManager?
+    var cancellables = Set<AnyCancellable>()
     
     private var kcals: [HealthStatus] = []
     private var stroke: [HealthStatus] = []
@@ -27,15 +28,29 @@ final class HomeRecordsViewModel: ObservableObject {
     
     @Published var kcalPerWeek: Double = 0.0
     @Published var strokePerMonth: Double = 0.0
+    @Published var lastWorkout: SwimmingData?
     
     init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
         self.hkManager = HealthKitManager()
-        Task { await loadHealthCollection() }
+        Task {
+            await loadHealthCollection()
+            await fetchSwimmingData()
+            getLastWorkout()
+        }
         #if DEBUG
         self.rings = fetchRingData()
         #endif
+    }
+    
+    func getLastWorkout() {
+        $swimRecords
+            .receive(on: DispatchQueue.main)
+            .map(\.first)
+            .sink { [weak self] data in
+                self?.lastWorkout = data
+            }.store(in: &cancellables)
     }
 
     func fetchSwimmingData() async {

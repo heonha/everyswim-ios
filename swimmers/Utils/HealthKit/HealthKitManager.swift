@@ -83,6 +83,18 @@ extension HealthKitManager {
         return swimmingData
     }
     
+    private func allStatDataHandlerFor15(_ record: HKWorkout) -> SwimmingAllStatData {
+        
+        
+        
+        let distance = 0.0
+        let stroke =  0.0
+        let activeKcal =  0.0
+        let restKcal =  0.0
+        
+        return SwimmingAllStatData(distance: distance, stroke: stroke, activeKcal: activeKcal, restKcal: restKcal)
+    }
+    
     @available (iOS 16.0, *)
     private func allStatDataHandler(_ record: HKWorkout) -> SwimmingAllStatData {
         

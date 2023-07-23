@@ -18,9 +18,8 @@ class CustomCalculatorTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
     // TimeInterval을 String으로 변경 테스트
-    func testStringFromTimeInterval() {
+    func test_Date_StringFromTimeInterval_AllAccertPass() {
         
         let fortyFiveMinute = TimeInterval(2700)
         let oneHour = TimeInterval(3600)
@@ -36,7 +35,19 @@ class CustomCalculatorTests: XCTestCase {
         XCTAssertEqual("1시간", oneHourString)
         XCTAssertEqual("1시간 2분", oneHourTwoMinuteString)
         XCTAssertEqual("1시간 15분", oneHourTwoneHourFiftyMinuteString)
+
+    }
+    
+    // test_[struct or claas]]_[Variable & Funtions]_[Expected Result]
+    func test_Date_relativeDate_1hoursAgo() {
         
+        let oneHoursAgoDate = Date.now.addingTimeInterval(-3600)
+        
+        let oneHoursAgo = Date.relativeDate(from: oneHoursAgoDate)
+
+        print("Relative date is: \(oneHoursAgo)")
+        
+        XCTAssertEqual("1시간 전", oneHoursAgo)
     }
     
 }

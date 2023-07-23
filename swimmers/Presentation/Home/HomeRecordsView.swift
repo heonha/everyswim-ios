@@ -20,7 +20,6 @@ struct HomeRecordsView: View {
         }
         .tint(.black)
         
-        
     }
 }
 
@@ -34,7 +33,8 @@ extension HomeRecordsView {
                     .padding(.horizontal, 24)
                 
                 Group {
-                    RecentHistoryCell(destination: AnyView(SwimmingHistoryView()))
+                    RecentHistoryCell(destination: AnyView(SwimmingHistoryView()),
+                                      lastWorkout: $viewModel.lastWorkout)
                         .opacity(showViews[0] ? 1 : 0)
                         .offset(y: showViews[0] ? 0 : 200)
                         .padding(.bottom, 14)

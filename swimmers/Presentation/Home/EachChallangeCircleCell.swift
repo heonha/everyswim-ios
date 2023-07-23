@@ -28,7 +28,6 @@ struct EachChallangeCircleCell: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 28, height: 28)
                     .foregroundColor(ring.keyColor)
-                
                     .padding(.leading)
                 
                 HStack(alignment: .bottom) {
