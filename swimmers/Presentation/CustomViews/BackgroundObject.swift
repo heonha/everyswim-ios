@@ -18,6 +18,8 @@ struct BackgroundObject: View {
                 lightBody
             case .dark:
                 darkBody
+            @unknown default:
+                lightBody
             }
         }
     }

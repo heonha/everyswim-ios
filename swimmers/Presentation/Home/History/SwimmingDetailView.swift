@@ -10,6 +10,7 @@ import SwiftUI
 struct SwimmingDetailView: View {
     
     let data: SwimmingData
+    @Environment(\.colorScheme) var colorScheme
     
 }
 
@@ -17,29 +18,26 @@ extension SwimmingDetailView {
     
     var body: some View {
         ZStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                     .fill(.background)
+            
+            VStack(spacing: 28) {
+                profileView
+                    .frame(height: 50)
+                    .padding(.horizontal, 16)
                 
-                VStack(spacing: 28) {
-                    profileView
-                        .frame(height: 50)
-                        .padding(.horizontal, 16)
-                    
-                    mainSummaryView
-                        .frame(height: 123)
-                    
-                    summaryView
-                    
-                    Spacer()
-                }
-                .padding(.vertical)
+                mainSummaryView
+                    .frame(height: 123)
+                
+                summaryView
+                
+                Rectangle()
+                    .fill(Color.clear)
             }
-            .padding(.horizontal, 12)
-            .navigationTitle("2023년 6월 5일")
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.vertical)
         }
         .background(BackgroundObject())
+        .padding(.horizontal, 12)
+        .navigationTitle("\(data.startDate.toString(.fullDateKr))")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
 }
@@ -47,10 +45,10 @@ extension SwimmingDetailView {
 extension SwimmingDetailView {
     
     private var mainSummaryView: some View {
-        HStack {
+        HStack(spacing: 12) {
             mainSummaryCell(.distance, data: data.unwrappedDistance.toString())
             
-            mainSummaryCell(.paceAverage, data: data.unwrappedDistance.toString())
+            mainSummaryCell(.paceAverage, data: "1:39/25")
 
             mainSummaryCell(.totalTime, data: data.duration.toRelativeTime(.hourMinute))
         }
@@ -60,7 +58,7 @@ extension SwimmingDetailView {
     private func mainSummaryCell(_ record: WorkoutRecordType, data: String) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.init(uiColor: .systemBackground))
+                .fill(colorScheme == .light ? .ultraThickMaterial : .thinMaterial)
                 .shadow(color: .black.opacity(0.25), radius: 2.5, x: 0, y: 0)
             
             VStack(spacing: 8) {
@@ -74,10 +72,10 @@ extension SwimmingDetailView {
                 
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(data)
-                        .font(.custom(.sfProBold, size: 18))
+                        .font(.custom(.sfProBold, size: 20))
                         .foregroundColor(.init(uiColor: .label))
                     Text(record.unit)
-                        .font(.custom(.sfProBold, size: 14))
+                        .font(.custom(.sfProBold, size: 16))
                         .foregroundColor(.init(uiColor: .label))
                         .lineLimit(1)
                 }
@@ -93,12 +91,10 @@ extension SwimmingDetailView {
     
     private var summaryView: some View {
         Group {
-            GeometryReader { GeometryProxy in
-                
+            GeometryReader { proxy in
                 ZStack(alignment: .topLeading) {
-                    
                     Rectangle()
-                        .fill(Color.blue.opacity(0.1))
+                        .fill(Color.clear)
                     
                     VStack(alignment: .leading, spacing: 12) {
                         Text("요약")
@@ -108,47 +104,49 @@ extension SwimmingDetailView {
                             .padding(.horizontal)
                         
                         HStack(spacing: 20) {
-                            summaryCell(.distance)
                             
-                            summaryCell(.paceAverage)
-                        }
-                        .padding(.horizontal, 8)
-                        
-                        HStack(spacing: 20) {
-                            summaryCell(.totalTime)
+                            summaryVStack(width: (proxy.size.width / 2.1) - 10) {
+                                summaryCell(.distance, data: data.unwrappedDistance.toString())
+                                summaryCell(.totalTime, data: data.durationString)
+                                summaryCell(.activeKcal, data: data.activeKcal?.toString() ?? "")
+                            }
                             
-                            summaryCell(.bpmAverage)
+                            summaryVStack(width: (proxy.size.width / 2.1) - 10) {
+                                summaryCell(.paceAverage, data: "1:39/25")
+                                summaryCell(.bpmAverage, data: "100")
+                                summaryCell(.restKcal, data: data.restKcal?.toString() ?? "")
+                            }
+
                         }
-                        .padding(.horizontal, 8)
-                        
-                        HStack(spacing: 20) {
-                            summaryCell(.activeKcal)
-                            
-                            summaryCell(.restKcal)
-                        }
-                        .padding(.horizontal, 8)
-                        
+                        .padding(.horizontal, 16)
                     }
                 }
             }
-            
         }
     }
     
-    private func summaryCell(_ data: WorkoutRecordType) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(data.title)
-                .font(.custom(.sfProMedium, size: 16))
-                .foregroundColor(.init(uiColor: .secondaryLabel))
-            
-            Text("475")
-                .font(.custom(.sfProMedium, size: 27))
-                .foregroundColor(.init(uiColor: .label))
-            + Text("m")
-                .font(.custom(.sfProMedium, size: 20))
-                .foregroundColor(.init(uiColor: .label))
+    private func summaryVStack<Content: View>(width: CGFloat, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, content: content)
+            .frame(width: width)
+    }
+    
+    private func summaryCell(_ type: WorkoutRecordType, data: String) -> some View {
+        ZStack(alignment: .leading) {
+            Rectangle()
+                .fill(.clear)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(type.title)
+                        .font(.custom(.sfProMedium, size: 16))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
+                    
+                    Text("\(data)")
+                        .font(.custom(.sfProMedium, size: 27))
+                        .foregroundColor(.init(uiColor: .label))
+                    + Text("\(type.unit)")
+                        .font(.custom(.sfProMedium, size: 20))
+                        .foregroundColor(.init(uiColor: .label))
+                }
         }
-        .frame(minWidth: 100, idealWidth: 150)
         
     }
     

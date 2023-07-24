@@ -926,7 +926,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 권한을 요청합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -934,7 +934,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -970,7 +969,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 권한을 요청합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -978,7 +977,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

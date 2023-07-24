@@ -47,7 +47,7 @@ extension SwimmingHistoryView {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
                         
                         NavigationLink {
-                            SwimmingEventsView(data: record)
+                            SwimmingDetailView(data: record)
                         } label: {
                             SwimmingRecordCell(data: record)
                                 .padding(.horizontal, 21)

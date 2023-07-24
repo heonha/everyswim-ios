@@ -19,6 +19,7 @@ struct SwimmingData: Identifiable {
     let stroke: Double?
     let events: [WorkoutEvent]
     
+    /// HH시간 mm분 ss초
     var durationString: String {
         return HKCalculator.duration(duration)
     }
@@ -35,6 +36,7 @@ struct SwimmingData: Identifiable {
         HKCalculator.dateHandeler(from: startDate)
     }
     
+    /// HH:mm ~ HH:mm
     var durationTime: String {
         HKCalculator.timeHandler(from: startDate, to: endDate)
     }

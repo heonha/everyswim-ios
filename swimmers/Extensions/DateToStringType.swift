@@ -12,11 +12,11 @@ enum DateToStringType {
     case date
     /// "yyyy년 M월 d일"
     case dateKr
-    /// "yyyy년 M월 d일 H:mm"
+    /// "yyyy년 M월 d일 h시 m분"
     case fullDateKr
-    /// "H:mm:ss"
+    /// "h:m:s"
     case time
-    /// "H:mm"
+    /// "h:m"
     case timeWithoutSeconds
     
     var format: String {
@@ -24,13 +24,13 @@ enum DateToStringType {
         case .date:
             return "yyyy-M-d"
         case .dateKr:
-            return "yyyy년 M월 dd일"
+            return "yyyy년 M월 d일 (E)"
         case .fullDateKr:
-            return "yyyy년 M월 d일 H:mm"
+            return "yyyy년 M월 d일 EEEE a h시 m분"
         case .time:
-            return "H:mm:ss"
+            return "a h:mm:ss"
         case .timeWithoutSeconds:
-            return "H:mm"
+            return "a h:mm"
         }
     }
 }
