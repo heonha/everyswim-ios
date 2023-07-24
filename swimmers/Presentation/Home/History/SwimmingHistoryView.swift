@@ -35,7 +35,6 @@ extension SwimmingHistoryView {
     
     private var mainBody: some View {
         VStack {
-            
             HStack {
                 Spacer()
                 
@@ -46,10 +45,15 @@ extension SwimmingHistoryView {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
-                        SwimmingRecordCell(data: record)
-                            .padding(.horizontal, 21)
-                            .opacity( showView ? 1 : 0)
-                            .offset(y: showView ? 0 : 200)
+                        
+                        NavigationLink {
+                            SwimmingEventsView(data: record)
+                        } label: {
+                            SwimmingRecordCell(data: record)
+                                .padding(.horizontal, 21)
+                                .opacity( showView ? 1 : 0)
+                                .offset(y: showView ? 0 : 200)
+                        }
 
                     }
                 }

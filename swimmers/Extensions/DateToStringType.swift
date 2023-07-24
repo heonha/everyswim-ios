@@ -8,25 +8,29 @@
 import Foundation
 
 enum DateToStringType {
-    /// YYYY-MM-DD
+    /// YYYY-M-d
     case date
-    /// "yyyy년 MM월 dd일"
+    /// "yyyy년 M월 d일"
     case dateKr
-    /// "HH:mm:ss"
+    /// "yyyy년 M월 d일 H:mm"
+    case fullDateKr
+    /// "H:mm:ss"
     case time
-    /// "HH:mm"
+    /// "H:mm"
     case timeWithoutSeconds
     
     var format: String {
         switch self {
         case .date:
-            return "yyyy-MM-dd"
+            return "yyyy-M-d"
         case .dateKr:
-            return "yyyy년 MM월 dd일"
+            return "yyyy년 M월 dd일"
+        case .fullDateKr:
+            return "yyyy년 M월 d일 H:mm"
         case .time:
-            return "HH:mm:ss"
+            return "H:mm:ss"
         case .timeWithoutSeconds:
-            return "HH:mm"
+            return "H:mm"
         }
     }
 }

@@ -7,15 +7,31 @@
 
 import Foundation
 
+enum RelativeTimeType {
+    
+    case hourMinute
+    case hourMinuteSeconds
+    
+    var unit: NSCalendar.Unit {
+        switch self {
+        case .hourMinute:
+            return [.hour, .minute]
+        case .hourMinuteSeconds:
+            return [.hour, .minute, .second]
+        }
+    }
+    
+}
+
 extension TimeInterval {
     
-    func stringFromTimeInterval() -> String {
+    func toRelativeTime(_ type: RelativeTimeType) -> String {
         
         var calendar = Calendar.current
         calendar.locale = Locale(identifier: "ko")
 
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
+        formatter.allowedUnits = type.unit
         formatter.unitsStyle = .full
         formatter.calendar = calendar
 

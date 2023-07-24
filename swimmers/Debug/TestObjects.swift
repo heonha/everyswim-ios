@@ -8,7 +8,7 @@
 #if DEBUG
 import Foundation
 
-class TestObjects {
+enum TestObjects {
     
     static let rings = [
         ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
@@ -24,7 +24,9 @@ class TestObjects {
                      distance: 1500,
                      activeKcal: 500,
                      restKcal: 120,
-                     stroke: 460),
+                     stroke: 460,
+                     events: []),
+        
         SwimmingData(id: UUID(),
                      duration: 1234,
                      startDate: "2023-07-15-08:30".toDateWithTime()!,
@@ -32,7 +34,9 @@ class TestObjects {
                      distance: 500,
                      activeKcal: 250,
                      restKcal: 100,
-                     stroke: 460),
+                     stroke: 460,
+                     events: []),
+        
         SwimmingData(id: UUID(),
                      duration: 4567,
                      startDate: "2023-07-13-10:30".toDateWithTime()!,
@@ -40,7 +44,9 @@ class TestObjects {
                      distance: 1000,
                      activeKcal: 300,
                      restKcal: 120,
-                     stroke: 460),
+                     stroke: 460,
+                     events: []),
+        
         SwimmingData(id: UUID(),
                      duration: 10,
                      startDate: "2023-07-04-09:20".toDateWithTime()!,
@@ -48,7 +54,8 @@ class TestObjects {
                      distance: 500,
                      activeKcal: 1000,
                      restKcal: 98,
-                     stroke: 460)
+                     stroke: 460,
+                     events: [])
     ]
     
 }

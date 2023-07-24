@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HealthKit
 
 struct SwimmingData: Identifiable {
     let id: UUID
@@ -16,6 +17,7 @@ struct SwimmingData: Identifiable {
     let activeKcal: Double?
     let restKcal: Double?
     let stroke: Double?
+    let events: [WorkoutEvent]
     
     var durationString: String {
         return HKCalculator.duration(duration)

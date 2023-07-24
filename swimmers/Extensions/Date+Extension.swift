@@ -26,16 +26,17 @@ extension Date {
 
         return (dateFormatter.string(from: self), timeFormatter.string(from: self))
     }
-    
-    static func mondayAt12AM() -> Date {
-        return Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!
-    }
+
     
     func toLocalTime() -> Date {
         let timezoneOffset = TimeZone.current.secondsFromGMT()
         let epochDate = self.timeIntervalSince1970
         let timezoneEpochOffset = (epochDate + Double(timezoneOffset))
         return Date(timeIntervalSince1970: timezoneEpochOffset)
+    }
+    
+    static func mondayAt12AM() -> Date {
+        return Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))!
     }
     
     /// 기준일로부터 상대 날짜 반환

@@ -53,7 +53,7 @@ extension HealthKitManager {
             let duration = workout.duration
             let startDate = workout.startDate
             let endDate = workout.endDate
-            
+            let workoutEvent = getWorkoutEvents(workout)
             // 거리
             if #available(iOS 16.0, *) {
                 let allStat = allStatDataHandler(workout)
@@ -64,7 +64,8 @@ extension HealthKitManager {
                                         distance: allStat.distance,
                                         activeKcal: allStat.activeKcal,
                                         restKcal: allStat.restKcal,
-                                        stroke: allStat.stroke)
+                                        stroke: allStat.stroke,
+                                        events: workoutEvent)
                 
                 swimmingData.append(data)
                 
@@ -76,17 +77,17 @@ extension HealthKitManager {
                                         distance: nil,
                                         activeKcal: nil,
                                         restKcal: nil,
-                                        stroke: nil)
+                                        stroke: nil,
+                                        events: workoutEvent
+                )
                 swimmingData.append(data)
             }
         }
         return swimmingData
     }
     
-    private func allStatDataHandlerFor15(_ record: HKWorkout) -> SwimmingAllStatData {
-        
-        
-        
+    private func allStatDataHandlerForiOS15(_ record: HKWorkout) -> SwimmingAllStatData {
+                
         let distance = 0.0
         let stroke =  0.0
         let activeKcal =  0.0
@@ -108,8 +109,35 @@ extension HealthKitManager {
         return SwimmingAllStatData(distance: distance, stroke: stroke, activeKcal: activeKcal, restKcal: restKcal)
     }
     
-}
+    private func getWorkoutEvents(_ record: HKWorkout) -> [WorkoutEvent] {
+        guard let rawEvent = record.workoutEvents else { return [] }
+        
+        let eventCount = rawEvent.count
+        print("총이벤트갯수: \(eventCount)")
+        var index = 0
+        
+        let events = rawEvent.map { event in
+            let eventType = event.type
+            let date = event.dateInterval.start.toString(.date)
+            let start = event.dateInterval.start.toString(.time)
+            let end = event.dateInterval.end.toString(.time)
+            let durationTime = (event.dateInterval.end.timeIntervalSince1970 - event.dateInterval.start.timeIntervalSince1970)
+            
+            print("\(index)------------------------------")
+            print("이벤트타입: \(eventType.rawValue)")
+            print("일시: \(date)")
+            print("시간: \(start) ~ \(end)")
+            print("지속시간 \(durationTime.formattedString())")
+            print("메타데이터: \(event.metadata ?? [:])")
+            index += 1
 
+            return WorkoutEvent(type: eventType, start: start, end: end, duration: durationTime, metadata: event.metadata ?? [:])
+        }
+        
+        return events
+    }
+    
+}
 
 // MARK: - 일반 건강 데이터 가져오기
 extension HealthKitManager {

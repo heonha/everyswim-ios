@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeRecordsView: View {
     
-    @ObservedObject private var viewModel = HomeRecordsViewModel()
+    @ObservedObject private var viewModel = HomeRecordsViewModel(healthKitManager: HealthKitManager())
     @State private var showViews: [Bool] = Array(repeating: false, count: 4)
     
     var body: some View {

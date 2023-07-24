@@ -7,16 +7,11 @@
 
 import SwiftUI
 
-enum RingType: String {
-    case distance = "수영 거리"
-    case lap = "랩"
-    case countPerWeek = "수영 횟수"
-}
 
 struct ChallangeRing: Identifiable {
     
     let id = UUID()
-    let type: RingType
+    let type: WorkoutRecordType
     let count: Double
     let maxCount: Double
 
@@ -28,6 +23,9 @@ struct ChallangeRing: Identifiable {
             return "/ \(maxCount.toString())회"
         case .countPerWeek:
             return "/ \(maxCount.toString())회"
+        default:
+            return ""
+
         }
     }
     
@@ -55,6 +53,8 @@ struct ChallangeRing: Identifiable {
             return AppColor.primary
         case .countPerWeek:
             return Color(hex: "1ab8cd")
+        default:
+            return .init(uiColor: .label)
         }
     }
     
@@ -66,7 +66,10 @@ struct ChallangeRing: Identifiable {
             return "flag.checkered"
         case .countPerWeek:
             return "chart.xyaxis.line"
+        default:
+            return ""
         }
+        
     }
     
 

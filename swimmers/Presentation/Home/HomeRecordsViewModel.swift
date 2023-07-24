@@ -30,10 +30,10 @@ final class HomeRecordsViewModel: ObservableObject {
     @Published var strokePerMonth: Double = 0.0
     @Published var lastWorkout: SwimmingData?
     
-    init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager = HealthKitManager()) {
+    init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager?) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
-        self.hkManager = HealthKitManager()
+        self.hkManager = healthKitManager ?? HealthKitManager()
         Task {
             await loadHealthCollection()
             await fetchSwimmingData()
@@ -104,7 +104,7 @@ final class HomeRecordsViewModel: ObservableObject {
             
             switch type {
             case .kcal:
-                var count = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
+                let count = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
                 guard let count = count else { return }
                 let data = HealthStatus(count: count, date: statCollection.startDate)
                 print("Debug: kcal가 완료되었습니다. \(data)")
