@@ -10,11 +10,11 @@ import HealthKit
 
 enum HKCalculator {
     
-    static func duration(_ interval: TimeInterval) -> String {
-        return interval.toRelativeTime(.hourMinute)
+    static func duration(_ interval: TimeInterval, outputType: RelativeTimeType = .hourMinute) -> String {
+        return interval.toRelativeTime(outputType)
     }
     
-    static func dateHandeler(from startDate: Date) -> String {
+    static func toRelativeDate(from startDate: Date) -> String {
         // 운동 날짜 및 시간
         let rawLocalDate = startDate.toLocalTime()
         

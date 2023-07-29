@@ -30,6 +30,7 @@
 		392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C92A48828800E591A8 /* SwimmingPoolCell.swift */; };
 		392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */; };
 		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
+		3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D5852A74E95400257164 /* SwimDataManager.swift */; };
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
 		392457282A545016006E3071 /* HKCustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HKCustomError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
@@ -119,6 +120,7 @@
 		392083C92A48828800E591A8 /* SwimmingPoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolCell.swift; sourceTree = "<group>"; };
 		392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolType.swift; sourceTree = "<group>"; };
 		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
+		3922D5852A74E95400257164 /* SwimDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataManager.swift; sourceTree = "<group>"; };
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
 		392457272A545016006E3071 /* HKCustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCustomError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
 				3922D5762A74B31100257164 /* Error */,
 				396D2AC62A56B93C0042D4D4 /* Model */,
+				3922D5852A74E95400257164 /* SwimDataManager.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
+				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,

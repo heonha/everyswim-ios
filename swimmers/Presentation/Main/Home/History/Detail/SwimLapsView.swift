@@ -12,30 +12,59 @@ struct SwimLapsView: View {
     let data: SwimMainData
     
     var body: some View {
-
+        
         ScrollView {
-            VStack {
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Lap")
+                        .font(.custom(.sfProMedium, size: 16))
+                    
+                    Text("\(data.laps.count)")
+                        .font(.custom(.sfProBold, size: 20))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
+                }
+                .frame(height: 30)
+                
                 ForEach(data.laps.indices) { index in
                     let event = data.laps[index]
-                    var lapIndex = 0
-//                    if event.type == .lap {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.thinMaterial)
-                            VStack {
-                                HStack {
-                                    Text("\(event.index)")
-                                }
-                                Text("\(event.dateInterval.start) ~ \(event.dateInterval.end)")
-                                Text("\(event.style?.name() ?? "")")
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.ultraThinMaterial)
+                        HStack {
+                            HStack {
+                                Text("Lap")
+                                    .font(.custom(.sfProMedium, size: 16))
+                                Text("\(event.index)")
+                                    .font(.custom(.sfProBold, size: 20))
+                                    .foregroundColor(.init(uiColor: .secondaryLabel))
                             }
+                            .padding(.leading)
+                            
+                            Spacer()
+
+                            VStack {
+                                Text("랩 타임")
+                                    .font(.custom(.sfProMedium, size: 16))
+                                Text(event.dateInterval.duration.toRelativeTime(.hourMinuteSeconds))
+                                    .font(.custom(.sfProBold, size: 20))
+                                    .foregroundColor(.init(uiColor: .secondaryLabel))
+                            }
+                            
+                            Spacer()
+
+                            
+                            VStack {
+                                Text("스타일")
+                                    .font(.custom(.sfProMedium, size: 16))
+                                Text("\(event.style?.name ?? "")")
+                                    .font(.custom(.sfProBold, size: 20))
+                                    .foregroundColor(.init(uiColor: .secondaryLabel))
+                            }
+                            
+                            Spacer()
                         }
-                        .frame(height: 100)
-                        .onAppear {
-                            lapIndex += 1
-                        }
-//                    }
-                    
+                    }
+                    .frame(height: 70)
                 }
             }
         }

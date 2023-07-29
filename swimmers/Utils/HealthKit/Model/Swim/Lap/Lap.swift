@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import HealthKit
 
 struct Lap {
     let index: Int
     let dateInterval: DateInterval
-    let style: StrokeStyle?
+    let style: HKSwimmingStrokeStyle?
 }

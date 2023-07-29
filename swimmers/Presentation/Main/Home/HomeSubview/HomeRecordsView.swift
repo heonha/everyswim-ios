@@ -78,7 +78,7 @@ extension HomeRecordsView {
                     .padding(.leading)
                 
                 HStack(alignment: .bottom) {
-                    Text("2,683")
+                    Text("-")
                         .font(.custom(.sfProBold, size: 24))
                         .foregroundColor(.init(uiColor: .label))
                     

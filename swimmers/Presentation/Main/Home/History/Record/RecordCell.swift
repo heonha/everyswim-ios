@@ -29,7 +29,6 @@ struct RecordCell: View {
                         .frame(minHeight: 30)
                 }
 
-
                 Spacer()
                 // 기록
                 recordStack
@@ -100,7 +99,7 @@ struct RecordCell: View {
             Divider()
 
             // TODO: 랩 데이터 넣기
-            recordView(title: "20", unit: "Lap")
+            recordView(title: "\(data.laps.count)", unit: "Lap")
                 .frame(maxWidth: 90)
 
         }
@@ -110,14 +109,14 @@ struct RecordCell: View {
         VStack(spacing: 4) {
             Image("Avatar")
                 .resizable()
-                .frame(width: 30, height: 30)
+                .frame(width: 40, height: 40)
                 .clipShape(Circle())
             
                 Text("Heon Ha")
                     .font(.custom(.sfProBold, size: 15))
                     .foregroundColor(.init(uiColor: .label))
                 
-                locationLabel()
+                // locationLabel()
         }
     }
     

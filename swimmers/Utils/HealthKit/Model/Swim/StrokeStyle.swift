@@ -9,13 +9,13 @@ import Foundation
 
 enum StrokeStyle: Int {
     
-    case backstroke
-    case breaststroke
-    case butterfly
-    case freestyle
-    case mixed
-    case kickboard
-    case unknown
+    case backstroke = 0
+    case breaststroke = 1
+    case butterfly = 2
+    case freestyle = 3
+    case mixed = 4
+    case kickboard = 5
+    case unknown = 6
     
     func name() -> String {
         switch self {

@@ -31,7 +31,7 @@ struct SwimMainData: Identifiable {
     
     /// 시작일 기준 데이터
     var date: String {
-        HKCalculator.dateHandeler(from: startDate)
+        HKCalculator.toRelativeDate(from: startDate)
     }
     
     /// HH:mm ~ HH:mm

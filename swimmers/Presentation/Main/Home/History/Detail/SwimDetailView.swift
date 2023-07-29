@@ -39,10 +39,6 @@ extension SwimDetailView {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-}
-
-extension SwimDetailView {
-    
     private var mainSummaryView: some View {
         HStack(spacing: 12) {
             mainSummaryCell(.distance,
@@ -61,6 +57,11 @@ extension SwimDetailView {
         .padding(.horizontal, 12)
     }
     
+}
+
+extension SwimDetailView {
+    
+
     private func mainSummaryCell<Destination: View>(_ record: WorkoutRecordType, data: String, destination: () -> Destination) -> some View {
         NavigationLink(destination: destination) {
             ZStack {
@@ -170,12 +171,12 @@ extension SwimDetailView {
                     .font(.custom(.sfProBold, size: 16))
                     .foregroundColor(.init(uiColor: .label))
                     .lineLimit(1)
-                Text("2023년 06월 05일")
+                Text(data.startDate.toString(.dateKr))
                     .font(.custom(.sfProLight, size: 14))
                     .foregroundColor(.init(uiColor: .secondaryLabel))
                     .lineLimit(1)
                 
-                Text("08:16~08:58")
+                Text(data.durationTime)
                     .font(.custom(.sfProLight, size: 12))
                     .foregroundColor(.init(uiColor: .secondaryLabel))
                     .lineLimit(1)
@@ -183,21 +184,25 @@ extension SwimDetailView {
             
             Spacer()
             
-            HStack(spacing: 4) {
-                Image("location.fill")
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                    .frame(width: 14, height: 14)
-                
-                Text("서울특별시")
-                    .font(.custom(.sfProMedium, size: 12))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                    .lineLimit(1)
-            }
-            .frame(width: 70, height: 20)
+            // locationLabel()
         }
+    }
+    
+    private func locationLabel() -> some View {
+        HStack(spacing: 4) {
+            Image("location.fill")
+                .resizable()
+                .renderingMode(.template)
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.init(uiColor: .secondaryLabel))
+                .frame(width: 14, height: 14)
+            
+            Text("서울특별시")
+                .font(.custom(.sfProMedium, size: 12))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
+                .lineLimit(1)
+        }
+        .frame(width: 70, height: 20)
     }
     
     

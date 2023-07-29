@@ -23,17 +23,25 @@ struct RecentHistoryCell: View {
         } label: {
             ZStack {
                 if let lastWorkout = lastWorkout {
-                    HStack(spacing: 30) {
-                        Text("\(lastWorkout.unwrappedDistance.toString()) M")
-                            .font(.custom(.sfProBold, size: 24))
-                            .foregroundColor(.init(uiColor: .label))
-                        
-                        Text("\(0) Lap")
-                            .font(.custom(.sfProBold, size: 21))
+                    HStack(spacing: 8) {
+                        Text("최근기록")
+                            .font(.custom(.sfProLight, size: 12))
                             .foregroundColor(.init(uiColor: .secondaryLabel))
-                    }
-                    
-                    HStack {
+                            .padding(.leading)
+                        Spacer()
+                        
+                        HStack(spacing: 30) {
+                            Text("\(lastWorkout.unwrappedDistance.toString()) m")
+                                .font(.custom(.sfProBold, size: 22))
+                                .foregroundColor(.init(uiColor: .label))
+                                .lineLimit(1)
+                            
+                            Text("\(lastWorkout.laps.count) Lap")
+                                .font(.custom(.sfProBold, size: 20))
+                                .foregroundColor(.init(uiColor: .secondaryLabel))
+                                .lineLimit(1)
+                        }
+
                         Spacer()
                         
                         Text("\(Date.relativeDate(from: lastWorkout.startDate))")
@@ -43,17 +51,18 @@ struct RecentHistoryCell: View {
                         Image(systemName: "chevron.right")
                             .font(.custom(.sfProBold, size: 14))
                             .foregroundColor(.init(uiColor: .secondaryLabel))
-                        
-                        Rectangle()
-                            .fill(.clear)
-                            .frame(width: 4)
+                            .padding(.trailing)
                     }
                 } else {
-                    Text("운동 기록이 없습니다.")
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.clear)
+                        .overlay {
+                            Text("운동 기록이 없습니다.")
+                        }
                 }
             }
-            .background(CellBackground(cornerRadius: 16))
             .frame(height: 48)
+            .background(CellBackground(cornerRadius: 16))
         }
     }
     
