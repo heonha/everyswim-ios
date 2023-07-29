@@ -29,6 +29,7 @@
 		392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C72A48807B00E591A8 /* SearchBarModifier.swift */; };
 		392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C92A48828800E591A8 /* SwimmingPoolCell.swift */; };
 		392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */; };
+		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
 		392457282A545016006E3071 /* HKCustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HKCustomError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
@@ -49,8 +50,8 @@
 		396D2AC12A5677AA0042D4D4 /* HKCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */; };
 		396D2AC32A5677BC0042D4D4 /* CustomCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */; };
 		396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */; };
-		396D2AC82A56B9440042D4D4 /* SwimmingAllStatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC72A56B9440042D4D4 /* SwimmingAllStatData.swift */; };
-		396D2ACA2A56C8E50042D4D4 /* SwimmingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimmingData.swift */; };
+		396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */; };
+		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */; };
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
@@ -68,12 +69,12 @@
 		398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC72A484D1300E0FA9B /* AppFont.swift */; };
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
-		399168DE2A53FB4400D0B3F9 /* HealthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HealthStatus.swift */; };
+		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
-		39A606A62A6D12C900049B5A /* WorkoutEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* WorkoutEvent.swift */; };
+		39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* SwimLapEvent.swift */; };
 		39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */; };
 		39A606AA2A6D160100049B5A /* SwimLapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A92A6D160100049B5A /* SwimLapsView.swift */; };
 		39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2712A492F2B00AED318 /* MainViewModel.swift */; };
@@ -117,6 +118,7 @@
 		392083C72A48807B00E591A8 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		392083C92A48828800E591A8 /* SwimmingPoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolCell.swift; sourceTree = "<group>"; };
 		392083CB2A4882F000E591A8 /* SwimmingPoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolType.swift; sourceTree = "<group>"; };
+		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
 		392457272A545016006E3071 /* HKCustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCustomError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
@@ -139,8 +141,8 @@
 		396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculatorTests.swift; sourceTree = "<group>"; };
 		396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalculatorTests.swift; sourceTree = "<group>"; };
 		396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
-		396D2AC72A56B9440042D4D4 /* SwimmingAllStatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingAllStatData.swift; sourceTree = "<group>"; };
-		396D2AC92A56C8E50042D4D4 /* SwimmingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingData.swift; sourceTree = "<group>"; };
+		396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimStatisticsData.swift; sourceTree = "<group>"; };
+		396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimMainData.swift; sourceTree = "<group>"; };
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
@@ -160,12 +162,12 @@
 		398B1BCB2A48500100E0FA9B /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		399168DD2A53FB4400D0B3F9 /* HealthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatus.swift; sourceTree = "<group>"; };
+		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
-		39A606A52A6D12C900049B5A /* WorkoutEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEvent.swift; sourceTree = "<group>"; };
+		39A606A52A6D12C900049B5A /* SwimLapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapEvent.swift; sourceTree = "<group>"; };
 		39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkoutEventType+Extension.swift"; sourceTree = "<group>"; };
 		39A606A92A6D160100049B5A /* SwimLapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapsView.swift; sourceTree = "<group>"; };
 		39ADB2712A492F2B00AED318 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -402,6 +404,51 @@
 			path = UX;
 			sourceTree = "<group>";
 		};
+		3922D5762A74B31100257164 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				392457272A545016006E3071 /* HKCustomError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		3922D57C2A74B3EE00257164 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				392457252A545004006E3071 /* HKDateType.swift */,
+				392457292A545049006E3071 /* HKQueryDataType.swift */,
+			);
+			path = Query;
+			sourceTree = "<group>";
+		};
+		3922D5802A74B84800257164 /* NormalStat */ = {
+			isa = PBXGroup;
+			children = (
+				399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */,
+			);
+			path = NormalStat;
+			sourceTree = "<group>";
+		};
+		3922D5812A74B87A00257164 /* Lap */ = {
+			isa = PBXGroup;
+			children = (
+				39A606A52A6D12C900049B5A /* SwimLapEvent.swift */,
+				3922D57E2A74B62900257164 /* Lap.swift */,
+			);
+			path = Lap;
+			sourceTree = "<group>";
+		};
+		3922D5822A74B88D00257164 /* Swim */ = {
+			isa = PBXGroup;
+			children = (
+				396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */,
+				396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */,
+				396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */,
+				3922D5812A74B87A00257164 /* Lap */,
+			);
+			path = Swim;
+			sourceTree = "<group>";
+		};
 		39437D9D2A48943200FDA9DA /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,14 +468,10 @@
 		39572CDF2A52CABB00986E01 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
-				396D2AC62A56B93C0042D4D4 /* Swimming */,
 				39572CE02A52CACB00986E01 /* HealthKitManager.swift */,
-				399168DD2A53FB4400D0B3F9 /* HealthStatus.swift */,
-				392457252A545004006E3071 /* HKDateType.swift */,
-				392457272A545016006E3071 /* HKCustomError.swift */,
-				392457292A545049006E3071 /* HKQueryDataType.swift */,
 				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
-				39A606A52A6D12C900049B5A /* WorkoutEvent.swift */,
+				3922D5762A74B31100257164 /* Error */,
+				396D2AC62A56B93C0042D4D4 /* Model */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -443,14 +486,14 @@
 			path = swimmersTests;
 			sourceTree = "<group>";
 		};
-		396D2AC62A56B93C0042D4D4 /* Swimming */ = {
+		396D2AC62A56B93C0042D4D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				396D2AC72A56B9440042D4D4 /* SwimmingAllStatData.swift */,
-				396D2AC92A56C8E50042D4D4 /* SwimmingData.swift */,
-				396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */,
+				3922D5822A74B88D00257164 /* Swim */,
+				3922D57C2A74B3EE00257164 /* Query */,
+				3922D5802A74B84800257164 /* NormalStat */,
 			);
-			path = Swimming;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -769,7 +812,7 @@
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
-				396D2AC82A56B9440042D4D4 /* SwimmingAllStatData.swift in Sources */,
+				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
 				39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */,
@@ -785,6 +828,7 @@
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
 				391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
+				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
@@ -795,10 +839,10 @@
 				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* WorkoutRecordType.swift in Sources */,
-				39A606A62A6D12C900049B5A /* WorkoutEvent.swift in Sources */,
+				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
 				396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
-				396D2ACA2A56C8E50042D4D4 /* SwimmingData.swift in Sources */,
+				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
@@ -813,7 +857,7 @@
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */,
-				399168DE2A53FB4400D0B3F9 /* HealthStatus.swift in Sources */,
+				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StrokeStyle {
+enum StrokeStyle: Int {
     
     case backstroke
     case breaststroke

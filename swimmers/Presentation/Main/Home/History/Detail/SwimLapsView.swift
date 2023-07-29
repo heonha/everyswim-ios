@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SwimLapsView: View {
     
-    let data: SwimmingData
+    let data: SwimMainData
     
     var body: some View {
 
         ScrollView {
             VStack {
-                ForEach(data.events.indices) { index in
-                    let event = data.events[index]
+                ForEach(data.laps.indices) { index in
+                    let event = data.laps[index]
                     var lapIndex = 0
 //                    if event.type == .lap {
                         ZStack {

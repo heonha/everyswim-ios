@@ -10,9 +10,9 @@ import SwiftUI
 struct RecentHistoryCell: View {
     
     let destination: AnyView
-    @Binding var lastWorkout: SwimmingData?
+    @Binding var lastWorkout: SwimMainData?
     
-    init(destination: AnyView, lastWorkout: Binding<SwimmingData?>) {
+    init(destination: AnyView, lastWorkout: Binding<SwimMainData?>) {
         self.destination = destination
         self._lastWorkout = lastWorkout
     }

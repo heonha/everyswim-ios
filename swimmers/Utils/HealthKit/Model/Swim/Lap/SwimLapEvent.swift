@@ -1,5 +1,5 @@
 //
-//  WorkoutEvent.swift
+//  SwimLapEvent.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/23.
@@ -8,11 +8,10 @@
 import Foundation
 import HealthKit
 
-struct WorkoutEvent {
+struct SwimLapEvent {
     let id = UUID()
     let type: HKWorkoutEventType
-    let start: String
-    let end: String
+    let date: DateInterval
     let duration: TimeInterval
     let metadata: [String: Any]?
     var style: String {

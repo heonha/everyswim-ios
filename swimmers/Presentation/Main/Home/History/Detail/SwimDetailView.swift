@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwimDetailView: View {
     
-    let data: SwimmingData
+    let data: SwimMainData
     @Environment(\.colorScheme) var colorScheme
     
 }
@@ -116,15 +116,15 @@ extension SwimDetailView {
                             summaryVStack(width: (proxy.size.width / 2.1) - 10) {
                                 summaryCell(.distance, data: data.unwrappedDistance.toString())
                                 summaryCell(.totalTime, data: data.durationString)
-                                summaryCell(.activeKcal, data: data.activeKcal?.toString() ?? "")
+                                summaryCell(.activeKcal, data: data.detail?.activeKcal?.toString() ?? "")
                             }
                             
                             summaryVStack(width: (proxy.size.width / 2.1) - 10) {
                                 summaryCell(.paceAverage, data: "1:39/25")
                                 summaryCell(.bpmAverage, data: "100")
-                                summaryCell(.restKcal, data: data.restKcal?.toString() ?? "")
+                                summaryCell(.restKcal, data: data.detail?.restKcal?.toString() ?? "")
                             }
-
+                            
                         }
                         .padding(.horizontal, 16)
                     }

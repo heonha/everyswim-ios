@@ -15,12 +15,12 @@ final class HistoryViewModel: ObservableObject {
     
     private var hkManager: HealthKitManager?
     
-    @Published var swimRecords: [SwimmingData]
+    @Published var swimRecords: [SwimMainData]
     @Published var animationRefreshPublisher = false
     @AppStorage(Defaults.recordViewSort) var sort: RecordSortType = .date
     @AppStorage(Defaults.recordViewAscending) var ascending = true
     
-    init(swimRecords: [SwimmingData]? = nil,
+    init(swimRecords: [SwimMainData]? = nil,
          healthKitManager: HealthKitManager = HealthKitManager()) {
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager
@@ -62,9 +62,9 @@ extension HistoryViewModel {
             }
         case .distance:
             if ascending {
-                self.swimRecords.sort(by: { $0.distance ?? 0 > $1.distance ?? 0 })
+                self.swimRecords.sort(by: { $0.detail?.distance ?? 0 > $1.detail?.distance ?? 0 })
             } else {
-                self.swimRecords.sort(by: { $0.distance ?? 0 < $1.distance ?? 0 })
+                self.swimRecords.sort(by: { $0.detail?.distance ?? 0 < $1.detail?.distance ?? 0 })
             }
         case .duration:
             

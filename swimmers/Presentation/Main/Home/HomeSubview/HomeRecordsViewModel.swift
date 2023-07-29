@@ -14,8 +14,8 @@ final class HomeRecordsViewModel: ObservableObject {
     private var hkManager: HealthKitManager?
     var cancellables = Set<AnyCancellable>()
     
-    private var kcals: [HealthStatus] = []
-    private var stroke: [HealthStatus] = []
+    private var kcals: [HKNormalStatus] = []
+    private var stroke: [HKNormalStatus] = []
     
     let emptyRing = [
         ChallangeRing(type: .distance, count: 0, maxCount: 1),
@@ -23,14 +23,14 @@ final class HomeRecordsViewModel: ObservableObject {
         ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
     ]
     
-    @Published var swimRecords: [SwimmingData]
+    @Published var swimRecords: [SwimMainData]
     @Published var rings: [ChallangeRing] = []
     
     @Published var kcalPerWeek: Double = 0.0
     @Published var strokePerMonth: Double = 0.0
-    @Published var lastWorkout: SwimmingData?
+    @Published var lastWorkout: SwimMainData?
     
-    init(swimRecords: [SwimmingData]? = nil, healthKitManager: HealthKitManager?) {
+    init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager?) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager()
@@ -106,7 +106,7 @@ final class HomeRecordsViewModel: ObservableObject {
             case .kcal:
                 let count = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
                 guard let count = count else { return }
-                let data = HealthStatus(count: count, date: statCollection.startDate)
+                let data = HKNormalStatus(count: count, date: statCollection.startDate)
                 print("Debug: kcal가 완료되었습니다. \(data)")
                 self.kcals.append(data)
                 

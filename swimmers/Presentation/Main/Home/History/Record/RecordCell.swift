@@ -9,9 +9,9 @@ import SwiftUI
 
 struct RecordCell: View {
     
-    private let data: SwimmingData
+    private let data: SwimMainData
     
-    init(data: SwimmingData) {
+    init(data: SwimMainData) {
         self.data = data
     }
     
