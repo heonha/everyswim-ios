@@ -1,5 +1,5 @@
 //
-//  SwimmingDetailView.swift
+//  SwimDetailView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/24.
@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-struct SwimmingDetailView: View {
+struct SwimDetailView: View {
     
     let data: SwimmingData
     @Environment(\.colorScheme) var colorScheme
     
 }
 
-extension SwimmingDetailView {
+extension SwimDetailView {
     
     var body: some View {
         ZStack {
-            
             VStack(spacing: 28) {
                 profileView
                     .frame(height: 50)
@@ -42,52 +41,61 @@ extension SwimmingDetailView {
     
 }
 
-extension SwimmingDetailView {
+extension SwimDetailView {
     
     private var mainSummaryView: some View {
         HStack(spacing: 12) {
-            mainSummaryCell(.distance, data: data.unwrappedDistance.toString())
+            mainSummaryCell(.distance,
+                            data: data.unwrappedDistance.toString()) {
+                EmptyView()
+            }
             
-            mainSummaryCell(.paceAverage, data: "1:39/25")
+            mainSummaryCell(.paceAverage, data: "1:39/25") {
+                SwimLapsView(data: data)
+            }
 
-            mainSummaryCell(.totalTime, data: data.duration.toRelativeTime(.hourMinute))
+            mainSummaryCell(.totalTime, data: data.duration.toRelativeTime(.hourMinute)) {
+                EmptyView()
+            }
         }
         .padding(.horizontal, 12)
     }
     
-    private func mainSummaryCell(_ record: WorkoutRecordType, data: String) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(colorScheme == .light ? .ultraThickMaterial : .thinMaterial)
-                .shadow(color: .black.opacity(0.25), radius: 2.5, x: 0, y: 0)
-            
-            VStack(spacing: 8) {
-                Image(record.imageName)
-                    .resizable()
-                    .renderingMode(.template)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 30)
-                    .foregroundColor(record.imageColor)
+    private func mainSummaryCell<Destination: View>(_ record: WorkoutRecordType, data: String, destination: () -> Destination) -> some View {
+        NavigationLink(destination: destination) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(colorScheme == .light ? .ultraThickMaterial : .thinMaterial)
+                    .shadow(color: .black.opacity(0.25), radius: 2.5, x: 0, y: 0)
                 
-                
-                HStack(alignment: .bottom, spacing: 0) {
-                    Text(data)
-                        .font(.custom(.sfProBold, size: 20))
-                        .foregroundColor(.init(uiColor: .label))
-                    Text(record.unit)
-                        .font(.custom(.sfProBold, size: 16))
-                        .foregroundColor(.init(uiColor: .label))
+                VStack(spacing: 8) {
+                    Image(record.imageName)
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 30)
+                        .foregroundColor(record.imageColor)
+                    
+                    
+                    HStack(alignment: .bottom, spacing: 0) {
+                        Text(data)
+                            .font(.custom(.sfProBold, size: 20))
+                            .foregroundColor(.init(uiColor: .label))
+                        Text(record.unit)
+                            .font(.custom(.sfProBold, size: 16))
+                            .foregroundColor(.init(uiColor: .label))
+                            .lineLimit(1)
+                    }
+
+                    Text("\(record.title)")
+                        .font(.custom(.sfProMedium, size: 14))
+                        .foregroundColor(.init(uiColor: .secondaryLabel))
                         .lineLimit(1)
                 }
-
-                Text("\(record.title)")
-                    .font(.custom(.sfProMedium, size: 14))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                    .lineLimit(1)
             }
         }
-    }
 
+    }
     
     private var summaryView: some View {
         Group {
@@ -201,7 +209,7 @@ struct SwimmingDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            SwimmingDetailView(data: data)
+            SwimDetailView(data: data)
         }
     }
     

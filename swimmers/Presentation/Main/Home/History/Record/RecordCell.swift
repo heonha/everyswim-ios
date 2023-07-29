@@ -1,5 +1,5 @@
 //
-//  SwimmingRecordCell.swift
+//  RecordCell.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/05.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwimmingRecordCell: View {
+struct RecordCell: View {
     
     private let data: SwimmingData
     
@@ -149,7 +149,7 @@ struct SwimmingRecordCell_Previews: PreviewProvider {
         ScrollView {
             VStack {
                 ForEach(TestObjects.swimmingData) { data in
-                    SwimmingRecordCell(data: data)
+                    RecordCell(data: data)
                         .padding(.horizontal, 21)
                 }
             }

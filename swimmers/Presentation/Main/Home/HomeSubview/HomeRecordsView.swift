@@ -18,8 +18,7 @@ struct HomeRecordsView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .background(BackgroundObject())
         }
-        .tint(.black)
-        
+        .tint(Color.init(uiColor: .label))
     }
 }
 
@@ -33,7 +32,7 @@ extension HomeRecordsView {
                     .padding(.horizontal, 24)
                 
                 Group {
-                    RecentHistoryCell(destination: AnyView(SwimmingHistoryView()),
+                    RecentHistoryCell(destination: AnyView(HistoryView()),
                                       lastWorkout: $viewModel.lastWorkout)
                         .opacity(showViews[0] ? 1 : 0)
                         .offset(y: showViews[0] ? 0 : 200)

@@ -58,3 +58,20 @@ struct RecentHistoryCell: View {
     }
     
 }
+
+
+extension View {
+    
+    func placeholderView(isOn: Bool) -> some View {
+            self.overlay {
+                if isOn {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.blue.opacity(0.2))
+                } else {
+                    RoundedRectangle(cornerRadius: 8)
+                        .hidden()
+                }
+            }
+    }
+    
+}

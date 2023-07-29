@@ -1,5 +1,5 @@
 //
-//  SwimmingEventsView.swift
+//  SwimLapsView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SwimmingEventsView: View {
+struct SwimLapsView: View {
     
     let data: SwimmingData
     
@@ -18,25 +18,23 @@ struct SwimmingEventsView: View {
                 ForEach(data.events.indices) { index in
                     let event = data.events[index]
                     var lapIndex = 0
-                    if event.type == .lap {
+//                    if event.type == .lap {
                         ZStack {
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(.thinMaterial)
                             VStack {
                                 HStack {
-                                    Text("\(index)")
-                                    Text("\(event.type.name)")
+                                    Text("\(event.index)")
                                 }
-                                Text("\(event.start) ~ \(event.end)")
-                                Text("\(event.duration.toRelativeTime(.hourMinuteSeconds))")
-                                Text("\(event.style)")
+                                Text("\(event.dateInterval.start) ~ \(event.dateInterval.end)")
+                                Text("\(event.style?.name() ?? "")")
                             }
                         }
                         .frame(height: 100)
                         .onAppear {
                             lapIndex += 1
                         }
-                    }
+//                    }
                     
                 }
             }
@@ -47,6 +45,6 @@ struct SwimmingEventsView: View {
 
 struct SwimmingEventsCell_Previews: PreviewProvider {
     static var previews: some View {
-        SwimmingEventsView(data: TestObjects.swimmingData.first!)
+        SwimLapsView(data: TestObjects.swimmingData.first!)
     }
 }

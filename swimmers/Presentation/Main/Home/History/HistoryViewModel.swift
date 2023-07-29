@@ -1,5 +1,5 @@
 //
-//  SwimmingHistoryViewModel.swift
+//  HistoryViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/06.
@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class SwimmingHistoryViewModel: ObservableObject {
+final class HistoryViewModel: ObservableObject {
     
     typealias Defaults = DefaultsName
     
@@ -38,7 +38,7 @@ final class SwimmingHistoryViewModel: ObservableObject {
     
 }
 
-extension SwimmingHistoryViewModel {
+extension HistoryViewModel {
     
     private func fetchSwimmingData() async {
         let swimmingData = await hkManager?.loadSwimmingDataCollection()
@@ -92,7 +92,7 @@ extension SwimmingHistoryViewModel {
 
 #if targetEnvironment(simulator)
 // Test Stub
-extension SwimmingHistoryViewModel {
+extension HistoryViewModel {
     private func testSwimmingData() async {
         DispatchQueue.main.async {
             self.swimRecords = TestObjects.swimmingData

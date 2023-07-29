@@ -1,5 +1,5 @@
 //
-//  SwimmingHistoryView.swift
+//  HistoryView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/05.
@@ -9,13 +9,13 @@
 import SwiftUI
 import Combine
 
-struct SwimmingHistoryView: View {
+struct HistoryView: View {
     
-    @StateObject private var viewModel: SwimmingHistoryViewModel
+    @StateObject private var viewModel: HistoryViewModel
     @State private var showView = false
     @State private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: SwimmingHistoryViewModel = .init()) {
+    init(viewModel: HistoryViewModel = .init()) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
@@ -31,7 +31,7 @@ struct SwimmingHistoryView: View {
     
 }
 
-extension SwimmingHistoryView {
+extension HistoryView {
     
     private var mainBody: some View {
         VStack {
@@ -47,9 +47,9 @@ extension SwimmingHistoryView {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
                         
                         NavigationLink {
-                            SwimmingDetailView(data: record)
+                            SwimDetailView(data: record)
                         } label: {
-                            SwimmingRecordCell(data: record)
+                            RecordCell(data: record)
                                 .padding(.horizontal, 21)
                                 .opacity( showView ? 1 : 0)
                                 .offset(y: showView ? 0 : 200)
@@ -105,7 +105,7 @@ extension SwimmingHistoryView {
 }
 
 // MARK: Handler
-extension SwimmingHistoryView {
+extension HistoryView {
     
     @Sendable
     private func refreshAction() async {
@@ -132,10 +132,10 @@ extension SwimmingHistoryView {
 #if DEBUG
 struct SwimmingHistoryView_Previews: PreviewProvider {
     
-    static let viewModel = SwimmingHistoryViewModel()
+    static let viewModel = HistoryViewModel()
     
     static var previews: some View {
-        SwimmingHistoryView(viewModel: viewModel)
+        HistoryView(viewModel: viewModel)
             .onAppear {
                 viewModel.fetchData()
             }
