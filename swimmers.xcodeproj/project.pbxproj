@@ -344,6 +344,64 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		3922D5702A74B1B300257164 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				39572CE32A52CFB200986E01 /* String+Extension.swift */,
+				39572CE52A52D01200986E01 /* Date+Extension.swift */,
+				39A606A12A6D09CB00049B5A /* DateToStringType.swift */,
+				396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */,
+				391C12B52A590D3E001C2286 /* Double+Extension.swift */,
+				391C12C22A593103001C2286 /* Int+Extension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		3922D5712A74B1C500257164 /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */,
+				39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		3922D5722A74B1D800257164 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */,
+				398B1BC52A484CF500E0FA9B /* Font+Extension.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		3922D5732A74B1FA00257164 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				39ADB27C2A4AE4FA00AED318 /* Constant.swift */,
+				398B1BB62A483E4E00E0FA9B /* AppColor.swift */,
+				398B1BC72A484D1300E0FA9B /* AppFont.swift */,
+				391C12C62A59374D001C2286 /* AppImage.swift */,
+				397AB5AC2A68F61A008015F2 /* DefaultsName.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		3922D5742A74B22400257164 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		3922D5752A74B25700257164 /* UX */ = {
+			isa = PBXGroup;
+			children = (
+				397AB5A82A68204E008015F2 /* HapticManager.swift */,
+			);
+			path = UX;
+			sourceTree = "<group>";
+		};
 		39437D9D2A48943200FDA9DA /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,13 +512,10 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3922D5732A74B1FA00257164 /* Constant */,
 				39572CDF2A52CABB00986E01 /* HealthKit */,
-				398B1BB62A483E4E00E0FA9B /* AppColor.swift */,
-				398B1BC72A484D1300E0FA9B /* AppFont.swift */,
-				391C12C62A59374D001C2286 /* AppImage.swift */,
-				39ADB27C2A4AE4FA00AED318 /* Constant.swift */,
-				397AB5A82A68204E008015F2 /* HapticManager.swift */,
-				397AB5AC2A68F61A008015F2 /* DefaultsName.swift */,
+				3922D5752A74B25700257164 /* UX */,
+				3922D5742A74B22400257164 /* Type */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -468,16 +523,9 @@
 		398B1BB82A483E7B00E0FA9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */,
-				398B1BC52A484CF500E0FA9B /* Font+Extension.swift */,
-				39572CE32A52CFB200986E01 /* String+Extension.swift */,
-				39572CE52A52D01200986E01 /* Date+Extension.swift */,
-				396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */,
-				391C12B52A590D3E001C2286 /* Double+Extension.swift */,
-				391C12C22A593103001C2286 /* Int+Extension.swift */,
-				39A606A12A6D09CB00049B5A /* DateToStringType.swift */,
-				39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */,
-				39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */,
+				3922D5722A74B1D800257164 /* SwiftUI */,
+				3922D5712A74B1C500257164 /* HealthKit */,
+				3922D5702A74B1B300257164 /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
