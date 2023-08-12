@@ -60,6 +60,7 @@
 		397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */; };
 		397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AC2A68F61A008015F2 /* DefaultsName.swift */; };
 		397CC73B2A87792700C5D90D /* SampleDateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* SampleDateTask.swift */; };
+		397CC73D2A87883D00C5D90D /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73C2A87883D00C5D90D /* DatePickerViewModel.swift */; };
 		397D72642A7FFBAA00D9E712 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
@@ -155,6 +156,7 @@
 		397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSortType.swift; sourceTree = "<group>"; };
 		397AB5AC2A68F61A008015F2 /* DefaultsName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsName.swift; sourceTree = "<group>"; };
 		397CC73A2A87792700C5D90D /* SampleDateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDateTask.swift; sourceTree = "<group>"; };
+		397CC73C2A87883D00C5D90D /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */,
+				397CC73C2A87883D00C5D90D /* DatePickerViewModel.swift */,
 				390CEB232A82592A003198F6 /* DateValue.swift */,
 				397CC73A2A87792700C5D90D /* SampleDateTask.swift */,
 			);
@@ -823,6 +826,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397CC73D2A87883D00C5D90D /* DatePickerViewModel.swift in Sources */,
 				398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */,
 				398B1BB42A483E1700E0FA9B /* HomeRecordsView.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,

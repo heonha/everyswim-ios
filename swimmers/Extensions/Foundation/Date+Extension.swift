@@ -47,5 +47,21 @@ extension Date {
         
         return relativeDateString
     }
+    
+    /// 달력의 모든 날짜 가져오기.
+    func getAllDates() -> [Date] {
+        
+        let calendar = Calendar.current
+        
+        // Start Date 가져오기
+        let startDate = calendar.date(from: calendar.dateComponents([.year, .month], from: self))!
+        
+        let range = calendar.range(of: .day, in: .month, for: startDate)!
+        
+        return range.compactMap { day -> Date in
+            let date = calendar.date(byAdding: .day, value: day - 1, to: startDate)!
+            return date
+        }
+    }
         
 }

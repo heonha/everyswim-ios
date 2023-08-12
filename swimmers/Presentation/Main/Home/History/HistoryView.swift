@@ -132,12 +132,12 @@ extension HistoryView {
 #if DEBUG
 struct SwimmingHistoryView_Previews: PreviewProvider {
     
-    static let viewModel = HistoryViewModel()
+    static let vm = HistoryViewModel()
     
     static var previews: some View {
-        HistoryView(viewModel: viewModel)
+        HistoryView(viewModel: HistoryViewModel())
             .onAppear {
-                viewModel.fetchData()
+                vm.fetchData()
             }
     }
 }
