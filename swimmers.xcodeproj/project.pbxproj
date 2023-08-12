@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
 		391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */; };
 		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
 		391C12B42A590AAE001C2286 /* EachChallangeCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */; };
@@ -58,6 +59,8 @@
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */; };
 		397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AC2A68F61A008015F2 /* DefaultsName.swift */; };
+		397CC73B2A87792700C5D90D /* SampleDateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* SampleDateTask.swift */; };
+		397D72642A7FFBAA00D9E712 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -97,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		148B2CD5E805979309437A8F /* Pods-swimmers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.debug.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.debug.xcconfig"; sourceTree = "<group>"; };
+		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRingView.swift; sourceTree = "<group>"; };
 		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
 		391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachChallangeCircleCell.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSortType.swift; sourceTree = "<group>"; };
 		397AB5AC2A68F61A008015F2 /* DefaultsName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsName.swift; sourceTree = "<group>"; };
+		397CC73A2A87792700C5D90D /* SampleDateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDateTask.swift; sourceTree = "<group>"; };
+		397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA42A483DA300E0FA9B /* swimmersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersApp.swift; sourceTree = "<group>"; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -284,6 +290,7 @@
 		392083CD2A4885FC00E591A8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				397D72622A7FFBA000D9E712 /* DatePicker */,
 				391C12B72A5915ED001C2286 /* BackgroundObject.swift */,
 				391C12BB2A592989001C2286 /* AnimatedRingView.swift */,
 				391C12B92A591835001C2286 /* CellBackground.swift */,
@@ -497,6 +504,16 @@
 				3922D5802A74B84800257164 /* NormalStat */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		397D72622A7FFBA000D9E712 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				397D72632A7FFBAA00D9E712 /* CustomDatePicker.swift */,
+				390CEB232A82592A003198F6 /* DateValue.swift */,
+				397CC73A2A87792700C5D90D /* SampleDateTask.swift */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -824,6 +841,7 @@
 				396D2AB02A559D290042D4D4 /* RecordCell.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
+				397CC73B2A87792700C5D90D /* SampleDateTask.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
@@ -832,6 +850,7 @@
 				391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
+				397D72642A7FFBAA00D9E712 /* CustomDatePicker.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
@@ -842,6 +861,7 @@
 				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* WorkoutRecordType.swift in Sources */,
+				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
 				396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */,
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
@@ -1062,6 +1082,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1105,6 +1126,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

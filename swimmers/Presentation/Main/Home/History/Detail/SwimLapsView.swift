@@ -68,6 +68,8 @@ struct SwimLapsView: View {
                 }
             }
         }
+        .navigationTitle("\(data.startDate.toString(.dateKr))")
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }

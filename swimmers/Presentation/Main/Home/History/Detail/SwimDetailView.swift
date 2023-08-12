@@ -35,7 +35,7 @@ extension SwimDetailView {
         }
         .background(BackgroundObject())
         .padding(.horizontal, 12)
-        .navigationTitle("\(data.startDate.toString(.fullDateKr))")
+        .navigationTitle("\(data.startDate.toString(.dateKr))")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -104,6 +104,7 @@ extension SwimDetailView {
                 ZStack(alignment: .topLeading) {
                     Rectangle()
                         .fill(Color.clear)
+                        .frame(height: proxy.size.width / 2)
                     
                     VStack(alignment: .leading, spacing: 12) {
                         Text("요약")

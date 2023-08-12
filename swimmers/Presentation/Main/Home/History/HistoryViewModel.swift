@@ -51,7 +51,7 @@ extension HistoryViewModel {
             return
         }
     }
-    
+        
     private func sortHandler() {
         switch self.sort {
         case .date:
@@ -67,7 +67,6 @@ extension HistoryViewModel {
                 self.swimRecords.sort(by: { $0.detail?.distance ?? 0 < $1.detail?.distance ?? 0 })
             }
         case .duration:
-            
             if ascending {
                 self.swimRecords.sort(by: { $0.duration > $1.duration })
             } else {

@@ -29,52 +29,59 @@ struct SyncHealthView: View {
             
             Spacer()
             
-            VStack(spacing: 12) {
-                Text("Apple 건강에서\n기록 가져오기")
-                    .font(.custom(.sfProBold, size: 24))
-                    .foregroundColor(.init(uiColor: .label))
-                    .multilineTextAlignment(.center)
-                
-                Text(switchButtonText(authStatus).message)
-                    .multilineTextAlignment(.center)
-                    .font(.custom(.sfProMedium, size: 18))
-                    .foregroundColor(.init(uiColor: .secondaryLabel))
-
-            }
+            description()
             
             Spacer()
             
-            Button {
-                switch authStatus {
-                case .notDetermined:
-                    Task { await hkManager.requestAuthorization() }
-                case .sharingAuthorized:
-                    dismiss()
-                case .sharingDenied:
-                    UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy&path=TRACKING")!, options: [:], completionHandler: nil) // 심사 때 거부될 수 있음.
-                @unknown default:
-                    return
-                }
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(hex: "2752EE"))
-                    
-                    Text(switchButtonText(authStatus).button)
-                        .font(.custom(.sfProBold, size: 18))
-                        .foregroundColor(.white)
-                }
-            }
-            .frame(height: 44)
-
-    
+            checkButton()
         }
         .padding()
         .onAppear {
             self.authStatus = hkManager.checkAuthorizationStatus() ?? .notDetermined
         }
-        
-  
+    }
+    
+    private func description() -> some View {
+        VStack(spacing: 12) {
+            Text("Apple 건강에서\n기록 가져오기")
+                .font(.custom(.sfProBold, size: 24))
+                .foregroundColor(.init(uiColor: .label))
+                .multilineTextAlignment(.center)
+            
+            Text(switchButtonText(authStatus).message)
+                .multilineTextAlignment(.center)
+                .font(.custom(.sfProMedium, size: 18))
+                .foregroundColor(.init(uiColor: .secondaryLabel))
+        }
+    }
+    
+    private func checkButton() -> some View {
+        Button {
+            authResultHandler()
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(hex: "2752EE"))
+                
+                Text(switchButtonText(authStatus).button)
+                    .font(.custom(.sfProBold, size: 18))
+                    .foregroundColor(.white)
+            }
+        }
+        .frame(height: 44)
+    }
+    
+    private func authResultHandler() {
+        switch authStatus {
+        case .notDetermined:
+            Task { await hkManager.requestAuthorization() }
+        case .sharingAuthorized:
+            dismiss()
+        case .sharingDenied:
+            UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy&path=TRACKING")!, options: [:], completionHandler: nil) // 심사 때 거부될 수 있음.
+        @unknown default:
+            return
+        }
     }
     
     private func switchButtonText(_ status: HKAuthorizationStatus) -> (message: String, button: String) {
@@ -89,8 +96,6 @@ struct SyncHealthView: View {
         @unknown default:
             return (message: "기존의 기록을 반영하려면\nApple 건강 데이터를 가져오세요.", button: "계속하기")
         }
-        
-        
     }
 }
 

@@ -36,7 +36,6 @@ struct RecordCell: View {
             }
         }
         .padding()
-//        .overlay(alignment: .trailing, content: rightChevronSymbol)
         .background(CellBackground(cornerRadius: 8))
         .cornerRadius(8)
         .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
