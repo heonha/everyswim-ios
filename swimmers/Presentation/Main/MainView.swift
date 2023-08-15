@@ -31,6 +31,11 @@ struct MainView: View {
                 //         Label("수영장찾기", systemImage: "map")
                 //     }
                 
+                WorkoutDatePicker()
+                    .tabItem {
+                        Label("수영기록", systemImage: "map")
+                    }
+                
                 MyInfoView()
                     .tabItem {
                         Label("내 정보", systemImage: "person.circle.fill")

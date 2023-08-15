@@ -1,16 +1,41 @@
 //
-//  DatePickerViewModel.swift
+//  WorkoutDatePickerViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 8/12/23.
 //
 
 import SwiftUI
+import Combine
+import HealthKit
 
-class DatePickerViewModel: ObservableObject {
+class WorkoutDatePickerViewModel: ObservableObject {
     
-    @Published var currentDate = Date()    
+    private var cancellables = Set<AnyCancellable>()
+    
+    @Published var currentDate = Date()
     @Published var currentMonth = 0
+    @Published var workouts: [DatePickerMetaData] = []
+    @Published private var swimdata: [SwimMainData] = []
+    private var hkManager: HealthKitManager?
+
+    init(healthKitManager: HealthKitManager = HealthKitManager()) {
+        self.hkManager = healthKitManager
+    }
+    
+    
+    func subscribeSwimData() async {
+        await hkManager?.loadSwimmingDataCollection()
+        SwimDataStore.shared.swimmingData
+            .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.workouts = self.groupTasksByDate(tasks: data)
+                }
+            }
+            .store(in: &cancellables)
+    }
 
     func changeMonth() {
         currentDate = getCurrentMonth()
@@ -71,6 +96,28 @@ class DatePickerViewModel: ObservableObject {
         }
         
         return days
+    }
+    
+    private func groupTasksByDate(tasks: [SwimMainData]) -> [DatePickerMetaData] {
+        var groupedTasks: [Date: [SwimMainData]] = [:]
+
+        for task in tasks {
+            let calendar = Calendar.current
+            let taskDate = calendar.startOfDay(for: task.startDate)
+
+            if var existingTasks = groupedTasks[taskDate] {
+                existingTasks.append(task)
+                groupedTasks[taskDate] = existingTasks
+            } else {
+                groupedTasks[taskDate] = [task]
+            }
+        }
+
+        let metaDataArray = groupedTasks.map { date, tasks in
+            DatePickerMetaData(task: tasks, taskDate: date)
+        }
+
+        return metaDataArray
     }
     
 }

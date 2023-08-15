@@ -60,13 +60,12 @@ extension SwimDetailView {
 }
 
 extension SwimDetailView {
-    
 
     private func mainSummaryCell<Destination: View>(_ record: WorkoutRecordType, data: String, destination: () -> Destination) -> some View {
         NavigationLink(destination: destination) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(colorScheme == .light ? .ultraThickMaterial : .thinMaterial)
+                    .fill(colorScheme == .light ? Color.white : Color.init(uiColor: .secondarySystemFill))
                     .shadow(color: .black.opacity(0.25), radius: 2.5, x: 0, y: 0)
                 
                 VStack(spacing: 8) {

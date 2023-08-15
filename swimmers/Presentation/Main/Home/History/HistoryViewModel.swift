@@ -14,6 +14,7 @@ final class HistoryViewModel: ObservableObject {
     typealias Defaults = DefaultsName
     
     private var hkManager: HealthKitManager?
+    private var cancellables = Set<AnyCancellable>()
     
     @Published var swimRecords: [SwimMainData]
     @Published var animationRefreshPublisher = false
@@ -41,15 +42,27 @@ final class HistoryViewModel: ObservableObject {
 extension HistoryViewModel {
     
     private func fetchSwimmingData() async {
-        let swimmingData = await hkManager?.loadSwimmingDataCollection()
-        if let swimmingData = swimmingData {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.swimRecords = swimmingData
-                self.sortHandler()
+       await hkManager?.loadSwimmingDataCollection()
+       subscribeSwimmingData()
+    }
+    
+    private func subscribeSwimmingData() {
+        SwimDataStore.shared.swimmingData
+            .throttle(for: 10, scheduler: DispatchQueue.main, latest: true)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] swimData in
+                DispatchQueue.main.async {
+                    self?.swimRecords = swimData
+                }
             }
-        } else {
-            return
-        }
+            .store(in: &cancellables)
     }
         
     private func sortHandler() {
@@ -93,8 +106,8 @@ extension HistoryViewModel {
 // Test Stub
 extension HistoryViewModel {
     private func testSwimmingData() async {
+        subscribeSwimmingData()
         DispatchQueue.main.async {
-            self.swimRecords = TestObjects.swimmingData
             self.sortHandler()
         }
     }

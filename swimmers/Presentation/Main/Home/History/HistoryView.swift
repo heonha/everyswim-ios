@@ -45,7 +45,6 @@ extension HistoryView {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(viewModel.swimRecords, id: \.id) { record in
-                        
                         NavigationLink {
                             SwimDetailView(data: record)
                         } label: {
@@ -54,7 +53,6 @@ extension HistoryView {
                                 .opacity( showView ? 1 : 0)
                                 .offset(y: showView ? 0 : 200)
                         }
-
                     }
                 }
                 .padding(.top)

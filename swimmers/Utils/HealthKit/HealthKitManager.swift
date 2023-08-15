@@ -44,15 +44,21 @@ extension HealthKitManager {
         calculateNormalHealthData(dataType: dataType, queryRange: queryRange, completion: completion)
     }
     
-    func loadSwimmingDataCollection() async -> [SwimMainData] {
+    func loadSwimmingDataCollection() async {
         
-        if await !self.requestAuthorization() { return [] }
+        if await !self.requestAuthorization() { return }
 
-        guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return [] }
+        guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return }
         
-        let swimmingData = swimDataManager.createSwimMainData(workouts)
-        
-        return swimmingData
+        #if targetEnvironment(simulator)
+        let swimData = TestObjects.swimmingData
+        SwimDataStore.shared.swimmingData.send(swimData)
+        #else
+        let swimData = swimDataManager.createSwimMainData(workouts)
+        #endif
+        SwimDataStore.shared.swimmingData.send(swimData)
+        print("SwimmingData가 셋팅되었습니다: \(SwimDataStore.shared.swimmingData)")
+        // return swimmingData
     }
     
 }

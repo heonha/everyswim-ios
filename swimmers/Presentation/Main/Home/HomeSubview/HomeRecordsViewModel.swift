@@ -53,15 +53,28 @@ final class HomeRecordsViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
-    func fetchSwimmingData() async {
-        let swimmingData = await hkManager?.loadSwimmingDataCollection()
-        if let swimmingData = swimmingData {
-            DispatchQueue.main.async {
-                self.swimRecords = swimmingData
+    private func fetchSwimmingData() async {
+       await hkManager?.loadSwimmingDataCollection()
+       subscribeSwimmingData()
+    }
+    
+    private func subscribeSwimmingData() {
+        SwimDataStore.shared.swimmingData
+            .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                    return
+                }
+            } receiveValue: { [weak self] swimData in
+                DispatchQueue.main.async {
+                    self?.swimRecords = swimData
+                }
             }
-        } else {
-            return
-        }
+            .store(in: &cancellables)
     }
         
     func loadHealthCollection() async {
