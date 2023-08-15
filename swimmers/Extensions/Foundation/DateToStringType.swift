@@ -1,0 +1,36 @@
+//
+//  DateToStringType.swift
+//  swimmers
+//
+//  Created by HeonJin Ha on 2023/07/23.
+//
+
+import Foundation
+
+enum DateToStringType {
+    /// YYYY-M-d
+    case date
+    /// "yyyy년 M월 d일"
+    case dateKr
+    /// "yyyy년 M월 d일 h시 m분"
+    case fullDateKr
+    /// "h:m:s"
+    case time
+    /// "h:m"
+    case timeWithoutSeconds
+    
+    var format: String {
+        switch self {
+        case .date:
+            return "yyyy-M-d"
+        case .dateKr:
+            return "yyyy년 M월 d일 (E)"
+        case .fullDateKr:
+            return "yyyy년 M월 d일 EEEE a h시 m분"
+        case .time:
+            return "a h:mm:ss"
+        case .timeWithoutSeconds:
+            return "a h:mm"
+        }
+    }
+}
