@@ -26,12 +26,7 @@ struct MainView: View {
                         Label("수영", systemImage: "figure.pool.swim")
                     }
                 
-                // PoolsMapViewContainer()
-                //     .tabItem {
-                //         Label("수영장찾기", systemImage: "map")
-                //     }
-                
-                WorkoutDatePicker()
+                EventDatePicker()
                     .tabItem {
                         Label("수영기록", systemImage: "map")
                     }
