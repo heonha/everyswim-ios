@@ -88,6 +88,7 @@
 		39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */; };
 		39BB6D0B2A8CBA5400DCF8B1 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
+		39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 		81984978731F99A172D3969B /* Pods_swimmers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */; };
 /* End PBXBuildFile section */
@@ -189,6 +190,7 @@
 		39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
+		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 		82E207D75809D2885E3DBD29 /* Pods_swimmers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swimmers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D920C7E5BEB9778F19F79D49 /* Pods-swimmers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swimmers.release.xcconfig"; path = "Target Support Files/Pods-swimmers/Pods-swimmers.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,7 +300,6 @@
 		392083CD2A4885FC00E591A8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				397D72622A7FFBA000D9E712 /* DatePicker */,
 				391C12B72A5915ED001C2286 /* BackgroundObject.swift */,
 				391C12BB2A592989001C2286 /* AnimatedRingView.swift */,
 				391C12B92A591835001C2286 /* CellBackground.swift */,
@@ -354,6 +355,7 @@
 		3922D56F2A74B14A00257164 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				396088502A8F6E5E00FF2289 /* Calendar */,
 				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
 				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 				392083B82A485B5D00E591A8 /* Home */,
@@ -495,6 +497,28 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
+		3960884F2A8F6E2D00FF2289 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				390CEB232A82592A003198F6 /* DateValue.swift */,
+				39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */,
+				397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		396088502A8F6E5E00FF2289 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				3960884F2A8F6E2D00FF2289 /* Model */,
+				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
+				397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */,
+				397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */,
+				39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		396D2AB82A5677690042D4D4 /* swimmersTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,19 +537,6 @@
 				3922D5802A74B84800257164 /* NormalStat */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		397D72622A7FFBA000D9E712 /* DatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */,
-				397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */,
-				390CEB232A82592A003198F6 /* DateValue.swift */,
-				397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */,
-				39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */,
-				39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */,
-			);
-			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -861,6 +872,7 @@
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
 				391C12AE2A58CE8E001C2286 /* ChallangeRingView.swift in Sources */,
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
+				39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */,
 				391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,

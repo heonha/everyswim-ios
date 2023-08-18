@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-class EventDatePickerViewModel: ObservableObject {
+final class EventDatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -19,10 +19,14 @@ class EventDatePickerViewModel: ObservableObject {
     @Published private var swimdata: [SwimMainData] = []
     
     private var hkManager: HealthKitManager?
-
+    
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
         self.hkManager = healthKitManager
     }
+    
+}
+
+extension EventDatePickerViewModel {
     
     func subscribeSwimData() async {
         await hkManager?.loadSwimmingDataCollection()

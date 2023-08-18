@@ -9,7 +9,7 @@ import SwiftUI
 
 enum MainTabs {
     case home
-    case pool
+    case record
     case myinfo
 }
 
@@ -23,18 +23,22 @@ struct MainView: View {
                     
                 HomeRecordsView()
                     .tabItem {
-                        Label("수영", systemImage: "figure.pool.swim")
+                        Label("대시보드", systemImage: "figure.pool.swim")
                     }
+                    .tag(MainTabs.home)
                 
-                EventDatePicker()
+                EventDatePickerContainer()
                     .tabItem {
-                        Label("수영기록", systemImage: "map")
+                        Label("기록", systemImage: "chart.bar.xaxis")
                     }
-                
+                    .tag(MainTabs.record)
+
                 MyInfoView()
                     .tabItem {
                         Label("내 정보", systemImage: "person.circle.fill")
                     }
+                    .tag(MainTabs.myinfo)
+
             }
             .onAppear {
                 UITabBar.appearance().isTranslucent = true

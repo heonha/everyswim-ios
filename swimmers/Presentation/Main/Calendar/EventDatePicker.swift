@@ -13,36 +13,25 @@ struct EventDatePicker: View {
     private let weekdays = ["일", "월", "화", "수", "목", "금", "토"]
     private var tintColor = AppColor.primary
 
-    @ObservedObject private var viewModel = EventDatePickerViewModel()
+    @ObservedObject private var viewModel: EventDatePickerViewModel
+    
+    init(viewModel: ObservedObject<EventDatePickerViewModel>) {
+        self._viewModel = viewModel
+    }
+ 
+}
+
+extension EventDatePicker {
     
     var body: some View {
-        NavigationView {
-            mainBody
+            calendarContainer()
                 .onChange(of: viewModel.currentMonth) { _ in
                     viewModel.changeMonth()
                 }
                 .task {
                     await viewModel.subscribeSwimData()
                 }
-        }
     }
-    
-    var mainBody: some View {
-        ZStack(alignment: .top) {
-            
-            VStack {
-                calendarContainer()
-
-                EventListView(viewModel: _viewModel)
-                
-                Spacer()
-            }
-            .padding(.horizontal)
-        }
-    }
-}
-
-extension EventDatePicker {
     
     private func calendarContainer() -> some View {
         ZStack {
@@ -87,13 +76,13 @@ extension EventDatePicker {
     }
     
     private func headerMoveMonthButtons() -> some View {
-        HStack(spacing: 14) {
+        HStack(spacing: 20) {
             Button {
                 viewModel.currentMonth -= 1
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.custom(.sfProMedium, size: 20))
-                    .foregroundColor(AppColor.primary)
+                    .foregroundColor(AppColor.grayTint)
             }
             
             Button {
@@ -101,16 +90,17 @@ extension EventDatePicker {
             } label: {
                 Image(systemName: "chevron.right")
                     .font(.custom(.sfProMedium, size: 20))
-                    .foregroundColor(AppColor.primary)
+                    .foregroundColor(AppColor.grayTint)
             }
         }
+        .padding(.trailing)
     }
     
     private func weekdayTitleView() -> some View {
         HStack(spacing: 0) {
             ForEach(weekdays, id: \.self) { weekDay in
                 Text(weekDay)
-                    .font(.custom(.sfProMedium, size: 16))
+                    .font(.custom(.sfProBold, size: 14))
                     .foregroundColor(AppColor.grayTint)
                     .frame(maxWidth: .infinity)
             }
@@ -126,65 +116,69 @@ extension EventDatePicker {
     }
     
     private func dayCellContainer(from value: DateValue) -> some View {
-        VStack {
-            if value.day != -1 {
-                let hasEvent = viewModel.workouts.first { task in
-                    return viewModel.isSameDay(task.taskDate, value.date)
-                }
-                
-                if let event = hasEvent {
-                    eventDayCell(value, task: event)
-                } else {
-                    noEventDayCell(value)
+        ZStack {
+            VStack {
+                if value.day != -1 {
+                    Group {
+                        let hasEvent = viewModel.workouts.first { task in
+                            return viewModel.isSameDay(task.taskDate, value.date)
+                        }
+                        
+                        if let event = hasEvent {
+                            eventDayCell(value, task: event)
+                        } else {
+                            noEventDayCell(value)
+                        }
+                    }
+                    .background(dayViewBackground(value))
                 }
             }
         }
         .padding(.vertical, 9)
-        .frame(height: 60, alignment: .top)
-        .background(dayViewBackground(value))
+        .frame(height: 50, alignment: .center)
         .onTapGesture {
             viewModel.currentDate = value.date
         }
     }
     
     private func dayViewBackground(_ value: DateValue) -> some View {
-        Capsule()
-            .fill(AppColor.primary)
+        Circle()
+            .fill(Color.white)
+            .border(.clear)
             .padding(.horizontal, 4)
             .opacity(viewModel.isSameDay(value.date, viewModel.currentDate) ? 1 : 0)
+            .shadow(color: .black.opacity(0.5), radius: 1.5)
+            .frame(width: 46, height: 46)
     }
     
     private func eventDayCell(_ value: DateValue, task: DatePickerMetaData) -> some View {
-        let textColor = viewModel
-            .isSameDay(task.taskDate, viewModel.currentDate) ? Color.white : .primary
-        let circleColor = viewModel
-            .isSameDay(task.taskDate, viewModel.currentDate) ? Color.white : tintColor
+        let textColor = Color.white
+        let circleColor = tintColor
         
-        return VStack {
-            Text("\(value.day)")
-                .font(.custom(.sfProMedium, size: 20))
-                .foregroundColor(textColor)
-                .frame(maxWidth: .infinity)
-            
-            Spacer()
-            
+        return ZStack {
             Circle()
                 .fill(circleColor)
-                .frame(width: 8, height: 8)
+            
+            Text("\(value.day)")
+                .font(.custom(.sfProBold, size: 16))
+                .foregroundColor(textColor)
+                .frame(maxWidth: .infinity)
         }
+        .frame(width: 36, height: 36)
+
     }
     
     private func noEventDayCell(_ value: DateValue) -> some View {
-        let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.white : .primary
-        
-        return VStack {
+        let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.black : .primary
+
+        return ZStack {
             Text("\(value.day)")
-                .font(.custom(.sfProMedium, size: 20))
-                .frame(maxWidth: .infinity)
+                .font(.custom(.sfProMedium, size: 16))
                 .foregroundColor(textColor)
-            
-            Spacer()
+                .frame(maxWidth: .infinity)
         }
+        .frame(width: 36, height: 36)
+
     }
     
 }
@@ -193,7 +187,7 @@ extension EventDatePicker {
 struct WorkoutDatePicker_Previews: PreviewProvider {
     
     static var previews: some View {
-        EventDatePicker()
+        EventDatePicker(viewModel: .init(initialValue: EventDatePickerViewModel()))
     }
     
 }
