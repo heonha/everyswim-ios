@@ -39,40 +39,13 @@ struct EventListView: View {
     
     private func eventListHeader() -> some View {
         HStack(spacing: 16) {
-            Text("기록")
-                .font(.title2.bold())
-            
-            Text(viewModel.currentDate.toString(.dateKr))
-                .font(.custom(.sfProLight, size: 16))
-                .foregroundColor(.gray)
-            
+            Text("수영 기록")
+                .font(.custom(.sfProMedium, size: 20))
+                        
             Spacer()
         }
     }
-    
-    // private func eventCellList(from workout: DatePickerMetaData) -> some View {
-    //     ScrollView {
-    //         ForEach(workout.event) { task in
-    //             VStack(alignment: .leading, spacing: 10) {
-    //                 Text(Date().addingTimeInterval(CGFloat.random(in: 0...5000)),
-    //                      style: .time)
-    //                 .padding(.horizontal)
-    //                 
-    //                 Text(task.date)
-    //                     .font(.title2.bold())
-    //                     .padding(.horizontal)
-    //             }
-    //             .frame(maxWidth: .infinity, alignment: .leading)
-    //             .padding(.vertical, 10)
-    //             .background(
-    //                 tintColor
-    //                     .opacity(0.5)
-    //                     .cornerRadius(10)
-    //             )
-    //         }
-    //     }
-    // }
-    
+
     private func eventCellsContainer() -> some View {
         Group {
             if let workouts = viewModel.workouts.first(where: { task in
@@ -100,7 +73,7 @@ struct EventListView: View {
         VStack(alignment: .center) {
             Spacer()
             
-            Text("운동 기록이 없습니다.")
+            Text("수영 기록이 없습니다.")
                 .font(.custom(.sfProMedium, size: 19))
                 .foregroundColor(.gray)
             
