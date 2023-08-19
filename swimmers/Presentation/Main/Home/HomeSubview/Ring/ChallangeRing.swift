@@ -73,11 +73,11 @@ struct ChallangeRing: Identifiable {
         case 0...0.29:
             return AppColor.caloriesRed
         case 0.30...0.69:
-            return AppColor.secondaryBlue
+            return Color(hex: "1ab8cd")
         case 0.70...1.0:
-            return Color.green
+            return AppColor.secondaryBlue
         default:
-            return Color.gray
+            return Color.green
         }
 
     }

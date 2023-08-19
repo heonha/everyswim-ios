@@ -14,8 +14,8 @@ struct CellBackground: View {
     @Environment(\.colorScheme) private var colorScheme
     var cornerRadius: CGFloat = 12
     var material: Material = .ultraThinMaterial
-    var shadowRadius: CGFloat = 2
-    var shadowOpacity: CGFloat = 0.16
+    var shadowRadius: CGFloat = 1
+    var shadowOpacity: CGFloat = 0.12
     var shadowLocation: CGPoint = .init(x: 0.5, y: 0.5)
     
     var body: some View {

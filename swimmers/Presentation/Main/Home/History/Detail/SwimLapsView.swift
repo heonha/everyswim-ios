@@ -25,52 +25,57 @@ struct SwimLapsView: View {
                 }
                 .frame(height: 30)
                 
-                ForEach(data.laps.indices) { index in
+                ForEach(data.laps.indices, id: \.self) { index in
                     let event = data.laps[index]
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.ultraThinMaterial)
-                        HStack {
-                            HStack {
-                                Text("Lap")
-                                    .font(.custom(.sfProMedium, size: 16))
-                                Text("\(event.index)")
-                                    .font(.custom(.sfProBold, size: 20))
-                                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                            }
-                            .padding(.leading)
-                            
-                            Spacer()
-
-                            VStack {
-                                Text("랩 타임")
-                                    .font(.custom(.sfProMedium, size: 16))
-                                Text(event.dateInterval.duration.toRelativeTime(.hourMinuteSeconds))
-                                    .font(.custom(.sfProBold, size: 20))
-                                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                            }
-                            
-                            Spacer()
-
-                            
-                            VStack {
-                                Text("스타일")
-                                    .font(.custom(.sfProMedium, size: 16))
-                                Text("\(event.style?.name ?? "")")
-                                    .font(.custom(.sfProBold, size: 20))
-                                    .foregroundColor(.init(uiColor: .secondaryLabel))
-                            }
-                            
-                            Spacer()
-                        }
-                    }
-                    .frame(height: 70)
+                    lapCell(event)
+                        .frame(height: 70)
                 }
             }
         }
         .navigationTitle("\(data.startDate.toString(.dateKr))")
         .navigationBarTitleDisplayMode(.inline)
+        .background(AppColor.skyBackground)
         
+    }
+    
+    private func subSectionView(title: String, count: String) -> some View {
+        HStack(alignment: .center) {
+            Text(title)
+                .font(.custom(.sfProMedium, size: 16))
+            
+            Text(count)
+                .font(.custom(.sfProBold, size: 20))
+                .foregroundColor(AppColor.grayTint)
+        }
+    }
+    
+    private func lapCell(_ event: Lap) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.white)
+            
+            HStack {
+                Spacer()
+                
+                subSectionView(title: "Lap",
+                               count: "\(event.index)")
+                
+                Divider()
+                    .padding()
+                
+                subSectionView(title: "랩 타임",
+                               count: event.dateInterval.duration.toRelativeTime(.hourMinuteSeconds))
+
+                Divider()
+                    .padding()
+
+
+                subSectionView(title: "스타일", count: "\(event.style?.name ?? "")")
+
+
+                Spacer()
+            }
+        }
     }
 }
 

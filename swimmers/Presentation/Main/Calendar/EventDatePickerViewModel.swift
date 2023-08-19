@@ -33,6 +33,7 @@ extension EventDatePickerViewModel {
     
     func changeMonth() {
         currentDate = getCurrentMonth()
+        isMonthlyRecord = true
         setTargetMonthData()
     }
     
@@ -40,7 +41,7 @@ extension EventDatePickerViewModel {
         let calendar = Calendar.current
         let components1 = calendar.dateComponents([.year, .month], from: date1)
         let components2 = calendar.dateComponents([.year, .month], from: date2)
-        
+                
         return components1.year == components2.year && components1.month == components2.month
     }
     
@@ -61,6 +62,9 @@ extension EventDatePickerViewModel {
             self.workouts = self.dateMetadata.filter { metadata in
                 self.isSameMonth(metadata.taskDate, self.currentDate)
             }
+            
+            print("계산결과: \(self.currentDate.toString(.dayDotMonth)) \(self.workouts.count)")
+
             self.sortArray()
         }
     }

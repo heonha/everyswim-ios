@@ -44,6 +44,7 @@ extension EventDatePicker {
                 weekdayTitleView()
                 
                 dayGridView()
+                    .transition(.slide)
                                 
                 Spacer()
             }
