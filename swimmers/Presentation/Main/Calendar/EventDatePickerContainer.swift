@@ -15,6 +15,7 @@ struct EventDatePickerContainer: View {
         NavigationView {
             VStack {
                 EventDatePicker(viewModel: _viewModel)
+                    .padding(.horizontal, 8)
                 
                 EventListView(viewModel: _viewModel)
             }
