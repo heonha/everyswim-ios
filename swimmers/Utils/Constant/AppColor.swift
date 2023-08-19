@@ -14,6 +14,7 @@ enum AppColor {
     static let secondaryBlue = Color(hex: "2752EE")
     static let primaryBackgorund = Color(hex: "FAFAFA")
     static let secondaryBackground = Color(hex: "F8F9FF")
+    static let skyBackground = Color(hex: "EDF2FB")
 
     static let caloriesRed = Color(hex: "D63B3B").opacity(0.85)
     static let cellBackground = Color(hex: "F4F5F5")

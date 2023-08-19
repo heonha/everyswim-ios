@@ -45,6 +45,7 @@
 		39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE52A52D01200986E01 /* Date+Extension.swift */; };
 		39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE72A52D19500986E01 /* SyncHealthView.swift */; };
 		39572CEA2A52F0F700986E01 /* HomeRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */; };
+		3961E8362A908B7D002D8B27 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961E8352A908B7D002D8B27 /* EventListCell.swift */; };
 		396D2AAE2A5599120042D4D4 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AAD2A5599120042D4D4 /* HistoryView.swift */; };
 		396D2AB02A559D290042D4D4 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AAF2A559D290042D4D4 /* RecordCell.swift */; };
 		396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AB12A5673680042D4D4 /* HKCalculator.swift */; };
@@ -144,6 +145,7 @@
 		39572CE52A52D01200986E01 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		39572CE72A52D19500986E01 /* SyncHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncHealthView.swift; sourceTree = "<group>"; };
 		39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecordsViewModel.swift; sourceTree = "<group>"; };
+		3961E8352A908B7D002D8B27 /* EventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
 		396D2AAD2A5599120042D4D4 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		396D2AAF2A559D290042D4D4 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		396D2AB12A5673680042D4D4 /* HKCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculator.swift; sourceTree = "<group>"; };
@@ -355,10 +357,10 @@
 		3922D56F2A74B14A00257164 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				396088502A8F6E5E00FF2289 /* Calendar */,
 				398B1BBF2A4842C900E0FA9B /* MainView.swift */,
 				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 				392083B82A485B5D00E591A8 /* Home */,
+				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083B92A485B6600E591A8 /* Maps */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 			);
@@ -503,6 +505,7 @@
 				390CEB232A82592A003198F6 /* DateValue.swift */,
 				39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */,
 				397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */,
+				3961E8352A908B7D002D8B27 /* EventListCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397CC73D2A87883D00C5D90D /* EventDatePickerViewModel.swift in Sources */,
+				3961E8362A908B7D002D8B27 /* EventListCell.swift in Sources */,
 				398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */,
 				398B1BB42A483E1700E0FA9B /* HomeRecordsView.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,

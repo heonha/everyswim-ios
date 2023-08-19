@@ -49,4 +49,21 @@ struct SwimMainData: Identifiable {
         return totalKcal
     }
     
+    func getWeekDay() -> String {
+        return startDate.toString(.weekDay)
+    }
+    
+    func getDayDotMonth() -> String {
+        return startDate.toString(.dayDotMonth)
+    }
+    
+    func getSimpleRecords() -> (duration: String, distance: String, lap: String) {
+        
+        let duration = self.duration.toRelativeTime(.hourMinute)
+        let distance = self.unwrappedDistance.toString()
+        let lap = self.laps.count
+        
+        return (duration: duration, distance: distance, lap: "\(lap)")
+    }
+    
 }

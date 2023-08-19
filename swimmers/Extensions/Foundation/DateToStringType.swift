@@ -19,6 +19,10 @@ enum DateToStringType {
     /// "h:m"
     case timeWithoutSeconds
     
+    case dayDotMonth
+    
+    case weekDay
+    
     var format: String {
         switch self {
         case .date:
@@ -31,6 +35,11 @@ enum DateToStringType {
             return "a h:mm:ss"
         case .timeWithoutSeconds:
             return "a h:mm"
+        case .dayDotMonth:
+            return "M.dd"
+        case .weekDay:
+            return "EEEE"
+
         }
     }
 }

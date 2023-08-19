@@ -23,17 +23,18 @@ struct EventListView: View {
     // MARK: - Event Cells
     private func eventListContainer() -> some View {
         ZStack {
-            Rectangle()
-                .fill(.clear)
-            
             VStack {
                 eventListHeader()
-                
-                eventCell()
+                    .padding(.top)
+
+                eventCellsContainer()
                 
                 Spacer()
             }
+            .padding(.horizontal)
         }
+        .background(AppColor.skyBackground)
+        .frame(maxHeight: .infinity)
     }
     
     private func eventListHeader() -> some View {
@@ -49,49 +50,47 @@ struct EventListView: View {
         }
     }
     
-    private func eventCellList(from workout: DatePickerMetaData) -> some View {
-        ScrollView {
-            ForEach(workout.event) { task in
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(Date().addingTimeInterval(CGFloat.random(in: 0...5000)),
-                         style: .time)
-                    .padding(.horizontal)
-                    
-                    Text(task.date)
-                        .font(.title2.bold())
-                        .padding(.horizontal)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, 10)
-                .background(
-                    tintColor
-                        .opacity(0.5)
-                        .cornerRadius(10)
-                )
-            }
-        }
-    }
+    // private func eventCellList(from workout: DatePickerMetaData) -> some View {
+    //     ScrollView {
+    //         ForEach(workout.event) { task in
+    //             VStack(alignment: .leading, spacing: 10) {
+    //                 Text(Date().addingTimeInterval(CGFloat.random(in: 0...5000)),
+    //                      style: .time)
+    //                 .padding(.horizontal)
+    //                 
+    //                 Text(task.date)
+    //                     .font(.title2.bold())
+    //                     .padding(.horizontal)
+    //             }
+    //             .frame(maxWidth: .infinity, alignment: .leading)
+    //             .padding(.vertical, 10)
+    //             .background(
+    //                 tintColor
+    //                     .opacity(0.5)
+    //                     .cornerRadius(10)
+    //             )
+    //         }
+    //     }
+    // }
     
-    private func eventCell() -> some View {
+    private func eventCellsContainer() -> some View {
         Group {
             if let workouts = viewModel.workouts.first(where: { task in
                 return viewModel.isSameDay(task.taskDate, viewModel.currentDate)
             }) {
-                if let workout = workouts.event.first {
-                    ScrollView(showsIndicators: false) {
-                        ForEach(workouts.event) { workout in
-                            NavigationLink {
-                                SwimDetailView(data: workout)
-                            } label: {
-                                RecordCell(data: workout)
-                                    .frame(height: 150)
-                                    .padding(4)
-                            }
-                        }
-                    }
+                if !workouts.event.isEmpty {
+                    eventCell(workouts: workouts)
                 }
             } else {
                 eventCellPlaceholder()
+            }
+        }
+    }
+    
+    private func eventCell(workouts: DatePickerMetaData) -> some View {
+        ScrollView(showsIndicators: false) {
+            ForEach(workouts.event) { workout in
+                EventListCell(data: workout)
             }
         }
     }
@@ -108,6 +107,17 @@ struct EventListView: View {
             Spacer()
         }
     }
-    
 
 }
+
+#if DEBUG
+struct EventListView_Previews: PreviewProvider {
+    
+    static var viewModel = ObservedObject<EventDatePickerViewModel>.init(initialValue: EventDatePickerViewModel())
+    
+    static var previews: some View {
+        // EventListView(viewModel: viewModel)
+        EventDatePickerContainer()
+    }
+}
+#endif
