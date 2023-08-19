@@ -20,28 +20,22 @@ struct EachChallangeCircleCell: View {
         ZStack {
             CellBackground()
             
-            HStack {
-                Image(ring.keyIcon)
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(ring.keyColor)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 28, height: 28)
-                    .foregroundColor(ring.keyColor)
-                    .padding(.leading)
+            VStack(spacing: 4) {
                 
-                HStack(alignment: .bottom) {
-                    Text(ring.progressLabel())
-                        .font(.custom(.sfProBold, size: 24))
-                        .foregroundColor(.init(uiColor: .label))
-
-                    Text(ring.unit)
-                        .font(.custom(.sfProBold, size: 16))
-                        .foregroundColor(.init(uiColor: .secondaryLabel))
-                        .offset(y: -2)
-                }
-
                 Spacer()
+                
+                Text(ring.type.title)
+                    .font(.custom(.sfProLight, size: 14))
+                    .foregroundColor(.gray)
+                
+                HStack(alignment: .bottom, spacing: 4) {
+                    Text("\(ring.progressLabel()) \(ring.unit)")
+                        .font(.custom(.sfProMedium, size: 14))
+                        .foregroundColor(.init(uiColor: .label))
+                        .lineLimit(2)
+                }
+                .padding(.bottom, 8)
+                
                 
                 AnimatedRingView(ring: ring, index: 0, lineWidth: 6)
                     .frame(width: 40, height: 40)
@@ -49,11 +43,12 @@ struct EachChallangeCircleCell: View {
                         Text(ring.progressPercentString())
                             .font(.custom(.sfProMedium, size: 12))
                     }
-                    .padding(.trailing)
+ 
+                Spacer()
                 
             }
         }
-        .frame(height: 60)
+        .frame(width: 100, height: 100)
     }
 }
 
@@ -62,10 +57,9 @@ struct EachChallangeCircleCell: View {
 struct RecordCircleCell_Previews: PreviewProvider {
     
     static var previews: some View {
-        VStack {
+        HStack {
             ForEach(TestObjects.rings) { ring in
                 EachChallangeCircleCell(ring: ring)
-                    .padding(.horizontal)
             }
         }
     }

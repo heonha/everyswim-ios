@@ -26,7 +26,7 @@ struct AnimatedRingView: View {
                 Circle()
                     .trim(from: 0, to: showRing ? ring.progress() : 0.001)
                     .stroke(style: .init(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(ring.keyColor)
+                    .foregroundColor(ring.getCircleColor())
                     .rotationEffect(.init(degrees: -90))
             }
             

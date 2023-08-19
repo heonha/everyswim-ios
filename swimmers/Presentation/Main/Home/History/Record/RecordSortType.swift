@@ -16,7 +16,7 @@ enum RecordSortType: String {
     var title: String {
         switch self {
         case .date:
-            return "최근 순"
+            return "날짜 순"
         case .distance:
             return "거리"
         case .duration:

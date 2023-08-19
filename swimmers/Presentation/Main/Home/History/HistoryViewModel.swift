@@ -18,32 +18,34 @@ final class HistoryViewModel: ObservableObject {
     
     @Published var swimRecords: [SwimMainData]
     @Published var animationRefreshPublisher = false
-    @AppStorage(Defaults.recordViewSort) var sort: RecordSortType = .date
+    @AppStorage(Defaults.recordViewSort) var sortType: RecordSortType = .date
     @AppStorage(Defaults.recordViewAscending) var ascending = true
     
     init(swimRecords: [SwimMainData]? = nil,
          healthKitManager: HealthKitManager = HealthKitManager()) {
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager
-        
+        self.subscribeSwimmingData()
         self.fetchData()
-    }
-    
-    func fetchData() {
-#if targetEnvironment(simulator)
-        Task { await testSwimmingData() }
-#else
-        Task { await fetchSwimmingData() }
-#endif
     }
     
 }
 
 extension HistoryViewModel {
     
+    func fetchData() {
+#if targetEnvironment(simulator)
+        Task { await testSwimmingData() }
+#else
+        Task {
+            await fetchSwimmingData()
+            sortHandler()
+        }
+#endif
+    }
+    
     private func fetchSwimmingData() async {
        await hkManager?.loadSwimmingDataCollection()
-       subscribeSwimmingData()
     }
     
     private func subscribeSwimmingData() {
@@ -64,9 +66,20 @@ extension HistoryViewModel {
             }
             .store(in: &cancellables)
     }
+    
+    func sortRecords(sortType: RecordSortType) {
+        if self.sortType == sortType {
+            self.ascending.toggle()
+            sortHandler()
+        } else {
+            self.sortType = sortType
+            sortHandler()
+        }
         
-    private func sortHandler() {
-        switch self.sort {
+    }
+        
+    func sortHandler() {
+        switch self.sortType {
         case .date:
             if ascending {
                 self.swimRecords.sort(by: { $0.startDate > $1.startDate })

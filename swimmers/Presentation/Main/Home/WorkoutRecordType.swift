@@ -20,11 +20,11 @@ enum WorkoutRecordType: String {
     var title: String {
         switch self {
         case .distance:
-            return "수영 거리"
+            return "거리"
         case .lap:
             return "랩"
         case .countPerWeek:
-            return "수영 횟수"
+            return "기록 수"
         case .paceAverage:
             return "평균 페이스"
         case .totalTime:
@@ -71,7 +71,7 @@ enum WorkoutRecordType: String {
         case .distance, .paceAverage:
             return "m"
         case .lap:
-            return "lap"
+            return "Lap"
         case .countPerWeek:
             return "회"
         case .totalTime:

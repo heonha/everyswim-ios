@@ -15,7 +15,10 @@ final class EventDatePickerViewModel: ObservableObject {
     
     @Published var currentDate = Date()
     @Published var currentMonth = 0
+    @Published var isMonthlyRecord = false
+
     @Published var workouts: [DatePickerMetaData] = []
+    @Published var dateMetadata: [DatePickerMetaData] = []
     @Published private var swimdata: [SwimMainData] = []
     
     private var hkManager: HealthKitManager?
@@ -28,22 +31,44 @@ final class EventDatePickerViewModel: ObservableObject {
 
 extension EventDatePickerViewModel {
     
+    func changeMonth() {
+        currentDate = getCurrentMonth()
+        setTargetMonthData()
+    }
+    
+    private func isSameMonth(_ date1: Date, _ date2: Date) -> Bool {
+        let calendar = Calendar.current
+        let components1 = calendar.dateComponents([.year, .month], from: date1)
+        let components2 = calendar.dateComponents([.year, .month], from: date2)
+        
+        return components1.year == components2.year && components1.month == components2.month
+    }
+    
     func subscribeSwimData() async {
         await hkManager?.loadSwimmingDataCollection()
         SwimDataStore.shared.swimmingData
             .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] data in
                 guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.workouts = self.groupEventsByDate(tasks: data)
-                }
+                self.dateMetadata = self.groupEventsByDate(tasks: data)
+                self.setTargetMonthData()
             }
             .store(in: &cancellables)
     }
     
-    func changeMonth() {
-        currentDate = getCurrentMonth()
+    private func setTargetMonthData() {
+        DispatchQueue.main.async {
+            self.workouts = self.dateMetadata.filter { metadata in
+                self.isSameMonth(metadata.taskDate, self.currentDate)
+            }
+            self.sortArray()
+        }
     }
+    
+    private func sortArray() {
+        workouts.sort { $0.taskDate > $1.taskDate }
+    }
+    
     
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
         let calendar = Calendar.current

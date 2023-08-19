@@ -10,6 +10,7 @@ import SwiftUI
 struct EventListCell: View {
     
     let data: SwimMainData
+    var showRelativedate = false
     
     var body: some View {
         NavigationLink {
@@ -36,16 +37,29 @@ struct EventListCell: View {
             dayView
                     
             Divider()
-                .padding()
+                .padding(8)
+
             
             contentView
             
             Spacer()
             
-            Image(systemName: "chevron.right")
-                .foregroundColor(AppColor.grayTint)
+            rightLabel
         }
         .padding(.horizontal, 24)
+    }
+    
+    private var rightLabel: some View {
+        Group {
+            if showRelativedate {
+                Text(Date.relativeDate(from: data.startDate))
+                    .font(.custom(.sfProLight, size: 12))
+                    .foregroundColor(AppColor.grayTint)
+            } else {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(AppColor.grayTint)
+            }
+        }
     }
     
     private var dayView: some View {
@@ -65,11 +79,11 @@ struct EventListCell: View {
         
         return VStack(alignment: .leading, spacing: 4) {
             Text("\(data.getWeekDay()) 수영")
-                .font(.custom(.sfProMedium, size: 16))
+                .font(.custom(.sfProMedium, size: 15))
                 .foregroundColor(Color.black)
             
             Text("\(records.duration) | \(records.distance)m | \(records.lap) Lap")
-                .font(.custom(.sfProLight, size: 14))
+                .font(.custom(.sfProLight, size: 13))
                 .foregroundColor(AppColor.primaryBlue)
         }
     }

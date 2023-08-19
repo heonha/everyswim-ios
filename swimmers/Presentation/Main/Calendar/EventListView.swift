@@ -43,6 +43,18 @@ struct EventListView: View {
                 .font(.custom(.sfProMedium, size: 20))
                         
             Spacer()
+            
+                Button {
+                    viewModel.isMonthlyRecord.toggle()
+                } label: {
+                    HStack(spacing: 2) {
+                        Image(systemName: viewModel.isMonthlyRecord ? "checkmark.circle.fill": "circle" )
+                        
+                        Text("월간 기록보기")
+                            .font(.custom(.sfProLight, size: 16))
+                    }
+                }
+                .tint(.black)
         }
     }
 
@@ -52,7 +64,11 @@ struct EventListView: View {
                 return viewModel.isSameDay(task.taskDate, viewModel.currentDate)
             }) {
                 if !workouts.event.isEmpty {
-                    eventCell(workouts: workouts)
+                    if viewModel.isMonthlyRecord {
+                        eventCellsMonthly(viewModel.workouts)
+                    } else {
+                        eventCell(workouts)
+                    }
                 }
             } else {
                 eventCellPlaceholder()
@@ -60,10 +76,20 @@ struct EventListView: View {
         }
     }
     
-    private func eventCell(workouts: DatePickerMetaData) -> some View {
+    private func eventCell(_ workout: DatePickerMetaData) -> some View {
         ScrollView(showsIndicators: false) {
-            ForEach(workouts.event) { workout in
+            ForEach(workout.event) { workout in
                 EventListCell(data: workout)
+            }
+        }
+    }
+    
+    private func eventCellsMonthly(_ workouts: [DatePickerMetaData]) -> some View {
+        ScrollView(showsIndicators: false) {
+            ForEach(workouts) { workout in
+                ForEach(workout.event) { event in
+                    EventListCell(data: event)
+                }
             }
         }
     }

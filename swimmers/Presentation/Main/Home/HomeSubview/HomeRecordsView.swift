@@ -11,6 +11,8 @@ struct HomeRecordsView: View {
     
     @ObservedObject private var viewModel = HomeRecordsViewModel(healthKitManager: HealthKitManager())
     @State private var showViews: [Bool] = Array(repeating: false, count: 4)
+    @State private var selection = 0
+    
     
     var body: some View {
         NavigationView {
@@ -23,43 +25,37 @@ struct HomeRecordsView: View {
 }
 
 extension HomeRecordsView {
-    
+
     private var mainBody: some View {
-        
             ScrollView(showsIndicators: false) {
                 profileView()
-                    .frame(height: 100)
+                    .frame(height: 130)
                     .padding(.horizontal, 24)
                 
                 Group {
-                    RecentHistoryCell(destination: AnyView(HistoryView()),
-                                      lastWorkout: $viewModel.lastWorkout)
-                        .opacity(showViews[0] ? 1 : 0)
-                        .offset(y: showViews[0] ? 0 : 200)
-                        .padding(.bottom, 14)
-                    
-                    ChallangeRingView(rings: $viewModel.rings)
-                        .frame(height: 170)
-                        .opacity(showViews[1] ? 1 : 0)
-                        .offset(y: showViews[1] ? 0 : 200)
-                        .padding(.bottom, 14)
-                    
-                    bodyView()
-                        .opacity(showViews[2] ? 1 : 0)
-                        .offset(y: showViews[2] ? 0 : 200)
-                    
-                    kcalCell()
-                        .opacity(showViews[2] ? 1 : 0)
-                        .offset(y: showViews[2] ? 0 : 200)
-                    
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.clear)
-                        .frame(height: 30)
+                    VStack {
+                        if let lastWorkout = viewModel.lastWorkout {
+                            VStack(alignment: .leading) {
+                                Text("최근 기록")
+                                    .font(.custom(.sfProLight, size: 15))
+                                    .foregroundColor(.gray)
+
+                                EventListCell(data: lastWorkout, showRelativedate: true)
+                            }
+                            .padding()
+                        }
+                        
+                        HomeImageSlider(selection: $selection)
+                            .padding(.horizontal)
+                        
+                        summaryRecordCells()
+
+                        Spacer()
+                        
+                    }
                 }
-                .padding(.horizontal, 20)
 
             }
-            .onAppear(perform: animateView)
             
     }
     
@@ -91,17 +87,28 @@ extension HomeRecordsView {
         }
         .frame(height: 60)
 
+
     }
     
-    private func bodyView() -> some View {
-        VStack(spacing: 16) {
-            ForEach(viewModel.rings) { ring in
-                EachChallangeCircleCell(ring: ring)
+    private func summaryRecordCells() -> some View {
+        NavigationLink {
+            HistoryView()
+        } label: {
+            VStack(alignment: .leading) {
+                Text("누적 기록")
+                    .font(.custom(.sfProLight, size: 15))
+                    .foregroundColor(.gray)
+                    .padding(.top)
+                
+                HStack(spacing: 16) {
+                    ForEach(viewModel.rings) { ring in
+                        EachChallangeCircleCell(ring: ring)
+                    }
+                }
             }
-            Spacer()
+            .padding()
         }
     }
-    
     
     private func centerRecordView() -> some View {
         VStack(spacing: 16) {
@@ -169,21 +176,6 @@ extension HomeRecordsView {
             .frame(width: 56, height: 56)
             .shadow(color: .black.opacity(0.16), radius: 4, x: 1, y: 1)
         }
-    }
-    
-    private func animateView() {
-        withAnimation(.easeInOut.delay(0.1)) {
-            showViews[0] = true
-        }
-        
-        withAnimation(.easeInOut.delay(0.20)) {
-            showViews[1] = true
-        }
-        
-        withAnimation(.easeInOut.delay(0.25)) {
-            showViews[2] = true
-        }
-        
     }
     
 }

@@ -39,9 +39,12 @@ final class HomeRecordsViewModel: ObservableObject {
             await fetchSwimmingData()
             getLastWorkout()
         }
-        #if DEBUG
-        self.rings = fetchRingData()
-        #endif
+
+        self.fetchRingData()
+    }
+    
+    deinit {
+        self.cancellables = []
     }
     
     func getLastWorkout() {
@@ -135,15 +138,30 @@ final class HomeRecordsViewModel: ObservableObject {
             }
         }
     }
-    
-#if DEBUG
-    func fetchRingData() -> [ChallangeRing] {
-        return [
-            ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
-            ChallangeRing(type: .lap, count: 45, maxCount: 60),
-            ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
-        ]
+
+    func fetchRingData() {
+        self.$swimRecords
+            .sink { records in
+                let distance = records.reduce(0) { $0 + $1.unwrappedDistance }
+                let lap = records.reduce(0) { $0 + $1.laps.count }
+                let count = records.count
+                
+                self.rings =  [
+                    ChallangeRing(type: .distance, count: distance, maxCount: 2000),
+                    ChallangeRing(type: .lap, count: Double(lap), maxCount: 80),
+                    ChallangeRing(type: .countPerWeek, count: Double(count), maxCount: 10)
+                ]
+            }.store(in: &cancellables)
     }
-#endif
+    
+// #if DEBUG
+//     func testFetchRingData() -> [ChallangeRing] {
+//         return [
+//             ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
+//             ChallangeRing(type: .lap, count: 45, maxCount: 80),
+//             ChallangeRing(type: .countPerWeek, count: 2, maxCount: 10)
+//         ]
+//     }
+// #endif
     
 }

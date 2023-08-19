@@ -27,6 +27,11 @@ struct HistoryView: View {
             }
             .animation(.easeInOut.delay(0.1),
                        value: viewModel.animationRefreshPublisher)
+            .toolbar {
+                ToolbarItem(id: UUID().uuidString, placement: .topBarTrailing) {
+                    sortMenu()
+                }
+            }
     }
     
 }
@@ -35,53 +40,52 @@ extension HistoryView {
     
     private var mainBody: some View {
         VStack {
-            HStack {
-                Spacer()
-                
-                sortMenu
-                    .padding(.trailing, 21)
-            }
-            
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach(viewModel.swimRecords, id: \.id) { record in
-                        NavigationLink {
-                            SwimDetailView(data: record)
-                        } label: {
-                            RecordCell(data: record)
-                                .padding(.horizontal, 21)
-                                .opacity( showView ? 1 : 0)
-                                .offset(y: showView ? 0 : 200)
-                        }
-                    }
-                }
-                .padding(.top)
-                .padding(.bottom, 4)
-            }
-            .refreshable(action: refreshAction)
- 
+            list
         }
         .navigationTitle("수영 기록")
-        .background(BackgroundObject())
+        .background(AppColor.skyBackground)
+     
+    }
+    
+    private var list: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                ForEach(viewModel.swimRecords, id: \.id) { record in
+                    NavigationLink {
+                        SwimDetailView(data: record)
+                    } label: {
+                        RecordCell(data: record)
+                            .opacity( showView ? 1 : 0)
+                            .offset(y: showView ? 0 : 200)
+                    }
+                }
+            }
+            .padding(.top)
+            .padding(.bottom, 4)
+        }
+        .refreshable(action: refreshAction)
     }
 
     
-    private var sortMenu: some View {
+    private func sortMenu() -> some View {
         Menu {
             sortButton(.date)
             
             sortButton(.distance)
             
             sortButton(.duration)
-            
+             
             sortButton(.kcal)
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.thickMaterial)
+                    .fill(.white.opacity(0.97))
+                    .frame(width: 100)
                 
-                Text("\(viewModel.sort.title) ↓")
+                Text("\(viewModel.sortType.title) ↓")
+                    .font(.custom(.sfProLight, size: 16))
                     .foregroundColor(.init(uiColor: .label))
+                    .padding(4)
             }
         }
         .frame(width: 100, height: 30)
@@ -89,15 +93,20 @@ extension HistoryView {
     
     private func sortButton(_ type: RecordSortType) -> some View {
         Button {
-            viewModel.sort = type
-            viewModel.fetchData()
+            viewModel.sortRecords(sortType: type)
         } label: {
-            if viewModel.sort == type {
-                Image(systemName: "checkmark")
-            }
+            Group {
+                if viewModel.sortType == type {
+                    Image(systemName: "checkmark")
+                }
 
-            Text(type.title)
+                Text(type.title)
+            }
         }
+
+    }
+    
+    func sortAction(type: RecordSortType) {
     }
         
 }

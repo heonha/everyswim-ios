@@ -136,6 +136,7 @@ extension EventDatePicker {
         .frame(height: 50, alignment: .center)
         .onTapGesture {
             viewModel.currentDate = value.date
+            viewModel.isMonthlyRecord = false
         }
     }
     

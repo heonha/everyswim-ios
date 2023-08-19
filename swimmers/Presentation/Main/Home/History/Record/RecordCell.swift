@@ -17,28 +17,31 @@ struct RecordCell: View {
     
     var body: some View {
         ZStack {
-            VStack {
-
-                HStack {
-                    profileStack()
-                        .frame(minHeight: 30)
-
-                    Spacer()
+            
+            Color.white
+                .shadow(color: .black.opacity(0.12), radius: 1, x: 0.5, y: 0.5)
+            
+            Group {
+                VStack(spacing: 8) {
+                    HStack {
+                        profileStack()
+                            .frame(minHeight: 30)
+                        
+                        Spacer()
+                        
+                        recordTitle(date: data.date, time: data.durationTime)
+                            .frame(minHeight: 30)
+                    }
                     
-                    recordTitle(date: data.date, time: data.durationTime)
-                        .frame(minHeight: 30)
-                }
+                    Spacer()
 
-                Spacer()
-                // 기록
-                recordStack
-                    .frame(minHeight: 40)
+                    recordStack
+                        .frame(minHeight: 32)
+                }
+                
             }
+            .padding()
         }
-        .padding()
-        .background(CellBackground(cornerRadius: 8))
-        .cornerRadius(8)
-        .shadow(color: .black.opacity(0.25), radius: 4, x: 1, y: 1)
     }
     
     private func rightChevronSymbol() -> some View {
@@ -85,22 +88,18 @@ struct RecordCell: View {
     
     private var recordStack: some View {
         HStack {
-            // 미터
             recordView(title: data.unwrappedDistance.toString(), unit: "m")
                 .frame(maxWidth: 90)
 
             Divider()
             
-            // 페이스
             recordView(title: data.totalKcal.toString(), unit: "kcal")
                 .frame(maxWidth: 150)
 
             Divider()
 
-            // TODO: 랩 데이터 넣기
             recordView(title: "\(data.laps.count)", unit: "Lap")
                 .frame(maxWidth: 90)
-
         }
     }
         
@@ -121,7 +120,6 @@ struct RecordCell: View {
     
     private func relativeTime() -> some View {
         HStack(spacing: 2) {
-            // TODO: 상대 날짜 데이터로 바꾸기
             Text(Date.relativeDate(from: data.startDate))
                 .font(.custom(.sfProLight, size: 14))
                 .foregroundColor(.init(uiColor: .secondaryLabel))
@@ -141,6 +139,7 @@ struct RecordCell: View {
     }
 }
 
+#if DEBUG
 struct SwimmingRecordCell_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -154,3 +153,4 @@ struct SwimmingRecordCell_Previews: PreviewProvider {
         }
     }
 }
+#endif

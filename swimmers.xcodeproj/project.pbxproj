@@ -76,6 +76,7 @@
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
+		399906582A90BBC100E5E67D /* HomeImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399906572A90BBC100E5E67D /* HomeImageSlider.swift */; };
 		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
@@ -179,6 +180,7 @@
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
+		399906572A90BBC100E5E67D /* HomeImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageSlider.swift; sourceTree = "<group>"; };
 		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
 				391C12B12A58D74C001C2286 /* Ring */,
+				399906572A90BBC100E5E67D /* HomeImageSlider.swift */,
 			);
 			path = HomeSubview;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
+				399906582A90BBC100E5E67D /* HomeImageSlider.swift in Sources */,
 				39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */,
 				39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */,

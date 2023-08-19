@@ -19,32 +19,33 @@ struct MainView: View {
     @StateObject var viewModel = MainViewModel.shared
     
     var body: some View {
-            TabView(selection: $selectedTab) {
-                    
-                HomeRecordsView()
-                    .tabItem {
-                        Label("대시보드", systemImage: "figure.pool.swim")
-                    }
-                    .tag(MainTabs.home)
-                
-                EventDatePickerContainer()
-                    .tabItem {
-                        Label("기록", systemImage: "chart.bar.xaxis")
-                    }
-                    .tag(MainTabs.record)
-
-                MyInfoView()
-                    .tabItem {
-                        Label("내 정보", systemImage: "person.circle.fill")
-                    }
-                    .tag(MainTabs.myinfo)
-
-            }
-            .onAppear {
-                UITabBar.appearance().isTranslucent = true
-            }
-            .environmentObject(viewModel)
-
+        TabView(selection: $selectedTab) {
+            
+            EventDatePickerContainer()
+                .tabItem {
+                    Label("기록", systemImage: "chart.bar.xaxis")
+                }
+                .tag(MainTabs.record)
+            
+            
+            HomeRecordsView()
+                .tabItem {
+                    Label("대시보드", systemImage: "figure.pool.swim")
+                }
+                .tag(MainTabs.home)
+            
+            MyInfoView()
+                .tabItem {
+                    Label("내 정보", systemImage: "person.circle.fill")
+                }
+                .tag(MainTabs.myinfo)
+            
+        }
+        .onAppear {
+            UITabBar.appearance().isTranslucent = true
+        }
+        .environmentObject(viewModel)
+        
     }
 }
 

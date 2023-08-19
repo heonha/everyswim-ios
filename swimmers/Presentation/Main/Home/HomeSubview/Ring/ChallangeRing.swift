@@ -14,18 +14,30 @@ struct ChallangeRing: Identifiable {
     let type: WorkoutRecordType
     let count: Double
     let maxCount: Double
-
+    
     var unit: String {
         switch type {
         case .distance:
-            return "/ \(maxCount.toString())m"
+            return "m"
         case .lap:
-            return "/ \(maxCount.toString())회"
+            return "Lap"
         case .countPerWeek:
-            return "/ \(maxCount.toString())회"
+            return "회"
         default:
             return ""
+        }
+    }
 
+    var challengeValue: String {
+        switch type {
+        case .distance:
+            return "\(maxCount.toString())"
+        case .lap:
+            return "\(maxCount.toString())"
+        case .countPerWeek:
+            return "\(maxCount.toString())"
+        default:
+            return ""
         }
     }
     
@@ -45,17 +57,29 @@ struct ChallangeRing: Identifiable {
         return count.toString()
     }
     
-    var keyColor: Color {
-        switch type {
-        case .distance:
+    func getCircleColor() -> Color {
+        // switch type {
+        // case .distance:
+        //     return AppColor.secondaryBlue
+        // case .lap:
+        //     return AppColor.primary
+        // case .countPerWeek:
+        //     return Color(hex: "1ab8cd")
+        // default:
+        //     return .init(uiColor: .label)
+        // }
+        
+        switch progress() {
+        case 0...0.29:
+            return AppColor.caloriesRed
+        case 0.30...0.69:
             return AppColor.secondaryBlue
-        case .lap:
-            return AppColor.primary
-        case .countPerWeek:
-            return Color(hex: "1ab8cd")
+        case 0.70...1.0:
+            return Color.green
         default:
-            return .init(uiColor: .label)
+            return Color.gray
         }
+
     }
     
     var keyIcon: String {
