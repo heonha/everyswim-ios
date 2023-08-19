@@ -8,7 +8,9 @@
 import Foundation
 
 struct DatePickerMetaData: Identifiable {
+    
     let id = UUID().uuidString
-    let task: [SwimMainData]
+    let event: [SwimMainData]
     let taskDate: Date
+    
 }

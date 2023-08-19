@@ -1,5 +1,5 @@
 //
-//  WorkoutDatePickerViewModel.swift
+//  EventDatePickerViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 8/12/23.
@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-class WorkoutDatePickerViewModel: ObservableObject {
+final class EventDatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -17,12 +17,16 @@ class WorkoutDatePickerViewModel: ObservableObject {
     @Published var currentMonth = 0
     @Published var workouts: [DatePickerMetaData] = []
     @Published private var swimdata: [SwimMainData] = []
+    
     private var hkManager: HealthKitManager?
-
+    
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
         self.hkManager = healthKitManager
     }
     
+}
+
+extension EventDatePickerViewModel {
     
     func subscribeSwimData() async {
         await hkManager?.loadSwimmingDataCollection()
@@ -31,24 +35,22 @@ class WorkoutDatePickerViewModel: ObservableObject {
             .sink { [weak self] data in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    self.workouts = self.groupTasksByDate(tasks: data)
+                    self.workouts = self.groupEventsByDate(tasks: data)
                 }
             }
             .store(in: &cancellables)
     }
-
+    
     func changeMonth() {
         currentDate = getCurrentMonth()
     }
     
-    // 날짜 체크하기
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
         let calendar = Calendar.current
 
         return calendar.isDate(date1, inSameDayAs: date2)
     }
     
-    // 연도와 월을 추출하기.
     func extraDate() -> [String] {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY MMMM"
@@ -61,7 +63,6 @@ class WorkoutDatePickerViewModel: ObservableObject {
     func getCurrentMonth() -> Date {
         let calendar = Calendar.current
         
-        // 기존 월 가져오기
         guard let currentMonth = calendar.date(byAdding: .month, value: currentMonth, to: Date()) else {
             return Date()
         }
@@ -71,34 +72,43 @@ class WorkoutDatePickerViewModel: ObservableObject {
         return currentMonth
     }
     
+    func weekdaySetter(_ weekday: Int) -> Weekdays {
+        switch weekday {
+        case 1...7:
+            return Weekdays(rawValue: weekday)!
+        default:
+            return Weekdays(rawValue: 8)!
+        }
+    }
+    
     func extractDate() -> [DateValue] {
         
         let calendar = Calendar.current
         
-        // 기존 월 가져오기
         guard let currentMonth = calendar.date(byAdding: .month, value: currentMonth, to: Date()) else {
             return []
         }
         
-        // 일자 가져오기
         var days = currentMonth
             .getAllDates()
             .compactMap { date -> DateValue in
                 let day = calendar.component(.day, from: date)
-                return DateValue(day: day, date: date)
+                let weekday = calendar.component(.weekday, from: date)
+                return DateValue(day: day, date: date, weekDay: weekdaySetter(weekday))
             }
         
-        // 주간 첫번째 요일 찾기.
         let firstWeekday = calendar.component(.weekday, from: days.first?.date ?? Date())
         
         for _ in 0..<firstWeekday - 1 {
-            days.insert(DateValue(day: -1, date: Date()), at: 0)
+            let date = Date()
+            let weekday = calendar.component(.weekday, from: date)
+            days.insert(DateValue(day: -1, date: date, weekDay: weekdaySetter(weekday)), at: 0)
         }
         
         return days
     }
     
-    private func groupTasksByDate(tasks: [SwimMainData]) -> [DatePickerMetaData] {
+    private func groupEventsByDate(tasks: [SwimMainData]) -> [DatePickerMetaData] {
         var groupedTasks: [Date: [SwimMainData]] = [:]
 
         for task in tasks {
@@ -114,7 +124,7 @@ class WorkoutDatePickerViewModel: ObservableObject {
         }
 
         let metaDataArray = groupedTasks.map { date, tasks in
-            DatePickerMetaData(task: tasks, taskDate: date)
+            DatePickerMetaData(event: tasks, taskDate: date)
         }
 
         return metaDataArray
