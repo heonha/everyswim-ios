@@ -62,31 +62,36 @@ struct EventListView: View {
         Group {
             ScrollView(showsIndicators: false) {
                 if !viewModel.workouts.isEmpty {
-                    if viewModel.isMonthlyRecord {
-                        eventCellsMonthly(viewModel.workouts)
-                    } else {
-                        if let workouts = viewModel.workouts.first(where: { task in
-                            return viewModel.isSameDay(task.taskDate, viewModel.currentDate)
-                        }) {
-                            eventCell(workouts)
-                        } else {
-                            eventCellPlaceholder()
-                        }
-                    }
+                    dailyAndMonthlySwitcher()
                 } else {
-                        eventCellPlaceholder()
+                    eventCellPlaceholder()
                 }
             }
         }
     }
     
-    private func eventCell(_ workout: DatePickerMetaData) -> some View {
+    private func dailyAndMonthlySwitcher() -> some View {
+        Group {
+            if viewModel.isMonthlyRecord {
+                monthlyEventList(viewModel.workouts)
+            } else {
+                let dayMetadata = viewModel.extractFirstEvent(date: viewModel.currentDate)
+                if let dayMetadata = dayMetadata {
+                    dailyEventList(dayMetadata)
+                } else {
+                    eventCellPlaceholder()
+                }
+            }
+        }
+    }
+    
+    private func dailyEventList(_ workout: DatePickerMetaData) -> some View {
         ForEach(workout.event) { workout in
             EventListCell(data: workout)
         }
     }
     
-    private func eventCellsMonthly(_ workouts: [DatePickerMetaData]) -> some View {
+    private func monthlyEventList(_ workouts: [DatePickerMetaData]) -> some View {
         ForEach(workouts) { workout in
             ForEach(workout.event) { event in
                 EventListCell(data: event)

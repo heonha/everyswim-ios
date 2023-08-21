@@ -119,7 +119,7 @@ extension EventDatePicker {
             VStack {
                 if value.day != -1 {
                     Group {
-                        if viewModel.isHasEvent(date: value.date) {
+                        if viewModel.extractFirstEvent(date: value.date) != nil {
                             eventDayCell(value)
                         } else {
                             noEventDayCell(value)

@@ -31,16 +31,8 @@ final class EventDatePickerViewModel: ObservableObject {
 
 extension EventDatePickerViewModel {
     
-    func isHasEvent(date: Date) -> Bool {
-        let hasEvent = workouts.first { task in
-            return isSameDay(task.taskDate, date)
-        }
-        
-        if hasEvent != nil {
-            return true
-        } else {
-            return false
-        }
+    func extractFirstEvent(date: Date) -> DatePickerMetaData? {
+        return workouts.first { isSameDay($0.taskDate, date) }
     }
     
     func changeMonth() {
