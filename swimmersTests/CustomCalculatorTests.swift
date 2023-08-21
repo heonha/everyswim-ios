@@ -26,10 +26,10 @@ class CustomCalculatorTests: XCTestCase {
         let oneHourTwoMinute = TimeInterval(3720)
         let oneHourTwoneHourFiftyMinute = TimeInterval(4500)
 
-        let fortyFiveMinuteString = fortyFiveMinute.toRelativeTime()
-        let oneHourString = oneHour.toRelativeTime()
-        let oneHourTwoMinuteString = oneHourTwoMinute.toRelativeTime()
-        let oneHourTwoneHourFiftyMinuteString = oneHourTwoneHourFiftyMinute.toRelativeTime()
+        let fortyFiveMinuteString = fortyFiveMinute.toRelativeTime(.hourMinute)
+        let oneHourString = oneHour.toRelativeTime(.hourMinute)
+        let oneHourTwoMinuteString = oneHourTwoMinute.toRelativeTime(.hourMinute)
+        let oneHourTwoneHourFiftyMinuteString = oneHourTwoneHourFiftyMinute.toRelativeTime(.hourMinute)
         
         XCTAssertEqual("45분", fortyFiveMinuteString)
         XCTAssertEqual("1시간", oneHourString)

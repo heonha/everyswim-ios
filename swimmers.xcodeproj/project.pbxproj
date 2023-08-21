@@ -351,8 +351,8 @@
 			children = (
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
+				392CC0A52A93007600E839A8 /* ImageSlider */,
 				391C12B12A58D74C001C2286 /* Ring */,
-				399906572A90BBC100E5E67D /* HomeImageSlider.swift */,
 			);
 			path = HomeSubview;
 			sourceTree = "<group>";
@@ -471,6 +471,14 @@
 				3922D5812A74B87A00257164 /* Lap */,
 			);
 			path = Swim;
+			sourceTree = "<group>";
+		};
+		392CC0A52A93007600E839A8 /* ImageSlider */ = {
+			isa = PBXGroup;
+			children = (
+				399906572A90BBC100E5E67D /* HomeImageSlider.swift */,
+			);
+			path = ImageSlider;
 			sourceTree = "<group>";
 		};
 		39437D9D2A48943200FDA9DA /* NaverMap */ = {

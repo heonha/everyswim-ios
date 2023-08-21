@@ -15,7 +15,7 @@ struct HomeImageSlider: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            imageFrame(imageName: "ad-sample1", title: "타이틀", subtitle: "서브타이틀 입니다.")
+            imageFrame(imageName: "ad-sample1", title: "수영초보 탈출하기", subtitle: "초보자에 알맞는 플레이리스트를 확인해보세요!")
                 .tag(0)
             imageFrame(imageName: "ad-sample2", title: "타이틀", subtitle: "서브타이틀 입니다.")
                 .tag(1)
@@ -59,6 +59,7 @@ struct HomeImageSlider: View {
                                 Text(title)
                                     .font(.custom(.sfProBold, size: 25))
                                     .foregroundColor(.white)
+                                    .padding(.top)
                                 
                                 Text(subtitle)
                                     .font(.custom(.sfProMedium, size: 18))

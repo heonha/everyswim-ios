@@ -108,7 +108,7 @@ extension EventDatePicker {
     
     private func dayGridView() -> some View {
         LazyVGrid(columns: columns, spacing: 2) {
-            ForEach(viewModel.extractDate()) { dateValue in
+            ForEach(viewModel.extractDayInCarendar()) { dateValue in
                 dayCellContainer(from: dateValue)
             }
         }
@@ -119,12 +119,8 @@ extension EventDatePicker {
             VStack {
                 if value.day != -1 {
                     Group {
-                        let hasEvent = viewModel.workouts.first { task in
-                            return viewModel.isSameDay(task.taskDate, value.date)
-                        }
-                        
-                        if let event = hasEvent {
-                            eventDayCell(value, task: event)
+                        if viewModel.isHasEvent(date: value.date) {
+                            eventDayCell(value)
                         } else {
                             noEventDayCell(value)
                         }
@@ -151,7 +147,7 @@ extension EventDatePicker {
             .frame(width: 46, height: 46)
     }
     
-    private func eventDayCell(_ value: DateValue, task: DatePickerMetaData) -> some View {
+    private func eventDayCell(_ value: DateValue) -> some View {
         let textColor = Color.white
         let circleColor = tintColor
         

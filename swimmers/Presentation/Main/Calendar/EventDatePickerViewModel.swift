@@ -31,27 +31,33 @@ final class EventDatePickerViewModel: ObservableObject {
 
 extension EventDatePickerViewModel {
     
+    func isHasEvent(date: Date) -> Bool {
+        let hasEvent = workouts.first { task in
+            return isSameDay(task.taskDate, date)
+        }
+        
+        if hasEvent != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func changeMonth() {
         currentDate = getCurrentMonth()
         isMonthlyRecord = true
         setTargetMonthData()
     }
-    
-    private func isSameMonth(_ date1: Date, _ date2: Date) -> Bool {
-        let calendar = Calendar.current
-        let components1 = calendar.dateComponents([.year, .month], from: date1)
-        let components2 = calendar.dateComponents([.year, .month], from: date2)
-                
-        return components1.year == components2.year && components1.month == components2.month
-    }
-    
+
     func subscribeSwimData() async {
         await hkManager?.loadSwimmingDataCollection()
+        
         SwimDataStore.shared.swimmingData
             .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] data in
                 guard let self = self else { return }
-                self.dateMetadata = self.groupEventsByDate(tasks: data)
+                
+                self.dateMetadata = self.groupingEventsByDate(tasks: data)
                 self.setTargetMonthData()
             }
             .store(in: &cancellables)
@@ -73,11 +79,18 @@ extension EventDatePickerViewModel {
         workouts.sort { $0.taskDate > $1.taskDate }
     }
     
-    
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
         let calendar = Calendar.current
 
         return calendar.isDate(date1, inSameDayAs: date2)
+    }
+    
+    private func isSameMonth(_ date1: Date, _ date2: Date) -> Bool {
+        let calendar = Calendar.current
+        let components1 = calendar.dateComponents([.year, .month], from: date1)
+        let components2 = calendar.dateComponents([.year, .month], from: date2)
+                
+        return components1.year == components2.year && components1.month == components2.month
     }
     
     func extraDate() -> [String] {
@@ -95,9 +108,7 @@ extension EventDatePickerViewModel {
         guard let currentMonth = calendar.date(byAdding: .month, value: currentMonth, to: Date()) else {
             return Date()
         }
-        
-        print("Current Month: \(currentMonth)")
-        
+                
         return currentMonth
     }
     
@@ -110,7 +121,7 @@ extension EventDatePickerViewModel {
         }
     }
     
-    func extractDate() -> [DateValue] {
+    func extractDayInCarendar() -> [DateValue] {
         
         let calendar = Calendar.current
         
@@ -137,7 +148,7 @@ extension EventDatePickerViewModel {
         return days
     }
     
-    private func groupEventsByDate(tasks: [SwimMainData]) -> [DatePickerMetaData] {
+    private func groupingEventsByDate(tasks: [SwimMainData]) -> [DatePickerMetaData] {
         var groupedTasks: [Date: [SwimMainData]] = [:]
 
         for task in tasks {

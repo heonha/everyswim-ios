@@ -57,39 +57,39 @@ struct EventListView: View {
                 .tint(.black)
         }
     }
-
+    
     private func eventCellsContainer() -> some View {
         Group {
-            if let workouts = viewModel.workouts.first(where: { task in
-                return viewModel.isSameDay(task.taskDate, viewModel.currentDate)
-            }) {
-                if !workouts.event.isEmpty {
+            ScrollView(showsIndicators: false) {
+                if !viewModel.workouts.isEmpty {
                     if viewModel.isMonthlyRecord {
                         eventCellsMonthly(viewModel.workouts)
                     } else {
-                        eventCell(workouts)
+                        if let workouts = viewModel.workouts.first(where: { task in
+                            return viewModel.isSameDay(task.taskDate, viewModel.currentDate)
+                        }) {
+                            eventCell(workouts)
+                        } else {
+                            eventCellPlaceholder()
+                        }
                     }
+                } else {
+                        eventCellPlaceholder()
                 }
-            } else {
-                eventCellPlaceholder()
             }
         }
     }
     
     private func eventCell(_ workout: DatePickerMetaData) -> some View {
-        ScrollView(showsIndicators: false) {
-            ForEach(workout.event) { workout in
-                EventListCell(data: workout)
-            }
+        ForEach(workout.event) { workout in
+            EventListCell(data: workout)
         }
     }
     
     private func eventCellsMonthly(_ workouts: [DatePickerMetaData]) -> some View {
-        ScrollView(showsIndicators: false) {
-            ForEach(workouts) { workout in
-                ForEach(workout.event) { event in
-                    EventListCell(data: event)
-                }
+        ForEach(workouts) { workout in
+            ForEach(workout.event) { event in
+                EventListCell(data: event)
             }
         }
     }
@@ -105,6 +105,7 @@ struct EventListView: View {
             
             Spacer()
         }
+        .frame(minHeight: 200, idealHeight: 300)
     }
 
 }
