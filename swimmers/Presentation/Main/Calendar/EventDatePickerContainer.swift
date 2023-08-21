@@ -21,6 +21,7 @@ struct EventDatePickerContainer: View {
             }
         }
     }
+    
 }
 
 #Preview {

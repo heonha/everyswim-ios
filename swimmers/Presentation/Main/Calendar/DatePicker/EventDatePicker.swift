@@ -8,29 +8,27 @@
 import SwiftUI
 
 struct EventDatePicker: View {
-        
-    private let columns = Array(repeating: GridItem(.flexible()), count: 7)
-    private let weekdays = ["일", "월", "화", "수", "목", "금", "토"]
+    
     private var tintColor = AppColor.primary
-
+    
     @ObservedObject private var viewModel: EventDatePickerViewModel
     
     init(viewModel: ObservedObject<EventDatePickerViewModel>) {
         self._viewModel = viewModel
     }
- 
+    
 }
 
 extension EventDatePicker {
     
     var body: some View {
-            calendarContainer()
-                .onChange(of: viewModel.currentMonth) { _ in
-                    viewModel.changeMonth()
-                }
-                .task {
-                    await viewModel.subscribeSwimData()
-                }
+        calendarContainer()
+            .onChange(of: viewModel.currentMonth) { _ in
+                viewModel.changeMonth()
+            }
+            .task {
+                await viewModel.subscribeSwimData()
+            }
     }
     
     private func calendarContainer() -> some View {
@@ -43,14 +41,14 @@ extension EventDatePicker {
                 
                 weekdayTitleView()
                 
-                dayGridView()
+                carendarDaysGrid()
                     .transition(.slide)
-                                
+                
                 Spacer()
             }
         }
     }
-
+    
     private func headerView() -> some View {
         HStack(spacing: 20) {
             headerDateLabel()
@@ -69,7 +67,7 @@ extension EventDatePicker {
             
             Text(viewModel.extraDate()[0])
                 .font(.custom(.sfProLight, size: 16))
-
+            
         }
         .padding(.vertical)
     }
@@ -97,7 +95,7 @@ extension EventDatePicker {
     
     private func weekdayTitleView() -> some View {
         HStack(spacing: 0) {
-            ForEach(weekdays, id: \.self) { weekDay in
+            ForEach(Weekdays.values, id: \.self) { weekDay in
                 Text(weekDay)
                     .font(.custom(.sfProBold, size: 14))
                     .foregroundColor(AppColor.grayTint)
@@ -106,8 +104,10 @@ extension EventDatePicker {
         }
     }
     
-    private func dayGridView() -> some View {
-        LazyVGrid(columns: columns, spacing: 2) {
+    private func carendarDaysGrid() -> some View {
+        let columns = Array(repeating: GridItem(.flexible()), count: 7)
+        
+        return LazyVGrid(columns: columns, spacing: 2) {
             ForEach(viewModel.extractDayInCarendar()) { dateValue in
                 dayCellContainer(from: dateValue)
             }
@@ -115,18 +115,16 @@ extension EventDatePicker {
     }
     
     private func dayCellContainer(from value: DateValue) -> some View {
-        ZStack {
-            VStack {
-                if value.day != -1 {
-                    Group {
-                        if viewModel.extractFirstEvent(date: value.date) != nil {
-                            eventDayCell(value)
-                        } else {
-                            noEventDayCell(value)
-                        }
+        VStack {
+            if value.day != -1 {
+                Group {
+                    if viewModel.extractFirstEvent(date: value.date) != nil {
+                        eventDayCell(value)
+                    } else {
+                        noEventDayCell(value)
                     }
-                    .background(dayViewBackground(value))
                 }
+                .background(dayViewBackground(value))
             }
         }
         .padding(.vertical, 9)
@@ -161,12 +159,12 @@ extension EventDatePicker {
                 .frame(maxWidth: .infinity)
         }
         .frame(width: 36, height: 36)
-
+        
     }
     
     private func noEventDayCell(_ value: DateValue) -> some View {
         let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.black : .primary
-
+        
         return ZStack {
             Text("\(value.day)")
                 .font(.custom(.sfProMedium, size: 16))
@@ -174,7 +172,7 @@ extension EventDatePicker {
                 .frame(maxWidth: .infinity)
         }
         .frame(width: 36, height: 36)
-
+        
     }
     
 }

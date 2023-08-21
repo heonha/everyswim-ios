@@ -8,6 +8,9 @@
 import SwiftUI
 
 enum Weekdays: Int {
+    
+    static let values = ["일", "월", "화", "수", "목", "금", "토"]
+    
     case sun
     case mon
     case tue
@@ -17,6 +20,7 @@ enum Weekdays: Int {
     case sat
     case error
     
+    
     var color: Color {
         switch self {
         case .sun: return Color.red
@@ -24,4 +28,5 @@ enum Weekdays: Int {
         default: return Color.black
         }
     }
+
 }

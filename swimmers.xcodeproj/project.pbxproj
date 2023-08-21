@@ -60,7 +60,7 @@
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */; };
 		397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AC2A68F61A008015F2 /* DefaultsName.swift */; };
-		397CC73B2A87792700C5D90D /* DatePickerMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */; };
+		397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* DatePickerEventData.swift */; };
 		397CC73D2A87883D00C5D90D /* EventDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */; };
 		397D72642A7FFBAA00D9E712 /* EventDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */; };
 		398B1BA52A483DA300E0FA9B /* swimmersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BA42A483DA300E0FA9B /* swimmersApp.swift */; };
@@ -162,7 +162,7 @@
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSortType.swift; sourceTree = "<group>"; };
 		397AB5AC2A68F61A008015F2 /* DefaultsName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsName.swift; sourceTree = "<group>"; };
-		397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerMetaData.swift; sourceTree = "<group>"; };
+		397CC73A2A87792700C5D90D /* DatePickerEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventData.swift; sourceTree = "<group>"; };
 		397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerViewModel.swift; sourceTree = "<group>"; };
 		397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePicker.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,6 +481,24 @@
 			path = ImageSlider;
 			sourceTree = "<group>";
 		};
+		392CC0A72A93229A00E839A8 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */,
+				397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		392CC0A82A9322A800E839A8 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */,
+				3961E8352A908B7D002D8B27 /* EventListCell.swift */,
+			);
+			path = EventList;
+			sourceTree = "<group>";
+		};
 		39437D9D2A48943200FDA9DA /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,8 +533,7 @@
 			children = (
 				390CEB232A82592A003198F6 /* DateValue.swift */,
 				39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */,
-				397CC73A2A87792700C5D90D /* DatePickerMetaData.swift */,
-				3961E8352A908B7D002D8B27 /* EventListCell.swift */,
+				397CC73A2A87792700C5D90D /* DatePickerEventData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -524,11 +541,10 @@
 		396088502A8F6E5E00FF2289 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				3960884F2A8F6E2D00FF2289 /* Model */,
 				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
-				397D72632A7FFBAA00D9E712 /* EventDatePicker.swift */,
-				397CC73C2A87883D00C5D90D /* EventDatePickerViewModel.swift */,
-				39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */,
+				392CC0A72A93229A00E839A8 /* DatePicker */,
+				392CC0A82A9322A800E839A8 /* EventList */,
+				3960884F2A8F6E2D00FF2289 /* Model */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -882,7 +898,7 @@
 				396D2AB02A559D290042D4D4 /* RecordCell.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
-				397CC73B2A87792700C5D90D /* DatePickerMetaData.swift in Sources */,
+				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
