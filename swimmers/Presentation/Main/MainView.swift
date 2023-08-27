@@ -27,7 +27,6 @@ struct MainView: View {
                 }
                 .tag(MainTabs.record)
             
-            
             HomeRecordsView()
                 .tabItem {
                     Label("대시보드", systemImage: "figure.pool.swim")
