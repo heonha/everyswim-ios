@@ -17,12 +17,13 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         print("SCENE DELEGATE")
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.backgroundColor = .systemBackground
+        window?.backgroundColor = .blue
 
-        let mainView = MainView()
-        let rootVC = UIHostingController(rootView: mainView)
+        // let mainView = MainView()
+        // let rootVC = UIHostingController(rootView: mainView)
 
-        window?.rootViewController = rootVC
+        let mainVC = MainTabBarController()
+        window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
     

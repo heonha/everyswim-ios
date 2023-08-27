@@ -181,9 +181,7 @@ extension HomeRecordsView {
 }
 
 #if DEBUG
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
+#Preview {
+    MainTabBarController()
 }
 #endif
