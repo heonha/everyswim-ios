@@ -51,7 +51,6 @@ extension HomeRecordsView {
                         summaryRecordCells()
 
                         Spacer()
-                        
                     }
                 }
 
@@ -179,9 +178,3 @@ extension HomeRecordsView {
     }
     
 }
-
-#if DEBUG
-#Preview {
-    MainTabBarController()
-}
-#endif

@@ -11,7 +11,8 @@ import SwiftUI
 final class MainTabBarController: UITabBarController {
     
     private let eventVC = UIHostingController(rootView: EventDatePickerContainer())
-    private let homeVC = UIHostingController(rootView: HomeRecordsView())
+    // private let homeVC = UIHostingController(rootView: HomeRecordsView())
+    private let homeVC = DashboardViewController()
     private let myInfoVC = UIHostingController(rootView: MyInfoView())
     
     init() {
@@ -26,7 +27,6 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load")
-        self.tabBar.backgroundColor = .brown
         setupTabBar()
         setupEachTabViews()
     }
@@ -35,13 +35,13 @@ final class MainTabBarController: UITabBarController {
 
 extension MainTabBarController {
 
-    func setupTabBar() {
+    private func setupTabBar() {
         self.tabBar.backgroundColor = .systemBackground
         self.tabBar.isTranslucent = true
         self.tabBar.tintColor = AppUIColor.primary
     }
     
-    func setupEachTabViews() {
+    private func setupEachTabViews() {
         let eventSymbol = UIImage(systemName: "chart.bar.xaxis")
         let homeSymbol = UIImage(systemName: "figure.pool.swim")
         let myInfoSymbol = UIImage(systemName: "person.circle.fill")
@@ -52,11 +52,11 @@ extension MainTabBarController {
         eventNavigation.isNavigationBarHidden = true
         homeNavigation.isNavigationBarHidden = true
         myInfoNavigation.isNavigationBarHidden = true
-
+        
         eventNavigation.tabBarItem = .init(title: "수영", image: eventSymbol, tag: 0)
         homeNavigation.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 1)
         myInfoNavigation.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
-
+        
         self.viewControllers = [eventNavigation, homeNavigation, myInfoNavigation]
     }
     

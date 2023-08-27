@@ -85,7 +85,6 @@
 		39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* SwimLapEvent.swift */; };
 		39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */; };
 		39A606AA2A6D160100049B5A /* SwimLapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A92A6D160100049B5A /* SwimLapsView.swift */; };
-		39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2712A492F2B00AED318 /* MainViewModel.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* Constant.swift */; };
 		39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */; };
 		39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */; };
@@ -95,6 +94,13 @@
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
 		39F599842A9B590D00738334 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 39F599832A9B590D00738334 /* SnapKit */; };
+		39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599852A9B5CB000738334 /* DashboardViewController.swift */; };
+		39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599872A9B6B2300738334 /* ViewFactory.swift */; };
+		39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599892A9B6BC200738334 /* UILabel+Extension.swift */; };
+		39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */; };
+		39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998D2A9B6C3800738334 /* UIViewPreview.swift */; };
+		39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */; };
+		39F599932A9B7BA000738334 /* EventListUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* EventListUICell.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -191,7 +197,6 @@
 		39A606A52A6D12C900049B5A /* SwimLapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapEvent.swift; sourceTree = "<group>"; };
 		39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkoutEventType+Extension.swift"; sourceTree = "<group>"; };
 		39A606A92A6D160100049B5A /* SwimLapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapsView.swift; sourceTree = "<group>"; };
-		39ADB2712A492F2B00AED318 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsViewModel.swift; sourceTree = "<group>"; };
 		39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
@@ -200,6 +205,13 @@
 		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		39F599852A9B5CB000738334 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		39F599872A9B6B2300738334 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		39F599892A9B6BC200738334 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
+		39F5998D2A9B6C3800738334 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		39F599922A9B7BA000738334 /* EventListUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListUICell.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				391C12BE2A592A24001C2286 /* TestObjects.swift */,
+				39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */,
+				39F5998D2A9B6C3800738334 /* UIViewPreview.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -343,6 +357,8 @@
 		3922D56E2A74B0DA00257164 /* HomeSubview */ = {
 			isa = PBXGroup;
 			children = (
+				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
+				39F599912A9B7B7600738334 /* Subviews */,
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
 				392CC0A52A93007600E839A8 /* ImageSlider */,
@@ -355,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
-				39ADB2712A492F2B00AED318 /* MainViewModel.swift */,
 				392083B82A485B5D00E591A8 /* Home */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083B92A485B6600E591A8 /* Maps */,
@@ -625,6 +640,7 @@
 				39572CDF2A52CABB00986E01 /* HealthKit */,
 				3922D5752A74B25700257164 /* UX */,
 				3922D5742A74B22400257164 /* Type */,
+				39F599872A9B6B2300738334 /* ViewFactory.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -684,8 +700,18 @@
 			children = (
 				39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */,
 				39F599802A9B570D00738334 /* UIFont+Extension.swift */,
+				39F599892A9B6BC200738334 /* UILabel+Extension.swift */,
+				39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		39F599912A9B7B7600738334 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				39F599922A9B7BA000738334 /* EventListUICell.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -837,6 +863,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397CC73D2A87883D00C5D90D /* EventDatePickerViewModel.swift in Sources */,
+				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				3961E8362A908B7D002D8B27 /* EventListCell.swift in Sources */,
 				398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */,
 				398B1BB42A483E1700E0FA9B /* HomeRecordsView.swift in Sources */,
@@ -848,9 +875,11 @@
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
+				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
+				39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */,
 				399906582A90BBC100E5E67D /* HomeImageSlider.swift in Sources */,
 				39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */,
@@ -887,12 +916,12 @@
 				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
 				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
+				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HKCustomError.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
-				39ADB2722A492F2B00AED318 /* MainViewModel.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C12A592AEA001C2286 /* RecentHistoryCell.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppImage.swift in Sources */,
@@ -900,10 +929,13 @@
 				3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* HomeRecordsViewModel.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
+				39F599932A9B7BA000738334 /* EventListUICell.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
+				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
+				39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
 				392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,

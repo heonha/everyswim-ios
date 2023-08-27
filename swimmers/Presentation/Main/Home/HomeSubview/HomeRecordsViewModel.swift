@@ -10,10 +10,10 @@ import Combine
 import HealthKit
 
 final class HomeRecordsViewModel: ObservableObject {
-    
-    private var hkManager: HealthKitManager?
+        
     var cancellables = Set<AnyCancellable>()
-    
+
+    private var hkManager: HealthKitManager?
     private var kcals: [HKNormalStatus] = []
     private var stroke: [HKNormalStatus] = []
     
