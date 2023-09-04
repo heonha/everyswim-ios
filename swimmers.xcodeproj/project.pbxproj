@@ -40,6 +40,7 @@
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
+		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
 		3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBAF2A6E54E300044125 /* SwimDetailView.swift */; };
 		3954EBB22A6E5F2700044125 /* WorkoutRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */; };
 		39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */; };
@@ -60,6 +61,7 @@
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */; };
+		3979A0652AA618930094D57A /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* HomeHeaderView.swift */; };
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */; };
 		397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AC2A68F61A008015F2 /* DefaultsName.swift */; };
@@ -148,6 +150,7 @@
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		3954EBAF2A6E54E300044125 /* SwimDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDetailView.swift; sourceTree = "<group>"; };
 		3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordType.swift; sourceTree = "<group>"; };
 		39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonType.swift; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 		396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimMainData.swift; sourceTree = "<group>"; };
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		3979A0642AA618930094D57A /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSortType.swift; sourceTree = "<group>"; };
 		397AB5AC2A68F61A008015F2 /* DefaultsName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsName.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
+				3979A0642AA618930094D57A /* HomeHeaderView.swift */,
 				39F599912A9B7B7600738334 /* Subviews */,
 				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
 				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
@@ -702,6 +707,7 @@
 				39F599802A9B570D00738334 /* UIFont+Extension.swift */,
 				39F599892A9B6BC200738334 /* UILabel+Extension.swift */,
 				39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */,
+				3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
+				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
@@ -885,6 +892,7 @@
 				398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */,
 				39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */,
 				396D2AB02A559D290042D4D4 /* RecordCell.swift in Sources */,
+				3979A0652AA618930094D57A /* HomeHeaderView.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,

@@ -15,9 +15,16 @@ final class DashboardViewController: UIViewController {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    private lazy var profileImageView: UIImageView = makeProfileImageView()
-    private lazy var headerView: UIStackView = makeHeaderView()
-    private lazy var recentRecordCell = UIView()
+    private lazy var headerView = HomeHeaderView(viewModel: viewModel)
+    
+    private let eventTitle = ViewFactory.label("최근 기록")
+        .font(.custom(.sfProLight, size: 15))
+        .foregroundColor(.gray)
+    
+    private lazy var recentRecordView: UIStackView = {
+        let vstack = ViewFactory.vStack(subviews: [eventTitle])
+        return vstack
+    }()
     
     init(viewModel: HomeRecordsViewModel? = nil) {
         self.viewModel = viewModel ?? HomeRecordsViewModel(healthKitManager: HealthKitManager())
@@ -32,11 +39,6 @@ final class DashboardViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupLayouts()
-        setupBindings()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         bindSubviews()
     }
     
@@ -45,79 +47,38 @@ final class DashboardViewController: UIViewController {
 extension DashboardViewController {
     
     private func bindSubviews() {
-        // FIXME: View 업데이트시마다 겹치는 증상 수정필요 (그림자 두꺼워지는걸로 확인)
-        viewModel.$lastWorkout.sink { data in
-            if let data = data {
-                self.recentRecordCell = UIView()
-                self.recentRecordCell = EventListUICell(data: data, showDate: true)
-                self.viewDidLoad()
+        viewModel.$lastWorkout
+            .receive(on: RunLoop.main)
+            .sink {[unowned self] data in
+                if let data = data {
+                    if recentRecordView.arrangedSubviews.count == 2 {
+                        print("recentRecordView의 count: \(recentRecordView.arrangedSubviews.count)")
+                        let last = recentRecordView.arrangedSubviews.last!
+                        recentRecordView.removeArrangedSubview(last)
+                    }
+                    let view = EventListUICell(data: data, showDate: true)
+                    recentRecordView.addArrangedSubview(view)
+                }
             }
-        }
         .store(in: &subscriptions)
     }
     
     private func setupLayouts() {
         view.addSubview(headerView)
-        profileImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(56)
-        }
-        
+        view.addSubview(recentRecordView)
+
         headerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalTo(view)
-            make.height.equalTo(100)
+            make.leading.equalTo(view)
+            make.trailing.equalTo(view)
         }
         
-        let eventTitle = ViewFactory.label("최근 기록")
-            .font(.custom(.sfProLight, size: 15))
-            .foregroundColor(.gray)
-        view.addSubview(eventTitle)
-        
-        eventTitle.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view).inset(28)
+        recentRecordView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
-        
-        view.addSubview(recentRecordCell)
-        recentRecordCell.snp.makeConstraints { make in
-            make.top.equalTo(eventTitle.snp.bottom).offset(8)
-            make.leading.trailing.equalTo(view).inset(24)
-        }
-        
-    }
-    
-    private func setupBindings() {
-        
-    }
-    
-    private func makeHeaderView() -> UIStackView {
-        let view = UIView()
-        
-        let title = ViewFactory.label("반가워요, Heon Ha!")
-            .font(.custom(.sfProBold, size: 16))
-            .foregroundColor(UIColor.secondaryLabel)
 
-        let subtitle = ViewFactory.label("오늘도 화이팅 해볼까요?")
-            .font(.custom(.sfProBold, size: 21))
-        
-        let vstack = ViewFactory.vStack(subviews: [title, subtitle], alignment: .top)
-            .setSpacing(8)
-        vstack.frame.size = .init(width: view.bounds.width - 48, height: 60)
-        
-        let hstack = ViewFactory.hStack(subviews: [vstack, profileImageView], alignment: .center)
-            .setEdgeInset(.init(top: 0, leading: 24, bottom: 0, trailing: 24))
-
-        return hstack
-    }
-    
-    private func makeProfileImageView() -> UIImageView {
-        let profileImage = UIImage(named: "Avatar") ?? UIImage()
-        let imageView = UIImageView(image: profileImage)
-        imageView.frame.size = .init(width: 56, height: 56)
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
-        imageView.clipsToBounds = true
-        return imageView
     }
     
 }

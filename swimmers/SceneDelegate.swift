@@ -13,14 +13,9 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        print("SCENE DELEGATE")
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .blue
-
-        // let mainView = MainView()
-        // let rootVC = UIHostingController(rootView: mainView)
 
         let mainVC = MainTabBarController()
         window?.rootViewController = mainVC
