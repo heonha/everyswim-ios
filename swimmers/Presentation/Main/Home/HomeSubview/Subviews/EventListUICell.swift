@@ -125,7 +125,9 @@ import SwiftUI
 
 struct EventListUICell_Previews: PreviewProvider {
     static var previews: some View {
-        UIViewPreview(view: EventListUICell(data: TestObjects.swimmingData.first!))
+        UIViewPreview {
+            EventListUICell(data: TestObjects.swimmingData.first!)
+        }
     }
 }
 #endif

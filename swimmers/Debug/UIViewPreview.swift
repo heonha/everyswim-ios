@@ -5,35 +5,25 @@
 //  Created by HeonJin Ha on 8/27/23.
 //
 
+
+#if canImport(SwiftUI) && DEBUG
 import SwiftUI
 
-final class UIViewPreview: UIViewRepresentable {
+struct UIViewPreview<View: UIView>: UIViewRepresentable {
+    let view: View
     
-    let view: UIView
-    
-    init(view: UIView) {
-        self.view = view
+    init(_ builder: @escaping () -> View) {
+        view = builder()
     }
     
+    // MARK: UIViewRepresentable
     func makeUIView(context: Context) -> UIView {
         return view
     }
     
-    func updateUIView(_ uiView: UIView, context: Context) { }
-    
-}
-
-#if DEBUG
-struct UIViewPreview_Previews: PreviewProvider {
-    
-    static let view = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        return view
-    }()
-    
-    static var previews: some View {
-        UIViewPreview(view: view)
+    func updateUIView(_ view: UIView, context: Context) {
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
 }
 #endif

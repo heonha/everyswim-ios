@@ -32,7 +32,8 @@ enum TestObjects {
                      startDate: "2023-07-15-08:30".toDateWithTime()!,
                      endDate: "2023-07-15-09:23".toDateWithTime()!,
                      detail: SwimStatisticsData(distance: 500,
-                                                stroke: 460, activeKcal: 250,
+                                                stroke: 460, 
+                                                activeKcal: 250,
                                                 restKcal: 100),
                      laps: []),
         

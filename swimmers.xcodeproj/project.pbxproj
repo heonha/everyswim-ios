@@ -19,7 +19,6 @@
 		391C12BA2A591835001C2286 /* CellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B92A591835001C2286 /* CellBackground.swift */; };
 		391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BB2A592989001C2286 /* AnimatedRingView.swift */; };
 		391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BE2A592A24001C2286 /* TestObjects.swift */; };
-		391C12C12A592AEA001C2286 /* RecentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */; };
 		391C12C32A593103001C2286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C22A593103001C2286 /* Int+Extension.swift */; };
 		391C12C72A59374D001C2286 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C62A59374D001C2286 /* AppImage.swift */; };
 		392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */; };
@@ -41,6 +40,8 @@
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
+		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
+		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
 		3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBAF2A6E54E300044125 /* SwimDetailView.swift */; };
 		3954EBB22A6E5F2700044125 /* WorkoutRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */; };
 		39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */; };
@@ -129,7 +130,6 @@
 		391C12B92A591835001C2286 /* CellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackground.swift; sourceTree = "<group>"; };
 		391C12BB2A592989001C2286 /* AnimatedRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedRingView.swift; sourceTree = "<group>"; };
 		391C12BE2A592A24001C2286 /* TestObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObjects.swift; sourceTree = "<group>"; };
-		391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHistoryCell.swift; sourceTree = "<group>"; };
 		391C12C22A593103001C2286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		391C12C62A59374D001C2286 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
@@ -151,6 +151,8 @@
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
+		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
 		3954EBAF2A6E54E300044125 /* SwimDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDetailView.swift; sourceTree = "<group>"; };
 		3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordType.swift; sourceTree = "<group>"; };
 		39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonType.swift; sourceTree = "<group>"; };
@@ -241,10 +243,9 @@
 		391C12B12A58D74C001C2286 /* Ring */ = {
 			isa = PBXGroup;
 			children = (
-				391C12C02A592AEA001C2286 /* RecentHistoryCell.swift */,
 				391C12B32A590AAE001C2286 /* EachChallangeCircleCell.swift */,
 				391C12AD2A58CE8E001C2286 /* ChallangeRingView.swift */,
-				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
+				391C12BB2A592989001C2286 /* AnimatedRingView.swift */,
 			);
 			path = Ring;
 			sourceTree = "<group>";
@@ -317,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				391C12B72A5915ED001C2286 /* BackgroundObject.swift */,
-				391C12BB2A592989001C2286 /* AnimatedRingView.swift */,
 				391C12B92A591835001C2286 /* CellBackground.swift */,
 				392083CE2A48860400E591A8 /* Modifier */,
 			);
@@ -708,6 +708,7 @@
 				39F599892A9B6BC200738334 /* UILabel+Extension.swift */,
 				39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */,
 				3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */,
+				394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -716,6 +717,8 @@
 			isa = PBXGroup;
 			children = (
 				39F599922A9B7BA000738334 /* EventListUICell.swift */,
+				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
+				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -879,6 +882,7 @@
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
+				394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
 				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
@@ -895,6 +899,7 @@
 				3979A0652AA618930094D57A /* HomeHeaderView.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
+				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
@@ -931,7 +936,6 @@
 				392457282A545016006E3071 /* HKCustomError.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
-				391C12C12A592AEA001C2286 /* RecentHistoryCell.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppImage.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
 				3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */,
