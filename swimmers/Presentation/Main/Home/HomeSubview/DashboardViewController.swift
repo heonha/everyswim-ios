@@ -38,7 +38,7 @@ final class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        setupLayouts()
+        configureLayouts()
         bindSubviews()
     }
     
@@ -63,7 +63,8 @@ extension DashboardViewController {
         .store(in: &subscriptions)
     }
     
-    private func setupLayouts() {
+    // MARK: - Layout
+    private func configureLayouts() {
         view.addSubview(headerView)
         view.addSubview(recentRecordView)
 
@@ -78,7 +79,6 @@ extension DashboardViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
-
     }
     
 }
