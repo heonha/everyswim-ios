@@ -11,6 +11,7 @@ import SnapKit
 final class EventListUICell: UIView {
     
     var data: SwimMainData
+    
     private var showRelativedate: Bool
     
     private lazy var mainView: UIStackView = {

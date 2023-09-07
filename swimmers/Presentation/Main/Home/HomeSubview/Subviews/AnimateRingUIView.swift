@@ -65,7 +65,7 @@ final class AnimateRingUIView: UIView {
         self.fontSize = textSize
         super.init(frame: .zero)
         
-        self.configureLayouts()
+        self.layout()
     }
     
     required init?(coder: NSCoder) {
@@ -76,11 +76,12 @@ final class AnimateRingUIView: UIView {
 
 extension AnimateRingUIView {
     
-    private func configureLayouts() {
+    private func layout() {
+        
         self.addSubview(backgroundView)
-
         backgroundView.addSubview(backgroundCircle)
         backgroundView.addSubview(progressCircle)
+        backgroundView.addSubview(text)
         
         backgroundView.snp.makeConstraints { make in
             make.center.equalTo(self)
@@ -94,7 +95,6 @@ extension AnimateRingUIView {
             make.center.equalTo(backgroundCircle)
         }
         
-        backgroundView.addSubview(text)
         text.snp.makeConstraints { make in
             make.center.equalTo(backgroundView)
             make.width.height.equalTo(self.circleSize / 2)

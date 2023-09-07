@@ -12,7 +12,7 @@ final class ChallangeCell: UIView {
     
     private let data: ChallangeRing
     
-    let backgroundView = UICellBackground()
+    private let backgroundView = UICellBackground()
     
     lazy var title = ViewFactory
         .label(data.type.title)
@@ -36,7 +36,6 @@ final class ChallangeCell: UIView {
     init(data: ChallangeRing, index: Int) {
         self.data = data
         super.init(frame: .zero)
-        configure()
         layout()
     }
     
@@ -47,12 +46,7 @@ final class ChallangeCell: UIView {
 }
 
 extension ChallangeCell {
-    
-    
-    func configure() {
- 
-    }
-    
+
     func layout() {
         self.addSubview(backgroundView)
 
