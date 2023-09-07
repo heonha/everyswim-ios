@@ -12,12 +12,11 @@ final class AnimateRingUIView: UIView {
     
     private let ring: ChallangeRing
     
-    private var index: Int
     private var showRing: Bool
-    
     private var lineWidth: CGFloat
     private var linePadding: CGFloat
     private var circleSize: CGFloat
+    private var fontSize: CGFloat
     
     private lazy var backgroundView = {
         let zstack = UIView()
@@ -30,7 +29,7 @@ final class AnimateRingUIView: UIView {
         return createCircle(progress: 1,
                             lineWidth: lineWidth,
                             lineColor: UIColor.gray.withAlphaComponent(0.16),
-                            radius: circleSize / 2,
+                            radius: self.circleSize / 2,
                             isAnimate: false)
     }()
 
@@ -42,14 +41,31 @@ final class AnimateRingUIView: UIView {
                             radius: self.circleSize / 2)
     }()
     
-    init(ring: ChallangeRing, index: Int, lineWidth: CGFloat = 12, linePadding: CGFloat = 16, circleSize: CGFloat = 50, showRing: Bool = false) {
+    private lazy var text: UILabel = {
+        let label = ViewFactory.label(ring.progressPercentString())
+            .font(.custom(.sfProMedium, size: fontSize))
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    init(ring: ChallangeRing, 
+         index: Int,
+         lineWidth: CGFloat = 12,
+         linePadding: CGFloat = 16,
+         circleSize: CGFloat = 50,
+         textSize: CGFloat = 12,
+         showRing: Bool = false) {
+        
         self.ring = ring
-        self.index = index
         self.lineWidth = lineWidth
         self.linePadding = linePadding
         self.circleSize = circleSize
         self.showRing = showRing
+        self.fontSize = textSize
         super.init(frame: .zero)
+        
         self.configureLayouts()
     }
     
@@ -59,29 +75,34 @@ final class AnimateRingUIView: UIView {
     
 }
 
-
 extension AnimateRingUIView {
     
     private func configureLayouts() {
         self.addSubview(backgroundView)
+
         backgroundView.addSubview(backgroundCircle)
         backgroundView.addSubview(progressCircle)
         
         backgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(CGFloat(index) * linePadding)
+            make.center.equalTo(self)
         }
         
         backgroundCircle.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.center.equalTo(backgroundCircle)
         }
         
         progressCircle.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.center.equalTo(backgroundCircle)
+        }
+        
+        backgroundView.addSubview(text)
+        text.snp.makeConstraints { make in
+            make.center.equalTo(backgroundView)
+            make.width.height.equalTo(self.circleSize / 2)
         }
         
     }
 
-    
     private func createCircle(progress: Double,
                               lineWidth: CGFloat,
                               lineColor: UIColor,
@@ -91,16 +112,18 @@ extension AnimateRingUIView {
         let view = UIView()
         let segmentPath = createSegment(startAngle: -90,
                                         endAngle: (progress * 360) - 90,
-                                        radius: radius)
+                                        radius: radius,
+                                        superViewLayer: view.layer)
         
         let segmentLayer = createLayer(path: segmentPath, lineColor: lineColor, isAnimate: isAnimate)
-                
         view.layer.addSublayer(segmentLayer)
         
         return view
     }
     
-    private func createLayer(path segmentPath: UIBezierPath, lineColor: UIColor, isAnimate: Bool) -> CAShapeLayer {
+    private func createLayer(path segmentPath: UIBezierPath, 
+                             lineColor: UIColor,
+                             isAnimate: Bool) -> CAShapeLayer {
         let segmentLayer = CAShapeLayer()
         segmentLayer.path = segmentPath.cgPath
         segmentLayer.lineWidth = lineWidth
@@ -109,7 +132,7 @@ extension AnimateRingUIView {
         segmentLayer.fillColor = UIColor.clear.cgColor
         
         if isAnimate {
-            addAnimation(to: segmentLayer)
+            addAnimation(to: segmentLayer, duration: 0.8)
         }
         
         return segmentLayer
@@ -117,8 +140,9 @@ extension AnimateRingUIView {
     
     private func createSegment(startAngle: CGFloat, 
                                endAngle: CGFloat,
-                               radius: CGFloat) -> UIBezierPath {
-        let centerPoint = CGPoint(x: radius, y: radius)
+                               radius: CGFloat,
+                               superViewLayer: CALayer) -> UIBezierPath {
+        let centerPoint = superViewLayer.anchorPoint
         let pathRadius = radius - (radius * 0.1)
         let startAngle = startAngle.toRadians()
         let endAngle = endAngle.toRadians()
@@ -130,14 +154,14 @@ extension AnimateRingUIView {
                             clockwise: true)
     }
     
-    private func addAnimation(to layer: CALayer) {
+    private func addAnimation(to layer: CALayer, duration: CGFloat = 1) {
         let drawAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        drawAnimation.duration = 0.75
-        drawAnimation.repeatCount = 1.0
-        drawAnimation.isRemovedOnCompletion = false
+        drawAnimation.duration = duration
+        drawAnimation.repeatCount = 1
         drawAnimation.fromValue = 0
         drawAnimation.toValue = 1
-        drawAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        drawAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        drawAnimation.isRemovedOnCompletion = false
         layer.add(drawAnimation, forKey: "drawCircleAnimation")
     }
 
@@ -152,7 +176,7 @@ struct AnimateRingUIView_Previews: PreviewProvider {
     
     static var previews: some View {
         UIViewPreview {
-            AnimateRingUIView(ring: challange, index: 0, circleSize: 100)
+            AnimateRingUIView(ring: challange, index: 0, circleSize: 50)
         }
         .frame(width: 100, height: 100)
 

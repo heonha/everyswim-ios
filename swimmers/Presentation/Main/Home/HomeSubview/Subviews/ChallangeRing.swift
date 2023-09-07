@@ -101,11 +101,11 @@ struct ChallangeRing: Identifiable {
 
 }
 
-#if DEBUG
-struct ChallangeRing_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        ChallangeRingView(rings: .constant(TestObjects.rings))
-    }
-}
-#endif
+// #if DEBUG
+// struct ChallangeRing_Previews: PreviewProvider {
+//     
+//     static var previews: some View {
+//         ChallangeRingView(rings: .constant(TestObjects.rings))
+//     }
+// }
+// #endif
