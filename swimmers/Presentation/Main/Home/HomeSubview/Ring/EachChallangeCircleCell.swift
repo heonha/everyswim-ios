@@ -58,8 +58,8 @@ struct RecordCircleCell_Previews: PreviewProvider {
     
     static var previews: some View {
         HStack {
-            ForEach(TestObjects.rings) { ring in
-                EachChallangeCircleCell(ring: ring)
+            ForEach(TestObjects.rings) { data in
+                EachChallangeCircleCell(ring: data)
             }
         }
     }

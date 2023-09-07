@@ -10,7 +10,7 @@ import SnapKit
 
 final class AnimateRingUIView: UIView {
     
-    private let ring: ChallangeRing
+    private let data: ChallangeRing
     
     private var showRing: Bool
     private var lineWidth: CGFloat
@@ -35,14 +35,14 @@ final class AnimateRingUIView: UIView {
 
     
     private lazy var progressCircle: UIView = {
-        return createCircle(progress: ring.progress(),
+        return createCircle(progress: data.progress(),
                             lineWidth: self.lineWidth,
-                            lineColor: self.ring.getCircleUIColor(),
+                            lineColor: self.data.getCircleUIColor(),
                             radius: self.circleSize / 2)
     }()
     
     private lazy var text: UILabel = {
-        let label = ViewFactory.label(ring.progressPercentString())
+        let label = ViewFactory.label(data.progressPercentString())
             .font(.custom(.sfProMedium, size: fontSize))
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -50,15 +50,14 @@ final class AnimateRingUIView: UIView {
         return label
     }()
     
-    init(ring: ChallangeRing, 
-         index: Int,
-         lineWidth: CGFloat = 12,
+    init(data: ChallangeRing,
+         lineWidth: CGFloat = 6,
          linePadding: CGFloat = 16,
          circleSize: CGFloat = 50,
          textSize: CGFloat = 12,
          showRing: Bool = false) {
         
-        self.ring = ring
+        self.data = data
         self.lineWidth = lineWidth
         self.linePadding = linePadding
         self.circleSize = circleSize
@@ -176,7 +175,7 @@ struct AnimateRingUIView_Previews: PreviewProvider {
     
     static var previews: some View {
         UIViewPreview {
-            AnimateRingUIView(ring: challange, index: 0, circleSize: 50)
+            AnimateRingUIView(data: challange, circleSize: 50)
         }
         .frame(width: 100, height: 100)
 
