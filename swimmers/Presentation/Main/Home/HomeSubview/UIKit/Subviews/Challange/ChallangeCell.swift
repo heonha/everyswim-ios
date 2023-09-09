@@ -20,7 +20,7 @@ final class ChallangeCell: UIView {
         .foregroundColor(.gray)
 
     lazy var countText = ViewFactory
-        .label(data.progressLabel())
+        .label("\(data.progressLabel()) \(data.unit)")
         .font(.custom(.sfProMedium, size: 14))
     
     lazy var circle = AnimateRingUIView(data: data, 
@@ -33,7 +33,7 @@ final class ChallangeCell: UIView {
         .setSpacing(6)
 
     
-    init(data: ChallangeRing, index: Int) {
+    init(data: ChallangeRing) {
         self.data = data
         super.init(frame: .zero)
         layout()
@@ -49,6 +49,7 @@ extension ChallangeCell {
 
     func layout() {
         self.addSubview(backgroundView)
+        self.setContentHuggingPriority(.init(251), for: .horizontal)
 
         self.snp.makeConstraints { make in
             make.width.height.equalTo(100)
@@ -74,7 +75,7 @@ import SwiftUI
 struct ChallangeCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            ChallangeCell(data: TestObjects.rings.first!, index: 0)
+            ChallangeCell(data: TestObjects.rings.first!)
         }
     }
 }

@@ -69,5 +69,16 @@ final class HomeHeaderView: UIView {
         }
     }
     
-    
 }
+
+#if DEBUG
+import SwiftUI
+
+struct HomeHeaderView_Previews: PreviewProvider {
+    static var previews: some View {
+        UIViewPreview {
+            HomeHeaderView(viewModel: HomeRecordsViewModel())
+        }
+    }
+}
+#endif

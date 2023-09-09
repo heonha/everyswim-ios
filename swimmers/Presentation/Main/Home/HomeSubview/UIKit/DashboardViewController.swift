@@ -17,9 +17,12 @@ final class DashboardViewController: UIViewController {
     
     private lazy var headerView = HomeHeaderView(viewModel: viewModel)
     
-    private let eventTitle = ViewFactory.label("최근 기록")
+    private let eventTitle = ViewFactory
+        .label("최근 기록")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.gray)
+    
+    private var challangeViews = ChallangeCellContainer()
     
     private lazy var recentRecordView: UIStackView = {
         let vstack = ViewFactory.vStack(subviews: [eventTitle])
@@ -67,6 +70,7 @@ extension DashboardViewController {
     private func configureLayouts() {
         view.addSubview(headerView)
         view.addSubview(recentRecordView)
+        view.addSubview(challangeViews)
 
         headerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -79,6 +83,13 @@ extension DashboardViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
+        
+        challangeViews.snp.makeConstraints { make in
+            make.top.equalTo(recentRecordView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+
+        }
     }
     
 }
@@ -88,7 +99,10 @@ import SwiftUI
 
 struct DashboardViewController_Previews: PreviewProvider {
     static var previews: some View {
-        UIViewControllerPreview(vc: DashboardViewController())
+        UIViewControllerPreview {
+            DashboardViewController()
+        }
+        .ignoresSafeArea()
     }
 }
 #endif

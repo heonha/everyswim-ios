@@ -5,20 +5,24 @@
 //  Created by HeonJin Ha on 8/27/23.
 //
 
+#if canImport(SwiftUI) && DEBUG
 import SwiftUI
 
-final class UIViewControllerPreview: UIViewControllerRepresentable {
+struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
     
-    let vc: UIViewController
+    let viewController: ViewController
     
-    init(vc: UIViewController) {
-        self.vc = vc
+    init(_ builder: @escaping () -> ViewController) {
+        viewController = builder()
     }
     
-    func makeUIViewController(context: Context) -> UIViewController {
-        return vc
+    // MARK: - UIViewControllerRepresentable
+    func makeUIViewController(context: Context) -> ViewController {
+        viewController
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
-    
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+        
+    }
 }
+#endif

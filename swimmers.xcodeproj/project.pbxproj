@@ -80,6 +80,7 @@
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
 		398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */; };
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
+		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		399906582A90BBC100E5E67D /* HomeImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399906572A90BBC100E5E67D /* HomeImageSlider.swift */; };
 		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
@@ -196,6 +197,7 @@
 		398B1BD02A4851A800E0FA9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCell.swift; sourceTree = "<group>"; };
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
+		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		399906572A90BBC100E5E67D /* HomeImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageSlider.swift; sourceTree = "<group>"; };
 		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -363,13 +365,8 @@
 		3922D56E2A74B0DA00257164 /* HomeSubview */ = {
 			isa = PBXGroup;
 			children = (
-				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
-				3979A0642AA618930094D57A /* HomeHeaderView.swift */,
-				39F599912A9B7B7600738334 /* Subviews */,
-				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
-				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
-				392CC0A52A93007600E839A8 /* ImageSlider */,
-				391C12B12A58D74C001C2286 /* Ring */,
+				398DFB452AA9DCA300BDEB8E /* SwiftUI */,
+				398DFB442AA9DC3D00BDEB8E /* UIKit */,
 			);
 			path = HomeSubview;
 			sourceTree = "<group>";
@@ -685,6 +682,38 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		398DFB432AA9DBC200BDEB8E /* Challange */ = {
+			isa = PBXGroup;
+			children = (
+				398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */,
+				398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */,
+				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
+				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
+			);
+			path = Challange;
+			sourceTree = "<group>";
+		};
+		398DFB442AA9DC3D00BDEB8E /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
+				3979A0642AA618930094D57A /* HomeHeaderView.swift */,
+				39F599912A9B7B7600738334 /* Subviews */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		398DFB452AA9DCA300BDEB8E /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				398B1BB32A483E1700E0FA9B /* HomeRecordsView.swift */,
+				39572CE92A52F0F700986E01 /* HomeRecordsViewModel.swift */,
+				392CC0A52A93007600E839A8 /* ImageSlider */,
+				391C12B12A58D74C001C2286 /* Ring */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		39ADB2802A4AEA0000AED318 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,10 +747,8 @@
 		39F599912A9B7B7600738334 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				398DFB432AA9DBC200BDEB8E /* Challange */,
 				39F599922A9B7BA000738334 /* EventListUICell.swift */,
-				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
-				398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */,
-				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -881,6 +908,7 @@
 				398B1BB42A483E1700E0FA9B /* HomeRecordsView.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */,
+				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,

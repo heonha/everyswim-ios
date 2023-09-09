@@ -29,7 +29,7 @@ final class HomeRecordsViewModel: ObservableObject {
     @Published private(set) var strokePerMonth: Double = 0.0
     @Published private(set) var lastWorkout: SwimMainData?
     
-    init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager?) {
+    init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager()
