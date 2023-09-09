@@ -22,6 +22,12 @@ final class HomeRecordsViewModel: ObservableObject {
         ChallangeRing(type: .lap, count: 0, maxCount: 1),
         ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
     ]
+        
+    var slideData: [ImageSliderData] = [
+        ImageSliderData(imageName: "ad-sample1", title: "수영초보 탈출하기", subtitle: "초보자에 알맞는 플레이리스트를 확인해보세요!"),
+        ImageSliderData(imageName: "ad-sample2", title: "타이틀", subtitle: "서브타이틀 입니다."),
+        ImageSliderData(imageName: "ad-sample3", title: "타이틀", subtitle: "서브타이틀 입니다.")
+    ]
     
     @Published private(set) var swimRecords: [SwimMainData]
     @Published private(set) var rings: [ChallangeRing] = []

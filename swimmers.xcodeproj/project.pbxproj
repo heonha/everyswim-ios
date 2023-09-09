@@ -93,6 +93,9 @@
 		39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* Constant.swift */; };
 		39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */; };
 		39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */; };
+		39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3972AAC6FD5004E0985 /* ImageSliderView.swift */; };
+		39B0C39A2AAC78F9004E0985 /* ImageSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* ImageSliderCell.swift */; };
+		39B0C39C2AAC7DCF004E0985 /* ImageSliderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C39B2AAC7DCF004E0985 /* ImageSliderData.swift */; };
 		39BB6D0B2A8CBA5400DCF8B1 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */; };
@@ -210,6 +213,9 @@
 		39ADB27C2A4AE4FA00AED318 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		39ADB27E2A4AE90A00AED318 /* PoolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsViewModel.swift; sourceTree = "<group>"; };
 		39ADB2822A4AEA2200AED318 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
+		39B0C3972AAC6FD5004E0985 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
+		39B0C3992AAC78F9004E0985 /* ImageSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCell.swift; sourceTree = "<group>"; };
+		39B0C39B2AAC7DCF004E0985 /* ImageSliderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderData.swift; sourceTree = "<group>"; };
 		39BB6D0A2A8CBA5400DCF8B1 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
@@ -731,6 +737,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		39B0C3962AAC6FBE004E0985 /* ImageSlider */ = {
+			isa = PBXGroup;
+			children = (
+				39B0C3972AAC6FD5004E0985 /* ImageSliderView.swift */,
+				39B0C3992AAC78F9004E0985 /* ImageSliderCell.swift */,
+				39B0C39B2AAC7DCF004E0985 /* ImageSliderData.swift */,
+			);
+			path = ImageSlider;
+			sourceTree = "<group>";
+		};
 		39F5997D2A9B56CA00738334 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +763,7 @@
 		39F599912A9B7B7600738334 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				39B0C3962AAC6FBE004E0985 /* ImageSlider */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
 				39F599922A9B7BA000738334 /* EventListUICell.swift */,
 			);
@@ -941,6 +958,7 @@
 				39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */,
 				391C12BC2A592989001C2286 /* AnimatedRingView.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
+				39B0C39C2AAC7DCF004E0985 /* ImageSliderData.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
 				397D72642A7FFBAA00D9E712 /* EventDatePicker.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
@@ -962,6 +980,7 @@
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
+				39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HKCustomError.swift in Sources */,
@@ -978,6 +997,7 @@
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
+				39B0C39A2AAC78F9004E0985 /* ImageSliderCell.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
