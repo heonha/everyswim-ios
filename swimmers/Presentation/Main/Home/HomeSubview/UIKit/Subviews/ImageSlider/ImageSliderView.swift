@@ -24,10 +24,12 @@ final class ImageSliderView: UICollectionView {
     }
     
     private func configure() {
-        self.backgroundColor = .gray
+        self.backgroundColor = .white
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         self.isPrefetchingEnabled = true
+        self.allowsSelection = false
+        self.selectionFollowsFocus = false
     }
     
 }

@@ -72,21 +72,3 @@ class ImageSliderCell: UICollectionViewListCell {
         
     }
 }
-
-
-// ZStack {
-//     Color.black.opacity(0.5)
-//         .overlay(alignment: .topLeading) {
-//             VStack(alignment: .leading, spacing: 8) {
-//                 Text(title)
-//                     .font(.custom(.sfProBold, size: 25))
-//                     .foregroundColor(.white)
-//                     .padding(.top)
-//                 
-//                 Text(subtitle)
-//                     .font(.custom(.sfProMedium, size: 18))
-//                     .foregroundColor(.white)
-//             }
-//             .padding()
-//         }
-// }

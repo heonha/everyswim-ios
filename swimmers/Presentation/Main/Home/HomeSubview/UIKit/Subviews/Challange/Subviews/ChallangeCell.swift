@@ -36,6 +36,7 @@ final class ChallangeCell: UIView {
     init(data: ChallangeRing) {
         self.data = data
         super.init(frame: .zero)
+        self.setContentHuggingPriority(.init(251), for: .horizontal)
         layout()
     }
     
@@ -49,17 +50,17 @@ extension ChallangeCell {
 
     func layout() {
         self.addSubview(backgroundView)
-        self.setContentHuggingPriority(.init(251), for: .horizontal)
-
+        
         self.snp.makeConstraints { make in
-            make.width.height.equalTo(100)
+            make.width.greaterThanOrEqualTo(100)
+            make.height.greaterThanOrEqualTo(100)
         }
+        backgroundView.addSubview(vstack)
         
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        backgroundView.addSubview(vstack)
         vstack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

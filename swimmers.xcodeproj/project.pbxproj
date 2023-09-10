@@ -692,9 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */,
-				398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */,
-				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
-				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
+				39BC26972AAD7EE1007432B5 /* Subviews */,
 			);
 			path = Challange;
 			sourceTree = "<group>";
@@ -747,6 +745,16 @@
 			path = ImageSlider;
 			sourceTree = "<group>";
 		};
+		39BC26972AAD7EE1007432B5 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */,
+				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
+				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		39F5997D2A9B56CA00738334 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,9 +771,9 @@
 		39F599912A9B7B7600738334 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				39F599922A9B7BA000738334 /* EventListUICell.swift */,
 				39B0C3962AAC6FBE004E0985 /* ImageSlider */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
-				39F599922A9B7BA000738334 /* EventListUICell.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";

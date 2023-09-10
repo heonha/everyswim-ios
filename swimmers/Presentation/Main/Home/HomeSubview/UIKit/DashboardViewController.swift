@@ -52,6 +52,11 @@ final class DashboardViewController: UIViewController {
         slideTimer()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updateChallangeView()
+    }
+    
 }
 
 extension DashboardViewController {
@@ -76,12 +81,11 @@ extension DashboardViewController {
     private func configure() {
         imageSlider.dataSource = self
         imageSlider.delegate = self
-        imageSlider.backgroundColor = .red
-        imageSlider.register(ImageSliderCell.self, forCellWithReuseIdentifier: "ImageSliderCell")
+        imageSlider.register(ImageSliderCell.self,
+                             forCellWithReuseIdentifier: "ImageSliderCell")
 
         pageController.currentPage = 0
         pageController.numberOfPages = viewModel.slideData.count
-        
     }
     
     // MARK: - Layout
@@ -123,8 +127,12 @@ extension DashboardViewController {
             make.top.equalTo(imageSlider.snp.bottom).offset(spacing)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-        }        
+        }
         
+    }
+    
+    func updateChallangeView() {
+        challangeViews.startCircleAnimation()
     }
     
     private func slideTimer() {
@@ -158,7 +166,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCell", for: indexPath) as? ImageSliderCell else { return UICollectionViewCell() }
-        
         let data = viewModel.slideData[indexPath.row]
         cell.imageView.image = UIImage(named: data.imageName)
         cell.titleLabel.text = data.title
@@ -166,6 +173,14 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
 }
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
@@ -188,7 +203,6 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
 
 #if DEBUG
 import SwiftUI

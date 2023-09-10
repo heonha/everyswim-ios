@@ -66,6 +66,7 @@ final class AnimateRingUIView: UIView {
         super.init(frame: .zero)
         
         self.layout()
+        self.startCircleAnimation()
     }
     
     required init?(coder: NSCoder) {
@@ -75,6 +76,12 @@ final class AnimateRingUIView: UIView {
 }
 
 extension AnimateRingUIView {
+    
+    func startCircleAnimation() {
+        let targetLayer = progressCircle.layer.sublayers!.first!
+        removeAnimation(to: targetLayer)
+        addAnimation(to: targetLayer, duration: 0.8)
+    }
     
     private func layout() {
         
@@ -129,11 +136,7 @@ extension AnimateRingUIView {
         segmentLayer.lineCap = .round
         segmentLayer.strokeColor = lineColor.cgColor
         segmentLayer.fillColor = UIColor.clear.cgColor
-        
-        if isAnimate {
-            addAnimation(to: segmentLayer, duration: 0.8)
-        }
-        
+
         return segmentLayer
     }
     
@@ -162,6 +165,10 @@ extension AnimateRingUIView {
         drawAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         drawAnimation.isRemovedOnCompletion = false
         layer.add(drawAnimation, forKey: "drawCircleAnimation")
+    }
+    
+    private func removeAnimation(to layer: CALayer) {
+        layer.removeAnimation(forKey: "drawCircleAnimation")
     }
 
 }

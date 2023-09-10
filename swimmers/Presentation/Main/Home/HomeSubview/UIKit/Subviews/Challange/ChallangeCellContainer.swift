@@ -28,8 +28,9 @@ final class ChallangeCellContainer: UIView {
     }()
     
     lazy var hstack: UIStackView = {
+        let spacing =  ((Constant.deviceSize.width - 40) / 3) * 0.1
         let hstack = ViewFactory
-            .hStack(subviews: self.cells, alignment: .center, distribution: .fill)
+            .hStack(subviews: self.cells, spacing: spacing, alignment: .center, distribution: .fillEqually)
         return hstack
     }()
     
@@ -47,13 +48,21 @@ final class ChallangeCellContainer: UIView {
 
 extension ChallangeCellContainer {
     
+    func startCircleAnimation() {
+        cells.forEach { view in
+            if let challangeView = view as? ChallangeCell {
+                challangeView.circle.startCircleAnimation()
+            }
+        }
+    }
+    
     private func layout() {
         self.addSubview(backgroundView)
         backgroundView.addSubview(titleLabel)
         backgroundView.addSubview(hstack)
         
         backgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(self)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -61,8 +70,8 @@ extension ChallangeCellContainer {
         }
         
         hstack.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
-            make.centerX.equalTo(backgroundView)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.horizontalEdges.equalTo(backgroundView).inset(4)
         }
     }
     

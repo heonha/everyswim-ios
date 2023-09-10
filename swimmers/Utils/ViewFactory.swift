@@ -18,7 +18,7 @@ enum ViewFactory {
         sv.axis = .vertical
         sv.spacing = spacing
         sv.alignment = alignment
-        sv.distribution = .fill
+        sv.distribution = distribution
         return sv
     }
     
@@ -31,7 +31,7 @@ enum ViewFactory {
         sv.axis = .horizontal
         sv.spacing = spacing
         sv.alignment = alignment
-        sv.distribution = .fill
+        sv.distribution = distribution
         return sv
     }
     
