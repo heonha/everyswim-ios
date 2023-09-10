@@ -1,5 +1,5 @@
 //
-//  HomeHeaderView.swift
+//  DashboardHeaderView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/4/23.
@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class HomeHeaderView: UIView {
+final class DashboardHeaderView: UIView {
     
-    private let viewModel: HomeRecordsViewModel
+    private let viewModel: DashboardViewModel
     
     private lazy var title = ViewFactory.label("반가워요, Heon Ha!")
         .font(.custom(.sfProBold, size: 16))
@@ -37,7 +37,7 @@ final class HomeHeaderView: UIView {
     
     private lazy var hstack = ViewFactory.hStack(subviews: [vstack, profileImageView])
     
-    init(viewModel: HomeRecordsViewModel) {
+    init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         layout()
@@ -77,7 +77,7 @@ import SwiftUI
 struct HomeHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            HomeHeaderView(viewModel: HomeRecordsViewModel())
+            DashboardHeaderView(viewModel: DashboardViewModel())
         }
     }
 }

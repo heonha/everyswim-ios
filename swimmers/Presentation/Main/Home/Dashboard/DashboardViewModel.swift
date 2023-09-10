@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  DashboardViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/03.
@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class HomeRecordsViewModel: ObservableObject {
+final class DashboardViewModel: ObservableObject {
         
     private var cancellables = Set<AnyCancellable>()
 

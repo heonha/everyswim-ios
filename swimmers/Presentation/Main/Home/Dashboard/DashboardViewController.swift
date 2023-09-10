@@ -11,11 +11,11 @@ import Combine
 
 final class DashboardViewController: UIViewController {
     
-    private let viewModel: HomeRecordsViewModel
+    private let viewModel: DashboardViewModel
     
     private var subscriptions = Set<AnyCancellable>()
     
-    private lazy var headerView = HomeHeaderView(viewModel: viewModel)
+    private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
     
     private let eventTitle = ViewFactory
         .label("최근 기록")
@@ -34,8 +34,8 @@ final class DashboardViewController: UIViewController {
         return vstack
     }()
     
-    init(viewModel: HomeRecordsViewModel? = nil) {
-        self.viewModel = viewModel ?? HomeRecordsViewModel(healthKitManager: HealthKitManager())
+    init(viewModel: DashboardViewModel? = nil) {
+        self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())
         super.init(nibName: nil, bundle: nil)
     }
     
