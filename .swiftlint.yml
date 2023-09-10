@@ -20,6 +20,7 @@ disabled_rules:
   - multiline_function_chains
   - unused_import
   - type_name
+  - trailing_whitespace
   
 
 opt_in_rules:

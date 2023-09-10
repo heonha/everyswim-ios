@@ -58,17 +58,6 @@ struct ChallangeRing: Identifiable {
     }
     
     func getCircleColor() -> Color {
-        // switch type {
-        // case .distance:
-        //     return AppColor.secondaryBlue
-        // case .lap:
-        //     return AppColor.primary
-        // case .countPerWeek:
-        //     return Color(hex: "1ab8cd")
-        // default:
-        //     return .init(uiColor: .label)
-        // }
-        
         switch progress() {
         case 0...0.29:
             return AppColor.caloriesRed
@@ -79,8 +68,21 @@ struct ChallangeRing: Identifiable {
         default:
             return Color.green
         }
-
     }
+    
+    func getCircleUIColor() -> UIColor {
+        switch progress() {
+        case 0...0.29:
+            return AppUIColor.caloriesRed
+        case 0.30...0.69:
+            return UIColor(hex: "1ab8cd")
+        case 0.70...1.0:
+            return AppUIColor.secondaryBlue
+        default:
+            return UIColor.green
+        }
+    }
+    
     
     var keyIcon: String {
         switch type {
@@ -99,11 +101,11 @@ struct ChallangeRing: Identifiable {
 
 }
 
-#if DEBUG
-struct ChallangeRing_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        ChallangeRingView(rings: .constant(TestObjects.rings))
-    }
-}
-#endif
+// #if DEBUG
+// struct ChallangeRing_Previews: PreviewProvider {
+//     
+//     static var previews: some View {
+//         ChallangeRingView(rings: .constant(TestObjects.rings))
+//     }
+// }
+// #endif

@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  DashboardViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/03.
@@ -9,28 +9,33 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class HomeRecordsViewModel: ObservableObject {
-    
+final class DashboardViewModel: ObservableObject {
+        
+    private var cancellables = Set<AnyCancellable>()
+
     private var hkManager: HealthKitManager?
-    var cancellables = Set<AnyCancellable>()
-    
     private var kcals: [HKNormalStatus] = []
     private var stroke: [HKNormalStatus] = []
     
-    let emptyRing = [
+    private let emptyRing = [
         ChallangeRing(type: .distance, count: 0, maxCount: 1),
         ChallangeRing(type: .lap, count: 0, maxCount: 1),
         ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
     ]
+        
+    var slideData: [ImageSliderData] = [
+        ImageSliderData(imageName: "ad-sample1", title: "수영초보 탈출하기", subtitle: "초보자에 알맞는 플레이리스트를 확인해보세요!"),
+        ImageSliderData(imageName: "ad-sample2", title: "타이틀", subtitle: "서브타이틀 입니다."),
+        ImageSliderData(imageName: "ad-sample3", title: "타이틀", subtitle: "서브타이틀 입니다.")
+    ]
     
-    @Published var swimRecords: [SwimMainData]
-    @Published var rings: [ChallangeRing] = []
+    @Published private(set) var swimRecords: [SwimMainData]
+    @Published private(set) var rings: [ChallangeRing] = []
+    @Published private(set) var kcalPerWeek: Double = 0.0
+    @Published private(set) var strokePerMonth: Double = 0.0
+    @Published private(set) var lastWorkout: SwimMainData?
     
-    @Published var kcalPerWeek: Double = 0.0
-    @Published var strokePerMonth: Double = 0.0
-    @Published var lastWorkout: SwimMainData?
-    
-    init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager?) {
+    init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager()
@@ -52,6 +57,7 @@ final class HomeRecordsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .map(\.first)
             .sink { [weak self] data in
+                print("lastWorkout를 셋업합니다.")
                 self?.lastWorkout = data
             }.store(in: &cancellables)
     }
@@ -62,7 +68,8 @@ final class HomeRecordsViewModel: ObservableObject {
     }
     
     private func subscribeSwimmingData() {
-        SwimDataStore.shared.swimmingData
+        SwimDataStore.shared
+            .swimmingData
             .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
             .sink { completion in
                 switch completion {
@@ -115,7 +122,6 @@ final class HomeRecordsViewModel: ObservableObject {
         let endDate = Date()
         
         print("Debug: \(#function) StatCollection만들기 시작")
-        /// 시작 날짜부터 종료 날짜까지의 모든 시간 간격에 대한 통계 개체를 열거합니다.
         statCollection.enumerateStatistics(from: startDate, to: endDate) { statCollection, _ in
             
             switch type {
