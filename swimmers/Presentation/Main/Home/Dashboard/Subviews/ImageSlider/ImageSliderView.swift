@@ -30,6 +30,7 @@ final class ImageSliderView: UICollectionView {
         self.isPrefetchingEnabled = true
         self.allowsSelection = false
         self.selectionFollowsFocus = false
+        self.isPagingEnabled = true
     }
     
 }

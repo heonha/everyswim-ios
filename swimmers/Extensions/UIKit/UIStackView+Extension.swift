@@ -16,10 +16,35 @@ extension UIStackView {
         return self
     }
     
-    func setSpacing(_ insets: CGFloat) -> UIStackView {
-        self.isLayoutMarginsRelativeArrangement = true
-        self.directionalLayoutMargins = .init(top: insets, leading: insets, bottom: insets, trailing: insets)
-        
+    func spacing(_ spacing: CGFloat) -> UIStackView {
+        self.spacing = spacing
+        return self
+    }
+    
+    func distribution(_ distribution: UIStackView.Distribution) -> UIStackView {
+        self.distribution = distribution
+        return self
+    }
+    
+    func alignment(_ alignment: UIStackView.Alignment) -> UIStackView {
+        self.alignment = alignment
+        return self
+    }
+    
+    func axis(_ axis: NSLayoutConstraint.Axis) -> UIStackView {
+        self.axis = axis
+        return self
+    }
+    
+    func addSubviews(_ views: [UIView]) -> UIStackView {
+        views.forEach { view in
+            self.addArrangedSubview(view)
+        }
+        return self
+    }
+    
+    func addSubview(_ view: UIView) -> UIView {
+        self.addArrangedSubview(view)
         return self
     }
     
