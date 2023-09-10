@@ -60,9 +60,3 @@ struct BackgroundObject: View {
 
     }
 }
-
-struct BackgroundObject_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeRecordsView()
-    }
-}

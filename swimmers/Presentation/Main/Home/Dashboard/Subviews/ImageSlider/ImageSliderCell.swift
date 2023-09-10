@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class ImageSliderCell: UICollectionViewListCell {
-        
     
     var titleLabel = ViewFactory
         .label("")
@@ -21,10 +20,9 @@ class ImageSliderCell: UICollectionViewListCell {
         .font(.custom(.sfProMedium, size: 16))
         .foregroundColor(.white)
     
-    
     lazy var labelVStack = ViewFactory
         .vStack(subviews: [titleLabel, subtitleLabel], spacing: 8)
-        .setSpacing(6)
+        .setEdgeInset(NSDirectionalEdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6))
     
     var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)

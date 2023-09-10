@@ -12,11 +12,13 @@ final class DashboardHeaderView: UIView {
     
     private let viewModel: DashboardViewModel
     
-    private lazy var title = ViewFactory.label("반가워요, Heon Ha!")
+    private lazy var title = ViewFactory
+        .label("반가워요, Heon Ha!")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(UIColor.secondaryLabel)
 
-    private let subtitle = ViewFactory.label("오늘도 화이팅 해볼까요?")
+    private let subtitle = ViewFactory
+        .label("오늘도 화이팅 해볼까요?")
         .font(.custom(.sfProBold, size: 21))
     
     private lazy var profileImageView: UIImageView = {
@@ -30,12 +32,15 @@ final class DashboardHeaderView: UIView {
     }()
     
     private lazy var vstack: UIStackView = {
-        let vstack = ViewFactory.vStack(subviews: [title, subtitle], alignment: .fill)
-            .setSpacing(8)
+        let vstack = ViewFactory
+            .vStack(subviews: [title, subtitle])
+            .alignment(.fill)
+            .spacing(8)
         return vstack
     }()
     
-    private lazy var hstack = ViewFactory.hStack(subviews: [vstack, profileImageView])
+    private lazy var hstack = ViewFactory
+        .hStack(subviews: [vstack, profileImageView])
     
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -48,12 +53,12 @@ final class DashboardHeaderView: UIView {
     }
     
     func layout() {
-        
         self.addSubview(hstack)
 
         title.setContentHuggingPriority(.init(251), for: .vertical)
         title.setContentCompressionResistancePriority(.init(751), for: .vertical)
         profileImageView.setContentHuggingPriority(.init(251), for: .horizontal)
+        
         self.snp.makeConstraints { make in
             make.height.greaterThanOrEqualTo(80)
         }
