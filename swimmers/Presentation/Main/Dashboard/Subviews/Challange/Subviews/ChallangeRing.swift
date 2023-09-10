@@ -79,7 +79,7 @@ struct ChallangeRing: Identifiable {
         case 0.70...1.0:
             return AppUIColor.secondaryBlue
         default:
-            return UIColor.green
+            return UIColor.systemGreen
         }
     }
     

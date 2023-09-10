@@ -61,9 +61,17 @@ struct SwimMainData: Identifiable {
         
         let duration = self.duration.toRelativeTime(.hourMinute)
         let distance = self.unwrappedDistance.toString()
-        let lap = self.laps.count
+        let lap = self.laps.count.description
         
         return (duration: duration, distance: distance, lap: "\(lap)")
+    }
+    
+    static func PlaceholderSimpleRecords() -> (duration: String, distance: String, lap: String){
+        let duration = "1시간 10분"
+        let distance = "600"
+        let lap = 20.description
+        
+        return (duration: duration, distance: distance, lap: lap)
     }
     
 }

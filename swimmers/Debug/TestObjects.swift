@@ -11,7 +11,7 @@ import Foundation
 enum TestObjects {
     
     static let rings = [
-        ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
+        ChallangeRing(type: .distance, count: 2001, maxCount: 2000),
         ChallangeRing(type: .lap, count: 45, maxCount: 60),
         ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
     ]

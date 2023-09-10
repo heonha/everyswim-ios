@@ -17,11 +17,6 @@ final class DashboardViewController: UIViewController {
     
     private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
     
-    private let eventTitle = ViewFactory
-        .label("최근 기록")
-        .font(.custom(.sfProLight, size: 15))
-        .foregroundColor(.gray)
-    
     private var challangeViews = ChallangeCellContainer()
     
     private let imageSlider = ImageSliderView()
@@ -29,8 +24,17 @@ final class DashboardViewController: UIViewController {
     
     var counter = 0
     
+    private lazy var lastWorkoutView = EventListUICell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!, showDate: true)
+    
     private lazy var recentRecordView: UIStackView = {
-        let vstack = ViewFactory.vStack(subviews: [eventTitle])
+        let eventTitle = ViewFactory
+            .label("최근 기록")
+            .font(.custom(.sfProLight, size: 15))
+            .foregroundColor(.gray)
+        
+        
+        let vstack = ViewFactory
+            .vStack(subviews: [eventTitle, lastWorkoutView])
         return vstack
     }()
     
@@ -66,13 +70,7 @@ extension DashboardViewController {
             .receive(on: RunLoop.main)
             .sink {[unowned self] data in
                 if let data = data {
-                    if recentRecordView.arrangedSubviews.count == 2 {
-                        print("recentRecordView의 count: \(recentRecordView.arrangedSubviews.count)")
-                        let last = recentRecordView.arrangedSubviews.last!
-                        recentRecordView.removeArrangedSubview(last)
-                    }
-                    let view = EventListUICell(data: data, showDate: true)
-                    recentRecordView.addArrangedSubview(view)
+                    lastWorkoutView.updateData(data)
                 }
             }
         .store(in: &subscriptions)
@@ -131,7 +129,7 @@ extension DashboardViewController {
         
     }
     
-    func updateChallangeView() {
+    private func updateChallangeView() {
         challangeViews.startCircleAnimation()
     }
     

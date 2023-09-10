@@ -32,7 +32,7 @@
 		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
 		3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D5852A74E95400257164 /* SwimDataManager.swift */; };
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
-		392457282A545016006E3071 /* HKCustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HKCustomError.swift */; };
+		392457282A545016006E3071 /* HealthKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HealthKitError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
@@ -144,7 +144,7 @@
 		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		3922D5852A74E95400257164 /* SwimDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataManager.swift; sourceTree = "<group>"; };
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
-		392457272A545016006E3071 /* HKCustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCustomError.swift; sourceTree = "<group>"; };
+		392457272A545016006E3071 /* HealthKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
@@ -263,17 +263,6 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
-		392083B82A485B5D00E591A8 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				3922D56E2A74B0DA00257164 /* Dashboard */,
-				391C12B22A58D779001C2286 /* History */,
-				392083C42A487DEA00E591A8 /* Types */,
-				3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		392083B92A485B6600E591A8 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +289,7 @@
 		392083C42A487DEA00E591A8 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				3954EBB12A6E5F2700044125 /* WorkoutRecordType.swift */,
 				398B1BC32A4848D400E0FA9B /* RecordCellType.swift */,
 				392083B62A48586C00E591A8 /* WeekdayType.swift */,
 			);
@@ -354,6 +344,7 @@
 		3922D56E2A74B0DA00257164 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				392083C42A487DEA00E591A8 /* Types */,
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
 				39F599912A9B7B7600738334 /* Subviews */,
@@ -365,7 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
-				392083B82A485B5D00E591A8 /* Home */,
+				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083B92A485B6600E591A8 /* Maps */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
@@ -431,47 +422,14 @@
 			path = UX;
 			sourceTree = "<group>";
 		};
-		3922D5762A74B31100257164 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				392457272A545016006E3071 /* HKCustomError.swift */,
-			);
-			path = Error;
-			sourceTree = "<group>";
-		};
-		3922D57C2A74B3EE00257164 /* Query */ = {
-			isa = PBXGroup;
-			children = (
-				392457252A545004006E3071 /* HKDateType.swift */,
-				392457292A545049006E3071 /* HKQueryDataType.swift */,
-			);
-			path = Query;
-			sourceTree = "<group>";
-		};
-		3922D5802A74B84800257164 /* NormalStat */ = {
-			isa = PBXGroup;
-			children = (
-				399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */,
-			);
-			path = NormalStat;
-			sourceTree = "<group>";
-		};
-		3922D5812A74B87A00257164 /* Lap */ = {
-			isa = PBXGroup;
-			children = (
-				39A606A52A6D12C900049B5A /* SwimLapEvent.swift */,
-				3922D57E2A74B62900257164 /* Lap.swift */,
-			);
-			path = Lap;
-			sourceTree = "<group>";
-		};
 		3922D5822A74B88D00257164 /* Swim */ = {
 			isa = PBXGroup;
 			children = (
 				396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */,
 				396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */,
 				396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */,
-				3922D5812A74B87A00257164 /* Lap */,
+				39A606A52A6D12C900049B5A /* SwimLapEvent.swift */,
+				3922D57E2A74B62900257164 /* Lap.swift */,
 			);
 			path = Swim;
 			sourceTree = "<group>";
@@ -515,10 +473,13 @@
 			children = (
 				39572CE02A52CACB00986E01 /* HealthKitManager.swift */,
 				3922D5852A74E95400257164 /* SwimDataManager.swift */,
-				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
-				3922D5762A74B31100257164 /* Error */,
-				396D2AC62A56B93C0042D4D4 /* Model */,
 				39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */,
+				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
+				392457252A545004006E3071 /* HKDateType.swift */,
+				392457292A545049006E3071 /* HKQueryDataType.swift */,
+				399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */,
+				392457272A545016006E3071 /* HealthKitError.swift */,
+				3922D5822A74B88D00257164 /* Swim */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -537,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
+				391C12B22A58D779001C2286 /* History */,
 				392CC0A72A93229A00E839A8 /* DatePicker */,
 				392CC0A82A9322A800E839A8 /* EventList */,
 				3960884F2A8F6E2D00FF2289 /* Model */,
@@ -552,16 +514,6 @@
 				396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */,
 			);
 			path = swimmersTests;
-			sourceTree = "<group>";
-		};
-		396D2AC62A56B93C0042D4D4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3922D5822A74B88D00257164 /* Swim */,
-				3922D57C2A74B3EE00257164 /* Query */,
-				3922D5802A74B84800257164 /* NormalStat */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -944,7 +896,7 @@
 				39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
-				392457282A545016006E3071 /* HKCustomError.swift in Sources */,
+				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppImage.swift in Sources */,

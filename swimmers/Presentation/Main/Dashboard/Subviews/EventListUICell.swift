@@ -29,7 +29,10 @@ final class EventListUICell: UIView {
             .foregroundColor(AppUIColor.primaryBlue)
 
         let vstack = ViewFactory
-            .vStack(subviews: [dayLabel, weekdayLabel], spacing: 4, alignment: .center)
+            .vStack(subviews: [dayLabel, weekdayLabel])
+            .spacing(4)
+            .alignment(.center)
+        
         vstack.setContentHuggingPriority(.init(251), for: .horizontal)
         vstack.setContentCompressionResistancePriority(.init(749), for: .horizontal)
         return vstack
@@ -92,6 +95,11 @@ final class EventListUICell: UIView {
 
 extension EventListUICell {
     
+    func updateData(_ data: SwimMainData) {
+        self.data = data
+        self.layoutIfNeeded()
+    }
+    
     private func setLayout() {
         self.layer.cornerRadius = 12
         self.layer.shadowColor = UIColor(hex: "000000").cgColor
@@ -116,7 +124,6 @@ extension EventListUICell {
         dayView.snp.makeConstraints { make in
             make.width.lessThanOrEqualTo(40)
         }
-        
     }
     
 }
