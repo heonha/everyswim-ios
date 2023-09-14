@@ -11,17 +11,14 @@ import SnapKit
 final class MyInfoController: UIViewController {
 
     private let viewModel = MyInfoViewModel()
-    private let scrollView = UIScrollView()
+    private let scrollView = UIView()
 
     /// Super View
     /// - padding horizontal
     /// - background : BackgroundObject
     private lazy var profileHeaderView = MyInfoHeaderView(viewModel: viewModel)
     private let buttons: [UIView] = []
-    private lazy var navigationButtonVStack = ViewFactory.vStack()
-        .addSubviews(buttons)
-        .distribution(.fillEqually)
-        .alignment(.center)
+    private lazy var navigationButtonVStack = MyInfoButtonList()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -42,11 +39,9 @@ final class MyInfoController: UIViewController {
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(profileHeaderView)
         self.scrollView.addSubview(navigationButtonVStack)
-        
-        scrollView.isScrollEnabled = true
-        
+                
         scrollView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
         }
                 
         profileHeaderView.snp.makeConstraints { make in
@@ -57,7 +52,7 @@ final class MyInfoController: UIViewController {
         navigationButtonVStack.snp.makeConstraints { make in
             make.top.equalTo(profileHeaderView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(scrollView).inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
         }
     }
     
