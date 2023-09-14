@@ -12,7 +12,7 @@ final class MainTabBarController: UITabBarController {
     
     private let eventVC = UIHostingController(rootView: EventDatePickerContainer())
     private let homeVC = DashboardViewController()
-    private let myInfoVC = UIHostingController(rootView: MyInfoView())
+    private let myInfoVC = UIHostingController(rootView: MyInfoViewSwiftUI())
     
     init() {
         super.init(nibName: nil, bundle: nil)

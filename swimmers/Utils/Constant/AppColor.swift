@@ -37,4 +37,6 @@ enum AppUIColor {
     static let buttonDisableColor = UIColor(hex: "9FA6BF")
     static let grayTint = UIColor(hex: "3C3C43", alpha: 0.6)
     
+    static let whiteUltraThinMaterialColor = UIColor(hex: "F6F6F7", alpha: 1)
+    
 }

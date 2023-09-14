@@ -46,9 +46,34 @@ extension UIView {
         return view
     }
     
-    func randomBackgroundColor() -> UIView {
+}
+
+// UIView 상속하는 모든 뷰에서 사용
+extension UIView {
+    
+    public func randomBackgroundColor<T: UIView>() -> T {
         self.backgroundColor = UIColor.randomColor()
-        return self
+        return self as! T
+    }
+    
+    public func cornerRadius<T: UIView>(_ amount: CGFloat) -> T {
+        self.layer.cornerRadius = amount
+        return self as! T
+    }
+    
+    public func backgroundColor<T: UIView>(_ color: UIColor) -> T {
+        self.backgroundColor = color
+        return self as! T
+    }
+    
+    public func subview<T: UIView>(_ view: UIView) -> T {
+        self.addSubview(view)
+        return self as! T
+    }
+    
+    public func disableUserInteraction<T: UIView>(_ disable: Bool) -> T {
+        self.isUserInteractionEnabled = !disable
+        return self as! T
     }
 
 }
