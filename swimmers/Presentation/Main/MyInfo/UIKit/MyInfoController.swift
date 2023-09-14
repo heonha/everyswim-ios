@@ -16,15 +16,12 @@ final class MyInfoController: UIViewController {
     /// Super View
     /// - padding horizontal
     /// - background : BackgroundObject
-    
-    /// VStack
-    /// - header padding 8
     private lazy var profileHeaderView = MyInfoHeaderView(viewModel: viewModel)
-    private let headerView = UIView()
-    private let profileView = UIView()
-    
     private let buttons: [UIView] = []
-    private lazy var navigationButtonVStack = UIStackView()
+    private lazy var navigationButtonVStack = ViewFactory.vStack()
+        .addSubviews(buttons)
+        .distribution(.fillEqually)
+        .alignment(.center)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -42,42 +39,31 @@ final class MyInfoController: UIViewController {
     }
     
     private func layout() {
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(profileHeaderView)
+        self.scrollView.addSubview(navigationButtonVStack)
         
+        scrollView.isScrollEnabled = true
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+                
+        profileHeaderView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide).inset(8)
+        }
+                        
+        navigationButtonVStack.snp.makeConstraints { make in
+            make.top.equalTo(profileHeaderView.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(scrollView).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     private func bind() {
         
     }
-    
-    // HStack {
-    //     ZStack {
-    //         RoundedRectangle(cornerRadius: 8)
-    //             .fill(.regularMaterial)
-    // 
-    //         Text("수력 4년차")
-    //             .font(.custom(.sfProBold, size: 14))
-    //             .foregroundColor(.init(uiColor: .label))
-    //     }
-    //     .frame(width: 74, height: 36)
-    //     
-    //     Spacer()
-    //     
-    //     Button {
-    //         print("프로필편집")
-    //     } label: {
-    //         ZStack {
-    //             RoundedRectangle(cornerRadius: 8)
-    //                 .fill(.ultraThinMaterial)
-    //                 .shadow(color: .black.opacity(0.25), radius: 3, x: 0, y: 1)
-    //             
-    //             Image(systemName: "pencil")
-    //                 .font(.system(size: 17))
-    //                 .foregroundColor(Color(hex: "7E7E7E"))
-    //         }
-    //     }
-    //     .frame(width: 20, height: 20)
-    //     
-    // }
     
 }
 

@@ -38,8 +38,8 @@ extension UIView {
         return nil
     }
     
-    static func spacer() -> UIView {
-        let view = UIView(frame: .zero)
+    static func spacer(_ size: CGSize = .zero) -> UIView {
+        let view = UIView(frame: .init(origin: .zero, size: size))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.init(249), for: .horizontal)
         view.setContentHuggingPriority(.init(249), for: .vertical)
@@ -75,5 +75,16 @@ extension UIView {
         self.isUserInteractionEnabled = !disable
         return self as! T
     }
-
+    
+    public func shadow<T: UIView>(color: UIColor,
+                                  alpha: Float = 0.5,
+                                  x: CGFloat = 0,
+                                  y: CGFloat = 2,
+                                  blur: CGFloat = 4,
+                                  spread: CGFloat = 0,
+                                  radius: CGFloat = 0) -> T {
+        self.layer.setFigmaShadow(color: color, alpha: alpha, x: x, y: y, blur: blur, spread: spread, radius: radius)
+        return self as! T
+    }
+    
 }

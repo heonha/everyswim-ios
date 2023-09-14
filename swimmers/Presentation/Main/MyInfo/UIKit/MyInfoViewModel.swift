@@ -12,10 +12,8 @@ final class MyInfoViewModel: BaseViewModel {
     
     private var swimExp: Int = 1
     
-    
     func getSwimExperience() -> Int {
         return swimExp
     }
-    
     
 }

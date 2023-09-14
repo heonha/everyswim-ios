@@ -20,6 +20,7 @@ final class MyInfoHeaderView: UIView {
         .cornerRadius(6)
         .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
         .subview(headerTitle)
+        .shadow(color: .black, alpha: 0.1, x: 0.3, y: 0.3, blur: 1)
 
     private lazy var imageView = UIImageView()
         .contentMode(.scaleAspectFit)
@@ -31,15 +32,44 @@ final class MyInfoHeaderView: UIView {
         .cornerRadius(6)
         .subview(imageView)
         .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
-            
+        .shadow(color: .black, alpha: 0.1, x: 0.3, y: 0.3, blur: 1)
+
     private lazy var mainHStack = ViewFactory
         .hStack(subviews: [headerView, UIView.spacer(), editProfile])
-        .distribution(.equalSpacing)    
+        .distribution(.equalSpacing)
+    
+    private lazy var profileImage = UIImageView()
+        .setImage(.init(named: "Avatar"))
+        .contentMode(.scaleAspectFit)
+        .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
+        .cornerRadius(30)
+    
+    private lazy var profileTitle = ViewFactory
+        .label("Heon Ha")
+        .font(.custom(.sfProBold, size: 20))
+        .foregroundColor(.label)
+    
+    private lazy var profileEmailBackground = ViewFactory.hStack()
+        .addSubviews([UIView.spacer(),
+                      profileEmail,
+                      UIView.spacer()])
+        .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
+        .cornerRadius(8)
+    
+    private lazy var profileEmail = ViewFactory
+        .label("heonha@heon.dev")
+        .font(.custom(.sfProLight, size: 15))
+        .foregroundColor(.secondaryLabel)
+
+    private lazy var profileView = ViewFactory
+        .vStack(subviews: [profileImage, profileTitle, profileEmailBackground])
+        .distribution(.fill)
+        .alignment(.center)
     
     init(viewModel: MyInfoViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        configure()
+        observe()
         layout()
     }
     
@@ -47,13 +77,19 @@ final class MyInfoHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setSuperViewSize()
+    }
+    
+    private func observe() {
         
     }
     
     private func layout() {
         
         self.addSubview(mainHStack)
+        self.addSubview(profileView)
         
         headerTitle.snp.makeConstraints { make in
             make.center.equalTo(headerView)
@@ -65,16 +101,38 @@ final class MyInfoHeaderView: UIView {
         }
         
         editProfile.snp.makeConstraints { make in
-            make.size.equalTo(20)
+            make.size.equalTo(24)
         }
         
         imageView.snp.makeConstraints { make in
-            make.size.equalTo(17)
+            make.size.equalTo(20)
             make.center.equalTo(editProfile)
         }
         
         mainHStack.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(8)
+        }
+        
+        // Profile View
+        profileView.snp.makeConstraints { make in
+            make.top.equalTo(mainHStack.snp.bottom).offset(16)
+            make.centerX.equalTo(self)
+        }
+        
+        profileImage.snp.makeConstraints { make in
+            make.size.equalTo(60)
+        }
+        
+        profileEmail.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(24)
+            make.horizontalEdges.equalTo(profileEmailBackground).inset(12)
+        }
+                
+    }
+    
+    private func setSuperViewSize() {
+        self.snp.makeConstraints { make in
+            make.height.equalTo(mainHStack.frame.height + profileView.frame.height + 20)
         }
     }
     
@@ -88,8 +146,8 @@ struct MyInfoHeaderView_Previews: PreviewProvider {
         UIViewPreview {
             MyInfoHeaderView(viewModel: MyInfoViewModel())
         }
-        .frame(width: Constant.deviceSize.width, height: 80)
-        .background(Color.blue)
+        .frame(height: 300)
+        .border(.black.opacity(0.3), width: 0.5)
     }
 }
 #endif
