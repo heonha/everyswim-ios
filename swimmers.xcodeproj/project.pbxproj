@@ -79,7 +79,11 @@
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
-		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
+		399EFFD72AADF0AB00DE7E12 /* WorkoutDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */; };
+		399EFFD92AADF0CC00DE7E12 /* WorkoutDatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */; };
+		399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */; };
+		399EFFDD2AAE040D00DE7E12 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */; };
+		39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A2B5AA2AAEEC2100A6441A /* TestVC.swift */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
@@ -195,7 +199,11 @@
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
 		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
-		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDatePicker.swift; sourceTree = "<group>"; };
+		399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDatePickerController.swift; sourceTree = "<group>"; };
+		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
+		399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		39A2B5AA2AAEEC2100A6441A /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -536,10 +544,9 @@
 		396088502A8F6E5E00FF2289 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
-				392CC0A72A93229A00E839A8 /* DatePicker */,
-				392CC0A82A9322A800E839A8 /* EventList */,
 				3960884F2A8F6E2D00FF2289 /* Model */,
+				399EFFD52AADF07600DE7E12 /* SwiftUI */,
+				399EFFD42AADF06C00DE7E12 /* UIKit */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -568,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				39A5E8E02A502DA80062509F /* .gitignore */,
-				39A5E8DB2A502A150062509F /* .swiftlint.yml */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
 				396D2AB82A5677690042D4D4 /* swimmersTests */,
 				398B1BA22A483DA300E0FA9B /* Products */,
@@ -598,6 +604,7 @@
 				398B1BC92A484D5500E0FA9B /* Resources */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
+				39A2B5AA2AAEEC2100A6441A /* TestVC.swift */,
 			);
 			path = swimmers;
 			sourceTree = "<group>";
@@ -671,6 +678,27 @@
 				39BC26972AAD7EE1007432B5 /* Subviews */,
 			);
 			path = Challange;
+			sourceTree = "<group>";
+		};
+		399EFFD42AADF06C00DE7E12 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */,
+				399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */,
+				399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */,
+				399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		399EFFD52AADF07600DE7E12 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
+				392CC0A72A93229A00E839A8 /* DatePicker */,
+				392CC0A82A9322A800E839A8 /* EventList */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		39ADB2802A4AEA0000AED318 /* List */ = {
@@ -762,7 +790,6 @@
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
 				398B1B9F2A483DA300E0FA9B /* Resources */,
-				39A5E8DA2A5029D50062509F /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -784,7 +811,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					396D2AB62A5677690042D4D4 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -830,7 +857,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */,
 				398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */,
 				398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */,
 				392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */,
@@ -844,28 +870,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		39A5E8DA2A5029D50062509F /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --config \"$SRCROOT/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		396D2AB32A5677690042D4D4 /* Sources */ = {
@@ -911,6 +915,7 @@
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
+				399EFFD92AADF0CC00DE7E12 /* WorkoutDatePickerController.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
@@ -926,7 +931,9 @@
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
+				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
+				399EFFD72AADF0AB00DE7E12 /* WorkoutDatePicker.swift in Sources */,
 				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
 				396D2AAE2A5599120042D4D4 /* HistoryView.swift in Sources */,
 				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
@@ -943,11 +950,13 @@
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
+				399EFFDD2AAE040D00DE7E12 /* DatePickerCell.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HKCustomError.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppImage.swift in Sources */,
+				39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
 				3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
@@ -1023,6 +1032,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1055,6 +1065,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1083,6 +1094,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1115,6 +1127,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

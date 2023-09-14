@@ -10,7 +10,6 @@ import UIKit
 extension UIViewController {
     
     func updateView() {
-        print("view를 업데이트합니다")
         self.view.layoutIfNeeded()
     }
     
@@ -47,4 +46,9 @@ extension UIView {
         return view
     }
     
+    func randomBackgroundColor() -> UIView {
+        self.backgroundColor = UIColor.randomColor()
+        return self
+    }
+
 }

@@ -47,5 +47,5 @@ extension UIStackView {
         self.addArrangedSubview(view)
         return self
     }
-    
+        
 }
