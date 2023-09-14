@@ -86,7 +86,6 @@
 		399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */; };
 		399EFFDD2AAE040D00DE7E12 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */; };
 		39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */; };
-		39A111F72AB2F30D00D57FB4 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F62AB2F30D00D57FB4 /* MyInfoView.swift */; };
 		39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */; };
 		39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */; };
 		39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */; };
@@ -214,7 +213,6 @@
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
 		399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoController.swift; sourceTree = "<group>"; };
-		39A111F62AB2F30D00D57FB4 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
@@ -723,7 +721,6 @@
 			isa = PBXGroup;
 			children = (
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
-				39A111F62AB2F30D00D57FB4 /* MyInfoView.swift */,
 				39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */,
@@ -948,7 +945,6 @@
 				3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
-				39A111F72AB2F30D00D57FB4 /* MyInfoView.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* WorkoutDatePickerController.swift in Sources */,

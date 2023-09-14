@@ -10,15 +10,17 @@ import SnapKit
 
 final class MyInfoButton: UIView {
     
+    private let type: MyInfoButtonType
+    
     private var background = UIView()
         .backgroundColor(.white)
         .cornerRadius(12)
     
-    private var symbol = UIImageView()
-        .setSymbolImage(systemName: "person.circle", color: .secondaryLabel)
+    private lazy var symbol = UIImageView()
+        .setSymbolImage(systemName: type.getUIData().symbolName, color: .secondaryLabel)
         
     
-    private var label = ViewFactory.label("회원정보 변경")
+    private lazy var label = ViewFactory.label(type.getUIData().title)
         .font(.custom(.sfProMedium, size: 16))
         .foregroundColor(.label)
 
@@ -28,7 +30,8 @@ final class MyInfoButton: UIView {
         .distribution(.fill)
         .spacing(8)
     
-    init() {
+    init(_ type: MyInfoButtonType) {
+        self.type = type
         super.init(frame: .zero)
         configure()
         layout()
@@ -46,8 +49,12 @@ final class MyInfoButton: UIView {
         self.addSubview(background)
         background.addSubview(hstack)
         
-        background.snp.makeConstraints { make in
+        self.snp.makeConstraints { make in
             make.height.equalTo(50)
+        }
+        
+        background.snp.makeConstraints { make in
+            make.height.equalTo(self)
             make.horizontalEdges.equalTo(self)
         }
         
@@ -59,6 +66,7 @@ final class MyInfoButton: UIView {
         symbol.snp.makeConstraints { make in
             make.size.equalTo(24)
         }
+
         
     }
     
@@ -70,7 +78,7 @@ import SwiftUI
 struct MyInfoButton_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoButton()
+            MyInfoButton(.changeUserInfo)
         }
         .frame(height: 100)
         .padding(.vertical)

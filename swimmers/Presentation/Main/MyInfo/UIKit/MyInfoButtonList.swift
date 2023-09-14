@@ -10,32 +10,25 @@ import SnapKit
 
 final class MyInfoButtonList: UIView {
     
+    private let viewModel: MyInfoViewModel
+    
     private let background = UIView()
         .backgroundColor(AppUIColor.whithThickMaterialColor)
         .cornerRadius(12)
     
-    private let buttons: [MyInfoButton] = [
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton(),
-        MyInfoButton()
-    ]
+    private lazy var buttons: [MyInfoButton] = viewModel
+        .getButtonListData()
+        .map { MyInfoButton($0) }
     
     private lazy var vstack = ViewFactory
         .vStack()
         .addSubviews(buttons)
-        .spacing(20)
+        .spacing(12)
         .alignment(.fill)
         .distribution(.equalCentering)
     
-    init() {
+    init(viewModel: MyInfoViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         configure()
         layout()
@@ -66,10 +59,8 @@ final class MyInfoButtonList: UIView {
     private func subview() {
         vstack.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(background).inset(12)
-            make.top.equalTo(background).inset(20)
-            make.bottom.equalTo(self)
+            make.verticalEdges.equalTo(background).inset(20)
         }
-
     }
     
 }
@@ -80,7 +71,7 @@ import SwiftUI
 struct MyInfoButtonList_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoButtonList()
+            MyInfoButtonList(viewModel: MyInfoViewModel())
         }
     }
 }

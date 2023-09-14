@@ -16,4 +16,8 @@ final class MyInfoViewModel: BaseViewModel {
         return swimExp
     }
     
+    func getButtonListData() -> [MyInfoButtonType] {
+        return MyInfoButtonType.allCases
+    }
+    
 }

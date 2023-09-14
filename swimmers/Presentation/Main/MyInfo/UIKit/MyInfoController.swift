@@ -11,14 +11,12 @@ import SnapKit
 final class MyInfoController: UIViewController {
 
     private let viewModel = MyInfoViewModel()
-    private let scrollView = UIView()
-
-    /// Super View
-    /// - padding horizontal
-    /// - background : BackgroundObject
+    private let scrollView = UIScrollView()
+    private let scrollContentView = UIView().backgroundColor(.white)
+    private let bottomSpacer = UIView.spacer()
+    
     private lazy var profileHeaderView = MyInfoHeaderView(viewModel: viewModel)
-    private let buttons: [UIView] = []
-    private lazy var navigationButtonVStack = MyInfoButtonList()
+    private lazy var navigationButtonVStack = MyInfoButtonList(viewModel: viewModel)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -32,27 +30,38 @@ final class MyInfoController: UIViewController {
     }
     
     private func configure() {
-        
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
     }
     
     private func layout() {
-        self.view.addSubview(scrollView)
-        self.scrollView.addSubview(profileHeaderView)
-        self.scrollView.addSubview(navigationButtonVStack)
                 
+        self.view.addSubview(scrollView)
+        scrollView.addSubview(scrollContentView)
+        self.scrollContentView.addSubview(profileHeaderView)
+        self.scrollContentView.addSubview(navigationButtonVStack)
+        self.scrollContentView.addSubview(bottomSpacer)
+        
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.verticalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        scrollContentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(scrollView).priority(.low)
         }
                 
         profileHeaderView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide).inset(8)
+            make.top.equalTo(scrollContentView)
+            make.horizontalEdges.top.equalTo(scrollContentView).inset(8)
         }
                         
         navigationButtonVStack.snp.makeConstraints { make in
             make.top.equalTo(profileHeaderView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(scrollView).inset(20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(50)
         }
     }
     
