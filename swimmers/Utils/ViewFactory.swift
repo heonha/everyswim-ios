@@ -9,7 +9,7 @@ import UIKit
 
 enum ViewFactory {
     
-    static func vStack(subviews: [UIView],
+    static func vStack(subviews: [UIView] = [],
                        spacing: CGFloat = 4,
                        alignment: UIStackView.Alignment = .fill,
                        distribution: UIStackView.Distribution = .fill) -> UIStackView {
@@ -22,7 +22,7 @@ enum ViewFactory {
         return sv
     }
     
-    static func hStack(subviews: [UIView],
+    static func hStack(subviews: [UIView] = [],
                        spacing: CGFloat = 4,
                        alignment: UIStackView.Alignment = .fill,
                        distribution: UIStackView.Distribution = .fill) -> UIStackView {

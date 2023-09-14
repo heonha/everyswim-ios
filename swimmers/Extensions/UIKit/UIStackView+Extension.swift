@@ -45,7 +45,8 @@ extension UIStackView {
     
     func addSubview(_ view: UIView) -> UIView {
         self.addArrangedSubview(view)
+        self.clipsToBounds = true
         return self
     }
-    
+        
 }

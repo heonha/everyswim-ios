@@ -178,7 +178,7 @@ extension EventDatePicker {
 }
 
 #if DEBUG
-struct WorkoutDatePicker_Previews: PreviewProvider {
+struct EventDatePicker_Previews: PreviewProvider {
     
     static var previews: some View {
         EventDatePicker(viewModel: .init(initialValue: EventDatePickerViewModel()))

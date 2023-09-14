@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyInfoView: View {
+struct MyInfoViewSwiftUI: View {
     
     @State private var showModal = false
     
@@ -184,8 +184,3 @@ struct MyInfoView: View {
 }
 
 
-struct MyInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyInfoView()
-    }
-}

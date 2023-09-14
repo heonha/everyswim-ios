@@ -24,7 +24,7 @@
 		392083B52A4853F800E591A8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */; };
 		392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083B62A48586C00E591A8 /* WeekdayType.swift */; };
 		392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BC2A485B9400E591A8 /* PoolListView.swift */; };
-		392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BF2A485BB300E591A8 /* MyInfoView.swift */; };
+		392083C02A485BB300E591A8 /* MyInfoViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083BF2A485BB300E591A8 /* MyInfoViewSwiftUI.swift */; };
 		392083C62A48805000E591A8 /* PoolsMapViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */; };
 		392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C72A48807B00E591A8 /* SearchBarModifier.swift */; };
 		392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C92A48828800E591A8 /* SwimmingPoolCell.swift */; };
@@ -34,6 +34,8 @@
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
 		392457282A545016006E3071 /* HealthKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HealthKitError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
+		39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */; };
+		39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCD2AB33BD300497402 /* MyInfoButton.swift */; };
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
@@ -79,7 +81,16 @@
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
-		39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8DB2A502A150062509F /* .swiftlint.yml */; };
+		399EFFD72AADF0AB00DE7E12 /* WorkoutDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */; };
+		399EFFD92AADF0CC00DE7E12 /* WorkoutDatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */; };
+		399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */; };
+		399EFFDD2AAE040D00DE7E12 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */; };
+		39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */; };
+		39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */; };
+		39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */; };
+		39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */; };
+		39A111FF2AB2FDA900D57FB4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */; };
+		39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A2B5AA2AAEEC2100A6441A /* TestVC.swift */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
@@ -136,7 +147,7 @@
 		392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		392083B62A48586C00E591A8 /* WeekdayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayType.swift; sourceTree = "<group>"; };
 		392083BC2A485B9400E591A8 /* PoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListView.swift; sourceTree = "<group>"; };
-		392083BF2A485BB300E591A8 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		392083BF2A485BB300E591A8 /* MyInfoViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewSwiftUI.swift; sourceTree = "<group>"; };
 		392083C52A48805000E591A8 /* PoolsMapViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsMapViewContainer.swift; sourceTree = "<group>"; };
 		392083C72A48807B00E591A8 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		392083C92A48828800E591A8 /* SwimmingPoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimmingPoolCell.swift; sourceTree = "<group>"; };
@@ -146,6 +157,8 @@
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
 		392457272A545016006E3071 /* HealthKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
+		39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonList.swift; sourceTree = "<group>"; };
+		39389FCD2AB33BD300497402 /* MyInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButton.swift; sourceTree = "<group>"; };
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -195,7 +208,16 @@
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
 		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
-		39A5E8DB2A502A150062509F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDatePicker.swift; sourceTree = "<group>"; };
+		399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDatePickerController.swift; sourceTree = "<group>"; };
+		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
+		399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoController.swift; sourceTree = "<group>"; };
+		39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
+		39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
+		39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		39A2B5AA2AAEEC2100A6441A /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -279,7 +301,8 @@
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
-				392083BF2A485BB300E591A8 /* MyInfoView.swift */,
+				39A111F32AB2F2BA00D57FB4 /* UIKit */,
+				392083BF2A485BB300E591A8 /* MyInfoViewSwiftUI.swift */,
 				39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */,
 				39572CE72A52D19500986E01 /* SyncHealthView.swift */,
 			);
@@ -303,6 +326,7 @@
 				391C12B92A591835001C2286 /* CellBackground.swift */,
 				392083CE2A48860400E591A8 /* Modifier */,
 				398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */,
+				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -502,6 +526,8 @@
 				392CC0A72A93229A00E839A8 /* DatePicker */,
 				392CC0A82A9322A800E839A8 /* EventList */,
 				3960884F2A8F6E2D00FF2289 /* Model */,
+				399EFFD52AADF07600DE7E12 /* SwiftUI */,
+				399EFFD42AADF06C00DE7E12 /* UIKit */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -520,7 +546,6 @@
 			isa = PBXGroup;
 			children = (
 				39A5E8E02A502DA80062509F /* .gitignore */,
-				39A5E8DB2A502A150062509F /* .swiftlint.yml */,
 				398B1BA32A483DA300E0FA9B /* swimmers */,
 				396D2AB82A5677690042D4D4 /* swimmersTests */,
 				398B1BA22A483DA300E0FA9B /* Products */,
@@ -550,6 +575,7 @@
 				398B1BC92A484D5500E0FA9B /* Resources */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
+				39A2B5AA2AAEEC2100A6441A /* TestVC.swift */,
 			);
 			path = swimmers;
 			sourceTree = "<group>";
@@ -625,6 +651,39 @@
 			path = Challange;
 			sourceTree = "<group>";
 		};
+		399EFFD42AADF06C00DE7E12 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				399EFFD82AADF0CC00DE7E12 /* WorkoutDatePickerController.swift */,
+				399EFFD62AADF0AB00DE7E12 /* WorkoutDatePicker.swift */,
+				399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */,
+				399EFFDC2AAE040D00DE7E12 /* DatePickerCell.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		399EFFD52AADF07600DE7E12 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
+				392CC0A72A93229A00E839A8 /* DatePicker */,
+				392CC0A82A9322A800E839A8 /* EventList */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		39A111F32AB2F2BA00D57FB4 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
+				39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */,
+				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
+				39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */,
+				39389FCD2AB33BD300497402 /* MyInfoButton.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		39ADB2802A4AEA0000AED318 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +730,7 @@
 				39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */,
 				3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */,
 				394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */,
+				39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -714,7 +774,6 @@
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
 				398B1B9F2A483DA300E0FA9B /* Resources */,
-				39A5E8DA2A5029D50062509F /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -736,7 +795,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					396D2AB62A5677690042D4D4 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -782,7 +841,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39A5E8DC2A502A150062509F /* .swiftlint.yml in Resources */,
 				398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */,
 				398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */,
 				392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */,
@@ -796,28 +854,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		39A5E8DA2A5029D50062509F /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --config \"$SRCROOT/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		396D2AB32A5677690042D4D4 /* Sources */ = {
@@ -837,13 +873,16 @@
 				397CC73D2A87883D00C5D90D /* EventDatePickerViewModel.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				3961E8362A908B7D002D8B27 /* EventListCell.swift in Sources */,
+				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
 				398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
+				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
 				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
+				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
@@ -863,6 +902,7 @@
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
+				399EFFD92AADF0CC00DE7E12 /* WorkoutDatePickerController.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
@@ -872,34 +912,42 @@
 				39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				39B0C39C2AAC7DCF004E0985 /* ImageSliderData.swift in Sources */,
+				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
 				397D72642A7FFBAA00D9E712 /* EventDatePicker.swift in Sources */,
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
+				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
+				39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */,
+				399EFFD72AADF0AB00DE7E12 /* WorkoutDatePicker.swift in Sources */,
+				39A111FF2AB2FDA900D57FB4 /* BaseViewModel.swift in Sources */,
 				39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */,
 				396D2AAE2A5599120042D4D4 /* HistoryView.swift in Sources */,
 				39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */,
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* WorkoutRecordType.swift in Sources */,
 				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
+				39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */,
 				3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
 				396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */,
-				392083C02A485BB300E591A8 /* MyInfoView.swift in Sources */,
+				392083C02A485BB300E591A8 /* MyInfoViewSwiftUI.swift in Sources */,
 				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
+				399EFFDD2AAE040D00DE7E12 /* DatePickerCell.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppImage.swift in Sources */,
+				39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
 				3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
@@ -975,6 +1023,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1007,6 +1056,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1035,6 +1085,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1067,6 +1118,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
