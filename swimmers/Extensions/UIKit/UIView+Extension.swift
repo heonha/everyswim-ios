@@ -88,3 +88,12 @@ extension UIView {
     }
     
 }
+
+
+extension UIView {
+    
+    func gesturePublisher(_ type: GestureType = .tap()) -> GesturePublisher {
+        return GesturePublisher(view: self, type: type)
+    }
+
+}

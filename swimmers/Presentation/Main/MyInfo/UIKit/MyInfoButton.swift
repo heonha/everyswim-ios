@@ -17,10 +17,11 @@ final class MyInfoButton: UIView {
         .cornerRadius(12)
     
     private lazy var symbol = UIImageView()
-        .setSymbolImage(systemName: type.getUIData().symbolName, color: .secondaryLabel)
+        .setSymbolImage(systemName: type.getUIData().symbolName, 
+                        color: .secondaryLabel)
         
-    
-    private lazy var label = ViewFactory.label(type.getUIData().title)
+    private lazy var label = ViewFactory
+        .label(type.getUIData().title)
         .font(.custom(.sfProMedium, size: 16))
         .foregroundColor(.label)
 
@@ -33,16 +34,11 @@ final class MyInfoButton: UIView {
     init(_ type: MyInfoButtonType) {
         self.type = type
         super.init(frame: .zero)
-        configure()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configure() {
-        
     }
     
     private func layout() {
@@ -66,11 +62,29 @@ final class MyInfoButton: UIView {
         symbol.snp.makeConstraints { make in
             make.size.equalTo(24)
         }
-
-        
     }
     
 }
+
+extension MyInfoButton {
+    
+    func getType() -> MyInfoButtonType {
+        return self.type
+    }
+    
+    func getSection() -> MyInfoSection {
+        switch self.type {
+        case .changeUserInfo, .editChallange, .setupAlert, .syncHealth:
+            return MyInfoSection.first
+        case .shareApp, .sendContact, .questions:
+            return MyInfoSection.second
+        case .logout, .deleteAccount:
+            return MyInfoSection.third
+        }
+    }
+    
+}
+
 
 #if DEBUG
 import SwiftUI
@@ -80,7 +94,7 @@ struct MyInfoButton_Previews: PreviewProvider {
         UIViewPreview {
             MyInfoButton(.changeUserInfo)
         }
-        .frame(height: 100)
+        .frame(maxWidth: .infinity, idealHeight: 60)
         .padding(.vertical)
         .background(.black)
     }

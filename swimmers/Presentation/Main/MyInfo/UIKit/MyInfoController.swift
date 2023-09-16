@@ -7,16 +7,17 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class MyInfoController: UIViewController {
 
     private let viewModel = MyInfoViewModel()
-    private let scrollView = UIScrollView()
-    private let scrollContentView = UIView().backgroundColor(.white)
+    private let scrollView = BaseScrollView()
     private let bottomSpacer = UIView.spacer()
+    private var cancellables = Set<AnyCancellable>()
     
-    private lazy var profileHeaderView = MyInfoHeaderView(viewModel: viewModel)
-    private lazy var navigationButtonVStack = MyInfoButtonList(viewModel: viewModel)
+    private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
+    private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -35,38 +36,37 @@ final class MyInfoController: UIViewController {
     }
     
     private func layout() {
-                
         self.view.addSubview(scrollView)
-        scrollView.addSubview(scrollContentView)
-        self.scrollContentView.addSubview(profileHeaderView)
-        self.scrollContentView.addSubview(navigationButtonVStack)
-        self.scrollContentView.addSubview(bottomSpacer)
+        self.scrollView.contentView.addSubview(headerView)
+        self.scrollView.contentView.addSubview(buttonList)
+        self.scrollView.contentView.addSubview(bottomSpacer)
         
         scrollView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-        
-        scrollContentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.width.equalTo(scrollView)
-            make.height.equalTo(scrollView).priority(.low)
-        }
                 
-        profileHeaderView.snp.makeConstraints { make in
-            make.top.equalTo(scrollContentView)
-            make.horizontalEdges.top.equalTo(scrollContentView).inset(8)
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.contentView)
+            make.horizontalEdges.top.equalTo(scrollView.contentView).inset(8)
         }
                         
-        navigationButtonVStack.snp.makeConstraints { make in
-            make.top.equalTo(profileHeaderView.snp.bottom).offset(20)
+        buttonList.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(scrollView).inset(20)
             make.bottom.equalToSuperview().inset(50)
         }
     }
     
     private func bind() {
-        
+        buttonList.getButton(type: .syncHealth)
+            .gesturePublisher(.tap())
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                let vc = UIViewController(backgroundColor: .systemBackground)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            .store(in: &cancellables)
     }
     
 }
@@ -79,7 +79,6 @@ struct MyInfoController_Previews: PreviewProvider {
         UIViewControllerPreview {
             MyInfoController()
         }
-        .ignoresSafeArea()
     }
 }
 #endif

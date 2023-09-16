@@ -20,9 +20,23 @@ final class MyInfoButtonList: UIView {
         .getButtonListData()
         .map { MyInfoButton($0) }
     
-    private lazy var vstack = ViewFactory
+    private lazy var firstSectionView = ViewFactory
         .vStack()
-        .addSubviews(buttons)
+        .addSubviews(buttons.filter{ $0.getSection() == .first })
+        .spacing(12)
+        .alignment(.fill)
+        .distribution(.equalCentering)
+    
+    private lazy var secondSectionView = ViewFactory
+        .vStack()
+        .addSubviews(buttons.filter{ $0.getSection() == .second })
+        .spacing(12)
+        .alignment(.fill)
+        .distribution(.equalCentering)
+    
+    private lazy var thirdSectionView = ViewFactory
+        .vStack()
+        .addSubviews(buttons.filter{ $0.getSection() == .third })
         .spacing(12)
         .alignment(.fill)
         .distribution(.equalCentering)
@@ -30,7 +44,6 @@ final class MyInfoButtonList: UIView {
     init(viewModel: MyInfoViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        configure()
         layout()
     }
     
@@ -43,25 +56,52 @@ final class MyInfoButtonList: UIView {
         subview()
     }
     
-    private func configure() {
-        
-    }
-    
     private func layout() {
         self.addSubview(background)
-        background.addSubview(vstack)
+        background.addSubview(firstSectionView)
+        background.addSubview(secondSectionView)
+        background.addSubview(thirdSectionView)
+
         background.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-        
     }
     
     private func subview() {
-        vstack.snp.makeConstraints { make in
+        firstSectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(background).inset(12)
-            make.verticalEdges.equalTo(background).inset(20)
+            make.top.equalTo(background).inset(20)
+        }
+        
+        secondSectionView.snp.makeConstraints { make in
+            make.top.equalTo(firstSectionView.snp.bottom).offset(30)
+            make.horizontalEdges.equalTo(background).inset(12)
+        }
+
+        thirdSectionView.snp.makeConstraints { make in
+            make.top.equalTo(secondSectionView.snp.bottom).offset(30)
+            make.horizontalEdges.equalTo(background).inset(12)
+            make.bottom.equalTo(background).inset(20)
+        }
+
+    }
+    
+    func getButton(type: MyInfoButtonType) -> MyInfoButton {
+        let button = self.buttons.first { infoButton in
+            return type == infoButton.getType()
+        }
+        
+        if let button = button {
+            return button
+        } else {
+            return MyInfoButton(.setupAlert)
         }
     }
+    
+    func getAllButton() -> [MyInfoButton] {
+        return self.buttons
+    }
+    
     
 }
 

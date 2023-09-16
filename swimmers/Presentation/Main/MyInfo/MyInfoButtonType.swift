@@ -12,6 +12,12 @@ enum PresentType {
     case modalView
 }
 
+enum MyInfoSection {
+    case first
+    case second
+    case third
+}
+
 enum MyInfoButtonType: CaseIterable {
     case changeUserInfo
     case editChallange
