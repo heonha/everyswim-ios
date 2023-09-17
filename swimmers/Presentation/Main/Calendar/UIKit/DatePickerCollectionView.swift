@@ -10,33 +10,17 @@ import SnapKit
 
 final class DatePickerCollectionView: UICollectionView {
     
-    let dayPerWeek = 7
+    private let viewModel: EventDatePickerViewModel
+    private let dayPerWeek = 7
     
-    
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
-        let itemWidth = Constant.deviceSize.width / CGFloat(dayPerWeek)
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        
+    init(viewModel: EventDatePickerViewModel) {
+        let layout = FlowLayout.datePicker.get(cellSize: viewModel.getCellSize())
+        self.viewModel = viewModel
         super.init(frame: .zero, collectionViewLayout: layout)
-        configure()
-        self.layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func configure() {
-        
-    }
-    
-    private func layout() {
-        
-    }
-    
+
 }

@@ -1,5 +1,5 @@
 //
-//  WorkoutDatePicker.swift
+//  WorkoutDatePickerHeader.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/10/23.
@@ -8,21 +8,19 @@
 import UIKit
 import SnapKit
 
-final class WorkoutDatePicker: UIView {
+final class DatePickerHeader: UIView {
     
     private let viewModel: EventDatePickerViewModel
     
-    private lazy var headerDateLabel: UIView = {
-        
-        let month = ViewFactory
-            .label(viewModel.extraDate()[1])
-            .font(.custom(.sfProBold, size: 22))
+    private lazy var month = ViewFactory
+        .label(viewModel.extraDate()[1])
+        .font(.custom(.sfProBold, size: 22))
+    
+    private lazy var year = ViewFactory
+        .label(viewModel.extraDate()[0])
+        .font(.custom(.sfProLight, size: 16))
 
-        
-        let year = ViewFactory
-            .label(viewModel.extraDate()[0])
-            .font(.custom(.sfProLight, size: 16))
-
+    private lazy var dateView: UIView = {
         let hstack = ViewFactory
             .hStack()
             .addSubviews([month, year])
@@ -30,12 +28,12 @@ final class WorkoutDatePicker: UIView {
             .distribution(.fillProportionally)
             .spacing(10)
             .setEdgeInset(.init(top: 0, leading: 6, bottom: 0, trailing: 6))
-            .randomBackgroundColor()
 
         return hstack
     }()
     
-    private lazy var headerMoveMonthButtons: UIView = {
+    
+    private lazy var monthChangeButtonsView: UIView = {
         
         let before = UIButton()
         before.addTarget(self.next, action: #selector(beforeMonth), for: .touchUpInside)
@@ -58,14 +56,14 @@ final class WorkoutDatePicker: UIView {
         return hstack
     }()
     
-    private lazy var weekdayTitleView: UIView = {
+    private lazy var weekdaysView: UIView = {
         let weekdays = Weekdays.values
             .map { weekday -> UILabel in
                 let label = ViewFactory.label(weekday)
                     .font(.custom(.sfProBold, size: 14))
                     .foregroundColor(AppUIColor.grayTint)
-                label.textAlignment = .center
-                label.backgroundColor = UIColor.randomColor()
+                    .textAlignemnt(.center)
+                
                 return label
             }
         
@@ -83,31 +81,14 @@ final class WorkoutDatePicker: UIView {
     
     private lazy var headerView = ViewFactory
         .hStack()
-        .addSubviews([headerDateLabel, UIView.spacer(), headerMoveMonthButtons])
+        .addSubviews([dateView, UIView.spacer(), monthChangeButtonsView])
         .spacing(20)
         .setEdgeInset(.init(top: 0, leading: 8, bottom: 0, trailing: 8))
-        .randomBackgroundColor()
-        
-    private lazy var calendarDaysGrid: UIView = {
-        let columns = Array(repeating: GridItem(.flexible()), count: 7)
-
-        // TODO: CollectionView로 구성해야할듯 하위뷰부터.
-        //
-        //         return LazyVGrid(columns: columns, spacing: 2) {
-        //             ForEach(viewModel.extractDayInCarendar()) { dateValue in
-        //                 dayCellContainer(from: dateValue)
-        //             }
-        //         }
-        return UIView()
-    }()
     
     private lazy var vstack = ViewFactory
         .vStack()
-        .addSubviews([headerView,
-                      weekdayTitleView,
-                      calendarDaysGrid,
-                      UIView.spacer()])
-        .spacing(4)
+        .addSubviews([headerView, weekdaysView])
+        .spacing(20)
     
     private lazy var eventDayCell: UIView = UIView()
     
@@ -137,11 +118,17 @@ final class WorkoutDatePicker: UIView {
         
     }
     
+    func updateView() {
+        let month = viewModel.currentDate.toString(.month)
+        let year = viewModel.currentDate.toString(.year)
+        
+        self.month.text = "\(month)월"
+        self.year.text = year
+    }
+    
     private func layout() {
         self.addSubview(backgroundView)
         self.addSubview(vstack)
-        backgroundView.backgroundColor = .lightGray
-        vstack.backgroundColor = UIColor.randomColor()
         
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -151,26 +138,28 @@ final class WorkoutDatePicker: UIView {
             make.top.equalTo(backgroundView)
             make.horizontalEdges.equalTo(backgroundView)
         }
-        
     }
     
     
 }
 
 
-// extension EventDatePicker {
 
-
+//
+// 
+// extension WorkoutDatePicker {
+// 
+// 
 //     
-    // private func carendarDaysGrid() -> some View {
-    //     let columns = Array(repeating: GridItem(.flexible()), count: 7)
-    //     
-    //     return LazyVGrid(columns: columns, spacing: 2) {
-    //         ForEach(viewModel.extractDayInCarendar()) { dateValue in
-    //             dayCellContainer(from: dateValue)
-    //         }
-    //     }
-    // }
+//     private func carendarDaysGrid() -> some View {
+//         let columns = Array(repeating: GridItem(.flexible()), count: 7)
+//         
+//         return LazyVGrid(columns: columns, spacing: 2) {
+//             ForEach(viewModel.extractDayInCarendar()) { dateValue in
+//                 dayCellContainer(from: dateValue)
+//             }
+//         }
+//     }
 //     
 //     private func dayCellContainer(from value: DateValue) -> some View {
 //         VStack {
@@ -242,7 +231,7 @@ import SwiftUI
 struct WorkoutDatePicker_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            WorkoutDatePicker(viewModel: EventDatePickerViewModel())
+            DatePickerHeader(viewModel: EventDatePickerViewModel())
         }
         .frame(height: 300)
     }

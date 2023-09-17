@@ -19,6 +19,10 @@ enum DateToStringType {
     /// "h:m"
     case timeWithoutSeconds
     
+    case month
+    
+    case year
+    
     case dayDotMonth
     
     case weekDay
@@ -39,6 +43,11 @@ enum DateToStringType {
             return "M.dd"
         case .weekDay:
             return "EEEE"
+            
+        case .month:
+            return "M"
+        case .year:
+            return "yyyy"
 
         }
     }

@@ -58,6 +58,7 @@ extension UIView {
     
     public func cornerRadius<T: UIView>(_ amount: CGFloat) -> T {
         self.layer.cornerRadius = amount
+        self.clipsToBounds = true
         return self as! T
     }
     

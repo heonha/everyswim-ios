@@ -16,6 +16,7 @@ final class EventDatePickerViewModel: ObservableObject {
     @Published var currentDate = Date()
     @Published var currentMonth = 0
     @Published var isMonthlyRecord = false
+    private var cellWidth = Constant.deviceSize.width / 7
     
     @Published var presentedEventData: [DatePickerEventData] = []
     @Published var allEventData: [DatePickerEventData] = []
@@ -39,6 +40,10 @@ extension EventDatePickerViewModel {
         currentDate = getCurrentMonth()
         isMonthlyRecord = true
         setTargetMonthData()
+    }
+    
+    func getCellSize() -> CGSize {
+        return CGSize(width: self.cellWidth, height: self.cellWidth)
     }
     
     func subscribeSwimData() async {

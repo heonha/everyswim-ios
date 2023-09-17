@@ -19,4 +19,9 @@ extension UILabel {
         return self
     }
     
+    func textAlignemnt(_ alignment: NSTextAlignment) -> UILabel {
+        self.textAlignment = alignment
+        return self
+    }
+    
 }
