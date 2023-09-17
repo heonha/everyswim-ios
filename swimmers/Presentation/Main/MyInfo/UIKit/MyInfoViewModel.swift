@@ -20,8 +20,4 @@ final class MyInfoViewModel: BaseViewModel {
         return MyInfoButtonType.allCases
     }
     
-    func pushView() {
-        
-    }
-    
 }

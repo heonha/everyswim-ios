@@ -2,37 +2,20 @@
 //  AppImage.swift
 //  swimmers
 //
-//  Created by HeonJin Ha on 2023/07/08.
+//  Created by HeonJin Ha on 9/16/23.
 //
 
-import SwiftUI
+import UIKit
+
 
 enum AppImage {
-    case swim
-    case swimWave
-    case flare
-    case logout
-    case targetEdit
-}
-
-
-extension AppImage {
     
-    func getImage(size: CGSize, color: UIColor) -> UIImage? {
+    case appleHealth
+    
+    func getImage() -> UIImage {
         switch self {
-        case .swim:
-            return UIImage(named: "swim")
-//        case .swimWave:
-//            return UIImage(named: "swimWave") ?? UIImage()
-        case .flare:
-            return UIImage(named: "flame")
-//        case .logout:
-//            return UIImage(named: "logout") ?? UIImage()
-//        case .targetEdit:
-//            return UIImage(named: "targetEdit") ?? UIImage()
-        default:
-            return UIImage()
+        case .appleHealth:
+            return UIImage(named: "AppleHealth") ?? UIImage()
         }
     }
-    
 }
