@@ -11,7 +11,6 @@ import SnapKit
 final class DatePickerCollectionView: UICollectionView {
     
     private let viewModel: EventDatePickerViewModel
-    private let dayPerWeek = 7
     
     init(viewModel: EventDatePickerViewModel) {
         let layout = FlowLayout.datePicker.get(cellSize: viewModel.getCellSize())

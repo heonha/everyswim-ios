@@ -14,7 +14,9 @@ final class DatePickerController: UIViewController {
     private let viewModel: EventDatePickerViewModel
     private var cancellables: Set<AnyCancellable>
     private var selectedIndexPath: IndexPath?
-    
+    private let loadingIndicator = LoadingIndicator()
+    private var isFirstRun = true
+
     private lazy var workoutDatePicker = DatePickerHeader(viewModel: viewModel)
     private lazy var dayCollectionView = DatePickerCollectionView(viewModel: viewModel)
     
@@ -33,7 +35,6 @@ final class DatePickerController: UIViewController {
         configure()
         layout()
         bind()
-        Task { await viewModel.subscribeSwimData() }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,18 +45,26 @@ final class DatePickerController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
+}
 
+extension DatePickerController {
+    
     private func configure() {
         dayCollectionView.delegate = self
         dayCollectionView.dataSource = self
-        dayCollectionView.register(DatePickerReuseCell.self, 
+        dayCollectionView.register(DatePickerReuseCell.self,
                                    forCellWithReuseIdentifier: DatePickerReuseCell.identifier)
+        
+        loadingIndicator.center = view.center
     }
     
     private func layout() {
+        
         self.view.addSubview(workoutDatePicker)
         self.view.addSubview(dayCollectionView)
-        
+        self.view.addSubview(loadingIndicator)
+
         workoutDatePicker.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
@@ -76,7 +85,6 @@ final class DatePickerController: UIViewController {
     }
     
     private func bind() {
-        
         viewModel.$currentMonth
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
@@ -86,10 +94,15 @@ final class DatePickerController: UIViewController {
             }
             .store(in: &cancellables)
         
+        Task {
+            self.loadingIndicator.show()
+            await viewModel.subscribeSwimData()
+            self.dayCollectionView.reloadData()
+            self.loadingIndicator.hide()
+        }
     }
     
 }
-
 
 extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSource {
     

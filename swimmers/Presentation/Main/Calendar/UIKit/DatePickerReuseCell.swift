@@ -32,16 +32,14 @@ final class DatePickerReuseCell: UICollectionViewCell {
         
         if value.day != -1 {
             content.dayView.text = value.day.description
+            
             if viewModel.extractFirstEvent(date: value.date) != nil {
-                content.dayView.textColor = AppUIColor.whithThickMaterialColor
-                content.dayView.backgroundColor = AppUIColor.primary
+                updateCell(type: .hasEvent)
             } else {
-                content.dayView.textColor = UIColor(hex: "000000", alpha: 0.7)
-                content.dayView.backgroundColor = .white
+                updateCell(type: .noEvent)
             }
         } else {
-            content.dayView.text = ""
-            content.dayView.backgroundColor = .white
+            updateCell(type: .empty)
         }
     }
     
@@ -49,19 +47,27 @@ final class DatePickerReuseCell: UICollectionViewCell {
         content.circleView.isHidden = isHidden
     }
     
+    private func updateCell(type: DatePickerEventType) {
+        switch type {
+        case .hasEvent:
+            content.dayView.textColor = AppUIColor.whithThickMaterialColor
+            content.dayView.backgroundColor = AppUIColor.primary
+
+        case .noEvent:
+            content.dayView.textColor = UIColor(hex: "000000", alpha: 0.7)
+            content.dayView.backgroundColor = .white
+
+        case .empty:
+            content.dayView.text = ""
+            content.dayView.backgroundColor = .white
+        }
+    }
+    
+    
 }
 
-
-// #if DEBUG
-// import SwiftUI
-// 
-// struct DatePickerCell_Previews: PreviewProvider {
-//     static var previews: some View {
-//         UIViewPreview {
-//             DatePickerCell(dateValue: .init(day: 1, date: Date(), weekday: .mon), viewModel: EventDatePickerViewModel(healthKitManager: .init()))
-//         }
-//         .ignoresSafeArea()
-//     }
-// }
-// #endif
-// 
+enum DatePickerEventType {
+    case hasEvent
+    case noEvent
+    case empty
+}
