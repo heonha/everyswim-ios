@@ -11,7 +11,7 @@ import SnapKit
 
 final class DatePickerCell: UIView {
     
-    private let viewModel: EventDatePickerViewModel
+    private let viewModel: DatePickerViewModel
     var value: DateValue
 
     lazy var textColor = viewModel.isSameDay(value.date, viewModel.currentDate)
@@ -38,7 +38,7 @@ final class DatePickerCell: UIView {
         .shadow(color: .black, x: 0, y: 0)
         
     
-    init(viewModel: EventDatePickerViewModel, value: DateValue) {
+    init(viewModel: DatePickerViewModel, value: DateValue) {
         self.viewModel = viewModel
         self.value = value
         super.init(frame: .zero)

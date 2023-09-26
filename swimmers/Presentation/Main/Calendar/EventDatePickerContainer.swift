@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventDatePickerContainer: View {
     
-    @ObservedObject private var viewModel = EventDatePickerViewModel()
+    @ObservedObject private var viewModel = DatePickerViewModel()
     
     var body: some View {
         NavigationView {

@@ -24,5 +24,10 @@ extension UIImageView {
         self.image = image
         return self
     }
+    
+    func updateSymbolImage(systemName: String, color: UIColor = .black) {
+        let image = UIImage(systemName: systemName)?.withTintColor(color, renderingMode: .alwaysOriginal)
+        self.image = image
+    }
 
 }

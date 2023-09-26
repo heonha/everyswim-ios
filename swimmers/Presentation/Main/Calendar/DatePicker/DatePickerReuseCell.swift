@@ -11,7 +11,7 @@ import SnapKit
 final class DatePickerReuseCell: UICollectionViewCell {
 
     static let identifier = "DatePickerCell"
-    var viewModel: EventDatePickerViewModel!
+    var viewModel: DatePickerViewModel!
     var content: DatePickerCell!
     
     func setDateValue(_ value: DateValue) {

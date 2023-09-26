@@ -38,22 +38,20 @@ final class EventListUICell: UIView {
         return vstack
     }()
     
-
+    private lazy var records = data.getSimpleRecords()
+    
+    private lazy var title = ViewFactory.label("\(data.getWeekDay()) 수영")
+        .font(.custom(.sfProMedium, size: 15))
+        .foregroundColor(UIColor.black)
+    
+    private lazy var record = ViewFactory
+        .label("\(records.duration) | \(records.distance)m | \(records.lap) Lap")
+        .font(.custom(.sfProLight, size: 13))
+        .foregroundColor(AppUIColor.primaryBlue)
+    
     private lazy var bodyView: UIStackView = {
-        let records = data.getSimpleRecords()
-        
-        let title = ViewFactory.label("\(data.getWeekDay()) 수영")
-            .font(.custom(.sfProMedium, size: 15))
-            .foregroundColor(UIColor.black)
-        
-        let record = ViewFactory
-            .label("\(records.duration) | \(records.distance)m | \(records.lap) Lap")
-            .font(.custom(.sfProLight, size: 13))
-            .foregroundColor(AppUIColor.primaryBlue)
-        
         let vstack = ViewFactory.vStack(subviews: [title, record], alignment: .leading)
         vstack.setContentHuggingPriority(.init(249), for: .horizontal)
-        
         return vstack
     }()
     
@@ -95,6 +93,15 @@ final class EventListUICell: UIView {
 
 extension EventListUICell {
     
+    func updateTitle(data: SwimMainData) {
+        self.title.text = "\(data.getWeekDay()) 수영"
+    }
+    
+    func updateRecord(data: SwimMainData) {
+        let record = data.getSimpleRecords()
+        self.title.text = "\(record.duration) | \(record.distance)m | \(record.lap) Lap"
+    }
+
     func updateData(_ data: SwimMainData) {
         self.data = data
         self.layoutIfNeeded()
@@ -110,8 +117,11 @@ extension EventListUICell {
         self.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
-        
+        bodyView.addArrangedSubview(title)
+        bodyView.addArrangedSubview(record)
+
         self.addSubview(mainView)
+        
         mainView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
@@ -124,6 +134,8 @@ extension EventListUICell {
         dayView.snp.makeConstraints { make in
             make.width.lessThanOrEqualTo(40)
         }
+        
+        
     }
     
 }

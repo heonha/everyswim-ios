@@ -10,7 +10,7 @@ import SnapKit
 
 final class DatePickerHeader: UIView {
     
-    private let viewModel: EventDatePickerViewModel
+    private let viewModel: DatePickerViewModel
     
     private lazy var month = ViewFactory
         .label(viewModel.extraDate()[1])
@@ -92,7 +92,7 @@ final class DatePickerHeader: UIView {
     
     private lazy var eventDayCell: UIView = UIView()
     
-    init(viewModel: EventDatePickerViewModel) {
+    init(viewModel: DatePickerViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         configure()
@@ -140,7 +140,6 @@ final class DatePickerHeader: UIView {
         }
     }
     
-    
 }
 
 #if DEBUG
@@ -149,7 +148,7 @@ import SwiftUI
 struct WorkoutDatePicker_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            DatePickerHeader(viewModel: EventDatePickerViewModel())
+            DatePickerHeader(viewModel: DatePickerViewModel())
         }
         .frame(height: 300)
     }

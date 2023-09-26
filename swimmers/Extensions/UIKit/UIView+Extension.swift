@@ -88,6 +88,17 @@ extension UIView {
         return self as! T
     }
     
+    public func setContentHuggingPriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
+        self.setContentHuggingPriority(priority, for: axis)
+        return self as! T
+    }
+    
+    public func setContentCompressionResistancePriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
+        self.setContentCompressionResistancePriority(priority, for: axis)
+        return self as! T
+    }
+
+    
 }
 
 

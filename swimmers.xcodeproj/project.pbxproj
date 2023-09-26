@@ -35,7 +35,7 @@
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
 		39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */; };
 		39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCD2AB33BD300497402 /* MyInfoButton.swift */; };
-		39389FD42AB34BA900497402 /* EventDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD22AB34BA900497402 /* EventDatePickerViewModel.swift */; };
+		39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD22AB34BA900497402 /* DatePickerViewModel.swift */; };
 		39389FD52AB34BA900497402 /* EventDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD32AB34BA900497402 /* EventDatePicker.swift */; };
 		39389FDD2AB34BDA00497402 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FDB2AB34BDA00497402 /* EventListCell.swift */; };
 		39389FDE2AB34BDA00497402 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FDC2AB34BDA00497402 /* EventListView.swift */; };
@@ -116,6 +116,8 @@
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */; };
+		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
+		39EB49252AB7170800F247FC /* RecordReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49242AB7170800F247FC /* RecordReuseCell.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
 		39F599842A9B590D00738334 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 39F599832A9B590D00738334 /* SnapKit */; };
@@ -168,7 +170,7 @@
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
 		39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonList.swift; sourceTree = "<group>"; };
 		39389FCD2AB33BD300497402 /* MyInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButton.swift; sourceTree = "<group>"; };
-		39389FD22AB34BA900497402 /* EventDatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePickerViewModel.swift; sourceTree = "<group>"; };
+		39389FD22AB34BA900497402 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		39389FD32AB34BA900497402 /* EventDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePicker.swift; sourceTree = "<group>"; };
 		39389FDB2AB34BDA00497402 /* EventListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
 		39389FDC2AB34BDA00497402 /* EventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
@@ -253,6 +255,8 @@
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
+		39EB49222AB70E5C00F247FC /* DateRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRecordListView.swift; sourceTree = "<group>"; };
+		39EB49242AB7170800F247FC /* RecordReuseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReuseCell.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		39F599852A9B5CB000738334 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -482,10 +486,21 @@
 			path = EventList;
 			sourceTree = "<group>";
 		};
+		393863CB2AB72E0900D8640D /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */,
+				399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */,
+				399EFFDC2AAE040D00DE7E12 /* DatePickerReuseCell.swift */,
+				3980FC542AB6D57B00E4A8DE /* DatePickerCell.swift */,
+				3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
 		39389FD12AB34BA900497402 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
-				39389FD22AB34BA900497402 /* EventDatePickerViewModel.swift */,
 				39389FD32AB34BA900497402 /* EventDatePicker.swift */,
 			);
 			path = DatePicker;
@@ -540,7 +555,6 @@
 				391C12B22A58D779001C2286 /* History */,
 				392CC0A82A9322A800E839A8 /* EventList */,
 				3960884F2A8F6E2D00FF2289 /* Model */,
-				399EFFD52AADF07600DE7E12 /* SwiftUI */,
 				399EFFD42AADF06C00DE7E12 /* UIKit */,
 			);
 			path = Calendar;
@@ -680,20 +694,11 @@
 			isa = PBXGroup;
 			children = (
 				399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */,
-				399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */,
-				399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */,
-				399EFFDC2AAE040D00DE7E12 /* DatePickerReuseCell.swift */,
-				3980FC542AB6D57B00E4A8DE /* DatePickerCell.swift */,
-				3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */,
+				39389FD22AB34BA900497402 /* DatePickerViewModel.swift */,
+				393863CB2AB72E0900D8640D /* DatePicker */,
+				39EB49212AB70E1C00F247FC /* DateRecords */,
 			);
 			path = UIKit;
-			sourceTree = "<group>";
-		};
-		399EFFD52AADF07600DE7E12 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		39ADB2802A4AEA0000AED318 /* List */ = {
@@ -745,6 +750,15 @@
 				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		39EB49212AB70E1C00F247FC /* DateRecords */ = {
+			isa = PBXGroup;
+			children = (
+				39EB49222AB70E5C00F247FC /* DateRecordListView.swift */,
+				39EB49242AB7170800F247FC /* RecordReuseCell.swift */,
+			);
+			path = DateRecords;
 			sourceTree = "<group>";
 		};
 		39F5997D2A9B56CA00738334 /* UIKit */ = {
@@ -916,6 +930,7 @@
 				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
+				39EB49252AB7170800F247FC /* RecordReuseCell.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
@@ -982,7 +997,7 @@
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
-				39389FD42AB34BA900497402 /* EventDatePickerViewModel.swift in Sources */,
+				39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */,
 				3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
@@ -996,6 +1011,7 @@
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
 				39B0C39A2AAC78F9004E0985 /* ImageSliderCell.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
+				39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */,
 				39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */,
 				396CE8582AB56C8B00EB66BE /* BaseScrollView.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,

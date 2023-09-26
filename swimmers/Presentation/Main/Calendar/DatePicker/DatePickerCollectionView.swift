@@ -10,9 +10,9 @@ import SnapKit
 
 final class DatePickerCollectionView: UICollectionView {
     
-    private let viewModel: EventDatePickerViewModel
+    private let viewModel: DatePickerViewModel
     
-    init(viewModel: EventDatePickerViewModel) {
+    init(viewModel: DatePickerViewModel) {
         let layout = FlowLayout.datePicker.get(cellSize: viewModel.getCellSize())
         self.viewModel = viewModel
         super.init(frame: .zero, collectionViewLayout: layout)

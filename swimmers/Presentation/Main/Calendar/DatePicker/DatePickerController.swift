@@ -19,7 +19,6 @@ final class DatePickerController: UIViewController {
 
     private lazy var workoutDatePicker = DatePickerHeader(viewModel: viewModel)
     private lazy var dayCollectionView = DatePickerCollectionView(viewModel: viewModel)
-    private lazy var dateRecordListView = DateRecordListView(viewModel: viewModel)
     
     init(viewModel: DatePickerViewModel = .init()) {
         self.viewModel = viewModel
@@ -57,11 +56,6 @@ extension DatePickerController {
         dayCollectionView.register(DatePickerReuseCell.self,
                                    forCellWithReuseIdentifier: DatePickerReuseCell.identifier)
         
-        dateRecordListView.getTableView().delegate = self
-        dateRecordListView.getTableView().dataSource = self
-        dateRecordListView.getTableView().register(RecordReuseCell.self, 
-                                                   forCellReuseIdentifier: RecordReuseCell.reuseId)
-
         loadingIndicator.center = view.center
     }
     
@@ -69,7 +63,6 @@ extension DatePickerController {
         
         self.view.addSubview(workoutDatePicker)
         self.view.addSubview(dayCollectionView)
-        self.view.addSubview(dateRecordListView)
         self.view.addSubview(loadingIndicator)
 
         workoutDatePicker.snp.makeConstraints { make in
@@ -81,18 +74,6 @@ extension DatePickerController {
             make.top.equalTo(workoutDatePicker.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
         }
-        
-        dateRecordListView.snp.makeConstraints { make in
-            make.top.equalTo(dayCollectionView.snp.bottom).offset(20)
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(300)
-        }
-        
-        loadingIndicator.snp.makeConstraints { make in
-            make.center.equalTo(view)
-            make.size.equalTo(30)
-        }
-        
     }
     
     private func updateDatePickerLayout() {
@@ -110,23 +91,6 @@ extension DatePickerController {
                 self?.viewModel.changeMonth()
                 self?.workoutDatePicker.updateView()
                 self?.dayCollectionView.reloadData()
-            }
-            .store(in: &cancellables)
-        
-        dateRecordListView.getMothlyToggleButton()
-            .gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                print("Monthly Toggle 버튼 눌러짐")
-                self?.dateRecordListView.monthlyToggleButtonAction()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$currentDate
-            .receive(on: RunLoop.main)
-            .sink { event in
-                print("CurrentDate 변경 \(event)")
-                self.dateRecordListView.getTableView().reloadData()
             }
             .store(in: &cancellables)
         
@@ -156,8 +120,7 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentDate = viewModel.extractDayInCarendar()[indexPath.item].date
-        viewModel.currentDate = currentDate
+        viewModel.currentDate = viewModel.extractDayInCarendar()[indexPath.item].date
         viewModel.isMonthlyRecord = false
         
         if let selectedIndexPath = selectedIndexPath {
@@ -167,7 +130,6 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         self.selectedIndexPath = indexPath
-        
         let cell = collectionView.cellForItem(at: indexPath) as! DatePickerReuseCell
         cell.hiddenCircle(false)
     }
@@ -183,35 +145,6 @@ extension DatePickerController: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     
-}
-
-extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.presentedEventData.count == 0 {
-            return 1
-        } else {
-            return viewModel.presentedEventData.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: RecordReuseCell.reuseId,
-                                 for: indexPath) as? RecordReuseCell else { return UITableViewCell() }
-        let data = viewModel.extractSelectedDateEvent()
-
-        if let data = data {
-            let workoutData = data.event[indexPath.row]
-            cell.setBaseCell(data: workoutData)
-            return cell
-        } else {
-            print("empty")
-            let emptyCell = UITableViewCell()
-            emptyCell.textLabel?.text = "기록이 없습니다."
-            return emptyCell
-        }
-    }
 }
 
 #if DEBUG

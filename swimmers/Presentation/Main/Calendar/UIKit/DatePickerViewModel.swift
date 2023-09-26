@@ -1,5 +1,5 @@
 //
-//  EventDatePickerViewModel.swift
+//  DatePickerViewModel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 8/12/23.
@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class EventDatePickerViewModel: ObservableObject {
+final class DatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -18,9 +18,9 @@ final class EventDatePickerViewModel: ObservableObject {
     @Published var isMonthlyRecord = false
     private var cellWidth = Constant.deviceSize.width / 7
     
-    @Published var presentedEventData: [DatePickerEventData] = []
-    @Published var allEventData: [DatePickerEventData] = []
     @Published private var allWorkoutData: [SwimMainData] = []
+    @Published var allEventData: [DatePickerEventData] = []
+    @Published var presentedEventData: [DatePickerEventData] = []
     
     private var hkManager: HealthKitManager?
     
@@ -30,10 +30,18 @@ final class EventDatePickerViewModel: ObservableObject {
     
 }
 
-extension EventDatePickerViewModel {
+extension DatePickerViewModel {
     
     func extractFirstEvent(date: Date) -> DatePickerEventData? {
         return presentedEventData.first { isSameDay($0.eventDate, date) }
+    }
+    
+    func extractSelectedDateEvent() -> DatePickerEventData? {
+        let data = presentedEventData.first { data in
+            return data.eventDate.toString(.date) == currentDate.toString(.date)
+        }
+        print(data.debugDescription)
+        return data
     }
     
     func changeMonth() {
@@ -53,7 +61,6 @@ extension EventDatePickerViewModel {
             .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] data in
                 guard let self = self else { return }
-                
                 self.allEventData = self.groupingEventsByDate(tasks: data)
                 self.setTargetMonthData()
             }
@@ -65,9 +72,7 @@ extension EventDatePickerViewModel {
             self.presentedEventData = self.allEventData.filter { metadata in
                 self.isSameMonth(metadata.eventDate, self.currentDate)
             }
-            
-            print("계산결과: \(self.currentDate.toString(.dayDotMonth)) \(self.presentedEventData.count)")
-            
+
             self.sortArray()
         }
     }
