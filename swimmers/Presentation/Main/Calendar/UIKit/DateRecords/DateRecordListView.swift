@@ -14,7 +14,7 @@ final class DateRecordListView: UIView {
     private var primaryColor = AppUIColor.primary
 
     private let tableView = UITableView()
-    private lazy var recordCells: [EventListUICell] = []
+    private lazy var recordCells: [SwimRecordSmallCell] = []
     
     private let contentView = UIView()
     
@@ -59,6 +59,7 @@ final class DateRecordListView: UIView {
         self.addSubview(contentView)
         self.contentView.addSubview(headerView)
         self.contentView.addSubview(tableView)
+        self.tableView.separatorStyle = .none
     }
     
     private func layout() {
@@ -75,7 +76,7 @@ final class DateRecordListView: UIView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(contentView)
-            make.height.equalTo(300)
+            make.bottom.equalToSuperview()
         }
         
     }

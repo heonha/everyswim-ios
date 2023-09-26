@@ -42,6 +42,7 @@
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
+		394819522AC2D86000FD7FA8 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394819512AC2D86000FD7FA8 /* HistoryViewController.swift */; };
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
 		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
 		3954EBB02A6E54E300044125 /* SwimDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBAF2A6E54E300044125 /* SwimDetailView.swift */; };
@@ -117,7 +118,6 @@
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */; };
 		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
-		39EB49252AB7170800F247FC /* RecordReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49242AB7170800F247FC /* RecordReuseCell.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
 		39F599842A9B590D00738334 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 39F599832A9B590D00738334 /* SnapKit */; };
@@ -127,7 +127,7 @@
 		39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */; };
 		39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998D2A9B6C3800738334 /* UIViewPreview.swift */; };
 		39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */; };
-		39F599932A9B7BA000738334 /* EventListUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* EventListUICell.swift */; };
+		39F599932A9B7BA000738334 /* SwimRecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +177,7 @@
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		394819512AC2D86000FD7FA8 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
 		3954EBAF2A6E54E300044125 /* SwimDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDetailView.swift; sourceTree = "<group>"; };
@@ -256,7 +257,6 @@
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
 		39EB49222AB70E5C00F247FC /* DateRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRecordListView.swift; sourceTree = "<group>"; };
-		39EB49242AB7170800F247FC /* RecordReuseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReuseCell.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		39F599852A9B5CB000738334 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 		39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 		39F5998D2A9B6C3800738334 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
 		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
-		39F599922A9B7BA000738334 /* EventListUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListUICell.swift; sourceTree = "<group>"; };
+		39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimRecordSmallCell.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -291,6 +291,7 @@
 		391C12B22A58D779001C2286 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				394819502AC2D85600FD7FA8 /* UIKit */,
 				39389FD12AB34BA900497402 /* DatePicker */,
 				396D2AAD2A5599120042D4D4 /* HistoryView.swift */,
 				396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */,
@@ -520,6 +521,14 @@
 				39437DA12A48949700FDA9DA /* SecretKeys.swift */,
 			);
 			path = Secrets;
+			sourceTree = "<group>";
+		};
+		394819502AC2D85600FD7FA8 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				394819512AC2D86000FD7FA8 /* HistoryViewController.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		39572CDF2A52CABB00986E01 /* HealthKit */ = {
@@ -756,7 +765,6 @@
 			isa = PBXGroup;
 			children = (
 				39EB49222AB70E5C00F247FC /* DateRecordListView.swift */,
-				39EB49242AB7170800F247FC /* RecordReuseCell.swift */,
 			);
 			path = DateRecords;
 			sourceTree = "<group>";
@@ -780,7 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
-				39F599922A9B7BA000738334 /* EventListUICell.swift */,
+				39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */,
 				39B0C3962AAC6FBE004E0985 /* ImageSlider */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
 			);
@@ -930,7 +938,6 @@
 				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
-				39EB49252AB7170800F247FC /* RecordReuseCell.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
@@ -1002,8 +1009,9 @@
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
-				39F599932A9B7BA000738334 /* EventListUICell.swift in Sources */,
+				39F599932A9B7BA000738334 /* SwimRecordSmallCell.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
+				394819522AC2D86000FD7FA8 /* HistoryViewController.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,

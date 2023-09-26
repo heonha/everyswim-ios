@@ -24,17 +24,21 @@ final class DashboardViewController: UIViewController {
     
     var counter = 0
     
-    private lazy var lastWorkoutView = EventListUICell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!, showDate: true)
+    private lazy var lastWorkoutView = SwimRecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!,
+                                                           showDate: true)
+    
+    private let eventTitle = ViewFactory
+        .label("최근 기록")
+        .font(.custom(.sfProLight, size: 15))
+        .foregroundColor(.gray)
     
     private lazy var recentRecordView: UIStackView = {
-        let eventTitle = ViewFactory
-            .label("최근 기록")
-            .font(.custom(.sfProLight, size: 15))
-            .foregroundColor(.gray)
-        
-        
         let vstack = ViewFactory
             .vStack(subviews: [eventTitle, lastWorkoutView])
+        
+        lastWorkoutView.snp.makeConstraints { make in
+            make.height.equalTo(70)
+        }
         return vstack
     }()
     
@@ -104,8 +108,7 @@ extension DashboardViewController {
         
         recentRecordView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(spacing)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.horizontalEdges.equalToSuperview().inset(10)
         }
         
         imageSlider.snp.makeConstraints { make in

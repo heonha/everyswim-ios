@@ -16,7 +16,7 @@ final class DatePickerViewModel: ObservableObject {
     @Published var currentDate = Date()
     @Published var currentMonth = 0
     @Published var isMonthlyRecord = false
-    private var cellWidth = Constant.deviceSize.width / 7
+    private var cellWidth = Constant.deviceSize.width / 7.2
     
     @Published private var allWorkoutData: [SwimMainData] = []
     @Published var allEventData: [DatePickerEventData] = []
