@@ -36,9 +36,6 @@
 		39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */; };
 		39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCD2AB33BD300497402 /* MyInfoButton.swift */; };
 		39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD22AB34BA900497402 /* DatePickerViewModel.swift */; };
-		39389FD52AB34BA900497402 /* EventDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD32AB34BA900497402 /* EventDatePicker.swift */; };
-		39389FDD2AB34BDA00497402 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FDB2AB34BDA00497402 /* EventListCell.swift */; };
-		39389FDE2AB34BDA00497402 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FDC2AB34BDA00497402 /* EventListView.swift */; };
 		39437D9F2A48944000FDA9DA /* NaverMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437D9E2A48944000FDA9DA /* NaverMapService.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
@@ -117,7 +114,6 @@
 		39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */; };
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
-		39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */; };
 		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
@@ -172,9 +168,6 @@
 		39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonList.swift; sourceTree = "<group>"; };
 		39389FCD2AB33BD300497402 /* MyInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButton.swift; sourceTree = "<group>"; };
 		39389FD22AB34BA900497402 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
-		39389FD32AB34BA900497402 /* EventDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePicker.swift; sourceTree = "<group>"; };
-		39389FDB2AB34BDA00497402 /* EventListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
-		39389FDC2AB34BDA00497402 /* EventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		39437D9E2A48944000FDA9DA /* NaverMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapService.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -257,7 +250,6 @@
 		39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthStateCell.swift; sourceTree = "<group>"; };
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
-		39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
 		39EB49222AB70E5C00F247FC /* DateRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRecordListView.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -293,12 +285,8 @@
 		391C12B22A58D779001C2286 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				394819502AC2D85600FD7FA8 /* UIKit */,
-				39389FD12AB34BA900497402 /* DatePicker */,
-				396D2AAD2A5599120042D4D4 /* HistoryView.swift */,
-				396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */,
-				3922D56D2A74B0BD00257164 /* Detail */,
-				3922D56C2A74B0B400257164 /* Record */,
+				394819512AC2D86000FD7FA8 /* HistoryViewController.swift */,
+				394819502AC2D85600FD7FA8 /* SwiftUI */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -397,10 +385,10 @@
 		3922D56E2A74B0DA00257164 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				392083C42A487DEA00E591A8 /* Types */,
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
 				39F599912A9B7B7600738334 /* Subviews */,
+				392083C42A487DEA00E591A8 /* Types */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -480,15 +468,6 @@
 			path = Swim;
 			sourceTree = "<group>";
 		};
-		392CC0A82A9322A800E839A8 /* EventList */ = {
-			isa = PBXGroup;
-			children = (
-				39389FDB2AB34BDA00497402 /* EventListCell.swift */,
-				39389FDC2AB34BDA00497402 /* EventListView.swift */,
-			);
-			path = EventList;
-			sourceTree = "<group>";
-		};
 		393863CB2AB72E0900D8640D /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,15 +478,8 @@
 				3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */,
 				397598302AC40D7500AD693B /* EmptySwimRecordSmallCell.swift */,
 			);
-			path = DatePicker;
-			sourceTree = "<group>";
-		};
-		39389FD12AB34BA900497402 /* DatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				39389FD32AB34BA900497402 /* EventDatePicker.swift */,
-			);
-			path = DatePicker;
+			name = DatePicker;
+			path = UIKit/DatePicker;
 			sourceTree = "<group>";
 		};
 		39437D9D2A48943200FDA9DA /* NaverMap */ = {
@@ -526,12 +498,15 @@
 			path = Secrets;
 			sourceTree = "<group>";
 		};
-		394819502AC2D85600FD7FA8 /* UIKit */ = {
+		394819502AC2D85600FD7FA8 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				394819512AC2D86000FD7FA8 /* HistoryViewController.swift */,
+				396D2AAD2A5599120042D4D4 /* HistoryView.swift */,
+				396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */,
+				3922D56D2A74B0BD00257164 /* Detail */,
+				3922D56C2A74B0B400257164 /* Record */,
 			);
-			path = UIKit;
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		39572CDF2A52CABB00986E01 /* HealthKit */ = {
@@ -563,11 +538,12 @@
 		396088502A8F6E5E00FF2289 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				39BB6D0E2A8CC26400DCF8B1 /* EventDatePickerContainer.swift */,
+				399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */,
+				39389FD22AB34BA900497402 /* DatePickerViewModel.swift */,
+				393863CB2AB72E0900D8640D /* DatePicker */,
+				39EB49212AB70E1C00F247FC /* DateRecords */,
 				391C12B22A58D779001C2286 /* History */,
-				392CC0A82A9322A800E839A8 /* EventList */,
 				3960884F2A8F6E2D00FF2289 /* Model */,
-				399EFFD42AADF06C00DE7E12 /* UIKit */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -700,17 +676,6 @@
 				39BC26972AAD7EE1007432B5 /* Subviews */,
 			);
 			path = Challange;
-			sourceTree = "<group>";
-		};
-		399EFFD42AADF06C00DE7E12 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */,
-				39389FD22AB34BA900497402 /* DatePickerViewModel.swift */,
-				393863CB2AB72E0900D8640D /* DatePicker */,
-				39EB49212AB70E1C00F247FC /* DateRecords */,
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		39ADB2802A4AEA0000AED318 /* List */ = {
@@ -953,7 +918,6 @@
 				396D2AB02A559D290042D4D4 /* RecordCell.swift in Sources */,
 				3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
-				39389FDD2AB34BDA00497402 /* EventListCell.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
@@ -966,7 +930,6 @@
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
-				39BB6D0F2A8CC26400DCF8B1 /* EventDatePickerContainer.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				39B0C39C2AAC7DCF004E0985 /* ImageSliderData.swift in Sources */,
 				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
@@ -975,7 +938,6 @@
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
 				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
-				39389FD52AB34BA900497402 /* EventDatePicker.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
 				39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */,
@@ -992,7 +954,6 @@
 				3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
 				396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */,
-				39389FDE2AB34BDA00497402 /* EventListView.swift in Sources */,
 				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
