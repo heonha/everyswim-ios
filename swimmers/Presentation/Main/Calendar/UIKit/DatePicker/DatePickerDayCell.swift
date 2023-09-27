@@ -107,7 +107,7 @@ final class DatePickerDayCell: UICollectionViewCell {
         if value.day != -1 {
             self.dayView.text = value.day.description
             
-            if viewModel.extractFirstEvent(date: value.date) != nil {
+            if viewModel.hasEvent(date: value.date) {
                 updateCell(type: .hasEvent)
             } else {
                 updateCell(type: .noEvent)

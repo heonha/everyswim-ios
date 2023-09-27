@@ -69,6 +69,7 @@
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D2ACE2A56DDA10042D4D4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
+		397598312AC40D7500AD693B /* EmptySwimRecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397598302AC40D7500AD693B /* EmptySwimRecordSmallCell.swift */; };
 		3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* DashboardHeaderView.swift */; };
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */; };
@@ -206,6 +207,7 @@
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D2ACD2A56DDA10042D4D4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
+		397598302AC40D7500AD693B /* EmptySwimRecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySwimRecordSmallCell.swift; sourceTree = "<group>"; };
 		3979A0642AA618930094D57A /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSortType.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */,
 				3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */,
 				3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */,
+				397598302AC40D7500AD693B /* EmptySwimRecordSmallCell.swift */,
 			);
 			path = DatePicker;
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
+				397598312AC40D7500AD693B /* EmptySwimRecordSmallCell.swift in Sources */,
 				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,

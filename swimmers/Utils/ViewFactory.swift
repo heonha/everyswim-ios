@@ -36,7 +36,7 @@ enum ViewFactory {
     }
     
     
-    static func label(_ text: String) -> UILabel {
+    static func label(_ text: String = "") -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text

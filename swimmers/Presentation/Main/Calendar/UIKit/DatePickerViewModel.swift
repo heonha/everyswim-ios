@@ -14,30 +14,45 @@ final class DatePickerViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var selectedDate = Date()
-    @Published var currentMonth = 0
+    @Published var currentMonth = 0 {
+        didSet {
+            dayInCarendar = self.extractDayInMonth()
+        }
+    }
     @Published var isMonthlyRecord = false
     private var cellWidth = Constant.deviceSize.width / 7.2
     
     @Published private var allWorkoutData: [SwimMainData] = []
     @Published var allEventData: [DatePickerEventData] = []
-    @Published var presentedEventData: [DatePickerEventData] = []
-        
+    
+    @Published var dataInSelectedMonth: [DatePickerEventData] = []
+    @Published var dayInCarendar: [DateValue] = []
+    
     private var hkManager: HealthKitManager?
     
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
-        self.hkManager = healthKitManager
+        hkManager = healthKitManager
+        dayInCarendar = self.extractDayInMonth()
     }
     
 }
 
 extension DatePickerViewModel {
     
-    func extractFirstEvent(date: Date) -> DatePickerEventData? {
-        return presentedEventData.first { isSameDay($0.eventDate, date) }
+    /// 해당 날짜에 데이터가 있는지 여부 확인
+    func hasEvent(date: Date) -> Bool {
+        let data = dataInSelectedMonth.first { isSameDay($0.eventDate, date) }
+        
+        if data == nil {
+            return false
+        } else {
+            return true
+        }
     }
     
-    func extractSelectedDateEvent() -> DatePickerEventData? {
-        let data = presentedEventData.first { data in
+    /// 이벤트 데이터 추출
+    func extractDailyData() -> DatePickerEventData? {
+        let data = dataInSelectedMonth.first { data in
             return data.eventDate.toString(.date) == selectedDate.toString(.date)
         }
 
@@ -47,6 +62,7 @@ extension DatePickerViewModel {
     func changeMonth() {
         selectedDate = getCurrentMonth()
         isMonthlyRecord = true
+        self.dataInSelectedMonth = []
         setTargetMonthData()
     }
     
@@ -79,15 +95,17 @@ extension DatePickerViewModel {
     
     private func setTargetMonthData() {
         DispatchQueue.main.async {
-            self.presentedEventData = self.allEventData.filter { metadata in
+            self.dataInSelectedMonth = self.allEventData.filter { metadata in
                 self.isSameMonth(metadata.eventDate, self.selectedDate)
             }
+            
+            print("SAME MONTH : \(self.dataInSelectedMonth.count)")
             self.sortArray()
         }
     }
     
     private func sortArray() {
-        presentedEventData.sort { $0.eventDate > $1.eventDate }
+        dataInSelectedMonth.sort { $0.eventDate > $1.eventDate }
     }
     
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
@@ -131,7 +149,7 @@ extension DatePickerViewModel {
         }
     }
     
-    func extractDayInCarendar() -> [DateValue] {
+    func extractDayInMonth() -> [DateValue] {
         
         let calendar = Calendar.current
         

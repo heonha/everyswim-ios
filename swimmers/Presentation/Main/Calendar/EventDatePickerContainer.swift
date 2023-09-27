@@ -13,12 +13,12 @@ struct EventDatePickerContainer: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                EventDatePicker(viewModel: _viewModel)
-                    .padding(.horizontal, 8)
-                
-                EventListView(viewModel: _viewModel)
-            }
+            // VStack {
+            //     EventDatePicker(viewModel: _viewModel)
+            //         .padding(.horizontal, 8)
+            //     
+            //     EventListView(viewModel: _viewModel)
+            // }
         }
     }
     

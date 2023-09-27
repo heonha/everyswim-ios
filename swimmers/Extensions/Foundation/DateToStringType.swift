@@ -14,6 +14,14 @@ enum DateToStringType {
     case dateKr
     /// "yyyy년 M월 d일 h시 m분"
     case fullDateKr
+    
+    ///"M월 d일"
+    case monthDayKr
+    
+    /// "M월"
+    case monthKr
+
+    
     /// "h:m:s"
     case time
     /// "h:m"
@@ -31,10 +39,15 @@ enum DateToStringType {
         switch self {
         case .date:
             return "yyyy-M-d"
-        case .dateKr:
-            return "yyyy년 M월 d일 (E)"
         case .fullDateKr:
             return "yyyy년 M월 d일 EEEE a h시 m분"
+        case .dateKr:
+            return "yyyy년 M월 d일 (E)"
+        case .monthDayKr:
+            return "M월 d일"
+        case .monthKr:
+            return "M월"
+            
         case .time:
             return "a h:mm:ss"
         case .timeWithoutSeconds:
@@ -43,7 +56,6 @@ enum DateToStringType {
             return "M.dd"
         case .weekDay:
             return "EEEE"
-            
         case .month:
             return "M"
         case .year:

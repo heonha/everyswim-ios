@@ -108,7 +108,7 @@ extension EventDatePicker {
         let columns = Array(repeating: GridItem(.flexible()), count: 7)
         
         return LazyVGrid(columns: columns, spacing: 2) {
-            ForEach(viewModel.extractDayInCarendar()) { dateValue in
+            ForEach(viewModel.extractDayInMonth()) { dateValue in
                 dayCellContainer(from: dateValue)
             }
         }
@@ -118,7 +118,7 @@ extension EventDatePicker {
         VStack {
             if value.day != -1 {
                 Group {
-                    if viewModel.extractFirstEvent(date: value.date) != nil {
+                    if viewModel.hasEvent(date: value.date) != nil {
                         eventDayCell(value)
                     } else {
                         noEventDayCell(value)

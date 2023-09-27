@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class DateRecordListView: UIView {
         
+    private var cancellables = Set<AnyCancellable>()
+    
     private let viewModel: DatePickerViewModel
     private var primaryColor = AppUIColor.primary
 
@@ -61,6 +64,7 @@ final class DateRecordListView: UIView {
         self.contentView.addSubview(tableView)
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = self.backgroundColor
+        observeToggleButton()
     }
     
     private func layout() {
@@ -90,12 +94,22 @@ final class DateRecordListView: UIView {
         return self.monthlyToggleButton
     }
     
-    func monthlyToggleButtonAction() {
-        viewModel.isMonthlyRecord.toggle()
-        if viewModel.isMonthlyRecord {
+    func observeToggleButton() {
+        viewModel.$isMonthlyRecord
+            .receive(on: RunLoop.main)
+            .sink { [weak self] value in
+                self?.monthlyToggleButtonAction(value: value)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func monthlyToggleButtonAction(value: Bool) {
+        if value {
             toggleImageView.updateSymbolImage(systemName: "checkmark.circle.fill")
+            self.tableView.reloadData()
         } else {
             toggleImageView.updateSymbolImage(systemName: "circle")
+            self.tableView.reloadData()
         }
     }
     
@@ -113,7 +127,7 @@ struct DateRecordListView_Previews: PreviewProvider {
             DateRecordListView(viewModel: viewModel)
         }
         
-        EventListView(viewModel: .init(initialValue: viewModel))
+        // EventListView(viewModel: .init(initialValue: viewModel))
     }
 }
 #endif
