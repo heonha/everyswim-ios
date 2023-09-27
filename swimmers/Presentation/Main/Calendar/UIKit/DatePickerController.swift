@@ -43,10 +43,6 @@ final class DatePickerController: UIViewController {
         updateDatePickerLayout()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
 }
 
 extension DatePickerController {
@@ -202,11 +198,11 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
                                                        for: indexPath) as? SwimRecordSmallCell else { return UITableViewCell() }
         guard let swimData = viewModel.extractSelectedDateEvent()?.event[indexPath.row] else {
             let cell = UITableViewCell()
-            cell.backgroundColor = .systemGreen
+            // TODO: 여기에 PlaceHolder -> 이 날의 운동기록이 없습니다 표시.
             return cell
         }
-        
         cell.updateData(swimData)
+        cell.backgroundColor = .clear
         return cell
     }
     

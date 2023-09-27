@@ -55,11 +55,12 @@ final class DateRecordListView: UIView {
     }
     
     private func configure() {
-        self.backgroundColor = .systemGreen
+        self.backgroundColor = AppUIColor.skyBackground
         self.addSubview(contentView)
         self.contentView.addSubview(headerView)
         self.contentView.addSubview(tableView)
         self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = self.backgroundColor
     }
     
     private func layout() {
@@ -70,7 +71,7 @@ final class DateRecordListView: UIView {
         
         headerView.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(contentView).inset(12)
-            make.height.equalTo(30)
+            make.height.lessThanOrEqualTo(30)
         }
         
         tableView.snp.makeConstraints { make in

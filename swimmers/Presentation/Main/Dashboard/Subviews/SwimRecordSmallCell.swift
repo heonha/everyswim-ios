@@ -109,6 +109,7 @@ final class SwimRecordSmallCell: UITableViewCell {
         self.data = data
         self.showRelativedate = showDate
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.configure()
     }
 
     
@@ -136,6 +137,10 @@ extension SwimRecordSmallCell {
 
     func updateData(_ data: SwimMainData) {
         self.data = data
+    }
+    
+    private func configure() {
+        
     }
     
     private func setLayout() {

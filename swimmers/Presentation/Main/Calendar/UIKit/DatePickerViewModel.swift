@@ -110,7 +110,6 @@ extension DatePickerViewModel {
         guard let currentMonth = calendar.date(byAdding: .month, value: currentMonth, to: Date()) else {
             return Date()
         }
-        
         return currentMonth
     }
     
