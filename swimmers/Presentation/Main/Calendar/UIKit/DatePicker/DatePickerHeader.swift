@@ -105,11 +105,13 @@ final class DatePickerHeader: UIView {
     
     @objc private func beforeMonth() {
         print("left")
+        viewModel.isMonthlyRecord = true
         viewModel.currentMonth -= 1
     }
     
     @objc private func forewardMonth() {
         print("right")
+        viewModel.isMonthlyRecord = true
         viewModel.currentMonth += 1
     }
     
@@ -119,8 +121,8 @@ final class DatePickerHeader: UIView {
     }
     
     func updateView() {
-        let month = viewModel.currentDate.toString(.month)
-        let year = viewModel.currentDate.toString(.year)
+        let month = viewModel.selectedDate.toString(.month)
+        let year = viewModel.selectedDate.toString(.year)
         
         self.month.text = "\(month)월"
         self.year.text = year

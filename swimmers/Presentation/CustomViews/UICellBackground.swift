@@ -125,6 +125,9 @@ extension CALayer {
         shadowOffset = CGSize(width: x, height: y)
         shadowRadius = blur / 2.0
         
+        shouldRasterize = true
+        rasterizationScale = UIScreen.main.scale
+        
         if spread == 0 {
             shadowPath = nil
         } else {

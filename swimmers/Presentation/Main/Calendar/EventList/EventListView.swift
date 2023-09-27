@@ -77,7 +77,7 @@ extension EventListView {
             if viewModel.isMonthlyRecord {
                 monthlyEventList(viewModel.presentedEventData)
             } else {
-                let dayMetadata = viewModel.extractFirstEvent(date: viewModel.currentDate)
+                let dayMetadata = viewModel.extractFirstEvent(date: viewModel.selectedDate)
                 if let dayMetadata = dayMetadata {
                     dailyEventList(dayMetadata)
                 } else {

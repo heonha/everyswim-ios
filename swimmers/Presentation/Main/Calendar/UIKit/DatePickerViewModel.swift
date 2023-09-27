@@ -13,7 +13,7 @@ final class DatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var currentDate = Date()
+    @Published var selectedDate = Date()
     @Published var currentMonth = 0
     @Published var isMonthlyRecord = false
     private var cellWidth = Constant.deviceSize.width / 7.2
@@ -21,7 +21,7 @@ final class DatePickerViewModel: ObservableObject {
     @Published private var allWorkoutData: [SwimMainData] = []
     @Published var allEventData: [DatePickerEventData] = []
     @Published var presentedEventData: [DatePickerEventData] = []
-    
+        
     private var hkManager: HealthKitManager?
     
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
@@ -38,20 +38,30 @@ extension DatePickerViewModel {
     
     func extractSelectedDateEvent() -> DatePickerEventData? {
         let data = presentedEventData.first { data in
-            return data.eventDate.toString(.date) == currentDate.toString(.date)
+            return data.eventDate.toString(.date) == selectedDate.toString(.date)
         }
-        print(data.debugDescription)
+
         return data
     }
     
     func changeMonth() {
-        currentDate = getCurrentMonth()
+        selectedDate = getCurrentMonth()
         isMonthlyRecord = true
         setTargetMonthData()
     }
     
     func getCellSize() -> CGSize {
         return CGSize(width: self.cellWidth, height: self.cellWidth)
+    }
+    
+    func getShadowRadiusSize() -> CGFloat {
+        return getCellSize().width / 2
+    }
+    
+    func getDayViewRadius(rootViewSize: CGFloat, inset: CGFloat) -> CGFloat {
+        let viewRadius = rootViewSize / 2
+        let insetValue = inset
+        return  viewRadius - insetValue
     }
     
     func subscribeSwimData() async {
@@ -70,9 +80,8 @@ extension DatePickerViewModel {
     private func setTargetMonthData() {
         DispatchQueue.main.async {
             self.presentedEventData = self.allEventData.filter { metadata in
-                self.isSameMonth(metadata.eventDate, self.currentDate)
+                self.isSameMonth(metadata.eventDate, self.selectedDate)
             }
-
             self.sortArray()
         }
     }
@@ -99,7 +108,7 @@ extension DatePickerViewModel {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY MMMM"
         
-        let date = formatter.string(from: currentDate)
+        let date = formatter.string(from: selectedDate)
         
         return date.components(separatedBy: " ")
     }

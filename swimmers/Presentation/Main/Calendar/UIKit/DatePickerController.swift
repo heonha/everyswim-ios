@@ -50,19 +50,16 @@ extension DatePickerController {
     private func configure() {
         dayCollectionView.delegate = self
         dayCollectionView.dataSource = self
-        dayCollectionView.register(DatePickerReuseCell.self,
-                                   forCellWithReuseIdentifier: DatePickerReuseCell.identifier)
+        dayCollectionView.register(DatePickerDayCell.self,
+                                   forCellWithReuseIdentifier: DatePickerDayCell.identifier)
         
         dateRecordListView.getTableView().delegate = self
         dateRecordListView.getTableView().dataSource = self
         dateRecordListView.getTableView().register(SwimRecordSmallCell.self,
                                                    forCellReuseIdentifier: SwimRecordSmallCell.reuseId)
-        
-        loadingIndicator.center = view.center
     }
     
     private func layout() {
-        
         self.view.addSubview(workoutDatePicker)
         self.view.addSubview(dayCollectionView)
         self.view.addSubview(dateRecordListView)
@@ -115,16 +112,14 @@ extension DatePickerController {
             .gesturePublisher(.tap())
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                print("Monthly Toggle 버튼 눌러짐")
                 self?.dateRecordListView.monthlyToggleButtonAction()
             }
             .store(in: &cancellables)
         
-        viewModel.$currentDate
+        viewModel.$selectedDate
             .receive(on: RunLoop.main)
-            .sink { event in
-                print("CurrentDate 변경 \(event)")
-                self.dateRecordListView.getTableView().reloadData()
+            .sink { [weak self] event in
+                self?.dateRecordListView.getTableView().reloadData()
             }
             .store(in: &cancellables)
         
@@ -145,29 +140,29 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DatePickerReuseCell.identifier, for: indexPath) as? DatePickerReuseCell else {return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DatePickerDayCell.identifier, for: indexPath) as? DatePickerDayCell else {return UICollectionViewCell() }
         
-        let calendar = viewModel.extractDayInCarendar()[indexPath.item]
+        let dateValue = viewModel.extractDayInCarendar()[indexPath.item]
         cell.viewModel = self.viewModel
-        cell.setDateValue(calendar)
+        cell.dateValue = dateValue
+        cell.isShadowHidden = true
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentDate = viewModel.extractDayInCarendar()[indexPath.item].date
-        viewModel.currentDate = currentDate
+        let selectedDate = viewModel.extractDayInCarendar()[indexPath.item].date
+        viewModel.selectedDate = selectedDate
         viewModel.isMonthlyRecord = false
         
         if let selectedIndexPath = selectedIndexPath {
-            let cell = collectionView.cellForItem(at: selectedIndexPath) as! DatePickerReuseCell
-            cell.hiddenCircle(true)
-            collectionView.deselectItem(at: selectedIndexPath, animated: true)
+            let cell = collectionView.cellForItem(at: selectedIndexPath) as! DatePickerDayCell
+            cell.isShadowHidden = true
+            collectionView.reloadItems(at: [selectedIndexPath])
         }
-        
+            
         self.selectedIndexPath = indexPath
-        
-        let cell = collectionView.cellForItem(at: indexPath) as! DatePickerReuseCell
-        cell.hiddenCircle(false)
+        let cell = collectionView.cellForItem(at: indexPath) as! DatePickerDayCell
+        cell.isShadowHidden = false
     }
 }
 
@@ -198,9 +193,11 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
                                                        for: indexPath) as? SwimRecordSmallCell else { return UITableViewCell() }
         guard let swimData = viewModel.extractSelectedDateEvent()?.event[indexPath.row] else {
             let cell = UITableViewCell()
+            
             // TODO: 여기에 PlaceHolder -> 이 날의 운동기록이 없습니다 표시.
             return cell
         }
+        
         cell.updateData(swimData)
         cell.backgroundColor = .clear
         return cell

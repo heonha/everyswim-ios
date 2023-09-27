@@ -130,7 +130,7 @@ extension EventDatePicker {
         .padding(.vertical, 9)
         .frame(height: 50, alignment: .center)
         .onTapGesture {
-            viewModel.currentDate = value.date
+            viewModel.selectedDate = value.date
             viewModel.isMonthlyRecord = false
         }
     }
@@ -140,7 +140,7 @@ extension EventDatePicker {
             .fill(Color.white)
             .border(.clear)
             .padding(.horizontal, 4)
-            .opacity(viewModel.isSameDay(value.date, viewModel.currentDate) ? 1 : 0)
+            .opacity(viewModel.isSameDay(value.date, viewModel.selectedDate) ? 1 : 0)
             .shadow(color: .black.opacity(0.5), radius: 1.5)
             .frame(width: 46, height: 46)
     }
@@ -163,7 +163,7 @@ extension EventDatePicker {
     }
     
     private func noEventDayCell(_ value: DateValue) -> some View {
-        let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.black : .primary
+        let textColor = viewModel.isSameDay(value.date, viewModel.selectedDate) ? Color.black : .primary
         
         return ZStack {
             Text("\(value.day)")
