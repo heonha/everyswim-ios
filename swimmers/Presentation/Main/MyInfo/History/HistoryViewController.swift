@@ -18,7 +18,7 @@ final class HistoryViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
 
     private let viewModel: HistoryViewModel
-    private let tableView = UITableView()
+    private let tableView = BaseTableView()
     private let emptyCell = UITableViewCell()
     private let loadingIndicator = LoadingIndicator()
     
