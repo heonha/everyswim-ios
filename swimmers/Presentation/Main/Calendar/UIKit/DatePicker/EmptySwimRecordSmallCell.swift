@@ -34,11 +34,15 @@ final class EmptySwimSmallCell: UITableViewCell {
     
     static func withType(_ type: EmptySwimSmallCellType) -> EmptySwimSmallCell {
         let cell = EmptySwimSmallCell()
+        cell.titleLabel.numberOfLines = 0
+
         switch type {
         case .daily:
-            cell.titleLabel.text = "이 날의 운동 기록이 없습니다."
+            cell.titleLabel.text = "이 날의 수영 기록이 없습니다."
         case .monthly:
-            cell.titleLabel.text = "이 달의 운동 기록이 없습니다."
+            cell.titleLabel.text = "이 달의 수영 기록이 없습니다."
+        case .normal:
+            cell.titleLabel.text = "수영 기록이 없습니다.\n\n수영 기록이 표시되지 않으면\n[내정보 - 건강]의 상태를 확인해주세요."
         }
         return cell
     }
@@ -48,5 +52,6 @@ final class EmptySwimSmallCell: UITableViewCell {
 enum EmptySwimSmallCellType {
     case daily
     case monthly
+    case normal
 }
 

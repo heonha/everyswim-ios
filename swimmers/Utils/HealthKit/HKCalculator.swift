@@ -10,8 +10,8 @@ import HealthKit
 
 enum HKCalculator {
     
-    static func duration(_ interval: TimeInterval, outputType: RelativeTimeType = .hourMinute) -> String {
-        return interval.toRelativeTime(outputType)
+    static func duration(_ interval: TimeInterval, outputType: RelativeTimeType = .hourMinute, unitStyle: DateComponentsFormatter.UnitsStyle = .full) -> String {
+        return interval.toRelativeTime(outputType, unitStyle: unitStyle)
     }
     
     static func toRelativeDate(from startDate: Date) -> String {

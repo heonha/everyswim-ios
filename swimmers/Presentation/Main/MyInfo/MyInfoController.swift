@@ -105,6 +105,15 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        buttonList.getButton(type: .totalRecord)
+            .gesturePublisher(.tap())
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                let historyVC = HistoryViewController()
+                self.push(historyVC, animated: true)
+            }
+            .store(in: &cancellables)
+        
     }
     
 }

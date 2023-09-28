@@ -18,7 +18,7 @@ struct SwimMainData: Identifiable {
     
     /// HH시간 mm분 ss초
     var durationString: String {
-        return HKCalculator.duration(duration)
+        return duration.toRelativeTime(.hourMinuteSeconds, unitStyle: .positional)
     }
     
     var unwrappedDistance: Double {
@@ -47,6 +47,16 @@ struct SwimMainData: Identifiable {
         let totalKcal = active + rest
         
         return totalKcal
+    }
+    
+    var distanceString: String {
+        var distance = unwrappedDistance.toString()
+        distance += " m"
+        return distance
+    }
+    
+    var totalKcalString: String {
+        return totalKcal.toString() + " kcal"
     }
     
     func getWeekDay() -> String {

@@ -165,7 +165,6 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
         self.selectedIndexPath = indexPath
         let cell = collectionView.cellForItem(at: indexPath) as! DatePickerDayCell
         cell.isShadowHidden = false
-        print("SELECTED CELL \(cell.dayView.text)")
     }
 }
 

@@ -20,6 +20,7 @@ enum MyInfoSection {
 
 enum MyInfoButtonType: CaseIterable {
     case changeUserInfo
+    case totalRecord
     case editChallange
     case setupAlert
     case syncHealth
@@ -35,6 +36,8 @@ enum MyInfoButtonType: CaseIterable {
         switch self {
         case .changeUserInfo:
             return ("person.circle", "회원 정보 변경")
+        case .totalRecord:
+            return ("figure.pool.swim", "모든 기록 확인")
         case .editChallange:
             return ("flag.checkered", "목표 수정")
         case .setupAlert:

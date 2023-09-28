@@ -18,7 +18,8 @@ final class HistoryViewModel: ObservableObject {
     
     @Published var swimRecords: [SwimMainData]
     @Published var animationRefreshPublisher = false
-    @AppStorage(Defaults.recordViewSort) var sortType: RecordSortType = .date
+    @Published var isLoading: Bool = true
+    @AppStorage(Defaults.recordViewSort) var sortType = RecordSortType.date
     @AppStorage(Defaults.recordViewAscending) var ascending = true
     
     init(swimRecords: [SwimMainData]? = nil,
@@ -35,17 +36,20 @@ extension HistoryViewModel {
     
     func fetchData() {
 #if targetEnvironment(simulator)
-        Task { await testSwimmingData() }
+        Task { 
+            await testSwimmingData()
+        }
 #else
         Task {
             await fetchSwimmingData()
-            sortHandler()
         }
 #endif
     }
     
     private func fetchSwimmingData() async {
-       await hkManager?.loadSwimmingDataCollection()
+        await hkManager?.loadSwimmingDataCollection()
+        sortHandler()
+        self.isLoading = false
     }
     
     private func subscribeSwimmingData() {
@@ -120,8 +124,9 @@ extension HistoryViewModel {
 extension HistoryViewModel {
     private func testSwimmingData() async {
         subscribeSwimmingData()
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.sortHandler()
+            self.isLoading = false
         }
     }
 }

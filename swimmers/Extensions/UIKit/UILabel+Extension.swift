@@ -24,4 +24,29 @@ extension UILabel {
         return self
     }
     
+    func setSecondaryAttributeText(separate: String = " ", font: UIFont, color: UIColor) {
+        let fitstString = separate.first!
+        
+        if let originalFont = self.font {
+            
+            let attrString = NSMutableAttributedString(
+                string: self.text ?? self.attributedText?.string ?? "",
+                attributes: [.font: originalFont])
+            
+            if let text = self.text {
+                if !text.isEmpty {
+                    if let spaceIndex = text.firstIndex(of: fitstString) {
+                        let index = text.distance(from: text.startIndex, to: spaceIndex)
+                        print("\(index) \(text.endIndex)")
+                        print(separate.description.count)
+                        attrString.addAttributes([.font: font, .foregroundColor: color], range: NSMakeRange(index, separate.description.count))
+                    }
+                }
+            }
+            
+            self.attributedText = attrString
+        }
+        
+    }
+
 }

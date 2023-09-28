@@ -80,20 +80,20 @@ extension UIView {
     public func shadow<T: UIView>(color: UIColor,
                                   alpha: Float = 0.5,
                                   x: CGFloat = 0,
-                                  y: CGFloat = 2,
-                                  blur: CGFloat = 4,
+                                  y: CGFloat = 0,
+                                  blur: CGFloat = 2,
                                   spread: CGFloat = 0,
                                   radius: CGFloat = 0) -> T {
         self.layer.setFigmaShadow(color: color, alpha: alpha, x: x, y: y, blur: blur, spread: spread, radius: radius)
         return self as! T
     }
     
-    public func setContentHuggingPriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
+    public func contentHuggingPriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
         self.setContentHuggingPriority(priority, for: axis)
         return self as! T
     }
     
-    public func setContentCompressionResistancePriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
+    public func contentCompressionResistancePriority<T: UIView>(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> T {
         self.setContentCompressionResistancePriority(priority, for: axis)
         return self as! T
     }
@@ -106,6 +106,23 @@ extension UIView {
     
     func gesturePublisher(_ type: GestureType = .tap()) -> GesturePublisher {
         return GesturePublisher(view: self, type: type)
+    }
+    
+    
+    static func divider(width: CGFloat? = nil, height: CGFloat? = nil) -> UIView {
+        let divider = UIView(frame: .zero)
+        divider.backgroundColor = .secondarySystemFill
+        
+        divider.snp.makeConstraints { make in
+            if width != nil {
+                make.width.equalTo(width!).priority(.high)
+            }
+            if height != nil {
+                make.height.equalTo(height!).priority(.high)
+            }
+        }
+        
+        return divider
     }
 
 }

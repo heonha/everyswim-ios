@@ -15,4 +15,15 @@ extension UIViewController {
     }
     
     
+    // MARK: - Naviagtion VC
+    
+    func push(_ viewController: UIViewController, animated: Bool) {
+        self.navigationController?.pushViewController(viewController, animated: animated)
+    }
+    
+    func hideNavigationBar(_ isHide: Bool) {
+        self.navigationController?.isNavigationBarHidden = isHide
+    }
+    
+    
 }

@@ -44,15 +44,15 @@ extension MainTabBarController {
         let homeSymbol = UIImage(systemName: "figure.pool.swim")
         let myInfoSymbol = UIImage(systemName: "person.circle.fill")
         
-        let eventNavigation = UINavigationController(rootViewController: eventVC)
+        let eventNavigation = BaseNavigationController(rootViewController: eventVC)
         eventNavigation.isNavigationBarHidden = true
         eventNavigation.tabBarItem = .init(title: "수영", image: eventSymbol, tag: 0)
 
-        let homeNavigation = UINavigationController(rootViewController: homeVC)
+        let homeNavigation = BaseNavigationController(rootViewController: homeVC)
         homeNavigation.isNavigationBarHidden = true
         homeNavigation.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 1)
 
-        let myInfoNavigation = UINavigationController(rootViewController: myInfoVC)
+        let myInfoNavigation = BaseNavigationController(rootViewController: myInfoVC)
         myInfoNavigation.isNavigationBarHidden = true
         myInfoNavigation.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
         

@@ -25,18 +25,17 @@ enum RelativeTimeType {
 
 extension TimeInterval {
     
-    func toRelativeTime(_ type: RelativeTimeType) -> String {
+    func toRelativeTime(_ type: RelativeTimeType, unitStyle: DateComponentsFormatter.UnitsStyle = .full) -> String {
         
         var calendar = Calendar.current
-        calendar.locale = Locale(identifier: "ko")
+        calendar.locale = Locale.current
 
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = type.unit
-        formatter.unitsStyle = .full
+        formatter.unitsStyle = unitStyle
         formatter.calendar = calendar
 
         let formattedString = formatter.string(from: self)!
-        print(formattedString)
         
         return formattedString
     }
