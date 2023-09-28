@@ -9,19 +9,17 @@ import UIKit
 import SnapKit
 import Combine
 
-protocol CombineCancellable {
-    var cancellables: Set<AnyCancellable> { get set }
-}
 
 final class HistoryViewController: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
-
+    
     private let viewModel: HistoryViewModel
     private let tableView = BaseTableView()
     private let emptyCell = UITableViewCell()
     private let loadingIndicator = LoadingIndicator()
     
+    // MARK: - Initializer
     init(viewModel: HistoryViewModel = HistoryViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -43,21 +41,6 @@ final class HistoryViewController: UIViewController, CombineCancellable {
         bind()
     }
     
-    private func configureTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(SwimRecordMediumCell.self, 
-                                forCellReuseIdentifier: SwimRecordMediumCell.reuseId)
-        self.tableView.backgroundColor = self.view.backgroundColor
-        self.tableView.hideSeparate()
-    }
-    
-    private func configure() {
-        self.navigationItem.title = "모든 수영 기록"
-        self.view.backgroundColor = AppUIColor.skyBackground
-        loadingIndicator.show()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.hideNavigationBar(false)
@@ -66,6 +49,26 @@ final class HistoryViewController: UIViewController, CombineCancellable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hideNavigationBar(true)
+    }
+    
+}
+
+// MARK: - Helper
+extension HistoryViewController {
+    
+    private func configure() {
+        self.navigationItem.title = "모든 수영 기록"
+        self.view.backgroundColor = AppUIColor.skyBackground
+        loadingIndicator.show()
+    }
+    
+    private func configureTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(SwimRecordMediumCell.self,
+                                forCellReuseIdentifier: SwimRecordMediumCell.reuseId)
+        self.tableView.backgroundColor = self.view.backgroundColor
+        self.tableView.hideSeparate()
     }
     
     private func layout() {
@@ -100,6 +103,7 @@ final class HistoryViewController: UIViewController, CombineCancellable {
     
 }
 
+// MARK: - TableView Protocols
 extension HistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

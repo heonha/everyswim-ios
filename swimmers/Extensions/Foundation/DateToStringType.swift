@@ -21,7 +21,6 @@ enum DateToStringType {
     /// "M월"
     case monthKr
 
-    
     /// "h:m:s"
     case time
     /// "h:m"
@@ -31,7 +30,11 @@ enum DateToStringType {
     
     case year
     
+    /// "M.dd"
     case dayDotMonth
+    
+    /// "YYYY. M. dd"
+    case fullDotDate
     
     case weekDay
     
@@ -54,6 +57,8 @@ enum DateToStringType {
             return "a h:mm"
         case .dayDotMonth:
             return "M.dd"
+        case .fullDotDate:
+            return "YYYY. M. dd"
         case .weekDay:
             return "EEEE"
         case .month:

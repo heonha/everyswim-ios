@@ -139,6 +139,10 @@ extension SwimRecordSmallCell {
         self.data = data
     }
     
+    func getData() -> SwimMainData {
+        return self.data
+    }
+    
     private func configure() {
         
     }

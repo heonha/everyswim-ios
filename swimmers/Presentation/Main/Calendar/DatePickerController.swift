@@ -257,9 +257,13 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableView.deselectRow(at: indexPath, animated: false)
-        return nil
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? SwimRecordSmallCell else { return }
+        guard let data = cell.data else { return }
+        
+        let detailVC = RecordDetailViewController(data: data)
+        self.push(detailVC, animated: true)
     }
     
 }

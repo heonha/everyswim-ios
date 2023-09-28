@@ -116,6 +116,10 @@
 		39CC3DB52AC5834700C8BC10 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */; };
 		39CC3DB72AC5851B00C8BC10 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */; };
 		39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */; };
+		39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBD2AC587BB00C8BC10 /* CombineCancellable.swift */; };
+		39CC3DC02AC59BD200C8BC10 /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBF2AC59BD200C8BC10 /* RecordDetailViewController.swift */; };
+		39CC3DC22AC5A2F000C8BC10 /* DetailCellLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DC12AC5A2F000C8BC10 /* DetailCellLabelType.swift */; };
+		39CC3DC42AC5A30900C8BC10 /* DetailCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DC32AC5A30900C8BC10 /* DetailCellLabel.swift */; };
 		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
@@ -254,6 +258,10 @@
 		39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
+		39CC3DBD2AC587BB00C8BC10 /* CombineCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCancellable.swift; sourceTree = "<group>"; };
+		39CC3DBF2AC59BD200C8BC10 /* RecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
+		39CC3DC12AC5A2F000C8BC10 /* DetailCellLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellLabelType.swift; sourceTree = "<group>"; };
+		39CC3DC32AC5A30900C8BC10 /* DetailCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellLabel.swift; sourceTree = "<group>"; };
 		39EB49222AB70E5C00F247FC /* DateRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRecordListView.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -323,6 +331,9 @@
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
+				39CC3DBF2AC59BD200C8BC10 /* RecordDetailViewController.swift */,
+				39CC3DC32AC5A30900C8BC10 /* DetailCellLabel.swift */,
+				39CC3DC12AC5A2F000C8BC10 /* DetailCellLabelType.swift */,
 				391C12B22A58D779001C2286 /* History */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
@@ -712,6 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */,
+				39CC3DBD2AC587BB00C8BC10 /* CombineCancellable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -906,6 +918,7 @@
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				392083CA2A48828800E591A8 /* SwimmingPoolCell.swift in Sources */,
+				39CC3DC22AC5A2F000C8BC10 /* DetailCellLabelType.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
@@ -919,6 +932,7 @@
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
+				39CC3DC42AC5A30900C8BC10 /* DetailCellLabel.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
@@ -965,6 +979,7 @@
 				399EFFDD2AAE040D00DE7E12 /* DatePickerDayCell.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
+				39CC3DC02AC59BD200C8BC10 /* RecordDetailViewController.swift in Sources */,
 				39ADB2832A4AEA2200AED318 /* PoolDetailView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
@@ -974,6 +989,7 @@
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
+				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				39F599932A9B7BA000738334 /* SwimRecordSmallCell.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,

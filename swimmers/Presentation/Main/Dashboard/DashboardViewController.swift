@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import Combine
 
-final class DashboardViewController: UIViewController {
+final class DashboardViewController: UIViewController, CombineCancellable {
+    
+    var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: DashboardViewModel
     
@@ -20,12 +22,13 @@ final class DashboardViewController: UIViewController {
     private var challangeViews = ChallangeCellContainer()
     
     private let imageSlider = ImageSliderView()
+    
     private let pageController = UIPageControl(frame: .zero)
     
     var counter = 0
     
-    private lazy var lastWorkoutView = SwimRecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!,
-                                                           showDate: true)
+    private lazy var lastWorkoutView = SwimRecordSmallCell(data: viewModel.lastWorkout
+                                                           ?? TestObjects.swimmingData.first!, showDate: true)
     
     private let eventTitle = ViewFactory
         .label("최근 기록")
@@ -78,6 +81,16 @@ extension DashboardViewController {
                 }
             }
         .store(in: &subscriptions)
+        
+        lastWorkoutView.gesturePublisher(.tap())
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let data = self?.viewModel.lastWorkout else { return }
+                
+                let detailVC = RecordDetailViewController(data: data)
+                self?.push(detailVC, animated: true)
+            }
+            .store(in: &cancellables)
     }
     
     private func configure() {
