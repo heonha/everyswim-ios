@@ -92,7 +92,7 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: RunLoop.main)
             .sink { _ in
-                let vc = UIHostingController(rootView: SyncHealthView())
+                let vc = UIViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .store(in: &cancellables)

@@ -13,7 +13,6 @@
 		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
 		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
-		391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B72A5915ED001C2286 /* BackgroundObject.swift */; };
 		391C12BA2A591835001C2286 /* CellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B92A591835001C2286 /* CellBackground.swift */; };
 		391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BE2A592A24001C2286 /* TestObjects.swift */; };
 		391C12C32A593103001C2286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C22A593103001C2286 /* Int+Extension.swift */; };
@@ -75,9 +74,7 @@
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
 		398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB62A483E4E00E0FA9B /* AppColor.swift */; };
-		398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */; };
 		398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC32A4848D400E0FA9B /* RecordCellType.swift */; };
-		398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC52A484CF500E0FA9B /* Font+Extension.swift */; };
 		398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BC72A484D1300E0FA9B /* AppFont.swift */; };
 		398B1BCD2A48500600E0FA9B /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCB2A48500100E0FA9B /* GodoB.otf */; };
 		398B1BCE2A48500600E0FA9B /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BCC2A48500100E0FA9B /* GodoM.otf */; };
@@ -150,7 +147,6 @@
 		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
-		391C12B72A5915ED001C2286 /* BackgroundObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundObject.swift; sourceTree = "<group>"; };
 		391C12B92A591835001C2286 /* CellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackground.swift; sourceTree = "<group>"; };
 		391C12BE2A592A24001C2286 /* TestObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObjects.swift; sourceTree = "<group>"; };
 		391C12C22A593103001C2286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -215,9 +211,7 @@
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		398B1BB62A483E4E00E0FA9B /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
-		398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		398B1BC32A4848D400E0FA9B /* RecordCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellType.swift; sourceTree = "<group>"; };
-		398B1BC52A484CF500E0FA9B /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		398B1BC72A484D1300E0FA9B /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		398B1BCB2A48500100E0FA9B /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		398B1BCC2A48500100E0FA9B /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
@@ -353,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				392083CE2A48860400E591A8 /* Modifier */,
-				391C12B72A5915ED001C2286 /* BackgroundObject.swift */,
 				391C12B92A591835001C2286 /* CellBackground.swift */,
 				398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */,
 				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
@@ -422,15 +415,6 @@
 				39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */,
 			);
 			path = HealthKit;
-			sourceTree = "<group>";
-		};
-		3922D5722A74B1D800257164 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				398B1BB92A483EEA00E0FA9B /* Color+Extension.swift */,
-				398B1BC52A484CF500E0FA9B /* Font+Extension.swift */,
-			);
-			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		3922D5732A74B1FA00257164 /* Constant */ = {
@@ -627,7 +611,6 @@
 			isa = PBXGroup;
 			children = (
 				39F5997D2A9B56CA00738334 /* UIKit */,
-				3922D5722A74B1D800257164 /* SwiftUI */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				3922D5702A74B1B300257164 /* Foundation */,
 			);
@@ -920,7 +903,6 @@
 				3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */,
 				3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */,
 				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
-				398B1BBA2A483EEA00E0FA9B /* Color+Extension.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
@@ -952,7 +934,6 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptySwimRecordSmallCell.swift in Sources */,
-				391C12B82A5915ED001C2286 /* BackgroundObject.swift in Sources */,
 				39ADB27F2A4AE90A00AED318 /* PoolsViewModel.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
@@ -962,7 +943,6 @@
 				392083CC2A4882F000E591A8 /* SwimmingPoolType.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				391C12BA2A591835001C2286 /* CellBackground.swift in Sources */,
-				398B1BC62A484CF500E0FA9B /* Font+Extension.swift in Sources */,
 				39CC3DB72AC5851B00C8BC10 /* BaseNavigationController.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,

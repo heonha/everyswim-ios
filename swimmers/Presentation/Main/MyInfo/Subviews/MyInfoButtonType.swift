@@ -65,14 +65,5 @@ enum MyInfoButtonType: CaseIterable {
             return .navigationLink
         }
     }
-    
-    func destination() -> some View {
-        switch self {
-        case .syncHealth:
-            return AnyView(SyncHealthView())
-        default:
-            return AnyView(EmptyView())
-        }
-    }
-    
+
 }

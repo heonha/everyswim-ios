@@ -26,19 +26,6 @@ enum RecordCellType: String {
         }
     }
     
-    func getSymbolColor() -> Color {
-        switch self {
-        case .swim:
-            return AppColor.primary
-        case .kcal:
-            return AppColor.caloriesRed
-        case .lap:
-            return Color.black
-        case .speed:
-            return AppColor.primary
-        }
-    }
-    
     func getUnit() -> String {
         switch self {
         case .swim:
