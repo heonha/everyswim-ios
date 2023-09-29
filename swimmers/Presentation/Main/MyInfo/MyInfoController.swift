@@ -109,7 +109,7 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: RunLoop.main)
             .sink { _ in
-                let historyVC = AllRecordListViewController()
+                let historyVC = ActivityViewController()
                 self.push(historyVC, animated: true)
             }
             .store(in: &cancellables)

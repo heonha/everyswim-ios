@@ -125,6 +125,8 @@ enum TestObjects {
                      laps: [])
     ]
     
+    static let swimSummaryData = SwimSummaryData(count: 3, distance: "650", averagePace: "3'22''", time: "30:00")
+    
 }
 #endif
 

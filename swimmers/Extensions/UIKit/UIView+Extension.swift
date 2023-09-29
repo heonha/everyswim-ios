@@ -51,6 +51,11 @@ extension UIView {
 // UIView 상속하는 모든 뷰에서 사용
 extension UIView {
     
+    public func tag<T: UIView>(_ tag: Int) -> T {
+        self.tag = tag
+        return self as! T
+    }
+    
     public func randomBackgroundColor<T: UIView>() -> T {
         self.backgroundColor = UIColor.randomColor()
         return self as! T

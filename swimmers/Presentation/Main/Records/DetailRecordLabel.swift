@@ -1,5 +1,5 @@
 //
-//  RecordDetailCellLabel.swift
+//  DetailRecordLabel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/28/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RecordDetailCellLabel: UIView {
+final class DetailRecordLabel: UIView {
     
     private var type: DetailCellLabelType
     
@@ -45,6 +45,7 @@ final class RecordDetailCellLabel: UIView {
         .alignment(stackAlignment)
         .distribution(.fillProportionally)
     
+    // MARK: - Initializer
     init(type: DetailCellLabelType, textAlignment: NSTextAlignment = .left, stackAlignment: UIStackView.Alignment = .leading) {
         self.type = type
         self.textAlignment = textAlignment
@@ -56,12 +57,14 @@ final class RecordDetailCellLabel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycle
     override func layoutSubviews() {
         super.layoutSubviews()
         setType()
         layout()
     }
     
+    // MARK: - 구현
     func setData(data: String) {
         self.dataLabel.text = data
     }
@@ -83,7 +86,7 @@ final class RecordDetailCellLabel: UIView {
         }
     }
     
-    
+    // MARK: - Label Type
     enum DetailCellLabelType {
         case averagePace
         case averagePaceWithoutUnit
