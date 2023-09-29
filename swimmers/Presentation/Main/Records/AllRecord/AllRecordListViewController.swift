@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import Combine
 
-
 final class AllRecordListViewController: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()

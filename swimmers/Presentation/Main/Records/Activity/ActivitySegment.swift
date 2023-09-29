@@ -18,27 +18,28 @@ final class ActivitySegment: UIView, CombineCancellable {
     // 셀렉터 (일간 - 주간 - 월간)
     private lazy var dailyButton = ViewFactory
         .label("일간")
-        .textAlignemnt(.center)
-        .cornerRadius(6)
         .tag(0) as! UILabel
     
     private lazy var weeklyButton = ViewFactory
         .label("주간")
-        .textAlignemnt(.center)
-        .cornerRadius(6)
         .tag(1) as! UILabel
     
     private lazy var monthlyButton = ViewFactory
         .label("월간")
-        .textAlignemnt(.center)
-        .cornerRadius(6)
         .tag(2) as! UILabel
+    
+    private lazy var lifeTimeButton = ViewFactory
+        .label("전체")
+        .tag(3) as! UILabel
+
 
     private lazy var dateSelecter = ViewFactory.hStack()
-        .addSubviews([dailyButton, weeklyButton, monthlyButton])
+        .addSubviews([dailyButton, weeklyButton, monthlyButton, lifeTimeButton])
         .distribution(.fillEqually)
         .alignment(.center)
         .spacing(2)
+        .cornerRadius(6)
+        .backgroundColor(.systemGray6) as! UIStackView
     
     init(viewModel: ActivityViewModel) {
         self.viewModel = viewModel
@@ -57,7 +58,13 @@ final class ActivitySegment: UIView, CombineCancellable {
     }
     
     private func configure() {
-        
+        dateSelecter.subviews.forEach { view in
+            let view = view as! UILabel
+            view.font = .custom(.sfProLight, size: 14)
+            view.layer.cornerRadius = 6
+            view.layer.masksToBounds = true
+            view.textAlignment = .center
+        }
     }
     
     private func layout() {
@@ -82,6 +89,7 @@ final class ActivitySegment: UIView, CombineCancellable {
                 if self.dailyButton.textColor == .blue { return }
                 print("데일리")
                 viewModel.selectedSegment = 0
+                viewModel.getData(.daily)
             }
             .store(in: &cancellables)
         
@@ -91,6 +99,7 @@ final class ActivitySegment: UIView, CombineCancellable {
                 print("위클리")
                 guard let self = self else { return }
                 viewModel.selectedSegment = 1
+                viewModel.getData(.weekly)
             }
             .store(in: &cancellables)
         
@@ -100,6 +109,17 @@ final class ActivitySegment: UIView, CombineCancellable {
                 print("몬쓸리")
                 guard let self = self else { return }
                 viewModel.selectedSegment = 2
+                viewModel.getData(.monthly)
+            }
+            .store(in: &cancellables)
+        
+        lifeTimeButton.gesturePublisher(.tap())
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                print("전체")
+                guard let self = self else { return }
+                viewModel.selectedSegment = 3
+                viewModel.getData(.lifetime)
             }
             .store(in: &cancellables)
         

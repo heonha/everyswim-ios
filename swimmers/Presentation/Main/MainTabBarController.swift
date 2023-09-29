@@ -56,6 +56,7 @@ extension MainTabBarController {
         myInfoNavigation.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
         
         self.viewControllers = [eventNavigation, homeNavigation, myInfoNavigation]
+        self.selectedIndex = 1
     }
     
 }

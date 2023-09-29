@@ -42,6 +42,9 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     // 주간 그래프
     private lazy var graphView = UIView()
     
+    private lazy var tableView = BaseTableView()
+
+    
     // 주간 활동
     private lazy var activitySectionView = ActivitySectionView()
     
@@ -57,7 +60,19 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        configureTableView()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationItem.title = "수영 기록"
+        self.hideNavigationBar(false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hideNavigationBar(true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,10 +88,11 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     }
     
     private func configureTableView() {
-        let tableView = activitySectionView.getTableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RecordMediumCell.self, forCellReuseIdentifier: RecordMediumCell.reuseId)
+        tableView.backgroundColor = .systemGray6
+        tableView.isScrollEnabled = false
     }
     
     private func layout() {
@@ -117,6 +133,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         activitySectionView.snp.makeConstraints { make in
             make.top.equalTo(graphView.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(contentView)
+            make.height.equalTo(50)
+        }
+        
+        activitySectionView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        
+        contentView.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(activitySectionView.snp.bottom)
+            make.horizontalEdges.equalTo(contentView)
             make.bottom.equalTo(contentView)
         }
         
@@ -133,11 +158,23 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                     .subviews
                     .first { $0.tag == tag }
                 
-                guard let selectedView = selectedView else { return }
+                guard let selectedView = selectedView as? UILabel else { return }
                 
                 self.resetButtonAppearance()
                 self.setHighlight(selectedView)
-                viewModel.getWeeklyData(dateRange: Date())
+                
+                switch tag {
+                case 0:
+                    self.titleLabelMenu.text = "오늘"
+                case 1:
+                    self.titleLabelMenu.text = "이번 주"
+                case 2:
+                    self.titleLabelMenu.text = "\(Date().toString(.monthKr)) 기록"
+                case 3:
+                    self.titleLabelMenu.text = "전체기록"
+                default:
+                    return
+                }
             }
             .store(in: &cancellables)
         
@@ -150,11 +187,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
         
         viewModel.$presentedData.receive(on: RunLoop.main)
-            .sink { data in
+            .sink { [weak self] data in
                 print("리로드!")
-                self.activitySectionView.getTableView().reloadData()
+                self?.tableView.reloadData()
+                self?.updateTableViewSize()
             }
             .store(in: &cancellables)
+    }
+    
+    func updateTableViewSize() {
     }
     
     func setHighlight<T: UIView>(_ view: T) {

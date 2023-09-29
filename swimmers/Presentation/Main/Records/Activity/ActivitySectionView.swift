@@ -15,7 +15,6 @@ final class ActivitySectionView: UIView {
         .font(.custom(.sfProLight, size: 18))
         .foregroundColor(.label)
     
-    private lazy var activityTableview = BaseTableView()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,31 +23,13 @@ final class ActivitySectionView: UIView {
     
     private func layout() {
         self.addSubview(activityTitle)
-        self.addSubview(activityTableview)
         
-        self.backgroundColor = .systemGray4
-        self.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(20)
-            make.horizontalEdges.equalTo(self)
-            make.bottom.equalTo(self)
-        }
+        self.backgroundColor = .systemGray6
         
         activityTitle.snp.makeConstraints { make in
-            make.top.equalTo(self).inset(20)
-            make.centerX.equalTo(self)
+            make.center.equalTo(self)
         }
         
-        activityTableview.backgroundColor = .systemBlue
-        
-        activityTableview.snp.makeConstraints { make in
-            make.top.equalTo(activityTitle.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(self).inset(22)
-            make.bottom.equalTo(self)
-        }
-    }
-    
-    func getTableView() -> UITableView {
-        return self.activityTableview
     }
     
 }
