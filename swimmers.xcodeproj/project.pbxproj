@@ -48,6 +48,7 @@
 		39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE52A52D01200986E01 /* Date+Extension.swift */; };
 		39572CE82A52D19500986E01 /* SyncHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE72A52D19500986E01 /* SyncHealthView.swift */; };
 		39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE92A52F0F700986E01 /* DashboardViewModel.swift */; };
+		396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */; };
 		396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8502AB568DE00EB66BE /* GestureType.swift */; };
 		396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8532AB568EF00EB66BE /* GesturePublisher.swift */; };
 		396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8552AB568F800EB66BE /* GestureSubscription.swift */; };
@@ -183,6 +184,7 @@
 		39572CE52A52D01200986E01 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		39572CE72A52D19500986E01 /* SyncHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncHealthView.swift; sourceTree = "<group>"; };
 		39572CE92A52F0F700986E01 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		396CE8502AB568DE00EB66BE /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
 		396CE8532AB568EF00EB66BE /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
 		396CE8552AB568F800EB66BE /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
@@ -291,7 +293,6 @@
 			children = (
 				394819512AC2D86000FD7FA8 /* AllRecordListViewController.swift */,
 				396D2ACD2A56DDA10042D4D4 /* AllRecordListViewModel.swift */,
-				39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */,
 				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 			);
 			path = AllRecord;
@@ -326,9 +327,6 @@
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
 				39B437A42AB5BD9D00915C3D /* Subviews */,
-				39C5884A2AC6768E00B6C992 /* Health */,
-				391C12B22A58D779001C2286 /* AllRecord */,
-				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -390,6 +388,7 @@
 				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
+				396387AD2AC6BBEA00A490D1 /* Records */,
 				392083B92A485B6600E591A8 /* Maps */,
 			);
 			path = Main;
@@ -515,6 +514,28 @@
 				3960884F2A8F6E2D00FF2289 /* Model */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		396387AD2AC6BBEA00A490D1 /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				396387AE2AC6BC0200A490D1 /* Cells */,
+				39C5884A2AC6768E00B6C992 /* Health */,
+				391C12B22A58D779001C2286 /* AllRecord */,
+				39C5884B2AC6773E00B6C992 /* RecordDetail */,
+				396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */,
+				39CC3DC32AC5A30900C8BC10 /* RecordDetailCellLabel.swift */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
+		396387AE2AC6BC0200A490D1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				39F599922A9B7BA000738334 /* RecordSmallCell.swift */,
+				39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		396CE8522AB568E200EB66BE /* Gesture */ = {
@@ -710,7 +731,6 @@
 			isa = PBXGroup;
 			children = (
 				39CC3DBF2AC59BD200C8BC10 /* RecordDetailViewController.swift */,
-				39CC3DC32AC5A30900C8BC10 /* RecordDetailCellLabel.swift */,
 			);
 			path = RecordDetail;
 			sourceTree = "<group>";
@@ -762,7 +782,6 @@
 			isa = PBXGroup;
 			children = (
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
-				39F599922A9B7BA000738334 /* RecordSmallCell.swift */,
 				39B0C3962AAC6FBE004E0985 /* ImageSlider */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
 			);
@@ -896,6 +915,7 @@
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
 				398B1BC42A4848D400E0FA9B /* RecordCellType.swift in Sources */,
+				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,

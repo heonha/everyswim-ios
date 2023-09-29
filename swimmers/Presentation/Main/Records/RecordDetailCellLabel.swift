@@ -12,20 +12,28 @@ final class RecordDetailCellLabel: UIView {
     
     private var type: DetailCellLabelType
     
+    private var textAlignment: NSTextAlignment
+    private var stackAlignment: UIStackView.Alignment
+
     private lazy var dataLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProBold, size: 27))
         .foregroundColor(.label)
+        .textAlignemnt(textAlignment)
     
     private lazy var unitLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(.label)
+        .textAlignemnt(textAlignment)
+
     
     private lazy var typeLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProLight, size: 18))
         .foregroundColor(.secondaryLabel)
+        .textAlignemnt(textAlignment)
+
     
     private lazy var dataHStack = ViewFactory.hStack()
         .addSubviews([dataLabel, unitLabel])
@@ -34,11 +42,13 @@ final class RecordDetailCellLabel: UIView {
     
     private lazy var vstack = ViewFactory.vStack()
         .addSubviews([dataHStack, typeLabel])
-        .alignment(.leading)
+        .alignment(stackAlignment)
         .distribution(.fillProportionally)
     
-    init(type: DetailCellLabelType) {
+    init(type: DetailCellLabelType, textAlignment: NSTextAlignment = .left, stackAlignment: UIStackView.Alignment = .leading) {
         self.type = type
+        self.textAlignment = textAlignment
+        self.stackAlignment = stackAlignment
         super.init(frame: .zero)
     }
     
@@ -76,15 +86,17 @@ final class RecordDetailCellLabel: UIView {
     
     enum DetailCellLabelType {
         case averagePace
+        case averagePaceWithoutUnit
         case duration
         case activeKcal
         case restKcal
         case averageBPM
         case poolLength
-        
+        case swim
+
         func getTypeLabel() -> String {
             switch self {
-            case .averagePace:
+            case .averagePace, .averagePaceWithoutUnit:
                 return "평균 페이스"
             case .duration:
                 return "운동시간"
@@ -96,6 +108,8 @@ final class RecordDetailCellLabel: UIView {
                 return "평균 심박수"
             case .poolLength:
                 return "레인 길이"
+            case .swim:
+                return "수영"
             }
         }
         
@@ -103,7 +117,9 @@ final class RecordDetailCellLabel: UIView {
             switch self {
             case .averagePace:
                 return "/100m"
-            case .duration:
+            case .averagePaceWithoutUnit:
+                return ""
+            case .duration, .swim:
                 return ""
             case .activeKcal, .restKcal:
                 return "kcal"
