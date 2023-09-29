@@ -48,22 +48,22 @@ final class RecordDetailViewController: UIViewController {
         .distribution(.fillProportionally)
     
     // 평균 페이스 라벨 + 타이틀
-    private lazy var averagePaceLabel = DetailCellLabel(type: .averagePace)
+    private lazy var averagePaceLabel = RecordDetailCellLabel(type: .averagePace)
 
     // 운동시간 라벨 + 타이틀
-    private lazy var durationLabel = DetailCellLabel(type: .duration)
+    private lazy var durationLabel = RecordDetailCellLabel(type: .duration)
 
     // 활동 칼로리 라벨
-    private lazy var activeKcalLabel = DetailCellLabel(type: .activeKcal)
+    private lazy var activeKcalLabel = RecordDetailCellLabel(type: .activeKcal)
     
     // 휴식칼로리 라벨
-    private lazy var restKcalLabel = DetailCellLabel(type: .restKcal)
+    private lazy var restKcalLabel = RecordDetailCellLabel(type: .restKcal)
     
     // 평균 심박수 라벨
-    private lazy var averageBPMLabel = DetailCellLabel(type: .averageBPM)
+    private lazy var averageBPMLabel = RecordDetailCellLabel(type: .averageBPM)
     
     // 수영장 길이 라벨
-    private lazy var poolLength = DetailCellLabel(type: .poolLength)
+    private lazy var poolLength = RecordDetailCellLabel(type: .poolLength)
     
     private lazy var leftDataVStack = ViewFactory.vStack()
         .addSubviews([averagePaceLabel, activeKcalLabel, averageBPMLabel])

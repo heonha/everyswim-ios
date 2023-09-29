@@ -1,5 +1,5 @@
 //
-//  SwimRecordMediumCell.swift
+//  RecordMediumCell.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/28/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SwimRecordMediumCell: UITableViewCell, ReuseableCell {
+final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "SwimRecordMediumCell"
     
@@ -168,7 +168,7 @@ import SwiftUI
 struct SwimRecordMediumCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            HistoryViewController()
+            AllRecordListViewController()
         }
         .frame(width: .infinity, height: 171)
     }

@@ -1,5 +1,5 @@
 //
-//  HistoryViewController.swift
+//  AllRecordListViewController.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/26/23.
@@ -10,17 +10,17 @@ import SnapKit
 import Combine
 
 
-final class HistoryViewController: UIViewController, CombineCancellable {
+final class AllRecordListViewController: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
     
-    private let viewModel: HistoryViewModel
+    private let viewModel: AllRecordListViewModel
     private let tableView = BaseTableView()
     private let emptyCell = UITableViewCell()
     private let loadingIndicator = LoadingIndicator()
     
     // MARK: - Initializer
-    init(viewModel: HistoryViewModel = HistoryViewModel()) {
+    init(viewModel: AllRecordListViewModel = AllRecordListViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,7 +54,7 @@ final class HistoryViewController: UIViewController, CombineCancellable {
 }
 
 // MARK: - Helper
-extension HistoryViewController {
+extension AllRecordListViewController {
     
     private func configure() {
         self.navigationItem.title = "모든 수영 기록"
@@ -65,8 +65,8 @@ extension HistoryViewController {
     private func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(SwimRecordMediumCell.self,
-                                forCellReuseIdentifier: SwimRecordMediumCell.reuseId)
+        self.tableView.register(RecordMediumCell.self,
+                                forCellReuseIdentifier: RecordMediumCell.reuseId)
         self.tableView.backgroundColor = self.view.backgroundColor
         self.tableView.hideSeparate()
     }
@@ -104,7 +104,7 @@ extension HistoryViewController {
 }
 
 // MARK: - TableView Protocols
-extension HistoryViewController: UITableViewDelegate {
+extension AllRecordListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
@@ -112,7 +112,7 @@ extension HistoryViewController: UITableViewDelegate {
     
 }
 
-extension HistoryViewController: UITableViewDataSource {
+extension AllRecordListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.swimRecords.count == 0 {
@@ -131,8 +131,8 @@ extension HistoryViewController: UITableViewDataSource {
         }
         
         guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: SwimRecordMediumCell.reuseId,
-                                 for: indexPath) as? SwimRecordMediumCell else { return emptyCell }
+            .dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId,
+                                 for: indexPath) as? RecordMediumCell else { return emptyCell }
         
         let data = viewModel.swimRecords[indexPath.row]
         cell.setData(data)
@@ -159,7 +159,7 @@ import SwiftUI
 struct HistoryViewController_Previews: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            HistoryViewController()
+            AllRecordListViewController()
         }
         .ignoresSafeArea()
     }

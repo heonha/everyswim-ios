@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class HistoryViewModel: ObservableObject {
+final class AllRecordListViewModel: ObservableObject {
     
     typealias Defaults = DefaultsName
     
@@ -32,7 +32,7 @@ final class HistoryViewModel: ObservableObject {
     
 }
 
-extension HistoryViewModel {
+extension AllRecordListViewModel {
     
     func fetchData() {
 #if targetEnvironment(simulator)
@@ -121,7 +121,7 @@ extension HistoryViewModel {
 
 #if targetEnvironment(simulator)
 // Test Stub
-extension HistoryViewModel {
+extension AllRecordListViewModel {
     private func testSwimmingData() async {
         subscribeSwimmingData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
