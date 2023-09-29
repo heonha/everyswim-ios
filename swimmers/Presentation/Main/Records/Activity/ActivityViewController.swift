@@ -183,7 +183,7 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId, for: indexPath) as? RecordMediumCell else {
-            return EmptySwimSmallCell()
+            return EmptyRecordCell()
         }
         
         let data = viewModel.presentedData[indexPath.row]

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class EmptySwimSmallCell: UITableViewCell {
+final class EmptyRecordCell: UITableViewCell {
     
     private var titleLabel = ViewFactory.label()
         .textAlignemnt(.center)
@@ -32,8 +32,8 @@ final class EmptySwimSmallCell: UITableViewCell {
         }
     }
     
-    static func withType(_ type: EmptySwimSmallCellType) -> EmptySwimSmallCell {
-        let cell = EmptySwimSmallCell()
+    static func withType(_ type: EmptySwimSmallCellType) -> EmptyRecordCell {
+        let cell = EmptyRecordCell()
         cell.titleLabel.numberOfLines = 0
 
         switch type {

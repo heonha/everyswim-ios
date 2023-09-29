@@ -130,7 +130,7 @@ extension AllRecordListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if viewModel.swimRecords.isEmpty {
-            let cell = EmptySwimSmallCell.withType(.normal)
+            let cell = EmptyRecordCell.withType(.normal)
             
             return cell
         }

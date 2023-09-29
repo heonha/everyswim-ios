@@ -218,13 +218,13 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
                 }
 
             if monthlyData.isEmpty {
-                return EmptySwimSmallCell.withType(.monthly)
+                return EmptyRecordCell.withType(.monthly)
             } else {
                 return createSwimRecordSmallCell(data: monthlyData, tableView: tableView, indexPath: indexPath)
             }
             
         } else {
-            guard viewModel.hasEvent(date: viewModel.selectedDate) else { return EmptySwimSmallCell.withType(.daily) }
+            guard viewModel.hasEvent(date: viewModel.selectedDate) else { return EmptyRecordCell.withType(.daily) }
             
             let dailyData = viewModel.extractDailyData()
             
