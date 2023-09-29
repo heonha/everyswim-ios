@@ -107,7 +107,12 @@ extension AllRecordListViewController {
 extension AllRecordListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? RecordMediumCell else {return}
+        let data = cell.getData()
+        let detailVC = RecordDetailViewController(data: data)
+        self.push(detailVC, animated: true)
     }
     
 }
@@ -144,11 +149,6 @@ extension AllRecordListViewController: UITableViewDataSource {
             return tableView.frame.height
         }
         return 171 + 12
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        tableView.deselectRow(at: indexPath, animated: false)
-        return nil
     }
     
 }

@@ -55,8 +55,8 @@ extension DatePickerController {
         
         dateRecordListView.getTableView().delegate = self
         dateRecordListView.getTableView().dataSource = self
-        dateRecordListView.getTableView().register(SwimRecordSmallCell.self,
-                                                   forCellReuseIdentifier: SwimRecordSmallCell.reuseId)
+        dateRecordListView.getTableView().register(RecordSmallCell.self,
+                                                   forCellReuseIdentifier: RecordSmallCell.reuseId)
     }
     
     private func layout() {
@@ -235,8 +235,8 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
     func createSwimRecordSmallCell(data: [SwimMainData]? ,tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         
         guard let data = data else { return UITableViewCell() }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SwimRecordSmallCell.reuseId,
-                                                       for: indexPath) as? SwimRecordSmallCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordSmallCell.reuseId,
+                                                       for: indexPath) as? RecordSmallCell else { return UITableViewCell() }
         let swimData = data[indexPath.row]
         cell.updateData(swimData)
         cell.backgroundColor = .clear
@@ -259,7 +259,7 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) as? SwimRecordSmallCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? RecordSmallCell else { return }
         guard let data = cell.data else { return }
         
         let detailVC = RecordDetailViewController(data: data)

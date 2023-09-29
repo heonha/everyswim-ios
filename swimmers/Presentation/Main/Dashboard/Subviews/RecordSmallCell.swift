@@ -1,5 +1,5 @@
 //
-//  SwimRecordSmallCell.swift
+//  RecordSmallCell.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 8/27/23.
@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class SwimRecordSmallCell: UITableViewCell {
+final class RecordSmallCell: UITableViewCell {
     
-    static let reuseId = "SwimRecordSmallCell"
+    static let reuseId = "RecordSmallCell"
     
     var data: SwimMainData! {
         didSet {
@@ -100,10 +100,11 @@ final class SwimRecordSmallCell: UITableViewCell {
         }
     }()
     
+    // MARK: - Initialize & LifeCycles
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.configure()
     }
-    
     
     init(data: SwimMainData, showDate: Bool = false, style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil) {
         self.data = data
@@ -124,7 +125,7 @@ final class SwimRecordSmallCell: UITableViewCell {
     
 }
 
-extension SwimRecordSmallCell {
+extension RecordSmallCell {
     
     func updateTitle(data: SwimMainData) {
         self.title.text = "\(data.getWeekDay()) 수영"
@@ -144,7 +145,7 @@ extension SwimRecordSmallCell {
     }
     
     private func configure() {
-        
+        self.selectedBackgroundView = UIView()
     }
     
     private func setLayout() {
@@ -184,7 +185,7 @@ import SwiftUI
 struct EventListUICell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            SwimRecordSmallCell(data: TestObjects.swimmingData.first!)
+            RecordSmallCell(data: TestObjects.swimmingData.first!)
         }
     }
 }

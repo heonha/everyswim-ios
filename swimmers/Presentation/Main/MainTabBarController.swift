@@ -10,7 +10,6 @@ import SwiftUI
 
 final class MainTabBarController: UITabBarController {
     
-    // private let eventVC = UIHostingController(rootView: EventDatePickerContainer())
     private lazy var eventVC = DatePickerController()
     private lazy var homeVC = DashboardViewController()
     private lazy var myInfoVC = MyInfoController()

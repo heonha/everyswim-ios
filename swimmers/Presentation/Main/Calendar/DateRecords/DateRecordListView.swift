@@ -17,7 +17,7 @@ final class DateRecordListView: UIView {
     private var primaryColor = AppUIColor.primary
 
     private let tableView = BaseTableView()
-    private lazy var recordCells: [SwimRecordSmallCell] = []
+    private lazy var recordCells: [RecordSmallCell] = []
     
     private let contentView = UIView()
     

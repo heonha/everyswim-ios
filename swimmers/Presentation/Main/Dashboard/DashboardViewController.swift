@@ -27,7 +27,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     
     var counter = 0
     
-    private lazy var lastWorkoutView = SwimRecordSmallCell(data: viewModel.lastWorkout
+    private lazy var lastWorkoutView = RecordSmallCell(data: viewModel.lastWorkout
                                                            ?? TestObjects.swimmingData.first!, showDate: true)
     
     private let eventTitle = ViewFactory

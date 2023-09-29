@@ -106,7 +106,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     private func configure() {
         self.backgroundColor = .clear
-        
+        self.selectedBackgroundView = UIView()
         contentView.backgroundColor = .white
         contentView.layer.setFigmaShadow(color: .black)
         contentView.layer.cornerRadius = 12
@@ -141,6 +141,10 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     public func setData(_ data: SwimMainData) {
         self.data = data
+    }
+    
+    public func getData() -> SwimMainData {
+        return self.data
     }
     
     private func updateUI(from data: SwimMainData) {

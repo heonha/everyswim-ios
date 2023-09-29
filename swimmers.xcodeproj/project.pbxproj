@@ -129,7 +129,7 @@
 		39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */; };
 		39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998D2A9B6C3800738334 /* UIViewPreview.swift */; };
 		39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */; };
-		39F599932A9B7BA000738334 /* SwimRecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */; };
+		39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* RecordSmallCell.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -269,7 +269,7 @@
 		39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 		39F5998D2A9B6C3800738334 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
 		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
-		39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimRecordSmallCell.swift; sourceTree = "<group>"; };
+		39F599922A9B7BA000738334 /* RecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSmallCell.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,7 +292,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		391C12B22A58D779001C2286 /* History */ = {
+		391C12B22A58D779001C2286 /* AllRecord */ = {
 			isa = PBXGroup;
 			children = (
 				394819512AC2D86000FD7FA8 /* AllRecordListViewController.swift */,
@@ -300,7 +300,7 @@
 				39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */,
 				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 			);
-			path = History;
+			path = AllRecord;
 			sourceTree = "<group>";
 		};
 		391C12BD2A592A0F001C2286 /* Debug */ = {
@@ -333,7 +333,7 @@
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
 				39B437A42AB5BD9D00915C3D /* Subviews */,
 				39C5884A2AC6768E00B6C992 /* Health */,
-				391C12B22A58D779001C2286 /* History */,
+				391C12B22A58D779001C2286 /* AllRecord */,
 				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 			);
 			path = MyInfo;
@@ -779,7 +779,7 @@
 			isa = PBXGroup;
 			children = (
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
-				39F599922A9B7BA000738334 /* SwimRecordSmallCell.swift */,
+				39F599922A9B7BA000738334 /* RecordSmallCell.swift */,
 				39B0C3962AAC6FBE004E0985 /* ImageSlider */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
 			);
@@ -1003,7 +1003,7 @@
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
-				39F599932A9B7BA000738334 /* SwimRecordSmallCell.swift in Sources */,
+				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				394819522AC2D86000FD7FA8 /* AllRecordListViewController.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
