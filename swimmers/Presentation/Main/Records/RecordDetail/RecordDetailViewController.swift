@@ -76,7 +76,7 @@ final class RecordDetailViewController: UIViewController {
     private lazy var dataHStack = ViewFactory.hStack()
         .addSubviews([leftDataVStack, rightDataVStack])
         .distribution(.fillProportionally)
-        .spacing(28)
+        .spacing(36)
     
     // MARK: - Init & LifeCycles
     init(data: SwimMainData) {
@@ -134,12 +134,12 @@ final class RecordDetailViewController: UIViewController {
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(14)
-            make.horizontalEdges.equalTo(contentView)
+            make.horizontalEdges.equalTo(contentView).inset(8)
         }
         
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(4)
-            make.horizontalEdges.equalTo(contentView)
+            make.horizontalEdges.equalTo(contentView).inset(8)
         }
         
         poolLabel.snp.makeConstraints { make in
@@ -150,13 +150,13 @@ final class RecordDetailViewController: UIViewController {
         
         distanceStack.snp.makeConstraints { make in
             make.top.equalTo(poolLabel.snp.bottom).offset(40)
-            make.leading.equalTo(contentView)
+            make.centerX.equalTo(contentView)
             make.height.greaterThanOrEqualTo(100)
         }
         
         dataHStack.snp.makeConstraints { make in
             make.top.equalTo(distanceLabel.snp.bottom).offset(40)
-            make.leading.equalTo(contentView).inset(16)
+            make.centerX.equalTo(contentView)
             make.height.greaterThanOrEqualTo(213)
         }
         
@@ -171,11 +171,11 @@ final class RecordDetailViewController: UIViewController {
 
             self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
             self.timeLabel.text = self.data.durationTime
-            self.poolLabel.text = "알수없는곰두리 수영장"
+            self.poolLabel.text = "알수없는 수영장"
             self.distanceLabel.text = self.data.unwrappedDistance.toString()
             
             self.averagePaceLabel.setData(data: "-:--")
-            self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinuteSeconds, unitStyle: .positional))
+            self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinute, unitStyle: .full))
             self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toString() ?? "-")
             self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toString() ?? "-")
             self.averageBPMLabel.setData(data: "---")

@@ -46,7 +46,6 @@ final class ActivitySegment: UIView, CombineCancellable {
         super.init(frame: .zero)
         configure()
         layout()
-        firstGetData()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +55,7 @@ final class ActivitySegment: UIView, CombineCancellable {
     override func layoutSubviews() {
         super.layoutSubviews()
         observe()
+        firstGetData()
     }
     
     private func configure() {

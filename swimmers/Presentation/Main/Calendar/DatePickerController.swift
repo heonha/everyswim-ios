@@ -41,7 +41,7 @@ final class DatePickerController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateDatePickerLayout()
-        self.navigationItem.title = "수영 달력"
+        self.navigationItem.title = "수영 캘린더"
         self.hideNavigationBar(false)
     }
     

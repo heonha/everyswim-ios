@@ -12,6 +12,7 @@ final class BaseNavigationController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         self.navigationBar.tintColor = .label
+        hideNavigationBar(false)
     }
     
     required init?(coder aDecoder: NSCoder) {

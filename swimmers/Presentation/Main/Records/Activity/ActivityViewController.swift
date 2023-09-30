@@ -62,13 +62,13 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         configure()
         configureTableView()
         bind()
+        self.viewModel.selectedSegment = 2
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationItem.title = "수영 기록"
         self.hideNavigationBar(false)
-        self.viewModel.selectedSegment = 2
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -180,7 +180,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                     self.titleLabelMenu.text = "\(month) 기록"
                     self.activitySectionView.updateTitle("\(month)의 수영")
                 case 3:
-                    self.titleLabelMenu.text = "전체기록"
+                    self.titleLabelMenu.text = "전체 기록"
                     self.activitySectionView.updateTitle("전체 수영기록")
                 default:
                     return
@@ -199,7 +199,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         
         viewModel.$presentedData.receive(on: RunLoop.main)
             .sink { [weak self] data in
-                print("리로드!")
                 self?.tableView.reloadData()
                 self?.updateTableViewSize()
             }
@@ -245,7 +244,6 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.presentedData.isEmpty {
-            print("isempty")
             return 1
         } else {
             return viewModel.presentedData.count

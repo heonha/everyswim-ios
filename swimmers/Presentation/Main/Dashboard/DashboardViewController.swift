@@ -59,6 +59,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         layout()
         bindSubviews()
         slideTimer()
+        hideNavigationBar(false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,7 +110,7 @@ extension DashboardViewController {
         view.addSubview(pageController)
         view.addSubview(challangeViews)
         
-        let spacing = 40
+        let spacing = 28
 
         headerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)

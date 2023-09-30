@@ -37,6 +37,8 @@ final class MyInfoController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         scrollToTop()
+        self.navigationItem.title = "내 정보"
+        hideNavigationBar(false)
     }
     
     private func configure() {

@@ -66,7 +66,7 @@ final class SwimDataStore: ObservableObject {
         
         let duration = totalData
             .reduce(TimeInterval(0)) { $0 + $1.duration }
-            .toRelativeTime(.hourMinuteSeconds, unitStyle: .positional)
+            .toRelativeTime(.hourMinute, unitStyle: .positional)
         
         let distance = totalData
             .reduce(Double(0)) { $0 + $1.unwrappedDistance }
