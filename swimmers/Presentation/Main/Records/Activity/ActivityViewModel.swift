@@ -19,55 +19,26 @@ final class ActivityViewModel: CombineCancellable {
     @Published var weekList: [String] = []
     @Published var selectedSegment: Int = 1
  
-    init() {
-        observe()
-    }
+    init() { }
     
     func getData(_ type: ActivityDataRange) {
+        
+        
+        var totalData: [SwimMainData]
+        
         switch type {
         case .daily:
-            getDailyData()
+            totalData = healthStore.getDailyData()
         case .weekly:
-            getWeeklyData()
+            totalData = healthStore.getWeeklyData()
         case .monthly:
-            getMonthlyData()
+            totalData = healthStore.getMonthlyData()
         case .lifetime:
-            getlifeTimeData()
+            totalData = healthStore.getAllData()
         }
-    }
-    
-    private func getDailyData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let totalData = self.healthStore.getDailyData()
-            self.summaryData = self.healthStore.getSummaryData(totalData)
-            self.presentedData = totalData
-        }
-    }
-    
-    private func getWeeklyData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.presentedData = []
-            let totalData = self.healthStore.getWeeklyData()
-            self.summaryData = self.healthStore.getSummaryData(totalData)
-            self.presentedData = totalData
-        }
-    }
-    
-    private func getMonthlyData() {
         self.presentedData = []
-        let totalData = healthStore.getMonthlyData()
-        self.summaryData = healthStore.getSummaryData(totalData)
+        self.summaryData = self.healthStore.getSummaryData(totalData)
         self.presentedData = totalData
-    }
-    
-    private func getlifeTimeData() {
-        self.presentedData = []
-        let totalData = healthStore.getAllData()
-        self.summaryData = healthStore.getSummaryData(totalData)
-        self.presentedData = totalData
-    }
-    
-    func observe() {
     }
     
 }
