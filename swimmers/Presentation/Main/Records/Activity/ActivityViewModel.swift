@@ -23,7 +23,6 @@ final class ActivityViewModel: CombineCancellable {
     
     func getData(_ type: ActivityDataRange) {
         
-        
         var totalData: [SwimMainData]
         
         switch type {
@@ -41,18 +40,4 @@ final class ActivityViewModel: CombineCancellable {
         self.presentedData = totalData
     }
     
-}
-
-enum ActivityDataRange {
-    case daily
-    case weekly
-    case monthly
-    case lifetime
-}
-
-struct SwimSummaryData {
-    let count: Int
-    let distance: String
-    let averagePace: String
-    let time: String
 }

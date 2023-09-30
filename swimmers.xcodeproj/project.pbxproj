@@ -12,6 +12,9 @@
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
 		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
 		391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F42AC7E93A00190D35 /* Calendar+Extension.swift */; };
+		391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F62AC7F34B00190D35 /* SwimSummaryData.swift */; };
+		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
+		391678FB2AC7F38D00190D35 /* DetailCellLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */; };
 		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
 		391C12BA2A591835001C2286 /* CellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B92A591835001C2286 /* CellBackground.swift */; };
@@ -153,6 +156,9 @@
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		391678F42AC7E93A00190D35 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		391678F62AC7F34B00190D35 /* SwimSummaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryData.swift; sourceTree = "<group>"; };
+		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
+		391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellLabelType.swift; sourceTree = "<group>"; };
 		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		391C12B92A591835001C2286 /* CellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackground.swift; sourceTree = "<group>"; };
@@ -537,6 +543,8 @@
 				39DBB3252AC6F291003B5213 /* Activity */,
 				39CC3DC32AC5A30900C8BC10 /* DetailRecordLabel.swift */,
 				39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */,
+				391678F62AC7F34B00190D35 /* SwimSummaryData.swift */,
+				391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */,
 			);
 			path = Records;
 			sourceTree = "<group>";
@@ -774,6 +782,7 @@
 				396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */,
 				39DBB31D2AC6E650003B5213 /* ActivitySegment.swift */,
 				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
+				391678F82AC7F35600190D35 /* ActivityDataRange.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -992,6 +1001,7 @@
 				39CC3DB72AC5851B00C8BC10 /* BaseNavigationController.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
+				391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */,
 				39DBB31E2AC6E650003B5213 /* ActivitySegment.swift in Sources */,
 				39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */,
 				399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */,
@@ -1032,12 +1042,14 @@
 				392083B72A48586C00E591A8 /* WeekdayType.swift in Sources */,
 				39DBB3202AC6E899003B5213 /* RecordHStackView.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
+				391678FB2AC7F38D00190D35 /* DetailCellLabelType.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				392083BD2A485B9400E591A8 /* PoolListView.swift in Sources */,
 				394819522AC2D86000FD7FA8 /* AllRecordListViewController.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
+				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
