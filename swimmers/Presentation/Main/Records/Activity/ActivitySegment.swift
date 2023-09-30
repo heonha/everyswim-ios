@@ -46,6 +46,7 @@ final class ActivitySegment: UIView, CombineCancellable {
         super.init(frame: .zero)
         configure()
         layout()
+        firstGetData()
     }
     
     required init?(coder: NSCoder) {
@@ -67,6 +68,21 @@ final class ActivitySegment: UIView, CombineCancellable {
         }
     }
     
+    private func firstGetData() {
+        switch viewModel.selectedSegment {
+            case 0:
+            viewModel.getData(.daily)
+            case 1:
+            viewModel.getData(.weekly)
+            case 2:
+            viewModel.getData(.monthly)
+            case 3:
+            viewModel.getData(.lifetime)
+            default:
+                return
+        }
+    }
+    
     private func layout() {
         self.addSubview(dateSelecter)
         dateSelecter.snp.makeConstraints { make in
@@ -81,7 +97,7 @@ final class ActivitySegment: UIView, CombineCancellable {
     }
     
     private func observe() {
-        
+                
         dailyButton.gesturePublisher(.tap())
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in

@@ -19,22 +19,6 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     
     private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
     
-    private var challangeViews = ChallangeCellContainer()
-    
-    private let imageSlider = ImageSliderView()
-    
-    private let pageController = UIPageControl(frame: .zero)
-    
-    var counter = 0
-    
-    private lazy var lastWorkoutView = RecordSmallCell(data: viewModel.lastWorkout
-                                                           ?? TestObjects.swimmingData.first!, showDate: true)
-    
-    private let eventTitle = ViewFactory
-        .label("최근 기록")
-        .font(.custom(.sfProLight, size: 15))
-        .foregroundColor(.gray)
-    
     private lazy var recentRecordView: UIStackView = {
         let vstack = ViewFactory
             .vStack(subviews: [eventTitle, lastWorkoutView])
@@ -44,6 +28,20 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         }
         return vstack
     }()
+    
+    private let imageSlider = ImageSliderView()
+    var counter = 0
+    private let pageController = UIPageControl(frame: .zero)
+    
+    private lazy var lastWorkoutView = RecordSmallCell(data: viewModel.lastWorkout
+                                                           ?? TestObjects.swimmingData.first!, showDate: true)
+    
+    private let eventTitle = ViewFactory
+        .label("  최근 기록")
+        .font(.custom(.sfProLight, size: 15))
+        .foregroundColor(.gray)
+    
+    private var challangeViews = ChallangeCellContainer()
     
     init(viewModel: DashboardViewModel? = nil) {
         self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())

@@ -12,14 +12,12 @@ final class ChallangeCellContainer: UIView {
     
     private let backgroundView = UIView()
     
-    lazy var cells: [UIView] = [
-        ChallangeCell(data: TestObjects.rings[0]),
-        ChallangeCell(data: TestObjects.rings[1]),
-        ChallangeCell(data: TestObjects.rings[2])
-    ]
+    private lazy var countCell = ChallangeCell(data: TestObjects.rings[2])
+    private lazy var distanceCell = ChallangeCell(data: TestObjects.rings[0])
+    private lazy var lapCell = ChallangeCell(data: TestObjects.rings[1])
     
     private let titleLabel: UILabel = {
-        let title: String = "누적 기록"
+        let title: String = "목표 현황(9월 2주)"
         let label = ViewFactory.label(title)
             .font(.custom(.sfProLight, size: 15))
             .foregroundColor(.gray)
@@ -30,10 +28,13 @@ final class ChallangeCellContainer: UIView {
     lazy var hstack: UIStackView = {
         let spacing =  ((Constant.deviceSize.width - 40) / 3) * 0.1
         let hstack = ViewFactory
-            .hStack(subviews: self.cells, spacing: spacing, alignment: .center, distribution: .fillEqually)
+            .hStack(subviews: [distanceCell, lapCell, countCell], 
+                    spacing: spacing,
+                    alignment: .center,
+                    distribution: .fillEqually)
+        
         return hstack
     }()
-    
     
     init() {
         super.init(frame: .zero)
@@ -49,11 +50,10 @@ final class ChallangeCellContainer: UIView {
 extension ChallangeCellContainer {
     
     func startCircleAnimation() {
-        cells.forEach { view in
-            if let challangeView = view as? ChallangeCell {
-                challangeView.circle.startCircleAnimation()
+        [countCell, distanceCell, lapCell]
+            .forEach { view in
+                view.circle.startCircleAnimation()
             }
-        }
     }
     
     private func layout() {
@@ -70,7 +70,7 @@ extension ChallangeCellContainer {
         }
         
         hstack.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(backgroundView).inset(4)
         }
     }

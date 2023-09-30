@@ -70,6 +70,7 @@ final class DetailRecordLabel: UIView {
     }
     
     private func setType() {
+        dataLabel.adjustsFontSizeToFitWidth = true
         typeLabel.text = type.getTypeLabel()
         unitLabel.text = type.getUnit()
     }

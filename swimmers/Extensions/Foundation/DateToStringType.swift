@@ -41,6 +41,8 @@ enum DateToStringType {
     
     case weekDay
     
+    case weekdayTime
+    
     var format: String {
         switch self {
         case .date:
@@ -69,6 +71,8 @@ enum DateToStringType {
             return "M"
         case .year:
             return "yyyy"
+        case .weekdayTime:
+            return "EEEE a"
 
         }
     }

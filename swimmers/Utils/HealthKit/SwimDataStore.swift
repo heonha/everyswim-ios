@@ -76,6 +76,7 @@ final class SwimDataStore: ObservableObject {
                                       distance: distance,
                                       averagePace: "-'--''",
                                       time: duration)
+        print(summary)
         return summary
     }
     

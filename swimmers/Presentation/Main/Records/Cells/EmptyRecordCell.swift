@@ -42,7 +42,7 @@ final class EmptyRecordCell: UITableViewCell {
         case .monthly:
             cell.titleLabel.text = "이 달의 수영 기록이 없습니다."
         case .normal:
-            cell.titleLabel.text = "수영 기록이 없습니다.\n\n수영 기록이 표시되지 않으면\n[내정보 - 건강]의 상태를 확인해주세요."
+            cell.titleLabel.text = "수영 기록이 없습니다."
         }
         return cell
     }

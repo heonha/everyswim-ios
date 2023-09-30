@@ -164,7 +164,10 @@ final class RecordDetailViewController: UIViewController {
     
     private func updateUI() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.navigationItem.title = "월요일 오전 수영"
+            let weekday = self.data.startDate.toString(.weekdayTime)
+            
+            self.navigationItem.title = "\(weekday) 수영"
+
 
             self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
             self.timeLabel.text = self.data.durationTime

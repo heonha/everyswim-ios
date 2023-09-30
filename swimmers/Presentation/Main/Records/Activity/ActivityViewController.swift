@@ -68,6 +68,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         super.viewDidAppear(animated)
         self.navigationItem.title = "수영 기록"
         self.hideNavigationBar(false)
+        self.viewModel.selectedSegment = 2
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,6 +111,10 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.top.equalTo(contentView).inset(16)
             make.horizontalEdges.equalTo(contentView)
             make.centerX.equalTo(contentView)
+        }
+        
+        distanceStack.snp.makeConstraints { make in
+            make.height.equalTo(100)
         }
         
         dateSegmentView.snp.makeConstraints { make in
@@ -166,15 +171,21 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 switch tag {
                 case 0:
                     self.titleLabelMenu.text = "오늘"
+                    self.activitySectionView.updateTitle("오늘의 수영")
                 case 1:
                     self.titleLabelMenu.text = "이번 주"
+                    self.activitySectionView.updateTitle("주간 수영 기록")
                 case 2:
-                    self.titleLabelMenu.text = "\(Date().toString(.monthKr)) 기록"
+                    let month = Date().toString(.monthKr)
+                    self.titleLabelMenu.text = "\(month) 기록"
+                    self.activitySectionView.updateTitle("\(month)의 수영")
                 case 3:
                     self.titleLabelMenu.text = "전체기록"
+                    self.activitySectionView.updateTitle("전체 수영기록")
                 default:
                     return
                 }
+                
             }
             .store(in: &cancellables)
         
@@ -196,7 +207,11 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     }
     
     func updateTableViewSize() {
-        let count = viewModel.presentedData.count
+        var count = viewModel.presentedData.count
+        if count == 0 {
+            count = 1
+        }
+        
         let cellHeight = 180.0
         
         let maxSize = CGFloat(count) * cellHeight
@@ -229,10 +244,19 @@ final class ActivityViewController: UIViewController, CombineCancellable {
 extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.presentedData.count
+        if viewModel.presentedData.isEmpty {
+            print("isempty")
+            return 1
+        } else {
+            return viewModel.presentedData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if viewModel.presentedData.isEmpty {
+            return EmptyRecordCell.withType(.normal)
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId, for: indexPath) as? RecordMediumCell else {
             return EmptyRecordCell()
         }

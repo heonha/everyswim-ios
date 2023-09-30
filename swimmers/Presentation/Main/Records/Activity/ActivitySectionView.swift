@@ -12,7 +12,7 @@ final class ActivitySectionView: UIView {
     
     // 주간활동 tableview
     private let activityTitle = ViewFactory.label("주간 활동")
-        .font(.custom(.sfProLight, size: 18))
+        .font(.custom(.sfProMedium, size: 18))
         .foregroundColor(.label)
     
     
@@ -30,6 +30,10 @@ final class ActivitySectionView: UIView {
             make.center.equalTo(self)
         }
         
+    }
+    
+    func updateTitle(_ title: String) {
+        self.activityTitle.text = title
     }
     
 }

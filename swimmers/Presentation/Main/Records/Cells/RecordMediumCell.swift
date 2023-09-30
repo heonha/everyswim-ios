@@ -161,6 +161,10 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
                                             font: .custom(.sfProBold, size: 16),
                                             color: AppUIColor.grayTint)
         
+        let weekday = data.startDate.toString(.weekdayTime)
+        
+        workoutTitleLabel.text = "\(weekday) 수영"
+        
         self.rightLabel.text = data.durationString
     }
     
