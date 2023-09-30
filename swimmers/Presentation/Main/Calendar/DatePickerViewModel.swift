@@ -83,7 +83,8 @@ extension DatePickerViewModel {
     func subscribeSwimData() async {
         await hkManager?.loadSwimmingDataCollection()
         
-        SwimDataStore.shared.swimmingData
+        SwimDataStore.shared
+            .swimmingDataPubliser
             .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] data in
                 guard let self = self else { return }

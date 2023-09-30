@@ -52,13 +52,11 @@ extension HealthKitManager {
         
         #if targetEnvironment(simulator)
         let swimData = TestObjects.swimmingData
-        SwimDataStore.shared.swimmingData.send(swimData)
+        SwimDataStore.shared.sendSwimData(swimData)
         #else
         let swimData = swimDataManager.createSwimMainData(workouts)
         #endif
-        SwimDataStore.shared.swimmingData.send(swimData)
-        print("SwimmingData가 셋팅되었습니다: \(SwimDataStore.shared.swimmingData)")
-        // return swimmingData
+        SwimDataStore.shared.sendSwimData(swimData)
     }
     
 }

@@ -53,7 +53,8 @@ extension AllRecordListViewModel {
     }
     
     private func subscribeSwimmingData() {
-        SwimDataStore.shared.swimmingData
+        SwimDataStore.shared
+            .swimmingDataPubliser
             .throttle(for: 10, scheduler: DispatchQueue.main, latest: true)
             .sink { completion in
                 switch completion {

@@ -69,7 +69,7 @@ final class DashboardViewModel: ObservableObject {
     
     private func subscribeSwimmingData() {
         SwimDataStore.shared
-            .swimmingData
+            .swimmingDataPubliser
             .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
             .sink { completion in
                 switch completion {

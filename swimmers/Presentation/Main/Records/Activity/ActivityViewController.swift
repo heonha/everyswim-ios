@@ -208,10 +208,10 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         dateSegmentView.getSegment()
             .subviews
             .forEach { view in
-            let view = view as! UILabel
-            view.textColor = .label
-            view.backgroundColor = .systemGray6
-        }
+                let view = view as! UILabel
+                view.textColor = .label
+                view.backgroundColor = .systemGray6
+            }
     }
     
 }

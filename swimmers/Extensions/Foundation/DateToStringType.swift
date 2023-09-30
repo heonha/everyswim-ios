@@ -15,6 +15,9 @@ enum DateToStringType {
     /// "yyyy년 M월 d일 h시 m분"
     case fullDateKr
     
+    /// "yyyy.MM"
+    case yearMonth
+    
     ///"M월 d일"
     case monthDayKr
     
@@ -46,11 +49,12 @@ enum DateToStringType {
             return "yyyy년 M월 d일 EEEE a h시 m분"
         case .dateKr:
             return "yyyy년 M월 d일 (E)"
+        case .yearMonth:
+            return "yyyy.MM"
         case .monthDayKr:
             return "M월 d일"
         case .monthKr:
             return "M월"
-            
         case .time:
             return "a h:mm:ss"
         case .timeWithoutSeconds:
