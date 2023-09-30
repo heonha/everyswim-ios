@@ -311,7 +311,6 @@
 			children = (
 				394819512AC2D86000FD7FA8 /* AllRecordListViewController.swift */,
 				396D2ACD2A56DDA10042D4D4 /* AllRecordListViewModel.swift */,
-				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 			);
 			path = AllRecord;
 			sourceTree = "<group>";
@@ -542,6 +541,7 @@
 				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 				39DBB3252AC6F291003B5213 /* Activity */,
 				39CC3DC32AC5A30900C8BC10 /* DetailRecordLabel.swift */,
+				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 				39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */,
 				391678F62AC7F34B00190D35 /* SwimSummaryData.swift */,
 				391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */,

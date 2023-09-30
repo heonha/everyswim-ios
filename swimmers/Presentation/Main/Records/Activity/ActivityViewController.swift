@@ -196,6 +196,16 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     }
     
     func updateTableViewSize() {
+        let count = viewModel.presentedData.count
+        let cellHeight = 180.0
+        
+        let maxSize = CGFloat(count) * cellHeight
+        
+        tableView.snp.remakeConstraints { make in
+            make.top.equalTo(activitySectionView.snp.bottom)
+            make.horizontalEdges.equalTo(scrollView.contentView)
+            make.height.equalTo(maxSize)
+        }
     }
     
     func setHighlight<T: UIView>(_ view: T) {
@@ -236,6 +246,15 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
         return 171
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? RecordMediumCell else {return}
+        let data = cell.getData()
+        let detailVC = RecordDetailViewController(data: data)
+        self.push(detailVC, animated: true)
+    }
+    
 }
 
 #if DEBUG
@@ -250,4 +269,3 @@ struct ActivityViewController_Previews: PreviewProvider {
     }
 }
 #endif
-
