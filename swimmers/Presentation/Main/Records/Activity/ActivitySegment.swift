@@ -99,7 +99,7 @@ final class ActivitySegment: UIView, CombineCancellable {
     private func observe() {
                 
         dailyButton.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 if self.dailyButton.textColor == .blue { return }
@@ -110,7 +110,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .store(in: &cancellables)
         
         weeklyButton.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 print("위클리")
                 guard let self = self else { return }
@@ -120,7 +120,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .store(in: &cancellables)
         
         monthlyButton.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 print("몬쓸리")
                 guard let self = self else { return }
@@ -130,7 +130,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .store(in: &cancellables)
         
         lifeTimeButton.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 print("전체")
                 guard let self = self else { return }

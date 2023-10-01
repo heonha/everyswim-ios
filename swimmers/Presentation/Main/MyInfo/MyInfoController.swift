@@ -92,7 +92,7 @@ final class MyInfoController: UIViewController {
     private func bind() {
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 let vc = UIViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -101,7 +101,7 @@ final class MyInfoController: UIViewController {
         
         healthStateCell.getRefreshButton()
             .gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 print("Health Refresh")
             }
@@ -109,7 +109,7 @@ final class MyInfoController: UIViewController {
         
         buttonList.getButton(type: .totalRecord)
             .gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 let historyVC = ActivityViewController()
                 self.push(historyVC, animated: true)

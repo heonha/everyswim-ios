@@ -74,7 +74,7 @@ extension DashboardViewController {
     
     private func bindSubviews() {
         viewModel.$lastWorkout
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink {[unowned self] data in
                 if let data = data {
                     lastWorkoutView.updateData(data)
@@ -83,7 +83,7 @@ extension DashboardViewController {
         .store(in: &subscriptions)
         
         lastWorkoutView.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let data = self?.viewModel.lastWorkout else { return }
                 

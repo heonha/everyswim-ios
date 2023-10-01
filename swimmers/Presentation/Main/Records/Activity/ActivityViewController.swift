@@ -166,7 +166,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     private func bind() {
         
         viewModel.$selectedSegment
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] tag in
                 print(tag)
                 guard let self = self else { return }
@@ -202,7 +202,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
         
         viewModel.$summaryData
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.distanceStack.setData(data?.distance)
                 self?.recordHStack.setData(data)
@@ -210,7 +210,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
         
         viewModel.$presentedData
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.tableView.reloadData()
                 self?.updateTableViewSize()
@@ -218,7 +218,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
         
         titleMenu.gesturePublisher(.tap())
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 print("팝업!")
             }

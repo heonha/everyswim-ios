@@ -108,7 +108,7 @@ extension DatePickerController {
     
     private func bind() {
         viewModel.$currentMonth
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.viewModel.changeMonth()
                 self?.workoutDatePicker.updateView()

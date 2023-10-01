@@ -96,7 +96,7 @@ final class DateRecordListView: UIView {
     
     func observeToggleButton() {
         viewModel.$isMonthlyRecord
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 self?.monthlyToggleButtonAction(value: value)
             }
