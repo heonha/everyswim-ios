@@ -19,16 +19,27 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     private lazy var dateSegmentView = ActivitySegment(viewModel: viewModel)
     
     // 이번주 - 지난주 ....
-    private let titleLabelMenu = ViewFactory.label("이번 주")
+    private let titleLabel = ViewFactory.label("이번 주")
         .font(.custom(.sfProBold, size: 17))
         .foregroundColor(.secondaryLabel)
+    
+    private let titleLabelSybmol = UIImageView()
+        .setSymbolImage(systemName: "chevron.down", color: AppUIColor.grayTint)
+        .contentMode(.scaleAspectFit)
+        .setSize(width: 20, height: 20)
+    
+    private lazy var titleMenu = ViewFactory.hStack()
+        .addSubviews([titleLabel, titleLabelSybmol])
+        .spacing(4)
+        .alignment(.center)
+        .distribution(.fillProportionally)
     
     private lazy var distanceStack = DistanceBigLabel()
     
     private lazy var recordHStack = RecordHStackView()
     
     private lazy var recordMainStack = ViewFactory.vStack()
-        .addSubviews([titleLabelMenu, distanceStack, recordHStack])
+        .addSubviews([titleMenu, distanceStack, recordHStack])
         .spacing(30)
         .alignment(.center)
         .distribution(.fillProportionally)
@@ -167,20 +178,21 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 
                 self.resetButtonAppearance()
                 self.setHighlight(selectedView)
-                
+                self.titleLabelSybmol.isHidden = false
                 switch tag {
                 case 0:
-                    self.titleLabelMenu.text = "오늘"
+                    self.titleLabel.text = "오늘"
                     self.activitySectionView.updateTitle("오늘의 수영")
                 case 1:
-                    self.titleLabelMenu.text = "이번 주"
+                    self.titleLabel.text = "이번 주"
                     self.activitySectionView.updateTitle("주간 수영 기록")
                 case 2:
                     let month = Date().toString(.monthKr)
-                    self.titleLabelMenu.text = "\(month) 기록"
+                    self.titleLabel.text = "\(month)"
                     self.activitySectionView.updateTitle("\(month)의 수영")
                 case 3:
-                    self.titleLabelMenu.text = "전체 기록"
+                    self.titleLabel.text = "전체 기록"
+                    self.titleLabelSybmol.isHidden = true
                     self.activitySectionView.updateTitle("전체 수영기록")
                 default:
                     return
@@ -197,10 +209,18 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             }
             .store(in: &cancellables)
         
-        viewModel.$presentedData.receive(on: RunLoop.main)
+        viewModel.$presentedData
+            .receive(on: RunLoop.main)
             .sink { [weak self] data in
                 self?.tableView.reloadData()
                 self?.updateTableViewSize()
+            }
+            .store(in: &cancellables)
+        
+        titleMenu.gesturePublisher(.tap())
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                print("팝업!")
             }
             .store(in: &cancellables)
     }

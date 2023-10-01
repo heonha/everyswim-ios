@@ -30,11 +30,12 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     }()
     
     private let imageSlider = ImageSliderView()
-    var counter = 0
+    private var counter = 0
     private let pageController = UIPageControl(frame: .zero)
     
     private lazy var lastWorkoutView = RecordSmallCell(data: viewModel.lastWorkout
-                                                           ?? TestObjects.swimmingData.first!, showDate: true)
+                                                       ?? TestObjects.swimmingData.first!,
+                                                       showDate: true)
     
     private let eventTitle = ViewFactory
         .label("  최근 기록")

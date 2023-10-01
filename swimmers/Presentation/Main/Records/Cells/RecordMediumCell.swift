@@ -176,7 +176,7 @@ import SwiftUI
 struct SwimRecordMediumCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            AllRecordListViewController()
+            ActivityViewController()
         }
         .frame(width: .infinity, height: 171)
     }

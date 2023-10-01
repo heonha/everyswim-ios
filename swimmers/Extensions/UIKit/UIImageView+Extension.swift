@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 extension UIImageView {
     
@@ -28,6 +29,16 @@ extension UIImageView {
     func updateSymbolImage(systemName: String, color: UIColor = .black) {
         let image = UIImage(systemName: systemName)?.withTintColor(color, renderingMode: .alwaysOriginal)
         self.image = image
+    }
+    
+    func setSize(width: CGFloat, height: CGFloat) -> UIImageView {
+        self.snp.makeConstraints { make in
+            make.width.equalTo(width)
+            make.height.equalTo(height)
+        }
+        
+        return self
+        
     }
 
 }

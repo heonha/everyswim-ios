@@ -100,7 +100,6 @@ extension DatePickerViewModel {
                 self.isSameMonth(metadata.eventDate, self.selectedDate)
             }
             
-            print("SAME MONTH : \(self.dataInSelectedMonth.count)")
             self.sortArray()
         }
     }
