@@ -32,7 +32,7 @@ final class DatePickerDayCell: UICollectionViewCell {
     lazy var textColor = viewModel
         .isSameDay(dateValue.date, viewModel.selectedDate)
     ? UIColor.black
-    : UIColor.tintColor
+    : UIColor.systemBlue
     
     var circleInset: CGFloat = 8
     var dayViewInset: CGFloat = 10

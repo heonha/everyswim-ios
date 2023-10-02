@@ -96,7 +96,6 @@ struct MyInfoButton_Previews: PreviewProvider {
         }
         .frame(maxWidth: .infinity, idealHeight: 60)
         .padding(.vertical)
-        .background(.black)
     }
 }
 #endif

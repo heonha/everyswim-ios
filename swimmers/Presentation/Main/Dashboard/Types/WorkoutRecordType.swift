@@ -59,10 +59,10 @@ enum WorkoutRecordType: String {
         }
     }
     
-    var imageColor: Color {
+    var imageUIColor: UIColor {
         switch self {
         default:
-            return Color.init(uiColor: .systemBlue)
+            return UIColor.systemBlue
         }
     }
     

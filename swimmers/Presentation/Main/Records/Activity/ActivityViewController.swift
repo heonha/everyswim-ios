@@ -223,6 +223,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 print("팝업!")
             }
             .store(in: &cancellables)
+        
     }
     
     func updateTableViewSize() {
