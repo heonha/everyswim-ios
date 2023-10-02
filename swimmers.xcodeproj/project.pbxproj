@@ -1225,6 +1225,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
@@ -1268,6 +1270,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = swimmers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
