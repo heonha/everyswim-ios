@@ -77,6 +77,7 @@
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
+		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
 		399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */; };
@@ -86,7 +87,6 @@
 		39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */; };
 		39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */; };
 		39A111FF2AB2FDA900D57FB4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */; };
-		39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A2B5AA2AAEEC2100A6441A /* TestVC.swift */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
@@ -116,7 +116,6 @@
 		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
-		39F599842A9B590D00738334 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 39F599832A9B590D00738334 /* SnapKit */; };
 		39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599852A9B5CB000738334 /* DashboardViewController.swift */; };
 		39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599872A9B6B2300738334 /* ViewFactory.swift */; };
 		39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599892A9B6BC200738334 /* UILabel+Extension.swift */; };
@@ -210,7 +209,6 @@
 		39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		39A2B5AA2AAEEC2100A6441A /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -255,7 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39F599842A9B590D00738334 /* SnapKit in Frameworks */,
+				399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,11 +583,10 @@
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				39437DA02A48948E00FDA9DA /* Secrets */,
-				391C12BD2A592A0F001C2286 /* Debug */,
 				398B1BC92A484D5500E0FA9B /* Resources */,
+				391C12BD2A592A0F001C2286 /* Debug */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
-				39A2B5AA2AAEEC2100A6441A /* TestVC.swift */,
 			);
 			path = everyswim;
 			sourceTree = "<group>";
@@ -718,7 +715,7 @@
 			);
 			name = everyswim;
 			packageProductDependencies = (
-				39F599832A9B590D00738334 /* SnapKit */,
+				399CFBEF2ACD613B00B2043B /* SnapKit */,
 			);
 			productName = swimmers;
 			productReference = 398B1BA12A483DA300E0FA9B /* everyswim.app */;
@@ -750,7 +747,7 @@
 			);
 			mainGroup = 398B1B982A483DA300E0FA9B;
 			packageReferences = (
-				39F599822A9B590D00738334 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				399CFBEE2ACD613B00B2043B /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 398B1BA22A483DA300E0FA9B /* Products */;
 			projectDirPath = "";
@@ -866,7 +863,6 @@
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceBigLabel.swift in Sources */,
-				39A2B5AB2AAEEC2100A6441A /* TestVC.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
 				39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
@@ -1129,7 +1125,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		39F599822A9B590D00738334 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		399CFBEE2ACD613B00B2043B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:SnapKit/SnapKit.git";
 			requirement = {
@@ -1140,9 +1136,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		39F599832A9B590D00738334 /* SnapKit */ = {
+		399CFBEF2ACD613B00B2043B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 39F599822A9B590D00738334 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 399CFBEE2ACD613B00B2043B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
