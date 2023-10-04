@@ -187,7 +187,7 @@
 		396CE8552AB568F800EB66BE /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
 		396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
 		396D2AB12A5673680042D4D4 /* HKCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculator.swift; sourceTree = "<group>"; };
-		396D2AB72A5677690042D4D4 /* swimmersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swimmersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		396D2AB72A5677690042D4D4 /* everyswimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = everyswimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		396D2AB92A5677690042D4D4 /* swimmersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swimmersTests.swift; sourceTree = "<group>"; };
 		396D2AC02A5677AA0042D4D4 /* HKCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCalculatorTests.swift; sourceTree = "<group>"; };
 		396D2AC22A5677BC0042D4D4 /* CustomCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalculatorTests.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 		3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfileView.swift; sourceTree = "<group>"; };
 		3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerFlowLayout.swift; sourceTree = "<group>"; };
 		3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		398B1BA12A483DA300E0FA9B /* swimmers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swimmers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		398B1BA12A483DA300E0FA9B /* everyswim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = everyswim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		398B1BB62A483E4E00E0FA9B /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
@@ -533,8 +533,8 @@
 		398B1BA22A483DA300E0FA9B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				398B1BA12A483DA300E0FA9B /* swimmers.app */,
-				396D2AB72A5677690042D4D4 /* swimmersTests.xctest */,
+				398B1BA12A483DA300E0FA9B /* everyswim.app */,
+				396D2AB72A5677690042D4D4 /* everyswimTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -740,9 +740,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		396D2AB62A5677690042D4D4 /* swimmersTests */ = {
+		396D2AB62A5677690042D4D4 /* everyswimTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "swimmersTests" */;
+			buildConfigurationList = 396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "everyswimTests" */;
 			buildPhases = (
 				396D2AB32A5677690042D4D4 /* Sources */,
 				396D2AB42A5677690042D4D4 /* Frameworks */,
@@ -753,14 +753,14 @@
 			dependencies = (
 				396D2ABC2A5677690042D4D4 /* PBXTargetDependency */,
 			);
-			name = swimmersTests;
+			name = everyswimTests;
 			productName = swimmersTests;
-			productReference = 396D2AB72A5677690042D4D4 /* swimmersTests.xctest */;
+			productReference = 396D2AB72A5677690042D4D4 /* everyswimTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		398B1BA02A483DA300E0FA9B /* swimmers */ = {
+		398B1BA02A483DA300E0FA9B /* everyswim */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "swimmers" */;
+			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "everyswim" */;
 			buildPhases = (
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
@@ -770,12 +770,12 @@
 			);
 			dependencies = (
 			);
-			name = swimmers;
+			name = everyswim;
 			packageProductDependencies = (
 				39F599832A9B590D00738334 /* SnapKit */,
 			);
 			productName = swimmers;
-			productReference = 398B1BA12A483DA300E0FA9B /* swimmers.app */;
+			productReference = 398B1BA12A483DA300E0FA9B /* everyswim.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -797,7 +797,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "swimmers" */;
+			buildConfigurationList = 398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "everyswim" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = ko;
 			hasScannedForEncodings = 0;
@@ -814,8 +814,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				398B1BA02A483DA300E0FA9B /* swimmers */,
-				396D2AB62A5677690042D4D4 /* swimmersTests */,
+				398B1BA02A483DA300E0FA9B /* everyswim */,
+				396D2AB62A5677690042D4D4 /* everyswimTests */,
 			);
 		};
 /* End PBXProject section */
@@ -977,7 +977,7 @@
 /* Begin PBXTargetDependency section */
 		396D2ABC2A5677690042D4D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 398B1BA02A483DA300E0FA9B /* swimmers */;
+			target = 398B1BA02A483DA300E0FA9B /* everyswim */;
 			targetProxy = 396D2ABB2A5677690042D4D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -998,7 +998,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swimmers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/swimmers";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/everyswim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/everyswim";
 			};
 			name = Debug;
 		};
@@ -1017,7 +1017,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swimmers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/swimmers";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/everyswim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/everyswim";
 			};
 			name = Release;
 		};
@@ -1163,7 +1163,6 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1175,7 +1174,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmers;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.everyswim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1208,7 +1207,6 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 수영장을 찾기 위해 사용자의 위치 권한을 요청합니다.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1220,7 +1218,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.swimmers;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.heon.everyswim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1232,7 +1230,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "swimmersTests" */ = {
+		396D2ABD2A5677690042D4D4 /* Build configuration list for PBXNativeTarget "everyswimTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				396D2ABE2A5677690042D4D4 /* Debug */,
@@ -1241,7 +1239,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "swimmers" */ = {
+		398B1B9C2A483DA300E0FA9B /* Build configuration list for PBXProject "everyswim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				398B1BAD2A483DA400E0FA9B /* Debug */,
@@ -1250,7 +1248,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "swimmers" */ = {
+		398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "everyswim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				398B1BB02A483DA400E0FA9B /* Debug */,
