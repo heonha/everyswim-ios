@@ -87,6 +87,9 @@
 		39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */; };
 		39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */; };
 		39A111FF2AB2FDA900D57FB4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */; };
+		39A5788F2ACD92B200D9C993 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 39A5788E2ACD92B200D9C993 /* DGCharts */; };
+		39A578912ACD931E00D9C993 /* DGChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A578902ACD931E00D9C993 /* DGChartView.swift */; };
+		39A578932ACDA2BB00D9C993 /* SwiftChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A578922ACDA2BB00D9C993 /* SwiftChartView.swift */; };
 		39A5E8E22A502DA80062509F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 39A5E8E02A502DA80062509F /* .gitignore */; };
 		39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A12A6D09CB00049B5A /* DateToStringType.swift */; };
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
@@ -96,6 +99,7 @@
 		39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3972AAC6FD5004E0985 /* ImageSliderView.swift */; };
 		39B0C39A2AAC78F9004E0985 /* ImageSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* ImageSliderCell.swift */; };
 		39B0C39C2AAC7DCF004E0985 /* ImageSliderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C39B2AAC7DCF004E0985 /* ImageSliderData.swift */; };
+		39B377412AD2608500F37C27 /* PickerModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377402AD2608500F37C27 /* PickerModalViewController.swift */; };
 		39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */; };
 		39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */; };
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
@@ -209,6 +213,8 @@
 		39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		39A578902ACD931E00D9C993 /* DGChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGChartView.swift; sourceTree = "<group>"; };
+		39A578922ACDA2BB00D9C993 /* SwiftChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftChartView.swift; sourceTree = "<group>"; };
 		39A5E8E02A502DA80062509F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		39A606A12A6D09CB00049B5A /* DateToStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToStringType.swift; sourceTree = "<group>"; };
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 		39B0C3972AAC6FD5004E0985 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
 		39B0C3992AAC78F9004E0985 /* ImageSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCell.swift; sourceTree = "<group>"; };
 		39B0C39B2AAC7DCF004E0985 /* ImageSliderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderData.swift; sourceTree = "<group>"; };
+		39B377402AD2608500F37C27 /* PickerModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModalViewController.swift; sourceTree = "<group>"; };
 		39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthStateCell.swift; sourceTree = "<group>"; };
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
@@ -253,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A5788F2ACD92B200D9C993 /* DGCharts in Frameworks */,
 				399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +666,9 @@
 				39DBB31D2AC6E650003B5213 /* ActivitySegment.swift */,
 				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
 				391678F82AC7F35600190D35 /* ActivityDataRange.swift */,
+				39A578902ACD931E00D9C993 /* DGChartView.swift */,
+				39A578922ACDA2BB00D9C993 /* SwiftChartView.swift */,
+				39B377402AD2608500F37C27 /* PickerModalViewController.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -716,6 +727,7 @@
 			name = everyswim;
 			packageProductDependencies = (
 				399CFBEF2ACD613B00B2043B /* SnapKit */,
+				39A5788E2ACD92B200D9C993 /* DGCharts */,
 			);
 			productName = swimmers;
 			productReference = 398B1BA12A483DA300E0FA9B /* everyswim.app */;
@@ -748,6 +760,7 @@
 			mainGroup = 398B1B982A483DA300E0FA9B;
 			packageReferences = (
 				399CFBEE2ACD613B00B2043B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				39A5788D2ACD92B200D9C993 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 398B1BA22A483DA300E0FA9B /* Products */;
 			projectDirPath = "";
@@ -788,6 +801,7 @@
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSortType.swift in Sources */,
+				39A578912ACD931E00D9C993 /* DGChartView.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */,
@@ -821,6 +835,7 @@
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
+				39B377412AD2608500F37C27 /* PickerModalViewController.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
@@ -851,6 +866,7 @@
 				39DBB3222AC6EE3C003B5213 /* ActivitySectionView.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */,
+				39A578932ACDA2BB00D9C993 /* SwiftChartView.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39B0C3982AAC6FD5004E0985 /* ImageSliderView.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
@@ -1133,6 +1149,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		39A5788D2ACD92B200D9C993 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1140,6 +1164,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 399CFBEE2ACD613B00B2043B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		39A5788E2ACD92B200D9C993 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39A5788D2ACD92B200D9C993 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

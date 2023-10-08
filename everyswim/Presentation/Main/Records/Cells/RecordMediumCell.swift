@@ -13,37 +13,51 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     static var reuseId: String = "SwimRecordMediumCell"
     
     private lazy var mainVStack = ViewFactory.vStack()
-        .addSubviews([profileStackView, workoutTitleLabel, recordStackView])
+        .addSubviews([profileStackView, recordStackView])
         .spacing(15)
     
     // MARK: - Profile Stack
     private lazy var profileStackView = ViewFactory
         .hStack()
-        .addSubviews([profileImage, profileUserNameSubStack])
+        .addSubviews([profileImageView, titleLabels])
+        .spacing(10)
+        
+    private lazy var profileImageView: UIImageView =  {
+        let profileImage = UIImage(named: "everyswim")
+        
+        let imageView = UIImageView()
+            .contentMode(.scaleAspectFill)
+            .setImage(profileImage)
+            .cornerRadius(4) as! UIImageView
+        
+        let blackScale = UIView()
+        blackScale.backgroundColor = .black
+        blackScale.alpha = 0.3
+        imageView.addSubview(blackScale)
+        
+        blackScale.snp.makeConstraints { make in
+            make.edges.equalTo(imageView)
+        }
+        return imageView
+    }()
     
-    private var profileImage: UIImageView = UIImageView()
-        .contentMode(.scaleAspectFill)
-        .setImage(UIImage(named: "Avatar"))
-    
-    private lazy var profileUserNameSubStack = ViewFactory
+
+    // MARK: TitleLabels
+    private lazy var titleLabels = ViewFactory
         .vStack()
-        .addSubviews([userNameLabel, dateLabel])
-    
-    private lazy var userNameLabel = ViewFactory
-        .label("User Name")
-        .font(.custom(.sfProBold, size: 14))
-        .contentHuggingPriority(.init(251), for: .vertical)
+        .alignment(.fill)
+        .distribution(.fillProportionally)
+        .addSubviews([dateLabel, workoutTitleLabel])
     
     private lazy var dateLabel = ViewFactory
-        .label("")
-        .font(.custom(.sfProLight, size: 11))
-        .foregroundColor(AppUIColor.grayTint)
+        .label("0000-00-00")
+        .font(.custom(.sfProLight, size: 12))
+        .foregroundColor(.label)
     
-    
-    // MARK: - Middle Stack
     private lazy var workoutTitleLabel = ViewFactory
         .label("월요일 오전 수영")
-        .font(.custom(.sfProMedium, size: 16))
+        .font(.custom(.sfProLight, size: 14))
+        .foregroundColor(.secondaryLabel)
     
     // MARK: - Bottom Stack (Records)
     private lazy var recordStackView = ViewFactory
@@ -108,8 +122,10 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         self.backgroundColor = .clear
         self.selectedBackgroundView = UIView()
         contentView.backgroundColor = .white
-        contentView.layer.setFigmaShadow(color: .black)
+        contentView.layer.setFigmaShadow(color: .black, x: 0, y: 0, spread: 0)
         contentView.layer.cornerRadius = 12
+        
+
     }
     
     private func layout() {
@@ -127,8 +143,8 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
             make.center.equalTo(contentView)
         }
         
-        profileImage.snp.makeConstraints { make in
-            make.size.equalTo(40)
+        profileImageView.snp.makeConstraints { make in
+            make.size.equalTo(45)
         }
         
         rightArrowImage.snp.makeConstraints { make in
@@ -175,8 +191,8 @@ import SwiftUI
 
 struct SwimRecordMediumCell_Previews: PreviewProvider {
     static var previews: some View {
-        UIViewControllerPreview {
-            ActivityViewController()
+        UIViewPreview {
+            RecordMediumCell()
         }
         .frame(width: .infinity, height: 171)
     }

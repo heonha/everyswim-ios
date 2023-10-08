@@ -172,7 +172,7 @@ extension RecordSmallCell {
         }
         
         dayView.snp.makeConstraints { make in
-            make.width.lessThanOrEqualTo(40)
+            make.width.lessThanOrEqualTo(50)
         }
         
     }

@@ -70,16 +70,14 @@ final class ActivitySegment: UIView, CombineCancellable {
     
     private func firstGetData() {
         switch viewModel.selectedSegment {
-            case 0:
+        case .daily:
             viewModel.getData(.daily)
-            case 1:
+        case .weekly:
             viewModel.getData(.weekly)
-            case 2:
+        case .monthly:
             viewModel.getData(.monthly)
-            case 3:
+        case .lifetime:
             viewModel.getData(.lifetime)
-            default:
-                return
         }
     }
     
@@ -104,7 +102,7 @@ final class ActivitySegment: UIView, CombineCancellable {
                 guard let self = self else { return }
                 if self.dailyButton.textColor == .blue { return }
                 print("데일리")
-                viewModel.selectedSegment = 0
+                viewModel.selectedSegment = .daily
                 viewModel.getData(.daily)
             }
             .store(in: &cancellables)
@@ -114,7 +112,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .sink { [weak self] _ in
                 print("위클리")
                 guard let self = self else { return }
-                viewModel.selectedSegment = 1
+                viewModel.selectedSegment = .weekly
                 viewModel.getData(.weekly)
             }
             .store(in: &cancellables)
@@ -124,7 +122,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .sink { [weak self] _ in
                 print("몬쓸리")
                 guard let self = self else { return }
-                viewModel.selectedSegment = 2
+                viewModel.selectedSegment = .monthly
                 viewModel.getData(.monthly)
             }
             .store(in: &cancellables)
@@ -134,7 +132,7 @@ final class ActivitySegment: UIView, CombineCancellable {
             .sink { [weak self] _ in
                 print("전체")
                 guard let self = self else { return }
-                viewModel.selectedSegment = 3
+                viewModel.selectedSegment = .lifetime
                 viewModel.getData(.lifetime)
             }
             .store(in: &cancellables)

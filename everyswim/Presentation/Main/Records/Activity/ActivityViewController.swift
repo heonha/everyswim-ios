@@ -51,14 +51,16 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         .distribution(.fillProportionally)
     
     // 주간 그래프
-    private lazy var graphView = UIView()
+    private lazy var graphView = DGChartView(viewModel: viewModel)
     
     private lazy var tableView = BaseTableView()
 
     
     // 주간 활동
     private lazy var activitySectionView = ActivitySectionView()
+
     
+    // MARK: - Initializer
     init(viewModel: ActivityViewModel = .init()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -68,12 +70,13 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureTableView()
         bind()
-        self.viewModel.selectedSegment = 2
+        self.viewModel.selectedSegment = .monthly
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +95,8 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         layout()
     }
     
+    
+    // MARK: - Configure & Layout
     private func configure() {
         // 이번주 기록 가져오기
         recordHStack.setData(viewModel.summaryData)
@@ -138,9 +143,8 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.height.equalTo(70)
         }
         
-        graphView.backgroundColor = .systemGray2
         graphView.snp.makeConstraints { make in
-            make.height.equalTo(180)
+            make.height.equalTo(0)
             make.width.equalTo(mainVStack).inset(18)
         }
         
@@ -163,8 +167,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         
     }
     
+    // MARK: - Bind (Subscribers)
     private func bind() {
-        
+        bindSegmentButtons()
+        bindSummaryData()
+        bindPresentedData()
+        bindTitleMenu()
+    }
+    
+    private func bindSegmentButtons() {
         viewModel.$selectedSegment
             .receive(on: DispatchQueue.main)
             .sink { [weak self] tag in
@@ -172,35 +183,46 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 guard let self = self else { return }
                 let selectedView = self.dateSegmentView.getSegment()
                     .subviews
-                    .first { $0.tag == tag }
+                    .first { $0.tag == tag.rawValue }
                 
                 guard let selectedView = selectedView as? UILabel else { return }
                 
-                self.resetButtonAppearance()
-                self.setHighlight(selectedView)
+                self.resetSegmentButtonsAppearance()
+                self.updateSegmentHighlight(selectedView)
                 self.titleLabelSybmol.isHidden = false
                 switch tag {
-                case 0:
+                case .daily:
                     self.titleLabel.text = "오늘"
                     self.activitySectionView.updateTitle("오늘의 수영")
-                case 1:
+                case .weekly:
                     self.titleLabel.text = "이번 주"
                     self.activitySectionView.updateTitle("주간 수영 기록")
-                case 2:
+                case .monthly:
                     let month = Date().toString(.monthKr)
                     self.titleLabel.text = "\(month)"
                     self.activitySectionView.updateTitle("\(month)의 수영")
-                case 3:
+                case .lifetime:
                     self.titleLabel.text = "전체 기록"
                     self.titleLabelSybmol.isHidden = true
                     self.activitySectionView.updateTitle("전체 수영기록")
-                default:
-                    return
                 }
                 
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindTitleMenu() {
+        titleMenu.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                print("팝업!")
+                let vc = PickerModalViewController(viewModel: self.viewModel)
+                self.present(vc, animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bindSummaryData() {
         viewModel.$summaryData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
@@ -208,7 +230,9 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 self?.recordHStack.setData(data)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindPresentedData() {
         viewModel.$presentedData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
@@ -216,16 +240,12 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 self?.updateTableViewSize()
             }
             .store(in: &cancellables)
-        
-        titleMenu.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("팝업!")
-            }
-            .store(in: &cancellables)
-        
     }
     
+    // MARK: - Appearances
+    
+    /// Cell 갯수에 따라서 TableView 크기를 업데이트
+    /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
     func updateTableViewSize() {
         var count = viewModel.presentedData.count
         if count == 0 {
@@ -243,13 +263,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         }
     }
     
-    func setHighlight<T: UIView>(_ view: T) {
+    /// segment hightlight 처리
+    private func updateSegmentHighlight<T: UIView>(_ view: T) {
         let view = view as! UILabel
         view.textColor = .white
         view.backgroundColor = AppUIColor.primaryBlue
     }
     
-    func resetButtonAppearance() {
+    /// Segment Button Appearance 초기화
+    private func resetSegmentButtonsAppearance() {
         dateSegmentView.getSegment()
             .subviews
             .forEach { view in
@@ -261,7 +283,29 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
 }
 
-extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
+
+
+
+// MARK: - TableView Protocols
+
+extension ActivityViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 171
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? RecordMediumCell else {return}
+        let data = cell.getData()
+        let detailVC = RecordDetailViewController(data: data)
+        self.push(detailVC, animated: true)
+    }
+    
+}
+
+extension ActivityViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.presentedData.isEmpty {
@@ -285,21 +329,10 @@ extension ActivityViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 171
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? RecordMediumCell else {return}
-        let data = cell.getData()
-        let detailVC = RecordDetailViewController(data: data)
-        self.push(detailVC, animated: true)
-    }
-    
 }
 
+
+// MARK: - Previewer
 #if DEBUG
 import SwiftUI
 

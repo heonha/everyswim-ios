@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ActivityDataRange {
+enum ActivityDataRange: Int {
     case daily
     case weekly
     case monthly

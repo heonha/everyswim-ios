@@ -16,6 +16,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func toStringWeekNumber() -> String {
+        let calendar = Calendar.current
+        let abc = calendar.component(.weekOfYear, from: self)
+        return abc.formattedString()
+    }
+    
     /// 날짜와 시간을 나눠 출력
     func toStringSplitDateAndTime() -> (date: String, time: String) {
         let dateFormatter = DateFormatter()
