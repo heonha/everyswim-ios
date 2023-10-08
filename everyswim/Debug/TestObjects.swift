@@ -90,16 +90,7 @@ enum TestObjects {
     
     
     
-    static let swimSummaryData = SwimSummaryData(count: 3, distance: "650", averagePace: "3'22''", time: "30:00")
+    static let swimSummaryData = SwimSummaryData(count: 3, distance: "650", distanceUnit: "M", averagePace: "3'22''", time: "30:00")
     
 }
 #endif
-
-
-// "yyyy-MM-dd-HH:mm"
-// "2023-07-11-11:30"
-// "2023-07-11-12:35"
-// "2023-07-15-08:30"
-// "2023-07-15-09:23"
-// "2023-07-04-09:20"
-// "2023-07-04-09:59"

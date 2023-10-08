@@ -16,9 +16,9 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let scrollView = BaseScrollView()
+    
     private lazy var dateSegmentView = ActivitySegmentView(viewModel: viewModel)
     
-    // 이번주 - 지난주 ....
     private let titleLabel = ViewFactory.label("이번 주")
         .font(.custom(.sfProBold, size: 17))
         .foregroundColor(.secondaryLabel)
@@ -76,7 +76,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         configure()
         configureTableView()
         bind()
-        self.viewModel.selectedSegment = .monthly
+        viewModel.selectedSegment = .monthly
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -221,7 +221,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         viewModel.$summaryData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                self?.distanceStack.setData(data?.distance)
+                self?.distanceStack.setData(data?.distance, unit: data?.distanceUnit ?? "")
                 self?.recordHStack.setData(data)
             }
             .store(in: &cancellables)

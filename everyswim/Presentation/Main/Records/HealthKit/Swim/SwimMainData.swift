@@ -18,7 +18,7 @@ struct SwimMainData: Identifiable {
     
     /// HH시간 mm분 ss초
     var durationString: String {
-        return duration.toRelativeTime(.hourMinuteSeconds, unitStyle: .positional)
+        return duration.toRelativeTime(.hourMinute, unitStyle: .full)
     }
     
     var unwrappedDistance: Double {

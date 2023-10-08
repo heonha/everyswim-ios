@@ -38,7 +38,7 @@ final class RecordDetailViewController: UIViewController {
         .foregroundColor(.label)
     
     private lazy var distanceUnitLabel = ViewFactory
-        .label("Meters")
+        .label("meter")
         .font(.custom(.sfProMedium, size: 25))
         .foregroundColor(.secondaryLabel)
     

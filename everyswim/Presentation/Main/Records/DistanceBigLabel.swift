@@ -15,11 +15,11 @@ final class DistanceBigLabel: UIView {
     // 몇 미터
     private lazy var distanceLabel = ViewFactory
         .label("--")
-        .font(.custom(.sfProBold, size: 80))
+        .font(.custom(.sfProBold, size: 70))
         .foregroundColor(.label)
     
     private lazy var distanceUnitLabel = ViewFactory
-        .label("Meters")
+        .label("meters")
         .font(.custom(.sfProMedium, size: 25))
         .foregroundColor(.secondaryLabel)
     
@@ -46,8 +46,9 @@ final class DistanceBigLabel: UIView {
         }
     }
     
-    func setData(_ data: String?) {
-        self.distanceLabel.text = data
+    func setData(_ data: String?, unit: String) {
+        distanceLabel.text = data
+        distanceUnitLabel.text = unit
     }
     
 }

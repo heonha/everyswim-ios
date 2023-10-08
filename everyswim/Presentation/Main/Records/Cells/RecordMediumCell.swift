@@ -124,7 +124,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         contentView.backgroundColor = .white
         contentView.layer.setFigmaShadow(color: .black, x: 0, y: 0, spread: 0)
         contentView.layer.cornerRadius = 12
-        
+        rightLabel.adjustsFontSizeToFitWidth = true
 
     }
     
@@ -181,7 +181,14 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         
         workoutTitleLabel.text = "\(weekday) 수영"
         
-        self.rightLabel.text = data.durationString
+        let duration = data.durationString
+        
+        let attrDuration = NSMutableAttributedString(string: duration)
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: AppUIColor.grayTint, .font: UIFont.custom(.sfProBold, size: 16)]
+        attrDuration.addAttributes(attributes, range: (duration as NSString).range(of: "시간"))
+        attrDuration.addAttributes(attributes, range: (duration as NSString).range(of: "분"))
+        
+        self.rightLabel.attributedText = attrDuration
     }
     
 }

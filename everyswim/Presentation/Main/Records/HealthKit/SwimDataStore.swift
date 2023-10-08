@@ -66,17 +66,28 @@ final class SwimDataStore: ObservableObject {
         
         let duration = totalData
             .reduce(TimeInterval(0)) { $0 + $1.duration }
-            .toRelativeTime(.hourMinute, unitStyle: .positional)
+            .toRelativeTime(.hourMinute, unitStyle: .full)
         
-        let distance = totalData
+        var distance = totalData
             .reduce(Double(0)) { $0 + $1.unwrappedDistance }
-            .toString()
+        
+        var distanceUnit = "meters"
+        
+        var distanceString = ""
+        
+        if distance > 10000 {
+            distance = distance / 1000
+            distanceUnit = "kilometers"
+            distanceString = distance.toString(maxDigit: 1)
+        } else {
+            distanceString = distance.toString(maxDigit: 0)
+        }
         
         let summary = SwimSummaryData(count: count,
-                                      distance: distance,
+                                      distance: distanceString,
+                                      distanceUnit: distanceUnit,
                                       averagePace: "-'--''",
                                       time: duration)
-        print(summary)
         return summary
     }
     

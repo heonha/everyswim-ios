@@ -34,6 +34,7 @@ extension TimeInterval {
         formatter.allowedUnits = type.unit
         formatter.unitsStyle = unitStyle
         formatter.calendar = calendar
+        formatter.maximumUnitCount = 2
 
         let formattedString = formatter.string(from: self)!
         

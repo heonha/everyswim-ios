@@ -15,9 +15,18 @@ extension Double {
     }
     
     /// 소수점을 제외하고 문자열로 변환합니다.
-    func toString() -> String {
-        let intVal = self.toInt()
-        return "\(intVal.formattedString())"
+    func toString(maxDigit: Int = 0) -> String {
+        let numberToRound: Double = self
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = maxDigit
+        formatter.maximumFractionDigits = maxDigit
+        if let roundedString = formatter.string(from: NSNumber(value: numberToRound)),
+           let roundedNumber = formatter.number(from: roundedString)?.doubleValue {
+            print(roundedNumber) // 출력: 3.46
+            return roundedString
+        }
+        
+        return "-"
     }
     
     func formattedString() -> String {
