@@ -11,5 +11,5 @@ enum ActivityDataRange: Int {
     case daily
     case weekly
     case monthly
-    case lifetime
+    case yearly
 }

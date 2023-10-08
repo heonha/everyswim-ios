@@ -121,7 +121,7 @@ final class DatePickerDayCell: UICollectionViewCell {
         switch type {
         case .hasEvent:
             self.dayView.textColor = AppUIColor.whithThickMaterialColor
-            self.dayView.backgroundColor = AppUIColor.primary
+            self.dayView.backgroundColor = AppUIColor.primaryBlue
             
         case .noEvent:
             self.dayView.textColor = UIColor(hex: "000000", alpha: 0.7)

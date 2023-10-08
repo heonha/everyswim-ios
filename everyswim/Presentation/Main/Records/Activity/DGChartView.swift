@@ -105,7 +105,7 @@ final class DGChartView: UIView, CombineCancellable {
                     values = self?.viewModel.weeks.map{$0.toStringWeekNumber()} ?? [""]
                 case .monthly:
                     values = self?.viewModel.months.map{$0.toString(.month)} ?? [""]
-                case .lifetime:
+                case .yearly:
                     values = self?.viewModel.year.map{$0.toString(.year)} ?? [""]
                 }
                 

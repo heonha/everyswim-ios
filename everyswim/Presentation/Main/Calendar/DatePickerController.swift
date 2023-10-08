@@ -45,6 +45,11 @@ final class DatePickerController: UIViewController {
         self.hideNavigationBar(false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getDataTasks()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hideNavigationBar(true)
@@ -106,6 +111,15 @@ extension DatePickerController {
         
     }
     
+    private func getDataTasks() {
+        Task {
+            self.loadingIndicator.show()
+            await viewModel.subscribeSwimData()
+            self.dayCollectionView.reloadData()
+            self.loadingIndicator.hide()
+        }
+    }
+    
     private func bind() {
         viewModel.$currentMonth
             .receive(on: DispatchQueue.main)
@@ -130,13 +144,7 @@ extension DatePickerController {
                 self?.dateRecordListView.getTableView().reloadData()
             }
             .store(in: &cancellables)
-        
-        Task {
-            self.loadingIndicator.show()
-            await viewModel.subscribeSwimData()
-            self.dayCollectionView.reloadData()
-            self.loadingIndicator.hide()
-        }
+
     }
     
 }
@@ -154,7 +162,6 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.viewModel = self.viewModel
         cell.dateValue = dateValue
         cell.isShadowHidden = true
-        
         return cell
     }
     
@@ -247,7 +254,6 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
         let swimData = data[indexPath.row]
         cell.updateData(swimData)
         cell.backgroundColor = .clear
-        
         return cell
     }
     

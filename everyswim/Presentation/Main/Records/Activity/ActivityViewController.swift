@@ -201,7 +201,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                     let month = Date().toString(.monthKr)
                     self.titleLabel.text = "\(month)"
                     self.activitySectionView.updateTitle("\(month)의 수영")
-                case .lifetime:
+                case .yearly:
                     self.titleLabel.text = "전체 기록"
                     self.titleLabelSybmol.isHidden = true
                     self.activitySectionView.updateTitle("전체 수영기록")

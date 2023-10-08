@@ -76,8 +76,8 @@ final class ActivitySegment: UIView, CombineCancellable {
             viewModel.getData(.weekly)
         case .monthly:
             viewModel.getData(.monthly)
-        case .lifetime:
-            viewModel.getData(.lifetime)
+        case .yearly:
+            viewModel.getData(.yearly)
         }
     }
     
@@ -132,8 +132,8 @@ final class ActivitySegment: UIView, CombineCancellable {
             .sink { [weak self] _ in
                 print("전체")
                 guard let self = self else { return }
-                viewModel.selectedSegment = .lifetime
-                viewModel.getData(.lifetime)
+                viewModel.selectedSegment = .yearly
+                viewModel.getData(.yearly)
             }
             .store(in: &cancellables)
         

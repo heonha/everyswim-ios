@@ -31,6 +31,9 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     public var weeks = [Date]()
     public var months = [Date]()
     public var year = [Date]()
+    
+    // MARK: - Pickers Data
+    
 
     init() { 
         updateDate()
@@ -95,12 +98,54 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
             totalData = healthStore.getWeeklyData()
         case .monthly:
             totalData = healthStore.getMonthlyData()
-        case .lifetime:
+        case .yearly:
             totalData = healthStore.getAllData()
         }
         self.presentedData = []
         self.summaryData = self.healthStore.getSummaryData(totalData)
         self.presentedData = totalData
+    }
+    
+    func setSelectedDate(left: String, right: String? = nil) {
+        
+        switch selectedSegment {
+        case .daily:
+            return
+        case .weekly:
+            return
+        case .monthly:
+            let year = left
+            guard let month = right else { return }
+            guard let selectedDate = "\(year)-\(month)-01".toDate() else {
+                return
+            }
+            self.selectedDate = selectedDate
+        case .yearly:
+            let year = left
+            guard let selectedDate = "\(year)-01-01".toDate() else {
+                return
+            }
+            self.selectedDate = selectedDate
+        }
+        
+        print("선택됨: \(selectedDate.toString(.fullDotDate))")
+    }
+    
+    func convertAllDataToYear() {
+        let allData = self.healthStore.getAllData()
+        let recordsDate = allData.map { $0.startDate }
+        
+        let years = recordsDate.map { date in
+            date.toString(.year)
+        }
+        
+        let months = recordsDate.map { date in
+            date.toString(.yearMonth)
+        }
+        
+        print("YEARS: \(years)")
+        print("MONTHS: \(months)")
+
     }
     
 }

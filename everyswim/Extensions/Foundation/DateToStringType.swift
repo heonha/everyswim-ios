@@ -33,7 +33,8 @@ enum DateToStringType {
     
     /// "M"
     case month
-    
+    case monthFull
+
     case year
     
     /// "M.dd"
@@ -72,6 +73,8 @@ enum DateToStringType {
             return "EEEE"
         case .month:
             return "M"
+        case .monthFull:
+            return "MM"
         case .day:
             return "d"
         case .year:
