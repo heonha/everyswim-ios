@@ -16,7 +16,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let scrollView = BaseScrollView()
-    private lazy var dateSegmentView = ActivitySegment(viewModel: viewModel)
+    private lazy var dateSegmentView = ActivitySegmentView(viewModel: viewModel)
     
     // 이번주 - 지난주 ....
     private let titleLabel = ViewFactory.label("이번 주")
@@ -173,6 +173,17 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         bindSummaryData()
         bindPresentedData()
         bindTitleMenu()
+        bindSelectedDate()
+    }
+    
+    private func bindSelectedDate() {
+        viewModel.$selectedDate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] date in
+                guard let self = self else {return}
+                updateTitles(tag: viewModel.selectedSegment, date: date)
+            }
+            .store(in: &cancellables)
     }
     
     private func bindSegmentButtons() {
@@ -190,33 +201,17 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 self.resetSegmentButtonsAppearance()
                 self.updateSegmentHighlight(selectedView)
                 self.titleLabelSybmol.isHidden = false
-                switch tag {
-                case .daily:
-                    self.titleLabel.text = "오늘"
-                    self.activitySectionView.updateTitle("오늘의 수영")
-                case .weekly:
-                    self.titleLabel.text = "이번 주"
-                    self.activitySectionView.updateTitle("주간 수영 기록")
-                case .monthly:
-                    let month = Date().toString(.monthKr)
-                    self.titleLabel.text = "\(month)"
-                    self.activitySectionView.updateTitle("\(month)의 수영")
-                case .yearly:
-                    self.titleLabel.text = "전체 기록"
-                    self.titleLabelSybmol.isHidden = true
-                    self.activitySectionView.updateTitle("전체 수영기록")
-                }
-                
+                updateTitles(tag: tag)
             }
             .store(in: &cancellables)
     }
-    
+
     private func bindTitleMenu() {
         titleMenu.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
-                print("팝업!")
-                let vc = PickerModalViewController(viewModel: self.viewModel)
+                if viewModel.selectedSegment == .total { return }
+                let vc = ActivityDatePicker(viewModel: self.viewModel)
                 self.present(vc, animated: true)
             }
             .store(in: &cancellables)
@@ -281,13 +276,32 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             }
     }
     
+    private func updateTitles(tag: ActivityDataRange, date: Date = Date()) {
+        switch tag {
+        case .weekly:
+            self.titleLabel.text = "이번 주"
+            self.activitySectionView.updateTitle("주간 수영 기록")
+        case .monthly:
+            let year = date.toString(.year)
+            let month = date.toString(.monthKr)
+            self.titleLabel.text = "\(year)년 \(month)"
+            self.activitySectionView.updateTitle("\(year)년 \(month)의 수영")
+        case .yearly:
+            let year = Date().toString(.year)
+            self.titleLabel.text = "\(year)년 기록"
+            self.titleLabelSybmol.isHidden = true
+            self.activitySectionView.updateTitle("\(year)년의 수영")
+        case .total:
+            self.titleLabel.text = "전체 기록"
+            self.titleLabelSybmol.isHidden = true
+            self.activitySectionView.updateTitle("전체 수영기록")
+        }
+    }
+    
+    
 }
 
-
-
-
-// MARK: - TableView Protocols
-
+// MARK: - TableView Delegate
 extension ActivityViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -305,6 +319,7 @@ extension ActivityViewController: UITableViewDelegate {
     
 }
 
+// MARK: - TableView datasource
 extension ActivityViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -9,37 +9,41 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ActivitySegment: UIView, CombineCancellable {
+final class ActivitySegmentView: UIView, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: ActivityViewModel
     
     // 셀렉터 (일간 - 주간 - 월간)
-    private lazy var dailyButton = ViewFactory
-        .label("일간")
-        .tag(0) as! UILabel
     
     private lazy var weeklyButton = ViewFactory
         .label("주간")
-        .tag(1) as! UILabel
+        .tag(0) as! UILabel
     
     private lazy var monthlyButton = ViewFactory
         .label("월간")
+        .tag(1) as! UILabel
+    
+    private lazy var yearlyButton = ViewFactory
+        .label("연간")
         .tag(2) as! UILabel
     
     private lazy var lifeTimeButton = ViewFactory
         .label("전체")
         .tag(3) as! UILabel
+    
 
 
     private lazy var dateSelecter = ViewFactory.hStack()
-        .addSubviews([dailyButton, weeklyButton, monthlyButton, lifeTimeButton])
+        .addSubviews([weeklyButton, monthlyButton, yearlyButton, lifeTimeButton])
         .distribution(.fillEqually)
         .alignment(.center)
         .spacing(2)
         .cornerRadius(6)
         .backgroundColor(.systemGray6) as! UIStackView
+    
+    // MARK: - Initializer
     
     init(viewModel: ActivityViewModel) {
         self.viewModel = viewModel
@@ -52,11 +56,15 @@ final class ActivitySegment: UIView, CombineCancellable {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycles
+
     override func layoutSubviews() {
         super.layoutSubviews()
         observe()
         firstGetData()
     }
+    
+    // MARK: - Setup
     
     private func configure() {
         dateSelecter.subviews.forEach { view in
@@ -70,14 +78,14 @@ final class ActivitySegment: UIView, CombineCancellable {
     
     private func firstGetData() {
         switch viewModel.selectedSegment {
-        case .daily:
-            viewModel.getData(.daily)
         case .weekly:
             viewModel.getData(.weekly)
         case .monthly:
             viewModel.getData(.monthly)
         case .yearly:
             viewModel.getData(.yearly)
+        case .total:
+            viewModel.getData(.total)
         }
     }
     
@@ -96,21 +104,9 @@ final class ActivitySegment: UIView, CombineCancellable {
     
     private func observe() {
                 
-        dailyButton.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                if self.dailyButton.textColor == .blue { return }
-                print("데일리")
-                viewModel.selectedSegment = .daily
-                viewModel.getData(.daily)
-            }
-            .store(in: &cancellables)
-        
         weeklyButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("위클리")
                 guard let self = self else { return }
                 viewModel.selectedSegment = .weekly
                 viewModel.getData(.weekly)
@@ -120,20 +116,27 @@ final class ActivitySegment: UIView, CombineCancellable {
         monthlyButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("몬쓸리")
                 guard let self = self else { return }
                 viewModel.selectedSegment = .monthly
                 viewModel.getData(.monthly)
             }
             .store(in: &cancellables)
         
-        lifeTimeButton.gesturePublisher(.tap())
+        yearlyButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("전체")
                 guard let self = self else { return }
                 viewModel.selectedSegment = .yearly
                 viewModel.getData(.yearly)
+            }
+            .store(in: &cancellables)
+        
+        lifeTimeButton.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                viewModel.selectedSegment = .total
+                viewModel.getData(.total)
             }
             .store(in: &cancellables)
         

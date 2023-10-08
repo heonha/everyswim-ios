@@ -9,28 +9,15 @@ import UIKit
 import SnapKit
 import Combine
 
-final class PickerModalViewController: UIViewController, CombineCancellable {
+final class ActivityDatePicker: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
-    
-    private var years = [String]()
-    private var months = [String]()
-    
+
     private let viewModel: ActivityViewModel
-    
-    var leftString = "" {
-        willSet {
-            print("LEFT: \(newValue)")
-        }
-    }
-    var rightString: String? {
-        willSet {
-            print("RIGHT: \(newValue!)")
-        }
-    }
     
     private lazy var leftPicker = createPickerView()
     private lazy var rightPicker = createPickerView()
+
     private lazy var hstack = ViewFactory.hStack()
         .distribution(.fillProportionally)
         .addSubviews([leftPicker, rightPicker])
@@ -53,11 +40,28 @@ final class PickerModalViewController: UIViewController, CombineCancellable {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTitleData()
         configure()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        switch viewModel.selectedSegment {
+        case .weekly:
+            isHideRightPicker(.hide)
+        case .monthly:
+            isHideRightPicker(.show)
+            selectCurrentYear()
+            
+        case .yearly:
+            isHideRightPicker(.hide)
+        case .total:
+            isHideRightPicker(.hide)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,41 +69,14 @@ final class PickerModalViewController: UIViewController, CombineCancellable {
         layout()
     }
     
-    private func createPickerView() -> UIPickerView {
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        return pickerView
-    }
+    
+    // MARK: - Setup
     
     private func configure() {
         self.modalPresentationStyle = .popover
         let sheet = self.sheetPresentationController
         sheet?.detents = [.medium()]
         sheet?.prefersGrabberVisible = true
-    }
-    
-    private func setFirstPickedData() {
-        if viewModel.selectedSegment == .weekly {
-            let date = Date()
-            self.leftString = date.toString(.year)
-            self.rightString = date.toString(.monthFull)
-        }
-    }
-    
-    private func setTitleData() {
-        
-        for year in 2020...2023 {
-            years.append("\(year)")
-        }
-        
-        for month in 1...12 {
-            if month < 10 {
-                months.append("0\(month)")
-            } else {
-                months.append("\(month)")
-            }
-        }
-        
     }
     
     private func layout() {
@@ -123,67 +100,70 @@ final class PickerModalViewController: UIViewController, CombineCancellable {
         
     }
 
-    private func isHideRightPicker(_ value: IsHidden = .hide) {
-        rightPicker.isHidden = value.boolType
-    }
-    
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
-        print("DISMISS")
-    }
-    
     private func bind() {
         applyButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                if viewModel.selectedSegment == .weekly, rightString == nil {
-                    self.dismiss(animated: true)
-                    return
-                }
-                
-                viewModel.setSelectedDate(left: leftString, right: rightString)
+                viewModel.setSelectedDate(left: viewModel.leftString, right: viewModel.rightString)
                 self.dismiss(animated: true)
             }
             .store(in: &cancellables)
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        switch viewModel.selectedSegment {
-        case .daily:
-            isHideRightPicker(.hide)
-        case .weekly:
-            isHideRightPicker(.hide)
-        case .monthly:
-            isHideRightPicker(.show)
-        case .yearly:
-            isHideRightPicker(.hide)
+    
+    // MARK: - Helpers
+    private func setFirstPickedData() {
+        if viewModel.selectedSegment == .weekly {
+            let date = Date()
+            viewModel.leftString = date.toString(.year)
+            viewModel.rightString = date.toString(.monthFull)
         }
     }
+        
+    private func isHideRightPicker(_ value: IsHidden = .hide) {
+        rightPicker.isHidden = value.boolType
+    }
     
+    private func createPickerView() -> UIPickerView {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        return pickerView
+    }
+    
+    private func selectCurrentYear() {
+        let currentDay = viewModel.selectedDate
+        let currentYear = Calendar.current.component(.year, from: currentDay)
+        let currentMonth = Calendar.current.component(.month, from: currentDay)
+
+        if let initialYearRow = viewModel.pickerYears.firstIndex(of: "\(currentYear)") {
+            viewModel.leftString = viewModel.pickerYears[initialYearRow]
+            leftPicker.selectRow(initialYearRow, inComponent: 0, animated: false)
+        }
+        
+        if let initialMonthRow = viewModel.pickerMonths.firstIndex(of: "\(currentMonth)") {
+            viewModel.rightString = viewModel.pickerMonths[initialMonthRow]
+            rightPicker.selectRow(initialMonthRow, inComponent: 0, animated: false)
+        }
+    }
+
 }
-// MARK: - PickerView Protocols
-extension PickerModalViewController: UIPickerViewDelegate {
+// MARK: - PickerView Delegate
+extension ActivityDatePicker: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
-            case .daily:
-                self.leftString = viewModel.days[row].toString(.day)
-            case .weekly:
-                self.leftString = viewModel.days[row].toStringWeekNumber()
             case .monthly:
-                self.leftString = years[row]
-            case .yearly:
-                self.leftString = viewModel.year[row].toString(.year)
+                viewModel.leftString = viewModel.pickerYears[row]
+            default:
+                print("Changed")
             }
         }
         
         if pickerView == rightPicker {
             switch viewModel.selectedSegment {
             case .monthly:
-                self.rightString = months[row]
+                viewModel.rightString = viewModel.pickerMonths[row]
             default:
                 print("rightError")
             }
@@ -192,7 +172,8 @@ extension PickerModalViewController: UIPickerViewDelegate {
     }
 }
 
-extension PickerModalViewController: UIPickerViewDataSource {
+// MARK: - PickerView DataSource
+extension ActivityDatePicker: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -202,26 +183,18 @@ extension PickerModalViewController: UIPickerViewDataSource {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
-            case .daily:
-                return viewModel.days.count
-            case .weekly:
-                return viewModel.weeks.count
             case .monthly:
-                return years.count
-            case .yearly:
-                return viewModel.year.count
+                return viewModel.pickerYears.count
+            default:
+                return 1
             }
         }
         
         if pickerView == rightPicker {
             switch viewModel.selectedSegment {
-            case .daily:
-                return 0
-            case .weekly:
-                return 0
             case .monthly:
-                return months.count
-            case .yearly:
+                return viewModel.pickerMonths.count
+            default:
                 return 0
             }
         }
@@ -233,46 +206,23 @@ extension PickerModalViewController: UIPickerViewDataSource {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
-            case .daily:
-                return viewModel.days[row].toString(.day)
-            case .weekly:
-                return "\(viewModel.weeks[row].toStringWeekNumber())주차"
             case .monthly:
-                return "\(years[row])년"
-            case .yearly:
-                return viewModel.year[row].toString(.year)
+                return "\(viewModel.pickerYears[row])년"
+            default:
+                return "미구현"
             }
         }
         
         if pickerView == rightPicker {
             switch viewModel.selectedSegment {
-            case .daily:
-                return "right daily"
-            case .weekly:
-                return "right weekly"
             case .monthly:
-                return "\(months[row])월"
-            case .yearly:
-                return "right year"
+                return "\(viewModel.pickerMonths[row])월"
+            default:
+                return nil
             }
         }
         
         return nil
     }
     
-}
-
-
-enum IsHidden {
-    case show
-    case hide
-    
-    var boolType: Bool {
-        switch self {
-        case .show:
-            return false
-        case .hide:
-            return true
-        }
-    }
 }

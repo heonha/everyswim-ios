@@ -99,14 +99,14 @@ final class DGChartView: UIView, CombineCancellable {
                 var values: [String] = []
                 
                 switch segment {
-                case .daily:
-                    values = self?.viewModel.days.map{$0.toString(.day)} ?? [""]
                 case .weekly:
-                    values = self?.viewModel.weeks.map{$0.toStringWeekNumber()} ?? [""]
+                    values = ["week"]
                 case .monthly:
-                    values = self?.viewModel.months.map{$0.toString(.month)} ?? [""]
+                    values = self?.viewModel.pickerMonths ?? [""]
                 case .yearly:
-                    values = self?.viewModel.year.map{$0.toString(.year)} ?? [""]
+                    values = ["year"]
+                case .total:
+                    values = ["total"]
                 }
                 
                 self?.setIndexAxisValue(values: values)

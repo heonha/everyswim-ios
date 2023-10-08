@@ -19,6 +19,21 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     @Published var weekList: [String] = []
     @Published var selectedSegment: ActivityDataRange = .monthly
     
+    // MARK: - Picker Objects
+    
+    var pickerYears = [String]()
+    var pickerMonths = [String]()
+    
+    var leftString = "" {
+        willSet {
+            print("LEFT: \(newValue)")
+        }
+    }
+    var rightString: String = "" {
+        willSet {
+            print("RIGHT: \(newValue)")
+        }
+    }
     
     private let today = Date()
     private let calendar = Calendar.current
@@ -26,11 +41,6 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     var pastDays = [Date]()
     
     @Published var selectedDate: Date = Date()
-    
-    public var days = [Date]()
-    public var weeks = [Date]()
-    public var months = [Date]()
-    public var year = [Date]()
     
     // MARK: - Pickers Data
     
@@ -40,51 +50,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     }
     
     func updateDate() {
-        getPastDays()
-        getPastMonth()
-        getPastWeeks()
-        getPastYear()
-        print("DateDEBUG: Days \(days)")
-        print("DateDEBUG: weeks \(weeks)")
-        print("DateDEBUG: months \(months)")
-        print("DateDEBUG: year \(year)")
-    }
-    
-    func getPastDays(maxCount: Int = 6) {
-        self.days = []
-        for i in 0...maxCount {
-            let day = calendar.date(byAdding: .day, value: -i, to: today) ?? Date()
-            self.days.append(day)
-        }
-    }
-    
-    private func getPastWeeks(maxCount: Int = 6) {
-        self.weeks = []
-        for i in 0..<maxCount {
-            if let week = calendar.date(byAdding: .weekOfYear, value: -i, to: today),
-               let firstDayOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: week)) {
-                self.weeks.append(firstDayOfWeek)
-            }
-        }
-    }
-    
-    private func getPastMonth(maxCount: Int = 6) {
-        self.months = []
-        for i in 1..<maxCount {
-            if let month = calendar.date(byAdding: .month, value: -i, to: today) {
-                self.months.append(month)
-            }
-        }
-    }
-    private func getPastYear(maxCount: Int = 6) {
-        self.year = []
-        for i in 1..<maxCount {
-            if let lastYear = calendar.date(byAdding: .year, value: -i, to: today) {
-                year.append(lastYear)
-            } else {
-                print("DateDEBUG 날짜 계산 오류")
-            }
-        }
+        setDatePickerTitle()
     }
     
     func getData(_ type: ActivityDataRange) {
@@ -92,25 +58,32 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         var totalData: [SwimMainData]
         
         switch type {
-        case .daily:
-            totalData = healthStore.getDailyData(date: selectedDate)
         case .weekly:
             totalData = healthStore.getWeeklyData()
         case .monthly:
             totalData = healthStore.getMonthlyData()
         case .yearly:
+            totalData = healthStore.getYearlyData()
+        case .total:
             totalData = healthStore.getAllData()
         }
         self.presentedData = []
-        self.summaryData = self.healthStore.getSummaryData(totalData)
+        setSummaryData()
         self.presentedData = totalData
+    }
+    
+    func setSummaryData() {
+        $presentedData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                self?.summaryData = self?.healthStore.getSummaryData(data)
+            }
+            .store(in: &cancellables)
     }
     
     func setSelectedDate(left: String, right: String? = nil) {
         
         switch selectedSegment {
-        case .daily:
-            return
         case .weekly:
             return
         case .monthly:
@@ -120,15 +93,18 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
                 return
             }
             self.selectedDate = selectedDate
+            let fetchedData = healthStore.getMonthlyData(selectedDate)
+            self.presentedData = fetchedData
         case .yearly:
             let year = left
             guard let selectedDate = "\(year)-01-01".toDate() else {
                 return
             }
             self.selectedDate = selectedDate
+            self.presentedData = healthStore.getYearlyData(selectedDate)
+        case .total:
+            return
         }
-        
-        print("선택됨: \(selectedDate.toString(.fullDotDate))")
     }
     
     func convertAllDataToYear() {
@@ -145,7 +121,22 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         
         print("YEARS: \(years)")
         print("MONTHS: \(months)")
-
+    }
+    
+    // MARK: - Picker Objects
+    private func setDatePickerTitle() {
+        
+        for year in 2020...2023 {
+            pickerYears.append("\(year)")
+        }
+        
+        for month in 1...12 {
+            if month < 10 {
+                pickerMonths.append("0\(month)")
+            } else {
+                pickerMonths.append("\(month)")
+            }
+        }
     }
     
 }

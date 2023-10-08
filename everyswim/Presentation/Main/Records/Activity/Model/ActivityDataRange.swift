@@ -8,8 +8,8 @@
 import Foundation
 
 enum ActivityDataRange: Int {
-    case daily
     case weekly
     case monthly
     case yearly
+    case total
 }
