@@ -29,9 +29,9 @@ enum RecordCellType: String {
     func getUnit() -> String {
         switch self {
         case .swim:
-            return "Meters"
+            return "meters"
         case .kcal:
-            return "Kcal"
+            return "kcal"
         case .lap:
             return "Lap"
         case .speed:

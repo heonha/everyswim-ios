@@ -19,8 +19,8 @@ final class DistanceBigLabel: UIView {
         .foregroundColor(.label)
     
     private lazy var distanceUnitLabel = ViewFactory
-        .label("meters")
-        .font(.custom(.sfProMedium, size: 25))
+        .label("m")
+        .font(.custom(.sfProMedium, size: 28))
         .foregroundColor(.secondaryLabel)
     
     private lazy var distanceStack = ViewFactory

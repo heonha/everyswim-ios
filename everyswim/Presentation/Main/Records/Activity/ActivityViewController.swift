@@ -55,7 +55,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
     private lazy var tableView = BaseTableView()
 
-    
     // 주간 활동
     private lazy var activitySectionView = ActivitySectionView()
 
@@ -280,24 +279,28 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         switch tag {
         case .weekly:
             self.titleLabel.text = "이번 주"
+            self.titleLabelSybmol.isHidden = false
             self.activitySectionView.updateTitle("주간 수영 기록")
+            
         case .monthly:
             let year = date.toString(.year)
             let month = date.toString(.monthKr)
             self.titleLabel.text = "\(year)년 \(month)"
+            self.titleLabelSybmol.isHidden = false
             self.activitySectionView.updateTitle("\(year)년 \(month)의 수영")
+            
         case .yearly:
             let year = Date().toString(.year)
             self.titleLabel.text = "\(year)년 기록"
-            self.titleLabelSybmol.isHidden = true
+            self.titleLabelSybmol.isHidden = false
             self.activitySectionView.updateTitle("\(year)년의 수영")
+            
         case .total:
             self.titleLabel.text = "전체 기록"
             self.titleLabelSybmol.isHidden = true
             self.activitySectionView.updateTitle("전체 수영기록")
         }
     }
-    
     
 }
 

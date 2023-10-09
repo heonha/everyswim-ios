@@ -54,11 +54,9 @@ final class RecordHStackView: UIView {
     
     func setData(_ data: SwimSummaryData?) {
         guard let data = data else {return}
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.swimRecordLabel.setData(data: data.count.description)
-            self.averagePaceRecordLabel.setData(data: data.averagePace)
-            self.durationRecordLabel.setData(data: data.time)
-        }
+        self.swimRecordLabel.setData(data: data.count.description)
+        self.averagePaceRecordLabel.setData(data: data.averagePace)
+        self.durationRecordLabel.setData(data: data.time)
     }
     
 }

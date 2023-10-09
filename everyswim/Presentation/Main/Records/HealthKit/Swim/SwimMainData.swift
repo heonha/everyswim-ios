@@ -49,6 +49,7 @@ struct SwimMainData: Identifiable {
         return totalKcal
     }
     
+    /// distance + m
     var distanceString: String {
         var distance = unwrappedDistance.toString()
         distance += " m"

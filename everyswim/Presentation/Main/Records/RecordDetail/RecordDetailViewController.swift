@@ -30,22 +30,8 @@ final class RecordDetailViewController: UIViewController {
         .label("수영장")
         .font(.custom(.sfProLight, size: 14))
         .foregroundColor(.secondaryLabel)
-
-    // 거리 라벨 + 타이틀
-    private lazy var distanceLabel = ViewFactory
-        .label("--")
-        .font(.custom(.sfProBold, size: 80))
-        .foregroundColor(.label)
     
-    private lazy var distanceUnitLabel = ViewFactory
-        .label("meter")
-        .font(.custom(.sfProMedium, size: 25))
-        .foregroundColor(.secondaryLabel)
-    
-    private lazy var distanceStack = ViewFactory.hStack()
-        .addSubviews([distanceLabel, distanceUnitLabel])
-        .alignment(.bottom)
-        .distribution(.fillProportionally)
+    private lazy var distanceStack = DistanceBigLabel()
     
     // 평균 페이스 라벨 + 타이틀
     private lazy var averagePaceLabel = DetailRecordLabel(type: .averagePace)
@@ -155,7 +141,7 @@ final class RecordDetailViewController: UIViewController {
         }
         
         dataHStack.snp.makeConstraints { make in
-            make.top.equalTo(distanceLabel.snp.bottom).offset(40)
+            make.top.equalTo(distanceStack.snp.bottom).offset(40)
             make.centerX.equalTo(contentView)
             make.height.greaterThanOrEqualTo(213)
         }
@@ -163,24 +149,21 @@ final class RecordDetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let weekday = self.data.startDate.toString(.weekdayTime)
-            
-            self.navigationItem.title = "\(weekday) 수영"
-
-
-            self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
-            self.timeLabel.text = self.data.durationTime
-            self.poolLabel.text = "알수없는 수영장"
-            self.distanceLabel.text = self.data.unwrappedDistance.toString()
-            
-            self.averagePaceLabel.setData(data: "-:--")
-            self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinute, unitStyle: .full))
-            self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toString() ?? "-")
-            self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toString() ?? "-")
-            self.averageBPMLabel.setData(data: "---")
-            self.poolLength.setData(data: "--")
-        }
+        let weekday = self.data.startDate.toString(.weekdayTime)
+        
+        self.navigationItem.title = "\(weekday) 수영"
+        
+        self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
+        self.timeLabel.text = self.data.durationTime
+        self.poolLabel.text = "알수없는 수영장"
+        self.distanceStack.setData(self.data.unwrappedDistance.toString(), unit: "m")
+        
+        self.averagePaceLabel.setData(data: "-:--")
+        self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinute, unitStyle: .full))
+        self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toString() ?? "-")
+        self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toString() ?? "-")
+        self.averageBPMLabel.setData(data: "---")
+        self.poolLength.setData(data: "--")
     }
     
 }
