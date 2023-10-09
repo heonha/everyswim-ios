@@ -13,32 +13,69 @@ final class DatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var selectedDate = Date()
-    @Published var currentMonth = 0 {
-        didSet {
-            dayInCarendar = self.extractDayInMonth()
-        }
-    }
-    @Published var isMonthlyRecord = false
     private var cellWidth = Constant.deviceSize.width / 7.2
     
-    @Published private var allWorkoutData: [SwimMainData] = []
-    @Published var allEventData: [DatePickerEventData] = []
+    // MARK: - 달력 데이터
+    /// 달력의 날짜 데이터
+    @Published var dayInCarendar = [DateValue]()
+    /// 달력에서 선택 한 날짜
+    @Published var selectedDate = Date()
+    /// 달력에서 선택 한 달
+    @Published var currentMonth = 0
+    /// 월간 기록으로 보기 선택여부
+    @Published var isMonthlyRecord = false
     
-    @Published var dataInSelectedMonth: [DatePickerEventData] = []
-    @Published var dayInCarendar: [DateValue] = []
+    /// 모든 달력 이벤트 데이터
+    @Published var allEventData = [DatePickerEventData]()
     
+    // MARK: - 수영 데이터
+    /// 모든  데이터 (수영)
+    @Published private var allWorkoutData = [SwimMainData]()
+    
+    /// 선택한 달의 데이터
+    @Published var dataInSelectedMonth = [DatePickerEventData]() {
+        willSet {
+            print("Set!")
+        }
+    }
+    
+    // MARK: - Health Kit
     private var hkManager: HealthKitManager?
+    private var hkDataStore = SwimDataStore.shared
     
+    
+    // MARK: - Init
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
         hkManager = healthKitManager
+        observeCurrentMonth()
         dayInCarendar = self.extractDayInMonth()
+        observeSwimData()
     }
     
 }
 
 extension DatePickerViewModel {
+
+
+    // MARK: - Appearances
+    /// 달력의 날짜 셀 사이즈
+    func getSizeForDayCell() -> CGSize {
+        return CGSize(width: self.cellWidth, height: self.cellWidth)
+    }
     
+    /// 달력의 날짜 셀 Shadow Radius
+    func getShadowRadiusForDayCell() -> CGFloat {
+        return getSizeForDayCell().width / 2
+    }
+    
+    /// 달력의 날짜 셀 CornerRadius
+    func getCornerRadiusForDayCell(rootViewSize: CGFloat, inset: CGFloat) -> CGFloat {
+        let viewRadius = rootViewSize / 2
+        let insetValue = inset
+        return  viewRadius - insetValue
+    }
+    
+   // MARK: - Calendar Data Handler
     /// 해당 날짜에 데이터가 있는지 여부 확인
     func hasEvent(date: Date) -> Bool {
         let data = dataInSelectedMonth.first { isSameDay($0.eventDate, date) }
@@ -59,32 +96,20 @@ extension DatePickerViewModel {
         return data
     }
     
+    /// 달력에서 달 변경시 동작
     func changeMonth() {
         selectedDate = getCurrentMonth()
-        isMonthlyRecord = true
-        self.dataInSelectedMonth = []
         setTargetMonthData()
+        isMonthlyRecord = true
     }
     
-    func getCellSize() -> CGSize {
-        return CGSize(width: self.cellWidth, height: self.cellWidth)
-    }
+    // MARK: - Observers
     
-    func getShadowRadiusSize() -> CGFloat {
-        return getCellSize().width / 2
-    }
-    
-    func getDayViewRadius(rootViewSize: CGFloat, inset: CGFloat) -> CGFloat {
-        let viewRadius = rootViewSize / 2
-        let insetValue = inset
-        return  viewRadius - insetValue
-    }
-    
-    func subscribeSwimData() async {
-        await hkManager?.loadSwimmingDataCollection()
-        
-        SwimDataStore.shared
+    /// 운동 날짜별로 데이터를 할당 합니다.
+    private func observeSwimData() {
+        hkDataStore
             .swimmingDataPubliser
+            .receive(on: DispatchQueue.main)
             .throttle(for: 2, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] data in
                 guard let self = self else { return }
@@ -94,20 +119,63 @@ extension DatePickerViewModel {
             .store(in: &cancellables)
     }
     
-    private func setTargetMonthData() {
-        DispatchQueue.main.async {
-            self.dataInSelectedMonth = self.allEventData.filter { metadata in
-                self.isSameMonth(metadata.eventDate, self.selectedDate)
+    /// Current Month를 관찰하고 변경 시 해당 달의 Day 데이터를 가져옵니다.
+    private func observeCurrentMonth() {
+        self.$currentMonth
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] intValue in
+                guard let self = self else {return}
+                dayInCarendar = extractDayInMonth()
             }
-            
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - Data Handlers
+    func loadSwimData() {
+        // await hkManager?.queryAllSwimmingData()
+    }
+    
+    /// 해당 월의 데이터를 셋팅합니다.
+    func setTargetMonthData() {
+        self.dataInSelectedMonth.removeAll()
+        DispatchQueue.main.async {
+            let dataInSelectedMonth = self.allEventData.filter{ self.isSameMonth($0.eventDate, self.selectedDate) }
+            self.dataInSelectedMonth = dataInSelectedMonth
             self.sortArray()
         }
     }
     
+    /// 선택된 달의 데이터를 내림차순으로 정렬합니다.
     private func sortArray() {
         dataInSelectedMonth.sort { $0.eventDate > $1.eventDate }
     }
     
+    /// 날마다의 데이터를 그룹핑합니다.
+    private func groupingEventsByDate(tasks: [SwimMainData]) -> [DatePickerEventData] {
+        var groupedTasks: [Date: [SwimMainData]] = [:]
+        
+        for task in tasks {
+            let calendar = Calendar.current
+            let taskDate = calendar.startOfDay(for: task.startDate)
+            
+            if var existingTasks = groupedTasks[taskDate] {
+                existingTasks.append(task)
+                groupedTasks[taskDate] = existingTasks
+            } else {
+                groupedTasks[taskDate] = [task]
+            }
+        }
+        
+        let metaDataArray = groupedTasks.map { date, tasks in
+            DatePickerEventData(event: tasks, eventDate: date)
+        }
+        
+        return metaDataArray
+    }
+
+    
+    
+    // MARK: - Calendar Data Handlers
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
         let calendar = Calendar.current
         
@@ -149,6 +217,7 @@ extension DatePickerViewModel {
         }
     }
     
+    /// 해당 달의 day를 추출합니다.
     func extractDayInMonth() -> [DateValue] {
         
         let calendar = Calendar.current
@@ -176,26 +245,5 @@ extension DatePickerViewModel {
         return days
     }
     
-    private func groupingEventsByDate(tasks: [SwimMainData]) -> [DatePickerEventData] {
-        var groupedTasks: [Date: [SwimMainData]] = [:]
-        
-        for task in tasks {
-            let calendar = Calendar.current
-            let taskDate = calendar.startOfDay(for: task.startDate)
-            
-            if var existingTasks = groupedTasks[taskDate] {
-                existingTasks.append(task)
-                groupedTasks[taskDate] = existingTasks
-            } else {
-                groupedTasks[taskDate] = [task]
-            }
-        }
-        
-        let metaDataArray = groupedTasks.map { date, tasks in
-            DatePickerEventData(event: tasks, eventDate: date)
-        }
-        
-        return metaDataArray
-    }
     
 }

@@ -76,7 +76,7 @@ final class DatePickerDayCell: UICollectionViewCell {
         baseView.addSubview(dayView)
 
         baseView.snp.makeConstraints { make in
-            make.size.equalTo(viewModel.getCellSize())
+            make.size.equalTo(viewModel.getSizeForDayCell())
         }
        
         dayView.snp.makeConstraints { make in
@@ -97,7 +97,7 @@ final class DatePickerDayCell: UICollectionViewCell {
     }
     
     private func configure() {
-        dayView.layer.cornerRadius = viewModel.getDayViewRadius(rootViewSize: contentView.frame.size.width, inset: dayViewInset)
+        dayView.layer.cornerRadius = viewModel.getCornerRadiusForDayCell(rootViewSize: contentView.frame.size.width, inset: dayViewInset)
         dayView.clipsToBounds = true
         
         circleShadowView.layer.cornerRadius =  self.circleShadowView.frame.width / 2

@@ -26,10 +26,9 @@ enum TestObjects {
 
         var swimmingData: [SwimMainData] = []
 
-        let months = [2, 5, 3, 6, 5, 8, 10, 11]
+        let months = Array(1...12)
 
-        
-        for year in [2020, 2021, 2023] {
+        for year in Array(2020...2023) {
             for month in months {
                 // Calculate the first day of the month
                 var dateComponents = DateComponents()

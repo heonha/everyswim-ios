@@ -25,6 +25,7 @@ final class SwimDataStore: ObservableObject {
         return swimmingData.value
     }
     
+    // MARK: - 일간, 주간, 월간, 연간, 요약 데이터 가져오기
     func getDailyData(date: Date = Date()) -> [SwimMainData] {
         let data = swimmingData.value
             .filter { data in
@@ -60,6 +61,7 @@ final class SwimDataStore: ObservableObject {
         return data
     }
     
+    /// 세부 기록 표시용 요약 데이터 가져오기
     func getSummaryData(_ data: [SwimMainData]) -> SwimSummaryData {
         let totalData = data
         let count = totalData.count

@@ -13,7 +13,7 @@ final class DatePickerCollectionView: UICollectionView {
     private let viewModel: DatePickerViewModel
     
     init(viewModel: DatePickerViewModel) {
-        let layout = FlowLayout.datePicker.get(cellSize: viewModel.getCellSize())
+        let layout = FlowLayout.datePicker.get(cellSize: viewModel.getSizeForDayCell())
         self.viewModel = viewModel
         super.init(frame: .zero, collectionViewLayout: layout)
     }

@@ -44,8 +44,7 @@ extension HealthKitManager {
         calculateNormalHealthData(dataType: dataType, queryRange: queryRange, completion: completion)
     }
     
-    func loadSwimmingDataCollection() async {
-        
+    func queryAllSwimmingData() async {
         if await !self.requestAuthorization() { return }
 
         guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return }

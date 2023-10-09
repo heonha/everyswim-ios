@@ -63,7 +63,7 @@ final class DashboardViewModel: ObservableObject {
     }
 
     private func fetchSwimmingData() async {
-       await hkManager?.loadSwimmingDataCollection()
+       await hkManager?.queryAllSwimmingData()
        subscribeSwimmingData()
     }
     

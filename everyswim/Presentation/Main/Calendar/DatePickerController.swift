@@ -40,14 +40,14 @@ final class DatePickerController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateDatePickerLayout()
         self.navigationItem.title = "수영 캘린더"
         self.hideNavigationBar(false)
+        updateDatePickerLayout()
+        getDataTasks()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getDataTasks()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,32 +101,29 @@ extension DatePickerController {
     }
     
     private func updateDatePickerLayout() {
-        
         dayCollectionView.snp.remakeConstraints { make in
             make.top.equalTo(workoutDatePicker.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
             make.centerX.equalTo(view)
-            make.height.equalTo(self.viewModel.getCellSize().width * 6)
+            make.height.equalTo(self.viewModel.getSizeForDayCell().width * 6)
         }
-        
     }
     
     private func getDataTasks() {
-        Task {
-            self.loadingIndicator.show()
-            await viewModel.subscribeSwimData()
-            self.dayCollectionView.reloadData()
-            self.loadingIndicator.hide()
-        }
+        viewModel.changeMonth()
+        viewModel.setTargetMonthData()
+        workoutDatePicker.updateView()
+        dayCollectionView.reloadData()
     }
     
     private func bind() {
         viewModel.$currentMonth
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.viewModel.changeMonth()
-                self?.workoutDatePicker.updateView()
-                self?.dayCollectionView.reloadData()
+                guard let self = self else { return }
+                viewModel.changeMonth()
+                workoutDatePicker.updateView()
+                dayCollectionView.reloadData()
             }
             .store(in: &cancellables)
         
@@ -142,6 +139,13 @@ extension DatePickerController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] event in
                 self?.dateRecordListView.getTableView().reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$dataInSelectedMonth
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.dayCollectionView.reloadData()
             }
             .store(in: &cancellables)
 
@@ -185,7 +189,7 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
 extension DatePickerController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.getCellSize()
+        return viewModel.getSizeForDayCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
