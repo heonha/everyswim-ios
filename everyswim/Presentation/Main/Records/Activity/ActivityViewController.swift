@@ -242,14 +242,19 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
     func updateTableViewSize() {
         var count = viewModel.presentedData.count
-        if count == 0 {
-            count = 1
-        }
-        
         let cellHeight = 180.0
         
-        let maxSize = CGFloat(count) * cellHeight
+        guard count != 0 else {
+            tableView.snp.remakeConstraints { make in
+                make.top.equalTo(activitySectionView.snp.bottom)
+                make.horizontalEdges.equalTo(scrollView.contentView)
+                make.bottom.equalTo(scrollView.contentView)
+            }
+            
+            return
+        }
         
+        let maxSize = CGFloat(count) * cellHeight
         tableView.snp.remakeConstraints { make in
             make.top.equalTo(activitySectionView.snp.bottom)
             make.horizontalEdges.equalTo(scrollView.contentView)
@@ -275,6 +280,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             }
     }
     
+    /// 상단 ----년의 기록 타이틀 업데이트
     private func updateTitles(tag: ActivityDataRange, date: Date = Date()) {
         switch tag {
         case .weekly:
@@ -290,7 +296,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             self.activitySectionView.updateTitle("\(year)년 \(month)의 수영")
             
         case .yearly:
-            let year = Date().toString(.year)
+            let year = date.toString(.year)
             self.titleLabel.text = "\(year)년 기록"
             self.titleLabelSybmol.isHidden = false
             self.activitySectionView.updateTitle("\(year)년의 수영")

@@ -22,7 +22,7 @@ final class SwimDataStore: ObservableObject {
     }
     
     func getAllData() -> [SwimMainData] {
-        return swimmingData.value
+    return swimmingData.value
     }
     
     // MARK: - 일간, 주간, 월간, 연간, 요약 데이터 가져오기

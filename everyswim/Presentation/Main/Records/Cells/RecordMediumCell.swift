@@ -14,7 +14,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     private lazy var mainVStack = ViewFactory.vStack()
         .addSubviews([profileStackView, recordStackView])
-        .spacing(15)
+        .spacing(10)
     
     // MARK: - Profile Stack
     private lazy var profileStackView = ViewFactory
@@ -47,18 +47,25 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         .vStack()
         .alignment(.fill)
         .distribution(.fillProportionally)
-        .addSubviews([dateLabel, workoutTitleLabel])
+        .addSubviews([dateLabel, durationTimeLabel, workoutTitleLabel])
     
     private lazy var dateLabel = ViewFactory
         .label("0000-00-00")
-        .font(.custom(.sfProLight, size: 12))
-        .foregroundColor(.label)
-    
-    private lazy var workoutTitleLabel = ViewFactory
-        .label("월요일 오전 수영")
         .font(.custom(.sfProLight, size: 14))
         .foregroundColor(.secondaryLabel)
-    
+        .adjustsFontSizeToFitWidth()
+
+    private lazy var durationTimeLabel = ViewFactory
+        .label("0000-00-00")
+        .font(.custom(.sfProLight, size: 14))
+        .foregroundColor(.secondaryLabel)
+        .adjustsFontSizeToFitWidth()
+
+    private lazy var workoutTitleLabel = ViewFactory
+        .label("월요일 오전 수영")
+        .font(.custom(.sfProLight, size: 15))
+        .foregroundColor(.label)
+
     // MARK: - Bottom Stack (Records)
     private lazy var recordStackView = ViewFactory
         .hStack()
@@ -144,7 +151,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         }
         
         profileImageView.snp.makeConstraints { make in
-            make.size.equalTo(45)
+            make.size.equalTo(50)
         }
         
         rightArrowImage.snp.makeConstraints { make in
@@ -178,9 +185,11 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
                                             color: AppUIColor.grayTint)
         
         let weekday = data.startDate.toString(.weekdayTime)
-        
+        let durationTime = data.durationTime
+
         workoutTitleLabel.text = "\(weekday) 수영"
-        
+        durationTimeLabel.text = "\(durationTime)"
+
         let duration = data.durationString
         
         let attrDuration = NSMutableAttributedString(string: duration)

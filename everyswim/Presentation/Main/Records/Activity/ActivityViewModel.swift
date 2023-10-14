@@ -20,7 +20,6 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     @Published var selectedSegment: ActivityDataRange = .monthly
     
     // MARK: - Picker Objects
-    
     var pickerYears = [String]()
     var pickerMonths = [String]()
     
@@ -43,9 +42,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     @Published var selectedDate: Date = Date()
     
     // MARK: - Pickers Data
-    
-
-    init() { 
+    init() {
         updateDate()
     }
     
@@ -105,6 +102,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         case .total:
             return
         }
+        
     }
     
     func convertAllDataToYear() {
@@ -126,7 +124,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     // MARK: - Picker Objects
     private func setDatePickerTitle() {
         
-        for year in 2020...2023 {
+        for year in 2016...2023 {
             pickerYears.append("\(year)")
         }
         
@@ -137,6 +135,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
                 pickerMonths.append("\(month)")
             }
         }
+        
     }
     
 }

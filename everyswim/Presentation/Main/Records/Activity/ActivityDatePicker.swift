@@ -56,9 +56,10 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         case .monthly:
             isHideRightPicker(.show)
             selectCurrentYear()
-            
         case .yearly:
             isHideRightPicker(.hide)
+            selectCurrentYear()
+
         case .total:
             isHideRightPicker(.hide)
         }
@@ -155,6 +156,8 @@ extension ActivityDatePicker: UIPickerViewDelegate {
             switch viewModel.selectedSegment {
             case .monthly:
                 viewModel.leftString = viewModel.pickerYears[row]
+            case .yearly:
+                viewModel.leftString = viewModel.pickerYears[row]
             default:
                 print("Changed")
             }
@@ -185,6 +188,8 @@ extension ActivityDatePicker: UIPickerViewDataSource {
             switch viewModel.selectedSegment {
             case .monthly:
                 return viewModel.pickerYears.count
+            case .yearly:
+                return viewModel.pickerYears.count
             default:
                 return 1
             }
@@ -207,6 +212,8 @@ extension ActivityDatePicker: UIPickerViewDataSource {
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
             case .monthly:
+                return "\(viewModel.pickerYears[row])년"
+            case .yearly:
                 return "\(viewModel.pickerYears[row])년"
             default:
                 return "미구현"
