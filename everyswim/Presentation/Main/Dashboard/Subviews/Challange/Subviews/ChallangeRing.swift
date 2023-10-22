@@ -31,18 +31,18 @@ struct ChallangeRing: Identifiable {
     var challengeValue: String {
         switch type {
         case .distance:
-            return "\(maxCount.toString())"
+            return "\(maxCount.toRoundupString())"
         case .lap:
-            return "\(maxCount.toString())"
+            return "\(maxCount.toRoundupString())"
         case .countPerWeek:
-            return "\(maxCount.toString())"
+            return "\(maxCount.toRoundupString())"
         default:
             return ""
         }
     }
     
     func progressPercentString() -> String {
-        return "\((progress() * 100).toString())%"
+        return "\((progress() * 100).toRoundupString())%"
     }
 
     func progress() -> Double {
@@ -54,7 +54,7 @@ struct ChallangeRing: Identifiable {
     }
     
     func progressLabel() -> String {
-        return count.toString()
+        return count.toRoundupString()
     }
     
     func getCircleUIColor() -> UIColor {

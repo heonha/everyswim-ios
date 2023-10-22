@@ -16,9 +16,9 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     
     @Published var summaryData: SwimSummaryData?
     @Published var presentedData: [SwimMainData] = []
-    @Published var weekList: [String] = []
     @Published var selectedSegment: ActivityDataRange = .monthly
-    
+    @Published var weekList: [String] = []
+
     // MARK: - Picker Objects
     var pickerYears = [String]()
     var pickerMonths = [String]()
@@ -43,11 +43,18 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     
     // MARK: - Pickers Data
     init() {
-        updateDate()
+
     }
     
     func updateDate() {
         setDatePickerTitle()
+    }
+    
+    func resetData() {
+        self.leftString = ""
+        self.rightString = ""
+        self.selectedDate = Date()
+        self.selectedSegment = .monthly
     }
     
     func getData(_ type: ActivityDataRange) {
@@ -84,11 +91,13 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         case .weekly:
             return
         case .monthly:
-            let year = left
-            guard let month = right else { return }
+            let year = leftString
+            let month = rightString
+            
             guard let selectedDate = "\(year)-\(month)-01".toDate() else {
                 return
             }
+            
             self.selectedDate = selectedDate
             let fetchedData = healthStore.getMonthlyData(selectedDate)
             self.presentedData = fetchedData

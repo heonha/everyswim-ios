@@ -51,13 +51,13 @@ struct SwimMainData: Identifiable {
     
     /// distance + m
     var distanceString: String {
-        var distance = unwrappedDistance.toString()
+        var distance = unwrappedDistance.toRoundupString()
         distance += " m"
         return distance
     }
     
     var totalKcalString: String {
-        return totalKcal.toString() + " kcal"
+        return totalKcal.toRoundupString() + " kcal"
     }
     
     func getWeekDay() -> String {
@@ -71,7 +71,7 @@ struct SwimMainData: Identifiable {
     func getSimpleRecords() -> (duration: String, distance: String, lap: String) {
         
         let duration = self.duration.toRelativeTime(.hourMinute)
-        let distance = self.unwrappedDistance.toString()
+        let distance = self.unwrappedDistance.toRoundupString()
         let lap = self.laps.count.description
         
         return (duration: duration, distance: distance, lap: "\(lap)")

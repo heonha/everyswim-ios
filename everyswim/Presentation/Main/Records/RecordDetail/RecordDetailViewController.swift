@@ -156,12 +156,12 @@ final class RecordDetailViewController: UIViewController {
         self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
         self.timeLabel.text = self.data.durationTime
         self.poolLabel.text = "알수없는 수영장"
-        self.distanceStack.setData(self.data.unwrappedDistance.toString(), unit: "m")
+        self.distanceStack.setData(self.data.unwrappedDistance.toRoundupString(), unit: "m")
         
         self.averagePaceLabel.setData(data: "-:--")
         self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinute, unitStyle: .full))
-        self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toString() ?? "-")
-        self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toString() ?? "-")
+        self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toRoundupString() ?? "-")
+        self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toRoundupString() ?? "-")
         self.averageBPMLabel.setData(data: "---")
         self.poolLength.setData(data: "--")
     }

@@ -48,7 +48,7 @@ final class SwimDataStore: ObservableObject {
         let current = date.toString(.yearMonth)
         let data = swimmingData.value
             .filter { current == $0.startDate.toString(.yearMonth) }
-        print(data)
+        
         return data
     }
     
@@ -61,6 +61,7 @@ final class SwimDataStore: ObservableObject {
         return data
     }
     
+    /// `SummaryData` maker
     /// 세부 기록 표시용 요약 데이터 가져오기
     func getSummaryData(_ data: [SwimMainData]) -> SwimSummaryData {
         let totalData = data
@@ -80,9 +81,9 @@ final class SwimDataStore: ObservableObject {
         if distance > 10000 {
             distance = distance / 1000
             distanceUnit = "km"
-            distanceString = distance.toString(maxDigit: 1)
+            distanceString = distance.toRoundupString(maxDigit: 1)
         } else {
-            distanceString = distance.toString(maxDigit: 0)
+            distanceString = distance.toRoundupString(maxDigit: 0)
         }
         
         let summary = SwimSummaryData(count: count,

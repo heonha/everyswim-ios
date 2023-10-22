@@ -59,7 +59,6 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         case .yearly:
             isHideRightPicker(.hide)
             selectCurrentYear()
-
         case .total:
             isHideRightPicker(.hide)
         }
@@ -74,7 +73,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
     // MARK: - Setup
     
     private func configure() {
-        self.modalPresentationStyle = .popover
+        self.modalPresentationStyle = .automatic
         let sheet = self.sheetPresentationController
         sheet?.detents = [.medium()]
         sheet?.prefersGrabberVisible = true
@@ -134,17 +133,27 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
     private func selectCurrentYear() {
         let currentDay = viewModel.selectedDate
         let currentYear = Calendar.current.component(.year, from: currentDay)
-        let currentMonth = Calendar.current.component(.month, from: currentDay)
-
+        
+        var currentMonth: String {
+            let month = Calendar.current.component(.month, from: currentDay)
+            
+            if month < 10 {
+                return "0\(month)"
+            } else {
+                return "\(month)"
+            }
+        }
+        
         if let initialYearRow = viewModel.pickerYears.firstIndex(of: "\(currentYear)") {
             viewModel.leftString = viewModel.pickerYears[initialYearRow]
             leftPicker.selectRow(initialYearRow, inComponent: 0, animated: false)
         }
         
-        if let initialMonthRow = viewModel.pickerMonths.firstIndex(of: "\(currentMonth)") {
+        if let initialMonthRow = viewModel.pickerMonths.firstIndex(of: currentMonth) {
             viewModel.rightString = viewModel.pickerMonths[initialMonthRow]
             rightPicker.selectRow(initialMonthRow, inComponent: 0, animated: false)
         }
+
     }
 
 }

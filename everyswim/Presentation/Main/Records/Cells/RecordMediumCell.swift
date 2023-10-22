@@ -171,7 +171,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     }
     
     private func updateUI(from data: SwimMainData) {
-        self.dateLabel.text = data.date
+        self.dateLabel.text = data.startDate.toString(.dateKr)
         
         let distance = data.distanceString
         leftLabel.text = distance

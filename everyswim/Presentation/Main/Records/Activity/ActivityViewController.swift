@@ -75,6 +75,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         configure()
         configureTableView()
         bind()
+        viewModel.updateDate()
         viewModel.selectedSegment = .monthly
     }
     
@@ -87,6 +88,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hideNavigationBar(true)
+        self.viewModel.resetData()
     }
     
     override func viewDidLayoutSubviews() {

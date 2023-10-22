@@ -67,13 +67,14 @@ final class ActivitySegmentView: UIView, CombineCancellable {
     // MARK: - Setup
     
     private func configure() {
-        dateSelecter.subviews.forEach { view in
-            let view = view as! UILabel
-            view.font = .custom(.sfProLight, size: 14)
-            view.layer.cornerRadius = 6
-            view.layer.masksToBounds = true
-            view.textAlignment = .center
-        }
+        dateSelecter.subviews
+            .forEach { view in
+                let view = view as! UILabel
+                view.font = .custom(.sfProLight, size: 14)
+                view.layer.cornerRadius = 6
+                view.layer.masksToBounds = true
+                view.textAlignment = .center
+            }
     }
     
     private func firstGetData() {
