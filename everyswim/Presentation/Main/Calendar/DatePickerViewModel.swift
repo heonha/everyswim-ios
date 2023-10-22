@@ -9,6 +9,11 @@ import SwiftUI
 import Combine
 import HealthKit
 
+enum ChangeMonthType {
+    case increase
+    case decrease
+}
+
 final class DatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
@@ -97,7 +102,7 @@ extension DatePickerViewModel {
     }
     
     /// 달력에서 달 변경시 동작
-    func changeMonth() {
+    func refreshCalendar() {
         selectedDate = getCurrentMonth()
         setTargetMonthData()
         isMonthlyRecord = true
@@ -173,6 +178,17 @@ extension DatePickerViewModel {
         return metaDataArray
     }
 
+    func changeCurrentMonth(_ type: ChangeMonthType) {
+        
+        switch type {
+        case .increase:
+            currentMonth += 1
+        case .decrease:
+            currentMonth -= 1
+        }
+        isMonthlyRecord = true
+        HapticManager.triggerHapticFeedback(style: .light)
+    }
     
     
     // MARK: - Calendar Data Handlers

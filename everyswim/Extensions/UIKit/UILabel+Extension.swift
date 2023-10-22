@@ -28,7 +28,6 @@ extension UILabel {
         self.adjustsFontSizeToFitWidth = isTrue
         return self
     }
-
     
     func setSecondaryAttributeText(separate: String = " ", font: UIFont, color: UIColor) {
         let fitstString = separate.first!

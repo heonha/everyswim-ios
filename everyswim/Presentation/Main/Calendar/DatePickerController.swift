@@ -17,9 +17,9 @@ final class DatePickerController: UIViewController {
     private let loadingIndicator = LoadingIndicator()
     private var isFirstRun = true
     
-    private lazy var workoutDatePicker = DatePickerHeader(viewModel: viewModel)
-    private lazy var dayCollectionView = DatePickerCollectionView(viewModel: viewModel)
-    private lazy var dateRecordListView = DateRecordListView(viewModel: viewModel)
+    private lazy var pickerHeader = DatePickerHeader(viewModel: viewModel)
+    private lazy var dayView = DatePickerCollectionView(viewModel: viewModel)
+    private lazy var recordListView = DateRecordListView(viewModel: viewModel)
     
     init(viewModel: DatePickerViewModel = .init()) {
         self.viewModel = viewModel
@@ -60,36 +60,69 @@ final class DatePickerController: UIViewController {
 extension DatePickerController {
     
     private func configure() {
-        dayCollectionView.delegate = self
-        dayCollectionView.dataSource = self
-        dayCollectionView.register(DatePickerDayCell.self,
+        configureDayView()
+        configureRecordListView()
+    }
+    
+    
+    /// 날짜 CollectionView 구성
+    private func configureDayView() {
+        dayView.delegate = self
+        dayView.dataSource = self
+        dayView.register(DatePickerDayCell.self,
                                    forCellWithReuseIdentifier: DatePickerDayCell.identifier)
-        
-        dateRecordListView.getTableView().delegate = self
-        dateRecordListView.getTableView().dataSource = self
-        dateRecordListView.getTableView().register(RecordSmallCell.self,
+        addSwipeForDayView()
+    }
+    
+    /// 수영 기록 뷰 구성
+    private func configureRecordListView() {
+        recordListView.getTableView().delegate = self
+        recordListView.getTableView().dataSource = self
+        recordListView.getTableView().register(RecordSmallCell.self,
                                                    forCellReuseIdentifier: RecordSmallCell.reuseId)
     }
     
+    /// DayView의 Swipe로 달력 전환 제스쳐 추가.
+    private func addSwipeForDayView() {
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipeAction))
+        leftSwipeGesture.direction = .left
+        
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipeAction))
+        rightSwipeGesture.direction = .right
+
+        dayView.gestureRecognizers?.append(leftSwipeGesture)
+        dayView.gestureRecognizers?.append(rightSwipeGesture)
+    }
+    
+    /// Swipe Action: 다음 월
+    @objc func leftSwipeAction() {
+        viewModel.changeCurrentMonth(.increase)
+    }
+    
+    /// Swipe Action: 이전 월
+    @objc func rightSwipeAction() {
+        viewModel.changeCurrentMonth(.decrease)
+    }
+    
     private func layout() {
-        self.view.addSubview(workoutDatePicker)
-        self.view.addSubview(dayCollectionView)
-        self.view.addSubview(dateRecordListView)
+        self.view.addSubview(pickerHeader)
+        self.view.addSubview(dayView)
+        self.view.addSubview(recordListView)
         self.view.addSubview(loadingIndicator)
         
-        workoutDatePicker.snp.makeConstraints { make in
+        pickerHeader.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
         
-        dayCollectionView.setContentCompressionResistancePriority(.init(751), for: .vertical)
-        dayCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(workoutDatePicker.snp.bottom).offset(20)
+        dayView.setContentCompressionResistancePriority(.init(751), for: .vertical)
+        dayView.snp.makeConstraints { make in
+            make.top.equalTo(pickerHeader.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
         }
         
-        dateRecordListView.snp.makeConstraints { make in
-            make.top.equalTo(dayCollectionView.snp.bottom)
+        recordListView.snp.makeConstraints { make in
+            make.top.equalTo(dayView.snp.bottom)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -101,8 +134,8 @@ extension DatePickerController {
     }
     
     private func updateDatePickerLayout() {
-        dayCollectionView.snp.remakeConstraints { make in
-            make.top.equalTo(workoutDatePicker.snp.bottom).offset(20)
+        dayView.snp.remakeConstraints { make in
+            make.top.equalTo(pickerHeader.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
             make.centerX.equalTo(view)
             make.height.equalTo(self.viewModel.getSizeForDayCell().width * 6)
@@ -110,10 +143,10 @@ extension DatePickerController {
     }
     
     private func getDataTasks() {
-        viewModel.changeMonth()
+        viewModel.refreshCalendar()
         viewModel.setTargetMonthData()
-        workoutDatePicker.updateView()
-        dayCollectionView.reloadData()
+        pickerHeader.updateView()
+        dayView.reloadData()
     }
     
     private func bind() {
@@ -121,13 +154,13 @@ extension DatePickerController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                viewModel.changeMonth()
-                workoutDatePicker.updateView()
-                dayCollectionView.reloadData()
+                viewModel.refreshCalendar()
+                pickerHeader.updateView()
+                dayView.reloadData()
             }
             .store(in: &cancellables)
         
-        dateRecordListView.getMothlyToggleButton()
+        recordListView.getMothlyToggleButton()
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -138,14 +171,14 @@ extension DatePickerController {
         viewModel.$selectedDate
             .receive(on: DispatchQueue.main)
             .sink { [weak self] event in
-                self?.dateRecordListView.getTableView().reloadData()
+                self?.recordListView.getTableView().reloadData()
             }
             .store(in: &cancellables)
         
         viewModel.$dataInSelectedMonth
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.dayCollectionView.reloadData()
+                self?.dayView.reloadData()
             }
             .store(in: &cancellables)
 
@@ -173,7 +206,7 @@ extension DatePickerController: UICollectionViewDelegate, UICollectionViewDataSo
         let selectedDate = viewModel.dayInCarendar[indexPath.item].date
         viewModel.selectedDate = selectedDate
         viewModel.isMonthlyRecord = false
-        
+        HapticManager.triggerHapticFeedback(style: .soft)
         if let selectedIndexPath = selectedIndexPath {
             let cell = collectionView.cellForItem(at: selectedIndexPath) as! DatePickerDayCell
             cell.isShadowHidden = true

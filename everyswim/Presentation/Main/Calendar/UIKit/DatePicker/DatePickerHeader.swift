@@ -103,16 +103,12 @@ final class DatePickerHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func beforeMonth() {
-        print("left")
-        viewModel.currentMonth -= 1
-        viewModel.isMonthlyRecord = true
+    @objc func beforeMonth() {
+        viewModel.changeCurrentMonth(.decrease)
     }
     
-    @objc private func forewardMonth() {
-        print("right")
-        viewModel.currentMonth += 1
-        viewModel.isMonthlyRecord = true
+    @objc func forewardMonth() {
+        viewModel.changeCurrentMonth(.increase)
     }
     
     
