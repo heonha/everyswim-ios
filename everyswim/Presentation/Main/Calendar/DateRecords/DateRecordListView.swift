@@ -22,7 +22,7 @@ final class DateRecordListView: UIView {
     private let contentView = UIView()
     
     private let title = ViewFactory
-        .label("수영 기록")
+        .label("기록")
         .font(.custom(.sfProMedium, size: 18))
     
     private lazy var toggleImageView = UIImageView()

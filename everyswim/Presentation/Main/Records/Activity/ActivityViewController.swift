@@ -77,18 +77,17 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         bind()
         viewModel.updateDate()
         viewModel.selectedSegment = .monthly
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationItem.title = "수영 기록"
         self.hideNavigationBar(false)
     }
-    
+    // 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.hideNavigationBar(true)
-        self.viewModel.resetData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -99,10 +98,30 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
     // MARK: - Configure & Layout
     private func configure() {
+        
+        configureScrollView()
+        
+        // Navigation
+        self.navigationItem.title = "수영 기록"
+        configureNavigationBarButtons()
+        
         // 이번주 기록 가져오기
         recordHStack.setData(viewModel.summaryData)
+
+    }
+    
+    private func configureScrollView() {
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = false
+    }
+    
+    private func configureNavigationBarButtons() {
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(pushCalendarView))
+        navigationItem.rightBarButtonItems = [calendarButton]
+    }
+    
+    @objc func pushCalendarView() {
+        push(DatePickerController(), animated: true)
     }
     
     private func configureTableView() {

@@ -25,6 +25,7 @@ final class DatePickerController: UIViewController {
         self.viewModel = viewModel
         self.cancellables = .init()
         super.init(nibName: nil, bundle: nil)
+        self.view.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
@@ -44,15 +45,6 @@ final class DatePickerController: UIViewController {
         self.hideNavigationBar(false)
         updateDatePickerLayout()
         getDataTasks()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.hideNavigationBar(true)
     }
     
 }

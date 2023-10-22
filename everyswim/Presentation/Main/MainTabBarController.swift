@@ -10,9 +10,9 @@ import SwiftUI
 
 final class MainTabBarController: UITabBarController {
     
-    private lazy var eventVC = DatePickerController()
-    private lazy var homeVC = DashboardViewController()
-    private lazy var myInfoVC = MyInfoController()
+    private lazy var recordView = ActivityViewController()
+    private lazy var dashboardView = DashboardViewController()
+    private lazy var myInfoView = MyInfoController()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -39,23 +39,23 @@ extension MainTabBarController {
     }
     
     private func setupEachTabViews() {
-        let eventSymbol = UIImage(systemName: "chart.bar.xaxis")
-        let homeSymbol = UIImage(systemName: "figure.pool.swim")
+        let eventSymbol = UIImage(systemName: "figure.pool.swim")
+        let homeSymbol = UIImage(systemName: "list.bullet.clipboard")
         let myInfoSymbol = UIImage(systemName: "person.circle.fill")
         
-        let eventNavigation = BaseNavigationController(rootViewController: eventVC)
-        eventNavigation.isNavigationBarHidden = true
-        eventNavigation.tabBarItem = .init(title: "수영", image: eventSymbol, tag: 0)
+        let recordNC = BaseNavigationController(rootViewController: recordView)
+        recordNC.isNavigationBarHidden = true
+        recordNC.tabBarItem = .init(title: "기록", image: eventSymbol, tag: 0)
 
-        let homeNavigation = BaseNavigationController(rootViewController: homeVC)
-        homeNavigation.isNavigationBarHidden = true
-        homeNavigation.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 1)
+        let dashboardNC = BaseNavigationController(rootViewController: dashboardView)
+        dashboardNC.isNavigationBarHidden = true
+        dashboardNC.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 1)
 
-        let myInfoNavigation = BaseNavigationController(rootViewController: myInfoVC)
-        myInfoNavigation.isNavigationBarHidden = true
-        myInfoNavigation.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
+        let myInfoNC = BaseNavigationController(rootViewController: myInfoView)
+        myInfoNC.isNavigationBarHidden = true
+        myInfoNC.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
         
-        self.viewControllers = [eventNavigation, homeNavigation, myInfoNavigation]
+        self.viewControllers = [recordNC, dashboardNC, myInfoNC]
         self.selectedIndex = 1
     }
     

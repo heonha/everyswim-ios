@@ -74,7 +74,7 @@ extension MyInfoButton {
     
     func getSection() -> MyInfoSection {
         switch self.type {
-        case .changeUserInfo, .totalRecord, .editChallange, .setupAlert, .syncHealth:
+        case .changeUserInfo, .editChallange, .setupAlert, .syncHealth:
             return MyInfoSection.first
         case .shareApp, .sendContact, .questions:
             return MyInfoSection.second
