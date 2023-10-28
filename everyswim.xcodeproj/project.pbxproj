@@ -11,6 +11,8 @@
 		3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */; };
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
 		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
+		390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79522AECB37C009B4243 /* DateComponents+Extension.swift */; };
+		390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79542AECB4DF009B4243 /* Calendar+extension.swift */; };
 		391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F42AC7E93A00190D35 /* Calendar+Extension.swift */; };
 		391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F62AC7F34B00190D35 /* SwimSummaryData.swift */; };
 		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
@@ -136,6 +138,8 @@
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		390E79522AECB37C009B4243 /* DateComponents+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Extension.swift"; sourceTree = "<group>"; };
+		390E79542AECB4DF009B4243 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
 		391678F42AC7E93A00190D35 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		391678F62AC7F34B00190D35 /* SwimSummaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryData.swift; sourceTree = "<group>"; };
 		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 				396D2AC42A567B2A0042D4D4 /* TimeInterval+Extension.swift */,
 				391C12B52A590D3E001C2286 /* Double+Extension.swift */,
 				391C12C22A593103001C2286 /* Int+Extension.swift */,
+				390E79522AECB37C009B4243 /* DateComponents+Extension.swift */,
+				390E79542AECB4DF009B4243 /* Calendar+extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -522,9 +528,9 @@
 		398B1BB22A483E0C00E0FA9B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				39CC3DB82AC5857200C8BC10 /* Base */,
 				3922D56F2A74B14A00257164 /* Main */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
+				39CC3DB82AC5857200C8BC10 /* Base */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -860,6 +866,7 @@
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
+				390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
@@ -891,6 +898,7 @@
 				391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39DBB3222AC6EE3C003B5213 /* ActivitySectionView.swift in Sources */,
+				390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */,
 				39A578932ACDA2BB00D9C993 /* SwiftChartView.swift in Sources */,

@@ -69,5 +69,13 @@ extension Date {
             return date
         }
     }
+    
+    static func currentMonthsFirstDay(_ calendar: Calendar = .current) -> Date {
+        let today = Date()
+        let year = calendar.component(.year, from: today)
+        let month = calendar.component(.month, from: today)
+        let monthsFirstDayComponents = DateComponents(year: year, month: month).setGMT9()
+        return calendar.date(from: monthsFirstDayComponents)!
+    }
         
 }
