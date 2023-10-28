@@ -262,7 +262,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     /// Cell 갯수에 따라서 TableView 크기를 업데이트
     /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
     func updateTableViewSize() {
-        var count = viewModel.presentedData.count
+        let count = viewModel.presentedData.count
         let cellHeight = 180.0
         
         guard count != 0 else {
