@@ -30,13 +30,13 @@ final class DGChartView: UIView, CombineCancellable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configure()
-        layout()
-        observe()
-        
-        chartAxis()
-        configureLegend()
-        setData([])
+        // configure()
+        // layout()
+        // observe()
+        // 
+        // chartAxis()
+        // configureLegend()
+        // setData([])
     }
     
     private func configure() {

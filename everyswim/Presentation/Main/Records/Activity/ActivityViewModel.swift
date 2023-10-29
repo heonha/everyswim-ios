@@ -57,7 +57,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         self.selectedSegment = .monthly
     }
     
-    func resetSegmentData() {
+    func resetPickerData() {
         self.leftString = ""
         self.rightString = ""
     }

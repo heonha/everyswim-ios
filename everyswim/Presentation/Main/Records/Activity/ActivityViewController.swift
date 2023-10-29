@@ -17,7 +17,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
     private let scrollView = BaseScrollView()
     
-    private lazy var dateSegmentView = ActivitySegmentView(viewModel: viewModel)
+    private lazy var segmentControl = ActivityTypeSegmentControl(viewModel: viewModel)
     
     private let titleLabel = ViewFactory.label("이번 주")
         .font(.custom(.sfProBold, size: 17))
@@ -45,7 +45,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         .distribution(.fillProportionally)
     
     private lazy var mainVStack = ViewFactory.vStack()
-        .addSubviews([dateSegmentView, recordMainStack, graphView])
+        .addSubviews([segmentControl, recordMainStack, graphView])
         .spacing(30)
         .alignment(.center)
         .distribution(.fillProportionally)
@@ -152,7 +152,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.height.equalTo(100)
         }
         
-        dateSegmentView.snp.makeConstraints { make in
+        segmentControl.snp.makeConstraints { make in
             make.width.equalTo(mainVStack).inset(32)
             make.height.equalTo(30)
         }
@@ -210,17 +210,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] tag in
                 guard let self = self else { return }
-                let selectedView = self.dateSegmentView.getSegment()
-                    .subviews
-                    .first { $0.tag == tag.rawValue }
-                
-                guard let selectedView = selectedView as? UILabel else { return }
-                
-                self.resetSegmentButtonsAppearance()
-                self.updateSegmentHighlight(selectedView)
-                self.titleLabelSybmol.isHidden = false
-                self.viewModel.resetSegmentData()
-                self.updateTitles(tag: tag)
+                titleLabelSybmol.isHidden = false
             }
             .store(in: &cancellables)
     }
@@ -280,24 +270,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.horizontalEdges.equalTo(scrollView.contentView)
             make.height.equalTo(maxSize)
         }
-    }
-    
-    /// segment hightlight 처리
-    private func updateSegmentHighlight<T: UIView>(_ view: T) {
-        let view = view as! UILabel
-        view.textColor = .white
-        view.backgroundColor = AppUIColor.primaryBlue
-    }
-    
-    /// Segment Button Appearance 초기화
-    private func resetSegmentButtonsAppearance() {
-        dateSegmentView.getSegment()
-            .subviews
-            .forEach { view in
-                let view = view as! UILabel
-                view.textColor = .label
-                view.backgroundColor = .systemGray6
-            }
     }
     
     /// 상단 ----년의 기록 타이틀 업데이트

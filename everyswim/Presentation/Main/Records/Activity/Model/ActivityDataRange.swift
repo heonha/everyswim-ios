@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum ActivityDataRange: Int {
+enum ActivityDataRange: Int, CaseIterable {
     case weekly
     case monthly
     case yearly
     case total
+    
+    var segmentTitle: String {
+        switch self {
+        case .weekly:
+            return "주간"
+        case .monthly:
+            return "월간"
+        case .yearly:
+            return "연간"
+        case .total:
+            return "전체"
+        }
+    }
 }

@@ -27,4 +27,8 @@ extension String {
          return dateFormatter.date(from: self)
      }
      
+    func toInt() -> Int? {
+        return Int(self)
+    }
+    
 }
