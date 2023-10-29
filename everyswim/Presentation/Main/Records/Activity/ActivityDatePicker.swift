@@ -34,6 +34,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         self.viewModel = viewModel
         self.pickerCount = pickerCount
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.calculateMonthOfWeekNumber()
     }
     
     required init?(coder: NSCoder) {
@@ -50,18 +51,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        switch viewModel.selectedSegment {
-        case .weekly:
-            isHideRightPicker(.hide)
-        case .monthly:
-            isHideRightPicker(.show)
-            selectCurrentYear()
-        case .yearly:
-            isHideRightPicker(.hide)
-            selectCurrentYear()
-        case .total:
-            isHideRightPicker(.hide)
-        }
+        selectCurrentIndex()
     }
     
     override func viewDidLayoutSubviews() {
@@ -101,24 +91,22 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
     }
 
     private func bind() {
+        
+        /// 확인 버튼 액션
         applyButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                viewModel.setSelectedDate(left: viewModel.leftString, right: viewModel.rightString)
+                
+                viewModel.updateSelectedRangesData(left: viewModel.leftString, right: viewModel.rightString)
                 self.dismiss(animated: true)
             }
             .store(in: &cancellables)
+        
+        
     }
     
     // MARK: - Helpers
-    private func setFirstPickedData() {
-        if viewModel.selectedSegment == .weekly {
-            let date = Date()
-            viewModel.leftString = date.toString(.year)
-            viewModel.rightString = date.toString(.monthFull)
-        }
-    }
         
     private func isHideRightPicker(_ value: IsHidden = .hide) {
         rightPicker.isHidden = value.boolType
@@ -130,6 +118,26 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         return pickerView
     }
     
+    
+    // MARK: Picker State
+    
+    func selectCurrentIndex() {
+        switch viewModel.selectedSegment {
+        case .weekly:
+            isHideRightPicker(.hide)
+            selectCurrentWeek()
+        case .monthly:
+            isHideRightPicker(.show)
+            selectCurrentYear()
+        case .yearly:
+            isHideRightPicker(.hide)
+            selectCurrentYear()
+        case .total:
+            isHideRightPicker(.hide)
+        }
+    }
+    
+    /// Picker로 선택한 연도의  index를 찾아 선택
     private func selectCurrentYear() {
         let currentDay = viewModel.selectedDate
         let currentYear = Calendar.current.component(.year, from: currentDay)
@@ -155,14 +163,28 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         }
 
     }
+    
+    /// Picker로 선택한 주의 index를 찾아 선택
+    private func selectCurrentWeek() {
+        
+        if let initialWeeksRow = viewModel.pickerWeeks.firstIndex(of: viewModel.leftString) ?? viewModel.pickerWeeks.firstIndex(of: "이번 주") {
+            viewModel.leftString = viewModel.pickerWeeks[initialWeeksRow]
+            leftPicker.selectRow(initialWeeksRow, inComponent: 0, animated: false)
+        }
+
+    }
+
 
 }
 // MARK: - PickerView Delegate
 extension ActivityDatePicker: UIPickerViewDelegate {
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
+            case .weekly:
+                viewModel.leftString = viewModel.pickerWeeks[row]
             case .monthly:
                 viewModel.leftString = viewModel.pickerYears[row]
             case .yearly:
@@ -195,6 +217,8 @@ extension ActivityDatePicker: UIPickerViewDataSource {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
+            case .weekly:
+                return viewModel.pickerWeeks.count
             case .monthly:
                 return viewModel.pickerYears.count
             case .yearly:
@@ -220,6 +244,8 @@ extension ActivityDatePicker: UIPickerViewDataSource {
         
         if pickerView == leftPicker {
             switch viewModel.selectedSegment {
+            case .weekly:
+                return viewModel.pickerWeeks[row]
             case .monthly:
                 return "\(viewModel.pickerYears[row])년"
             case .yearly:

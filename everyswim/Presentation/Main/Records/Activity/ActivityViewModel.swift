@@ -17,76 +17,37 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     @Published var summaryData: SwimSummaryData?
     @Published var presentedData: [SwimMainData] = []
     @Published var selectedSegment: ActivityDataRange = .monthly
-    @Published var weekList: [String] = []
+    @Published var weekList: [Date] = []
 
     // MARK: - Picker Objects
     var pickerYears = [String]()
     var pickerMonths = [String]()
-    var pickerWeeks = [String]()
+    var pickerWeeks = [String]() {
+        willSet {
+            print("PICKERWEEKS: \(newValue)")
+        }
+    }
 
     var leftString = "" {
         willSet {
             print("LEFT: \(newValue)")
         }
     }
+    
     var rightString: String = "" {
         willSet {
             print("RIGHT: \(newValue)")
         }
     }
     
-    private let today = Date()
-    var pastDays = [Date]()
-    
     @Published var selectedDate: Date = Date()
     
     // MARK: - Pickers Data
     init() {
-
     }
     
     func updateDate() {
-        setDatePickerTitle()
-    }
-    
-    func calculateMonthOfWeekNumber() {
-        let today = Date()
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: today)
-        let month = calendar.component(.month, from: today)
-        let day = calendar.component(.day, from: Date())
-        let todayComponents = DateComponents(year: year, month: month, day: day, hour: 0, minute: 0, second: 0).setGMT9()
-        
-        guard let todaydate = calendar.date(from: todayComponents) else { return }
-        
-        // MARK: 이번 주 구하기
-        let weekday = calendar.component(.weekday, from: todaydate) // 이번주 요일
-        let distanceTodayToSunday: Int = -(weekday - 1)
-        let distanceTodayToSaturday: Int = weekday - 7
-        
-        let weeksFirstDay = calendar.date(byAdding: .day, value: distanceTodayToSunday, to: today)!
-        let weeksLastDay = calendar.date(byAdding: .day, value: distanceTodayToSaturday, to: today)!
-
-        self.pickerWeeks = .init()
-        self.pickerWeeks.append("이번 주")
-        
-        // MARK: 지난 주 구하기
-        let numberOfWeeks = calendar.component(.weekOfMonth, from: Date()) // 이번주 주차
-        
-        if numberOfWeeks != 1 {
-            for weeknumber in 1..<numberOfWeeks {
-                let beforeWeeksFirstDay = calendar.date(byAdding: .day, value: -7 * weeknumber, to: weeksFirstDay)!
-                let beforeWeeksLastDay = calendar.date(byAdding: .day, value: -1 * weeknumber, to: weeksFirstDay)!
-                
-                let weeksFirstDayString = beforeWeeksFirstDay.toString(.dayDotMonth)
-                let weeksLastDayString = beforeWeeksLastDay.toString(.dayDotMonth)
-                let weeksRangeString = "\(weeksFirstDayString) ~ \(weeksLastDayString)"
-                self.pickerWeeks.append("\(weeksRangeString)")
-                let weekString = -(weeknumber - numberOfWeeks)
-                print("\(month)월 \(weekString)주차는 \(beforeWeeksFirstDay) ~ \(beforeWeeksLastDay)입니다.")
-            }
-        }
-        
+        setYearAndMonthsPickerTitle()
     }
     
     func resetData() {
@@ -96,13 +57,18 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         self.selectedSegment = .monthly
     }
     
+    func resetSegmentData() {
+        self.leftString = ""
+        self.rightString = ""
+    }
+    
     func getData(_ type: ActivityDataRange) {
         
         var totalData: [SwimMainData]
         
         switch type {
         case .weekly:
-            totalData = healthStore.getWeeklyData()
+            totalData = healthStore.getWeeklyData(date: Date())
         case .monthly:
             totalData = healthStore.getMonthlyData()
         case .yearly:
@@ -124,11 +90,25 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
             .store(in: &cancellables)
     }
     
-    func setSelectedDate(left: String, right: String? = nil) {
+    // 선택한 데이터 불러오기
+    func updateSelectedRangesData(left: String, right: String? = nil) {
         
         switch selectedSegment {
         case .weekly:
-            return
+            let selectedIndex = pickerWeeks
+                .firstIndex(of: left)
+            
+            guard let selectedIndex = selectedIndex else {
+                let fetchedData = healthStore.getWeeklyData(date: Date())
+                self.presentedData = fetchedData
+                return
+            }
+            
+            let selectedDate = weekList[selectedIndex]
+            self.selectedDate = selectedDate
+            let fetchedData = healthStore.getWeeklyData(date: selectedDate)
+            self.presentedData = fetchedData
+
         case .monthly:
             let year = leftString
             let month = rightString
@@ -136,7 +116,6 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
             guard let selectedDate = "\(year)-\(month)-01".toDate() else {
                 return
             }
-            
             self.selectedDate = selectedDate
             let fetchedData = healthStore.getMonthlyData(selectedDate)
             self.presentedData = fetchedData
@@ -153,24 +132,10 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         
     }
     
-    func convertAllDataToYear() {
-        let allData = self.healthStore.getAllData()
-        let recordsDate = allData.map { $0.startDate }
-        
-        let years = recordsDate.map { date in
-            date.toString(.year)
-        }
-        
-        let months = recordsDate.map { date in
-            date.toString(.yearMonth)
-        }
-        
-        print("YEARS: \(years)")
-        print("MONTHS: \(months)")
-    }
-    
     // MARK: - Picker Objects
-    private func setDatePickerTitle() {
+    
+    // 월간, 연간 Picker데이터 셋업
+    private func setYearAndMonthsPickerTitle() {
         
         for year in 2016...2023 {
             pickerYears.append("\(year)")
@@ -185,5 +150,54 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         }
         
     }
+    
+    /// 주
+    func calculateMonthOfWeekNumber() {
+        print("PICKERWEEKS START")
+        
+        let today = Date()
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: today)
+        let month = calendar.component(.month, from: today)
+        let day = calendar.component(.day, from: Date())
+        let todayComponents = DateComponents(year: year, month: month, day: day, hour: 0, minute: 0, second: 0).setGMT9()
+        
+        guard let todaydate = calendar.date(from: todayComponents) else { return }
+        
+        // MARK: 이번 주 구하기
+        let weekday = calendar.component(.weekday, from: todaydate) // 이번주 요일
+        let distanceTodayToSunday: Int = -(weekday - 1)
+        let weeksFirstDay = calendar.date(byAdding: .day, value: distanceTodayToSunday, to: today)!
+        
+        self.weekList = .init()
+        self.weekList.append(weeksFirstDay)
+        
+        self.pickerWeeks = .init()
+        self.pickerWeeks.append("이번 주")
+        
+        // MARK: 지난 주 구하기
+        let numberOfWeeks = calendar.component(.weekOfMonth, from: Date()) // 이번주 주차
+        
+        if numberOfWeeks != 1 {
+            for weeknumber in 1..<numberOfWeeks {
+                let beforeWeeksFirstDay = calendar.date(byAdding: .day, value: -7 * weeknumber, to: weeksFirstDay)!
+                let beforeWeeksLastDay = calendar.date(byAdding: .day, value: -1 * weeknumber, to: weeksFirstDay)!
+                
+                let weeksFirstDayString = beforeWeeksFirstDay.toString(.dayDotMonth)
+                let weeksLastDayString = beforeWeeksLastDay.toString(.dayDotMonth)
+                let weeksRangeString = "\(weeksFirstDayString) ~ \(weeksLastDayString)"
+                
+                let beforeNumberOfWeek = calendar.component(.weekOfMonth, from: beforeWeeksFirstDay) // 주 번호
+                self.pickerWeeks.append("\(weeksRangeString)")
+                self.weekList.append(beforeWeeksFirstDay)
+                let weekString = -(weeknumber - numberOfWeeks)
+                print("\(month)월 \(weekString)주차는 \(beforeWeeksFirstDay) ~ \(beforeWeeksLastDay)입니다.")
+            }
+        }
+        
+        self.pickerWeeks.reverse()
+        self.weekList.reverse()
+    }
+
     
 }

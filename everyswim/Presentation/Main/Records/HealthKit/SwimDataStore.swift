@@ -36,11 +36,12 @@ final class SwimDataStore: ObservableObject {
     }
     
     func getWeeklyData(date: Date = Date()) -> [SwimMainData] {
+        
+        
         let data = swimmingData.value
             .filter { data in
                 Calendar.isSameWeek(left: date, right: data.startDate)
             }
-        print(data)
         return data
     }
     

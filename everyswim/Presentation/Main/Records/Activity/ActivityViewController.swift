@@ -107,7 +107,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         
         // 이번주 기록 가져오기
         recordHStack.setData(viewModel.summaryData)
-
     }
     
     private func configureScrollView() {
@@ -210,7 +209,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         viewModel.$selectedSegment
             .receive(on: DispatchQueue.main)
             .sink { [weak self] tag in
-                print(tag)
                 guard let self = self else { return }
                 let selectedView = self.dateSegmentView.getSegment()
                     .subviews
@@ -221,7 +219,8 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 self.resetSegmentButtonsAppearance()
                 self.updateSegmentHighlight(selectedView)
                 self.titleLabelSybmol.isHidden = false
-                updateTitles(tag: tag)
+                self.viewModel.resetSegmentData()
+                self.updateTitles(tag: tag)
             }
             .store(in: &cancellables)
     }
@@ -305,9 +304,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     private func updateTitles(tag: ActivityDataRange, date: Date = Date()) {
         switch tag {
         case .weekly:
-            self.titleLabel.text = "이번 주"
+            if viewModel.leftString.isEmpty {
+                self.titleLabel.text = "이번 주"
+                self.activitySectionView.updateTitle("이번 주 수영 기록")
+            } else {
+                self.titleLabel.text = viewModel.leftString
+                self.activitySectionView.updateTitle("\(viewModel.leftString) 수영 기록")
+            }
+            
             self.titleLabelSybmol.isHidden = false
-            self.activitySectionView.updateTitle("주간 수영 기록")
             
         case .monthly:
             let year = date.toString(.year)
