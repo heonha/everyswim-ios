@@ -153,8 +153,6 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     
     /// 주
     func calculateMonthOfWeekNumber() {
-        print("PICKERWEEKS START")
-        
         let today = Date()
         let calendar = Calendar.current
         let year = calendar.component(.year, from: today)

@@ -26,6 +26,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         .font(.custom(.sfProMedium, size: 18))
         .foregroundColor(.white)
         .textAlignemnt(.center)
+        .cornerRadius(16)
         .backgroundColor(AppUIColor.primaryBlue)
     
     private let pickerCount: Int
@@ -72,10 +73,15 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
     private func layout() {
         view.addSubview(hstack)
         view.backgroundColor = .systemBackground
-        hstack.backgroundColor = .systemGray4
+        hstack.backgroundColor = .systemBackground
         hstack.sizeToFit()
+        
+        let modalHeight = Constant.deviceSize.height / 2
+        let pickerHeight = modalHeight * 0.5
+
         hstack.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(pickerHeight)
             make.centerX.equalTo(view)
             make.centerY.equalTo(view)
         }
@@ -84,7 +90,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         applyButton.snp.makeConstraints { make in
             make.top.equalTo(hstack.snp.bottom).offset(16)
             make.width.equalTo(view).multipliedBy(0.8)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
             make.centerX.equalTo(view)
         }
         
