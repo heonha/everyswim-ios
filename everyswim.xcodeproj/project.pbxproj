@@ -10,6 +10,10 @@
 		3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */; };
 		3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */; };
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
+		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
+		390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */; };
+		390C61902AF3B9FF0061E6D4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618F2AF3B9FF0061E6D4 /* UserData.swift */; };
+		390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C61912AF3BA210061E6D4 /* SetGoalViewModel.swift */; };
 		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
 		390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79522AECB37C009B4243 /* DateComponents+Extension.swift */; };
 		390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79542AECB4DF009B4243 /* Calendar+extension.swift */; };
@@ -137,6 +141,10 @@
 		3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
+		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
+		390C618F2AF3B9FF0061E6D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		390C61912AF3BA210061E6D4 /* SetGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewModel.swift; sourceTree = "<group>"; };
 		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		390E79522AECB37C009B4243 /* DateComponents+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Extension.swift"; sourceTree = "<group>"; };
 		390E79542AECB4DF009B4243 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
@@ -274,6 +282,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390C61892AF3A9950061E6D4 /* MyGoal */ = {
+			isa = PBXGroup;
+			children = (
+				390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */,
+				390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */,
+				390C61912AF3BA210061E6D4 /* SetGoalViewModel.swift */,
+			);
+			path = MyGoal;
+			sourceTree = "<group>";
+		};
+		390C618E2AF3B9FA0061E6D4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				390C618F2AF3B9FF0061E6D4 /* UserData.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		391C12BD2A592A0F001C2286 /* Debug */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +313,7 @@
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
+				390C618E2AF3B9FA0061E6D4 /* User */,
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39B437A42AB5BD9D00915C3D /* Subviews */,
@@ -343,6 +370,7 @@
 				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
+				390C61892AF3A9950061E6D4 /* MyGoal */,
 				396387AD2AC6BBEA00A490D1 /* Records */,
 			);
 			path = Main;
@@ -924,6 +952,7 @@
 				391678FB2AC7F38D00190D35 /* DetailCellLabelType.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
+				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
@@ -934,12 +963,15 @@
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
 				39B0C39A2AAC78F9004E0985 /* ImageSliderCell.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
+				390C61902AF3B9FF0061E6D4 /* UserData.swift in Sources */,
 				39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */,
 				39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */,
 				396CE8582AB56C8B00EB66BE /* BaseScrollView.swift in Sources */,
+				390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
 				396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
+				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

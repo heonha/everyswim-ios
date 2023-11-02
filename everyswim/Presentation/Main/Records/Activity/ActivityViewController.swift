@@ -211,6 +211,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             .sink { [weak self] tag in
                 guard let self = self else { return }
                 titleLabelSybmol.isHidden = false
+                updateTitles(tag: tag)
             }
             .store(in: &cancellables)
     }

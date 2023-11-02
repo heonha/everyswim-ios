@@ -26,7 +26,7 @@ final class MyInfoController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         configure()
         layout()
-        bind()
+        bindButtonsAction()
     }
     
     required init?(coder: NSCoder) {
@@ -88,12 +88,21 @@ final class MyInfoController: UIViewController {
         self.scrollView.scrollToTop()
     }
     
-    private func bind() {
+    private func bindButtonsAction() {
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 let vc = UIViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        buttonList.getButton(type: .editChallange)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                let vc = SetGoalViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .store(in: &cancellables)
