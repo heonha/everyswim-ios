@@ -14,5 +14,6 @@ struct SwimSummaryData {
     let distanceUnit: String
     let averagePace: String
     let time: String
+    let lap: String
     
 }

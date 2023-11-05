@@ -12,12 +12,12 @@ final class ChallangeCellContainer: UIView {
     
     private let backgroundView = UIView()
     
-    private lazy var countCell = ChallangeCell(data: TestObjects.rings[2])
-    private lazy var distanceCell = ChallangeCell(data: TestObjects.rings[0])
-    private lazy var lapCell = ChallangeCell(data: TestObjects.rings[1])
+    var countCell: BarChallangeCell?
+    var distanceCell: BarChallangeCell?
+    var lapCell: BarChallangeCell?
     
     private let titleLabel: UILabel = {
-        let title: String = "목표 현황(9월 2주)"
+        let title: String = "이번주 현황"
         let label = ViewFactory.label(title)
             .font(.custom(.sfProLight, size: 15))
             .foregroundColor(.gray)
@@ -27,18 +27,22 @@ final class ChallangeCellContainer: UIView {
     
     lazy var hstack: UIStackView = {
         let spacing =  ((Constant.deviceSize.width - 40) / 3) * 0.1
-        let hstack = ViewFactory
-            .hStack(subviews: [distanceCell, lapCell, countCell], 
-                    spacing: spacing,
+        let vstack = ViewFactory
+            .vStack(spacing: spacing,
                     alignment: .center,
                     distribution: .fillEqually)
         
-        return hstack
+        return vstack
     }()
     
     init() {
         super.init(frame: .zero)
         layout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        loadData()
     }
     
     required init?(coder: NSCoder) {
@@ -50,10 +54,42 @@ final class ChallangeCellContainer: UIView {
 extension ChallangeCellContainer {
     
     func startCircleAnimation() {
+        
         [countCell, distanceCell, lapCell]
             .forEach { view in
-                view.circle.startCircleAnimation()
+                view?.circle.startCircleAnimation()
             }
+        
+  
+    }
+    
+    func loadData() {
+        let goal = UserData.shared.goal
+        let weeklyData = SwimDataStore.shared.getWeeklyData()
+
+        let distanceData = weeklyData
+            .compactMap { $0.unwrappedDistance }
+            .reduce(Double(0)) { $0 + $1 }
+        
+        let laps = weeklyData
+            .compactMap { $0.laps.count }
+            .reduce(Double(0)) { $0 + Double($1) }
+        
+        let counts = Double(weeklyData.count)
+        
+        let distance = ChallangeRing(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
+        let lap = ChallangeRing(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
+        let count = ChallangeRing(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
+
+        distanceCell = .init(data: distance)
+        lapCell = .init(data: lap)
+        countCell = .init(data: count)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.hstack.addArrangedSubview(self.distanceCell!)
+            self.hstack.addArrangedSubview(self.lapCell!)
+            self.hstack.addArrangedSubview(self.countCell!)
+        }
     }
     
     private func layout() {

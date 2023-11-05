@@ -124,8 +124,15 @@ extension DashboardViewController {
             make.horizontalEdges.equalToSuperview().inset(10)
         }
         
-        imageSlider.snp.makeConstraints { make in
+        challangeViews.snp.makeConstraints { make in
             make.top.equalTo(recentRecordView.snp.bottom).offset(spacing)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(200)
+        }
+        
+        imageSlider.snp.makeConstraints { make in
+            make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.height.equalTo(200)
@@ -136,12 +143,7 @@ extension DashboardViewController {
             make.bottom.equalTo(imageSlider).inset(20)
             make.height.equalTo(40)
         }
-        
-        challangeViews.snp.makeConstraints { make in
-            make.top.equalTo(imageSlider.snp.bottom).offset(spacing)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-        }
+
         
     }
     

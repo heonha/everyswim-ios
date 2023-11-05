@@ -10,7 +10,7 @@ import SnapKit
 
 final class ChallangeCell: UIView {
     
-    private let data: ChallangeRing
+    private var data: ChallangeRing
     
     private let backgroundView = UICellBackground()
     
@@ -47,6 +47,10 @@ final class ChallangeCell: UIView {
 }
 
 extension ChallangeCell {
+    
+    func setData(_ data: ChallangeRing) {
+        self.data = data
+    }
 
     func layout() {
         self.addSubview(backgroundView)
@@ -64,9 +68,8 @@ extension ChallangeCell {
         vstack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
     }
-    
+
 }
 
 

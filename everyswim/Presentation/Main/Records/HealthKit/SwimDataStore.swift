@@ -75,6 +75,10 @@ final class SwimDataStore: ObservableObject {
         var distance = totalData
             .reduce(Double(0)) { $0 + $1.unwrappedDistance }
         
+        var laps = totalData
+            .reduce(Int(0)) { $0 + $1.laps.count }
+
+        
         var distanceUnit = "m"
         
         var distanceString = ""
@@ -87,11 +91,16 @@ final class SwimDataStore: ObservableObject {
             distanceString = distance.toRoundupString(maxDigit: 0)
         }
         
+        var lapUnit = "lap"
+        var lapString = laps.description
+        
         let summary = SwimSummaryData(count: count,
                                       distance: distanceString,
                                       distanceUnit: distanceUnit,
                                       averagePace: "-'--''",
-                                      time: duration)
+                                      time: duration,
+                                      lap: lapString
+        )
         return summary
     }
     

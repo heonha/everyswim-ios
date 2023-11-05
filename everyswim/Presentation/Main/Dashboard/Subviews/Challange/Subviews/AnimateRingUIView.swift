@@ -10,7 +10,11 @@ import SnapKit
 
 final class AnimateRingUIView: UIView {
     
-    private let data: ChallangeRing
+    var data: ChallangeRing {
+        willSet {
+            print("SETTED")
+        }
+    }
     
     private var showRing: Bool
     private var lineWidth: CGFloat
