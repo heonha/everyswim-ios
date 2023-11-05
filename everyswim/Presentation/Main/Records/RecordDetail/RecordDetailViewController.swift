@@ -10,6 +10,7 @@ import SnapKit
 
 final class RecordDetailViewController: UIViewController {
     
+    private let scrollView = BaseScrollView()
     private let contentView = UIView()
     private var data: SwimMainData
     
@@ -30,6 +31,11 @@ final class RecordDetailViewController: UIViewController {
         .label("수영장")
         .font(.custom(.sfProLight, size: 14))
         .foregroundColor(.secondaryLabel)
+    
+    private lazy var paceTitleLabel = ViewFactory
+        .label("페이스")
+        .font(.custom(.sfProLight, size: 24))
+        .foregroundColor(.label)
     
     private lazy var distanceStack = DistanceBigLabel()
     
@@ -64,6 +70,8 @@ final class RecordDetailViewController: UIViewController {
         .distribution(.fillProportionally)
         .spacing(36)
     
+    private lazy var lapTableView = UITableView()
+    
     // MARK: - Init & LifeCycles
     init(data: SwimMainData) {
         self.data = data
@@ -92,6 +100,7 @@ final class RecordDetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateUI()
+        updateTableViewSize()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,19 +112,31 @@ final class RecordDetailViewController: UIViewController {
     private func configure() {
         self.navigationItem.title = "-"
         self.view.backgroundColor = .systemBackground
+        
+        self.lapTableView.delegate = self
+        self.lapTableView.dataSource = self
+        self.lapTableView.register(LapTableViewCell.self, forCellReuseIdentifier: LapTableViewCell.reuseId)
+        lapTableView.backgroundColor = .systemBackground
+        lapTableView.isScrollEnabled = false
+        lapTableView.separatorColor = .secondarySystemFill
+        lapTableView.isUserInteractionEnabled = false
     }
     
     private func layout() {
-        self.view.addSubview(contentView)
+        
+        
+        self.view.addSubview(scrollView)
+        
+        let contentView = scrollView.contentView
+        
         contentView.addSubview(dateLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(poolLabel)
         contentView.addSubview(distanceStack)
         contentView.addSubview(dataHStack)
 
-        contentView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalTo(view).inset(12)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view)
         }
         
         dateLabel.snp.makeConstraints { make in
@@ -146,6 +167,20 @@ final class RecordDetailViewController: UIViewController {
             make.height.greaterThanOrEqualTo(213)
         }
         
+        contentView.addSubview(paceTitleLabel)
+        paceTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(dataHStack.snp.bottom).offset(40)
+            make.horizontalEdges.equalTo(contentView).inset(12)
+            make.height.equalTo(30)
+        }
+        
+        contentView.addSubview(lapTableView)
+        lapTableView.snp.makeConstraints { make in
+            make.top.equalTo(paceTitleLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+        }
+        
     }
     
     private func updateUI() {
@@ -164,6 +199,58 @@ final class RecordDetailViewController: UIViewController {
         self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toRoundupString() ?? "-")
         self.averageBPMLabel.setData(data: "---")
         self.poolLength.setData(data: "--")
+    }
+    
+    /// Cell 갯수에 따라서 TableView 크기를 업데이트
+    /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
+    func updateTableViewSize() {
+        let count = data.laps.count
+        let cellHeight = 60
+
+        guard count != 0 else {
+            lapTableView.snp.remakeConstraints { make in
+                make.top.equalTo(paceTitleLabel.snp.bottom).offset(10)
+                make.horizontalEdges.equalTo(scrollView.contentView)
+                make.bottom.equalTo(scrollView.contentView)
+            }
+            
+            return
+        }
+        
+        let maxSize = CGFloat(count) * CGFloat(cellHeight)
+        lapTableView.snp.remakeConstraints { make in
+            make.top.equalTo(paceTitleLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(scrollView.contentView)
+            make.height.equalTo(maxSize)
+        }
+    }
+}
+
+extension RecordDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.laps.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Legend
+        if indexPath.row == 0 {
+            let cell = LapTableViewCell()
+            cell.setLegend()
+            return cell
+        }
+        
+        // Lap Cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LapTableViewCell.reuseId, for: indexPath) as? LapTableViewCell else {return UITableViewCell()}
+        cell.backgroundColor = UIColor(hex: "EDF2FB", alpha: 0.7)
+        let data = self.data
+        cell.setData(lapData: data.laps[indexPath.row - 1])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
 }

@@ -42,6 +42,7 @@
 		39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FCD2AB33BD300497402 /* MyInfoButton.swift */; };
 		39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39389FD22AB34BA900497402 /* DatePickerViewModel.swift */; };
 		393BDF5A2AF780FB0060AE58 /* BarChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393BDF592AF780FB0060AE58 /* BarChallengeCell.swift */; };
+		393BDF5C2AF790FF0060AE58 /* LapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393BDF5B2AF790FF0060AE58 /* LapTableViewCell.swift */; };
 		39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39437DA12A48949700FDA9DA /* SecretKeys.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
@@ -174,6 +175,7 @@
 		39389FCD2AB33BD300497402 /* MyInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButton.swift; sourceTree = "<group>"; };
 		39389FD22AB34BA900497402 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		393BDF592AF780FB0060AE58 /* BarChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChallengeCell.swift; sourceTree = "<group>"; };
+		393BDF5B2AF790FF0060AE58 /* LapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapTableViewCell.swift; sourceTree = "<group>"; };
 		39437DA12A48949700FDA9DA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 			children = (
 				39CC3DBF2AC59BD200C8BC10 /* RecordDetailViewController.swift */,
 				39DBB31F2AC6E899003B5213 /* RecordHStackView.swift */,
+				393BDF5B2AF790FF0060AE58 /* LapTableViewCell.swift */,
 			);
 			path = RecordDetail;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				397AB5AD2A68F61A008015F2 /* DefaultsName.swift in Sources */,
 				396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
+				393BDF5C2AF790FF0060AE58 /* LapTableViewCell.swift in Sources */,
 				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);
