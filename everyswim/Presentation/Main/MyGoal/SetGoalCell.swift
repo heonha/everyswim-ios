@@ -127,7 +127,7 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell, CombineCancellable
                 
                 switch self.type {
                 case .distance:
-                    if viewModel.count <= 25 { return }
+                    if viewModel.distance <= 25 { return }
                     viewModel.distance -= 25
                 case .lap:
                     if viewModel.lap <= 1 { return }
