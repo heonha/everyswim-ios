@@ -103,7 +103,7 @@ final class MyInfoController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 let vc = SetGoalViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.present(vc, animated: true)
             }
             .store(in: &cancellables)
         

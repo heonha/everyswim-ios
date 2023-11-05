@@ -52,7 +52,7 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
         self.viewModel.selectedSegment = type
     }
     
-    private func selectSegment(index: Int) {
+    func selectSegment(index: Int) {
         selectedSegmentIndex = index
         let type = ActivityDataRange.init(rawValue: index)!
         viewModel.selectedSegment = type

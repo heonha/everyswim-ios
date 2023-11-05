@@ -77,7 +77,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         bind()
         viewModel.updateDate()
         viewModel.selectedSegment = .monthly
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -131,6 +130,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         tableView.isScrollEnabled = false
     }
     
+    
     private func layout() {
         view.addSubview(scrollView)
         let contentView = scrollView.contentView
@@ -141,7 +141,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-        
+                
         mainVStack.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(16)
             make.horizontalEdges.equalTo(contentView)
@@ -168,7 +168,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         }
         
         contentView.addSubview(activitySectionView)
-
+        
         activitySectionView.snp.makeConstraints { make in
             make.top.equalTo(graphView.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(contentView)
@@ -184,6 +184,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.bottom.equalTo(contentView)
         }
         
+
     }
     
     // MARK: - Bind (Subscribers)
@@ -193,6 +194,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         bindPresentedData()
         bindTitleMenu()
         bindSelectedDate()
+        bindScrollViewSwipe()
     }
     
     private func bindSelectedDate() {
@@ -214,6 +216,27 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 updateTitles(tag: tag)
             }
             .store(in: &cancellables)
+        
+    }
+    
+    /// Segment를 Swipe로 변경하는 Gesture Action
+    private func bindScrollViewSwipe() {
+        scrollView
+            .gesturePublisher(.swipe(.init(), direction: .left))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.leftSwipeAction()
+            }
+            .store(in: &cancellables)
+        
+        scrollView
+            .gesturePublisher(.swipe(.init(), direction: .right))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.rightSwipeAction()
+            }
+            .store(in: &cancellables)
+
     }
 
     private func bindTitleMenu() {
@@ -245,6 +268,24 @@ final class ActivityViewController: UIViewController, CombineCancellable {
                 self?.updateTableViewSize()
             }
             .store(in: &cancellables)
+    }
+    
+    // MARK: - Swipe Gestures & Actions
+    
+    @objc private func leftSwipeAction() {
+        let currentValue = viewModel.selectedSegment.rawValue
+        if currentValue == 3 { return }
+        let newValue = currentValue + 1
+        segmentControl.selectSegment(index: newValue)
+        HapticManager.triggerHapticFeedback(style: .rigid)
+    }
+    
+    @objc private func rightSwipeAction() {
+        let currentValue = viewModel.selectedSegment.rawValue
+        if currentValue == 0 { return }
+        let newValue = currentValue - 1
+        segmentControl.selectSegment(index: newValue)
+        HapticManager.triggerHapticFeedback(style: .rigid)
     }
     
     // MARK: - Appearances

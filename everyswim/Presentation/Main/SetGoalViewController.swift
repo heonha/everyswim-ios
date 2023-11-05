@@ -37,8 +37,9 @@ final class SetGoalViewController: UIViewController {
     }
     
     private func layout() {
+        view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .systemYellow
+        collectionView.backgroundColor = .systemBackground
         collectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view)
             make.verticalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -109,6 +110,8 @@ extension SetGoalViewController: UICollectionViewDataSource {
         }
         
         cell.updateCell(viewModel: viewModel)
+        
+        // TODO: + - 버튼 액션
         
         return cell
     }
