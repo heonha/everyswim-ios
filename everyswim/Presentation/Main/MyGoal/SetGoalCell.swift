@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 enum MyGoalType {
     case distance
@@ -14,7 +15,7 @@ enum MyGoalType {
     case swimCount
 }
 
-struct GoalPerWeek {
+struct GoalPerWeek: Codable {
     var distancePerWeek: Int
     var lapTimePerWeek: Int
     var countPerWeek: Int
@@ -26,16 +27,19 @@ struct SetGoalText {
     let unit: String
 }
 
-final class SetGoalCell: UICollectionViewCell, ReuseableCell {
+final class SetGoalCell: UICollectionViewCell, ReuseableCell, CombineCancellable {
+    var cancellables: Set<AnyCancellable> = .init()
+    
     static var reuseId: String = "SetGoalCell"
     
     var type: MyGoalType = .distance
+    var viewModel: SetGoalViewModel?
+    var parent: SetGoalViewController?
     
     private lazy var mainTitleLabel = ViewFactory.label("주간 수영 목표")
         .font(.custom(.sfProBold, size: 35))
         .textAlignemnt(.center)
    
-    
     private var titleLabel = ViewFactory.label("거리")
         .font(.custom(.sfProBold, size: 30))
     
@@ -50,16 +54,23 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell {
     
     
     private let plusButton = UIImageView()
-        .setSymbolImage(systemName: "plus.circle.fill", color: AppUIColor.primaryBlue)
+        .setSymbolImage(systemName: "plus.circle.fill", color: AppUIColor.secondaryBlue)
         .setSize(width: 40, height: 40)
     
     private let minusButton = UIImageView()
-        .setSymbolImage(systemName: "minus.circle.fill", color: AppUIColor.primaryBlue)
+        .setSymbolImage(systemName: "minus.circle.fill", color: AppUIColor.secondaryBlue)
         .setSize(width: 40, height: 40)
 
+    private let doneButton = ViewFactory.label("완료")
+        .font(.custom(.sfProMedium, size: 18))
+        .textAlignemnt(.center)
+        .foregroundColor(.systemBackground)
+        .backgroundColor(AppUIColor.secondaryBlue)
+        .cornerRadius(8)
+    
     // 버튼 / 데이터 / 버튼
     private lazy var middleHStack = ViewFactory.hStack()
-        .addSubviews([plusButton, amountLabel, minusButton])
+        .addSubviews([minusButton, amountLabel, plusButton])
         .alignment(.center)
         .spacing(48)
     
@@ -83,9 +94,63 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell {
     }
     
     private func configure() {
-
+        observe()
     }
     
+    private func observe() {
+        
+        plusButton.gesturePublisher(.tap(.init(target: parent, action: nil)) )
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                print("PLUS")
+                guard let viewModel = viewModel else {return}
+
+                switch self.type {
+                case .distance:
+                    viewModel.distance += 25
+                case .lap:
+                    viewModel.lap += 1
+                case .swimCount:
+                    viewModel.count += 1
+                }
+                
+                updateCount()
+            }
+            .store(in: &cancellables)
+        
+        minusButton.gesturePublisher(.tap(.init(target: parent, action: nil)))
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                print("MINUS")
+                
+                guard let viewModel = viewModel else {return}
+                
+                switch self.type {
+                case .distance:
+                    if viewModel.count <= 25 { return }
+                    viewModel.distance -= 25
+                case .lap:
+                    if viewModel.lap <= 1 { return }
+                    viewModel.lap -= 1
+                case .swimCount:
+                    if viewModel.count <= 1 { return }
+                    viewModel.count -= 1
+                }
+                
+                updateCount()
+            }
+            .store(in: &cancellables)
+        
+        doneButton.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewModel?.saveGoal()
+                self?.parent?.dismiss(animated: true)
+            }
+            .store(in: &cancellables)
+
+    }
+        
     private func layout() {
         contentView.addSubview(vstack)
         vstack.snp.makeConstraints { make in
@@ -103,6 +168,13 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell {
             make.height.equalTo(50)
         }
         
+        contentView.addSubview(doneButton)
+        doneButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(vstack)
+            make.height.equalTo(46)
+            make.bottom.equalTo(self.contentView).inset(50)
+        }
+        
     }
     
     func setType(_ type: MyGoalType) {
@@ -110,12 +182,28 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell {
     }
     
     func updateCell(viewModel: SetGoalViewModel) {
+        // Labels
         let viewData = viewModel.getTitles(self.type)
         titleLabel.text = viewData.title
         subtitleLabel.text = viewData.subtitle
         unitLabel.text = viewData.unit
+        
+        // Count
         let currentGoal = viewModel.getCurrentData()
         amountLabel.text = "\(setAmount(from: currentGoal))"
+    }
+    
+    func updateCount() {
+        guard let viewModel = viewModel else {return}
+        
+        switch type {
+        case .distance:
+            self.amountLabel.text = viewModel.distance.description
+        case .lap:
+            self.amountLabel.text = viewModel.lap.description
+        case .swimCount:
+            self.amountLabel.text = viewModel.count.description
+        }
     }
     
     private func setAmount(from goal: GoalPerWeek) -> Int {

@@ -22,7 +22,6 @@ final class SetGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        bind()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,11 +46,7 @@ final class SetGoalViewController: UIViewController {
         }
 
     }
-    
-    private func bind() {
-        
-    }
-    
+
     func createBasicListLayout() -> UICollectionViewLayout {
         let section = createSectionLayout()
         let layout = UICollectionViewCompositionalLayout(section: section)
@@ -108,7 +103,8 @@ extension SetGoalViewController: UICollectionViewDataSource {
         if indexPath.item == 2 {
             cell.setType(.swimCount)
         }
-        
+        cell.parent = self
+        cell.viewModel = viewModel
         cell.updateCell(viewModel: viewModel)
         
         // TODO: + - 버튼 액션

@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct SetGoalViewModel {
-    
+final class SetGoalViewModel {
     
     // Data
     private var userData = UserData.shared
@@ -20,6 +19,17 @@ struct SetGoalViewModel {
     let cellIndex = 0
     let cellCount = 3
     
+    init() {
+        setData()
+    }
+    
+    private func setData() {
+        let goal = userData.goal
+        self.count = goal.countPerWeek
+        self.distance = goal.distancePerWeek / count
+        self.lap = goal.lapTimePerWeek / count
+    }
+    
     func getTitles(_ type: MyGoalType) -> SetGoalText {
         switch type {
         case .distance:
@@ -29,6 +39,14 @@ struct SetGoalViewModel {
         case .swimCount:
             return SetGoalText(title: "주간 수영 횟수", subtitle: "일주일에 몇 일을 수영 할 예정이신가요?", unit: "Lap / 일")
         }
+    }
+    
+    func saveGoal() {
+        let distancePerWeek = distance * count
+        let lapTimePerWeek = lap * count
+        let countPerWeek = count
+        userData.goal = .init(distancePerWeek: distancePerWeek, lapTimePerWeek: lapTimePerWeek, countPerWeek: countPerWeek)
+        userData.saveGoalData()
     }
     
     func getCurrentData() -> GoalPerWeek {
