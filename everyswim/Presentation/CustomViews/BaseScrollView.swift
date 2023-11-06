@@ -28,6 +28,7 @@ final class BaseScrollView: UIScrollView {
     
     private func configure() {
         self.backgroundColor = .systemBackground
+        self.showsVerticalScrollIndicator = false
     }
     
     private func layout() {

@@ -375,6 +375,7 @@
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 				390C61892AF3A9950061E6D4 /* MyGoal */,
+				39DBB3252AC6F291003B5213 /* Activity */,
 				396387AD2AC6BBEA00A490D1 /* Records */,
 			);
 			path = Main;
@@ -501,7 +502,6 @@
 				396387AE2AC6BC0200A490D1 /* Cells */,
 				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 				39572CDF2A52CABB00986E01 /* HealthKit */,
-				39DBB3252AC6F291003B5213 /* Activity */,
 				39CC3DC32AC5A30900C8BC10 /* DetailRecordLabel.swift */,
 				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 				39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */,

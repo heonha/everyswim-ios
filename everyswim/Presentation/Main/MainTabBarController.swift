@@ -13,7 +13,8 @@ final class MainTabBarController: UITabBarController {
     private lazy var recordView = ActivityViewController()
     private lazy var dashboardView = DashboardViewController()
     private lazy var myInfoView = MyInfoController()
-    
+    private lazy var calendarView = DatePickerController()
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,24 +40,29 @@ extension MainTabBarController {
     }
     
     private func setupEachTabViews() {
+        let homeSymbol = UIImage(systemName: "list.bullet.rectangle")
         let eventSymbol = UIImage(systemName: "figure.pool.swim")
-        let homeSymbol = UIImage(systemName: "list.bullet.clipboard")
+        let calendarSymbol = UIImage(systemName: "calendar")
         let myInfoSymbol = UIImage(systemName: "person.circle.fill")
         
-        let recordNC = BaseNavigationController(rootViewController: recordView)
-        recordNC.isNavigationBarHidden = true
-        recordNC.tabBarItem = .init(title: "기록", image: eventSymbol, tag: 0)
-
         let dashboardNC = BaseNavigationController(rootViewController: dashboardView)
         dashboardNC.isNavigationBarHidden = true
-        dashboardNC.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 1)
+        dashboardNC.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 0)
+
+        let recordNC = BaseNavigationController(rootViewController: recordView)
+        recordNC.isNavigationBarHidden = true
+        recordNC.tabBarItem = .init(title: "기록", image: eventSymbol, tag: 1)
+
+        let calendarNC = BaseNavigationController(rootViewController: calendarView)
+        calendarNC.isNavigationBarHidden = true
+        calendarNC.tabBarItem = .init(title: "캘린더", image: calendarSymbol, tag: 2)
 
         let myInfoNC = BaseNavigationController(rootViewController: myInfoView)
         myInfoNC.isNavigationBarHidden = true
-        myInfoNC.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 2)
+        myInfoNC.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 3)
         
-        self.viewControllers = [recordNC, dashboardNC, myInfoNC]
-        self.selectedIndex = 1
+        self.viewControllers = [dashboardNC, recordNC, calendarNC, myInfoNC]
+        self.selectedIndex = 0
     }
     
 }

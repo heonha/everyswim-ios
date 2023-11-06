@@ -14,6 +14,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: DashboardViewModel
+    private let scrollView = BaseScrollView()
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -60,11 +61,11 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         layout()
         bindSubviews()
         slideTimer()
-        hideNavigationBar(false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        hideNavigationBar(false)
         updateChallangeView()
     }
     
@@ -105,36 +106,46 @@ extension DashboardViewController {
     
     // MARK: - Layout
     private func layout() {
-        view.addSubview(headerView)
-        view.addSubview(recentRecordView)
-        view.addSubview(imageSlider)
-        view.addSubview(pageController)
-        view.addSubview(challangeViews)
+        
+        view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        let contentView = scrollView.contentView
+        contentView.addSubview(headerView)
+        contentView.addSubview(recentRecordView)
+        contentView.addSubview(imageSlider)
+        contentView.addSubview(pageController)
+        contentView.addSubview(challangeViews)
         
         let spacing = 28
 
         headerView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(view)
-            make.trailing.equalTo(view)
+            make.top.equalTo(contentView)
+            make.leading.equalTo(contentView)
+            make.trailing.equalTo(contentView)
         }
         
         recentRecordView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(spacing)
-            make.horizontalEdges.equalToSuperview().inset(10)
+            make.horizontalEdges.equalTo(contentView).inset(10)
         }
         
         challangeViews.snp.makeConstraints { make in
             make.top.equalTo(recentRecordView.snp.bottom).offset(spacing)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.leading.equalTo(contentView).offset(20)
+            make.trailing.equalTo(contentView).offset(-20)
             make.height.equalTo(200)
         }
         
         imageSlider.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.leading.equalTo(contentView)
+            make.trailing.equalTo(contentView)
             make.height.equalTo(200)
         }
         

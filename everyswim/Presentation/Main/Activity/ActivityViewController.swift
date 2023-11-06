@@ -102,7 +102,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         
         // Navigation
         self.navigationItem.title = "수영 기록"
-        configureNavigationBarButtons()
         
         // 이번주 기록 가져오기
         recordHStack.setData(viewModel.summaryData)
@@ -112,16 +111,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = false
     }
-    
-    private func configureNavigationBarButtons() {
-        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(pushCalendarView))
-        navigationItem.rightBarButtonItems = [calendarButton]
-    }
-    
-    @objc func pushCalendarView() {
-        push(DatePickerController(), animated: true)
-    }
-    
+
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -129,7 +119,6 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         tableView.backgroundColor = .systemGray6
         tableView.isScrollEnabled = false
     }
-    
     
     private func layout() {
         view.addSubview(scrollView)
