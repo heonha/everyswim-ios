@@ -12,39 +12,39 @@ import Combine
 final class DashboardViewController: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
-    
     private let viewModel: DashboardViewModel
-    private let scrollView = BaseScrollView()
     
-    private var subscriptions = Set<AnyCancellable>()
-    
-    private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
-    
-    private lazy var recentRecordView: UIStackView = {
-        let vstack = ViewFactory
-            .vStack(subviews: [eventTitle, lastWorkoutView])
-        
-        lastWorkoutView.snp.makeConstraints { make in
-            make.height.equalTo(70)
-        }
-        return vstack
-    }()
-    
-    private let imageSlider = ImageSliderView()
+    // MARK: Properties
     private var counter = 0
     private let pageController = UIPageControl(frame: .zero)
     
-    private lazy var lastWorkoutView = RecordSmallCell(data: viewModel.lastWorkout
-                                                       ?? TestObjects.swimmingData.first!,
-                                                       showDate: true)
+    // MARK: Views
+    private let scrollView = BaseScrollView()
     
+    /// `상단 헤더 뷰` (프로필)
+    private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
+    
+    /// `최근 운동 기록 Views`
+    private lazy var recentRecordView = ViewFactory
+        .vStack(subviews: [eventTitle, lastWorkoutCell])
+    
+    /// 최근 운동 기록 Views - `title`
     private let eventTitle = ViewFactory
-        .label("  최근 기록")
+        .label("최근 기록")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.gray)
     
+    /// 최근 운동 기록 Views - `cell`
+    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!,
+                                                       showDate: true)
+    
+    /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
     
+    /// 하단 이미지 슬라이더
+    private let imageSlider = ImageSliderView()
+    
+    // MARK: - Init & LifeCycles
     init(viewModel: DashboardViewModel? = nil) {
         self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())
         super.init(nibName: nil, bundle: nil)
@@ -59,7 +59,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         view.backgroundColor = .systemBackground
         configure()
         layout()
-        bindSubviews()
+        bind()
         slideTimer()
     }
     
@@ -73,17 +73,23 @@ final class DashboardViewController: UIViewController, CombineCancellable {
 
 extension DashboardViewController {
     
-    private func bindSubviews() {
+    private func bind() {
+        bindLastWorkout()
+    }
+    
+    private func bindLastWorkout() {
+        // 최근 운동기록 데이터 업데이트
         viewModel.$lastWorkout
             .receive(on: DispatchQueue.main)
             .sink {[unowned self] data in
                 if let data = data {
-                    lastWorkoutView.updateData(data)
+                    lastWorkoutCell.updateData(data)
                 }
             }
-        .store(in: &subscriptions)
+        .store(in: &cancellables)
         
-        lastWorkoutView.gesturePublisher(.tap())
+        // 최근 운동기록 제스쳐
+        lastWorkoutCell.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let data = self?.viewModel.lastWorkout else { return }
@@ -94,19 +100,47 @@ extension DashboardViewController {
             .store(in: &cancellables)
     }
     
+    
+    // MARK: Configures
     private func configure() {
+        configureImageSlider()
+        configurePageController()
+    }
+    
+    private func configureImageSlider() {
         imageSlider.dataSource = self
         imageSlider.delegate = self
         imageSlider.register(ImageSliderCell.self,
                              forCellWithReuseIdentifier: "ImageSliderCell")
-
-        pageController.currentPage = 0
-        pageController.numberOfPages = viewModel.slideData.count
     }
     
-    // MARK: - Layout
+    private func configurePageController() {
+        pageController.currentPage = 0
+        pageController.numberOfPages = viewModel.slideData.count
+
+    }
+   
+    
+    // MARK: Layout
     private func layout() {
         
+        
+        let contentView = scrollView.contentView
+        let spacing: CGFloat = 28
+        
+        scrollViewLayout()
+        
+        headerViewLayout(contentView: contentView)
+        
+        recentRecordViewLayout(contentView: contentView, spacing: spacing)
+        
+        challangeViewsLayout(contentView: contentView, spacing: spacing)
+        
+        imageSliderViewsLayout(contentView: contentView, spacing: spacing)
+        
+    }
+    
+    private func scrollViewLayout() {
         view.addSubview(scrollView)
         
         scrollView.snp.makeConstraints { make in
@@ -115,33 +149,45 @@ extension DashboardViewController {
             make.horizontalEdges.equalToSuperview()
         }
         
-        let contentView = scrollView.contentView
+    }
+    
+    private func headerViewLayout(contentView: UIView) {
         contentView.addSubview(headerView)
-        contentView.addSubview(recentRecordView)
-        contentView.addSubview(imageSlider)
-        contentView.addSubview(pageController)
-        contentView.addSubview(challangeViews)
-        
-        let spacing = 28
-
         headerView.snp.makeConstraints { make in
             make.top.equalTo(contentView)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
         }
-        
+    }
+    
+    private func recentRecordViewLayout(contentView: UIView, spacing: CGFloat) {
+        contentView.addSubview(recentRecordView)
+        contentView.addSubview(pageController)
+
         recentRecordView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(spacing)
             make.horizontalEdges.equalTo(contentView).inset(10)
         }
         
+        lastWorkoutCell.snp.makeConstraints { make in
+            make.height.equalTo(70)
+        }
+    }
+    
+    private func challangeViewsLayout(contentView: UIView, spacing: CGFloat) {
+        contentView.addSubview(challangeViews)
         challangeViews.snp.makeConstraints { make in
             make.top.equalTo(recentRecordView.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView).offset(20)
             make.trailing.equalTo(contentView).offset(-20)
             make.height.equalTo(200)
         }
+    }
+    
+    private func imageSliderViewsLayout(contentView: UIView, spacing: CGFloat) {
         
+        contentView.addSubview(imageSlider)
+
         imageSlider.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
@@ -155,7 +201,6 @@ extension DashboardViewController {
             make.height.equalTo(40)
         }
 
-        
     }
     
     private func updateChallangeView() {
@@ -180,11 +225,12 @@ extension DashboardViewController {
                     self.pageController.currentPage = counter
                 }
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
     
 }
 
+// MARK: SliderView Delegate, DataSource
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

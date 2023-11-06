@@ -114,8 +114,6 @@ extension SetGoalViewController: UICollectionViewDataSource {
     
 }
 
-
-
 #if DEBUG
 import SwiftUI
 
