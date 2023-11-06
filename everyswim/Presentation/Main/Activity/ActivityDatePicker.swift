@@ -35,7 +35,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         self.viewModel = viewModel
         self.pickerCount = pickerCount
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.calculateMonthOfWeekNumber()
+        self.viewModel.setMonthOfWeekNumber()
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +59,6 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         super.viewDidLayoutSubviews()
         layout()
     }
-    
     
     // MARK: - Setup
     

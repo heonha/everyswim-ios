@@ -28,14 +28,15 @@ final class RecordDetailViewController: UIViewController {
 
     // 수영장 라벨
     private lazy var poolLabel = ViewFactory
-        .label("수영장")
+        .label("")
         .font(.custom(.sfProLight, size: 14))
+        .textAlignemnt(.right)
         .foregroundColor(.secondaryLabel)
     
     private lazy var paceTitleLabel = ViewFactory
         .label("페이스")
         .font(.custom(.sfProLight, size: 24))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
     
     private lazy var distanceStack = DistanceBigLabel()
     
@@ -135,23 +136,25 @@ final class RecordDetailViewController: UIViewController {
         contentView.addSubview(distanceStack)
         contentView.addSubview(dataHStack)
 
+        let horizontalInset: CGFloat = 16
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(14)
-            make.horizontalEdges.equalTo(contentView).inset(8)
+            make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
         }
         
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(4)
-            make.horizontalEdges.equalTo(contentView).inset(8)
+            make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
         }
         
         poolLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(14)
-            make.trailing.equalTo(contentView)
+            make.trailing.equalTo(contentView).inset(horizontalInset)
             make.width.greaterThanOrEqualTo(100)
         }
         
@@ -170,7 +173,7 @@ final class RecordDetailViewController: UIViewController {
         contentView.addSubview(paceTitleLabel)
         paceTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(dataHStack.snp.bottom).offset(40)
-            make.horizontalEdges.equalTo(contentView).inset(12)
+            make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
             make.height.equalTo(30)
         }
         
@@ -190,7 +193,7 @@ final class RecordDetailViewController: UIViewController {
         
         self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
         self.timeLabel.text = self.data.durationTime
-        self.poolLabel.text = "알수없는 수영장"
+        self.poolLabel.text = "OOO 수영장"
         self.distanceStack.setData(self.data.unwrappedDistance.toRoundupString(), unit: "m")
         
         self.averagePaceLabel.setData(data: "-:--")

@@ -18,20 +18,20 @@ final class DetailRecordLabel: UIView {
     private lazy var dataLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProBold, size: 27))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
         .textAlignemnt(textAlignment)
     
     private lazy var unitLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProBold, size: 20))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
         .textAlignemnt(textAlignment)
 
     
     private lazy var typeLabel = ViewFactory
         .label("-")
         .font(.custom(.sfProLight, size: 18))
-        .foregroundColor(.secondaryLabel)
+        .foregroundColor(AppUIColor.secondaryLabel)
         .textAlignemnt(textAlignment)
 
     

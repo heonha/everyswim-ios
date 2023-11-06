@@ -12,11 +12,7 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "LapTableViewCell"
     
-    var data: SwimMainData? {
-        willSet {
-            print("SETTED LAP \(newValue)")
-        }
-    }
+    var data: SwimMainData?
     
     private let lapNoLabel = ViewFactory.label("1")
         .textAlignemnt(.center)

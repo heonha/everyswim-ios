@@ -23,7 +23,7 @@ final class MyInfoButton: UIView {
     private lazy var label = ViewFactory
         .label(type.getUIData().title)
         .font(.custom(.sfProMedium, size: 16))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
 
     private lazy var hstack = ViewFactory.hStack()
         .addSubviews([UIView.spacer(), symbol, label, UIView.spacer()])

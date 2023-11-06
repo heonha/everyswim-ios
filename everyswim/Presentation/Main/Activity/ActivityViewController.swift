@@ -116,7 +116,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RecordMediumCell.self, forCellReuseIdentifier: RecordMediumCell.reuseId)
-        tableView.backgroundColor = .systemGray6
+        tableView.backgroundColor = AppUIColor.skyBackground
         tableView.isScrollEnabled = false
     }
     
@@ -343,7 +343,8 @@ final class ActivityViewController: UIViewController, CombineCancellable {
 extension ActivityViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 171
+        // RecordMediumCell 높이
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -13,7 +13,7 @@ final class ActivitySectionView: UIView {
     // 주간활동 tableview
     private let activityTitle = ViewFactory.label("주간 활동")
         .font(.custom(.sfProMedium, size: 18))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
     
     
     override func layoutSubviews() {
@@ -24,8 +24,8 @@ final class ActivitySectionView: UIView {
     private func layout() {
         self.addSubview(activityTitle)
         
-        self.backgroundColor = .systemGray6
-        
+        self.backgroundColor = AppUIColor.skyBackground
+
         activityTitle.snp.makeConstraints { make in
             make.center.equalTo(self)
         }

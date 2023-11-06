@@ -151,8 +151,18 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         
     }
     
-    /// 주
-    func calculateMonthOfWeekNumber() {
+    /// 월의 몇주차인지를 구하고 picker에 추가합니다.
+    func setMonthOfWeekNumber() {
+        let data = calculateMonthOfWeekNumber()
+        self.weekList = .init()
+        self.pickerWeeks = .init()
+        
+        self.weekList = data.weekList
+        self.pickerWeeks = data.pickerWeeks
+    }
+    
+    /// 오늘이 월의 몇주차인지 계산하고 지난 주차와 이번 주를 반환합니다.
+    private func calculateMonthOfWeekNumber() -> (pickerWeeks: [String], weekList: [Date]) {
         let today = Date()
         let calendar = Calendar.current
         let year = calendar.component(.year, from: today)
@@ -160,23 +170,25 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
         let day = calendar.component(.day, from: Date())
         let todayComponents = DateComponents(year: year, month: month, day: day, hour: 0, minute: 0, second: 0).setGMT9()
         
-        guard let todaydate = calendar.date(from: todayComponents) else { return }
+        var pickerWeeks: [String] = []
+        var weekList: [Date] = []
+        
+        guard let todaydate = calendar.date(from: todayComponents) else { return (pickerWeeks: pickerWeeks, weekList: weekList) }
         
         // MARK: 이번 주 구하기
         let weekday = calendar.component(.weekday, from: todaydate) // 이번주 요일
         let distanceTodayToSunday: Int = -(weekday - 1)
         let weeksFirstDay = calendar.date(byAdding: .day, value: distanceTodayToSunday, to: today)!
         
-        self.weekList = .init()
-        self.weekList.append(weeksFirstDay)
-        
-        self.pickerWeeks = .init()
-        self.pickerWeeks.append("이번 주")
+
+        weekList.append(weeksFirstDay)
+        pickerWeeks.append("이번 주")
         
         // MARK: 지난 주 구하기
         let numberOfWeeks = calendar.component(.weekOfMonth, from: Date()) // 이번주 주차
-        
         if numberOfWeeks != 1 {
+            
+
             for weeknumber in 1..<numberOfWeeks {
                 let beforeWeeksFirstDay = calendar.date(byAdding: .day, value: -7 * weeknumber, to: weeksFirstDay)!
                 let beforeWeeksLastDay = calendar.date(byAdding: .day, value: -1 * weeknumber, to: weeksFirstDay)!
@@ -186,15 +198,16 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
                 let weeksRangeString = "\(weeksFirstDayString) ~ \(weeksLastDayString)"
                 
                 let beforeNumberOfWeek = calendar.component(.weekOfMonth, from: beforeWeeksFirstDay) // 주 번호
-                self.pickerWeeks.append("\(weeksRangeString)")
-                self.weekList.append(beforeWeeksFirstDay)
                 let weekString = -(weeknumber - numberOfWeeks)
-                print("\(month)월 \(weekString)주차는 \(beforeWeeksFirstDay) ~ \(beforeWeeksLastDay)입니다.")
+                pickerWeeks.append("\(weekString)주차 (\(weeksRangeString))")
+                weekList.append(beforeWeeksFirstDay)
             }
+            pickerWeeks.reverse()
+            weekList.reverse()
         }
         
-        self.pickerWeeks.reverse()
-        self.weekList.reverse()
+        return (pickerWeeks: pickerWeeks, weekList: weekList)
+        
     }
 
     
