@@ -51,6 +51,8 @@ class RecommandCollectionCell: UICollectionViewListCell, ReuseableObject {
         
         contentView.addSubview(imageView)
         contentView.addSubview(labelVStack)
+    
+        
         
         imageView.addSubview(foregroundLayer)
         imageView.snp.makeConstraints { make in

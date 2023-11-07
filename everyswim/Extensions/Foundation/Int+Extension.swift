@@ -19,4 +19,8 @@ extension Int {
         return "\(self)"
     }
     
+    func toDouble() -> Double {
+        return Double(self)
+    }
+    
 }

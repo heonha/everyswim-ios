@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct VideoCollectionData {
+struct VideoCollectionResponse: Codable {
+    let video: [VideoCollectionData]
+}
+
+struct VideoCollectionData: Codable {
     let id: String
     let type: String
-    let mediaUrl: String
+    let url: String
     let imageUrl: String
 }

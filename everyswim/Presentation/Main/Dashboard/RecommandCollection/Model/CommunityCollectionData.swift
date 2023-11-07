@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct CommunityCollectionData {
+struct CommunityCollectionResponse: Codable {
+    let community: [CommunityCollectionData]
+}
+
+struct CommunityCollectionData: Codable {
     let title: String
     let description: String
     let url: String

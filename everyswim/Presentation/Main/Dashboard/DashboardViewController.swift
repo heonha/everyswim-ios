@@ -30,13 +30,13 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     private lazy var recentRecordView = ViewFactory
         .vStack(subviews: [eventTitle, lastWorkoutCell])
     
-    /// 최근 운동 기록 Views - `title`
+    /// [최근 운동 기록] Views - `title`
     private let eventTitle = ViewFactory
         .label("최근 기록")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.gray)
     
-    /// 최근 운동 기록 Views - `cell`
+    /// [최근 운동 기록] `Cell`
     private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!,
                                                        showDate: true)
     
@@ -78,6 +78,30 @@ extension DashboardViewController {
     
     private func bind() {
         bindLastWorkout()
+        bindRecommandVideoSucceed()
+        bindRecommandCommunitySucceed()
+    }
+    
+    private func bindRecommandVideoSucceed() {
+        viewModel.$recommandVideoSuccessed.receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                if value {
+                    // self?.mediaCollectionView.reloadSections(.init(integer: 0))
+                    print("추천 영상 완료")
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bindRecommandCommunitySucceed() {
+        viewModel.$recommandCommunitySuccessed.receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                if value {
+                    // self?.mediaCollectionView.reloadSections(.init(integer: 1))
+                    print("추천 커뮤니티 완료")
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func bindLastWorkout() {
@@ -196,12 +220,13 @@ extension DashboardViewController {
         contentView.addSubview(pageController)
 
         mediaCollectionView.isScrollEnabled = false
-        
+        mediaCollectionView.backgroundColor = .lightGray
         mediaCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
-            make.height.equalTo(500)
+            make.height.equalTo(1000)
+            make.bottom.equalTo(contentView)
         }
 
     }
@@ -250,7 +275,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
         let headers = [
             SupplementaryHeader(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                                   heightDimension: .absolute(50)),
+                                                                   heightDimension: .absolute(40)),
                                 elementKind: UICollectionView.elementKindSectionHeader,
                                 alignment: .top)
         ]
@@ -264,7 +289,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecommandCollectionViewHeader.reuseId, for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
-        let section = sections[0]
+        let section = sections[indexPath.section]
         let titleString = section.title
         header.configure(with: titleString)
         
@@ -273,23 +298,55 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
     /// `섹션별 아이템 수` 정의
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.recommandVideos.count
+        
+        switch sections[section] {
+        case .video:
+            return viewModel.recommandVideos.count
+        case .community:
+            return viewModel.recommandCommunities.count
+        }
+    }
+    
+    /// `섹션 수` 정의
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
     }
     
     /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
-        let data = viewModel.recommandVideos[indexPath.row]
-        cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
-        cell.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let url = URL.init(string: data.mediaUrl)!
-                UIApplication.shared.open(url)
-            }
-            .store(in: &cancellables)
         
-        return cell
+        switch sections[indexPath.section] {
+        case .video:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
+
+            let data = viewModel.recommandVideos[indexPath.item]
+            cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
+            print("SETTED: \(data)")
+            cell.gesturePublisher(.tap())
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    let url = URL.init(string: data.url)!
+                    UIApplication.shared.open(url)
+                }
+                .store(in: &cancellables)
+            return cell
+            
+        case .community:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
+            let data = viewModel.recommandCommunities[indexPath.item]
+            cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
+            print("SETTED: \(data)")
+            cell.gesturePublisher(.tap())
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    let url = URL.init(string: data.url)!
+                    UIApplication.shared.open(url)
+                }
+                .store(in: &cancellables)
+            return cell
+        }
+        
+
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {

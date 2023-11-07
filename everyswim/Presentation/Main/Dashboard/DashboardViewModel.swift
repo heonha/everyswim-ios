@@ -13,16 +13,11 @@ final class DashboardViewModel: ObservableObject {
         
     private var cancellables = Set<AnyCancellable>()
 
+    
+    // MARK: Health Data
     private var hkManager: HealthKitManager?
     private var kcals: [HKNormalStatus] = []
     private var stroke: [HKNormalStatus] = []
-    
-    private let emptyRing = [
-        ChallangeRing(type: .distance, count: 0, maxCount: 1),
-        ChallangeRing(type: .lap, count: 0, maxCount: 1),
-        ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
-    ]
-    
     
     // MARK: Swimming Model
     @Published private(set) var swimRecords: [SwimMainData]
@@ -31,13 +26,25 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
 
-    // MARK: Recommand Model
-    /// 추천 수영 영상 데이터
-    @Published private(set) var recommandVideos = [VideoCollectionData]()
+    // MARK: Recommand Model (Networking)
+    private let recommandDataService = RecommandDataService()
     
-    /// 추천 커뮤니티 데이터
-    @Published private(set) var recommandCommunities = [CommunityCollectionData]()
+    /// 추천 수영 `영상` 데이터
+    private(set) var recommandVideos = [VideoCollectionData]()
+    @Published private(set) var recommandVideoSuccessed = false
     
+    /// 추천 `커뮤니티` 데이터
+    private(set) var recommandCommunities = [CommunityCollectionData]()
+    @Published private(set) var recommandCommunitySuccessed = false
+
+    // MARK: Ring Data
+    private let emptyRing = [
+        ChallangeRing(type: .distance, count: 0, maxCount: 1),
+        ChallangeRing(type: .lap, count: 0, maxCount: 1),
+        ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
+    ]
+    
+    // MARK: - Init
     init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
@@ -49,8 +56,33 @@ final class DashboardViewModel: ObservableObject {
         }
 
         self.fetchRingData()
+        self.getRecommandVideos()
+        self.getRecommandCommunity()
     }
     
+    
+    // MARK: - Recommand Data Methods
+    func getRecommandVideos() {
+        recommandDataService.fetchVideo { [weak self] videoData in
+            self?.recommandVideos.removeAll()
+            videoData.forEach { data in
+                self?.recommandVideos.append(data)
+            }
+            self?.recommandVideoSuccessed = true
+        }
+    }
+    
+    func getRecommandCommunity() {
+        recommandDataService.fetchCommunity { [weak self] videoData in
+            self?.recommandCommunities.removeAll()
+            videoData.forEach { data in
+                self?.recommandCommunities.append(data)
+            }
+            self?.recommandCommunitySuccessed = true
+        }
+    }
+    
+    // MARK: - Workout Data Methods
     func getLastWorkout() {
         $swimRecords
             .receive(on: DispatchQueue.main)
@@ -66,6 +98,7 @@ final class DashboardViewModel: ObservableObject {
        subscribeSwimmingData()
     }
     
+    /// 수영 데이터 가져오기
     private func subscribeSwimmingData() {
         SwimDataStore.shared
             .swimmingDataPubliser
@@ -85,7 +118,8 @@ final class DashboardViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-        
+    
+    /// 일반 건강 데이터 가져오기(수영 외)
     func loadHealthCollection() async {
         self.kcals = []
         self.stroke = []
@@ -111,6 +145,7 @@ final class DashboardViewModel: ObservableObject {
         }
     }
     
+    /// Statistics 가져오기
     func updateUIFromStatistics(_ statCollection: HKStatisticsCollection,
                                 type: HKQueryDataType,
                                 queryRange: HKDateType) {
@@ -144,20 +179,24 @@ final class DashboardViewModel: ObservableObject {
         }
     }
 
+    // MARK: - Ring Dada Methods
+    /// Ring 데이터 가져오기
     func fetchRingData() {
         self.$swimRecords
             .sink { records in
+                let goal = UserData.shared.goal
                 let distance = records.reduce(0) { $0 + $1.unwrappedDistance }
                 let lap = records.reduce(0) { $0 + $1.laps.count }
                 let count = records.count
                 
                 self.rings =  [
-                    ChallangeRing(type: .distance, count: distance, maxCount: 2000),
-                    ChallangeRing(type: .lap, count: Double(lap), maxCount: 80),
-                    ChallangeRing(type: .countPerWeek, count: Double(count), maxCount: 10)
+                    ChallangeRing(type: .distance, count: distance, maxCount: goal.distancePerWeek.toDouble()),
+                    ChallangeRing(type: .lap, count: lap.toDouble(), maxCount: goal.lapTimePerWeek.toDouble()),
+                    ChallangeRing(type: .countPerWeek, count: count.toDouble(), maxCount: goal.countPerWeek.toDouble())
                 ]
             }.store(in: &cancellables)
     }
+
     
 // #if DEBUG
 //     func testFetchRingData() -> [ChallangeRing] {
