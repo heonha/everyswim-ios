@@ -1,5 +1,5 @@
 //
-//  MediaCollectionViewHeader.swift
+//  RecommandCollectionViewHeader.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/6/23.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MediaCollectionViewHeader: UICollectionReusableView, ReuseableObject {
+class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableObject {
     
-    static var reuseId: String = "MediaCollectionViewHeader"
+    static var reuseId: String = "RecommandCollectionViewHeader"
     
     private let titleLabel: UILabel = {
         let label = UILabel()

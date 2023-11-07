@@ -1,5 +1,5 @@
 //
-//  WorkoutRecordType.swift
+//  ChallangeRecordType.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum WorkoutRecordType: String {
+enum ChallangeRecordType: String {
     case distance = "수영 거리"
     case lap = "랩"
     case countPerWeek = "수영 횟수"

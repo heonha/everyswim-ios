@@ -1,5 +1,5 @@
 //
-//  MediaSection.swift
+//  RecommandSection.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/7/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MediaSection: CaseIterable {
+enum RecommandSection: CaseIterable {
     
     case video
     case community

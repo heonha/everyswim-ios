@@ -44,7 +44,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     private var challangeViews = ChallangeCellContainer()
     
     /// 미디어 슬라이더
-    private var sections = MediaSection.allCases
+    private var sections = RecommandSection.allCases
     private lazy var mediaCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createBasicListLayout())
     
     // MARK: - Init & LifeCycles
@@ -111,14 +111,14 @@ extension DashboardViewController {
     
     private func configureMediaSlider() {
 
-        mediaCollectionView.register(MediaCollectionViewHeader.self,
+        mediaCollectionView.register(RecommandCollectionViewHeader.self,
                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                     withReuseIdentifier: MediaCollectionViewHeader.reuseId)
+                                     withReuseIdentifier: RecommandCollectionViewHeader.reuseId)
         
         mediaCollectionView.dataSource = self
         mediaCollectionView.delegate = self
-        mediaCollectionView.register(MediaCollectionCell.self,
-                               forCellWithReuseIdentifier: MediaCollectionCell.reuseId)
+        mediaCollectionView.register(RecommandCollectionCell.self,
+                               forCellWithReuseIdentifier: RecommandCollectionCell.reuseId)
         
         mediaCollectionView.backgroundColor = .white
         mediaCollectionView.showsVerticalScrollIndicator = false
@@ -262,7 +262,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
         
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MediaCollectionViewHeader.reuseId, for: indexPath) as? MediaCollectionViewHeader else {return UICollectionReusableView() }
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecommandCollectionViewHeader.reuseId, for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
         let section = sections[0]
         let titleString = section.title
@@ -278,7 +278,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionCell.reuseId, for: indexPath) as? MediaCollectionCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
         let data = viewModel.recommandVideos[indexPath.row]
         cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
         cell.gesturePublisher(.tap())

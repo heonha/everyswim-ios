@@ -1,5 +1,5 @@
 //
-//  ImageSliderCell.swift
+//  RecommandCollectionCell.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/9/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MediaCollectionCell: UICollectionViewListCell, ReuseableObject {
+class RecommandCollectionCell: UICollectionViewListCell, ReuseableObject {
     
     static let reuseId: String = "MediaCollectionCell"
     

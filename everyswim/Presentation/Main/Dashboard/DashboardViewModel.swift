@@ -33,7 +33,7 @@ final class DashboardViewModel: ObservableObject {
 
     // MARK: Recommand Model
     /// 추천 수영 영상 데이터
-    @Published private(set) var recommandVideos = [MediaCollectionData]()
+    @Published private(set) var recommandVideos = [VideoCollectionData]()
     
     /// 추천 커뮤니티 데이터
     @Published private(set) var recommandCommunities = [CommunityCollectionData]()

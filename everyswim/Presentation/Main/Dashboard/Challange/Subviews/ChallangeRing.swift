@@ -11,7 +11,7 @@ import SwiftUI
 struct ChallangeRing: Identifiable {
     
     let id = UUID()
-    let type: WorkoutRecordType
+    let type: ChallangeRecordType
     let count: Double
     let maxCount: Double
     
@@ -84,15 +84,5 @@ struct ChallangeRing: Identifiable {
         }
         
     }
-    
 
 }
-
-// #if DEBUG
-// struct ChallangeRing_Previews: PreviewProvider {
-//     
-//     static var previews: some View {
-//         ChallangeRingView(rings: .constant(TestObjects.rings))
-//     }
-// }
-// #endif
