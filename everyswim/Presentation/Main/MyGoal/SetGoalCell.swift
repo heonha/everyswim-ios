@@ -27,7 +27,7 @@ struct SetGoalText {
     let unit: String
 }
 
-final class SetGoalCell: UICollectionViewCell, ReuseableCell, CombineCancellable {
+final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     static var reuseId: String = "SetGoalCell"

@@ -22,18 +22,21 @@ final class DashboardViewModel: ObservableObject {
         ChallangeRing(type: .lap, count: 0, maxCount: 1),
         ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
     ]
-        
-    var slideData: [ImageSliderData] = [
-        ImageSliderData(imageName: "ad-sample1", title: "수영초보 탈출하기", subtitle: "초보자에 알맞는 플레이리스트를 확인해보세요!"),
-        ImageSliderData(imageName: "ad-sample2", title: "타이틀", subtitle: "서브타이틀 입니다."),
-        ImageSliderData(imageName: "ad-sample3", title: "타이틀", subtitle: "서브타이틀 입니다.")
-    ]
     
+    
+    // MARK: Swimming Model
     @Published private(set) var swimRecords: [SwimMainData]
     @Published private(set) var rings: [ChallangeRing] = []
+    @Published private(set) var lastWorkout: SwimMainData?
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
-    @Published private(set) var lastWorkout: SwimMainData?
+
+    // MARK: Recommand Model
+    /// 추천 수영 영상 데이터
+    @Published private(set) var recommandVideos = [MediaCollectionData]()
+    
+    /// 추천 커뮤니티 데이터
+    @Published private(set) var recommandCommunities = [CommunityCollectionData]()
     
     init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
@@ -46,10 +49,6 @@ final class DashboardViewModel: ObservableObject {
         }
 
         self.fetchRingData()
-    }
-    
-    deinit {
-        self.cancellables = []
     }
     
     func getLastWorkout() {

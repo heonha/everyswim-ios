@@ -8,10 +8,12 @@
 import UIKit
 import SnapKit
 import Combine
+import SDWebImage
 
 final class DashboardViewController: UIViewController, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
+    
     private let viewModel: DashboardViewModel
     
     // MARK: Properties
@@ -41,13 +43,15 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
     
-    /// 하단 이미지 슬라이더
-    private let imageSlider = ImageSliderView()
+    /// 미디어 슬라이더
+    private var sections = MediaSection.allCases
+    private lazy var mediaCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createBasicListLayout())
     
     // MARK: - Init & LifeCycles
     init(viewModel: DashboardViewModel? = nil) {
         self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())
         super.init(nibName: nil, bundle: nil)
+
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +64,6 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         configure()
         layout()
         bind()
-        slideTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,23 +106,26 @@ extension DashboardViewController {
     
     // MARK: Configures
     private func configure() {
-        configureImageSlider()
-        configurePageController()
+        configureMediaSlider()
     }
     
-    private func configureImageSlider() {
-        imageSlider.dataSource = self
-        imageSlider.delegate = self
-        imageSlider.register(ImageSliderCell.self,
-                             forCellWithReuseIdentifier: "ImageSliderCell")
-    }
-    
-    private func configurePageController() {
-        pageController.currentPage = 0
-        pageController.numberOfPages = viewModel.slideData.count
+    private func configureMediaSlider() {
 
+        mediaCollectionView.register(MediaCollectionViewHeader.self,
+                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                     withReuseIdentifier: MediaCollectionViewHeader.reuseId)
+        
+        mediaCollectionView.dataSource = self
+        mediaCollectionView.delegate = self
+        mediaCollectionView.register(MediaCollectionCell.self,
+                               forCellWithReuseIdentifier: MediaCollectionCell.reuseId)
+        
+        mediaCollectionView.backgroundColor = .white
+        mediaCollectionView.showsVerticalScrollIndicator = false
+        mediaCollectionView.showsHorizontalScrollIndicator = false
+        mediaCollectionView.isPagingEnabled = true
+        
     }
-   
     
     // MARK: Layout
     private func layout() {
@@ -162,7 +168,6 @@ extension DashboardViewController {
     
     private func recentRecordViewLayout(contentView: UIView, spacing: CGFloat) {
         contentView.addSubview(recentRecordView)
-        contentView.addSubview(pageController)
 
         recentRecordView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(spacing)
@@ -176,6 +181,7 @@ extension DashboardViewController {
     
     private func challangeViewsLayout(contentView: UIView, spacing: CGFloat) {
         contentView.addSubview(challangeViews)
+        
         challangeViews.snp.makeConstraints { make in
             make.top.equalTo(recentRecordView.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView).offset(20)
@@ -186,19 +192,16 @@ extension DashboardViewController {
     
     private func imageSliderViewsLayout(contentView: UIView, spacing: CGFloat) {
         
-        contentView.addSubview(imageSlider)
+        contentView.addSubview(mediaCollectionView)
+        contentView.addSubview(pageController)
 
-        imageSlider.snp.makeConstraints { make in
+        mediaCollectionView.isScrollEnabled = false
+        
+        mediaCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
-            make.height.equalTo(200)
-        }
-        
-        pageController.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(imageSlider).inset(20)
-            make.bottom.equalTo(imageSlider).inset(20)
-            make.height.equalTo(40)
+            make.height.equalTo(500)
         }
 
     }
@@ -207,74 +210,92 @@ extension DashboardViewController {
         challangeViews.startCircleAnimation()
     }
     
-    private func slideTimer() {
-        Timer
-            .publish(every: 3, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                if counter < self.viewModel.slideData.count {
-                    let index = IndexPath(item: counter, section: 0)
-                    self.imageSlider.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-                    self.pageController.currentPage = counter
-                    counter += 1
-                } else {
-                    counter = 0
-                    let index = IndexPath(item: counter, section: 0)
-                    self.imageSlider.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-                    self.pageController.currentPage = counter
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
 }
 
-// MARK: SliderView Delegate, DataSource
+// MARK: - SliderView Delegate, DataSource
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    /// `레이아웃` 생성
+    func createBasicListLayout() -> UICollectionViewLayout {
+        let section = createSectionLayout()
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+
+    /// `레이아웃` 섹션 생성
+    private func createSectionLayout() -> NSCollectionLayoutSection {
+        
+        // Item
+        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalWidth(0.45))
+        let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 20)
+        
+        // Group
+        // FIXME: 16.0+ 에서 vertical (layoutSize:, subitem:, count:) deprecated됨
+        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize,
+                                                       subitem: item,
+                                                       count:1)
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = createSectionHeader()
+        return section
+    }
+    
+    /// 섹션 `헤더` 생성
+    private func createSectionHeader() -> [NSCollectionLayoutBoundarySupplementaryItem] {
+        typealias SupplementaryHeader = NSCollectionLayoutBoundarySupplementaryItem
+        
+        let headers = [
+            SupplementaryHeader(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                                   heightDimension: .absolute(50)),
+                                elementKind: UICollectionView.elementKindSectionHeader,
+                                alignment: .top)
+        ]
+        return headers
+    }
+    
+        
+    /// 섹션 `헤더 View 구성`
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
+        
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MediaCollectionViewHeader.reuseId, for: indexPath) as? MediaCollectionViewHeader else {return UICollectionReusableView() }
+        
+        let section = sections[0]
+        let titleString = section.title
+        header.configure(with: titleString)
+        
+        return header
+    }
+
+    /// `섹션별 아이템 수` 정의
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.slideData.count
+        return viewModel.recommandVideos.count
     }
     
+    /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCell", for: indexPath) as? ImageSliderCell else { return UICollectionViewCell() }
-        let data = viewModel.slideData[indexPath.row]
-        cell.imageView.image = UIImage(named: data.imageName)
-        cell.titleLabel.text = data.title
-        cell.subtitleLabel.text = data.subtitle
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionCell.reuseId, for: indexPath) as? MediaCollectionCell else { return UICollectionViewCell() }
+        let data = viewModel.recommandVideos[indexPath.row]
+        cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
+        cell.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                let url = URL.init(string: data.mediaUrl)!
+                UIApplication.shared.open(url)
+            }
+            .store(in: &cancellables)
+        
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        return false
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return false
     }
 
-}
-
-extension DashboardViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width,
-                      height: collectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-    
 }
 
 #if DEBUG

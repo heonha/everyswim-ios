@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class ImageSliderCell: UICollectionViewListCell {
+class MediaCollectionCell: UICollectionViewListCell, ReuseableObject {
+    
+    static let reuseId: String = "MediaCollectionCell"
     
     var titleLabel = ViewFactory
         .label("")
@@ -27,7 +29,7 @@ class ImageSliderCell: UICollectionViewListCell {
     var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)
 
-        iv.layer.cornerRadius = 16
+        iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         return iv
@@ -47,14 +49,14 @@ class ImageSliderCell: UICollectionViewListCell {
     
     private func layout() {
         
-        self.addSubview(imageView)
-        imageView.addSubview(foregroundLayer)
-        imageView.addSubview(labelVStack)
-
+        contentView.addSubview(imageView)
+        contentView.addSubview(labelVStack)
         
+        imageView.addSubview(foregroundLayer)
         imageView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.height.equalToSuperview().inset(4)
+            make.width.equalTo(320)
+            make.height.equalTo(180)
+            make.top.equalToSuperview().inset(4)
         }
         
         foregroundLayer.snp.makeConstraints { make in
@@ -62,10 +64,9 @@ class ImageSliderCell: UICollectionViewListCell {
         }
         
         labelVStack.snp.makeConstraints { make in
-            make.leading.equalTo(imageView).offset(8)
             make.top.equalTo(imageView).offset(8)
-            make.trailing.equalTo(imageView).offset(-8)
-
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.bottom.equalTo(self.contentView)
         }
         
     }

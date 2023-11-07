@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RecordMediumCell: UITableViewCell, ReuseableCell {
+final class RecordMediumCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "SwimRecordMediumCell"
     

@@ -45,14 +45,11 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         .distribution(.fillProportionally)
     
     private lazy var mainVStack = ViewFactory.vStack()
-        .addSubviews([segmentControl, recordMainStack, graphView])
+        .addSubviews([segmentControl, recordMainStack])
         .spacing(30)
         .alignment(.center)
         .distribution(.fillProportionally)
-    
-    // 주간 그래프
-    private lazy var graphView = DGChartView(viewModel: viewModel)
-    
+        
     private lazy var tableView = BaseTableView()
 
     // 주간 활동
@@ -150,16 +147,11 @@ final class ActivityViewController: UIViewController, CombineCancellable {
             make.width.equalTo(mainVStack).inset(30)
             make.height.equalTo(70)
         }
-        
-        graphView.snp.makeConstraints { make in
-            make.height.equalTo(0)
-            make.width.equalTo(mainVStack).inset(18)
-        }
-        
+       
         contentView.addSubview(activitySectionView)
         
         activitySectionView.snp.makeConstraints { make in
-            make.top.equalTo(graphView.snp.bottom).offset(16)
+            make.top.equalTo(recordHStack.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(contentView)
             make.height.equalTo(50)
         }
