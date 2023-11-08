@@ -11,8 +11,9 @@ struct CommunityCollectionResponse: Codable {
     let community: [CommunityCollectionData]
 }
 
-struct CommunityCollectionData: Codable {
-    let title: String
+struct CommunityCollectionData: Codable, RecommandCollectionProtocol {
+    var title: String?
+    var subtitle: String?
     let description: String
     let url: String
     let imageUrl: String

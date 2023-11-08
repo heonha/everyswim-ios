@@ -26,6 +26,7 @@ final class NetworkService: RestProtocol {
                     urlString baseUrl: String,
                     endPoint: String,
                     parameters: [String : String],
+                    cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
                     returnType: T.Type) -> Future<T, Error> where T: Decodable {
         return Future<T, Error> { [weak self] promise in
             guard let self = self else {
@@ -45,6 +46,7 @@ final class NetworkService: RestProtocol {
                 request = URLRequest(url: url)
                 request.allHTTPHeaderFields = headerType.get()
                 request.httpMethod = HttpMethod.GET.rawValue
+                request.cachePolicy = cachePolicy
                 
             case .POST, .PUT, .DELETE:
                 let urlString = "\(baseUrl)\(endPoint)"
@@ -66,6 +68,8 @@ final class NetworkService: RestProtocol {
                 request.allHTTPHeaderFields = headerType.get()
                 request.httpMethod = HttpMethod.POST.rawValue
                 request.httpBody = httpBody
+                request.cachePolicy = cachePolicy
+
             }
             
             tryDataTaskPublisher(request: request)

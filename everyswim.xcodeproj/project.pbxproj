@@ -107,8 +107,10 @@
 		39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* SwimLapEvent.swift */; };
 		39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* Constant.swift */; };
-		39B0C39A2AAC78F9004E0985 /* RecommandCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* RecommandCollectionCell.swift */; };
+		39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */; };
 		39B0C39C2AAC7DCF004E0985 /* VideoCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C39B2AAC7DCF004E0985 /* VideoCollectionData.swift */; };
+		39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B21F082AFBA32400B5BD2F /* RecommandCollectionProtocol.swift */; };
+		39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B21F0A2AFBA93F00B5BD2F /* CommunityReusableCell.swift */; };
 		39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377402AD2608500F37C27 /* ActivityDatePicker.swift */; };
 		39B377482AD2B27E00F37C27 /* IsHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377472AD2B27E00F37C27 /* IsHidden.swift */; };
 		39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */; };
@@ -246,8 +248,10 @@
 		39A606A52A6D12C900049B5A /* SwimLapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapEvent.swift; sourceTree = "<group>"; };
 		39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkoutEventType+Extension.swift"; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		39B0C3992AAC78F9004E0985 /* RecommandCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandCollectionCell.swift; sourceTree = "<group>"; };
+		39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandVideoReusableCell.swift; sourceTree = "<group>"; };
 		39B0C39B2AAC7DCF004E0985 /* VideoCollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionData.swift; sourceTree = "<group>"; };
+		39B21F082AFBA32400B5BD2F /* RecommandCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandCollectionProtocol.swift; sourceTree = "<group>"; };
+		39B21F0A2AFBA93F00B5BD2F /* CommunityReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityReusableCell.swift; sourceTree = "<group>"; };
 		39B377402AD2608500F37C27 /* ActivityDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDatePicker.swift; sourceTree = "<group>"; };
 		39B377472AD2B27E00F37C27 /* IsHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHidden.swift; sourceTree = "<group>"; };
 		39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -359,7 +363,6 @@
 			children = (
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
-				393351572AFA5B810014D37A /* RecommandDataService.swift */,
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
 				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
@@ -455,6 +458,7 @@
 				398665212AFA492F00BBD7FE /* RecommandSection.swift */,
 				39B0C39B2AAC7DCF004E0985 /* VideoCollectionData.swift */,
 				393351542AFA57F90014D37A /* CommunityCollectionData.swift */,
+				39B21F082AFBA32400B5BD2F /* RecommandCollectionProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -667,8 +671,10 @@
 		39B0C3962AAC6FBE004E0985 /* RecommandCollection */ = {
 			isa = PBXGroup;
 			children = (
-				39B0C3992AAC78F9004E0985 /* RecommandCollectionCell.swift */,
 				39D472612AF9096000A153CA /* RecommandCollectionViewHeader.swift */,
+				393351572AFA5B810014D37A /* RecommandDataService.swift */,
+				39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */,
+				39B21F0A2AFBA93F00B5BD2F /* CommunityReusableCell.swift */,
 				393351562AFA58080014D37A /* Model */,
 			);
 			path = RecommandCollection;
@@ -909,11 +915,13 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
 				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
+				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				39B0C39C2AAC7DCF004E0985 /* VideoCollectionData.swift in Sources */,
 				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
+				39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
 				39D472622AF9096000A153CA /* RecommandCollectionViewHeader.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
@@ -973,7 +981,7 @@
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
-				39B0C39A2AAC78F9004E0985 /* RecommandCollectionCell.swift in Sources */,
+				39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				393BDF5A2AF780FB0060AE58 /* BarChallengeCell.swift in Sources */,
 				390C61902AF3B9FF0061E6D4 /* UserData.swift in Sources */,

@@ -22,7 +22,13 @@ final class RecommandDataService: CombineCancellable {
     
     // 추천 영상 API호출 -> 데이터 반환
     func fetchVideo(completion: @escaping ([VideoCollectionData]) -> Void) {
-        networkService.request(method: .GET, headerType: .applicationJson, urlString: baseUrl, endPoint: "/sources/video.json", parameters: [:], returnType: VideoCollectionResponse.self)
+        networkService.request(method: .GET, 
+                               headerType: .applicationJson,
+                               urlString: baseUrl,
+                               endPoint: "/sources/video.json", 
+                               parameters: [:],
+                               cachePolicy: .reloadIgnoringCacheData,
+                               returnType: VideoCollectionResponse.self)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -43,7 +49,13 @@ final class RecommandDataService: CombineCancellable {
     
     // 추천 영상 API호출 -> 데이터 반환
     func fetchCommunity(completion: @escaping ([CommunityCollectionData]) -> Void) {
-        networkService.request(method: .GET, headerType: .applicationJson, urlString: baseUrl, endPoint: "/sources/community.json", parameters: [:], returnType: CommunityCollectionResponse.self)
+        networkService.request(method: .GET, 
+                               headerType: .applicationJson,
+                               urlString: baseUrl,
+                               endPoint: "/sources/community.json",
+                               parameters: [:],
+                               cachePolicy: .reloadIgnoringCacheData,
+                               returnType: CommunityCollectionResponse.self)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

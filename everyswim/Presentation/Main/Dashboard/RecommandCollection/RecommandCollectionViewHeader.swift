@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableObject {
     
@@ -13,11 +14,25 @@ class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableObject {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.font = .custom(.sfProBold, size: 18)
         label.textColor = .label
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         return label
     }()
+    
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .custom(.sfProMedium, size: 14)
+        label.textColor = AppUIColor.secondaryLabel
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private lazy var vstack = ViewFactory.vStack()
+        .addSubviews([titleLabel, subtitleLabel])
+        .alignment(.leading)
+        .distribution(.fillProportionally)
+        .spacing(4)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,15 +45,17 @@ class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableObject {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
+        addSubview(vstack)
+        vstack.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self)
             make.horizontalEdges.equalTo(self).inset(20)
         }
+
     }
     
-    func configure(with title: String) {
+    func configure(title: String, subtitle: String) {
         titleLabel.text = title
+        subtitleLabel.text = subtitle
     }
     
 }

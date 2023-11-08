@@ -43,9 +43,20 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
     
-    /// 미디어 슬라이더
+    
+    // MARK: Recommand Collection View
+    /// 섹션
     private var sections = RecommandSection.allCases
-    private lazy var mediaCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createBasicListLayout())
+    
+    /// 추천 CollectionView 초기화
+    private lazy var recommandCollectionView: UICollectionView = {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
+            self.createBasicListLayout(section: sectionIndex)
+        }
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
     
     // MARK: - Init & LifeCycles
     init(viewModel: DashboardViewModel? = nil) {
@@ -86,8 +97,9 @@ extension DashboardViewController {
         viewModel.$recommandVideoSuccessed.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 if value {
-                    // self?.mediaCollectionView.reloadSections(.init(integer: 0))
                     print("추천 영상 완료")
+                    self?.recommandCollectionView.reloadData()
+        
                 }
             }
             .store(in: &cancellables)
@@ -97,8 +109,8 @@ extension DashboardViewController {
         viewModel.$recommandCommunitySuccessed.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 if value {
-                    // self?.mediaCollectionView.reloadSections(.init(integer: 1))
                     print("추천 커뮤니티 완료")
+                    self?.recommandCollectionView.reloadData()
                 }
             }
             .store(in: &cancellables)
@@ -135,19 +147,21 @@ extension DashboardViewController {
     
     private func configureMediaSlider() {
 
-        mediaCollectionView.register(RecommandCollectionViewHeader.self,
+        recommandCollectionView.register(RecommandCollectionViewHeader.self,
                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                      withReuseIdentifier: RecommandCollectionViewHeader.reuseId)
         
-        mediaCollectionView.dataSource = self
-        mediaCollectionView.delegate = self
-        mediaCollectionView.register(RecommandCollectionCell.self,
-                               forCellWithReuseIdentifier: RecommandCollectionCell.reuseId)
-        
-        mediaCollectionView.backgroundColor = .white
-        mediaCollectionView.showsVerticalScrollIndicator = false
-        mediaCollectionView.showsHorizontalScrollIndicator = false
-        mediaCollectionView.isPagingEnabled = true
+        recommandCollectionView.dataSource = self
+        recommandCollectionView.delegate = self
+        recommandCollectionView.register(RecommandVideoReusableCell.self,
+                               forCellWithReuseIdentifier: RecommandVideoReusableCell.reuseId)
+        recommandCollectionView.register(CommunityReusableCell.self,
+                               forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
+
+        recommandCollectionView.backgroundColor = .white
+        recommandCollectionView.showsVerticalScrollIndicator = false
+        recommandCollectionView.showsHorizontalScrollIndicator = false
+        recommandCollectionView.isPagingEnabled = true
         
     }
     
@@ -216,12 +230,11 @@ extension DashboardViewController {
     
     private func imageSliderViewsLayout(contentView: UIView, spacing: CGFloat) {
         
-        contentView.addSubview(mediaCollectionView)
+        contentView.addSubview(recommandCollectionView)
         contentView.addSubview(pageController)
 
-        mediaCollectionView.isScrollEnabled = false
-        mediaCollectionView.backgroundColor = .lightGray
-        mediaCollectionView.snp.makeConstraints { make in
+        recommandCollectionView.isScrollEnabled = false
+        recommandCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
@@ -237,35 +250,75 @@ extension DashboardViewController {
     
 }
 
-// MARK: - SliderView Delegate, DataSource
+// MARK: - Recommand CollectionView Configurations
+
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     /// `레이아웃` 생성
-    func createBasicListLayout() -> UICollectionViewLayout {
-        let section = createSectionLayout()
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+    func createBasicListLayout(section: Int) -> NSCollectionLayoutSection {
+        switch section {
+        case 0:
+            return createSectionLayout(height: 170)
+        case 1:
+            return createCommunitySectionLayout(height: 200)
+        default:
+            return createSectionLayout(height: 0)
+        }
     }
 
-    /// `레이아웃` 섹션 생성
-    private func createSectionLayout() -> NSCollectionLayoutSection {
+    /// `추천 영상 레이아웃` 섹션 생성
+    private func createSectionLayout(height: CGFloat) -> NSCollectionLayoutSection {
         
         // Item
-        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalWidth(0.45))
+        let itemWidth = NSCollectionLayoutDimension.fractionalWidth(1.0)
+        let itemHeight = NSCollectionLayoutDimension.fractionalWidth(0.56)
+
+        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: itemWidth,
+                                                    heightDimension: itemHeight)
         let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 20)
         
         // Group
         // FIXME: 16.0+ 에서 vertical (layoutSize:, subitem:, count:) deprecated됨
-        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(1))
+        let groupWidth: NSCollectionLayoutDimension = .fractionalWidth(0.9)
+        let groupHeight: NSCollectionLayoutDimension = .absolute(height)
+
+        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: groupWidth,
+                                                     heightDimension: groupHeight)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize,
                                                        subitem: item,
-                                                       count:1)
+                                                       count: 1)
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = createSectionHeader()
+        section.contentInsets = .init(top: 8, leading: 0, bottom: 44, trailing: 0)
+        return section
+    }
+    
+    /// `추천 커뮤니티 레이아웃` 섹션 생성
+    private func createCommunitySectionLayout(height: CGFloat) -> NSCollectionLayoutSection {
+        
+        // Item
+        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                    heightDimension: .fractionalWidth(0.56))
+        let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 20)
+        
+        // Group
+        // FIXME: 16.0+ 에서 vertical (layoutSize:, subitem:, count:) deprecated됨
+        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                     heightDimension: .absolute(height))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize,
+                                                       subitem: item,
+                                                       count: 1)
+        
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = createSectionHeader()
+        section.contentInsets = .init(top: 8, leading: 0, bottom: 44, trailing: 0)
         return section
     }
     
@@ -273,9 +326,12 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     private func createSectionHeader() -> [NSCollectionLayoutBoundarySupplementaryItem] {
         typealias SupplementaryHeader = NSCollectionLayoutBoundarySupplementaryItem
         
+        let width: NSCollectionLayoutDimension = .fractionalWidth(1.0)
+        let height: NSCollectionLayoutDimension = .estimated(44)
+        
         let headers = [
-            SupplementaryHeader(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                                   heightDimension: .absolute(40)),
+            SupplementaryHeader(layoutSize: NSCollectionLayoutSize(widthDimension: width,
+                                                                   heightDimension: height),
                                 elementKind: UICollectionView.elementKindSectionHeader,
                                 alignment: .top)
         ]
@@ -284,14 +340,15 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
         
     /// 섹션 `헤더 View 구성`
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, 
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
         
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecommandCollectionViewHeader.reuseId, for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
         let section = sections[indexPath.section]
-        let titleString = section.title
-        header.configure(with: titleString)
+        header.configure(title: section.title, subtitle: section.subtitle)
         
         return header
     }
@@ -316,39 +373,28 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch sections[indexPath.section] {
+        // 추천영상
         case .video:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, for: indexPath) as? RecommandVideoReusableCell else { return UICollectionViewCell() }
 
-            let data = viewModel.recommandVideos[indexPath.item]
-            cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
-            print("SETTED: \(data)")
-            cell.gesturePublisher(.tap())
-                .receive(on: DispatchQueue.main)
-                .sink { _ in
-                    let url = URL.init(string: data.url)!
-                    UIApplication.shared.open(url)
-                }
-                .store(in: &cancellables)
+            let cellViewModel = viewModel.recommandVideos[indexPath.item]
+            print("SETTED: \(cellViewModel)")
+            cell.configure(viewModel: cellViewModel)
             return cell
-            
+        
+        // 수영 커뮤니티
         case .community:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandCollectionCell.reuseId, for: indexPath) as? RecommandCollectionCell else { return UICollectionViewCell() }
-            let data = viewModel.recommandCommunities[indexPath.item]
-            cell.imageView.sd_setImage(with: URL(string: data.imageUrl)!)
-            print("SETTED: \(data)")
-            cell.gesturePublisher(.tap())
-                .receive(on: DispatchQueue.main)
-                .sink { _ in
-                    let url = URL.init(string: data.url)!
-                    UIApplication.shared.open(url)
-                }
-                .store(in: &cancellables)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityReusableCell.reuseId, for: indexPath) as? CommunityReusableCell else { return UICollectionViewCell() }
+            
+            let cellViewModel = viewModel.recommandCommunities[indexPath.item]
+            cell.configure(viewModel: cellViewModel)
+            print("SETTED: \(cellViewModel)")
             return cell
         }
-        
 
     }
     
+    // Cell 선택 가능여부
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return false
     }

@@ -11,7 +11,9 @@ struct VideoCollectionResponse: Codable {
     let video: [VideoCollectionData]
 }
 
-struct VideoCollectionData: Codable {
+struct VideoCollectionData: Codable, RecommandCollectionProtocol {
+    var title: String?
+    var subtitle: String?
     let id: String
     let type: String
     let url: String
