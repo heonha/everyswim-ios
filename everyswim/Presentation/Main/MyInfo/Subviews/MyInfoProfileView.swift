@@ -19,7 +19,7 @@ final class MyInfoProfileView: UIView {
     private lazy var profileTitle = ViewFactory
         .label("Heon Ha")
         .font(.custom(.sfProBold, size: 20))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
     
     private lazy var profileEmailBackground = ViewFactory.hStack()
         .addSubviews([UIView.spacer(),

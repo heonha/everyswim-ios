@@ -14,7 +14,7 @@ final class MyInfoHeaderView: UIView {
     
     private var swimYearsLabel = ViewFactory.label("수력 4년차")
         .font(.custom(.sfProBold, size: 12))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
     
     private lazy var swimYearsView = UIView()
         .cornerRadius(6)
@@ -25,7 +25,7 @@ final class MyInfoHeaderView: UIView {
     private lazy var imageView = UIImageView()
         .contentMode(.scaleAspectFit)
         .setSymbolImage(systemName: "pencil",
-                        color: UIColor(hex: "7E7E7E"))
+                        color: AppUIColor.secondaryLabel)
         .disableUserInteraction(true)
     
     private lazy var editProfile = UIButton()

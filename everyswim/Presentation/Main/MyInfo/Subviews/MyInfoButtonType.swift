@@ -56,7 +56,7 @@ enum MyInfoButtonType: CaseIterable {
     
     func presentType() -> PresentType {
         switch self {
-        case .syncHealth:
+        case .syncHealth, .editChallange:
             return .modalView
         default:
             return .navigationLink

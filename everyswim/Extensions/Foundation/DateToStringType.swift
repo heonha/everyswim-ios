@@ -68,7 +68,7 @@ enum DateToStringType {
         case .dayDotMonth:
             return "M.dd"
         case .fullDotDate:
-            return "YYYY. M. dd"
+            return "YYYY. M. d (E)"
         case .weekDay:
             return "EEEE"
         case .month:

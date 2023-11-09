@@ -8,36 +8,30 @@
 import UIKit
 import SnapKit
 
-final class RecordMediumCell: UITableViewCell, ReuseableCell {
+final class RecordMediumCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "SwimRecordMediumCell"
     
     private lazy var mainVStack = ViewFactory.vStack()
         .addSubviews([profileStackView, recordStackView])
+        .distribution(.fillProportionally)
         .spacing(10)
     
     // MARK: - Profile Stack
     private lazy var profileStackView = ViewFactory
         .hStack()
         .addSubviews([profileImageView, titleLabels])
+        .alignment(.top)
         .spacing(10)
         
     private lazy var profileImageView: UIImageView =  {
-        let profileImage = UIImage(named: "everyswim")
+        let profileImage = UIImage(systemName: "figure.pool.swim")
         
         let imageView = UIImageView()
-            .contentMode(.scaleAspectFill)
+            .contentMode(.scaleAspectFit)
             .setImage(profileImage)
             .cornerRadius(4) as! UIImageView
-        
-        let blackScale = UIView()
-        blackScale.backgroundColor = .black
-        blackScale.alpha = 0.3
-        imageView.addSubview(blackScale)
-        
-        blackScale.snp.makeConstraints { make in
-            make.edges.equalTo(imageView)
-        }
+
         return imageView
     }()
     
@@ -51,28 +45,30 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     private lazy var dateLabel = ViewFactory
         .label("0000-00-00")
-        .font(.custom(.sfProLight, size: 14))
+        .font(.custom(.sfProMedium, size: 15))
+        .textAlignemnt(.right)
         .foregroundColor(.secondaryLabel)
         .adjustsFontSizeToFitWidth()
 
     private lazy var durationTimeLabel = ViewFactory
-        .label("0000-00-00")
+        .label("오전 00:00 ~ 오전 00:00")
         .font(.custom(.sfProLight, size: 14))
+        .textAlignemnt(.right)
         .foregroundColor(.secondaryLabel)
         .adjustsFontSizeToFitWidth()
 
     private lazy var workoutTitleLabel = ViewFactory
-        .label("월요일 오전 수영")
+        .label("")
         .font(.custom(.sfProLight, size: 15))
-        .foregroundColor(.label)
+        .foregroundColor(AppUIColor.label)
 
     // MARK: - Bottom Stack (Records)
     private lazy var recordStackView = ViewFactory
         .hStack()
         .addSubviews([leftLabel, 
-                      UIView.divider(width: 1, height: 30),
+                      UIView.divider(width: 0.5, height: 30),
                       centerLabel,
-                      UIView.divider(width: 1, height: 30),
+                      UIView.divider(width: 0.5, height: 30),
                       rightLabel])
         .distribution(.fillProportionally)
         .alignment(.center)
@@ -81,13 +77,13 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     /// 거리
     private lazy var leftLabel = ViewFactory
         .label("--- m")
-        .font(.custom(.sfProBold, size: 24))
+        .font(.custom(.sfProBold, size: 20))
         .textAlignemnt(.center)
     
     /// 칼로리
     private lazy var centerLabel = ViewFactory
         .label("-- kcal")
-        .font(.custom(.sfProBold, size: 24))
+        .font(.custom(.sfProBold, size: 20))
         .textAlignemnt(.center)
         .contentHuggingPriority(.init(rawValue: 251), for: .horizontal) as! UILabel
 
@@ -96,11 +92,6 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
         .label("-- 분")
         .font(.custom(.sfProBold, size: 20))
         .textAlignemnt(.center)
-
-    private lazy var rightArrowImage = UIImageView()
-        .setSymbolImage(systemName: "chevron.right", color: AppUIColor.grayTint)
-        .contentMode(.scaleAspectFit)
-    
     
     // MARK: - Init
     private var data: SwimMainData! {
@@ -137,29 +128,30 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     private func layout() {
         contentView.addSubview(mainVStack)
-        contentView.addSubview(rightArrowImage)
 
         contentView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(18)
             make.top.equalToSuperview().inset(6)
-            make.bottom.equalToSuperview().inset(6)
+            make.bottom.equalToSuperview().inset(4)
+        }
+
+        mainVStack.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView).inset(18)
+            make.verticalEdges.equalTo(contentView).inset(12)
+            make.center.equalTo(contentView)
         }
         
-        mainVStack.snp.makeConstraints { make in
-            make.edges.equalTo(contentView).inset(18)
-            make.center.equalTo(contentView)
+        profileImageView.snp.makeConstraints { make in
+            make.size.equalTo(40)
+        }
+        recordStackView.snp.makeConstraints { make in
+            make.height.equalTo(36)
         }
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(50)
         }
-        
-        rightArrowImage.snp.makeConstraints { make in
-            make.trailing.equalTo(contentView).inset(14)
-            make.centerY.equalTo(contentView)
-            make.size.equalTo(18)
-        }
-        
+
     }
     
     public func setData(_ data: SwimMainData) {
@@ -171,29 +163,27 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     }
     
     private func updateUI(from data: SwimMainData) {
-        self.dateLabel.text = data.startDate.toString(.dateKr)
+        self.dateLabel.text = data.startDate.toString(.fullDotDate)
         
         let distance = data.distanceString
         leftLabel.text = distance
         leftLabel.setSecondaryAttributeText(separate: "m",
-                                            font: .custom(.sfProBold, size: 16),
+                                            font: .custom(.sfProBold, size: 14),
                                             color: AppUIColor.grayTint)
         
         centerLabel.text = data.totalKcalString
         centerLabel.setSecondaryAttributeText(separate: "kcal",
-                                            font: .custom(.sfProBold, size: 16),
+                                            font: .custom(.sfProBold, size: 14),
                                             color: AppUIColor.grayTint)
         
-        let weekday = data.startDate.toString(.weekdayTime)
         let durationTime = data.durationTime
 
-        workoutTitleLabel.text = "\(weekday) 수영"
         durationTimeLabel.text = "\(durationTime)"
 
         let duration = data.durationString
         
         let attrDuration = NSMutableAttributedString(string: duration)
-        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: AppUIColor.grayTint, .font: UIFont.custom(.sfProBold, size: 16)]
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: AppUIColor.grayTint, .font: UIFont.custom(.sfProBold, size: 14)]
         attrDuration.addAttributes(attributes, range: (duration as NSString).range(of: "시간"))
         attrDuration.addAttributes(attributes, range: (duration as NSString).range(of: "분"))
         
@@ -210,7 +200,7 @@ struct SwimRecordMediumCell_Previews: PreviewProvider {
         UIViewPreview {
             RecordMediumCell()
         }
-        .frame(width: .infinity, height: 171)
+        .frame(width: .infinity, height: 120)
     }
 }
 #endif

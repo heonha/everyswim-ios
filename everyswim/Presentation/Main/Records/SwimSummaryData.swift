@@ -9,10 +9,12 @@ import Foundation
 
 struct SwimSummaryData {
     
+    let poolName: String = ""
     let count: Int
     let distance: String
     let distanceUnit: String
     let averagePace: String
     let time: String
+    let lap: String
     
 }
