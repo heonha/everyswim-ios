@@ -115,6 +115,16 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        // 로그아웃
+        buttonList.getButton(type: .logout)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.dismiss(animated: true)
+            }
+            .store(in: &cancellables)
+        
+
     }
     
 }

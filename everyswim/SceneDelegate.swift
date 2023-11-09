@@ -17,7 +17,9 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
 
-        let mainVC = MainTabBarController()
+        let authService = AuthService()
+        let signInViewModel = SignInViewModel()
+        let mainVC = SignInViewController(viewModel: signInViewModel, authService: authService)
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }

@@ -82,7 +82,7 @@ extension UIView {
         return self as! T
     }
     
-    public func shadow<T: UIView>(color: UIColor,
+    public func shadow<T: UIView>(color: UIColor = .black,
                                   alpha: Float = 0.5,
                                   x: CGFloat = 0,
                                   y: CGFloat = 0,
