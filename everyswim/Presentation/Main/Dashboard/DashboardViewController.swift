@@ -238,7 +238,7 @@ extension DashboardViewController {
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
-            make.height.equalTo(1000)
+            make.height.equalTo(600)
             make.bottom.equalTo(contentView)
         }
 
