@@ -15,7 +15,6 @@ final class SignInViewController: UIViewController, CombineCancellable {
     
     private let viewModel: SignInViewModel
     private let authService: AuthService
-    
 
     //MARK: - Views
     private let titleLabel = ViewFactory.label("EverySwim")
@@ -107,7 +106,6 @@ final class SignInViewController: UIViewController, CombineCancellable {
             make.center.equalTo(guestSignInButton)
         }
         
-        
         appleSignInButton.snp.makeConstraints { make in
             make.height.equalTo(54)
             make.width.equalTo(signInButtonVStack)
@@ -126,10 +124,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
     
     // MARK: Guest SignIn Button
     private func autoSignIn(animated: Bool) {
-        let mainVC = MainTabBarController(authService: authService)
-        mainVC.modalPresentationStyle = .fullScreen
-        mainVC.modalTransitionStyle = .coverVertical
-        self.present(mainVC, animated: animated)
+        authService.signInForGuest()
     }
     
     // MARK: - Apple SignIn Button
@@ -139,8 +134,6 @@ final class SignInViewController: UIViewController, CombineCancellable {
         return authorizationButton
     }
     
-    
-
 }
 
 // MARK: - Apple SignIn Logics
@@ -214,7 +207,7 @@ import SwiftUI
 struct SignInViewController_Previews: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            SignInViewController(viewModel: .init(), authService: .init())
+            SignInViewController(viewModel: .init(), authService: .shared)
         }
     }
 }

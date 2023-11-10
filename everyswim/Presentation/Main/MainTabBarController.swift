@@ -70,5 +70,5 @@ extension MainTabBarController {
 }
 
 #Preview {
-    MainTabBarController(authService: .init())
+    MainTabBarController(authService: AuthService.shared)
 }
