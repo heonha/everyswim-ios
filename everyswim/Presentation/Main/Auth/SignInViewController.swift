@@ -26,8 +26,8 @@ final class SignInViewController: UIViewController, CombineCancellable {
         .foregroundColor(AppUIColor.secondaryLabel)
         .textAlignemnt(.center)
     
-    private lazy var guestSignInButtonLabel = ViewFactory.label("앱 둘러보기")
-        .font(.custom(.sfProBold, size: 20))
+    private lazy var guestSignInButtonLabel = ViewFactory.label("비로그인으로 계속하기")
+        .font(.custom(.sfProMedium, size: 20))
         .foregroundColor(AppUIColor.label)
         .textAlignemnt(.center)
         .cornerRadius(8)
@@ -77,7 +77,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
     }
     
     private func configure() {
-        
+        self.view.backgroundColor = .systemBackground
     }
     
     private func layout() {
@@ -117,7 +117,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
         guestSignInButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
-                self.autoSignIn(animated: true)
+                self.dismiss(animated: true)
             }
             .store(in: &cancellables)
     }

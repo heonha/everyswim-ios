@@ -7,17 +7,27 @@
 
 import UIKit
 import SnapKit
+import Combine
 
-final class MyInfoProfileView: UIView {
+protocol TargetSendable {
+    var parentViewController: UIViewController? { get set }
+}
+
+final class MyInfoProfileView: UIView, CombineCancellable, TargetSendable {
+    
+    var parentViewController: UIViewController?
+    
+    var cancellables: Set<AnyCancellable> = .init()
     
     private lazy var profileImage = UIImageView()
-        .setImage(.init(named: "Avatar"))
+        .setImage(.init(named: "user")?.withTintColor(.white))
         .contentMode(.scaleAspectFit)
+        .backgroundColor(AppUIColor.secondaryBlue)
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
         .cornerRadius(30)
     
     private lazy var profileTitle = ViewFactory
-        .label("Heon Ha")
+        .label("개발하는 물개")
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(AppUIColor.label)
     
@@ -27,18 +37,21 @@ final class MyInfoProfileView: UIView {
                       UIView.spacer()])
         .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
         .cornerRadius(8)
-    
+        .shadow()
+
     private lazy var profileEmail = ViewFactory
-        .label("heonha@heon.dev")
+        .label("로그인하기")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.secondaryLabel)
     
     private lazy var profileView = ViewFactory
         .vStack(subviews: [profileImage, profileTitle, profileEmailBackground])
+        .spacing(8)
         .distribution(.fill)
         .alignment(.center)
     
-    init() {
+    init(parentVC: UIViewController) {
+        self.parentViewController = parentVC
         super.init(frame: .zero)
         configure()
         layout()
@@ -51,6 +64,7 @@ final class MyInfoProfileView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setSuperViewHeight()
+        observe()
     }
     
 }
@@ -59,6 +73,17 @@ extension MyInfoProfileView {
     
     private func configure() {
         
+    }
+    
+    private func observe() {
+        self.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                let signInVC = SignInViewController(viewModel: .init(), authService: .shared)
+                signInVC.modalPresentationStyle = .fullScreen
+                self.parentViewController?.present(signInVC, animated: true)
+            }
+            .store(in: &cancellables)
     }
     
     private func layout() {
@@ -74,7 +99,7 @@ extension MyInfoProfileView {
         }
         
         profileEmail.snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(24)
+            make.height.equalTo(24)
             make.horizontalEdges.equalTo(profileEmailBackground).inset(12)
         }
         
@@ -95,8 +120,9 @@ import SwiftUI
 struct MyInfoProfileView_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView()
+            MyInfoProfileView(parentVC: .init())
         }
+        .frame(height: 150)
     }
 }
 #endif

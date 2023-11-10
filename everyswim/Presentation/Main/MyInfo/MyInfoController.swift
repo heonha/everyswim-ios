@@ -18,7 +18,7 @@ final class MyInfoController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
-    private lazy var profileView = MyInfoProfileView()
+    private lazy var profileView = MyInfoProfileView(parentVC: self)
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
     

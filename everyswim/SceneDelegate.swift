@@ -19,19 +19,8 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         window?.backgroundColor = .white
 
         let authService = AuthService.shared
-
-        if authService.isSignIn {
-            let mainVC = MainTabBarController(authService: authService)
-            window?.rootViewController = mainVC
-            window?.makeKeyAndVisible()
-        } else {
-            // 비로그인
-            let signInViewModel = SignInViewModel()
-            let mainVC = SignInViewController(viewModel: signInViewModel, authService: authService)
-            window?.rootViewController = mainVC
-            window?.makeKeyAndVisible()
-        }
-        
+        let mainVC = MainTabBarController(authService: authService)
+        window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
     
