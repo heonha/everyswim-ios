@@ -9,10 +9,13 @@ import UIKit
 import SnapKit
 import Combine
 import AuthenticationServices
+import CryptoKit
+import FirebaseAuth
 
 final class SignInViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
+    private let appleSignService: AppleSignService
     private let viewModel: SignInViewModel
     private let authService: AuthService
 
@@ -52,9 +55,10 @@ final class SignInViewController: UIViewController, CombineCancellable {
 
     
     // MARK: - Init & LC
-    init(viewModel: SignInViewModel, authService: AuthService) {
+    init(viewModel: SignInViewModel, authService: AuthService, appleSignInService: AppleSignService = .init()) {
         self.viewModel = viewModel
         self.authService = authService
+        self.appleSignService = appleSignInService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -130,7 +134,9 @@ final class SignInViewController: UIViewController, CombineCancellable {
     // MARK: - Apple SignIn Button
     func makeAppleSignInButton() -> ASAuthorizationAppleIDButton {
         let authorizationButton = ASAuthorizationAppleIDButton()
-        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        authorizationButton.addTarget(self, 
+                                      action: #selector(handleAuthorizationAppleIDButtonPress),
+                                      for: .touchUpInside)
         return authorizationButton
     }
     
@@ -142,62 +148,52 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     /// 애플 로그인 Request 구성
     @objc
     private func handleAuthorizationAppleIDButtonPress() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-
+        let request = appleSignService.createSignInRequest()
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
-
     
     /// Apple Login Modal 불러오기
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
     
+    /// Apple Login Request
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-            
-        // 계정 생성
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            
-            print("userIdentifier: \(userIdentifier), fullName: \(fullName!), email: \(email!)")
-            viewModel.saveUserInKeychain(userIdentifier)
-                    
-        // iCloud Keychain
-        case let passwordCredential as ASPasswordCredential:
-        
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            DispatchQueue.main.async {
-                print("username: \(username), password: \(password)")
+        appleSignService.signIn(authorization: authorization) { result in
+            switch result {
+            case .success(_):
+                print("로그인 성공")
+                let alertController = UIAlertController(title: "로그인 성공", 
+                                                        message: "\(AuthService.shared.getEmail() ?? "알수없는 이메일")",
+                                                        preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default) { _ in
+                    self.dismiss(animated: true)
+                }
+                alertController.addAction(action)
+                self.present(alertController, animated: true)
+
+            case .failure(let error):
+                print(error)
             }
-            
-        default:
-            break
         }
     }
     
     /// 애플 로그인 오류 처리
     func authorizationController(controller: ASAuthorizationController, 
                                  didCompleteWithError error: Error) {
+        
         print("Apple SignIn Error \(error.localizedDescription)")
         let alertController = UIAlertController(title: "로그인 오류", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        
         self.present(alertController, animated: true) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self.dismiss(animated: true)
             }
         }
     }
-    
-    
     
 }
 

@@ -6,33 +6,70 @@
 //
 
 import Foundation
+import AuthenticationServices
+import FirebaseAuth
 
-final class AppleSignService: SignInable {
+final class AppleSignService {
     
-    func signIn() {
-        
+    // MARK: Constant
+    private struct Constant {
+        static let appleUserIdentifierKey = "appleUserIdentifierKey"
     }
     
-    private func randomNonceString(length: Int = 32) -> String {
-      precondition(length > 0)
-      var randomBytes = [UInt8](repeating: 0, count: length)
-      let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
-      if errorCode != errSecSuccess {
-        fatalError(
-          "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-        )
-      }
+    // MARK: Services
+    private let fbCredentialService: FBCredentialService
+    private let keychainService: KeyChainService
 
-      let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-
-      let nonce = randomBytes.map { byte in
-        // Pick a random character from the set, wrapping around if needed.
-        charset[Int(byte) % charset.count]
-      }
-
-      return String(nonce)
+    // Nonce
+    fileprivate var currentNonce: String?
+    
+    // MARK: - Init
+    init(currentNonce: String? = nil, fbCredentialService: FBCredentialService = .init(), keychainService: KeyChainService = .init()) {
+        self.fbCredentialService = fbCredentialService
+        self.keychainService = keychainService
+        self.currentNonce = currentNonce
+    }
+    
+    
+    func createSignInRequest() -> ASAuthorizationAppleIDRequest {
+        let nonce = fbCredentialService.randomNonceString()
+        currentNonce = nonce
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = fbCredentialService.sha256(nonce)
+        
+        return request
+    }
+    
+    func signIn(authorization: ASAuthorization, completion: @escaping(Result<Void, Error>) -> Void) {
+        
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let nonce = currentNonce else {
+                completion(.failure(SignInError.invalidNounce))
+                return
+            }
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                completion(.failure(SignInError.failFetchToken))
+                return
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                completion(.failure(SignInError.failTokenPasing(message: appleIDToken.debugDescription)))
+                return
+            }
+            
+            let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                           rawNonce: nonce,
+                                                           fullName: appleIDCredential.fullName)
+            
+            fbCredentialService.firebaseLogin(with: credential) { result in
+                completion(result)
+            }
+            
+        } else {
+            completion(.failure(SignInError.failToFetchAppleIDCredential))
+        }
     }
 
-        
 }

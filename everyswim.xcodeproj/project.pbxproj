@@ -37,6 +37,9 @@
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
 		392457282A545016006E3071 /* HealthKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HealthKitError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
+		392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */; };
+		392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3D92AFE506D00ADAE49 /* SignInError.swift */; };
+		392BF3DC2AFE529800ADAE49 /* FBCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */; };
 		39318E842AFCF0030089AEC4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318E832AFCF0030089AEC4 /* AuthService.swift */; };
 		39318E872AFCF0AF0089AEC4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E862AFCF0AF0089AEC4 /* FirebaseAnalytics */; };
 		39318E892AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E882AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -195,6 +198,9 @@
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
 		392457272A545016006E3071 /* HealthKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
+		392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		392BF3D92AFE506D00ADAE49 /* SignInError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInError.swift; sourceTree = "<group>"; };
+		392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBCredentialService.swift; sourceTree = "<group>"; };
 		39318E832AFCF0030089AEC4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		39318E9E2AFCF13B0089AEC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39318EA02AFCF26F0089AEC4 /* AppleSignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignService.swift; sourceTree = "<group>"; };
@@ -496,6 +502,9 @@
 				39318EA02AFCF26F0089AEC4 /* AppleSignService.swift */,
 				39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */,
 				39318EA22AFCF2C90089AEC4 /* SignInable.swift */,
+				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
+				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
+				392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1039,6 +1048,7 @@
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39CC3DC02AC59BD200C8BC10 /* RecordDetailViewController.swift in Sources */,
+				392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceBigLabel.swift in Sources */,
@@ -1051,12 +1061,14 @@
 				391678FB2AC7F38D00190D35 /* DetailCellLabelType.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
+				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				393351512AFA577E0014D37A /* HttpMethod.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
+				392BF3DC2AFE529800ADAE49 /* FBCredentialService.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,
