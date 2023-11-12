@@ -18,7 +18,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
 
-        let authService = AuthService.shared
+        let authService = AuthManager.shared
         let mainVC = MainTabBarController(authService: authService)
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()

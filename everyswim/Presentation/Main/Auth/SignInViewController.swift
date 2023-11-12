@@ -15,9 +15,7 @@ import FirebaseAuth
 final class SignInViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
-    private let appleSignService: AppleSignService
     private let viewModel: SignInViewModel
-    private let authService: AuthService
 
     //MARK: - Views
     private let titleLabel = ViewFactory.label("EverySwim")
@@ -55,10 +53,8 @@ final class SignInViewController: UIViewController, CombineCancellable {
 
     
     // MARK: - Init & LC
-    init(viewModel: SignInViewModel, authService: AuthService, appleSignInService: AppleSignService = .init()) {
+    init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
-        self.authService = authService
-        self.appleSignService = appleSignInService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,8 +71,8 @@ final class SignInViewController: UIViewController, CombineCancellable {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if authService.isSignIn {
-            autoSignIn(animated: false)
+        if viewModel.isSignIn {
+            viewModel.autoSignIn(animated: false)
         }
     }
     
@@ -126,18 +122,25 @@ final class SignInViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
     }
     
-    // MARK: Guest SignIn Button
-    private func autoSignIn(animated: Bool) {
-        authService.signInForGuest()
-    }
+
     
     // MARK: - Apple SignIn Button
     func makeAppleSignInButton() -> ASAuthorizationAppleIDButton {
         let authorizationButton = ASAuthorizationAppleIDButton()
-        authorizationButton.addTarget(self, 
-                                      action: #selector(handleAuthorizationAppleIDButtonPress),
+        authorizationButton.addTarget(self,
+                                      action: #selector(appleSignInButtonAction),
                                       for: .touchUpInside)
         return authorizationButton
+    }
+    
+    /// 애플 로그인 Request 구성
+    @objc
+    func appleSignInButtonAction() {
+        let request = viewModel.requestAppleSignIn()
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
 }
@@ -145,15 +148,6 @@ final class SignInViewController: UIViewController, CombineCancellable {
 // MARK: - Apple SignIn Logics
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
-    /// 애플 로그인 Request 구성
-    @objc
-    private func handleAuthorizationAppleIDButtonPress() {
-        let request = appleSignService.createSignInRequest()
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
     
     /// Apple Login Modal 불러오기
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
@@ -162,12 +156,12 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     
     /// Apple Login Request
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        appleSignService.signIn(authorization: authorization) { result in
+        viewModel.signInWithApple(authorization: authorization) { result in
             switch result {
             case .success(_):
                 print("로그인 성공")
                 let alertController = UIAlertController(title: "로그인 성공", 
-                                                        message: "\(AuthService.shared.getEmail() ?? "알수없는 이메일")",
+                                                        message: "\(AuthManager.shared.getEmail() ?? "알수없는 이메일")",
                                                         preferredStyle: .alert)
                 let action = UIAlertAction(title: "확인", style: .default) { _ in
                     self.dismiss(animated: true)
@@ -203,7 +197,7 @@ import SwiftUI
 struct SignInViewController_Previews: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            SignInViewController(viewModel: .init(), authService: .shared)
+            SignInViewController(viewModel: .init())
         }
     }
 }

@@ -120,7 +120,7 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                AuthService.shared.signOut()
+                AuthManager.shared.signOut()
             }
             .store(in: &cancellables)
 

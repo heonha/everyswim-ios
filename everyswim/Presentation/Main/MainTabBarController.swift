@@ -10,13 +10,13 @@ import SwiftUI
 
 final class MainTabBarController: UITabBarController {
     
-    private let authService: AuthService
+    private let authService: AuthManager
     private lazy var recordView = ActivityViewController()
     private lazy var dashboardView = DashboardViewController()
     private lazy var myInfoView = MyInfoController()
     private lazy var calendarView = DatePickerController()
 
-    init(authService: AuthService) {
+    init(authService: AuthManager) {
         self.authService = authService
         super.init(nibName: nil, bundle: nil)
     }
@@ -70,5 +70,5 @@ extension MainTabBarController {
 }
 
 #Preview {
-    MainTabBarController(authService: AuthService.shared)
+    MainTabBarController(authService: AuthManager.shared)
 }

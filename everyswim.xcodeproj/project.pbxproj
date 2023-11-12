@@ -39,8 +39,8 @@
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
 		392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */; };
 		392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3D92AFE506D00ADAE49 /* SignInError.swift */; };
-		392BF3DC2AFE529800ADAE49 /* FBCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */; };
-		39318E842AFCF0030089AEC4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318E832AFCF0030089AEC4 /* AuthService.swift */; };
+		392BF3DC2AFE529800ADAE49 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */; };
+		39318E842AFCF0030089AEC4 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318E832AFCF0030089AEC4 /* AuthManager.swift */; };
 		39318E872AFCF0AF0089AEC4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E862AFCF0AF0089AEC4 /* FirebaseAnalytics */; };
 		39318E892AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E882AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		39318E8B2AFCF0AF0089AEC4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E8A2AFCF0AF0089AEC4 /* FirebaseAnalyticsSwift */; };
@@ -54,8 +54,7 @@
 		39318E9B2AFCF0AF0089AEC4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E9A2AFCF0AF0089AEC4 /* FirebaseStorage */; };
 		39318E9D2AFCF0AF0089AEC4 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E9C2AFCF0AF0089AEC4 /* FirebaseStorageCombine-Community */; };
 		39318E9F2AFCF13B0089AEC4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39318E9E2AFCF13B0089AEC4 /* GoogleService-Info.plist */; };
-		39318EA12AFCF26F0089AEC4 /* AppleSignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA02AFCF26F0089AEC4 /* AppleSignService.swift */; };
-		39318EA32AFCF2C90089AEC4 /* SignInable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA22AFCF2C90089AEC4 /* SignInable.swift */; };
+		39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */; };
 		39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA42AFCF8570089AEC4 /* SignInViewController.swift */; };
 		39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */; };
 		39318EA92AFCFACB0089AEC4 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */; };
@@ -200,11 +199,10 @@
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
 		392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		392BF3D92AFE506D00ADAE49 /* SignInError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInError.swift; sourceTree = "<group>"; };
-		392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBCredentialService.swift; sourceTree = "<group>"; };
-		39318E832AFCF0030089AEC4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		39318E832AFCF0030089AEC4 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		39318E9E2AFCF13B0089AEC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		39318EA02AFCF26F0089AEC4 /* AppleSignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignService.swift; sourceTree = "<group>"; };
-		39318EA22AFCF2C90089AEC4 /* SignInable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInable.swift; sourceTree = "<group>"; };
+		39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
 		39318EA42AFCF8570089AEC4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
@@ -498,13 +496,12 @@
 		39318EAA2AFD04D10089AEC4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				39318E832AFCF0030089AEC4 /* AuthService.swift */,
-				39318EA02AFCF26F0089AEC4 /* AppleSignService.swift */,
+				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
+				392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */,
+				39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */,
 				39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */,
-				39318EA22AFCF2C90089AEC4 /* SignInable.swift */,
 				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
 				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
-				392BF3DB2AFE529800ADAE49 /* FBCredentialService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -959,7 +956,7 @@
 				398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
-				39318EA12AFCF26F0089AEC4 /* AppleSignService.swift in Sources */,
+				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
@@ -1037,7 +1034,6 @@
 				39DBB3222AC6EE3C003B5213 /* ActivitySectionView.swift in Sources */,
 				390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
-				39318EA32AFCF2C90089AEC4 /* SignInable.swift in Sources */,
 				39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */,
 				39B377482AD2B27E00F37C27 /* IsHidden.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
@@ -1068,7 +1064,7 @@
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
-				392BF3DC2AFE529800ADAE49 /* FBCredentialService.swift in Sources */,
+				392BF3DC2AFE529800ADAE49 /* FirebaseAuthService.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,
@@ -1076,7 +1072,7 @@
 				39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				393BDF5A2AF780FB0060AE58 /* BarChallengeCell.swift in Sources */,
-				39318E842AFCF0030089AEC4 /* AuthService.swift in Sources */,
+				39318E842AFCF0030089AEC4 /* AuthManager.swift in Sources */,
 				390C61902AF3B9FF0061E6D4 /* UserData.swift in Sources */,
 				39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */,
 				39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */,

@@ -1,21 +1,24 @@
 //
-//  FBCredentialService.swift
+//  FirebaseAuthService.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/10/23.
 //
 
 import Foundation
-import FirebaseAuth
 import CryptoKit
+import FirebaseAuth
 
-class FBCredentialService {
+final class FirebaseAuthService {
         
+    // MARK: - Init
     init() {
         
     }
     
-    func firebaseLogin(with credential: OAuthCredential, completion: @escaping(Result<Void, Error>) -> Void) {
+    // MARK: - Sign In
+    /// Firebase를 통한 로그인 요청
+    func firebaseSignIn(with credential: OAuthCredential, completion: @escaping(Result<Void, Error>) -> Void) {
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -24,17 +27,24 @@ class FBCredentialService {
             
             if let userData = authResult?.user.providerData.first {
                 let userProfile = UserProfile(uid: userData.uid, name: userData.displayName, email: userData.email, providerId: userData.providerID, profileImageUrl: nil)
-                AuthService.shared.signIn(with: userProfile)
+                AuthManager.shared.signIn(with: userProfile)
                 completion(.success(()))
             } else {
                 completion(.failure(SignInError.unknown))
             }
-
-            // 사용자가 Apple로 Firebase에 로그인되어 있습니다.
-            // ...
         }
     }
     
+    /// 캐시된 currentUser 확인
+    func getAuthenticatedUser() throws -> User {
+        guard let currentUser = Auth.auth().currentUser else {
+            throw SignInError.userdataFetchError
+        }
+        return currentUser
+    }
+    
+    
+    // MARK: - Credential
     
     func randomNonceString(length: Int = 32) -> String {
       precondition(length > 0)

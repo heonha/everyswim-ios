@@ -79,7 +79,7 @@ extension MyInfoProfileView {
         self.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                let signInVC = SignInViewController(viewModel: .init(), authService: .shared)
+                let signInVC = SignInViewController(viewModel: .init())
                 signInVC.modalPresentationStyle = .fullScreen
                 self.parentViewController?.present(signInVC, animated: true)
             }

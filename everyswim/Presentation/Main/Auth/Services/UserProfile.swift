@@ -15,4 +15,12 @@ struct UserProfile {
     let providerId: String
     let profileImageUrl: String?
     
+    init(uid: String, name: String?, email: String?, providerId: String, profileImageUrl: String?) {
+        self.uid = uid
+        self.name = name
+        self.email = email
+        self.providerId = providerId
+        self.profileImageUrl = profileImageUrl
+    }
+    
 }
