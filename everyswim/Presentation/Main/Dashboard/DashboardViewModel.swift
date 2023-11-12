@@ -46,7 +46,7 @@ final class DashboardViewModel: ObservableObject {
     
     // MARK: - 유저 정보 가져오기.
     func getUserProfile() -> MyInfoProfile {
-        authManager.getMyInfoProfile()
+        return authManager.getMyInfoProfile()
     }
     
     // MARK: - Init
@@ -64,7 +64,6 @@ final class DashboardViewModel: ObservableObject {
         self.getRecommandVideos()
         self.getRecommandCommunity()
     }
-    
     
     // MARK: - Recommand Data Methods
     func getRecommandVideos() {

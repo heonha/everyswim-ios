@@ -8,7 +8,7 @@
 import Foundation
 
 struct MyInfoProfile {
-    let name: String?
+    let name: String
     let email: String
     let imageUrl: String?
 }

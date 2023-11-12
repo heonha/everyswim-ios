@@ -18,7 +18,7 @@ final class MyInfoProfileView: UIView, CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
     
-    private let guestProfileImage = UIImage(named: "user")?.withTintColor(.white)
+    private let guestProfileImage = AppImage.defaultUserProfileImage.getImage()
     
     private lazy var profileImage = UIImageView()
         .setImage(guestProfileImage)
