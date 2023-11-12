@@ -13,7 +13,7 @@ final class DashboardHeaderView: UIView {
     private let viewModel: DashboardViewModel
     
     private lazy var title = ViewFactory
-        .label("반가워요, Heon Ha!")
+        .label("반가워요")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(UIColor.secondaryLabel)
 

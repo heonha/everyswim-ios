@@ -99,15 +99,15 @@ final class AuthManager: ObservableObject {
         return self.user?.email
     }
     
-    func getMyInfoProfile() -> MyInfoProfile? {
-        guard getSignInState() == true else { return nil }
-        guard let user = user else { return nil }
+    func getMyInfoProfile() -> MyInfoProfile {
+        guard getSignInState() == true else {
+            return MyInfoProfile(name: "로그아웃 물개", email: "로그인 하기", imageUrl: nil)
+        }
+        guard let user = user else {
+            return MyInfoProfile(name: "로그아웃 물개", email: "로그인 하기", imageUrl: nil)
+        }
         
         return MyInfoProfile(name: user.name ?? "로그인한 물개", email: user.email ?? "알수없는 이메일", imageUrl: user.profileImageUrl)
-    }
-    
-    func getGuestProfile() -> MyInfoProfile {
-        return MyInfoProfile(name: "로그아웃 물개", email: "로그인 하기", imageUrl: nil)
     }
     
 }

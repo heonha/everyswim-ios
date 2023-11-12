@@ -23,13 +23,7 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
     }
     
     func fetchUserProfile() {
-        if authManager.isSignIn {
-            self.myinfoProfile = authManager.getMyInfoProfile()
-            print("\(#function) 세션 myInfo PRofile을 셋업합니다.")
-        } else {
-            self.myinfoProfile = authManager.getGuestProfile()
-            print("\(#function) 세션 비로그인 상태입니다.")
-        }
+        self.myinfoProfile = authManager.getMyInfoProfile()
     }
 
     func getButtonListData() -> [MyInfoButtonType] {
@@ -39,15 +33,9 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
     func signOut() {
         do {
             try authManager.signOut()
-            self.getGuestProfile()
         } catch {
             print("DEBUG: 로그아웃 에러 \(error.localizedDescription)")
         }
-    }
-    
-    func getGuestProfile() {
-        let guestProfile = authManager.getGuestProfile()
-        self.myinfoProfile = guestProfile
     }
     
     func observeSignInState() {

@@ -91,7 +91,6 @@ final class MyInfoController: UIViewController {
 
     
     private func bindButtonsAction() {
-        
         // 건강 연동
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())

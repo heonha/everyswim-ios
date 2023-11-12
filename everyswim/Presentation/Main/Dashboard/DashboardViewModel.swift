@@ -12,7 +12,7 @@ import HealthKit
 final class DashboardViewModel: ObservableObject {
         
     private var cancellables = Set<AnyCancellable>()
-
+    private var authManager = AuthManager.shared
     
     // MARK: Health Data
     private var hkManager: HealthKitManager?
@@ -43,6 +43,11 @@ final class DashboardViewModel: ObservableObject {
         ChallangeRing(type: .lap, count: 0, maxCount: 1),
         ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
     ]
+    
+    // MARK: - 유저 정보 가져오기.
+    func getUserProfile() -> MyInfoProfile {
+        authManager.getMyInfoProfile()
+    }
     
     // MARK: - Init
     init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
