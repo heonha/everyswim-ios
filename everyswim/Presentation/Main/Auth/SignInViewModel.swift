@@ -9,30 +9,24 @@ import UIKit
 import Combine
 import AuthenticationServices
 
-
 class SignInViewModel: ObservableObject {
     
     private let appleSignService: AppleSignInHelper
     private let authManager = AuthManager.shared
-        
+    
+    // MARK: - Init
     init(appleSignService: AppleSignInHelper = .init()) {
         self.appleSignService = appleSignService
     }
     
+    // MARK: - SignIn with Apple
     /// 애플 로그인 Request 구성
     func requestAppleSignIn() -> ASAuthorizationAppleIDRequest {
         return appleSignService.createSignInRequest()
     }
     
-    // MARK: Guest SignIn Button
-    func autoSignIn(animated: Bool) {
-
+    func signInWithApple(authorization: ASAuthorization) async throws {
+        try await appleSignService.signIn(authorization: authorization)
     }
-    
-    func signInWithApple(authorization: ASAuthorization, completion: @escaping(Result<Void, Error>) -> Void) {
-        appleSignService.signIn(authorization: authorization, completion: completion)
-    }
-    
-
 
 }

@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 import Combine
 import AuthenticationServices
-import CryptoKit
-import FirebaseAuth
 
 final class SignInViewController: UIViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
@@ -52,7 +50,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
         .spacing(20)
 
     
-    // MARK: - Init & LC
+    // MARK: - Init & Lift Cycles
     init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +64,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
         super.viewDidLoad()
         configure()
         layout()
-        bind()
+        bindGuestSignInTapGesture()
     }
 
     private func configure() {
@@ -106,7 +104,8 @@ final class SignInViewController: UIViewController, CombineCancellable {
         
     }
     
-    private func bind() {
+    /// 로그인 없이 계속하기 탭 제스쳐
+    private func bindGuestSignInTapGesture() {
         guestSignInButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
@@ -114,8 +113,6 @@ final class SignInViewController: UIViewController, CombineCancellable {
             }
             .store(in: &cancellables)
     }
-    
-
     
     // MARK: - Apple SignIn Button
     func makeAppleSignInButton() -> ASAuthorizationAppleIDButton {
@@ -136,11 +133,9 @@ final class SignInViewController: UIViewController, CombineCancellable {
         authorizationController.performRequests()
     }
     
-
-    
 }
 
-// MARK: - Apple SignIn Logics
+// MARK: - Apple SignIn
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
     /// Apple Login Modal Sheet 불러오기
@@ -150,12 +145,13 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     
     /// Apple Login Request
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        viewModel.signInWithApple(authorization: authorization) { result in
-            switch result {
-            case .success(_):
-                print("로그인 성공")
-                let alertController = UIAlertController(title: "로그인 성공", 
-                                                        message: "\(AuthManager.shared.getEmail() ?? "알수없는 이메일")",
+        Task(priority: .userInitiated) {
+            do {
+                try await viewModel.signInWithApple(authorization: authorization)
+                
+                // FIXME: 테스트용 성공 알럿
+                let alertController = UIAlertController(title: "로그인 성공",
+                                                        message: "\(AuthManager.shared.getMyInfoProfile().email)",
                                                         preferredStyle: .alert)
                 let action = UIAlertAction(title: "확인", style: .default) { _ in
                     self.dismiss(animated: true)
@@ -163,7 +159,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
                 alertController.addAction(action)
                 self.present(alertController, animated: true)
 
-            case .failure(let error):
+            } catch {
                 print(error)
             }
         }

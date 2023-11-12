@@ -10,7 +10,7 @@ import CryptoKit
 import FirebaseAuth
 
 final class FirebaseAuthService {
-        
+    
     // MARK: - Init
     init() {
         
@@ -18,20 +18,23 @@ final class FirebaseAuthService {
     
     // MARK: - Sign In
     /// Firebase를 통한 로그인 요청
-    func firebaseSignIn(with credential: OAuthCredential, completion: @escaping(Result<Void, Error>) -> Void) {
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+    func firebaseSignIn(with credential: OAuthCredential) async throws {
+        let service = FireStoreService()
+        do {
+            let signResult = try await Auth.auth().signIn(with: credential)
             
-            if let userData = authResult?.user.providerData.first {
-                let userProfile = UserProfile(uid: userData.uid, name: userData.displayName, email: userData.email, providerId: userData.providerID, profileImageUrl: nil)
+            let isExist = try await service.checkUserProfileExist(user: signResult.user)
+            
+            if isExist {
+                let userProfile = try await service.fetchUserProfile(user: signResult.user)
                 AuthManager.shared.signIn(with: userProfile)
-                completion(.success(()))
             } else {
-                completion(.failure(SignInError.unknown))
+                try await service.createUserProfile(user: signResult.user, name: "수영하는 물개", profileImageUrl: "")
+                let fetchedProfile = try await service.fetchUserProfile(user: signResult.user)
+                AuthManager.shared.signIn(with: fetchedProfile)
             }
+        } catch {
+            throw error
         }
     }
     
@@ -65,35 +68,35 @@ final class FirebaseAuthService {
     // MARK: - Credential
     
     func randomNonceString(length: Int = 32) -> String {
-      precondition(length > 0)
-      var randomBytes = [UInt8](repeating: 0, count: length)
-      let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
-      if errorCode != errSecSuccess {
-        fatalError(
-          "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-        )
-      }
-
-      let charset: [Character] =
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] =
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-
-      let nonce = randomBytes.map { byte in
-        // Pick a random character from the set, wrapping around if needed.
-        charset[Int(byte) % charset.count]
-      }
-
-      return String(nonce)
+        
+        let nonce = randomBytes.map { byte in
+            // Pick a random character from the set, wrapping around if needed.
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
     }
     
     func sha256(_ input: String) -> String {
-      let inputData = Data(input.utf8)
-      let hashedData = SHA256.hash(data: inputData)
-      let hashString = hashedData.compactMap {
-        String(format: "%02x", $0)
-      }.joined()
-
-      return hashString
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
     }
-
+    
     
 }

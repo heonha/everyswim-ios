@@ -111,6 +111,7 @@
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */; };
+		398ED71C2B00B3790068CAD0 /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED71B2B00B3790068CAD0 /* FireStoreService.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
@@ -262,6 +263,7 @@
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
 		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
 		398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfile.swift; sourceTree = "<group>"; };
+		398ED71B2B00B3790068CAD0 /* FireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
@@ -417,10 +419,10 @@
 			isa = PBXGroup;
 			children = (
 				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
-				39318E822AFCEFEC0089AEC4 /* Auth */,
 				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
+				39318E822AFCEFEC0089AEC4 /* Auth */,
 				390C61892AF3A9950061E6D4 /* MyGoal */,
 				39DBB3252AC6F291003B5213 /* Activity */,
 				396387AD2AC6BBEA00A490D1 /* Records */,
@@ -489,10 +491,11 @@
 			children = (
 				39318EA42AFCF8570089AEC4 /* SignInViewController.swift */,
 				39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */,
-				398ED7182B009F480068CAD0 /* Models */,
+				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
+				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
+				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
 				39318EAA2AFD04D10089AEC4 /* Services */,
 				398ED7172B009F370068CAD0 /* Helpers */,
-				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -500,8 +503,8 @@
 		39318EAA2AFD04D10089AEC4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
 				392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */,
+				398ED71B2B00B3790068CAD0 /* FireStoreService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -722,14 +725,6 @@
 				39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		398ED7182B009F480068CAD0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		398F4F9A2ACD600F00ACCE70 /* everyswim */ = {
@@ -1080,6 +1075,7 @@
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
 				392BF3DC2AFE529800ADAE49 /* FirebaseAuthService.swift in Sources */,
+				398ED71C2B00B3790068CAD0 /* FireStoreService.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,

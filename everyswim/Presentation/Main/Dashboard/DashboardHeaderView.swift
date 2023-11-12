@@ -26,7 +26,7 @@ final class DashboardHeaderView: UIView {
         let imageView = UIImageView(image: profileImage)
         imageView.backgroundColor = AppUIColor.secondaryBlue
         imageView.frame.size = .init(width: 56, height: 56)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
         return imageView

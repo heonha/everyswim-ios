@@ -10,6 +10,10 @@ import Foundation
 enum DateToStringType {
     /// YYYY-M-d
     case date
+    
+    /// YYYY-MM-dd HH:mm:ss
+    case timeStamp
+    
     /// "yyyy년 M월 d일"
     case dateKr
     /// "yyyy년 M월 d일 h시 m분"
@@ -51,6 +55,8 @@ enum DateToStringType {
         switch self {
         case .date:
             return "yyyy-M-d"
+        case .timeStamp:
+            return "yyyy-MM-dd E HH:mm"
         case .fullDateKr:
             return "yyyy년 M월 d일 EEEE a h시 m분"
         case .dateKr:

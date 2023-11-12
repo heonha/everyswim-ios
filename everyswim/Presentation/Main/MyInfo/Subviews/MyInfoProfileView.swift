@@ -12,7 +12,6 @@ import SDWebImage
 
 final class MyInfoProfileView: UIView, CombineCancellable {
     
-    
     private let viewModel: MyInfoViewModel
     private let parentViewController: MyInfoController
     
@@ -22,7 +21,7 @@ final class MyInfoProfileView: UIView, CombineCancellable {
     
     private lazy var profileImage = UIImageView()
         .setImage(guestProfileImage)
-        .contentMode(.scaleAspectFit)
+        .contentMode(.scaleAspectFill)
         .backgroundColor(AppUIColor.secondaryBlue)
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
         .cornerRadius(30) as! UIImageView
@@ -55,7 +54,6 @@ final class MyInfoProfileView: UIView, CombineCancellable {
         self.parentViewController = target
         self.viewModel = viewModel
         super.init(frame: .zero)
-        configure()
         layout()
     }
     
@@ -73,10 +71,6 @@ final class MyInfoProfileView: UIView, CombineCancellable {
 }
 
 extension MyInfoProfileView {
-    
-    private func configure() {
-        
-    }
     
     private func observeTapGesture() {
         self.gesturePublisher(.tap())
@@ -103,14 +97,13 @@ extension MyInfoProfileView {
                 self.profileTitle.text = profileData.name
                 self.profileEmail.text = profileData.email
                 
-                print("세션 프로필 적용: \(profileData.name), \(profileData.email)")
-                guard let imageUrlString = profileData.imageUrl else {
+                guard let imageUrlString = profileData.imageUrl,
+                      imageUrlString.isEmpty == false else {
                     self.profileImage.image = self.guestProfileImage
                     return
                 }
                 let imageUrl = URL(string: imageUrlString)
                 self.profileImage.sd_setImage(with: imageUrl, placeholderImage: self.guestProfileImage)
-                print("세션 이미지 적용: \(imageUrl)")
             }
             .store(in: &cancellables)
     }
