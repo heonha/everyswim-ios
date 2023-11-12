@@ -9,11 +9,6 @@ import Foundation
 import FirebaseAuth
 import AuthenticationServices
 
-protocol SignInHelpers {
-    var fbCredentialService: String { get }
-}
-
-
 
 final class AppleSignInHelper {
     
@@ -23,30 +18,27 @@ final class AppleSignInHelper {
     }
     
     // MARK: Services
-    private let fbCredentialService: FirebaseAuthService
-    private let keychainService: KeyChainService
+    private let firebaseAuthService: FirebaseAuthService
 
     // Nonce
-    fileprivate var currentNonce: String?
+    fileprivate var currentNonce: String? = nil
     
     // MARK: - Init
-    init(currentNonce: String? = nil, fbCredentialService: FirebaseAuthService = .init(), keychainService: KeyChainService = .init()) {
-        self.fbCredentialService = fbCredentialService
-        self.keychainService = keychainService
-        self.currentNonce = currentNonce
+    init(firebaseAuthService: FirebaseAuthService = .init()) {
+        self.firebaseAuthService = firebaseAuthService
     }
     
     // MARK: SignIn Request
     
     /// Apple SignIn Button을 통한 `로그인 Request 생성`
     func createSignInRequest() -> ASAuthorizationAppleIDRequest {
-        let nonce = fbCredentialService.randomNonceString()
+        let nonce = firebaseAuthService.randomNonceString()
         currentNonce = nonce
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        request.nonce = fbCredentialService.sha256(nonce)
+        request.nonce = firebaseAuthService.sha256(nonce)
         
         return request
     }
@@ -72,7 +64,7 @@ final class AppleSignInHelper {
                                                            rawNonce: nonce,
                                                            fullName: appleIDCredential.fullName)
             
-            fbCredentialService.firebaseSignIn(with: credential) { result in
+            firebaseAuthService.firebaseSignIn(with: credential) { result in
                 completion(result)
             }
             

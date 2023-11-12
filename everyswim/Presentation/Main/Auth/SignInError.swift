@@ -25,4 +25,7 @@ enum SignInError: Error {
     
     /// AppleId Credential이 확인되지 않음
     case failToFetchAppleIDCredential
+    
+    /// 세션이 만료 됨.
+    case sessionExpired
 }

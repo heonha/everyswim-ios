@@ -57,7 +57,6 @@
 		39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */; };
 		39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA42AFCF8570089AEC4 /* SignInViewController.swift */; };
 		39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */; };
-		39318EA92AFCFACB0089AEC4 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */; };
 		3933514A2AFA57380014D37A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393351492AFA57380014D37A /* NetworkService.swift */; };
 		3933514C2AFA574B0014D37A /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933514B2AFA574B0014D37A /* RestProtocol.swift */; };
 		3933514E2AFA575E0014D37A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3933514D2AFA575E0014D37A /* NetworkError.swift */; };
@@ -111,6 +110,7 @@
 		398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */; };
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
+		398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
@@ -205,7 +205,6 @@
 		39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
 		39318EA42AFCF8570089AEC4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		393351492AFA57380014D37A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3933514B2AFA574B0014D37A /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
 		3933514D2AFA575E0014D37A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -262,6 +261,7 @@
 		398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCell.swift; sourceTree = "<group>"; };
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
 		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
+		398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfile.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
@@ -374,6 +374,7 @@
 				390C618E2AF3B9FA0061E6D4 /* User */,
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
+				398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */,
 				39B437A42AB5BD9D00915C3D /* Subviews */,
 			);
 			path = MyInfo;
@@ -488,7 +489,10 @@
 			children = (
 				39318EA42AFCF8570089AEC4 /* SignInViewController.swift */,
 				39318EA62AFCF8BB0089AEC4 /* SignInViewModel.swift */,
+				398ED7182B009F480068CAD0 /* Models */,
 				39318EAA2AFD04D10089AEC4 /* Services */,
+				398ED7172B009F370068CAD0 /* Helpers */,
+				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -498,10 +502,6 @@
 			children = (
 				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
 				392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */,
-				39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */,
-				39318EA82AFCFACB0089AEC4 /* KeyChainService.swift */,
-				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
-				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -714,6 +714,22 @@
 				39BC26972AAD7EE1007432B5 /* Subviews */,
 			);
 			path = Challange;
+			sourceTree = "<group>";
+		};
+		398ED7172B009F370068CAD0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		398ED7182B009F480068CAD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		398F4F9A2ACD600F00ACCE70 /* everyswim */ = {
@@ -978,7 +994,6 @@
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */,
-				39318EA92AFCFACB0089AEC4 /* KeyChainService.swift in Sources */,
 				39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
@@ -1084,6 +1099,7 @@
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
 				393BDF5C2AF790FF0060AE58 /* LapTableViewCell.swift in Sources */,
 				3933514C2AFA574B0014D37A /* RestProtocol.swift in Sources */,
+				398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */,
 				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);

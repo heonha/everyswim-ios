@@ -8,23 +8,24 @@
 import UIKit
 import SnapKit
 import Combine
+import SDWebImage
 
-protocol TargetSendable {
-    var parentViewController: UIViewController? { get set }
-}
-
-final class MyInfoProfileView: UIView, CombineCancellable, TargetSendable {
+final class MyInfoProfileView: UIView, CombineCancellable {
     
-    var parentViewController: UIViewController?
+    
+    private let viewModel: MyInfoViewModel
+    private let parentViewController: MyInfoController
     
     var cancellables: Set<AnyCancellable> = .init()
     
+    private let guestProfileImage = UIImage(named: "user")?.withTintColor(.white)
+    
     private lazy var profileImage = UIImageView()
-        .setImage(.init(named: "user")?.withTintColor(.white))
+        .setImage(guestProfileImage)
         .contentMode(.scaleAspectFit)
         .backgroundColor(AppUIColor.secondaryBlue)
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
-        .cornerRadius(30)
+        .cornerRadius(30) as! UIImageView
     
     private lazy var profileTitle = ViewFactory
         .label("개발하는 물개")
@@ -50,8 +51,9 @@ final class MyInfoProfileView: UIView, CombineCancellable, TargetSendable {
         .distribution(.fill)
         .alignment(.center)
     
-    init(parentVC: UIViewController) {
-        self.parentViewController = parentVC
+    init(viewModel: MyInfoViewModel, target: MyInfoController) {
+        self.parentViewController = target
+        self.viewModel = viewModel
         super.init(frame: .zero)
         configure()
         layout()
@@ -64,7 +66,8 @@ final class MyInfoProfileView: UIView, CombineCancellable, TargetSendable {
     override func layoutSubviews() {
         super.layoutSubviews()
         setSuperViewHeight()
-        observe()
+        observeTapGesture()
+        observeUserProfile()
     }
     
 }
@@ -75,13 +78,39 @@ extension MyInfoProfileView {
         
     }
     
-    private func observe() {
+    private func observeTapGesture() {
         self.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let signInVC = SignInViewController(viewModel: .init())
-                signInVC.modalPresentationStyle = .fullScreen
-                self.parentViewController?.present(signInVC, animated: true)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                let signInState = viewModel.getSessionState()
+                print("DEBUG: Tap 세션상태 \(signInState)")
+                if !signInState {
+                    let signInVC = SignInViewController(viewModel: .init())
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.parentViewController.present(signInVC, animated: true)
+                }
+                
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func observeUserProfile() {
+        viewModel.$myinfoProfile
+            .receive(on: DispatchQueue.main)
+            .sink { wrappedProfile in
+                guard let profileData = wrappedProfile else {return}
+                self.profileTitle.text = profileData.name
+                self.profileEmail.text = profileData.email
+                
+                print("세션 프로필 적용: \(profileData.name), \(profileData.email)")
+                guard let imageUrlString = profileData.imageUrl else {
+                    self.profileImage.image = self.guestProfileImage
+                    return
+                }
+                let imageUrl = URL(string: imageUrlString)
+                self.profileImage.sd_setImage(with: imageUrl, placeholderImage: self.guestProfileImage)
+                print("세션 이미지 적용: \(imageUrl)")
             }
             .store(in: &cancellables)
     }
@@ -120,7 +149,7 @@ import SwiftUI
 struct MyInfoProfileView_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView(parentVC: .init())
+            MyInfoProfileView(viewModel: .init(), target: .init())
         }
         .frame(height: 150)
     }

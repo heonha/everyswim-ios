@@ -35,12 +35,30 @@ final class FirebaseAuthService {
         }
     }
     
+    func signOut() async throws {
+        do {
+            try Auth.auth().signOut()
+            print("DEBUG: 로그아웃 성공")
+        } catch {
+            print("DEBUG: 로그아웃 에러 \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
     /// 캐시된 currentUser 확인
     func getAuthenticatedUser() throws -> User {
         guard let currentUser = Auth.auth().currentUser else {
             throw SignInError.userdataFetchError
         }
         return currentUser
+    }
+    
+    func getSignInState() -> Bool {
+        if Auth.auth().currentUser == nil {
+            return false
+        } else {
+            return true
+        }
     }
     
     

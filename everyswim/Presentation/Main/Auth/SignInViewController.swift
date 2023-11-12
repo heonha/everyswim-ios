@@ -68,14 +68,7 @@ final class SignInViewController: UIViewController, CombineCancellable {
         layout()
         bind()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if viewModel.isSignIn {
-            viewModel.autoSignIn(animated: false)
-        }
-    }
-    
+
     private func configure() {
         self.view.backgroundColor = .systemBackground
     }
@@ -143,13 +136,14 @@ final class SignInViewController: UIViewController, CombineCancellable {
         authorizationController.performRequests()
     }
     
+
+    
 }
 
 // MARK: - Apple SignIn Logics
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
-    
-    /// Apple Login Modal 불러오기
+    /// Apple Login Modal Sheet 불러오기
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
@@ -178,7 +172,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     /// 애플 로그인 오류 처리
     func authorizationController(controller: ASAuthorizationController, 
                                  didCompleteWithError error: Error) {
-        
         print("Apple SignIn Error \(error.localizedDescription)")
         let alertController = UIAlertController(title: "로그인 오류", message: "\(error.localizedDescription)", preferredStyle: .alert)
         

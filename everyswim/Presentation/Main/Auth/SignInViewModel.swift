@@ -6,20 +6,15 @@
 //
 
 import UIKit
+import Combine
 import AuthenticationServices
 
 
 class SignInViewModel: ObservableObject {
     
     private let appleSignService: AppleSignInHelper
-    private let authService = AuthManager.shared
-    
-    var isSignIn: Bool {
-        get {
-            return AuthManager.shared.isSignIn
-        }
-    }
-    
+    private let authManager = AuthManager.shared
+        
     init(appleSignService: AppleSignInHelper = .init()) {
         self.appleSignService = appleSignService
     }
@@ -31,11 +26,13 @@ class SignInViewModel: ObservableObject {
     
     // MARK: Guest SignIn Button
     func autoSignIn(animated: Bool) {
-        authService.signInForGuest()
+
     }
     
     func signInWithApple(authorization: ASAuthorization, completion: @escaping(Result<Void, Error>) -> Void) {
         appleSignService.signIn(authorization: authorization, completion: completion)
     }
+    
+
 
 }
