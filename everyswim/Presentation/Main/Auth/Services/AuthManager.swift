@@ -25,15 +25,28 @@ final class AuthManager {
     private init(apple: AppleSignInHelper = .init(), fbCredentialService: FirebaseAuthService = .init()) {
         self.appleSignService = apple
         self.fbCredentialService = fbCredentialService
+        self.getCurrentUserSession()
+    }
+    
+    func getCurrentUserSession() {
+        do {
+            let user = try getAuthenticatedUser()
+            self.user = user
+            isSignIn = true
+            print("세션 확인 완료 \(user.uid), \(user.email)")
+        } catch {
+            signOut()
+            print("세션 끊김: \(error.localizedDescription)")
+        }
     }
     
     /// 로그인 전 기본값
     func signInForGuest() {
         self.isSignIn = true
-        saveSignInState()
         // TODO: Firebase Guest Login 추가
     }
-        
+    
+    /// 유저
     func signIn(with user: UserProfile) {
         print(user)
         self.user = user
@@ -41,7 +54,6 @@ final class AuthManager {
     
     func signOut() {
         self.isSignIn = false
-        saveSignInState()
     }
     
     func saveSignInState() {
