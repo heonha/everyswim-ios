@@ -144,21 +144,12 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     }
     
     /// Apple Login Request
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(controller: ASAuthorizationController, 
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
         Task(priority: .userInitiated) {
             do {
                 try await viewModel.signInWithApple(authorization: authorization)
-                
-                // FIXME: 테스트용 성공 알럿
-                let alertController = UIAlertController(title: "로그인 성공",
-                                                        message: "\(AuthManager.shared.getMyInfoProfile().email)",
-                                                        preferredStyle: .alert)
-                let action = UIAlertAction(title: "확인", style: .default) { _ in
-                    self.dismiss(animated: true)
-                }
-                alertController.addAction(action)
-                self.present(alertController, animated: true)
-
+                self.dismiss(animated: true)
             } catch {
                 print(error)
             }

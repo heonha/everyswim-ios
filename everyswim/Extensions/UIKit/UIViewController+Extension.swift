@@ -21,6 +21,11 @@ extension UIViewController {
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
     
+    func pop(animated: Bool) {
+        self.navigationController?.popViewController(animated: animated)
+    }
+
+    
     func hideNavigationBar(_ isHide: Bool) {
         self.navigationController?.isNavigationBarHidden = isHide
     }

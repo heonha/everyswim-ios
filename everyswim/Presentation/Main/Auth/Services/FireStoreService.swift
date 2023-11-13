@@ -60,8 +60,8 @@ final class FireStoreService {
         }
     }
     
-    func deleteUserProfile() {
-        
+    func deleteUserProfile(user: User) async throws {        
+        try await userProfileCollection.document(user.uid).delete()
     }
     
 }
@@ -70,5 +70,7 @@ enum FireStoreServiceError: Error {
     case decodingError
     case failSearchUserProfile
     case duplicateUserId
+    case currentUserIsNil
 
 }
+

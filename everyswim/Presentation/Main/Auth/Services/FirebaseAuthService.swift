@@ -48,6 +48,11 @@ final class FirebaseAuthService {
         }
     }
     
+    func deleteAccount(user: User) async throws {
+        try await user.delete()
+    }
+    
+    
     /// 캐시된 currentUser 확인
     func getAuthenticatedUser() throws -> User {
         guard let currentUser = Auth.auth().currentUser else {

@@ -125,11 +125,38 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.viewModel.signOut()
-                self?.scrollToTop()
+                self?.presentSignOutAlert()
             }
             .store(in: &cancellables)
 
+        // 탈퇴
+        buttonList.getButton(type: .deleteAccount)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                let deleteVC = UserDeleteViewController()
+                self?.push(deleteVC, animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func presentSignOutAlert() {
+        let alert = UIAlertController(title: "알림", 
+                                      message: "로그아웃 하시겠습니까?",
+                                      preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "로그아웃",
+                                         style: .destructive) { _ in
+            self.viewModel.signOut()
+            self.scrollToTop()
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
     }
     
 }

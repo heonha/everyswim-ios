@@ -51,6 +51,18 @@ final class AuthManager: ObservableObject {
         }
     }
     
+    func deleteUser() {
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+          if let error = error {
+            // An error happened.
+          } else {
+            // Account deleted.
+          }
+        }
+    }
+    
     
     // MARK: - Manage Session
     

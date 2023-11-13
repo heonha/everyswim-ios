@@ -155,6 +155,9 @@
 		39DBB3222AC6EE3C003B5213 /* ActivitySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */; };
 		39DBB3242AC6EF0F003B5213 /* DistanceBigLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */; };
 		39EB49232AB70E5C00F247FC /* DateRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB49222AB70E5C00F247FC /* DateRecordListView.swift */; };
+		39EC71CB2B0228D8008A6386 /* UserDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CA2B0228D8008A6386 /* UserDeleteViewController.swift */; };
+		39EC71CD2B022DCF008A6386 /* UserDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */; };
+		39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
 		39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599852A9B5CB000738334 /* DashboardViewController.swift */; };
@@ -305,6 +308,9 @@
 		39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySectionView.swift; sourceTree = "<group>"; };
 		39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceBigLabel.swift; sourceTree = "<group>"; };
 		39EB49222AB70E5C00F247FC /* DateRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRecordListView.swift; sourceTree = "<group>"; };
+		39EC71CA2B0228D8008A6386 /* UserDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteViewController.swift; sourceTree = "<group>"; };
+		39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteView.swift; sourceTree = "<group>"; };
+		39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteViewModel.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		39F599852A9B5CB000738334 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -779,6 +785,7 @@
 		39B437A42AB5BD9D00915C3D /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				39EC71D02B0239EB008A6386 /* UserDelete */,
 				39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */,
 				39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */,
 				39389FCD2AB33BD300497402 /* MyInfoButton.swift */,
@@ -844,6 +851,16 @@
 				39EB49222AB70E5C00F247FC /* DateRecordListView.swift */,
 			);
 			path = DateRecords;
+			sourceTree = "<group>";
+		};
+		39EC71D02B0239EB008A6386 /* UserDelete */ = {
+			isa = PBXGroup;
+			children = (
+				39EC71CA2B0228D8008A6386 /* UserDeleteViewController.swift */,
+				39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */,
+				39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */,
+			);
+			path = UserDelete;
 			sourceTree = "<group>";
 		};
 		39F5997D2A9B56CA00738334 /* UIKit */ = {
@@ -997,6 +1014,7 @@
 				39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */,
 				39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */,
+				39EC71CB2B0228D8008A6386 /* UserDeleteViewController.swift in Sources */,
 				3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */,
 				39437DA22A48949700FDA9DA /* SecretKeys.swift in Sources */,
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
@@ -1039,6 +1057,7 @@
 				3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
 				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
+				39EC71CD2B022DCF008A6386 /* UserDeleteView.swift in Sources */,
 				391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */,
 				3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */,
 				39DBB3222AC6EE3C003B5213 /* ActivitySectionView.swift in Sources */,
@@ -1064,6 +1083,7 @@
 				3933514A2AFA57380014D37A /* NetworkService.swift in Sources */,
 				39DBB3202AC6E899003B5213 /* RecordHStackView.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
+				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				391678FB2AC7F38D00190D35 /* DetailCellLabelType.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
