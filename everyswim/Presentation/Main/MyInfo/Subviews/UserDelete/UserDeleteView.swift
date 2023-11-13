@@ -24,7 +24,7 @@ final class UserDeleteView: UIView, CombineCancellable {
         .foregroundColor(AppUIColor.label)
     
     private let emailLabel = ViewFactory
-        .label("\(AuthManager.shared.getMyInfoProfile().email))")
+        .label("\(AuthManager.shared.getMyInfoProfile().email)")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(AppUIColor.label)
     
