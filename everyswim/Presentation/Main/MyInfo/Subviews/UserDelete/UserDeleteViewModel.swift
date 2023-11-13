@@ -9,21 +9,15 @@ import Foundation
 import FirebaseAuth
 
 final class UserDeleteViewModel: ObservableObject {
+
+    private let authManager: AuthManager
     
-    private let firebaseService: FirebaseAuthService
-    private let fireStoreService: FireStoreService
-    
-    init(firebase: FirebaseAuthService = .init(), firestore: FireStoreService = .init()) {
-        self.firebaseService = firebase
-        self.fireStoreService = firestore
+    init(authManager: AuthManager = .shared) {
+        self.authManager = authManager
     }
     
     func deleteAccount() async throws {
-        guard let user = Auth.auth().currentUser else {
-            throw FireStoreServiceError.currentUserIsNil
-        }
-        try await fireStoreService.deleteUserProfile(user: user)
-        try await firebaseService.deleteAccount(user: user)
+        try await authManager.deleteUser()
     }
     
 }

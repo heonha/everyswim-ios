@@ -8,7 +8,11 @@
 import UIKit
 import FirebaseAuth
 
-final class AuthManager: ObservableObject {
+protocol AuthServiceProtocol: ObservableObject {
+    
+}
+
+final class AuthManager: AuthServiceProtocol {
     
     private struct Constant {
         static let isSignInKey = "isSignInKey"
@@ -32,13 +36,14 @@ final class AuthManager: ObservableObject {
     }
     
     // MARK: - SignIn & SignOut
-    /// 유저
+    /// 로그인
     func signIn(with user: UserProfile) {
         print(user)
         self.isSignIn = true
         self.user = user
     }
     
+    /// 로그아웃
     func signOut() throws {
         Task {
             do {
@@ -51,16 +56,13 @@ final class AuthManager: ObservableObject {
         }
     }
     
-    func deleteUser() {
-        let user = Auth.auth().currentUser
-
-        user?.delete { error in
-          if let error = error {
-            // An error happened.
-          } else {
-            // Account deleted.
-          }
+    /// 회원 탈퇴
+    func deleteUser() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw FireStoreServiceError.currentUserIsNil
         }
+        try await fireStoreService.deleteUserProfile(user: user)
+        try await fbCredentialService.deleteAccount(user: user)
     }
     
     
