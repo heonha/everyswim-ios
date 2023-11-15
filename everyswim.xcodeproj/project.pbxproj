@@ -31,9 +31,14 @@
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
 		392083B52A4853F800E591A8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */; };
-		392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392083C72A48807B00E591A8 /* SearchBarModifier.swift */; };
 		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
 		3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D5852A74E95400257164 /* SwimDataManager.swift */; };
+		39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E652B04E33A004E28E5 /* SetProfileViewController.swift */; };
+		39238E682B04E3D1004E28E5 /* MidTitleVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */; };
+		39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E692B04E78E004E28E5 /* BaseTextField.swift */; };
+		39238E6C2B04EB05004E28E5 /* BaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E6B2B04EB05004E28E5 /* BaseImageView.swift */; };
+		39238E6E2B04F1A4004E28E5 /* SetProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E6D2B04F1A4004E28E5 /* SetProfileViewModel.swift */; };
+		39238E702B04F2ED004E28E5 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E6F2B04F2ED004E28E5 /* ImagePickerViewController.swift */; };
 		392457262A545004006E3071 /* HKDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457252A545004006E3071 /* HKDateType.swift */; };
 		392457282A545016006E3071 /* HealthKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457272A545016006E3071 /* HealthKitError.swift */; };
 		3924572A2A545049006E3071 /* HKQueryDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392457292A545049006E3071 /* HKQueryDataType.swift */; };
@@ -195,9 +200,14 @@
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
-		392083C72A48807B00E591A8 /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		3922D5852A74E95400257164 /* SwimDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataManager.swift; sourceTree = "<group>"; };
+		39238E652B04E33A004E28E5 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
+		39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidTitleVStack.swift; sourceTree = "<group>"; };
+		39238E692B04E78E004E28E5 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		39238E6B2B04EB05004E28E5 /* BaseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImageView.swift; sourceTree = "<group>"; };
+		39238E6D2B04F1A4004E28E5 /* SetProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewModel.swift; sourceTree = "<group>"; };
+		39238E6F2B04F2ED004E28E5 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		392457252A545004006E3071 /* HKDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKDateType.swift; sourceTree = "<group>"; };
 		392457272A545016006E3071 /* HealthKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitError.swift; sourceTree = "<group>"; };
 		392457292A545049006E3071 /* HKQueryDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueryDataType.swift; sourceTree = "<group>"; };
@@ -391,22 +401,14 @@
 		392083CD2A4885FC00E591A8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				392083CE2A48860400E591A8 /* Modifier */,
+				39CC3DB82AC5857200C8BC10 /* Base */,
 				391C12B92A591835001C2286 /* CellBackground.swift */,
 				398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */,
-				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
-				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
 				3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */,
+				39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */,
+				39238E6F2B04F2ED004E28E5 /* ImagePickerViewController.swift */,
 			);
 			path = CustomViews;
-			sourceTree = "<group>";
-		};
-		392083CE2A48860400E591A8 /* Modifier */ = {
-			isa = PBXGroup;
-			children = (
-				392083C72A48807B00E591A8 /* SearchBarModifier.swift */,
-			);
-			path = Modifier;
 			sourceTree = "<group>";
 		};
 		3922D56E2A74B0DA00257164 /* Dashboard */ = {
@@ -492,6 +494,15 @@
 			path = Swim;
 			sourceTree = "<group>";
 		};
+		39238E642B04E321004E28E5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				39238E652B04E33A004E28E5 /* SetProfileViewController.swift */,
+				39238E6D2B04F1A4004E28E5 /* SetProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		39318E822AFCEFEC0089AEC4 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +511,7 @@
 				392BF3D92AFE506D00ADAE49 /* SignInError.swift */,
 				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
 				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
+				39238E642B04E321004E28E5 /* Profile */,
 				39318EAA2AFD04D10089AEC4 /* Services */,
 				398ED7172B009F370068CAD0 /* Helpers */,
 			);
@@ -663,7 +675,6 @@
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
-				39CC3DB82AC5857200C8BC10 /* Base */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -827,6 +838,10 @@
 		39CC3DB82AC5857200C8BC10 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
+				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
+				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
+				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
 			);
@@ -983,6 +998,7 @@
 			files = (
 				398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
+				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
 				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
 				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
@@ -994,6 +1010,7 @@
 				3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */,
 				3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */,
 				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
+				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
@@ -1011,6 +1028,7 @@
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
 				39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */,
 				39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */,
+				39238E682B04E3D1004E28E5 /* MidTitleVStack.swift in Sources */,
 				39572CE42A52CFB200986E01 /* String+Extension.swift in Sources */,
 				398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */,
 				39ADB27D2A4AE4FB00AED318 /* Constant.swift in Sources */,
@@ -1027,7 +1045,6 @@
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
-				392083C82A48807B00E591A8 /* SearchBarModifier.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
@@ -1069,6 +1086,7 @@
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,
 				39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */,
 				39CC3DB52AC5834700C8BC10 /* UITableView+Extension.swift in Sources */,
+				39238E702B04F2ED004E28E5 /* ImagePickerViewController.swift in Sources */,
 				399EFFDD2AAE040D00DE7E12 /* DatePickerDayCell.swift in Sources */,
 				39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */,
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
@@ -1094,6 +1112,7 @@
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
+				39238E6C2B04EB05004E28E5 /* BaseImageView.swift in Sources */,
 				392BF3DC2AFE529800ADAE49 /* FirebaseAuthService.swift in Sources */,
 				398ED71C2B00B3790068CAD0 /* FireStoreService.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
@@ -1116,6 +1135,7 @@
 				393BDF5C2AF790FF0060AE58 /* LapTableViewCell.swift in Sources */,
 				3933514C2AFA574B0014D37A /* RestProtocol.swift in Sources */,
 				398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */,
+				39238E6E2B04F1A4004E28E5 /* SetProfileViewModel.swift in Sources */,
 				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 			);

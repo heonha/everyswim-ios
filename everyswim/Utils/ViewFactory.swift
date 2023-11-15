@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 enum ViewFactory {
     
@@ -44,6 +45,22 @@ enum ViewFactory {
         label.textColor = .label
         
         return label
+    }
+    
+    static func buttonWithText1(_ text: String) -> UILabel {
+        let button = ViewFactory
+            .label(text)
+            .font(.custom(.sfProBold, size: 18))
+            .textAlignemnt(.center)
+            .foregroundColor(.white)
+            .backgroundColor(AppUIColor.secondaryBlue)
+            .cornerRadius(4) as! UILabel
+        
+        button.snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
+        
+        return button
     }
     
 }

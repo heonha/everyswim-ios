@@ -30,5 +30,14 @@ extension UIViewController {
         self.navigationController?.isNavigationBarHidden = isHide
     }
     
+    func presentAlert(title: String?, message: String?, target: UIViewController) {
+        let alert = UIAlertController(title: title, message: message ?? "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(action)
+        
+        target.present(alert, animated: true)
+    }
+    
+    
     
 }
