@@ -31,10 +31,12 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
     }
     
     func signOut() {
-        do {
-            try authManager.signOut()
-        } catch {
-            print("DEBUG: 로그아웃 에러 \(error.localizedDescription)")
+        Task(priority: .userInitiated) {
+            do {
+                try await authManager.signOut()
+            } catch {
+                print("DEBUG: 로그아웃 에러 \(error.localizedDescription)")
+            }
         }
     }
     

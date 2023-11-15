@@ -179,23 +179,27 @@ final class UserDeleteView: UIView, CombineCancellable {
             .store(in: &cancellables)
     }
     
+    /// 유저 계정 삭제 요청.
     private func requestDeleteAccount() {
         Task(priority: .userInitiated) {
             do {
                 try await self.viewModel.deleteAccount()
                 self.parentViewController.pop(animated: true)
-                print("계정 제거 완료")
+                self.parentViewController.dismiss(animated: true)
+                self.presentAlert(title: "알림", message: "계정이 제거 되었습니다.")
             } catch {
-                print(error.localizedDescription)
-                self.presentErrorAlert(message: error.localizedDescription)
+                let error = error as NSError
+                self.presentAlert(title: "오류", message: error.localizedFailureReason)
             }
         }
     }
     
-    private func presentErrorAlert(message: String?) {
-        let alert = UIAlertController(title: "오류", message: message ?? "", preferredStyle: .alert)
+    /// 알럿 생성 및 Present
+    private func presentAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message ?? "", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alert.addAction(action)
+        
         self.parentViewController.present(alert, animated: true)
     }
     

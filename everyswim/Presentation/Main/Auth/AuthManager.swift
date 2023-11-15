@@ -44,15 +44,13 @@ final class AuthManager: AuthServiceProtocol {
     }
     
     /// 로그아웃
-    func signOut() throws {
-        Task {
-            do {
-                try await fbCredentialService.signOut()
-                self.user = nil
-                self.isSignIn = false
-            } catch {
-                throw error
-            }
+    func signOut() async throws {
+        do {
+            try await fbCredentialService.signOut()
+            self.user = nil
+            self.isSignIn = false
+        } catch {
+            throw error
         }
     }
     
