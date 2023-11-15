@@ -82,11 +82,11 @@ extension UIView {
         return self as! T
     }
     
-    public func shadow<T: UIView>(color: UIColor,
-                                  alpha: Float = 0.5,
+    public func shadow<T: UIView>(color: UIColor = .black,
+                                  alpha: Float = 0.25,
                                   x: CGFloat = 0,
                                   y: CGFloat = 0,
-                                  blur: CGFloat = 2,
+                                  blur: CGFloat = 1,
                                   spread: CGFloat = 0,
                                   radius: CGFloat = 0) -> T {
         self.layer.setFigmaShadow(color: color, alpha: alpha, x: x, y: y, blur: blur, spread: spread, radius: radius)

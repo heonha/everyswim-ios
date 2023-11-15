@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>865035611935-6i9kt1t8oq0strsmibhbr5b652lkb5cb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.865035611935-6i9kt1t8oq0strsmibhbr5b652lkb5cb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAW2TlNO4z_MzHFkYLU_xgmmBsMdM5dS_0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>865035611935</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.heon.everyswim</string>
+	<key>PROJECT_ID</key>
+	<string>everyswim-80793</string>
+	<key>STORAGE_BUCKET</key>
+	<string>everyswim-80793.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:865035611935:ios:11551ab631b6b61c8eca2a</string>
+</dict>
+</plist>

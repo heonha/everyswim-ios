@@ -89,17 +89,25 @@ extension DashboardViewController {
     
     private func bind() {
         bindLastWorkout()
+        bindUpdateProfile()
         bindRecommandVideoSucceed()
         bindRecommandCommunitySucceed()
+    }
+    
+    private func bindUpdateProfile() {
+        AuthManager.shared.$isSignIn
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.headerView.setProfileData()
+            }
+            .store(in: &cancellables)
     }
     
     private func bindRecommandVideoSucceed() {
         viewModel.$recommandVideoSuccessed.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 if value {
-                    print("추천 영상 완료")
                     self?.recommandCollectionView.reloadData()
-        
                 }
             }
             .store(in: &cancellables)
@@ -109,7 +117,6 @@ extension DashboardViewController {
         viewModel.$recommandCommunitySuccessed.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 if value {
-                    print("추천 커뮤니티 완료")
                     self?.recommandCollectionView.reloadData()
                 }
             }

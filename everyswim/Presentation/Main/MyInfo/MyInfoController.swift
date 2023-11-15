@@ -18,7 +18,7 @@ final class MyInfoController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
-    private lazy var profileView = MyInfoProfileView()
+    private lazy var profileView = MyInfoProfileView(viewModel: viewModel, target: self)
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
@@ -36,13 +36,17 @@ final class MyInfoController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         scrollToTop()
-        self.navigationItem.title = "내 정보"
         hideNavigationBar(false)
+        self.navigationItem.title = "내 정보"
     }
     
     private func configure() {
         scrollView.isScrollEnabled = true
         scrollView.showsVerticalScrollIndicator = false
+    }
+    
+    private func scrollToTop() {
+        self.scrollView.scrollToTop()
     }
     
     private func layout() {
@@ -84,11 +88,10 @@ final class MyInfoController: UIViewController {
         }
     }
     
-    func scrollToTop() {
-        self.scrollView.scrollToTop()
-    }
+
     
     private func bindButtonsAction() {
+        // 건강 연동
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -98,6 +101,7 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        // 목표 수정
         buttonList.getButton(type: .editChallange)
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -107,6 +111,7 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        // 헬스데이터 가져오기
         healthStateCell.getRefreshButton()
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -115,6 +120,43 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        // 로그아웃
+        buttonList.getButton(type: .logout)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.presentSignOutAlert()
+            }
+            .store(in: &cancellables)
+
+        // 탈퇴
+        buttonList.getButton(type: .deleteAccount)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                let deleteVC = UserDeleteViewController()
+                self?.push(deleteVC, animated: true)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func presentSignOutAlert() {
+        let alert = UIAlertController(title: "알림", 
+                                      message: "로그아웃 하시겠습니까?",
+                                      preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "로그아웃",
+                                         style: .destructive) { _ in
+            self.viewModel.signOut()
+            self.scrollToTop()
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
     }
     
 }

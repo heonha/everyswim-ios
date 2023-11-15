@@ -13,7 +13,7 @@ final class DashboardHeaderView: UIView {
     private let viewModel: DashboardViewModel
     
     private lazy var title = ViewFactory
-        .label("반가워요, Heon Ha!")
+        .label("반가워요")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(UIColor.secondaryLabel)
 
@@ -24,8 +24,9 @@ final class DashboardHeaderView: UIView {
     private lazy var profileImageView: UIImageView = {
         let profileImage = UIImage(named: "Avatar") ?? UIImage()
         let imageView = UIImageView(image: profileImage)
+        imageView.backgroundColor = AppUIColor.secondaryBlue
         imageView.frame.size = .init(width: 56, height: 56)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
         return imageView
@@ -47,9 +48,23 @@ final class DashboardHeaderView: UIView {
         super.init(frame: .zero)
         layout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setProfileData() {
+        let profile = viewModel.getUserProfile()
+        self.title.text = "반가워요, \(profile.name)"
+        
+        if let imageUrlString = profile.imageUrl {
+            let imageUrl = URL(string: imageUrlString)
+            self.profileImageView.sd_setImage(with: imageUrl)
+            self.layoutIfNeeded()
+        } else {
+            let defaultProfileImage = AppImage.defaultUserProfileImage.getImage()
+            self.profileImageView.image = defaultProfileImage
+        }
     }
     
     func layout() {

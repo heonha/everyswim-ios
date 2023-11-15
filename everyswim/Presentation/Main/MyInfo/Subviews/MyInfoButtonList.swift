@@ -7,8 +7,10 @@
 
 import UIKit
 import SnapKit
+import Combine
 
-final class MyInfoButtonList: UIView {
+final class MyInfoButtonList: UIView, CombineCancellable {
+    var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: MyInfoViewModel
     
@@ -54,6 +56,25 @@ final class MyInfoButtonList: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         subview()
+        observeLogInState()
+    }
+    
+    private func observeLogInState() {
+        viewModel.isSignInPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] signIn in
+                self?.switchVisableIconsFromSignInState(signIn: signIn)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func switchVisableIconsFromSignInState(signIn: Bool) {
+        let logoutbutton = self.getButton(type: .logout)
+        let changeInfo = self.getButton(type: .changeUserInfo)
+        let deleteAccount = self.getButton(type: .deleteAccount)
+
+        let buttons = [logoutbutton, changeInfo, deleteAccount]
+        buttons.forEach { $0.isHidden = !signIn }
     }
     
     private func layout() {

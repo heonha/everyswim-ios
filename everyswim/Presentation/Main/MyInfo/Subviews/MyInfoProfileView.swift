@@ -7,17 +7,27 @@
 
 import UIKit
 import SnapKit
+import Combine
+import SDWebImage
 
-final class MyInfoProfileView: UIView {
+final class MyInfoProfileView: UIView, CombineCancellable {
+    
+    private let viewModel: MyInfoViewModel
+    private let parentViewController: MyInfoController
+    
+    var cancellables: Set<AnyCancellable> = .init()
+    
+    private let guestProfileImage = AppImage.defaultUserProfileImage.getImage()
     
     private lazy var profileImage = UIImageView()
-        .setImage(.init(named: "Avatar"))
-        .contentMode(.scaleAspectFit)
+        .setImage(guestProfileImage)
+        .contentMode(.scaleAspectFill)
+        .backgroundColor(AppUIColor.secondaryBlue)
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
-        .cornerRadius(30)
+        .cornerRadius(30) as! UIImageView
     
     private lazy var profileTitle = ViewFactory
-        .label("Heon Ha")
+        .label("개발하는 물개")
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(AppUIColor.label)
     
@@ -27,20 +37,23 @@ final class MyInfoProfileView: UIView {
                       UIView.spacer()])
         .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
         .cornerRadius(8)
-    
+        .shadow()
+
     private lazy var profileEmail = ViewFactory
-        .label("heonha@heon.dev")
+        .label("로그인하기")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.secondaryLabel)
     
     private lazy var profileView = ViewFactory
         .vStack(subviews: [profileImage, profileTitle, profileEmailBackground])
+        .spacing(8)
         .distribution(.fill)
         .alignment(.center)
     
-    init() {
+    init(viewModel: MyInfoViewModel, target: MyInfoController) {
+        self.parentViewController = target
+        self.viewModel = viewModel
         super.init(frame: .zero)
-        configure()
         layout()
     }
     
@@ -51,14 +64,48 @@ final class MyInfoProfileView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setSuperViewHeight()
+        observeTapGesture()
+        observeUserProfile()
     }
     
 }
 
 extension MyInfoProfileView {
     
-    private func configure() {
-        
+    private func observeTapGesture() {
+        self.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                let signInState = viewModel.getSessionState()
+                print("DEBUG: Tap 세션상태 \(signInState)")
+                if !signInState {
+                    let signInVC = SignInViewController(viewModel: .init())
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.parentViewController.present(signInVC, animated: true)
+                }
+                
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func observeUserProfile() {
+        viewModel.$myinfoProfile
+            .receive(on: DispatchQueue.main)
+            .sink { wrappedProfile in
+                guard let profileData = wrappedProfile else {return}
+                self.profileTitle.text = profileData.name
+                self.profileEmail.text = profileData.email
+                
+                guard let imageUrlString = profileData.imageUrl,
+                      imageUrlString.isEmpty == false else {
+                    self.profileImage.image = self.guestProfileImage
+                    return
+                }
+                let imageUrl = URL(string: imageUrlString)
+                self.profileImage.sd_setImage(with: imageUrl, placeholderImage: self.guestProfileImage)
+            }
+            .store(in: &cancellables)
     }
     
     private func layout() {
@@ -74,7 +121,7 @@ extension MyInfoProfileView {
         }
         
         profileEmail.snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(24)
+            make.height.equalTo(24)
             make.horizontalEdges.equalTo(profileEmailBackground).inset(12)
         }
         
@@ -95,8 +142,9 @@ import SwiftUI
 struct MyInfoProfileView_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView()
+            MyInfoProfileView(viewModel: .init(), target: .init())
         }
+        .frame(height: 150)
     }
 }
 #endif
