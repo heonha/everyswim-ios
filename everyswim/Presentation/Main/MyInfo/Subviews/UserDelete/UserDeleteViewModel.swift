@@ -18,6 +18,7 @@ final class UserDeleteViewModel: ObservableObject {
     
     func deleteAccount() async throws {
         try await authManager.deleteUser()
+        try await authManager.signOut()
     }
     
 }

@@ -159,7 +159,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     /// 애플 로그인 오류 처리
     func authorizationController(controller: ASAuthorizationController, 
                                  didCompleteWithError error: Error) {
-        print("Apple SignIn Error \(error.localizedDescription)")
         let alertController = UIAlertController(title: "로그인 오류", message: "\(error.localizedDescription)", preferredStyle: .alert)
         
         self.present(alertController, animated: true) {

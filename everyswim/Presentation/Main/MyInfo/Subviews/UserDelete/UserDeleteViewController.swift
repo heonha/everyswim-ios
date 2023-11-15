@@ -28,7 +28,6 @@ final class UserDeleteViewController: UIViewController, CombineCancellable {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        bind()
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,10 +47,7 @@ final class UserDeleteViewController: UIViewController, CombineCancellable {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
-    private func bind() {
-    }
-    
+
     @objc 
     func hideKeyboard() {
         view.endEditing(true)
