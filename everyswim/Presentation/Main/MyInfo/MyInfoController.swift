@@ -91,6 +91,17 @@ final class MyInfoController: UIViewController {
 
     
     private func bindButtonsAction() {
+        
+        // 프로필 변경
+        buttonList.getButton(type: .changeUserInfo)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                let setProfileVC = SetProfileViewController()
+                self?.present(setProfileVC, animated: true)
+            }
+            .store(in: &cancellables)
+        
         // 건강 연동
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())

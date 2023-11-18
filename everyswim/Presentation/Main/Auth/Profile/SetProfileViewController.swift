@@ -33,7 +33,7 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
         .backgroundColor(AppUIColor.skyBackground) as! UITextField
     
     private let nextButton = ViewFactory
-        .buttonWithText1("다음")
+        .buttonWithText1("완료")
     
     // MARK: - StackViews
     private lazy var mainVStack = ViewFactory.vStack()
@@ -65,18 +65,13 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addNextButtonAction()
     }
     
     // MARK: - Configure
     private func configure() {
-        profileImageView.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
-                print("Image Tapped")
-                presentImagePicker()
-            }
-            .store(in: &cancellables)
+        view.backgroundColor = .systemBackground
+        profileButtonTapgesture()
+        addNextButtonAction()
     }
     
     private func presentImagePicker() {
@@ -104,17 +99,29 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
     }
     
     // MARK: - Actions
+    
+    private func profileButtonTapgesture() {
+        profileImageView.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                print("Image Tapped")
+                presentImagePicker()
+            }
+            .store(in: &cancellables)
+    }
+    
     private func addNextButtonAction() {
         nextButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
-                print("NEXT")
+
                 guard let text = textField.text, text.isEmpty == false else {
                     self.presentAlert(title: "알림", message: "유저명을 입력해주세요.", target: self)
                     return
                 }
                 print("name: \(text)")
+                
                 Task(priority: .userInitiated) {
                     do {
                         try await self.viewModel.setProfile()
@@ -124,9 +131,7 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
                         self.presentAlert(title: "에러발생", message: "\(error.localizedDescription)", target: self)
                         return
                     }
-                    
                 }
-                // TODO: FireStore에 데이터 저장.
             }
             .store(in: &cancellables)
     }
@@ -135,22 +140,35 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
 
 // MARK: - Image Picker Delegate
 extension SetProfileViewController: PHPickerViewControllerDelegate {
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
-        
-        guard let result = results.first else {return}
-                
-        result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-            guard error != nil else { return }
-            
-            let image = image as? UIImage
-            
-            DispatchQueue.main.async {
-                self.profileImageView.contentView.image = image
-            }
-        }
+        setSelectedImage(picker: picker, results: results)
     }
     
+    private func setSelectedImage(picker: PHPickerViewController, results: [PHPickerResult]) {
+        if let result = results.first?.itemProvider {
+            result.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self.presentAlert(title: "ERROR", message: error.localizedDescription, target: self)
+                        return
+                    }
+                    
+                    let image = image as? UIImage
+                    self.profileImageView.contentView.image = image
+                }
+            }
+        } else {
+            self.presentAlert(title: "ERROR", message: "image is nil", target: self)
+        }
+        picker.dismiss(animated: true)
+    }
+    
+
+}
+
+enum SetProfileError: Error {
+    case dataIsNil
 }
 
 
