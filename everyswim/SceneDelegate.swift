@@ -19,7 +19,8 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         window?.backgroundColor = .white
 
         if self.isTestMode {
-            let testVC = SetProfileViewController()
+            let viewModel = SetProfileViewModel()
+            let testVC = SetProfileViewController(viewModel: viewModel, type: .signUp)
             window?.rootViewController = testVC
             window?.makeKeyAndVisible()
         } else {

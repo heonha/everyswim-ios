@@ -97,7 +97,8 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                let setProfileVC = SetProfileViewController()
+                let viewModel = SetProfileViewModel()
+                let setProfileVC = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
                 self?.present(setProfileVC, animated: true)
             }
             .store(in: &cancellables)

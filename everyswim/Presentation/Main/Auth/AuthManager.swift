@@ -8,11 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-protocol AuthServiceProtocol: ObservableObject {
-    
-}
-
-final class AuthManager: AuthServiceProtocol {
+final class AuthManager {
     
     private struct Constant {
         static let isSignInKey = "isSignInKey"
@@ -20,15 +16,20 @@ final class AuthManager: AuthServiceProtocol {
     
     private let appleSignService: AppleSignInHelper
     private let fbCredentialService: FirebaseAuthService
-    private let fireStoreService: FireStoreService
+    private let fireStoreService: FireStoreDBService
     
     static let shared = AuthManager()
     
     @Published var isSignIn: Bool = false
     
+    private var currentUser: User? {
+        willSet {
+            print("CURRENTUSER: \(newValue?.uid)")
+        }
+    }
     private var user: UserProfile?
     
-    private init(apple: AppleSignInHelper = .init(), fbCredentialService: FirebaseAuthService = .init(), fireStoreService: FireStoreService = .init()) {
+    private init(apple: AppleSignInHelper = .init(), fbCredentialService: FirebaseAuthService = .init(), fireStoreService: FireStoreDBService = .init()) {
         self.appleSignService = apple
         self.fbCredentialService = fbCredentialService
         self.fireStoreService = fireStoreService
@@ -57,7 +58,7 @@ final class AuthManager: AuthServiceProtocol {
     /// 회원 탈퇴
     func deleteUser() async throws {
         guard let user = Auth.auth().currentUser else {
-            throw FireStoreServiceError.currentUserIsNil
+            throw AuthManagerError.failToFetchUserProfile()
         }
         try await fireStoreService.deleteUserProfile(user: user)
         try await fbCredentialService.deleteAccount(user: user)
@@ -95,13 +96,23 @@ final class AuthManager: AuthServiceProtocol {
     /// Firebase에서 인증된 Current User 가져오기
     func fetchCurrentUserData() async throws -> UserProfile {
         do {
-            let user = try fbCredentialService.getAuthenticatedUser()
+            guard let user = fbCredentialService.getAuthenticatedUser() else {
+                throw AuthManagerError.currentUserIsNil()
+            }
+            
+            self.currentUser = user
             let userProfile = try await fireStoreService.fetchUserProfile(user: user)
             return userProfile
         } catch {
             print(error.localizedDescription)
             throw error
         }
+    }
+    
+    func getUID() -> String? {
+        let uid = self.currentUser?.uid
+        print("CURRENTUSER UID: \(uid)")
+        return uid
     }
     
     func getMyInfoProfile() -> MyInfoProfile {
@@ -112,4 +123,40 @@ final class AuthManager: AuthServiceProtocol {
         return MyInfoProfile(name: user.name ?? "로그인한 물개", email: user.email ?? "알수없는 이메일", imageUrl: user.profileImageUrl)
     }
     
+    func getUserProfile() throws -> UserProfile {
+        guard let user = user else { throw AuthManagerError.failToFetchUserProfile()}
+        return user
+    }
+    
+    enum AuthManagerError: ESError {
+        
+        case failToFetchUserProfile(location: String = #function)
+        case currentUserIsNil(location: String = #function)
+        
+        var message: String {
+            switch self {
+            case .failToFetchUserProfile:
+                return "프로필을 가져오는데 실패했습니다."
+            case .currentUserIsNil:
+                return "로그인 세션을 가져올 수 없습니다."
+            }
+        }
+        
+        var location: String {
+            switch self {
+            case .failToFetchUserProfile(let location):
+                return location
+            case .currentUserIsNil(let location):
+                return location
+            }
+        }
+    }
+    
+}
+
+
+
+protocol ESError: Error {
+    var message: String { get }
+    var location: String { get }
 }

@@ -31,6 +31,7 @@
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
 		392083B52A4853F800E591A8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */; };
+		3921EE1B2B09BB7600FEDD8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */; };
 		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
 		3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D5852A74E95400257164 /* SwimDataManager.swift */; };
 		39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E652B04E33A004E28E5 /* SetProfileViewController.swift */; };
@@ -105,6 +106,7 @@
 		3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */; };
 		3980FC572AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */; };
 		3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */; };
+		3983ED672B088D00000E64CF /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983ED662B088D00000E64CF /* FirebaseStorageService.swift */; };
 		398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398665212AFA492F00BBD7FE /* RecommandSection.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
@@ -116,7 +118,7 @@
 		398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */; };
 		398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */; };
 		398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */; };
-		398ED71C2B00B3790068CAD0 /* FireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED71B2B00B3790068CAD0 /* FireStoreService.swift */; };
+		398ED71C2B00B3790068CAD0 /* FireStoreDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
@@ -200,6 +202,7 @@
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
 		3922D5852A74E95400257164 /* SwimDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataManager.swift; sourceTree = "<group>"; };
 		39238E652B04E33A004E28E5 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 		3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfileView.swift; sourceTree = "<group>"; };
 		3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerFlowLayout.swift; sourceTree = "<group>"; };
 		3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		3983ED662B088D00000E64CF /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		398665212AFA492F00BBD7FE /* RecommandSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandSection.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* everyswim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = everyswim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -276,7 +280,7 @@
 		398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICellBackground.swift; sourceTree = "<group>"; };
 		398DFB412AA9D73C00BDEB8E /* ChallangeCellContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeCellContainer.swift; sourceTree = "<group>"; };
 		398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfile.swift; sourceTree = "<group>"; };
-		398ED71B2B00B3790068CAD0 /* FireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreService.swift; sourceTree = "<group>"; };
+		398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreDBService.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
@@ -512,19 +516,19 @@
 				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
 				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
 				39238E642B04E321004E28E5 /* Profile */,
-				39318EAA2AFD04D10089AEC4 /* Services */,
 				398ED7172B009F370068CAD0 /* Helpers */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		39318EAA2AFD04D10089AEC4 /* Services */ = {
+		39318EAA2AFD04D10089AEC4 /* FirebaseServices */ = {
 			isa = PBXGroup;
 			children = (
 				392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */,
-				398ED71B2B00B3790068CAD0 /* FireStoreService.swift */,
+				398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */,
+				3983ED662B088D00000E64CF /* FirebaseStorageService.swift */,
 			);
-			path = Services;
+			path = FirebaseServices;
 			sourceTree = "<group>";
 		};
 		3933514F2AFA576F0014D37A /* Network */ = {
@@ -674,6 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
+				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
 			);
 			path = Presentation;
@@ -844,6 +849,7 @@
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
+				3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1073,6 +1079,7 @@
 				39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */,
 				3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,
+				3921EE1B2B09BB7600FEDD8D /* BaseViewController.swift in Sources */,
 				396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */,
 				39EC71CD2B022DCF008A6386 /* UserDeleteView.swift in Sources */,
 				391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */,
@@ -1112,9 +1119,10 @@
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryData.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
+				3983ED672B088D00000E64CF /* FirebaseStorageService.swift in Sources */,
 				39238E6C2B04EB05004E28E5 /* BaseImageView.swift in Sources */,
 				392BF3DC2AFE529800ADAE49 /* FirebaseAuthService.swift in Sources */,
-				398ED71C2B00B3790068CAD0 /* FireStoreService.swift in Sources */,
+				398ED71C2B00B3790068CAD0 /* FireStoreDBService.swift in Sources */,
 				39F5998A2A9B6BC200738334 /* UILabel+Extension.swift in Sources */,
 				399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */,
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,

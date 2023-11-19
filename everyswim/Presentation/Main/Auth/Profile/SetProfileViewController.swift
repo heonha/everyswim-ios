@@ -9,9 +9,15 @@ import SnapKit
 import Combine
 import PhotosUI
 
-final class SetProfileViewController: UIViewController, CombineCancellable {
+enum SetProfileViewControllerType {
+    case signUp
+    case changeProfile
+}
+
+final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     private let viewModel: SetProfileViewModel
+    private let type: SetProfileViewControllerType
     
     var cancellables: Set<AnyCancellable> = .init()
     
@@ -44,8 +50,9 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
 
     // MARK: - Init & LifeCycles
     
-    init(viewModel: SetProfileViewModel = .init()) {
+    init(viewModel: SetProfileViewModel, type: SetProfileViewControllerType) {
         self.viewModel = viewModel
+        self.type = type
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,13 +65,14 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setCurrentProfile()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     // MARK: - Configure
@@ -72,6 +80,14 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
         view.backgroundColor = .systemBackground
         profileButtonTapgesture()
         addNextButtonAction()
+        configureTextField()
+    }
+    
+    private func setCurrentProfile() {
+        if type == .changeProfile {
+            textField.text = self.viewModel.name
+            setProfileImage(image: viewModel.image ?? AppImage.defaultUserProfileImage.getImage())
+        }
     }
     
     private func presentImagePicker() {
@@ -79,6 +95,11 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
         let imagePicker = PHPickerViewController(configuration: configuration)
         imagePicker.delegate = self
         self.present(imagePicker, animated: true)
+    }
+    
+    private func configureTextField() {
+        textField.delegate = self
+        textfieldHideKeyboardGesture()
     }
     
     private func layout() {
@@ -110,6 +131,14 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
             .store(in: &cancellables)
     }
     
+    func setProfileImage(image: UIImage) {
+        self.profileImageView.contentView.image = image
+    }
+    
+    func getProfileImage() -> UIImage? {
+        return self.profileImageView.contentView.image
+    }
+    
     private func addNextButtonAction() {
         nextButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -117,19 +146,33 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
                 guard let self = self else {return}
 
                 guard let text = textField.text, text.isEmpty == false else {
-                    self.presentAlert(title: "알림", message: "유저명을 입력해주세요.", target: self)
+                    self.presentAlert(title: "알림", message: "유저이름을 입력해주세요.", target: self)
                     return
                 }
                 print("name: \(text)")
                 
                 Task(priority: .userInitiated) {
                     do {
-                        try await self.viewModel.setProfile()
+                        switch self.type {
+                        case .signUp:
+                            try await self.viewModel.setProfile(image: self.getProfileImage())
+                        case .changeProfile:
+                            try await self.viewModel.changeProfile()
+                        }
                         self.navigationController?.popToRootViewController(animated: true)
                         self.presentAlert(title: "알림", message: "계정생성 완료!", target: self)
                     } catch {
-                        self.presentAlert(title: "에러발생", message: "\(error.localizedDescription)", target: self)
-                        return
+                        
+                        if let error = error as? ESError {
+                            self.presentAlert(title: "에러발생",
+                                              message: "\(error.message)",
+                                              target: self)
+                            return
+                        }
+
+                        self.presentAlert(title: "에러발생",
+                                          message: "\(error.localizedDescription)",
+                                          target: self)
                     }
                 }
             }
@@ -138,47 +181,61 @@ final class SetProfileViewController: UIViewController, CombineCancellable {
     
 }
 
+// MARK: - TextField Delegate
+extension SetProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 // MARK: - Image Picker Delegate
 extension SetProfileViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        setSelectedImage(picker: picker, results: results)
+        viewModel.parentViewController = self
+        viewModel.setSelectedImage(picker: picker, results: results)
     }
     
-    private func setSelectedImage(picker: PHPickerViewController, results: [PHPickerResult]) {
-        if let result = results.first?.itemProvider {
-            result.loadObject(ofClass: UIImage.self) { image, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        self.presentAlert(title: "ERROR", message: error.localizedDescription, target: self)
-                        return
-                    }
-                    
-                    let image = image as? UIImage
-                    self.profileImageView.contentView.image = image
-                }
-            }
-        } else {
-            self.presentAlert(title: "ERROR", message: "image is nil", target: self)
+}
+
+enum SetProfileError: ESError {
+    
+    case uidIsNil(location: String = #function)
+    case dataIsNil(location: String = #function)
+    
+    var message: String {
+        switch self {
+        case .uidIsNil:
+            return "uid가 없습니다. \(location)"
+        case .dataIsNil:
+            return "data가 없습니다. \(location)"
         }
-        picker.dismiss(animated: true)
     }
     
+    var location: String {
+        switch self {
+        case .uidIsNil(let location):
+            return location
+        case .dataIsNil(let location):
+            return location
+        }
+    }
 
 }
 
-enum SetProfileError: Error {
-    case dataIsNil
-}
 
-
+// MARK: - Preview
 #if DEBUG
 import SwiftUI
 
 struct SetProfileViewController_Previews: PreviewProvider {
     static var previews: some View {
+        let viewModel = SetProfileViewModel()
+        let viewController = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
+
         UIViewControllerPreview {
-            SetProfileViewController()
+            viewController
         }
     }
 }

@@ -19,7 +19,7 @@ final class FirebaseAuthService {
     // MARK: - Sign In
     /// Firebase를 통한 로그인 요청
     func firebaseSignIn(with credential: OAuthCredential) async throws {
-        let service = FireStoreService()
+        let service = FireStoreDBService()
         do {
             let signResult = try await Auth.auth().signIn(with: credential)
             
@@ -52,12 +52,9 @@ final class FirebaseAuthService {
         try await user.delete()
     }
     
-    
     /// 캐시된 currentUser 확인
-    func getAuthenticatedUser() throws -> User {
-        guard let currentUser = Auth.auth().currentUser else {
-            throw SignInError.userdataFetchError
-        }
+    func getAuthenticatedUser() -> User? {
+        let currentUser = Auth.auth().currentUser
         return currentUser
     }
     
@@ -69,8 +66,7 @@ final class FirebaseAuthService {
         }
     }
     
-    
-    // MARK: - Credential
+    // MARK: - Credentialㅇ
     
     func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)

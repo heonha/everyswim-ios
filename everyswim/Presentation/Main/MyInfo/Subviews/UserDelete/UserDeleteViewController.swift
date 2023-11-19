@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class UserDeleteViewController: UIViewController, CombineCancellable {
+final class UserDeleteViewController: BaseViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: UserDeleteViewModel
@@ -27,18 +27,12 @@ final class UserDeleteViewController: UIViewController, CombineCancellable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        textfieldHideKeyboardGesture()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
-    }
-    
-    private func configure() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
-        view.backgroundColor = .systemBackground
     }
     
     private func layout() {
@@ -48,14 +42,7 @@ final class UserDeleteViewController: UIViewController, CombineCancellable {
         }
     }
 
-    @objc 
-    func hideKeyboard() {
-        view.endEditing(true)
-    }
-    
 }
-
-
 
 extension UserDeleteViewController: UITextFieldDelegate {
     
