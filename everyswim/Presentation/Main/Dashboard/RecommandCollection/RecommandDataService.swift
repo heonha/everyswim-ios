@@ -33,13 +33,11 @@ final class RecommandDataService: CombineCancellable {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("❗️RecommandDataService-\(#function) 완료")
                     break
                 case .failure(let error):
                     print("❗️RecommandDataService-\(#function) Error: \(error.localizedDescription)")
                 }
             } receiveValue: { response in
-                print("RecommandDataService: \(#function): \(response)")
                 let videoData = response.video
                 completion(videoData)
             }
@@ -60,13 +58,11 @@ final class RecommandDataService: CombineCancellable {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("❗️RecommandDataService-\(#function) 완료")
                     break
                 case .failure(let error):
                     print("❗️RecommandDataService-\(#function) Error: \(error.localizedDescription)")
                 }
             } receiveValue: { response in
-                print("RecommandDataService: \(#function): \(response)")
                 let communityData = response.community
                 completion(communityData)
             }

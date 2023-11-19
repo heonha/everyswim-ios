@@ -38,11 +38,7 @@ final class DatePickerViewModel: ObservableObject {
     @Published private var allWorkoutData = [SwimMainData]()
     
     /// 선택한 달의 데이터
-    @Published var dataInSelectedMonth = [DatePickerEventData]() {
-        willSet {
-            print("Set!")
-        }
-    }
+    @Published var dataInSelectedMonth = [DatePickerEventData]()
     
     // MARK: - Health Kit
     private var hkManager: HealthKitManager?

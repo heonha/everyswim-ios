@@ -68,7 +68,6 @@ extension BarChallangeCell {
         default:
             amount = 0
         }
-        print("BarChallangeCell SETUP")
         self.countText.text = "\(data.progressLabel()) / \(amount.description) \(data.unit)"
     }
 

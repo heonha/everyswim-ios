@@ -73,8 +73,12 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configure()
-        layout()
         bind()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        layout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,10 +92,10 @@ final class DashboardViewController: UIViewController, CombineCancellable {
 extension DashboardViewController {
     
     private func bind() {
-        bindLastWorkout()
         bindUpdateProfile()
         bindRecommandVideoSucceed()
         bindRecommandCommunitySucceed()
+        bindLastWorkout()
     }
     
     private func bindUpdateProfile() {
@@ -385,7 +389,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, for: indexPath) as? RecommandVideoReusableCell else { return UICollectionViewCell() }
 
             let cellViewModel = viewModel.recommandVideos[indexPath.item]
-            print("SETTED: \(cellViewModel)")
             cell.configure(viewModel: cellViewModel)
             return cell
         
@@ -395,7 +398,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             
             let cellViewModel = viewModel.recommandCommunities[indexPath.item]
             cell.configure(viewModel: cellViewModel)
-            print("SETTED: \(cellViewModel)")
             return cell
         }
 

@@ -98,14 +98,10 @@ class SwimDataManager {
     func allStatDataHandler(_ record: HKWorkout) -> SwimStatisticsData {
         
         let allStat = record.allStatistics
-        print("Key Allstat \(allStat)")
-        print("Key Allstat \(allStat)")
-        
         let distance = allStat[.init(.distanceSwimming)]?.sumQuantity()?.doubleValue(for: .meter())
         let stroke = allStat[.init(.swimmingStrokeCount)]?.sumQuantity()?.doubleValue(for: .count())
         let activeKcal = allStat[.init(.activeEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
         let restKcal = allStat[.init(.basalEnergyBurned)]?.sumQuantity()?.doubleValue(for: .kilocalorie())
-        
         
         return SwimStatisticsData(distance: distance, stroke: stroke, activeKcal: activeKcal, restKcal: restKcal)
     }

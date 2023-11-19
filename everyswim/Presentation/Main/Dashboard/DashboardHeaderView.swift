@@ -22,7 +22,7 @@ final class DashboardHeaderView: UIView {
         .font(.custom(.sfProBold, size: 21))
     
     private lazy var profileImageView: UIImageView = {
-        let profileImage = UIImage(named: "Avatar") ?? UIImage()
+        let profileImage = UIImage()
         let imageView = UIImageView(image: profileImage)
         imageView.backgroundColor = AppUIColor.secondaryBlue
         imageView.frame.size = .init(width: 56, height: 56)

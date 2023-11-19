@@ -488,12 +488,12 @@
 		39318E822AFCEFEC0089AEC4 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
-				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
-				390C618F2AF3B9FF0061E6D4 /* UserData.swift */,
 				39FADBE32B0A1CFD00C90B19 /* SignIn */,
 				39EC71D02B0239EB008A6386 /* UserDelete */,
 				39238E642B04E321004E28E5 /* SetProfile */,
+				39318E832AFCF0030089AEC4 /* AuthManager.swift */,
+				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
+				390C618F2AF3B9FF0061E6D4 /* UserData.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -664,6 +664,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				3922D5732A74B1FA00257164 /* AppConstant */,
 				3933514F2AFA576F0014D37A /* Network */,
 				39CC3DAD2AC5490B00C8BC10 /* Protocols */,
@@ -723,7 +724,6 @@
 				3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */,
 				3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */,
 				398B1BB22A483E0C00E0FA9B /* Presentation */,
-				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				39437DA02A48948E00FDA9DA /* Secrets */,

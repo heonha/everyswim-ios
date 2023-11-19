@@ -92,7 +92,6 @@ final class DashboardViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .map(\.first)
             .sink { [weak self] data in
-                print("lastWorkout를 셋업합니다.")
                 self?.lastWorkout = data
             }.store(in: &cancellables)
     }
@@ -128,17 +127,13 @@ final class DashboardViewModel: ObservableObject {
         self.kcals = []
         self.stroke = []
         
-        print("DEBUG: 헬스 데이터 가져오기")
         guard let hkManager = hkManager else { return }
-        
-        print("DEBUG: 인증을 확인합니다")
         
         let isAuthed = await hkManager.requestAuthorization()
         
         if isAuthed {
             hkManager.getHealthData(dataType: .kcal, queryRange: .week) { result in
                 if let statCollection = result {
-                    print("업데이트 \(statCollection)")
                     self.updateUIFromStatistics(statCollection, type: .kcal, queryRange: .week)
                 } else {
                     print("Collection 가져오기실패")
@@ -159,7 +154,6 @@ final class DashboardViewModel: ObservableObject {
                                                     to: Date()) else { return }
         let endDate = Date()
         
-        print("Debug: \(#function) StatCollection만들기 시작")
         statCollection.enumerateStatistics(from: startDate, to: endDate) { statCollection, _ in
             
             switch type {
@@ -167,7 +161,6 @@ final class DashboardViewModel: ObservableObject {
                 let count = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
                 guard let count = count else { return }
                 let data = HKNormalStatus(count: count, date: statCollection.startDate)
-                print("Debug: kcal가 완료되었습니다. \(data)")
                 self.kcals.append(data)
                 
                 DispatchQueue.main.async {
@@ -175,7 +168,6 @@ final class DashboardViewModel: ObservableObject {
                         partialResult + kcal.count
                     }
                 }
-                print("DEBUG: Kcal per Week\(self.kcalPerWeek)")
             default:
                 print("DEBUG: \(#function) 알수없는 오류. default에 도달했습니다.")
                 return
