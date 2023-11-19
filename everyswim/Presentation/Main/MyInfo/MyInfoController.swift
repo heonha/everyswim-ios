@@ -22,19 +22,17 @@ final class MyInfoController: UIViewController {
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    // MARK:  INIT & Lifecycles
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         configure()
         layout()
-        bindButtonsAction()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        bindButtonsAction()
         scrollToTop()
         hideNavigationBar(false)
         self.navigationItem.title = "내 정보"

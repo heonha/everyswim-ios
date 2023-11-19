@@ -62,17 +62,17 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setCurrentProfile()
+        configure()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
+        setCurrentProfile()
     }
     
     // MARK: - Configure
@@ -155,12 +155,22 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
                     do {
                         switch self.type {
                         case .signUp:
-                            try await self.viewModel.setProfile(image: self.getProfileImage())
+                            try await self.viewModel.setProfile(name: self.textField.text ?? "")
+                            DispatchQueue.main.async {
+                                let action = UIAlertAction(title: "확인", style: .default) { _ in
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                }
+                                self.presentAlert(title: "알림", message: "프로필 설정 완료", target: self, action: [action])
+                            }
                         case .changeProfile:
-                            try await self.viewModel.changeProfile()
+                            try await self.viewModel.changeProfile(name: self.textField.text ?? "")
+                            DispatchQueue.main.async {
+                                let action = UIAlertAction(title: "확인", style: .default) { _ in
+                                    self.dismiss(animated: true)
+                                }
+                                self.presentAlert(title: "알림", message: "프로필 변경 완료", target: self, action: [action])
+                            }
                         }
-                        self.navigationController?.popToRootViewController(animated: true)
-                        self.presentAlert(title: "알림", message: "계정생성 완료!", target: self)
                     } catch {
                         
                         if let error = error as? ESError {
@@ -183,10 +193,10 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
 
 // MARK: - TextField Delegate
 extension SetProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+    // func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //     textField.resignFirstResponder()
+    //     return true
+    // }
 }
 
 // MARK: - Image Picker Delegate

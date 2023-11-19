@@ -30,11 +30,17 @@ extension UIViewController {
         self.navigationController?.isNavigationBarHidden = isHide
     }
     
-    func presentAlert(title: String?, message: String?, target: UIViewController) {
+    func presentAlert(title: String?, message: String?, target: UIViewController, action: [UIAlertAction]? = nil) {
         let alert = UIAlertController(title: title, message: message ?? "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(action)
-        
+        if let alertAction = action {
+            alertAction.forEach { action in
+                print("액션을 셋업합니다.")
+                alert.addAction(action)
+            }
+        } else {
+            let action = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(action)
+        }
         target.present(alert, animated: true)
     }
     

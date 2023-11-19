@@ -38,6 +38,30 @@ final class FirebaseStorageService {
         }
     }
     
+    func updateProfileImage(uid: String, image: Data) async throws -> String {
+        
+        print("FIREBASE STORAGE SET---------")
+        print("\(Constant.publicUsersDir.bucket)")
+
+        let userHomeDir = Constant.publicUsersDir.child(uid)
+        let imageFileRef = userHomeDir.child(Constant.userProfileImageName)
+        
+        do {
+            print("데이터 delete시작")
+            try await imageFileRef.delete()
+            print("데이터 delete완료")
+            print("데이터 put시작")
+            let profileImage = try await imageFileRef.putDataAsync(image, metadata: nil)
+            print("데이터 put완료")
+            let size = profileImage.size
+            print(size)
+            let downloadUrl = try await imageFileRef.downloadURL()
+            return downloadUrl.absoluteString
+        } catch {
+            throw error
+        }
+    }
+    
 
 }
 

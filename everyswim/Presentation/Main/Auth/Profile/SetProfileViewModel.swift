@@ -33,25 +33,26 @@ final class SetProfileViewModel: ObservableObject {
             let imageView = UIImageView()
             imageView.sd_setImage(with: imageUrl)
             self.image = imageView.image
+            self.currentImage = imageView.image
         }
     }
 
     /// 최초 유저 프로필 데이터 셋업
-    func setProfile(image: UIImage?) async throws {
+    func setProfile(name: String) async throws {
         guard let user = firebaseAuth.getAuthenticatedUser() else {
             throw SetProfileError.dataIsNil()
         }
         
         if let imageData = image?.jpegData(compressionQuality: 0.9) {
             let urlString = try await firebaseStorage.uploadProfileImage(uid: user.uid, image: imageData)
-            try await fireStore.createUserProfile(user: user, name: self.name, profileImageUrl: urlString)
+            try await fireStore.createUserProfile(user: user, name: name, profileImageUrl: urlString)
         } else {
             throw SetProfileError.dataIsNil()
         }
     }
     
     /// 유저 프로필 데이터 업데이트
-    func changeProfile() async throws {
+    func changeProfile(name: String) async throws {
         print(#function)
         do {
             guard let uid = AuthManager.shared.getUID() else {
@@ -59,14 +60,23 @@ final class SetProfileViewModel: ObservableObject {
             }
             
             print("\(#function) uid: \(uid)")
-            
-            let name = self.name
-            
             var urlString: String?
             
-            if currentImage?.hashValue != image.hashValue {
-                print("DEBUG: 해시 값이 일치하지 않음. 이미지를 업데이트 합니다.")
-                
+            if let currentHash = currentImage?.hashValue {
+                let selectedImageHash = image.unsafelyUnwrapped.hash
+                if currentHash != selectedImageHash {
+                    print("DEBUG: 해시 값이 일치하지 않음. 이미지를 업데이트 합니다.")
+                    let imageData = image?.jpegData(compressionQuality: 0.9)
+                    if let imageData = imageData {
+                        urlString = try await firebaseStorage.uploadProfileImage(uid: uid, image: imageData)
+                    } else {
+                        throw SetProfileError.dataIsNil()
+                    }
+                } else {
+                    print("DEBUG: 이미지 해시값이 일치함. 이미지 업데이트가 필요없습니다.")
+                }
+            } else {
+                print("DEBUG: 해시 값이 없음. 이미지를 업데이트 합니다.")
                 let imageData = image?.jpegData(compressionQuality: 0.9)
                 if let imageData = imageData {
                     urlString = try await firebaseStorage.uploadProfileImage(uid: uid, image: imageData)
@@ -74,7 +84,7 @@ final class SetProfileViewModel: ObservableObject {
                     throw SetProfileError.dataIsNil()
                 }
             }
-            
+
             print("DEBUG: 유저 프로필을 업데이트합니다.")
             try await fireStore.updateUserProfile(uid: uid, name: name, profileImageUrl: urlString)
         } catch {
@@ -96,6 +106,7 @@ final class SetProfileViewModel: ObservableObject {
                     
                     guard let image = image as? UIImage else { return }
                     self.image = image
+
                     parentViewController.setProfileImage(image: image)
                 }
             }

@@ -29,7 +29,7 @@ final class FirebaseAuthService {
                 let userProfile = try await service.fetchUserProfile(user: signResult.user)
                 AuthManager.shared.signIn(with: userProfile)
             } else {
-                try await service.createUserProfile(user: signResult.user, name: "수영하는 물개", profileImageUrl: "")
+                try await service.createUserProfile(user: signResult.user, name: "", profileImageUrl: "")
                 let fetchedProfile = try await service.fetchUserProfile(user: signResult.user)
                 AuthManager.shared.signIn(with: fetchedProfile)
             }
