@@ -75,7 +75,7 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         hstack.backgroundColor = .systemBackground
         hstack.sizeToFit()
         
-        let modalHeight = Constant.deviceSize.height / 2
+        let modalHeight = AppConstant.deviceSize.height / 2
         let pickerHeight = modalHeight * 0.5
 
         hstack.snp.makeConstraints { make in

@@ -26,7 +26,7 @@ final class ChallangeCellContainer: UIView {
     }()
     
     lazy var hstack: UIStackView = {
-        let spacing =  ((Constant.deviceSize.width - 40) / 3) * 0.1
+        let spacing =  ((AppConstant.deviceSize.width - 40) / 3) * 0.1
         let vstack = ViewFactory
             .vStack(spacing: spacing,
                     alignment: .center,

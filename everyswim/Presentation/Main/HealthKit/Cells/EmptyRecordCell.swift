@@ -28,7 +28,7 @@ final class EmptyRecordCell: UITableViewCell {
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.edges.equalTo(self)
-            make.width.equalTo(Constant.deviceSize.width)
+            make.width.equalTo(AppConstant.deviceSize.width)
         }
     }
     

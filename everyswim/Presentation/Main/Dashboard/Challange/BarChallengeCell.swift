@@ -76,13 +76,13 @@ extension BarChallangeCell {
         self.addSubview(backgroundView)
         
         self.snp.makeConstraints { make in
-            make.width.equalTo(Constant.deviceSize.width)
+            make.width.equalTo(AppConstant.deviceSize.width)
             make.height.equalTo(50)
         }
         backgroundView.addSubview(vstack)
         
         backgroundView.snp.makeConstraints { make in
-            make.width.equalTo(Constant.deviceSize.width - 20)
+            make.width.equalTo(AppConstant.deviceSize.width - 20)
             make.centerX.equalTo(self)
         }
         

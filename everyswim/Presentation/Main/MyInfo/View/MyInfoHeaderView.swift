@@ -90,7 +90,7 @@ final class MyInfoHeaderView: UIView {
         
         self.snp.makeConstraints { make in
             make.height.equalTo(44)
-            make.width.equalTo(Constant.deviceSize.width)
+            make.width.equalTo(AppConstant.deviceSize.width)
         }
         
     }

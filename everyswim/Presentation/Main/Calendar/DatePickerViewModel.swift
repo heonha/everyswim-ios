@@ -18,7 +18,7 @@ final class DatePickerViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private var cellWidth = Constant.deviceSize.width / 7.2
+    private var cellWidth = AppConstant.deviceSize.width / 7.2
     
     // MARK: - 달력 데이터
     /// 달력의 날짜 데이터
