@@ -27,7 +27,7 @@ final class UserDeleteViewController: BaseViewController, CombineCancellable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textfieldHideKeyboardGesture()
+        textfieldHideKeyboardGesture(textfield: userDeleteView.getTextField())
     }
     
     override func viewDidLayoutSubviews() {

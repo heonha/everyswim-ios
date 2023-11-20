@@ -9,14 +9,15 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    @objc private func textFieldHideKeyboard(view: UIView) {
-        view.endEditing(true)
-    }
-    
-    func textfieldHideKeyboardGesture() {
+    func textfieldHideKeyboardGesture(textfield: UITextField) {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldHideKeyboard))
         view.addGestureRecognizer(tapGesture)
         view.backgroundColor = .systemBackground
+    }
+    
+    @objc 
+    func textFieldHideKeyboard() {
+        self.view.endEditing(true)
     }
     
 }

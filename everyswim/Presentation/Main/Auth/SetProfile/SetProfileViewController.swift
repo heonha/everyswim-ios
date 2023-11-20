@@ -1,4 +1,4 @@
-//
+
 //  SetProfileViewController.swift
 //  everyswim
 //
@@ -62,17 +62,18 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configure()
+        setCurrentProfile()
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
-        setCurrentProfile()
     }
     
     // MARK: - Configure
@@ -99,7 +100,7 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     private func configureTextField() {
         textField.delegate = self
-        textfieldHideKeyboardGesture()
+        textfieldHideKeyboardGesture(textfield: textField)
     }
     
     private func layout() {
@@ -119,6 +120,8 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
         
     }
     
+    
+    
     // MARK: - Actions
     
     private func profileButtonTapgesture() {
@@ -127,6 +130,13 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
             .sink { [unowned self] _ in
                 print("Image Tapped")
                 presentImagePicker()
+            }
+            .store(in: &cancellables)
+        
+        textField.publisher(for: \.text)
+            .compactMap{ $0 }
+            .sink { [unowned self] text in
+                self.viewModel.name = text
             }
             .store(in: &cancellables)
     }
@@ -191,12 +201,11 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
 }
 
-// MARK: - TextField Delegate
 extension SetProfileViewController: UITextFieldDelegate {
-    // func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    //     textField.resignFirstResponder()
-    //     return true
-    // }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
 }
 
 // MARK: - Image Picker Delegate
