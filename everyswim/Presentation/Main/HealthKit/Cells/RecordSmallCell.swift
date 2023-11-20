@@ -19,6 +19,11 @@ final class RecordSmallCell: UITableViewCell {
                 self.weekdayLabel.text = data.getWeekDay()
                 self.title.text = "\(data.getWeekDay()) 수영"
                 self.record.text = "\(records.duration) | \(records.distance)m | \(records.lap) Lap"
+                
+                if self.showRelativedate {
+                    let label = self.rightLabel as! UILabel
+                    label.text = Date.relativeDate(from: data.startDate)
+                }
             }
         }
     }
@@ -30,7 +35,7 @@ final class RecordSmallCell: UITableViewCell {
                                   spacing: 16,
                                   alignment: .center,
                                   distribution: .fill)
-        .setEdgeInset(.init(top: 2, leading: 24, bottom: 2, trailing: 24))
+        .setEdgeInset(.init(top: 8, leading: 24, bottom: 8, trailing: 24))
     }()
     
     
@@ -66,11 +71,11 @@ final class RecordSmallCell: UITableViewCell {
         .font(.custom(.sfProLight, size: 13))
         .foregroundColor(AppUIColor.primaryBlue)
     
-    private lazy var bodyView: UIStackView = {
-        let vstack = ViewFactory.vStack(subviews: [title, record, UIView.spacer()], alignment: .fill, distribution: .fill)
-        vstack.setContentHuggingPriority(.init(249), for: .horizontal)
-        return vstack
-    }()
+    private lazy var bodyView: UIStackView = ViewFactory.vStack()
+        .addSubviews([title, record, UIView.spacer()])
+        .alignment(.fill)
+        .distribution(.fill)
+        .contentHuggingPriority(.init(rawValue: 249), for: .horizontal)
     
     private lazy var divider: UIView = {
         let divider = UIView()
@@ -150,22 +155,26 @@ extension RecordSmallCell {
     
     private func setLayout() {
         mainView.layer.cornerRadius = 12
-        mainView.layer.shadowColor = UIColor(hex: "000000").cgColor
-        mainView.layer.shadowOpacity = 0.12
-        mainView.layer.shadowOffset = CGSize(width: 0.2, height: 0.2)
+        mainView.layer.setFigmaShadow(alpha: 0.22, x: 0, y: 0, blur: 2, spread: 0, radius: 12)
         mainView.backgroundColor = UIColor.white
-        
+
         bodyView.addArrangedSubview(title)
         bodyView.addArrangedSubview(record)
 
         self.addSubview(mainView)
         
-        mainView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self).inset(10)
-            make.verticalEdges.equalTo(self).inset(6)
-            make.center.equalTo(self)
+        if showRelativedate {
+            mainView.snp.makeConstraints { make in
+                make.center.equalTo(self)
+                make.horizontalEdges.equalTo(self)
+            }
+        } else {
+            mainView.snp.makeConstraints { make in
+                make.center.equalTo(self)
+                make.horizontalEdges.equalTo(self).inset(16)
+            }
         }
-        
+
         divider.snp.makeConstraints { make in
             make.width.equalTo(1)
             make.height.equalTo(self.snp.height).inset(16)
@@ -174,7 +183,6 @@ extension RecordSmallCell {
         dayView.snp.makeConstraints { make in
             make.width.lessThanOrEqualTo(50)
         }
-        
     }
     
 }
@@ -187,6 +195,7 @@ struct EventListUICell_Previews: PreviewProvider {
         UIViewPreview {
             RecordSmallCell(data: TestObjects.swimmingData.first!)
         }
+        .frame(height: 80)
     }
 }
 #endif

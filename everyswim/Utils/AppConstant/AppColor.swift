@@ -24,6 +24,10 @@ enum AppUIColor {
     static let whiteUltraThinMaterialColor = UIColor(hex: "F6F6F7", alpha: 1)
     static let whithThickMaterialColor = UIColor(hex: "F1F3F5")
     
+    // CircleColor
+    static let circleGreen = UIColor(hex: "41D1B9", alpha: 1.0)
+    static let circleBlue = UIColor(hex: "1ab8cd")
+    
     // MARK: Base Label
     static let label = UIColor.label
     static let secondaryLabel = UIColor.secondaryLabel

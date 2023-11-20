@@ -45,19 +45,14 @@ final class AnimateRingUIView: UIView {
                             radius: self.circleSize / 2)
     }()
     
-    private lazy var text: UILabel = {
-        let label = ViewFactory.label(data.progressPercentString())
-            .font(.custom(.sfProMedium, size: fontSize))
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
+    private lazy var text = ViewFactory.label(data.progressPercentString())
+        .font(.custom(.sfProBold, size: fontSize))
+        .textAlignemnt(.center)
     
     init(data: ChallangeRing,
-         lineWidth: CGFloat = 6,
+         lineWidth: CGFloat = 4,
          linePadding: CGFloat = 16,
-         circleSize: CGFloat = 50,
+         circleSize: CGFloat = 40,
          textSize: CGFloat = 12,
          showRing: Bool = false) {
         
@@ -88,7 +83,6 @@ extension AnimateRingUIView {
     }
     
     private func layout() {
-        
         self.addSubview(backgroundView)
         backgroundView.addSubview(backgroundCircle)
         backgroundView.addSubview(progressCircle)
@@ -96,19 +90,23 @@ extension AnimateRingUIView {
         
         backgroundView.snp.makeConstraints { make in
             make.center.equalTo(self)
+            make.size.equalTo(circleSize)
         }
         
         backgroundCircle.snp.makeConstraints { make in
             make.center.equalTo(backgroundCircle)
+            make.size.equalTo(circleSize)
         }
         
         progressCircle.snp.makeConstraints { make in
             make.center.equalTo(backgroundCircle)
+            make.size.equalTo(circleSize)
         }
         
         text.snp.makeConstraints { make in
             make.center.equalTo(backgroundView)
-            make.width.height.equalTo(self.circleSize / 2)
+            make.height.equalTo(circleSize)
+            make.width.equalTo(circleSize / 1.3)
         }
         
     }
@@ -125,7 +123,10 @@ extension AnimateRingUIView {
                                         radius: radius,
                                         superViewLayer: view.layer)
         
-        let segmentLayer = createLayer(path: segmentPath, lineColor: lineColor, isAnimate: isAnimate)
+        let segmentLayer = createLayer(path: segmentPath, 
+                                       lineColor: lineColor,
+                                       isAnimate: isAnimate)
+        
         view.layer.addSublayer(segmentLayer)
         
         return view
@@ -148,7 +149,9 @@ extension AnimateRingUIView {
                                endAngle: CGFloat,
                                radius: CGFloat,
                                superViewLayer: CALayer) -> UIBezierPath {
-        let centerPoint = superViewLayer.anchorPoint
+        
+        let centerPoint = CGPoint(x: backgroundView.bounds.midX,
+                                  y: backgroundView.bounds.midY)
         let pathRadius = radius - (radius * 0.1)
         let startAngle = startAngle.toRadians()
         let endAngle = endAngle.toRadians()

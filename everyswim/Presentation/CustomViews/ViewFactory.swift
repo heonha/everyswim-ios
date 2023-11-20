@@ -15,7 +15,6 @@ enum ViewFactory {
                        alignment: UIStackView.Alignment = .fill,
                        distribution: UIStackView.Distribution = .fill) -> UIStackView {
         let sv = UIStackView(arrangedSubviews: subviews)
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.spacing = spacing
         sv.alignment = alignment
@@ -28,7 +27,6 @@ enum ViewFactory {
                        alignment: UIStackView.Alignment = .fill,
                        distribution: UIStackView.Distribution = .fill) -> UIStackView {
         let sv = UIStackView(arrangedSubviews: subviews)
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.spacing = spacing
         sv.alignment = alignment
@@ -39,7 +37,6 @@ enum ViewFactory {
     
     static func label(_ text: String = "") -> UILabel {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         label.font = .custom(.sfProBold, size: 16)
         label.textColor = .label

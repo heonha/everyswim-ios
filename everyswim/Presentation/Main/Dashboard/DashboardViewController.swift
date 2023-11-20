@@ -29,16 +29,19 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     /// `최근 운동 기록 Views`
     private lazy var recentRecordView = ViewFactory
         .vStack(subviews: [eventTitle, lastWorkoutCell])
+        .distribution(.fill)
+        .alignment(.center)
+        .spacing(4)
     
     /// [최근 운동 기록] Views - `title`
     private let eventTitle = ViewFactory
         .label("최근 기록")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.gray)
+        .textAlignemnt(.left)
     
     /// [최근 운동 기록] `Cell`
-    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!,
-                                                       showDate: true)
+    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!, showDate: true)
     
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
@@ -83,7 +86,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        hideNavigationBar(false)
+        hideNavigationBar(true)
         updateChallangeView()
     }
     
@@ -178,8 +181,6 @@ extension DashboardViewController {
     
     // MARK: Layout
     private func layout() {
-        
-        
         let contentView = scrollView.contentView
         let spacing: CGFloat = 28
         
@@ -187,14 +188,14 @@ extension DashboardViewController {
         
         headerViewLayout(contentView: contentView)
         
-        recentRecordViewLayout(contentView: contentView, spacing: spacing)
+        recentRecordViewLayout(contentView: contentView)
         
         challangeViewsLayout(contentView: contentView, spacing: spacing)
         
         imageSliderViewsLayout(contentView: contentView, spacing: spacing)
-        
     }
     
+
     private func scrollViewLayout() {
         view.addSubview(scrollView)
         
@@ -215,27 +216,34 @@ extension DashboardViewController {
         }
     }
     
-    private func recentRecordViewLayout(contentView: UIView, spacing: CGFloat) {
+    private func recentRecordViewLayout(contentView: UIView) {
         contentView.addSubview(recentRecordView)
-
+        
         recentRecordView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(spacing)
-            make.horizontalEdges.equalTo(contentView).inset(10)
+            make.top.equalTo(headerView.snp.bottom).offset(4)
+            make.height.equalTo(100)
+            make.horizontalEdges.equalTo(contentView).inset(20)
         }
         
-        lastWorkoutCell.snp.makeConstraints { make in
-            make.height.equalTo(70)
+        eventTitle.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(recentRecordView)
         }
+        
+        
+        lastWorkoutCell.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(recentRecordView)
+        }
+        
     }
+    
     
     private func challangeViewsLayout(contentView: UIView, spacing: CGFloat) {
         contentView.addSubview(challangeViews)
         
         challangeViews.snp.makeConstraints { make in
-            make.top.equalTo(recentRecordView.snp.bottom).offset(spacing)
-            make.leading.equalTo(contentView).offset(20)
-            make.trailing.equalTo(contentView).offset(-20)
-            make.height.equalTo(200)
+            make.top.equalTo(recentRecordView.snp.bottom).offset(8)
+            make.height.equalTo(220)
+            make.horizontalEdges.equalTo(contentView).inset(20)
         }
     }
     

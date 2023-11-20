@@ -59,17 +59,14 @@ struct ChallangeRing: Identifiable {
     
     func getCircleUIColor() -> UIColor {
         switch progress() {
-        case 0...0.29:
-            return AppUIColor.caloriesRed
-        case 0.30...0.69:
-            return UIColor(hex: "1ab8cd")
+        case 0...0.69:
+            return AppUIColor.circleBlue
         case 0.70...1.0:
-            return AppUIColor.secondaryBlue
+            return AppUIColor.circleGreen
         default:
-            return UIColor.systemGreen
+            return AppUIColor.circleGreen
         }
     }
-    
     
     var keyIcon: String {
         switch type {
@@ -82,7 +79,6 @@ struct ChallangeRing: Identifiable {
         default:
             return ""
         }
-        
     }
 
 }

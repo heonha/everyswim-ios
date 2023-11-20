@@ -12,30 +12,37 @@ final class BarChallangeCell: UIView {
     
     private var data: ChallangeRing
     
-    private let backgroundView = UICellBackground()
+    private let shadowView = UIView()
+    private let backgroundView = UIView()
+    private let circleSize: CGFloat = 48
     
     lazy var title = ViewFactory
         .label(data.type.title)
-        .font(.custom(.sfProLight, size: 14))
-        .textAlignemnt(.center)
+        .font(.custom(.sfProLight, size: 15))
+        .textAlignemnt(.left)
         .foregroundColor(.gray)
         .contentHuggingPriority(.init(rawValue: 251), for: .horizontal)
 
     lazy var countText = ViewFactory
         .label("\(data.progressLabel()) \(data.unit)")
         .font(.custom(.sfProMedium, size: 16))
+        .textAlignemnt(.left)
         .contentHuggingPriority(.init(rawValue: 249), for: .horizontal) as! UILabel
     
+    
+    private lazy var textHStack = ViewFactory.hStack()
+        .addSubviews([title, countText])
+        .alignment(.center)
+    
     lazy var circle = AnimateRingUIView(data: data,
-                                        circleSize: 40)
+                                        circleSize: circleSize)
         .contentHuggingPriority(.init(rawValue: 251), for: .horizontal) as! AnimateRingUIView
     
-    lazy var vstack = ViewFactory
-        .hStack(subviews: [title, countText, circle],
+    lazy var contentHStack = ViewFactory
+        .hStack(subviews: [textHStack, circle],
                 spacing: 4,
                 alignment: .center)
         .distribution(.fillProportionally)
-        .setEdgeInset(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
 
     
     init(data: ChallangeRing) {
@@ -71,32 +78,41 @@ extension BarChallangeCell {
         self.countText.text = "\(data.progressLabel()) / \(amount.description) \(data.unit)"
     }
 
-    func layout() {
+    private func layout() {
+        
+        shadowView.layer.cornerRadius = 8
+        shadowView.layer.setFigmaShadow(color: .black, alpha: 0.2, x: 0, y: 0, blur: 2, spread: 0, radius: 8)
+        self.addSubview(shadowView)
         self.addSubview(backgroundView)
-        
-        self.snp.makeConstraints { make in
-            make.width.equalTo(AppConstant.deviceSize.width)
-            make.height.equalTo(50)
+
+        shadowView.backgroundColor = .systemBackground
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(2)
         }
-        backgroundView.addSubview(vstack)
-        
+        backgroundView.backgroundColor = .clear
+        backgroundView.addSubview(contentHStack)
         backgroundView.snp.makeConstraints { make in
-            make.width.equalTo(AppConstant.deviceSize.width - 20)
-            make.centerX.equalTo(self)
-        }
-        
-        circle.snp.makeConstraints { make in
-            make.size.equalTo(40)
-            make.trailing.equalTo(backgroundView).inset(20)
+            make.edges.equalTo(self).inset(3)
         }
         
         title.snp.makeConstraints { make in
-            make.width.equalTo(60)
+            make.width.equalTo(50)
+        }
+        
+        textHStack.snp.makeConstraints { make in
+            make.top.bottom.equalTo(backgroundView)
+            make.leading.equalTo(backgroundView).inset(10)
+        }
+        
+        circle.snp.makeConstraints { make in
+            make.size.equalTo(circleSize)
+            make.trailing.equalTo(backgroundView).inset(10)
         }
 
-        vstack.snp.makeConstraints { make in
+        contentHStack.snp.makeConstraints { make in
             make.edges.equalTo(backgroundView)
         }
+        
     }
 
 }
@@ -110,6 +126,8 @@ struct BarChallangeCell_Previews: PreviewProvider {
         UIViewPreview {
             BarChallangeCell(data: TestObjects.rings.first!)
         }
+        .padding(.horizontal)
+        .frame(height: 65)
     }
 }
 #endif

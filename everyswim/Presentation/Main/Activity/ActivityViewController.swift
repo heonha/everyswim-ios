@@ -76,21 +76,15 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         viewModel.selectedSegment = .monthly
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         self.hideNavigationBar(false)
-    }
-    // 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.hideNavigationBar(true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
     }
-    
     
     // MARK: - Configure & Layout
     private func configure() {

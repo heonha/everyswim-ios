@@ -17,7 +17,7 @@ final class ChallangeCellContainer: UIView {
     var lapCell: BarChallangeCell?
     
     private let titleLabel: UILabel = {
-        let title: String = "이번주 현황"
+        let title: String = "이번 주의 수영"
         let label = ViewFactory.label(title)
             .font(.custom(.sfProLight, size: 15))
             .foregroundColor(.gray)
@@ -25,15 +25,17 @@ final class ChallangeCellContainer: UIView {
         return label
     }()
     
-    lazy var hstack: UIStackView = {
-        let spacing =  ((AppConstant.deviceSize.width - 40) / 3) * 0.1
+    lazy var cellVStack: UIStackView = {
         let vstack = ViewFactory
-            .vStack(spacing: spacing,
+            .vStack(spacing: 8,
                     alignment: .center,
                     distribution: .fillEqually)
         
         return vstack
     }()
+    
+    lazy var mainVStack = ViewFactory.vStack()
+        .addSubviews([titleLabel, cellVStack])
     
     init() {
         super.init(frame: .zero)
@@ -54,13 +56,10 @@ final class ChallangeCellContainer: UIView {
 extension ChallangeCellContainer {
     
     func startCircleAnimation() {
-        
         [countCell, distanceCell, lapCell]
             .forEach { view in
                 view?.circle.startCircleAnimation()
             }
-        
-  
     }
     
     func loadData() {
@@ -85,30 +84,48 @@ extension ChallangeCellContainer {
         lapCell = .init(data: lap)
         countCell = .init(data: count)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.hstack.addArrangedSubview(self.distanceCell!)
-            self.hstack.addArrangedSubview(self.lapCell!)
-            self.hstack.addArrangedSubview(self.countCell!)
+        self.cellVStack.addArrangedSubview(self.distanceCell!)
+        self.cellVStack.addArrangedSubview(self.lapCell!)
+        self.cellVStack.addArrangedSubview(self.countCell!)
+
+        distanceCell?.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.horizontalEdges.equalTo(cellVStack)
         }
+        
+        lapCell?.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.horizontalEdges.equalTo(cellVStack)
+        }
+        
+        countCell?.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.horizontalEdges.equalTo(cellVStack)
+        }
+
     }
     
     private func layout() {
         self.addSubview(backgroundView)
-        backgroundView.addSubview(titleLabel)
-        backgroundView.addSubview(hstack)
-        
+        backgroundView.addSubview(mainVStack)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-        
+
+        mainVStack.snp.makeConstraints { make in
+            make.edges.equalTo(backgroundView)
+        }
+
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(backgroundView)
+            make.height.equalTo(24)
+            make.horizontalEdges.equalTo(mainVStack)
         }
         
-        hstack.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalTo(backgroundView).inset(4)
+        cellVStack.snp.makeConstraints { make in
+            make.width.equalTo(mainVStack)
+            make.height.equalTo(195)
         }
+  
     }
     
 }
@@ -122,7 +139,7 @@ struct ChallangeCellContainer_Previews: PreviewProvider {
         UIViewPreview {
             ChallangeCellContainer()
         }
-        .frame(height: 130)
+        .frame(height: 200)
     }
 }
 #endif

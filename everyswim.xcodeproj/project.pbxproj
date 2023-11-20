@@ -406,8 +406,8 @@
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
-				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
+				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";

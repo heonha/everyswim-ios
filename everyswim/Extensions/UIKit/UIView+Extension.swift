@@ -40,7 +40,6 @@ extension UIView {
     
     static func spacer(_ size: CGSize = .zero) -> UIView {
         let view = UIView(frame: .init(origin: .zero, size: size))
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.init(249), for: .horizontal)
         view.setContentHuggingPriority(.init(249), for: .vertical)
         return view

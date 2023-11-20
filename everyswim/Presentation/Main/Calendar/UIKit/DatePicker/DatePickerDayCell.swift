@@ -51,8 +51,8 @@ final class DatePickerDayCell: UICollectionViewCell {
         .backgroundColor(.white)
     
     lazy var circleShadowView = UIView()
-        .backgroundColor(.white)
-        .shadow(color: .black, x: 0, y: 0)
+        .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
+        .shadow(color: .black, alpha: 0.4, x: 0, y: 0, blur: 2)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,8 +65,8 @@ final class DatePickerDayCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layout()
         configure()
+        layout()
     }
     
     private func layout() {
