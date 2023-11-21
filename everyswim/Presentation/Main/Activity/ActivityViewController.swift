@@ -19,7 +19,8 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
     private lazy var segmentControl = ActivityTypeSegmentControl(viewModel: viewModel)
     
-    private let titleLabel = ViewFactory.label("이번 주")
+    private let titleLabel = ViewFactory
+        .label("이번 주")
         .font(.custom(.sfProBold, size: 17))
         .foregroundColor(.secondaryLabel)
     

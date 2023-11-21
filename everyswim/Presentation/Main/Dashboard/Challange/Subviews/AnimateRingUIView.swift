@@ -45,7 +45,8 @@ final class AnimateRingUIView: UIView {
                             radius: self.circleSize / 2)
     }()
     
-    private lazy var text = ViewFactory.label(data.progressPercentString())
+    private lazy var text = ViewFactory
+        .label(data.progressPercentString())
         .font(.custom(.sfProBold, size: fontSize))
         .textAlignemnt(.center)
     

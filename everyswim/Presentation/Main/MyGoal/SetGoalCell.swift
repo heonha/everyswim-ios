@@ -36,20 +36,25 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
     var viewModel: SetGoalViewModel?
     var parent: SetGoalViewController?
     
-    private lazy var mainTitleLabel = ViewFactory.label("주간 수영 목표")
+    private lazy var mainTitleLabel = ViewFactory
+        .label("주간 수영 목표")
         .font(.custom(.sfProBold, size: 35))
         .textAlignemnt(.center)
    
-    private var titleLabel = ViewFactory.label("거리")
+    private var titleLabel = ViewFactory
+        .label("거리")
         .font(.custom(.sfProBold, size: 30))
     
-    private var amountLabel = ViewFactory.label("0")
+    private var amountLabel = ViewFactory
+        .label("0")
         .font(.custom(.sfProBold, size: 40))
     
-    private var unitLabel = ViewFactory.label("미터 / 일")
+    private var unitLabel = ViewFactory
+        .label("미터 / 일")
         .font(.custom(.sfProBold, size: 20))
 
-    private var subtitleLabel = ViewFactory.label("하루에 수영 할 목표 거리를 선택해주세요")
+    private var subtitleLabel = ViewFactory
+        .label("하루에 수영 할 목표 거리를 선택해주세요")
         .font(.custom(.sfProLight, size: 17))
     
     

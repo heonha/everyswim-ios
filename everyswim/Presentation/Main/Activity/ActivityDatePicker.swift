@@ -22,7 +22,8 @@ final class ActivityDatePicker: UIViewController, CombineCancellable {
         .distribution(.fillProportionally)
         .addSubviews([leftPicker, rightPicker])
     
-    private lazy var applyButton = ViewFactory.label("확인")
+    private lazy var applyButton = ViewFactory
+        .label("확인")
         .font(.custom(.sfProMedium, size: 18))
         .foregroundColor(.white)
         .textAlignemnt(.center)

@@ -14,23 +14,28 @@ class LapTableViewCell: UITableViewCell, ReuseableObject {
     
     var data: SwimMainData?
     
-    private let lapNoLabel = ViewFactory.label("1")
+    private let lapNoLabel = ViewFactory
+        .label("1")
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 18))
     
-    private let strokeStyleLabel = ViewFactory.label("자유형")
+    private let strokeStyleLabel = ViewFactory
+        .label("자유형")
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 18))
 
-    private let paceLabel = ViewFactory.label("1'00''")
+    private let paceLabel = ViewFactory
+        .label("1'00''")
         .font(.custom(.sfProLight, size: 16))
         .contentHuggingPriority(.init(rawValue: 249), for: .horizontal) as! UILabel
 
-    private let poolDistanceLabel = ViewFactory.label("25m")
+    private let poolDistanceLabel = ViewFactory
+        .label("25m")
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 15))
 
-    private lazy var mainHStack = ViewFactory.hStack()
+    private lazy var mainHStack = ViewFactory
+        .hStack()
         .addSubviews([lapNoLabel, strokeStyleLabel, paceLabel, poolDistanceLabel])
         .spacing(16)
         .distribution(.fillProportionally)

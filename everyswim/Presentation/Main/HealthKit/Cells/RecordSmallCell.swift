@@ -51,18 +51,21 @@ final class RecordSmallCell: UITableViewCell {
         return vstack
     }()
     
-    private lazy var dayLabel = ViewFactory.label("")
+    private lazy var dayLabel = ViewFactory
+        .label("")
         .font(.custom(.sfProMedium, size: 16))
         .foregroundColor(AppUIColor.primaryBlue)
     
-    private lazy var weekdayLabel = ViewFactory.label("")
+    private lazy var weekdayLabel = ViewFactory
+        .label("")
         .font(.custom(.sfProLight, size: 12))
         .foregroundColor(AppUIColor.primaryBlue)
     
     // MARK: 수영 기록
     private lazy var records = data.getSimpleRecords()
     
-    private lazy var title = ViewFactory.label("")
+    private lazy var title = ViewFactory
+        .label("")
         .font(.custom(.sfProMedium, size: 15))
         .foregroundColor(UIColor.black)
     
@@ -87,7 +90,8 @@ final class RecordSmallCell: UITableViewCell {
     // MARK: 우측 이미지
     private lazy var rightLabel: UIView = {
         if self.showRelativedate {
-            let relativeDateLabel = ViewFactory.label(Date.relativeDate(from: data.startDate))
+            let relativeDateLabel = ViewFactory
+                .label(Date.relativeDate(from: data.startDate))
                 .font(.custom(.sfProLight, size: 12))
                 .foregroundColor(AppUIColor.grayTint)
             relativeDateLabel.setContentHuggingPriority(.init(251), for: .horizontal)

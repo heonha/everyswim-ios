@@ -18,7 +18,8 @@ final class ChallangeCellContainer: UIView {
     
     private let titleLabel: UILabel = {
         let title: String = "이번 주의 수영"
-        let label = ViewFactory.label(title)
+        let label = ViewFactory
+            .label(title)
             .font(.custom(.sfProLight, size: 15))
             .foregroundColor(.gray)
         

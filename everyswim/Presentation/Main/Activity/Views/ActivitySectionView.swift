@@ -11,7 +11,8 @@ import SnapKit
 final class ActivitySectionView: UIView {
     
     // 주간활동 tableview
-    private let activityTitle = ViewFactory.label("주간 활동")
+    private let activityTitle = ViewFactory
+        .label("주간 활동")
         .font(.custom(.sfProMedium, size: 18))
         .foregroundColor(AppUIColor.label)
     

@@ -10,7 +10,8 @@ import SnapKit
 
 final class EmptyRecordCell: UITableViewCell {
     
-    private var titleLabel = ViewFactory.label()
+    private var titleLabel = ViewFactory
+        .label()
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 18))
         .foregroundColor(AppUIColor.grayTint)

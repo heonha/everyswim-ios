@@ -16,16 +16,19 @@ final class SignInViewController: UIViewController, CombineCancellable {
     private let viewModel: SignInViewModel
 
     //MARK: - Views
-    private let titleLabel = ViewFactory.label("EverySwim")
+    private let titleLabel = ViewFactory
+        .label("EverySwim")
         .font(.custom(.sfProBlack, size: 56))
         .textAlignemnt(.center)
 
-    private let subtitleLabel = ViewFactory.label("기록하고 관리하기")
+    private let subtitleLabel = ViewFactory
+        .label("기록하고 관리하기")
         .font(.custom(.sfProLight, size: 18))
         .foregroundColor(AppUIColor.secondaryLabel)
         .textAlignemnt(.center)
     
-    private lazy var guestSignInButtonLabel = ViewFactory.label("비로그인으로 계속하기")
+    private lazy var guestSignInButtonLabel = ViewFactory
+        .label("비로그인으로 계속하기")
         .font(.custom(.sfProMedium, size: 20))
         .foregroundColor(AppUIColor.label)
         .textAlignemnt(.center)

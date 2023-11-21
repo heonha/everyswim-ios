@@ -12,7 +12,8 @@ final class MyInfoHeaderView: UIView {
     
     private let viewModel: MyInfoViewModel
     
-    private var swimYearsLabel = ViewFactory.label("수력 4년차")
+    private var swimYearsLabel = ViewFactory
+        .label("수력 4년차")
         .font(.custom(.sfProBold, size: 12))
         .foregroundColor(AppUIColor.label)
     

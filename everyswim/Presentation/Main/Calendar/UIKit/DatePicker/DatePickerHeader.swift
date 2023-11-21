@@ -59,7 +59,8 @@ final class DatePickerHeader: UIView {
     private lazy var weekdaysView: UIView = {
         let weekdays = Weekdays.values
             .map { weekday -> UILabel in
-                let label = ViewFactory.label(weekday)
+                let label = ViewFactory
+                    .label(weekday)
                     .font(.custom(.sfProBold, size: 14))
                     .foregroundColor(AppUIColor.grayTint)
                     .textAlignemnt(.center)
