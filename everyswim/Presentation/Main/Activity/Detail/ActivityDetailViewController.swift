@@ -1,5 +1,5 @@
 //
-//  RecordDetailViewController.swift
+//  ActivityDetailViewController.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/28/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RecordDetailViewController: UIViewController {
+final class ActivityDetailViewController: UIViewController {
     
     private let scrollView = BaseScrollView()
     private let contentView = UIView()
@@ -123,7 +123,7 @@ final class RecordDetailViewController: UIViewController {
         
         self.lapTableView.delegate = self
         self.lapTableView.dataSource = self
-        self.lapTableView.register(LapTableViewCell.self, forCellReuseIdentifier: LapTableViewCell.reuseId)
+        self.lapTableView.register(LapSplitCell.self, forCellReuseIdentifier: LapSplitCell.reuseId)
     }
  
     // MARK: Layout
@@ -165,7 +165,8 @@ final class RecordDetailViewController: UIViewController {
 
     }
     
-    private func layoutLapTableView(contentView: UIView, topOffset: CGFloat) {
+    private func layoutLapTableView(contentView: UIView, 
+                                    topOffset: CGFloat) {
         contentView.addSubview(lapTableView)
         
         lapTableView.snp.makeConstraints { make in
@@ -175,8 +176,13 @@ final class RecordDetailViewController: UIViewController {
         }
     }
     
-    private func layoutPaceTitleLabel(contentView: UIView, topOffset: CGFloat, horizontalInset: CGFloat, height: CGFloat) {
+    private func layoutPaceTitleLabel(contentView: UIView, 
+                                      topOffset: CGFloat,
+                                      horizontalInset: CGFloat,
+                                      height: CGFloat) {
+        
         contentView.addSubview(paceTitleLabel)
+        
         paceTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(dataHStack.snp.bottom).offset(topOffset)
             make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
@@ -184,8 +190,8 @@ final class RecordDetailViewController: UIViewController {
         }
     }
     
-    private func layoutHeaderLabels(contentView: UIView, horizontalInset: CGFloat) {
-
+    private func layoutHeaderLabels(contentView: UIView, 
+                                    horizontalInset: CGFloat) {
         contentView.addSubview(dateLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(poolLabel)
@@ -207,7 +213,9 @@ final class RecordDetailViewController: UIViewController {
         }
     }
     
-    private func layoutDistanceStackView(contentView: UIView, topOffset: CGFloat, height: CGFloat) {
+    private func layoutDistanceStackView(contentView: UIView, 
+                                         topOffset: CGFloat,
+                                         height: CGFloat) {
         contentView.addSubview(distanceStack)
 
         distanceStack.snp.makeConstraints { make in
@@ -218,8 +226,9 @@ final class RecordDetailViewController: UIViewController {
         
     }
     
-    private func layoutCenterDataStack(contentView: UIView, topOffset: CGFloat, height: CGFloat) {
-        
+    private func layoutCenterDataStack(contentView: UIView, 
+                                       topOffset: CGFloat,
+                                       height: CGFloat) {
         contentView.addSubview(dataHStack)
 
         dataHStack.snp.makeConstraints { make in
@@ -285,7 +294,7 @@ final class RecordDetailViewController: UIViewController {
 }
 
 // MARK: - TableView Delegate & DataSource
-extension RecordDetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension ActivityDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.laps.count + 1
@@ -295,13 +304,13 @@ extension RecordDetailViewController: UITableViewDelegate, UITableViewDataSource
         
         // Legend
         if indexPath.row == 0 {
-            let cell = LapTableViewCell()
+            let cell = LapSplitCell()
             cell.setLegend()
             return cell
         }
         
         // Lap Cell
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LapTableViewCell.reuseId, for: indexPath) as? LapTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LapSplitCell.reuseId, for: indexPath) as? LapSplitCell else {return UITableViewCell()}
         cell.backgroundColor = AppUIColor.skyBackground
         let data = self.data
         cell.setData(lapData: data.laps[indexPath.row - 1])

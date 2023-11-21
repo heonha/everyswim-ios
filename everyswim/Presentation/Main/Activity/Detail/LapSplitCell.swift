@@ -1,5 +1,5 @@
 //
-//  LapTableViewCell.swift
+//  LapSplitCell.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/5/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LapTableViewCell: UITableViewCell, ReuseableObject {
+class LapSplitCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "LapTableViewCell"
     

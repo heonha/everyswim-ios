@@ -9,23 +9,6 @@ import UIKit
 import SnapKit
 import Combine
 
-enum MyGoalType {
-    case distance
-    case lap
-    case swimCount
-}
-
-struct GoalPerWeek: Codable {
-    var distancePerWeek: Int
-    var lapTimePerWeek: Int
-    var countPerWeek: Int
-}
-
-struct SetGoalText {
-    let title: String
-    let subtitle: String
-    let unit: String
-}
 
 final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
@@ -36,6 +19,8 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
     var viewModel: SetGoalViewModel?
     var parent: SetGoalViewController?
     
+    
+    // MARK: - Views
     private lazy var mainTitleLabel = ViewFactory
         .label("주간 수영 목표")
         .font(.custom(.sfProBold, size: 35))
@@ -57,29 +42,35 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
         .label("하루에 수영 할 목표 거리를 선택해주세요")
         .font(.custom(.sfProLight, size: 17))
     
-    
     private let plusButton = UIImageView()
-        .setSymbolImage(systemName: "plus.circle.fill", color: AppUIColor.secondaryBlue)
+        .setSymbolImage(systemName: "plus.circle.fill", 
+                        color: AppUIColor.secondaryBlue)
         .setSize(width: 40, height: 40)
     
     private let minusButton = UIImageView()
-        .setSymbolImage(systemName: "minus.circle.fill", color: AppUIColor.secondaryBlue)
+        .setSymbolImage(systemName: "minus.circle.fill", 
+                        color: AppUIColor.secondaryBlue)
         .setSize(width: 40, height: 40)
 
-    private let doneButton = ViewFactory.label("완료")
+    private let doneButton = ViewFactory
+        .label("완료")
         .font(.custom(.sfProMedium, size: 18))
         .textAlignemnt(.center)
         .foregroundColor(.systemBackground)
         .backgroundColor(AppUIColor.secondaryBlue)
         .cornerRadius(8)
     
+    // MARK: - StackViews
+    
     // 버튼 / 데이터 / 버튼
-    private lazy var middleHStack = ViewFactory.hStack()
+    private lazy var middleHStack = ViewFactory
+        .hStack()
         .addSubviews([minusButton, amountLabel, plusButton])
         .alignment(.center)
         .spacing(48)
     
-    private lazy var middleVStack = ViewFactory.vStack()
+    private lazy var middleVStack = ViewFactory
+        .vStack()
         .addSubviews([middleHStack, unitLabel])
         .spacing(8)
         .alignment(.center)
@@ -91,71 +82,13 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
         .alignment(.center)
         .distribution(.equalSpacing)
 
-    
+    // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         configure()
         layout()
     }
     
-    private func configure() {
-        observe()
-    }
-    
-    private func observe() {
-        
-        plusButton.gesturePublisher(.tap(.init(target: parent, action: nil)) )
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
-                print("PLUS")
-                guard let viewModel = viewModel else {return}
-
-                switch self.type {
-                case .distance:
-                    viewModel.distance += 25
-                case .lap:
-                    viewModel.lap += 1
-                case .swimCount:
-                    viewModel.count += 1
-                }
-                
-                updateCount()
-            }
-            .store(in: &cancellables)
-        
-        minusButton.gesturePublisher(.tap(.init(target: parent, action: nil)))
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
-                print("MINUS")
-                
-                guard let viewModel = viewModel else {return}
-                
-                switch self.type {
-                case .distance:
-                    if viewModel.distance <= 25 { return }
-                    viewModel.distance -= 25
-                case .lap:
-                    if viewModel.lap <= 1 { return }
-                    viewModel.lap -= 1
-                case .swimCount:
-                    if viewModel.count <= 1 { return }
-                    viewModel.count -= 1
-                }
-                
-                updateCount()
-            }
-            .store(in: &cancellables)
-        
-        doneButton.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.viewModel?.saveGoal()
-                self?.parent?.dismiss(animated: true)
-            }
-            .store(in: &cancellables)
-
-    }
-        
     private func layout() {
         contentView.addSubview(vstack)
         vstack.snp.makeConstraints { make in
@@ -182,10 +115,90 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
         
     }
     
-    func setType(_ type: MyGoalType) {
+    // MARK: - Configure
+    private func configure() {
+        observe()
+    }
+    
+    private func observe() {
+        addPlusButtonAction()
+        addMinusButtonAction()
+        addDoneButtonAction()
+    }
+    
+    private func addPlusButtonAction() {
+        plusButton.gesturePublisher(.tap(.init(target: parent, action: nil)) )
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                guard let viewModel = viewModel else {return}
+
+                switch self.type {
+                case .distance:
+                    viewModel.distance += 25
+                case .lap:
+                    viewModel.lap += 1
+                case .swimCount:
+                    viewModel.count += 1
+                }
+                
+                updateCount()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func addMinusButtonAction() {
+        minusButton.gesturePublisher(.tap(.init(target: parent, action: nil)))
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                guard let viewModel = viewModel else {return}
+                
+                switch self.type {
+                case .distance:
+                    if viewModel.distance <= 25 { return }
+                    viewModel.distance -= 25
+                case .lap:
+                    if viewModel.lap <= 1 { return }
+                    viewModel.lap -= 1
+                case .swimCount:
+                    if viewModel.count <= 1 { return }
+                    viewModel.count -= 1
+                }
+                
+                updateCount()
+            }
+            .store(in: &cancellables)
+
+    }
+    
+    private func addDoneButtonAction() {
+        doneButton.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewModel?.saveGoal()
+                self?.parent?.dismiss(animated: true)
+            }
+            .store(in: &cancellables)
+
+    }
+    
+    // MARK: - Setup
+    public func setType(_ type: MyGoalType) {
         self.type = type
     }
     
+    private func setAmount(from goal: GoalPerWeek) -> Int {
+        let count = goal.countPerWeek
+        switch type {
+        case .distance:
+            return goal.distancePerWeek / count
+        case .lap:
+            return goal.lapTimePerWeek / count
+        case .swimCount:
+            return count
+        }
+    }
+    
+    // MARK: - Update UI
     func updateCell(viewModel: SetGoalViewModel) {
         // Labels
         let viewData = viewModel.getTitles(self.type)
@@ -211,20 +224,10 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, CombineCancellab
         }
     }
     
-    private func setAmount(from goal: GoalPerWeek) -> Int {
-        let count = goal.countPerWeek
-        switch type {
-        case .distance:
-            return goal.distancePerWeek / count
-        case .lap:
-            return goal.lapTimePerWeek / count
-        case .swimCount:
-            return count
-        }
-    }
     
 }
 
+// MARK: - Preview
 #if DEBUG
 import SwiftUI
 

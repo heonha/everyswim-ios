@@ -147,7 +147,7 @@ extension DashboardViewController {
             .sink { [weak self] _ in
                 guard let data = self?.viewModel.lastWorkout else { return }
                 
-                let detailVC = RecordDetailViewController(data: data)
+                let detailVC = ActivityDetailViewController(data: data)
                 self?.push(detailVC, animated: true)
             }
             .store(in: &cancellables)

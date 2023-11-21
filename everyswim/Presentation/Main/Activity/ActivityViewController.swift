@@ -37,7 +37,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
     
     private lazy var distanceStack = DistanceBigLabel()
     
-    private lazy var recordHStack = RecordHStackView()
+    private lazy var recordHStack = ActivityDetailCenterDataView()
     
     private lazy var recordMainStack = ViewFactory.vStack()
         .addSubviews([titleMenu, distanceStack, recordHStack])
@@ -339,7 +339,7 @@ extension ActivityViewController: UITableViewDelegate {
         
         guard let cell = tableView.cellForRow(at: indexPath) as? RecordMediumCell else {return}
         let data = cell.getData()
-        let detailVC = RecordDetailViewController(data: data)
+        let detailVC = ActivityDetailViewController(data: data)
         self.push(detailVC, animated: true)
     }
     

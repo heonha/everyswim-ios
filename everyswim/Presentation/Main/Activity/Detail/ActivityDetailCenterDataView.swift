@@ -1,5 +1,5 @@
 //
-//  RecordHStackView.swift
+//  ActivityDetailCenterDataView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/29/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RecordHStackView: UIView {
+final class ActivityDetailCenterDataView: UIView {
     
     // 수영 횟수
     private lazy var swimRecordLabel = DetailRecordLabel(type: .swim,

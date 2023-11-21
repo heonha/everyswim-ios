@@ -308,7 +308,7 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.cellForRow(at: indexPath) as? RecordSmallCell else { return }
         guard let data = cell.data else { return }
         
-        let detailVC = RecordDetailViewController(data: data)
+        let detailVC = ActivityDetailViewController(data: data)
         self.push(detailVC, animated: true)
     }
     
