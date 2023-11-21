@@ -27,7 +27,7 @@ final class MyInfoHeaderView: UIView {
         .contentMode(.scaleAspectFit)
         .setSymbolImage(systemName: "pencil",
                         color: AppUIColor.secondaryLabel)
-        .disableUserInteraction(true)
+        .isUserInteractionEnabled(false)
     
     private lazy var editProfile = UIButton()
         .cornerRadius(6)

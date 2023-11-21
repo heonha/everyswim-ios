@@ -594,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				396387AE2AC6BC0200A490D1 /* Cells */,
-				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 				39572CDF2A52CABB00986E01 /* HealthKit */,
 				39CC3DC32AC5A30900C8BC10 /* DetailRecordLabel.swift */,
 				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
@@ -815,6 +814,7 @@
 				396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */,
 				39B377402AD2608500F37C27 /* ActivityDatePicker.swift */,
 				396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */,
+				39C5884B2AC6773E00B6C992 /* RecordDetail */,
 				39B377492AD2B30F00F37C27 /* Views */,
 				39B377452AD2B26B00F37C27 /* Model */,
 			);

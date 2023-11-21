@@ -58,21 +58,28 @@ final class RecordDetailViewController: UIViewController {
     // 수영장 길이 라벨
     private lazy var poolLength = DetailRecordLabel(type: .poolLength)
     
-    private lazy var leftDataVStack = ViewFactory.vStack()
+    private lazy var leftDataVStack = ViewFactory
+        .vStack()
         .addSubviews([averagePaceLabel, activeKcalLabel, averageBPMLabel])
         .distribution(.fillEqually)
     
-    private lazy var rightDataVStack = ViewFactory.vStack()
+    private lazy var rightDataVStack = ViewFactory
+        .vStack()
         .addSubviews([durationLabel, restKcalLabel, poolLength])
         .distribution(.fillEqually)
     
-    private lazy var dataHStack = ViewFactory.hStack()
+    private lazy var dataHStack = ViewFactory
+        .hStack()
         .addSubviews([leftDataVStack, rightDataVStack])
         .distribution(.fillProportionally)
         .spacing(36)
     
-    private lazy var lapTableView = UITableView()
-    
+    private lazy var lapTableView: UITableView = UITableView()
+        .isScrollEnabled(true)
+        .separatorColor(.secondarySystemFill)
+        .isUserInteractionEnabled(false)
+        .backgroundColor(.systemBackground)
+
     // MARK: - Init & LifeCycles
     init(data: SwimMainData) {
         self.data = data
@@ -117,30 +124,71 @@ final class RecordDetailViewController: UIViewController {
         self.lapTableView.delegate = self
         self.lapTableView.dataSource = self
         self.lapTableView.register(LapTableViewCell.self, forCellReuseIdentifier: LapTableViewCell.reuseId)
-        lapTableView.backgroundColor = .systemBackground
-        lapTableView.isScrollEnabled = false
-        lapTableView.separatorColor = .secondarySystemFill
-        lapTableView.isUserInteractionEnabled = false
     }
-    
+ 
+    // MARK: Layout
     private func layout() {
-        
-        
-        self.view.addSubview(scrollView)
+ 
+        layoutScrollView()
         
         let contentView = scrollView.contentView
-        
-        contentView.addSubview(dateLabel)
-        contentView.addSubview(timeLabel)
-        contentView.addSubview(poolLabel)
-        contentView.addSubview(distanceStack)
-        contentView.addSubview(dataHStack)
-
         let horizontalInset: CGFloat = 16
+        let topOffset: CGFloat = 40
+
+        layoutHeaderLabels(contentView: contentView, 
+                           horizontalInset: horizontalInset)
         
+        layoutDistanceStackView(contentView: contentView, 
+                                topOffset: topOffset,
+                                height: 100)
+        
+        layoutCenterDataStack(contentView: contentView, 
+                              topOffset: topOffset,
+                              height: 213)
+        
+        layoutPaceTitleLabel(contentView: contentView, 
+                             topOffset: topOffset,
+                             horizontalInset: horizontalInset,
+                             height: 30)
+        
+        layoutLapTableView(contentView: contentView, 
+                           topOffset: 10)
+        
+    }
+    
+    private func layoutScrollView() {
+        self.view.addSubview(scrollView)
+
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
+
+    }
+    
+    private func layoutLapTableView(contentView: UIView, topOffset: CGFloat) {
+        contentView.addSubview(lapTableView)
+        
+        lapTableView.snp.makeConstraints { make in
+            make.top.equalTo(paceTitleLabel.snp.bottom).offset(topOffset)
+            make.horizontalEdges.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+        }
+    }
+    
+    private func layoutPaceTitleLabel(contentView: UIView, topOffset: CGFloat, horizontalInset: CGFloat, height: CGFloat) {
+        contentView.addSubview(paceTitleLabel)
+        paceTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(dataHStack.snp.bottom).offset(topOffset)
+            make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
+            make.height.equalTo(height)
+        }
+    }
+    
+    private func layoutHeaderLabels(contentView: UIView, horizontalInset: CGFloat) {
+
+        contentView.addSubview(dateLabel)
+        contentView.addSubview(timeLabel)
+        contentView.addSubview(poolLabel)
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(14)
@@ -157,51 +205,59 @@ final class RecordDetailViewController: UIViewController {
             make.trailing.equalTo(contentView).inset(horizontalInset)
             make.width.greaterThanOrEqualTo(100)
         }
-        
+    }
+    
+    private func layoutDistanceStackView(contentView: UIView, topOffset: CGFloat, height: CGFloat) {
+        contentView.addSubview(distanceStack)
+
         distanceStack.snp.makeConstraints { make in
-            make.top.equalTo(poolLabel.snp.bottom).offset(40)
+            make.top.equalTo(poolLabel.snp.bottom).offset(topOffset)
             make.centerX.equalTo(contentView)
             make.height.greaterThanOrEqualTo(100)
         }
         
-        dataHStack.snp.makeConstraints { make in
-            make.top.equalTo(distanceStack.snp.bottom).offset(40)
-            make.centerX.equalTo(contentView)
-            make.height.greaterThanOrEqualTo(213)
-        }
-        
-        contentView.addSubview(paceTitleLabel)
-        paceTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(dataHStack.snp.bottom).offset(40)
-            make.horizontalEdges.equalTo(contentView).inset(horizontalInset)
-            make.height.equalTo(30)
-        }
-        
-        contentView.addSubview(lapTableView)
-        lapTableView.snp.makeConstraints { make in
-            make.top.equalTo(paceTitleLabel.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(contentView)
-            make.bottom.equalTo(contentView)
-        }
-        
     }
     
+    private func layoutCenterDataStack(contentView: UIView, topOffset: CGFloat, height: CGFloat) {
+        
+        contentView.addSubview(dataHStack)
+
+        dataHStack.snp.makeConstraints { make in
+            make.top.equalTo(distanceStack.snp.bottom).offset(topOffset)
+            make.centerX.equalTo(contentView)
+            make.height.greaterThanOrEqualTo(height)
+        }
+    }
+    
+    
+    // MARK: - UPDATE UI
+    
+    /// 데이터 받아서 UI 업데이트
     private func updateUI() {
         let weekday = self.data.startDate.toString(.weekdayTime)
         
         self.navigationItem.title = "\(weekday) 수영"
         
+        // 날짜, 시간, 수영장
         self.dateLabel.text = self.data.startDate.toString(.fullDotDate)
         self.timeLabel.text = self.data.durationTime
         self.poolLabel.text = "OOO 수영장"
+        
+        // 거리
         self.distanceStack.setData(self.data.unwrappedDistance.toRoundupString(), unit: "m")
         
+        // 평균페이스, 운동시간
         self.averagePaceLabel.setData(data: "-:--")
         self.durationLabel.setData(data: self.data.duration.toRelativeTime(.hourMinute, unitStyle: .full))
-        self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toRoundupString() ?? "-")
-        self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toRoundupString() ?? "-")
+        
+        // 심박수, 레인길이
         self.averageBPMLabel.setData(data: "---")
         self.poolLength.setData(data: "--")
+        
+        // 칼로리
+        self.activeKcalLabel.setData(data: self.data.detail?.activeKcal?.toRoundupString() ?? "-")
+        self.restKcalLabel.setData(data: self.data.detail?.restKcal?.toRoundupString() ?? "-")
+
     }
     
     /// Cell 갯수에 따라서 TableView 크기를 업데이트
@@ -216,7 +272,6 @@ final class RecordDetailViewController: UIViewController {
                 make.horizontalEdges.equalTo(scrollView.contentView)
                 make.bottom.equalTo(scrollView.contentView)
             }
-            
             return
         }
         
@@ -229,6 +284,7 @@ final class RecordDetailViewController: UIViewController {
     }
 }
 
+// MARK: - TableView Delegate & DataSource
 extension RecordDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -246,7 +302,7 @@ extension RecordDetailViewController: UITableViewDelegate, UITableViewDataSource
         
         // Lap Cell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LapTableViewCell.reuseId, for: indexPath) as? LapTableViewCell else {return UITableViewCell()}
-        cell.backgroundColor = UIColor(hex: "EDF2FB", alpha: 0.7)
+        cell.backgroundColor = AppUIColor.skyBackground
         let data = self.data
         cell.setData(lapData: data.laps[indexPath.row - 1])
         return cell

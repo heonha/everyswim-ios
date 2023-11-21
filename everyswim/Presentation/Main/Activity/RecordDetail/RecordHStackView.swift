@@ -12,18 +12,18 @@ final class RecordHStackView: UIView {
     
     // 수영 횟수
     private lazy var swimRecordLabel = DetailRecordLabel(type: .swim,
-                                                             textAlignment: .center,
-                                                             stackAlignment: .center)
+                                                         textAlignment: .center,
+                                                         stackAlignment: .center)
     
     // 평균 페이스
     private lazy var averagePaceRecordLabel = DetailRecordLabel(type: .averagePaceWithoutUnit,
-                                                                    textAlignment: .center,
-                                                                    stackAlignment: .center)
+                                                                textAlignment: .center,
+                                                                stackAlignment: .center)
     
     // 수영 시간
     private lazy var durationRecordLabel = DetailRecordLabel(type: .duration,
-                                                                 textAlignment: .center,
-                                                                 stackAlignment: .center)
+                                                             textAlignment: .center,
+                                                             stackAlignment: .center)
     
     private lazy var recordHStack = ViewFactory.hStack()
         .addSubviews([swimRecordLabel, averagePaceRecordLabel, durationRecordLabel])

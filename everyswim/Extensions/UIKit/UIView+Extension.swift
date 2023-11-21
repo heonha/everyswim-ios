@@ -76,8 +76,8 @@ extension UIView {
         return self as! T
     }
     
-    public func disableUserInteraction<T: UIView>(_ disable: Bool) -> T {
-        self.isUserInteractionEnabled = !disable
+    public func isUserInteractionEnabled<T: UIView>(_ isEnable: Bool) -> T {
+        self.isUserInteractionEnabled = !isEnable
         return self as! T
     }
     
