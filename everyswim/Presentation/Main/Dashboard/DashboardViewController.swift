@@ -12,16 +12,16 @@ import SDWebImage
 
 final class DashboardViewController: UIViewController, CombineCancellable {
     
-    var cancellables: Set<AnyCancellable> = .init()
-    
     private let viewModel: DashboardViewModel
     
-    // MARK: Properties
-    private var counter = 0
-    private let pageController = UIPageControl(frame: .zero)
-    
-    // MARK: Views
-    private let scrollView = BaseScrollView()
+    var cancellables: Set<AnyCancellable> = .init()
+        
+    // MARK: - Views
+    private let scrollView: BaseScrollView = BaseScrollView()
+        .showsVerticalScrollIndicator(false)
+        .showsHorizontalScrollIndicator(false)
+        .isPagingEnabled(true)
+        .backgroundColor(.systemBackground)
     
     /// `상단 헤더 뷰` (프로필)
     private lazy var headerView = DashboardHeaderView(viewModel: viewModel)
@@ -46,10 +46,8 @@ final class DashboardViewController: UIViewController, CombineCancellable {
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
     
-    
-    // MARK: Recommand Collection View
     /// 섹션
-    private var sections = RecommandSection.allCases
+    private var recommandSections = RecommandSection.allCases
     
     /// 추천 CollectionView 초기화
     private lazy var recommandCollectionView: UICollectionView = {
@@ -94,6 +92,7 @@ final class DashboardViewController: UIViewController, CombineCancellable {
 
 extension DashboardViewController {
     
+    // MARK: - Bind
     private func bind() {
         bindUpdateProfile()
         bindRecommandVideoSucceed()
@@ -139,7 +138,7 @@ extension DashboardViewController {
                     lastWorkoutCell.updateData(data)
                 }
             }
-        .store(in: &cancellables)
+            .store(in: &cancellables)
         
         // 최근 운동기록 제스쳐
         lastWorkoutCell.gesturePublisher(.tap())
@@ -154,48 +153,40 @@ extension DashboardViewController {
     }
     
     
-    // MARK: Configures
+    // MARK: - Configures
     private func configure() {
-        configureMediaSlider()
+        configureRecommandCollectionView()
     }
     
-    private func configureMediaSlider() {
-
-        recommandCollectionView.register(RecommandCollectionViewHeader.self,
-                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                     withReuseIdentifier: RecommandCollectionViewHeader.reuseId)
-        
+    private func configureRecommandCollectionView() {
         recommandCollectionView.dataSource = self
         recommandCollectionView.delegate = self
-        recommandCollectionView.register(RecommandVideoReusableCell.self,
-                               forCellWithReuseIdentifier: RecommandVideoReusableCell.reuseId)
-        recommandCollectionView.register(CommunityReusableCell.self,
-                               forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
 
-        recommandCollectionView.backgroundColor = .white
-        recommandCollectionView.showsVerticalScrollIndicator = false
-        recommandCollectionView.showsHorizontalScrollIndicator = false
-        recommandCollectionView.isPagingEnabled = true
-        
+        recommandCollectionView.register(RecommandCollectionViewHeader.self,
+                                         forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                         withReuseIdentifier: RecommandCollectionViewHeader.reuseId)
+        recommandCollectionView.register(RecommandVideoReusableCell.self,
+                                         forCellWithReuseIdentifier: RecommandVideoReusableCell.reuseId)
+        recommandCollectionView.register(CommunityReusableCell.self,
+                                         forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     private func layout() {
         let contentView = scrollView.contentView
         let spacing: CGFloat = 28
         
         scrollViewLayout()
         
-        headerViewLayout(contentView: contentView)
+        headerViewLayout(contentView: contentView, height: 80)
         
-        recentRecordViewLayout(contentView: contentView)
+        recentRecordViewLayout(contentView: contentView, height: 100)
         
-        challangeViewsLayout(contentView: contentView, spacing: spacing)
+        challangeViewsLayout(contentView: contentView, spacing: spacing, height: 220)
         
-        imageSliderViewsLayout(contentView: contentView, spacing: spacing)
+        RecommandCollectionViewLayout(contentView: contentView, spacing: spacing, height: 600)
     }
     
-
     private func scrollViewLayout() {
         view.addSubview(scrollView)
         
@@ -204,24 +195,24 @@ extension DashboardViewController {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-        
     }
     
-    private func headerViewLayout(contentView: UIView) {
+    private func headerViewLayout(contentView: UIView, height: CGFloat) {
         contentView.addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.top.equalTo(contentView)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
+            make.height.equalTo(height)
         }
     }
     
-    private func recentRecordViewLayout(contentView: UIView) {
+    private func recentRecordViewLayout(contentView: UIView, height: CGFloat) {
         contentView.addSubview(recentRecordView)
         
         recentRecordView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(4)
-            make.height.equalTo(100)
+            make.height.equalTo(height)
             make.horizontalEdges.equalTo(contentView).inset(20)
         }
         
@@ -233,36 +224,33 @@ extension DashboardViewController {
         lastWorkoutCell.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(recentRecordView)
         }
-        
     }
     
-    
-    private func challangeViewsLayout(contentView: UIView, spacing: CGFloat) {
+    private func challangeViewsLayout(contentView: UIView, spacing: CGFloat, height: CGFloat) {
         contentView.addSubview(challangeViews)
         
         challangeViews.snp.makeConstraints { make in
             make.top.equalTo(recentRecordView.snp.bottom).offset(8)
-            make.height.equalTo(220)
+            make.height.equalTo(height)
             make.horizontalEdges.equalTo(contentView).inset(20)
         }
     }
     
-    private func imageSliderViewsLayout(contentView: UIView, spacing: CGFloat) {
-        
+    private func RecommandCollectionViewLayout(contentView: UIView, spacing: CGFloat, height: CGFloat) {
         contentView.addSubview(recommandCollectionView)
-        contentView.addSubview(pageController)
 
         recommandCollectionView.isScrollEnabled = false
         recommandCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
-            make.height.equalTo(600)
+            make.height.equalTo(height)
             make.bottom.equalTo(contentView)
         }
 
     }
     
+    // MARK: - Update UI
     private func updateChallangeView() {
         challangeViews.startCircleAnimation()
     }
@@ -274,7 +262,7 @@ extension DashboardViewController {
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     /// `레이아웃` 생성
-    func createBasicListLayout(section: Int) -> NSCollectionLayoutSection {
+    private func createBasicListLayout(section: Int) -> NSCollectionLayoutSection {
         switch section {
         case 0:
             return createSectionLayout(height: 170)
@@ -357,7 +345,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         return headers
     }
     
-        
     /// 섹션 `헤더 View 구성`
     func collectionView(_ collectionView: UICollectionView, 
                         viewForSupplementaryElementOfKind kind: String,
@@ -366,7 +353,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecommandCollectionViewHeader.reuseId, for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
-        let section = sections[indexPath.section]
+        let section = recommandSections[indexPath.section]
         header.configure(title: section.title, subtitle: section.subtitle)
         
         return header
@@ -375,7 +362,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     /// `섹션별 아이템 수` 정의
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch sections[section] {
+        switch recommandSections[section] {
         case .video:
             return viewModel.recommandVideos.count
         case .community:
@@ -385,13 +372,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     /// `섹션 수` 정의
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return recommandSections.count
     }
     
     /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch sections[indexPath.section] {
+        switch recommandSections[indexPath.section] {
         // 추천영상
         case .video:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, for: indexPath) as? RecommandVideoReusableCell else { return UICollectionViewCell() }

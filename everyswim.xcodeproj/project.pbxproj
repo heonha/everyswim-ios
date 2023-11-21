@@ -47,6 +47,7 @@
 		392CBFF62B0CD336001CB22F /* MyGoalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CBFF52B0CD336001CB22F /* MyGoalType.swift */; };
 		392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CBFF72B0CD343001CB22F /* GoalPerWeek.swift */; };
 		392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CBFF92B0CD34C001CB22F /* SetGoalText.swift */; };
+		392CBFFC2B0CD88B001CB22F /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CBFFB2B0CD88B001CB22F /* UIScrollView+Extension.swift */; };
 		39318E842AFCF0030089AEC4 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39318E832AFCF0030089AEC4 /* AuthManager.swift */; };
 		39318E872AFCF0AF0089AEC4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E862AFCF0AF0089AEC4 /* FirebaseAnalytics */; };
 		39318E892AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 39318E882AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -219,6 +220,7 @@
 		392CBFF52B0CD336001CB22F /* MyGoalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoalType.swift; sourceTree = "<group>"; };
 		392CBFF72B0CD343001CB22F /* GoalPerWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPerWeek.swift; sourceTree = "<group>"; };
 		392CBFF92B0CD34C001CB22F /* SetGoalText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalText.swift; sourceTree = "<group>"; };
+		392CBFFB2B0CD88B001CB22F /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		39318E832AFCF0030089AEC4 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		39318E9E2AFCF13B0089AEC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39318EA02AFCF26F0089AEC4 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 				39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */,
 				39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */,
 				391678F42AC7E93A00190D35 /* Calendar+Extension.swift */,
+				392CBFFB2B0CD88B001CB22F /* UIScrollView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */,
 				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
 				3933514E2AFA575E0014D37A /* NetworkError.swift in Sources */,
+				392CBFFC2B0CD88B001CB22F /* UIScrollView+Extension.swift in Sources */,
 				39389FCE2AB33BD300497402 /* MyInfoButton.swift in Sources */,
 				3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */,
 				39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */,

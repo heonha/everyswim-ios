@@ -101,6 +101,11 @@ extension UIView {
         self.setContentCompressionResistancePriority(priority, for: axis)
         return self as! T
     }
+    
+    public func clipToBounds<T: UIView>(_ isTrue: Bool) -> T {
+        self.clipsToBounds = isTrue
+        return self as! T
+    }
 
     
 }

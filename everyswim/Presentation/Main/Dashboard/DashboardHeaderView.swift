@@ -12,37 +12,35 @@ final class DashboardHeaderView: UIView {
     
     private let viewModel: DashboardViewModel
     
-    private lazy var title = ViewFactory
+    private lazy var title: UILabel = ViewFactory
         .label("반가워요")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(UIColor.secondaryLabel)
+        .contentHuggingPriority(.init(rawValue: 251), for: .vertical)
+        .contentCompressionResistancePriority(.init(rawValue: 751), for: .vertical)
 
     private let subtitle = ViewFactory
         .label("오늘도 화이팅 해볼까요?")
         .font(.custom(.sfProBold, size: 21))
     
-    private lazy var profileImageView: UIImageView = {
-        let profileImage = UIImage()
-        let imageView = UIImageView(image: profileImage)
-        imageView.backgroundColor = AppUIColor.secondaryBlue
-        imageView.frame.size = .init(width: 56, height: 56)
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+    private lazy var profileImageView: UIImageView = UIImageView()
+        .setSize(width: 56, height: 56)
+        .contentMode(.scaleAspectFill)
+        .cornerRadius(56 / 2)
+        .backgroundColor(AppUIColor.secondaryBlue)
+        .contentHuggingPriority(.init(251), for: .horizontal)
     
-    private lazy var vstack: UIStackView = {
-        let vstack = ViewFactory
-            .vStack(subviews: [title, subtitle])
-            .alignment(.fill)
-            .spacing(8)
-        return vstack
-    }()
-    
+    private lazy var vstack: UIStackView = ViewFactory
+        .vStack()
+        .addSubviews([title, subtitle])
+        .alignment(.fill)
+        .spacing(8)
+
     private lazy var hstack = ViewFactory
-        .hStack(subviews: [vstack, profileImageView])
+        .hStack()
+        .addSubviews([vstack, profileImageView])
     
+    // MARK: - Init
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
@@ -53,7 +51,9 @@ final class DashboardHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setProfileData() {
+    // MARK: - Setup
+    /// 유저 프로필 데이터 셋업 (헤더)
+    public func setProfileData() {
         let profile = viewModel.getUserProfile()
         self.title.text = "반가워요, \(profile.name)"
         
@@ -62,31 +62,32 @@ final class DashboardHeaderView: UIView {
             self.profileImageView.sd_setImage(with: imageUrl)
             self.layoutIfNeeded()
         } else {
-            let defaultProfileImage = AppImage.defaultUserProfileImage.getImage()
+            let defaultProfileImage = UIImage()
             self.profileImageView.image = defaultProfileImage
         }
     }
     
-    func layout() {
+    // MARK: - Layout
+    private func layout() {
+        layoutMainHStack()
+        layoutProfileImageView()
+    }
+    
+    private func layoutMainHStack() {
         self.addSubview(hstack)
 
-        title.setContentHuggingPriority(.init(251), for: .vertical)
-        title.setContentCompressionResistancePriority(.init(751), for: .vertical)
-        profileImageView.setContentHuggingPriority(.init(251), for: .horizontal)
-        
-        self.snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(80)
-        }
-        
         hstack.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
         }
- 
+    }
+    
+    private func layoutProfileImageView() {
         profileImageView.snp.makeConstraints { make in
             make.height.width.equalTo(56)
         }
+        
     }
     
 }
