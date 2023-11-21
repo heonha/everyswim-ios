@@ -10,7 +10,7 @@ import SwiftUI
 enum AppUIColor {
     
     static let primary = UIColor(hex: "3284FE")
-    static let primaryBlue = UIColor(hex: "08467D")
+    static let primaryBlue = UIColor(hex: "0053CE")
     static let secondaryBlue = UIColor(hex: "2752EE")
     static let primaryBackgorund = UIColor(hex: "FAFAFA")
     static let secondaryBackground = UIColor(hex: "F8F9FF")
