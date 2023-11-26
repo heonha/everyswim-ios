@@ -89,7 +89,7 @@ enum TestObjects {
     
     
     
-    static let swimSummaryData = SwimSummaryData(count: 3, distance: "650", distanceUnit: "M", averagePace: "3'22''", time: "30:00", lap: "10")
+    static let swimSummaryData = SwimSummaryViewModel(count: 3, distance: "650", distanceUnit: "M", averagePace: "3'22''", time: "30:00", lap: "10")
     
 }
 #endif

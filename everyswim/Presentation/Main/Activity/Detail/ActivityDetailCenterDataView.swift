@@ -11,17 +11,17 @@ import SnapKit
 final class ActivityDetailCenterDataView: UIView {
     
     // 수영 횟수
-    private lazy var swimRecordLabel = DetailRecordLabel(type: .swim,
+    private lazy var swimRecordLabel = ActivityDetailCenterLabel(type: .swim,
                                                          textAlignment: .center,
                                                          stackAlignment: .center)
     
     // 평균 페이스
-    private lazy var averagePaceRecordLabel = DetailRecordLabel(type: .averagePaceWithoutUnit,
+    private lazy var averagePaceRecordLabel = ActivityDetailCenterLabel(type: .averagePaceWithoutUnit,
                                                                 textAlignment: .center,
                                                                 stackAlignment: .center)
     
     // 수영 시간
-    private lazy var durationRecordLabel = DetailRecordLabel(type: .duration,
+    private lazy var durationRecordLabel = ActivityDetailCenterLabel(type: .duration,
                                                              textAlignment: .center,
                                                              stackAlignment: .center)
     
@@ -52,7 +52,7 @@ final class ActivityDetailCenterDataView: UIView {
         }
     }
     
-    func setData(_ data: SwimSummaryData?) {
+    func setData(_ data: SwimSummaryViewModel?) {
         guard let data = data else {return}
         self.swimRecordLabel.setData(data: data.count.description)
         self.averagePaceRecordLabel.setData(data: data.averagePace)
@@ -60,3 +60,25 @@ final class ActivityDetailCenterDataView: UIView {
     }
     
 }
+
+// MARK: - Preview
+
+#if DEBUG
+import SwiftUI
+
+struct ActivityDetailCenterDataView_Previews: PreviewProvider {
+    
+    static let view = ActivityDetailCenterDataView()
+    static let data = TestObjects.swimSummaryData
+    
+    static var previews: some View {
+        UIViewPreview {
+            view
+        }
+        .frame(height: 100)
+        .onAppear {
+            self.view.setData(self.data)
+        }
+    }
+}
+#endif

@@ -56,3 +56,21 @@ enum EmptySwimSmallCellType {
     case normal
 }
 
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct EmptyRecordCell_Previews: PreviewProvider {
+    
+    static let view = EmptyRecordCell.withType(.daily)
+    
+    static var previews: some View {
+        UIViewPreview {
+            view
+        }
+        .frame(height: 100)
+        .frame(width: 393)
+    }
+}
+#endif
+

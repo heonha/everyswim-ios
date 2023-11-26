@@ -64,7 +64,7 @@ final class SwimDataStore: ObservableObject {
     
     /// `SummaryData` maker
     /// 세부 기록 표시용 요약 데이터 가져오기
-    func getSummaryData(_ data: [SwimMainData]) -> SwimSummaryData {
+    func getSummaryData(_ data: [SwimMainData]) -> SwimSummaryViewModel {
         let totalData = data
         let count = totalData.count
         
@@ -94,7 +94,7 @@ final class SwimDataStore: ObservableObject {
         var lapUnit = "lap"
         var lapString = laps.description
         
-        let summary = SwimSummaryData(count: count,
+        let summary = SwimSummaryViewModel(count: count,
                                       distance: distanceString,
                                       distanceUnit: distanceUnit,
                                       averagePace: "-'--''",

@@ -1,5 +1,5 @@
 //
-//  RecordSortType.swift
+//  RecordSort.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 2023/07/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RecordSortType: String {
+enum RecordSort: String {
     case date
     case distance
     case duration

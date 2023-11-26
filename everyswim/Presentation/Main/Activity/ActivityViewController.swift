@@ -35,7 +35,7 @@ final class ActivityViewController: UIViewController, CombineCancellable {
         .alignment(.center)
         .distribution(.fillProportionally)
     
-    private lazy var distanceStack = DistanceBigLabel()
+    private lazy var distanceStack = DistanceLargeLabel()
     
     private lazy var recordHStack = ActivityDetailCenterDataView()
     
@@ -378,9 +378,13 @@ extension ActivityViewController: UITableViewDataSource {
 import SwiftUI
 
 struct ActivityViewController_Previews: PreviewProvider {
+    
+    static let viewController = ActivityViewController(viewModel: viewModel)
+    static let viewModel = ActivityViewModel()
+    
     static var previews: some View {
         UIViewControllerPreview {
-            ActivityViewController()
+            viewController
         }
         .ignoresSafeArea()
     }

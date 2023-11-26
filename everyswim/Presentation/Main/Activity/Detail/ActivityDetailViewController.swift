@@ -38,25 +38,25 @@ final class ActivityDetailViewController: UIViewController {
         .font(.custom(.sfProLight, size: 24))
         .foregroundColor(AppUIColor.label)
     
-    private lazy var distanceStack = DistanceBigLabel()
+    private lazy var distanceStack = DistanceLargeLabel()
     
     // 평균 페이스 라벨 + 타이틀
-    private lazy var averagePaceLabel = DetailRecordLabel(type: .averagePace)
+    private lazy var averagePaceLabel = ActivityDetailCenterLabel(type: .averagePace)
 
     // 운동시간 라벨 + 타이틀
-    private lazy var durationLabel = DetailRecordLabel(type: .duration)
+    private lazy var durationLabel = ActivityDetailCenterLabel(type: .duration)
 
     // 활동 칼로리 라벨
-    private lazy var activeKcalLabel = DetailRecordLabel(type: .activeKcal)
+    private lazy var activeKcalLabel = ActivityDetailCenterLabel(type: .activeKcal)
     
     // 휴식칼로리 라벨
-    private lazy var restKcalLabel = DetailRecordLabel(type: .restKcal)
+    private lazy var restKcalLabel = ActivityDetailCenterLabel(type: .restKcal)
     
     // 평균 심박수 라벨
-    private lazy var averageBPMLabel = DetailRecordLabel(type: .averageBPM)
+    private lazy var averageBPMLabel = ActivityDetailCenterLabel(type: .averageBPM)
     
     // 수영장 길이 라벨
-    private lazy var poolLength = DetailRecordLabel(type: .poolLength)
+    private lazy var poolLength = ActivityDetailCenterLabel(type: .poolLength)
     
     private lazy var leftDataVStack = ViewFactory
         .vStack()
@@ -123,7 +123,7 @@ final class ActivityDetailViewController: UIViewController {
         
         self.lapTableView.delegate = self
         self.lapTableView.dataSource = self
-        self.lapTableView.register(LapSplitCell.self, forCellReuseIdentifier: LapSplitCell.reuseId)
+        self.lapTableView.register(LapTableViewCell.self, forCellReuseIdentifier: LapTableViewCell.reuseId)
     }
  
     // MARK: Layout
@@ -304,13 +304,13 @@ extension ActivityDetailViewController: UITableViewDelegate, UITableViewDataSour
         
         // Legend
         if indexPath.row == 0 {
-            let cell = LapSplitCell()
+            let cell = LapTableViewCell()
             cell.setLegend()
             return cell
         }
         
         // Lap Cell
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LapSplitCell.reuseId, for: indexPath) as? LapSplitCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LapTableViewCell.reuseId, for: indexPath) as? LapTableViewCell else {return UITableViewCell()}
         cell.backgroundColor = AppUIColor.skyBackground
         let data = self.data
         cell.setData(lapData: data.laps[indexPath.row - 1])
@@ -322,3 +322,22 @@ extension ActivityDetailViewController: UITableViewDelegate, UITableViewDataSour
     }
     
 }
+
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct ActivityDetailViewController_Previews: PreviewProvider {
+    
+    static let viewController = ActivityDetailViewController(data: viewModel)
+    static let viewModel = TestObjects.swimmingData.first!
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            viewController
+        }
+        .ignoresSafeArea()
+    }
+}
+#endif
+

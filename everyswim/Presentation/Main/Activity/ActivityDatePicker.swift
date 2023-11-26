@@ -274,3 +274,22 @@ extension ActivityDatePicker: UIPickerViewDataSource {
     }
     
 }
+
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct ActivityDatePicker_Previews: PreviewProvider {
+    
+    static let viewController = ActivityDatePicker(viewModel: viewModel)
+    static let viewModel = ActivityViewModel()
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            viewController
+        }
+        .ignoresSafeArea()
+    }
+}
+#endif
+

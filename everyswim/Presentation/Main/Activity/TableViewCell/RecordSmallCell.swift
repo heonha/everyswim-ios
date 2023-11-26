@@ -191,15 +191,25 @@ extension RecordSmallCell {
     
 }
 
+// MARK: - Preview
 #if DEBUG
 import SwiftUI
 
 struct EventListUICell_Previews: PreviewProvider {
+    
+    static let view = RecordSmallCell()
+    static let data = TestObjects.swimmingData.first!
+    
     static var previews: some View {
         UIViewPreview {
-            RecordSmallCell(data: TestObjects.swimmingData.first!)
+            view
         }
         .frame(height: 80)
+        .frame(width: .infinity)
+        .onAppear {
+            view.updateData(data)
+        }
     }
 }
 #endif
+

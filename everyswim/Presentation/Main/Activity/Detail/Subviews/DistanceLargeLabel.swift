@@ -1,5 +1,5 @@
 //
-//  DistanceBigLabel.swift
+//  DistanceLargeLabel.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/29/23.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class DistanceBigLabel: UIView {
+final class DistanceLargeLabel: UIView {
     
     // 몇 미터
     private lazy var distanceLabel = ViewFactory
@@ -52,3 +52,27 @@ final class DistanceBigLabel: UIView {
     }
     
 }
+
+// MARK: - Preview
+
+#if DEBUG
+import SwiftUI
+
+struct DistanceLargeLabel_Previews: PreviewProvider {
+    
+    static let view = DistanceLargeLabel()
+    static let amount = "1234"
+    static let unit = "km"
+    
+    static var previews: some View {
+        UIViewPreview {
+            view
+        }
+        .frame(height: 100)
+        .onAppear {
+            view.setData(amount, unit: unit)
+        }
+    }
+}
+#endif
+

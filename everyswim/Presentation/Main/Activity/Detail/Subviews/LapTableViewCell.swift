@@ -1,5 +1,5 @@
 //
-//  LapSplitCell.swift
+//  LapTableViewCell.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/5/23.
@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class LapSplitCell: UITableViewCell, ReuseableObject {
+class LapTableViewCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "LapTableViewCell"
     
-    var data: SwimMainData?
+    private var data: SwimMainData?
     
     private let lapNoLabel = ViewFactory
         .label("1")
@@ -92,3 +92,17 @@ class LapSplitCell: UITableViewCell, ReuseableObject {
     }
 
 }
+
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct LapTableViewCell_Previews: PreviewProvider {
+    static var previews: some View {
+        UIViewPreview {
+            LapTableViewCell()
+        }
+        .frame(height: 100)
+    }
+}
+#endif

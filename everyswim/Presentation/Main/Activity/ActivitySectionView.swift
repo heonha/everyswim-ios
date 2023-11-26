@@ -38,3 +38,25 @@ final class ActivitySectionView: UIView {
     }
     
 }
+
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct ActivitySectionView_Previews: PreviewProvider {
+    
+    static let view = ActivitySectionView()
+    static let titleString = "주간 활동"
+    
+    static var previews: some View {
+        UIViewPreview {
+            view
+        }
+        .frame(height: 100)
+        .onAppear(perform: {
+            view.updateTitle(titleString)
+        })
+    }
+}
+#endif
+

@@ -14,7 +14,7 @@ final class ActivityViewModel: ObservableObject, CombineCancellable {
     
     private let healthStore = SwimDataStore.shared
     
-    @Published var summaryData: SwimSummaryData?
+    @Published var summaryData: SwimSummaryViewModel?
     @Published var presentedData: [SwimMainData] = []
     @Published var selectedSegment: ActivityDataRange = .monthly
     @Published var weekList: [Date] = []
