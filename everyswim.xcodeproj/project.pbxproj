@@ -454,8 +454,16 @@
 		3922D5712A74B1C500257164 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
-				39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */,
-				39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */,
+				3922D5822A74B88D00257164 /* Swim */,
+				39572CE02A52CACB00986E01 /* HealthKitManager.swift */,
+				3922D5852A74E95400257164 /* SwimDataManager.swift */,
+				39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */,
+				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
+				392457252A545004006E3071 /* HKDateType.swift */,
+				392457292A545049006E3071 /* HKQueryDataType.swift */,
+				399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */,
+				392457272A545016006E3071 /* HealthKitError.swift */,
+				39E0B0C02B1393F500046680 /* Model */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -571,22 +579,6 @@
 			path = Secrets;
 			sourceTree = "<group>";
 		};
-		39572CDF2A52CABB00986E01 /* HealthKit */ = {
-			isa = PBXGroup;
-			children = (
-				39572CE02A52CACB00986E01 /* HealthKitManager.swift */,
-				3922D5852A74E95400257164 /* SwimDataManager.swift */,
-				39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */,
-				396D2AB12A5673680042D4D4 /* HKCalculator.swift */,
-				392457252A545004006E3071 /* HKDateType.swift */,
-				392457292A545049006E3071 /* HKQueryDataType.swift */,
-				399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */,
-				392457272A545016006E3071 /* HealthKitError.swift */,
-				3922D5822A74B88D00257164 /* Swim */,
-			);
-			path = HealthKit;
-			sourceTree = "<group>";
-		};
 		3960884F2A8F6E2D00FF2289 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,26 +604,11 @@
 		396387AD2AC6BBEA00A490D1 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
-				396387AE2AC6BC0200A490D1 /* Cells */,
-				39572CDF2A52CABB00986E01 /* HealthKit */,
 				39CC3DC32AC5A30900C8BC10 /* DetailRecordLabel.swift */,
-				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
 				39DBB3232AC6EF0F003B5213 /* DistanceBigLabel.swift */,
-				391678F62AC7F34B00190D35 /* SwimSummaryData.swift */,
-				391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */,
+				39E0B0C22B13949F00046680 /* Models */,
 			);
 			path = HealthKit;
-			sourceTree = "<group>";
-		};
-		396387AE2AC6BC0200A490D1 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */,
-				39F599922A9B7BA000738334 /* RecordSmallCell.swift */,
-				39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */,
-				397598302AC40D7500AD693B /* EmptyRecordCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		396CE8522AB568E200EB66BE /* Gesture */ = {
@@ -682,6 +659,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				3922D5732A74B1FA00257164 /* AppConstant */,
 				3933514F2AFA576F0014D37A /* Network */,
@@ -696,7 +674,6 @@
 			isa = PBXGroup;
 			children = (
 				39F5997D2A9B56CA00738334 /* UIKit */,
-				3922D5712A74B1C500257164 /* HealthKit */,
 				3922D5702A74B1B300257164 /* Foundation */,
 			);
 			path = Extensions;
@@ -778,6 +755,7 @@
 		39B377492AD2B30F00F37C27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39E0B0C12B13946600046680 /* Cell */,
 				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
 				39DBB31D2AC6E650003B5213 /* ActivityTypeSegmentControl.swift */,
 			);
@@ -838,6 +816,35 @@
 				39B377452AD2B26B00F37C27 /* Model */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		39E0B0C02B1393F500046680 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */,
+				39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		39E0B0C12B13946600046680 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				39F599922A9B7BA000738334 /* RecordSmallCell.swift */,
+				39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */,
+				397598302AC40D7500AD693B /* EmptyRecordCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		39E0B0C22B13949F00046680 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				391678F62AC7F34B00190D35 /* SwimSummaryData.swift */,
+				391678FA2AC7F38D00190D35 /* DetailCellLabelType.swift */,
+				397AB5AA2A68F5B4008015F2 /* RecordSortType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		39EB49212AB70E1C00F247FC /* DateRecords */ = {
@@ -904,6 +911,7 @@
 				39389FCB2AB33B6A00497402 /* MyInfoButtonList.swift */,
 				39389FCD2AB33BD300497402 /* MyInfoButton.swift */,
 				3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */,
+				39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
