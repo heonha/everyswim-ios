@@ -98,6 +98,8 @@
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D939F2B18A6DC0013060E /* Pods_everyswim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867C0C3D7451916ADD06C832 /* Pods_everyswim.framework */; };
+		396D93A22B18A7CF0013060E /* NMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* NMapViewController.swift */; };
+		396D93A42B18A8760013060E /* NMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A32B18A8760013060E /* NMapViewModel.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
 		397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397598302AC40D7500AD693B /* EmptyRecordCell.swift */; };
 		3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* DashboardHeaderView.swift */; };
@@ -262,6 +264,8 @@
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D93982B18A6CD0013060E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
+		396D93A12B18A7CF0013060E /* NMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewController.swift; sourceTree = "<group>"; };
+		396D93A32B18A8760013060E /* NMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewModel.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
 		397598302AC40D7500AD693B /* EmptyRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordCell.swift; sourceTree = "<group>"; };
 		3979A0642AA618930094D57A /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
@@ -701,6 +705,8 @@
 		398BD2992B189D3C00970E23 /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
+				396D93A12B18A7CF0013060E /* NMapViewController.swift */,
+				396D93A32B18A8760013060E /* NMapViewModel.swift */,
 			);
 			path = NaverMap;
 			sourceTree = "<group>";
@@ -1176,6 +1182,7 @@
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */,
 				392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */,
+				396D93A22B18A7CF0013060E /* NMapViewController.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceLargeLabel.swift in Sources */,
@@ -1213,6 +1220,7 @@
 				393351532AFA57910014D37A /* HttpHeader.swift in Sources */,
 				396CE8582AB56C8B00EB66BE /* BaseScrollView.swift in Sources */,
 				390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */,
+				396D93A42B18A8760013060E /* NMapViewModel.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* AppPersistantKey.swift in Sources */,
 				396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
@@ -1366,7 +1374,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = everyswim/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_CFBundleDisplayName = EverySwim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
@@ -1412,7 +1420,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = everyswim/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_CFBundleDisplayName = EverySwim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";

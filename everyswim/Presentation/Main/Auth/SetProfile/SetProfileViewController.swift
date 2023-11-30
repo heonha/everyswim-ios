@@ -53,7 +53,7 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     init(viewModel: SetProfileViewModel, type: SetProfileViewControllerType) {
         self.viewModel = viewModel
         self.type = type
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {

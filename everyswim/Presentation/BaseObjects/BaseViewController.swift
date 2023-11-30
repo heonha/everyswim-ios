@@ -9,6 +9,14 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func textfieldHideKeyboardGesture(textfield: UITextField) {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldHideKeyboard))
         view.addGestureRecognizer(tapGesture)

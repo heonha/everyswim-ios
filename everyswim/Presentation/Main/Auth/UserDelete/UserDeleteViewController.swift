@@ -18,7 +18,7 @@ final class UserDeleteViewController: BaseViewController, CombineCancellable {
     
     init(viewModel: UserDeleteViewModel = .init()) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
