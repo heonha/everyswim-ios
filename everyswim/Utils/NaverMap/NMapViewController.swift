@@ -11,6 +11,7 @@ import NMapsMap
 
 final class NMapViewController: BaseViewController {
     
+    
     private let viewModel: NMapViewModel
     
     private lazy var mapView = NMFMapView(frame: view.frame)
@@ -35,7 +36,7 @@ final class NMapViewController: BaseViewController {
     }
     
     private func configure() {
-        
+        NMFAuthManager.shared().delegate = self
     }
     
     private func layout() {
@@ -46,6 +47,20 @@ final class NMapViewController: BaseViewController {
     }
     
 }
+
+extension NMapViewController: NMFAuthManagerDelegate {
+    
+    func authorized(_ state: NMFAuthState, error: Error?) {
+        if let error = error {
+            print("AuthError: \(error.localizedDescription)")
+            return
+        }
+        
+        print("STATE: \(state)")
+    }
+
+}
+
 
 // MARK: - Preview
 #if DEBUG

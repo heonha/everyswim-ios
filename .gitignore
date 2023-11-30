@@ -3,10 +3,10 @@
 ## Added By HeonJin Ha
 
 # macos
-../DS_Store
+DS_Store
 
 # Secrets
-../Secrets/
+SecretConstant.swift
 
 # CocoaPods
 Pods/
