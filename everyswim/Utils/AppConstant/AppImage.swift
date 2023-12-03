@@ -12,12 +12,16 @@ enum AppImage {
     
     case appleHealth
     case defaultUserProfileImage
-    
+    case swimMaker
+
     // Symbol
     case listbulletRectangle
     case calendar
     case personCircleFill
     case swim
+    
+    case chevronRight
+    
     
     func getImage() -> UIImage {
         switch self {
@@ -25,6 +29,10 @@ enum AppImage {
             return UIImage(named: "AppleHealth") ?? UIImage()
         case .defaultUserProfileImage:
             return UIImage(named: "defaultUser") ?? UIImage()
+        case .swimMaker:
+            return UIImage(named: "swim-maker")!
+            
+            
         case .listbulletRectangle:
             return UIImage(systemName: "list.bullet.rectangle")!
         case .calendar:
@@ -34,6 +42,9 @@ enum AppImage {
         case .personCircleFill:
             return UIImage(systemName: "person.circle.fill")!
             
+            
+        case .chevronRight:
+            return UIImage(systemName: "chevron.right")!
         }
     }
 }

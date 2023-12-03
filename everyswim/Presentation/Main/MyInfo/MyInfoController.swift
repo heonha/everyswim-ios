@@ -135,8 +135,11 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                let viewModel = NMapViewModel()
-                let vc = NMapViewController(viewModel: viewModel)
+                
+                let locationManager = LocationManager()
+                let viewModel = NMapViewModel(networkService: .shared,
+                                              locationManager: locationManager)
+                let vc = SearchPoolViewController(viewModel: viewModel)
                 self.push(vc, animated: true)
             }
             .store(in: &cancellables)

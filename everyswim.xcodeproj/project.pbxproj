@@ -148,6 +148,10 @@
 		39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */; };
 		39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */; };
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
+		39B6E6002B1C80D6009140F8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* LocationManager.swift */; };
+		39B6E6032B1C8A37009140F8 /* SearchPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* SearchPoolViewController.swift */; };
+		39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */; };
+		39B6E6092B1C956E009140F8 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* LocationCell.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
 		39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */; };
@@ -316,6 +320,10 @@
 		39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthStateCell.swift; sourceTree = "<group>"; };
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
+		39B6E5FF2B1C80D6009140F8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		39B6E6022B1C8A37009140F8 /* SearchPoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPoolViewController.swift; sourceTree = "<group>"; };
+		39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMediumCell.swift; sourceTree = "<group>"; };
+		39B6E6082B1C956E009140F8 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
 		39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableObject.swift; sourceTree = "<group>"; };
@@ -661,6 +669,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39B6E6012B1C8A2C009140F8 /* SearchPool */,
 				398BD2992B189D3C00970E23 /* NaverMap */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
@@ -710,6 +719,7 @@
 				396D93A12B18A7CF0013060E /* NMapViewController.swift */,
 				396D93A32B18A8760013060E /* NMapViewModel.swift */,
 				39F05D4B2B18DEAC0041FF58 /* Model */,
+				39B6E5FF2B1C80D6009140F8 /* LocationManager.swift */,
 			);
 			path = NaverMap;
 			sourceTree = "<group>";
@@ -765,6 +775,16 @@
 				397AB5AA2A68F5B4008015F2 /* RecordSort.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		39B6E6012B1C8A2C009140F8 /* SearchPool */ = {
+			isa = PBXGroup;
+			children = (
+				39B6E6022B1C8A37009140F8 /* SearchPoolViewController.swift */,
+				39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */,
+				39B6E6082B1C956E009140F8 /* LocationCell.swift */,
+			);
+			path = SearchPool;
 			sourceTree = "<group>";
 		};
 		39BC26972AAD7EE1007432B5 /* Subviews */ = {
@@ -1102,6 +1122,7 @@
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
+				39B6E6032B1C8A37009140F8 /* SearchPoolViewController.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
@@ -1203,13 +1224,16 @@
 				3933514A2AFA57380014D37A /* NetworkService.swift in Sources */,
 				39DBB3202AC6E899003B5213 /* ActivityDetailCenterDataView.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
+				39B6E6092B1C956E009140F8 /* LocationCell.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
+				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				393351512AFA577E0014D37A /* HttpMethod.swift in Sources */,
 				39F05D4F2B18DEBB0041FF58 /* NaverLocationResponse.swift in Sources */,
+				39B6E6002B1C80D6009140F8 /* LocationManager.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */,
