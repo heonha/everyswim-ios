@@ -110,20 +110,26 @@ extension DashboardViewController {
     }
     
     private func bindRecommandVideoSucceed() {
-        viewModel.$recommandVideoSuccessed.receive(on: DispatchQueue.main)
+        viewModel.$recommandVideoSuccessed
+            .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
-                if value {
-                    self?.recommandCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    if value {
+                        self?.recommandCollectionView.reloadData()
+                    }
                 }
             }
             .store(in: &cancellables)
     }
     
     private func bindRecommandCommunitySucceed() {
-        viewModel.$recommandCommunitySuccessed.receive(on: DispatchQueue.main)
+        viewModel.$recommandCommunitySuccessed
+            .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
-                if value {
-                    self?.recommandCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    if value {
+                        self?.recommandCollectionView.reloadData()
+                    }
                 }
             }
             .store(in: &cancellables)

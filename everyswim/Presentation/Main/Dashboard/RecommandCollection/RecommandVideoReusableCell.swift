@@ -32,8 +32,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     
     private var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)
-
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
         return iv

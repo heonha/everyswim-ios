@@ -11,10 +11,9 @@ import NMapsMap
 
 final class NMapViewController: BaseViewController {
     
-    
     private let viewModel: NMapViewModel
     
-    private lazy var mapView = NMFMapView(frame: view.frame)
+    private lazy var mapView = NMFNaverMapView(frame: view.frame)
     
     init(viewModel: NMapViewModel = .init()) {
         self.viewModel = viewModel
@@ -37,6 +36,8 @@ final class NMapViewController: BaseViewController {
     
     private func configure() {
         NMFAuthManager.shared().delegate = self
+        mapView.showLocationButton = true
+        mapView.showScaleBar = false
     }
     
     private func layout() {

@@ -42,10 +42,10 @@ extension MainTabBarController {
     }
     
     private func setupEachTabViews() {
-        let homeSymbol = UIImage(systemName: "list.bullet.rectangle")
-        let eventSymbol = UIImage(systemName: "figure.pool.swim")
-        let calendarSymbol = UIImage(systemName: "calendar")
-        let myInfoSymbol = UIImage(systemName: "person.circle.fill")
+        let homeSymbol = AppImage.listbulletRectangle.getImage()
+        let eventSymbol = AppImage.swim.getImage()
+        let calendarSymbol = AppImage.calendar.getImage()
+        let myInfoSymbol = AppImage.personCircleFill.getImage()
         
         let dashboardNC = BaseNavigationController(rootViewController: dashboardView)
         dashboardNC.isNavigationBarHidden = true
@@ -69,6 +69,21 @@ extension MainTabBarController {
     
 }
 
-#Preview {
-    MainTabBarController(authService: AuthManager.shared)
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct MainTabBarController_Previews: PreviewProvider {
+    
+    static let viewController = MainTabBarController(authService: authService)
+    static let authService = AuthManager.shared
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            viewController
+        }
+        .ignoresSafeArea()
+    }
 }
+#endif
+
