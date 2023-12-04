@@ -35,7 +35,8 @@ final class RecordSmallCell: UITableViewCell {
                                   spacing: 16,
                                   alignment: .center,
                                   distribution: .fill)
-        .setEdgeInset(.init(top: 8, leading: 24, bottom: 8, trailing: 24))
+        .setEdgeInset(.vertical(8))
+        .setEdgeInset(.horizontal(24))
     }()
     
     

@@ -27,7 +27,7 @@ final class DatePickerHeader: UIView {
             .alignment(.bottom)
             .distribution(.fillProportionally)
             .spacing(10)
-            .setEdgeInset(.init(top: 0, leading: 6, bottom: 0, trailing: 6))
+            .setEdgeInset(.horizontal(8))
 
         return hstack
     }()
@@ -51,7 +51,7 @@ final class DatePickerHeader: UIView {
             .hStack()
             .addSubviews([before, forward])
             .spacing(20)
-            .setEdgeInset(.init(top: 0, leading: 0, bottom: 0, trailing: 6))
+            .setEdgeInset(.trailing(6))
         
         return hstack
     }()
@@ -84,7 +84,7 @@ final class DatePickerHeader: UIView {
         .hStack()
         .addSubviews([dateView, UIView.spacer(), monthChangeButtonsView])
         .spacing(20)
-        .setEdgeInset(.init(top: 0, leading: 8, bottom: 0, trailing: 8))
+        .setEdgeInset(.horizontal(8))
     
     private lazy var vstack = ViewFactory
         .vStack()

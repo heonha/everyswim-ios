@@ -28,7 +28,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     
     private lazy var labelVStack = ViewFactory
         .vStack(subviews: [titleLabel, subtitleLabel], spacing: 8)
-        .setEdgeInset(NSDirectionalEdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6))
+        .setEdgeInset(.all(6))
     
     private var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)

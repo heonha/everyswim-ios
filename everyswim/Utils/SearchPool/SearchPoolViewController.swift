@@ -31,7 +31,7 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
         .addSubviews([titleLabel, currentLocationLabel, searchLocationLabel])
         .alignment(.center)
         .distribution(.fillEqually)
-        .setEdgeInset(.init(top: 8, leading: 0, bottom: 8, trailing: 0))
+        .setEdgeInset(.vertical(8))
         .backgroundColor(.secondarySystemBackground)
         .cornerRadius(8)
 
