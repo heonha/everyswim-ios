@@ -6,7 +6,7 @@
 ../DS_Store
 
 # Secrets
-../Secrets/
+SecretConstant.swift
 
 # CocoaPods
 Pods/
