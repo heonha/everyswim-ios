@@ -97,6 +97,9 @@
 		396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */; };
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
+		396D939F2B18A6DC0013060E /* Pods_everyswim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867C0C3D7451916ADD06C832 /* Pods_everyswim.framework */; };
+		396D93A22B18A7CF0013060E /* NMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* NMapViewController.swift */; };
+		396D93A42B18A8760013060E /* NMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A32B18A8760013060E /* NMapViewModel.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
 		397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397598302AC40D7500AD693B /* EmptyRecordCell.swift */; };
 		3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* DashboardHeaderView.swift */; };
@@ -179,6 +182,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C97E467A5921FE810F81522 /* Pods-everyswim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim.release.xcconfig"; path = "Target Support Files/Pods-everyswim/Pods-everyswim.release.xcconfig"; sourceTree = "<group>"; };
 		3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -258,6 +262,10 @@
 		396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimStatisticsData.swift; sourceTree = "<group>"; };
 		396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimMainData.swift; sourceTree = "<group>"; };
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
+		396D93982B18A6CD0013060E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
+		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
+		396D93A12B18A7CF0013060E /* NMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewController.swift; sourceTree = "<group>"; };
+		396D93A32B18A8760013060E /* NMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMapViewModel.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
 		397598302AC40D7500AD693B /* EmptyRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordCell.swift; sourceTree = "<group>"; };
 		3979A0642AA618930094D57A /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
@@ -337,6 +345,8 @@
 		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		39F599922A9B7BA000738334 /* RecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSmallCell.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
+		579B1B60D0015F24F2FF18BD /* Pods-everyswim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim.debug.xcconfig"; path = "Target Support Files/Pods-everyswim/Pods-everyswim.debug.xcconfig"; sourceTree = "<group>"; };
+		867C0C3D7451916ADD06C832 /* Pods_everyswim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_everyswim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +359,7 @@
 				39D472602AF901E200A153CA /* SDWebImage in Frameworks */,
 				39318E952AFCF0AF0089AEC4 /* FirebasePerformance in Frameworks */,
 				39318E8D2AFCF0AF0089AEC4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				396D939F2B18A6DC0013060E /* Pods_everyswim.framework in Frameworks */,
 				399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */,
 				39318E872AFCF0AF0089AEC4 /* FirebaseAnalytics in Frameworks */,
 				39318E892AFCF0AF0089AEC4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -614,6 +625,8 @@
 				39A5E8E02A502DA80062509F /* .gitignore */,
 				398F4F9A2ACD600F00ACCE70 /* everyswim */,
 				398B1BA22A483DA300E0FA9B /* Products */,
+				A491A234A0412181DC89240D /* Pods */,
+				C6EAC9CF4CAC1DC7F634BA59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -646,6 +659,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				398BD2992B189D3C00970E23 /* NaverMap */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				3922D5732A74B1FA00257164 /* AppConstant */,
@@ -686,6 +700,15 @@
 				392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		398BD2992B189D3C00970E23 /* NaverMap */ = {
+			isa = PBXGroup;
+			children = (
+				396D93A12B18A7CF0013060E /* NMapViewController.swift */,
+				396D93A32B18A8760013060E /* NMapViewModel.swift */,
+			);
+			path = NaverMap;
 			sourceTree = "<group>";
 		};
 		398DFB432AA9DBC200BDEB8E /* Challange */ = {
@@ -897,6 +920,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A491A234A0412181DC89240D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				579B1B60D0015F24F2FF18BD /* Pods-everyswim.debug.xcconfig */,
+				0C97E467A5921FE810F81522 /* Pods-everyswim.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C6EAC9CF4CAC1DC7F634BA59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */,
+				396D93982B18A6CD0013060E /* NMapsMap.xcframework */,
+				867C0C3D7451916ADD06C832 /* Pods_everyswim.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -904,9 +946,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "everyswim" */;
 			buildPhases = (
+				CDF7FD2BC67583A663E16FC4 /* [CP] Check Pods Manifest.lock */,
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
 				398B1B9F2A483DA300E0FA9B /* Resources */,
+				0C00EFB5EC5BC55F8B83CE14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -991,6 +1035,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C00EFB5EC5BC55F8B83CE14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-everyswim/Pods-everyswim-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-everyswim/Pods-everyswim-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-everyswim/Pods-everyswim-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDF7FD2BC67583A663E16FC4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-everyswim-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		398B1B9D2A483DA300E0FA9B /* Sources */ = {
@@ -1096,6 +1182,7 @@
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */,
 				392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */,
+				396D93A22B18A7CF0013060E /* NMapViewController.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceLargeLabel.swift in Sources */,
@@ -1133,6 +1220,7 @@
 				393351532AFA57910014D37A /* HttpHeader.swift in Sources */,
 				396CE8582AB56C8B00EB66BE /* BaseScrollView.swift in Sources */,
 				390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */,
+				396D93A42B18A8760013060E /* NMapViewModel.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* AppPersistantKey.swift in Sources */,
 				396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,
@@ -1268,6 +1356,7 @@
 		};
 		398B1BB02A483DA400E0FA9B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 579B1B60D0015F24F2FF18BD /* Pods-everyswim.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1278,13 +1367,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"everyswim/Preview Content\"";
 				DEVELOPMENT_TEAM = ZH5GA3W8UP;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/everyswim",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = everyswim/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_CFBundleDisplayName = EverySwim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
@@ -1312,6 +1402,7 @@
 		};
 		398B1BB12A483DA400E0FA9B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C97E467A5921FE810F81522 /* Pods-everyswim.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1322,13 +1413,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"everyswim/Preview Content\"";
 				DEVELOPMENT_TEAM = ZH5GA3W8UP;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/everyswim",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = everyswim/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "에브리스윔";
+				INFOPLIST_KEY_CFBundleDisplayName = EverySwim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "수영 기록을 기록하기 위해 권한을 요청합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "수영 기록을 업데이트하기 위한 건강 권한을 요청합니다.";
@@ -1398,7 +1490,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:SDWebImage/SDWebImage.git";
 			requirement = {
-				kind = upToNextMinorVersion;
+				kind = upToNextMajorVersion;
 				minimumVersion = 5.18.4;
 			};
 		};
