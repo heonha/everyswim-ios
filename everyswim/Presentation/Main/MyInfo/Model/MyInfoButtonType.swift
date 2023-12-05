@@ -23,6 +23,7 @@ enum MyInfoButtonType: CaseIterable {
     case editChallange
     case setupAlert
     case syncHealth
+    case searchForPool
     
     case shareApp
     case sendContact
@@ -41,12 +42,16 @@ enum MyInfoButtonType: CaseIterable {
             return ("bell.circle", "알림 설정")
         case .syncHealth:
             return ("heart.text.square", "건강정보 연동 (워치)")
+        case .searchForPool:
+            return ("map", "주변 수영장 찾기")
+            
         case .shareApp:
             return ("square.and.arrow.up", "앱 공유하기")
         case .sendContact:
             return ("headphones", "문의 보내기")
         case .questions:
             return ("questionmark.circle", "도움말")
+            
         case .logout:
             return ("door.right.hand.open", "로그아웃")
         case .deleteAccount:

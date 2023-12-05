@@ -20,6 +20,7 @@ final class SetProfileViewModel: ObservableObject {
     @Published var name: String = ""
     private var currentImage: UIImage?
     @Published var image: UIImage?
+    @Published var isLoaded: Bool = false
     
     init() {
         fetchCurrentProfileData()
@@ -34,6 +35,7 @@ final class SetProfileViewModel: ObservableObject {
             imageView.sd_setImage(with: imageUrl)
             self.image = imageView.image
             self.currentImage = imageView.image
+            self.isLoaded = true
         }
     }
 

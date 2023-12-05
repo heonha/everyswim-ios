@@ -28,11 +28,10 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     
     private lazy var labelVStack = ViewFactory
         .vStack(subviews: [titleLabel, subtitleLabel], spacing: 8)
-        .setEdgeInset(NSDirectionalEdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6))
+        .setEdgeInset(.all(6))
     
     private var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)
-
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
@@ -59,7 +58,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
         contentView.addSubview(labelVStack)
         
         imageView.snp.makeConstraints { make in
-            make.center.equalTo(contentView)
+            make.edges.equalTo(contentView)
             make.height.equalTo(contentView)
         }
         
@@ -68,12 +67,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
         foregroundLayer.snp.makeConstraints { make in
             make.size.equalTo(imageView)
         }
-        
-        labelVStack.snp.makeConstraints { make in
-            make.top.equalTo(imageView).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.bottom.equalTo(self.contentView)
-        }
+
     }
     
     func configure(viewModel: RecommandCollectionProtocol) {
@@ -99,3 +93,16 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     }
     
 }
+
+#if DEBUG
+import SwiftUI
+
+struct RecommandVideoReusableCell_Previews: PreviewProvider {
+    static var previews: some View {
+        UIViewControllerPreview {
+            DashboardViewController()
+        }
+        .ignoresSafeArea()
+    }
+}
+#endif

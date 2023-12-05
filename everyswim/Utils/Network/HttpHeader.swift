@@ -19,6 +19,9 @@ enum HttpHeader {
     ///"Authorization": "Bearer \(encodedToken)",
     case bearerTokenHeader(token: String)
     
+    case naverDevInfo(clientId: String, clientSecret: String)
+    case naverOpenApiInfo(clientId: String, clientSecret: String)
+    
     func get() -> [String: String] {
         switch self {
         case .applicationJson:
@@ -37,6 +40,17 @@ enum HttpHeader {
             ]
         case .bearerTokenHeader(let token):
             return ["Authorization": "Bearer \(token)"]
+            
+        case .naverDevInfo(let clientId, let clientSecret):
+            return [
+                "X-Naver-Client-Id": clientId,
+                "X-Naver-Client-Secret": clientSecret
+            ]
+        case .naverOpenApiInfo(let id, let key):
+            return [
+                "X-NCP-APIGW-API-KEY-ID": id,
+                "X-NCP-APIGW-API-KEY": key
+            ]
         }
     }
     

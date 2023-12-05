@@ -27,7 +27,7 @@ final class DashboardHeaderView: UIView {
         .setSize(width: 56, height: 56)
         .contentMode(.scaleAspectFill)
         .cornerRadius(56 / 2)
-        .backgroundColor(AppUIColor.secondaryBlue)
+        .backgroundColor(AppUIColor.secondaryBackground)
         .contentHuggingPriority(.init(251), for: .horizontal)
     
     private lazy var vstack: UIStackView = ViewFactory
@@ -59,8 +59,14 @@ final class DashboardHeaderView: UIView {
         
         if let imageUrlString = profile.imageUrl {
             let imageUrl = URL(string: imageUrlString)
-            self.profileImageView.sd_setImage(with: imageUrl)
-            self.layoutIfNeeded()
+            self.profileImageView.sd_setImage(with: imageUrl,
+                                              placeholderImage: nil,
+                                              options: [.progressiveLoad],
+                                              completed: { (_, error, _, _) in
+                if let error = error { return }
+                
+                self.layoutIfNeeded()
+            })
         } else {
             let defaultProfileImage = UIImage()
             self.profileImageView.image = defaultProfileImage

@@ -130,6 +130,20 @@ final class MyInfoController: UIViewController {
             }
             .store(in: &cancellables)
         
+        // 맵 뷰
+        buttonList.getButton(type: .searchForPool)
+            .gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+                let locationManager = LocationManager()
+                let viewModel = NMapViewModel(networkService: .shared,
+                                              locationManager: locationManager)
+                let vc = SearchPoolViewController(viewModel: viewModel)
+                self.push(vc, animated: true)
+            }
+            .store(in: &cancellables)
+        
         // 로그아웃
         buttonList.getButton(type: .logout)
             .gesturePublisher(.tap())

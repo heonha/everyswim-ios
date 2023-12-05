@@ -29,7 +29,7 @@ class CommunityReusableCell: UICollectionViewListCell, ReuseableObject, CombineC
     private lazy var labelVStack = ViewFactory
         .hStack(subviews: [titleLabel, subtitleLabel], spacing: 2)
         .alignment(.top)
-        .setEdgeInset(NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+        .setEdgeInset(.vertical(2))
     
     private var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)

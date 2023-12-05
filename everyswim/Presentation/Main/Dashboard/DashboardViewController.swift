@@ -110,20 +110,26 @@ extension DashboardViewController {
     }
     
     private func bindRecommandVideoSucceed() {
-        viewModel.$recommandVideoSuccessed.receive(on: DispatchQueue.main)
+        viewModel.$recommandVideoSuccessed
+            .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
-                if value {
-                    self?.recommandCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    if value {
+                        self?.recommandCollectionView.reloadData()
+                    }
                 }
             }
             .store(in: &cancellables)
     }
     
     private func bindRecommandCommunitySucceed() {
-        viewModel.$recommandCommunitySuccessed.receive(on: DispatchQueue.main)
+        viewModel.$recommandCommunitySuccessed
+            .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
-                if value {
-                    self?.recommandCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    if value {
+                        self?.recommandCollectionView.reloadData()
+                    }
                 }
             }
             .store(in: &cancellables)
@@ -283,7 +289,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         let itemLayoutSize = NSCollectionLayoutSize(widthDimension: itemWidth,
                                                     heightDimension: itemHeight)
         let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 20)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 10)
         
         // Group
         // FIXME: 16.0+ 에서 vertical (layoutSize:, subitem:, count:) deprecated됨

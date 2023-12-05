@@ -26,8 +26,8 @@ final class MyInfoProfileView: UIView, CombineCancellable {
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
         .cornerRadius(30) as! UIImageView
     
-    private lazy var profileTitle = ViewFactory
-        .label("개발하는 물개")
+    private lazy var profileNameLabel = ViewFactory
+        .label(" ") // 프로필 이름
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(AppUIColor.label)
     
@@ -45,7 +45,7 @@ final class MyInfoProfileView: UIView, CombineCancellable {
         .foregroundColor(.secondaryLabel)
     
     private lazy var profileView = ViewFactory
-        .vStack(subviews: [profileImage, profileTitle, profileEmailBackground])
+        .vStack(subviews: [profileImage, profileNameLabel, profileEmailBackground])
         .spacing(8)
         .distribution(.fill)
         .alignment(.center)
@@ -94,7 +94,7 @@ extension MyInfoProfileView {
             .receive(on: DispatchQueue.main)
             .sink { wrappedProfile in
                 guard let profileData = wrappedProfile else {return}
-                self.profileTitle.text = profileData.name
+                self.profileNameLabel.text = profileData.name
                 self.profileEmail.text = profileData.email
                 
                 guard let imageUrlString = profileData.imageUrl,
@@ -102,8 +102,12 @@ extension MyInfoProfileView {
                     self.profileImage.image = self.guestProfileImage
                     return
                 }
+                
                 let imageUrl = URL(string: imageUrlString)
-                self.profileImage.sd_setImage(with: imageUrl, placeholderImage: self.guestProfileImage)
+                
+                self.profileImage.sd_setImage(with: imageUrl,
+                                          placeholderImage: nil,
+                                          options: [.progressiveLoad])
             }
             .store(in: &cancellables)
     }

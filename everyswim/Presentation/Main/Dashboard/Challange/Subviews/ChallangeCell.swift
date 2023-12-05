@@ -30,7 +30,7 @@ final class ChallangeCell: UIView {
         .vStack(subviews: [title, countText, circle],
                 spacing: 4,
                 alignment: .center)
-        .setEdgeInset(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
+        .setEdgeInset(.all(6))
 
     
     init(data: ChallangeRing) {
