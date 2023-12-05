@@ -20,13 +20,9 @@ final class AuthManager {
     
     static let shared = AuthManager()
     
-    @Published var isSignIn: Bool = false
+    @Published var isSignIn: Bool = true
     
-    private var currentUser: User? {
-        willSet {
-            print("CURRENTUSER: \(newValue?.uid)")
-        }
-    }
+    private var currentUser: User?
     private var user: UserProfile?
     
     private init(apple: AppleSignInHelper = .init(), fbCredentialService: FirebaseAuthService = .init(), fireStoreService: FireStoreDBService = .init()) {
@@ -111,7 +107,6 @@ final class AuthManager {
     
     func getUID() -> String? {
         let uid = self.currentUser?.uid
-        print("CURRENTUSER UID: \(uid)")
         return uid
     }
     

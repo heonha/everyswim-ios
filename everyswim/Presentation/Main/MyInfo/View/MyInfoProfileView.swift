@@ -27,7 +27,7 @@ final class MyInfoProfileView: UIView, CombineCancellable {
         .cornerRadius(30) as! UIImageView
     
     private lazy var profileTitle = ViewFactory
-        .label("개발하는 물개")
+        .label("") // 프로필 이름
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(AppUIColor.label)
     
@@ -102,8 +102,12 @@ extension MyInfoProfileView {
                     self.profileImage.image = self.guestProfileImage
                     return
                 }
+                
                 let imageUrl = URL(string: imageUrlString)
-                self.profileImage.sd_setImage(with: imageUrl, placeholderImage: self.guestProfileImage)
+                
+                self.profileImage.sd_setImage(with: imageUrl,
+                                          placeholderImage: nil,
+                                          options: [.progressiveLoad])
             }
             .store(in: &cancellables)
     }
