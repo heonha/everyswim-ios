@@ -32,7 +32,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     
     private var imageView: UIImageView = {
         let iv = UIImageView(frame: .zero)
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
         return iv
@@ -58,7 +58,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
         contentView.addSubview(labelVStack)
         
         imageView.snp.makeConstraints { make in
-            make.center.equalTo(contentView)
+            make.edges.equalTo(contentView)
             make.height.equalTo(contentView)
         }
         
@@ -67,12 +67,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
         foregroundLayer.snp.makeConstraints { make in
             make.size.equalTo(imageView)
         }
-        
-        labelVStack.snp.makeConstraints { make in
-            make.top.equalTo(imageView).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.bottom.equalTo(self.contentView)
-        }
+
     }
     
     func configure(viewModel: RecommandCollectionProtocol) {
@@ -98,3 +93,16 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Com
     }
     
 }
+
+#if DEBUG
+import SwiftUI
+
+struct RecommandVideoReusableCell_Previews: PreviewProvider {
+    static var previews: some View {
+        UIViewControllerPreview {
+            DashboardViewController()
+        }
+        .ignoresSafeArea()
+    }
+}
+#endif

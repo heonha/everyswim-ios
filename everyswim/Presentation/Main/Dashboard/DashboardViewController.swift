@@ -289,7 +289,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         let itemLayoutSize = NSCollectionLayoutSize(widthDimension: itemWidth,
                                                     heightDimension: itemHeight)
         let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 20)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 20, bottom: 2, trailing: 10)
         
         // Group
         // FIXME: 16.0+ 에서 vertical (layoutSize:, subitem:, count:) deprecated됨
