@@ -20,7 +20,7 @@ final class AuthManager {
     
     static let shared = AuthManager()
     
-    @Published var isSignIn: Bool = true
+    @Published var isSignIn: Bool = false
     
     private var currentUser: User?
     private var user: UserProfile?
@@ -86,7 +86,6 @@ final class AuthManager {
                 }
             }
         }
-        
     }
     
     /// Firebase에서 인증된 Current User 가져오기
@@ -115,7 +114,7 @@ final class AuthManager {
             return MyInfoProfile(name: "로그아웃 물개", email: "로그인 하기", imageUrl: nil)
         }
         
-        return MyInfoProfile(name: user.name ?? "로그인한 물개", email: user.email ?? "알수없는 이메일", imageUrl: user.profileImageUrl)
+        return MyInfoProfile(name: user.name ?? "알 수 없는 이름", email: user.email ?? "알수없는 이메일", imageUrl: user.profileImageUrl)
     }
     
     func getUserProfile() throws -> UserProfile {

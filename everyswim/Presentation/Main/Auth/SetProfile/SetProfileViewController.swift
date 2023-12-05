@@ -86,21 +86,24 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     private func setCurrentProfile() {
         if type == .changeProfile {
-            viewModel.$name
-                .receive(on: DispatchQueue.main)
-                .map{$0}
-                .assign(to: \.text, on: textField)
-                .store(in: &cancellables)
-            
-            viewModel.$image
-                .receive(on: DispatchQueue.main)
-                .replaceNil(with: AppImage.defaultUserProfileImage.getImage())
-                .sink { [weak self] image in
-                    self?.setProfileImage(image: image)
-                }
-                .store(in: &cancellables)
+            if viewModel.isLoaded {
+                updateProfile()
+            } else {
+                viewModel.$isLoaded
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] _ in
+                        guard let self = self else {return}
+                        updateProfile()
+                    }
+                    .store(in: &cancellables)
+            }
         }
 
+    }
+    
+    private func updateProfile() {
+        profileImageView.contentView.image = viewModel.image
+        textField.text = viewModel.name
     }
     
     private func presentImagePicker() {
@@ -131,8 +134,6 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
         }
         
     }
-    
-    
     
     // MARK: - Actions
     
