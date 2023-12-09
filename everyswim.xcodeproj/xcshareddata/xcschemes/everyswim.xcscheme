@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "1510"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -37,6 +37,17 @@
                BlueprintIdentifier = "396D2AB62A5677690042D4D4"
                BuildableName = "everyswimTests.xctest"
                BlueprintName = "everyswimTests"
+               ReferencedContainer = "container:everyswim.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "393F884C2B24C27200C67FAA"
+               BuildableName = "everyswim-tests.xctest"
+               BlueprintName = "everyswim-tests"
                ReferencedContainer = "container:everyswim.xcodeproj">
             </BuildableReference>
          </TestableReference>

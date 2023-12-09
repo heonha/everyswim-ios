@@ -25,7 +25,7 @@ final class NetworkService: RestProtocol {
                     headerType: HttpHeader,
                     urlString baseUrl: String,
                     endPoint: String,
-                    parameters: [String : String],
+                    parameters: [String : Any],
                     cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
                     returnType: T.Type) -> Future<T, Error> where T: Decodable {
         return Future<T, Error> { [weak self] promise in
@@ -57,7 +57,7 @@ final class NetworkService: RestProtocol {
                 
                 let queryItems: [URLQueryItem] = parameters
                     .map { item in
-                        return URLQueryItem(name: item.key, value: item.value)
+                        return URLQueryItem(name: item.key, value: (item.value as! String))
                     }
                 
                 var bodyComponent = URLComponents()
@@ -96,7 +96,7 @@ final class NetworkService: RestProtocol {
 }
 
 extension NetworkService {
-    private func parameterQueryHandler(from parameters: [String: String]) -> String {
+    private func parameterQueryHandler(from parameters: [String: Any]) -> String {
         var queryString = ""
         
         if !parameters.isEmpty {

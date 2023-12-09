@@ -15,7 +15,7 @@ protocol RestProtocol {
         headerType: HttpHeader,
         urlString baseUrl: String,
         endPoint: String,
-        parameters: [String: String],
+        parameters: [String: Any],
         cachePolicy: URLRequest.CachePolicy,
         returnType: T.Type) -> Future<T, Error>
     
