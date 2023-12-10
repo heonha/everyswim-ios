@@ -1,5 +1,5 @@
 //
-//  SearchPoolViewController.swift
+//  RegionListViewController.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/3/23.
@@ -8,15 +8,16 @@
 import UIKit
 import SnapKit
 import Combine
+import CoreLocation
 
-final class SearchPoolViewController: BaseViewController, CombineCancellable {
+final class PoolListViewController: BaseViewController, CombineCancellable {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let titleLabel = ViewFactory.label("현재 위치")
         .font(.custom(.sfProMedium, size: 14))
         .textAlignemnt(.center)
     
-    private let currentLocationLabel = ViewFactory.label("서울시")
+    private let currentLocationLabel = ViewFactory.label("--시 --구")
         .font(.custom(.sfProMedium, size: 16))
         .textAlignemnt(.center)
     
@@ -44,11 +45,11 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
     
     private let tableView = UITableView()
     
-    private let viewModel: MapViewModel
+    private let viewModel: PoolListViewModel
     
     
     // MARK: - Init & LifeCycles
-    init(viewModel: MapViewModel) {
+    init(viewModel: PoolListViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -120,6 +121,8 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
+                let locationManager = DeviceLocationManager()
+                let viewModel = MapViewModel(locationManager: locationManager)
                 let naverMapView = MapViewController(viewModel: viewModel)
                 push(naverMapView, animated: true)
             }
@@ -129,8 +132,8 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
     private func bindCurrentRegion() {
         viewModel.$currentRegion
             .receive(on: DispatchQueue.main)
-            .sink { regionString in
-                self.currentLocationLabel.text = regionString
+            .sink { region in
+                self.currentLocationLabel.text = "\(region.name) \(region.district)"
             }
             .store(in: &cancellables)
     }
@@ -157,7 +160,7 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
     
 }
 // MARK: - TableView Configure
-extension SearchPoolViewController: UITableViewDelegate, UITableViewDataSource {
+extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -179,9 +182,9 @@ import SwiftUI
 
 struct SearchPoolViewController_Previews: PreviewProvider {
     
-    static let viewController = SearchPoolViewController(viewModel: viewModel)
+    static let viewController = PoolListViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = MapViewModel(locationManager: locationManager)
+    static let viewModel = PoolListViewModel()
     
     static var previews: some View {
         UIViewControllerPreview {

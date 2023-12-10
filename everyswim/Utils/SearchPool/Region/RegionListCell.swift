@@ -1,5 +1,5 @@
 //
-//  LocationCell.swift
+//  RegionListCell.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/3/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class LocationCell: UITableViewCell, ReuseableObject {
+final class RegionListCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "LocationCell"
     
@@ -40,8 +40,8 @@ final class LocationCell: UITableViewCell, ReuseableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(data: String) {
-        self.titleLabel.text = "현위치: \(data)"
+    func configure(data: Region) {
+        self.titleLabel.text = "현위치: \(data.name)"
     }
     
     private func layout() {
@@ -75,8 +75,8 @@ import SwiftUI
 
 struct LocationCell_Previews: PreviewProvider {
     
-    static let view = LocationCell()
-    static let data = "서울시"
+    static let view = RegionListCell()
+    static let data = Region(code: "11", name: "서울", districts: ["강남구", "강동구", "강서구", "관악구", "구로구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "성동구", "성북구", "영등포구", "용산구", "은평구", "종로구", "중구", "송파구", "중랑구", "양천구", "서초구", "노원구", "광진구", "강북구", "금천구"])
     
     static var previews: some View {
         UIViewPreview {

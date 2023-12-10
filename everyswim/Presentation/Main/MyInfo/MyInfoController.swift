@@ -137,9 +137,8 @@ final class MyInfoController: UIViewController {
             .sink { _ in
                 
                 let locationManager = DeviceLocationManager()
-                let viewModel = MapViewModel(networkService: .shared,
-                                              locationManager: locationManager)
-                let vc = SearchPoolViewController(viewModel: viewModel)
+                let viewModel = PoolListViewModel()
+                let vc = PoolListViewController(viewModel: viewModel)
                 self.push(vc, animated: true)
             }
             .store(in: &cancellables)

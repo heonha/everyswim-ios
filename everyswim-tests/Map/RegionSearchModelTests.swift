@@ -35,11 +35,11 @@ class RegionSearchModelTests: XCTestCase {
         regionSearchModel.getAllRegions()
         
         // Then
-        regionSearchModel.$currentRegionCode
-            .receive(on: DispatchQueue.main)
-            .filter{ $0 != ""}
-            .sink { currentRegionCode in
-                XCTAssertEqual(currentRegionCode, "11")
+        regionSearchModel.$regionCache
+            .receive(on: DispatchQueue.global())
+            .filter { !$0.isEmpty }
+            .sink { region in
+                XCTAssertEqual(region.count, 17)
                 expectation.fulfill()
             }
             .store(in: &cancellables)
