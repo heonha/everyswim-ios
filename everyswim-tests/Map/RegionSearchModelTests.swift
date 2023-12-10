@@ -10,19 +10,19 @@ import XCTest
 import Combine
 @testable import everyswim
 
-class RegionSearchModelTests: XCTestCase {
+class RegionSearchManagerTests: XCTestCase {
     
-    var regionSearchModel: RegionSearchViewModel!
+    var regionSearchManager: RegionSearchManager!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        regionSearchModel = RegionSearchViewModel()
+        regionSearchManager = RegionSearchManager()
         cancellables = Set<AnyCancellable>()
     }
     
     override func tearDown() {
-        regionSearchModel = nil
+        regionSearchManager = nil
         cancellables = nil
         super.tearDown()
     }
@@ -32,10 +32,10 @@ class RegionSearchModelTests: XCTestCase {
         let expectation = expectation(description: "Fetching regions")
         
         // When
-        regionSearchModel.getAllRegions()
+        regionSearchManager.getAllRegions()
         
         // Then
-        regionSearchModel.$regions
+        regionSearchManager.$regions
             .receive(on: DispatchQueue.global())
             .filter { !$0.isEmpty }
             .sink { region in

@@ -11,17 +11,15 @@ import Combine
 
 final class RegionListViewController: BaseViewController {
     
-    private let viewModel: RegionSearchViewModel
-    private let parentViewModel: PoolListViewModel
+    private let viewModel: PoolListViewModel
     
     private var cancellables = Set<AnyCancellable>()
     
     private let tableView = UITableView()
     
     // MARK: - Init & LifeCycles
-    init(viewModel: RegionSearchViewModel, parentViewModel: PoolListViewModel) {
+    init(viewModel: PoolListViewModel) {
         self.viewModel = viewModel
-        self.parentViewModel = parentViewModel
         super.init()
     }
     
@@ -65,7 +63,7 @@ final class RegionListViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel.$regions
+        viewModel.regions
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] _ in
@@ -79,13 +77,13 @@ final class RegionListViewController: BaseViewController {
 extension RegionListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.regions.count
+        return viewModel.regions.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RegionListCell.reuseId, for: indexPath) as? RegionListCell else { return UITableViewCell() }
         
-        let region = viewModel.regions[indexPath.row]
+        let region = viewModel.regions.value[indexPath.row]
         cell.configure(title: region.name)
         
         return cell
@@ -96,8 +94,8 @@ extension RegionListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let region = viewModel.regions[indexPath.row]
-        let vc = DistrictListViewcontroller(region: region, viewModel: viewModel, parentViewModel: parentViewModel)
+        let region = viewModel.regions.value[indexPath.row]
+        let vc = DistrictListViewcontroller(region: region, viewModel: viewModel)
         self.push(vc, animated: true)
     }
     
@@ -110,8 +108,9 @@ import SwiftUI
 
 struct RegionListViewController_Previews: PreviewProvider {
     
-    static let viewController = RegionListViewController(viewModel: viewModel, parentViewModel: .init(locationManager: .init()))
-    static let viewModel = RegionSearchViewModel()
+    static let viewController = RegionListViewController(viewModel: viewModel)
+    static let viewModel = PoolListViewModel(locationManager: .init(),
+                                             regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {

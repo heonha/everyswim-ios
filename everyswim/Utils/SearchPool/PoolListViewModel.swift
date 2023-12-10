@@ -12,33 +12,37 @@ import Combine
 class PoolListViewModel {
     
     let locationManager: DeviceLocationManager
-
+    private let regionSearchManager: RegionSearchManager
+    
     private var cancellables = Set<AnyCancellable>()
     
     private struct Constant {
         static let baseUrl = "https://openapi.naver.com/v1/search/local.json"
     }
 
-    private let networkService: NetworkService = .shared
-
-    @Published var currentRegion: RegionViewModel {
-        willSet {
-            print("\(newValue)")
-        }
+    private let networkService: NetworkService
+    
+    var regions: CurrentValueSubject<[Region], Never> {
+        return regionSearchManager.regionsSubject
     }
     
+    @Published var currentRegion: RegionViewModel
     @Published var currentLoction: CLLocationCoordinate2D
-    
     @Published var pools: [NaverLocation] = []
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
+         networkService: NetworkService = .shared,
          currentRegion: RegionViewModel = .init(code: 0, name: "", district:""),
-         currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0)) {
+         currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0),
+         regionSearchManager: RegionSearchManager
+    ) {
         
         self.locationManager = locationManager
+        self.networkService = networkService
         self.currentRegion = currentRegion
         self.currentLoction = currentLocation
+        self.regionSearchManager = regionSearchManager
         observeCurrentRegion()
         observeCurrentLocation()
     }
@@ -166,7 +170,7 @@ class PoolListViewModel {
         .store(in: &cancellables)
     }
     
-    private func cityNameToCode(city: String) -> Int {
+    func cityNameToCode(city: String) -> Int {
         
         let cities = [
             "서울" : 11,

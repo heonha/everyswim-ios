@@ -136,8 +136,9 @@ final class MyInfoController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
+                let regionSearchManager = RegionSearchManager()
                 let locationManager = DeviceLocationManager()
-                let viewModel = PoolListViewModel(locationManager: locationManager)
+                let viewModel = PoolListViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
                 let vc = PoolListViewController(viewModel: viewModel)
                 let nc = UINavigationController(rootViewController: vc)
                 nc.modalPresentationStyle = .overFullScreen

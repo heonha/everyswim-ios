@@ -1,5 +1,5 @@
 //
-//  RegionSearchViewModel.swift
+//  RegionSearchManager.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/10/23.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class RegionSearchViewModel {
+class RegionSearchManager {
     
     struct Constant {
         static let baseUrl = "https://storage.googleapis.com/everyswim-80793.appspot.com/public/api/cities.json"
@@ -17,9 +17,8 @@ class RegionSearchViewModel {
     
     private var cancellables = Set<AnyCancellable>()
     
-    var currentCityCode: CurrentValueSubject<RegionViewModel, Never> = .init(.init(code: 11, name: "서울시", district: "구로구"))
-
-    @Published var regions: [Region] = []
+    @Published var currentCityCode: RegionViewModel = .init(code: 11, name: "서울시", district: "구로구")
+    var regionsSubject: CurrentValueSubject<[Region], Never> = .init([])
     
     private let networkService = NetworkService.shared
     
@@ -41,7 +40,7 @@ class RegionSearchViewModel {
             return
         }
         
-        regions = region
+        regionsSubject.send(region)
     }
     
     private func cachingRegions(region: [Region]) {
@@ -50,7 +49,6 @@ class RegionSearchViewModel {
     }
     
     func getAllRegions() {
-        
         networkService
             .request(method: .GET,
                      headerType: .applicationJson,
@@ -66,11 +64,10 @@ class RegionSearchViewModel {
             } receiveValue: { [weak self] data in
                 print("DATA: \(data)")
                 guard let self = self else {return}
-                regions = data
+                regionsSubject.send(data)
                 cachingRegions(region: data)
             }
             .store(in: &cancellables)
-        
     }
     
 }

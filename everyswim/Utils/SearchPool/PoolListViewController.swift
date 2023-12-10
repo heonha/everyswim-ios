@@ -186,9 +186,8 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
     private func bindTouchGestures() {
         searchLocationLabel.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let viewModel = RegionSearchViewModel()
-                let vc = RegionListViewController(viewModel: viewModel, parentViewModel: self.viewModel)
+            .sink { [unowned self] _ in
+                let vc = RegionListViewController(viewModel: self.viewModel)
                 self.push(vc, animated: true)
             }
             .store(in: &cancellables)
@@ -247,7 +246,7 @@ struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let viewController = PoolListViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = PoolListViewModel(locationManager: locationManager)
+    static let viewModel = PoolListViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {
