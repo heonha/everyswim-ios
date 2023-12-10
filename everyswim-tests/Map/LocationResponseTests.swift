@@ -147,6 +147,48 @@ final class LocationResponseTests: XCTestCase {
 
         
     }
+    
+    func test_transfer_coordinate() {
+        let jsonData = """
+            {
+                "lastBuildDate": "Sun, 10 Dec 2023 12:41:40 +0900",
+                "total": 5,
+                "start": 1,
+                "display": 5,
+                "items": [
+                    {
+                        "title": "50플러스<b>수영장</b>",
+                        "link": "",
+                        "category": "스포츠,오락>수영장",
+                        "description": "",
+                        "telephone": "",
+                        "address": "서울특별시 구로구 천왕동 14-120",
+                        "roadAddress": "서울특별시 구로구 오류로 36-25",
+                        "mapx": "1268418947",
+                        "mapy": "374883558"
+                    },
+                ]
+            }
+            """.data(using: .utf8)!
+        
+        // when
+        do {
+            let locationData = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+
+            // then
+            XCTAssertFalse(locationData.items.isEmpty, "장소 데이터가 비어있습니다.")
+            XCTAssertEqual(locationData.items.first!.coordinator.latitude, 37.4883558)
+            XCTAssertEqual(locationData.items.first!.coordinator.longitude, 126.8418947)
+        } catch {
+            // then
+            if error is DecodingError {
+                XCTFail("디코딩 에러: \(error.localizedDescription)")
+            } else {
+                XCTFail("에러발생: \(error.localizedDescription)")
+            }
+        }
+        
+    }
 
 
 }

@@ -13,6 +13,7 @@ final class MapViewModel: CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
     private let locationManager: DeviceLocationManager
+    private let locationViewModel = LocationsViewModel()
     
     @Published var currentRegion: String = ""
     

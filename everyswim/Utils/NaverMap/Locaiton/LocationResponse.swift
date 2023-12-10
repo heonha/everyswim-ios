@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct LocationResponse: Codable {
     
@@ -26,12 +27,24 @@ struct Location: Identifiable, Codable {
     let roadAddress: String
     
     // 위치
-    let mapx: String
-    let mapy: String
+    private let mapx: String
+    private let mapy: String
 
+    var coordinator: CLLocationCoordinate2D { return CLLocationCoordinate2D(latitude: mapy.toCoordinate(), longitude: mapx.toCoordinate())}
+    
     private let title: String
     var isPool: Bool {
         return category.contains("수영장") || category.contains("스포츠시설")
+    }
+    
+}
+
+
+extension String {
+    
+    func toCoordinate() -> Double {
+        guard let doubleData = Double(self) else { return 0 }
+        return doubleData / 10_000_000
     }
     
 }

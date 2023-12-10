@@ -30,7 +30,7 @@ final class MapViewController: BaseViewController {
         super.viewDidLoad()
         configure()
         getLocation()
-        placeMarker(37.359174, 127.104886)
+        placeMarker(37.4883558, 126.8418947)
     }
     
     override func viewDidLayoutSubviews() {
