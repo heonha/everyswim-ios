@@ -31,4 +31,18 @@ extension String {
         return Int(self)
     }
     
+    // MARK: - Remove Bold Tag for Location Response
+    
+    func removeBoldTagsToGap() -> String {
+        return self.replacingOccurrences(of: "<b>", with: " ", options: .regularExpression, range: nil)
+    }
+    
+    func removeBoldEndTagsToGap() -> String {
+        return self.replacingOccurrences(of: "</b>", with: " ", options: .regularExpression, range: nil)
+    }
+
+    func cleanLocationName() -> String {
+        return self.removeBoldTagsToGap().removeBoldEndTagsToGap()
+    }
+    
 }

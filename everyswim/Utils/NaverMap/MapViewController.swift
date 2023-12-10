@@ -10,14 +10,14 @@ import SnapKit
 import NMapsMap
 import Combine
 
-final class NMapViewController: BaseViewController {
+final class MapViewController: BaseViewController {
     
     private var cancellables: Set<AnyCancellable> = .init()
-    private let viewModel: NMapViewModel
+    private let viewModel: MapViewModel
     
     private lazy var mapView = NMFNaverMapView(frame: view.frame)
     
-    init(viewModel: NMapViewModel) {
+    init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -84,7 +84,7 @@ final class NMapViewController: BaseViewController {
     
 }
 
-extension NMapViewController: NMFAuthManagerDelegate {
+extension MapViewController: NMFAuthManagerDelegate {
     
     func placeMarker(_ lat: CGFloat, _ lng: CGFloat) {
         let marker = NMFMarker()
@@ -123,9 +123,9 @@ import SwiftUI
 
 struct MapViewController_Previews: PreviewProvider {
     
-    static let viewController = NMapViewController(viewModel: viewModel)
-    static let locationManager = LocationManager()
-    static let viewModel = NMapViewModel(locationManager: locationManager)
+    static let viewController = MapViewController(viewModel: viewModel)
+    static let locationManager = DeviceLocationManager()
+    static let viewModel = MapViewModel(locationManager: locationManager)
     
     static var previews: some View {
         UIViewControllerPreview {

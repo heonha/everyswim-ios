@@ -136,8 +136,8 @@ final class MyInfoController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
-                let locationManager = LocationManager()
-                let viewModel = NMapViewModel(networkService: .shared,
+                let locationManager = DeviceLocationManager()
+                let viewModel = MapViewModel(networkService: .shared,
                                               locationManager: locationManager)
                 let vc = SearchPoolViewController(viewModel: viewModel)
                 self.push(vc, animated: true)

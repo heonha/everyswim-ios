@@ -9,10 +9,10 @@ import Foundation
 import Combine
 import CoreLocation
 
-final class NMapViewModel: CombineCancellable {
+final class MapViewModel: CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
-    private let locationManager: LocationManager
+    private let locationManager: DeviceLocationManager
     
     @Published var currentRegion: String = ""
     
@@ -26,7 +26,7 @@ final class NMapViewModel: CombineCancellable {
     @Published var poolList: [String] = []
     @Published var currentLoction: CLLocationCoordinate2D
     
-    init(networkService: NetworkService = .shared, locationManager: LocationManager) {
+    init(networkService: NetworkService = .shared, locationManager: DeviceLocationManager) {
         self.currentLoction = .init(latitude: 0, longitude: 0)
         self.networkService = networkService
         self.locationManager = locationManager
@@ -38,7 +38,7 @@ final class NMapViewModel: CombineCancellable {
 
 }
 
-extension NMapViewModel {
+extension MapViewModel {
     
     func getCurrentLocation() {
         locationManager.requestLocationAuthorization()
@@ -121,32 +121,4 @@ extension NMapViewModel {
             .store(in: &cancellables)
     }
     
-}
-
-struct NaverReverseGCResponse: Codable {
-    let results: [ReverseGCResult]
-}
-
-struct ReverseGCResult: Codable {
-    let region: Region
-    
-    struct Region: Codable {
-        let area1: Area
-        let area2: Area
-    }
-    
-    struct Area: Codable {
-        let name: String
-        let coords: Coordinates
-        
-        struct Coordinates: Codable {
-            let center: Center
-            
-            struct Center: Codable {
-                let crs: String
-                let x: Double
-                let y: Double
-            }
-        }
-    }
 }

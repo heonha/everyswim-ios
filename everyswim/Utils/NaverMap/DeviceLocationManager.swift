@@ -1,5 +1,5 @@
 //
-//  LocationManager.swift
+//  DeviceLocationManager.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/3/23.
@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 
-final class LocationManager: NSObject {
+final class DeviceLocationManager: NSObject {
         
     private var locationManager = CLLocationManager()
     private var requestLocationAuthorizationCallBack: ((CLAuthorizationStatus) -> Void)?
@@ -30,7 +30,7 @@ final class LocationManager: NSObject {
     
 }
 
-extension LocationManager: CLLocationManagerDelegate {
+extension DeviceLocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
@@ -52,3 +52,4 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
 }
+

@@ -44,11 +44,11 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
     
     private let tableView = UITableView()
     
-    private let viewModel: NMapViewModel
+    private let viewModel: MapViewModel
     
     
     // MARK: - Init & LifeCycles
-    init(viewModel: NMapViewModel) {
+    init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -120,7 +120,7 @@ final class SearchPoolViewController: BaseViewController, CombineCancellable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
-                let naverMapView = NMapViewController(viewModel: viewModel)
+                let naverMapView = MapViewController(viewModel: viewModel)
                 push(naverMapView, animated: true)
             }
             .store(in: &cancellables)
@@ -180,8 +180,8 @@ import SwiftUI
 struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let viewController = SearchPoolViewController(viewModel: viewModel)
-    static let locationManager = LocationManager()
-    static let viewModel = NMapViewModel(locationManager: locationManager)
+    static let locationManager = DeviceLocationManager()
+    static let viewModel = MapViewModel(locationManager: locationManager)
     
     static var previews: some View {
         UIViewControllerPreview {
