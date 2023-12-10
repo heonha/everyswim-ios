@@ -21,13 +21,19 @@ class PoolListViewModel {
 
     private let networkService: NetworkService = .shared
 
-    @Published var currentRegion: City
+    @Published var currentRegion: RegionViewModel {
+        willSet {
+            print("\(newValue)")
+        }
+    }
+    
     @Published var currentLoction: CLLocationCoordinate2D
     
     @Published var pools: [NaverLocation] = []
 
-    init(locationManager: DeviceLocationManager, 
-         currentRegion: City = .init(code: 0, name: "", district:""),
+    // MARK: - Init & Lifecycles
+    init(locationManager: DeviceLocationManager,
+         currentRegion: RegionViewModel = .init(code: 0, name: "", district:""),
          currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0)) {
         
         self.locationManager = locationManager
@@ -66,7 +72,6 @@ class PoolListViewModel {
             .replacingOccurrences(of: "광역시", with: "시", options: .regularExpression, range: nil)
             .replacingOccurrences(of: "특별자치도", with: "시", options: .regularExpression, range: nil)
             .replacingOccurrences(of: "특례시", with: "시", options: .regularExpression, range: nil)
-
         
         return city
     }
@@ -190,7 +195,6 @@ class PoolListViewModel {
         guard let cityCode = cityCode else { return 0 }
         
         return cityCode.value
-        
     }
     
     

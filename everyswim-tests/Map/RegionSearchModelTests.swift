@@ -12,12 +12,12 @@ import Combine
 
 class RegionSearchModelTests: XCTestCase {
     
-    var regionSearchModel: RegionSearchModel!
+    var regionSearchModel: RegionSearchViewModel!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        regionSearchModel = RegionSearchModel()
+        regionSearchModel = RegionSearchViewModel()
         cancellables = Set<AnyCancellable>()
     }
     
@@ -35,7 +35,7 @@ class RegionSearchModelTests: XCTestCase {
         regionSearchModel.getAllRegions()
         
         // Then
-        regionSearchModel.$regionCache
+        regionSearchModel.$regions
             .receive(on: DispatchQueue.global())
             .filter { !$0.isEmpty }
             .sink { region in

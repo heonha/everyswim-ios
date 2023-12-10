@@ -139,7 +139,9 @@ final class MyInfoController: UIViewController {
                 let locationManager = DeviceLocationManager()
                 let viewModel = PoolListViewModel(locationManager: locationManager)
                 let vc = PoolListViewController(viewModel: viewModel)
-                self.push(vc, animated: true)
+                let nc = UINavigationController(rootViewController: vc)
+                nc.modalPresentationStyle = .overFullScreen
+                self.present(nc, animated: true)
             }
             .store(in: &cancellables)
         

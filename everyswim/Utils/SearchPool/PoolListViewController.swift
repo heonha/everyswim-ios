@@ -43,6 +43,13 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
         .shadow()
         .cornerRadius(8)
     
+    private let dismissButton = ViewFactory.label("나가기")
+        .font(.custom(.sfProBold, size: 16))
+        .textAlignemnt(.center)
+        .backgroundColor(AppUIColor.skyBackground)
+        .shadow()
+        .cornerRadius(8)
+    
     private let tableView = UITableView()
     
     private let viewModel: PoolListViewModel
@@ -116,6 +123,13 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
+        view.addSubview(dismissButton)
+        dismissButton.snp.makeConstraints { make in
+            make.height.equalTo(44)
+            make.width.equalTo(80)
+            make.leading.equalTo(view).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
     }
     
     // MARK: - Bind
@@ -124,6 +138,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
         bindCurrentRegion()
         bindPushNaverMapView()
         bindSearchPool()
+        bindTouchGestures()
     }
     
     private func bindPushNaverMapView() {
@@ -141,12 +156,10 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
     
     private func bindCurrentRegion() {
         viewModel.$currentRegion
-            .receive(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
             .filter { !$0.name.isEmpty }
             .sink { [weak self] region in
-                DispatchQueue.main.async {
-                    self?.currentLocationLabel.text = "\(region.name) \(region.district)"
-                }
+                self?.currentLocationLabel.text = "\(region.name) \(region.district)"
             }
             .store(in: &cancellables)
     }
@@ -166,6 +179,24 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bindTouchGestures() {
+        searchLocationLabel.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                let viewModel = RegionSearchViewModel()
+                let vc = RegionListViewController(viewModel: viewModel, parentViewModel: self.viewModel)
+                self.push(vc, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        dismissButton.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.dismiss(animated: true)
             }
             .store(in: &cancellables)
     }

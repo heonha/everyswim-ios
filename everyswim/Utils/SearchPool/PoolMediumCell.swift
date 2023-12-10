@@ -87,7 +87,7 @@ extension PoolMediumCell {
 
 
 // MARK: - Preview
-#if DEBUG
+#if targetEnvironment(simulator)
 import SwiftUI
 
 struct PoolMediumCell_Previews: PreviewProvider {
