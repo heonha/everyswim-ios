@@ -137,7 +137,7 @@ final class MyInfoController: UIViewController {
             .sink { _ in
                 
                 let locationManager = DeviceLocationManager()
-                let viewModel = PoolListViewModel()
+                let viewModel = PoolListViewModel(locationManager: locationManager)
                 let vc = PoolListViewController(viewModel: viewModel)
                 self.push(vc, animated: true)
             }

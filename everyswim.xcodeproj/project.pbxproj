@@ -11,6 +11,7 @@
 		3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */; };
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
 		390A0B202B25851200F30C80 /* PoolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */; };
+		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
 		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
 		390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */; };
 		390C61902AF3B9FF0061E6D4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618F2AF3B9FF0061E6D4 /* UserData.swift */; };
@@ -109,8 +110,6 @@
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSort.swift */; };
 		397AB5AD2A68F61A008015F2 /* AppPersistantKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AC2A68F61A008015F2 /* AppPersistantKey.swift */; };
-		397BF0582B257D6E0017B1FF /* LocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397BF0572B257D6E0017B1FF /* LocationResponse.swift */; };
-		397BF05A2B257DDF0017B1FF /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397BF0592B257DDF0017B1FF /* LocationViewModel.swift */; };
 		397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* DatePickerEventData.swift */; };
 		3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */; };
 		3980FC572AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */; };
@@ -145,7 +144,6 @@
 		39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* SwimLapEvent.swift */; };
 		39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */; };
 		39A647802B25674D007B08B5 /* NaverReverseGCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6477F2B25674D007B08B5 /* NaverReverseGCResponse.swift */; };
-		39A647822B256809007B08B5 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A647812B256809007B08B5 /* LocationView.swift */; };
 		39A647872B256CF5007B08B5 /* LocationResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A647862B256CF5007B08B5 /* LocationResponseTests.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* AppConstant.swift */; };
 		39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */; };
@@ -211,6 +209,7 @@
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModel.swift; sourceTree = "<group>"; };
+		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
 		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
 		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
 		390C618F2AF3B9FF0061E6D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -300,8 +299,6 @@
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSort.swift; sourceTree = "<group>"; };
 		397AB5AC2A68F61A008015F2 /* AppPersistantKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistantKey.swift; sourceTree = "<group>"; };
-		397BF0572B257D6E0017B1FF /* LocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponse.swift; sourceTree = "<group>"; };
-		397BF0592B257DDF0017B1FF /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		397CC73A2A87792700C5D90D /* DatePickerEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventData.swift; sourceTree = "<group>"; };
 		3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfileView.swift; sourceTree = "<group>"; };
 		3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerFlowLayout.swift; sourceTree = "<group>"; };
@@ -337,7 +334,6 @@
 		39A606A52A6D12C900049B5A /* SwimLapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapEvent.swift; sourceTree = "<group>"; };
 		39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkoutEventType+Extension.swift"; sourceTree = "<group>"; };
 		39A6477F2B25674D007B08B5 /* NaverReverseGCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverReverseGCResponse.swift; sourceTree = "<group>"; };
-		39A647812B256809007B08B5 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		39A647862B256CF5007B08B5 /* LocationResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponseTests.swift; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandVideoReusableCell.swift; sourceTree = "<group>"; };
@@ -648,6 +644,7 @@
 			children = (
 				393F88572B24C28C00C67FAA /* RegionSearchModelTests.swift */,
 				39A647862B256CF5007B08B5 /* LocationResponseTests.swift */,
+				390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -819,16 +816,6 @@
 			path = everyswim;
 			sourceTree = "<group>";
 		};
-		39A647832B25680D007B08B5 /* Locaiton */ = {
-			isa = PBXGroup;
-			children = (
-				39A647812B256809007B08B5 /* LocationView.swift */,
-				397BF0592B257DDF0017B1FF /* LocationViewModel.swift */,
-				397BF0572B257D6E0017B1FF /* LocationResponse.swift */,
-			);
-			path = Locaiton;
-			sourceTree = "<group>";
-		};
 		39B0C3962AAC6FBE004E0985 /* RecommandCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,7 +843,6 @@
 			isa = PBXGroup;
 			children = (
 				390A0B1E2B2584AF00F30C80 /* Region */,
-				39A647832B25680D007B08B5 /* Locaiton */,
 				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
 				390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */,
 				39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */,
@@ -1222,6 +1208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */,
 				393F88582B24C28C00C67FAA /* RegionSearchModelTests.swift in Sources */,
 				39A647872B256CF5007B08B5 /* LocationResponseTests.swift in Sources */,
 				393F88502B24C27200C67FAA /* everyswim_tests.swift in Sources */,
@@ -1258,14 +1245,11 @@
 				39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
 				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,
-				397BF05A2B257DDF0017B1FF /* LocationViewModel.swift in Sources */,
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
-				39A647822B256809007B08B5 /* LocationView.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */,
 				39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */,
-				397BF0582B257D6E0017B1FF /* LocationResponse.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
 				39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */,

@@ -17,7 +17,7 @@ class RegionSearchModel {
     
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var currentCityCode: City = .init(name: "서울시", district: "구로구")
+    @Published var currentCityCode: City = .init(code: 11, name: "서울시", district: "구로구")
 
     @Published var regionCache: [Region] = []
     
@@ -85,8 +85,8 @@ struct Region: Codable {
     let districts: [String]
 }
 
-
 struct City: Codable {
+    let code: Int
     let name: String
     let district: String
 }

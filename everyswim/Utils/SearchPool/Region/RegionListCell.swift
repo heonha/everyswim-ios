@@ -10,7 +10,7 @@ import SnapKit
 
 final class RegionListCell: UITableViewCell, ReuseableObject {
     
-    static var reuseId: String = "LocationCell"
+    static var reuseId: String = "RegionListCell"
     
     private var titleLabel = ViewFactory
         .label("현위치")

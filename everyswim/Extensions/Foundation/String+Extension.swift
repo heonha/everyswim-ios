@@ -45,4 +45,10 @@ extension String {
         return self.removeBoldTagsToGap().removeBoldEndTagsToGap()
     }
     
+    func toCoordinate() -> Double {
+        guard let doubleData = Double(self) else { return 0 }
+        return doubleData / 10_000_000
+    }
+
+    
 }

@@ -13,7 +13,6 @@ final class MapViewModel: CombineCancellable {
     
     var cancellables: Set<AnyCancellable> = .init()
     private let locationManager: DeviceLocationManager
-    private let locationViewModel = LocationsViewModel()
             
     private let networkService: NetworkService
     
@@ -42,6 +41,7 @@ extension MapViewModel {
     func observeCurrentLocation() {
         locationManager.locationPublisher
             .receive(on: DispatchQueue.main)
+            .filter { !$0.latitude.isZero }
             .sink(receiveCompletion: { complteion in
                 switch complteion {
                 case .finished:

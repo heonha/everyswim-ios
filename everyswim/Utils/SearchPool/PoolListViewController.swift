@@ -100,6 +100,14 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.width.equalTo(120)
         }
         
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(locationVStack.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+
         view.addSubview(showMapLabel)
         showMapLabel.snp.makeConstraints { make in
             make.height.equalTo(44)
@@ -107,6 +115,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.trailing.equalTo(view).inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
+        
     }
     
     // MARK: - Bind
@@ -114,6 +123,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
         bindCurrentLocation()
         bindCurrentRegion()
         bindPushNaverMapView()
+        bindSearchPool()
     }
     
     private func bindPushNaverMapView() {
@@ -131,9 +141,12 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
     
     private func bindCurrentRegion() {
         viewModel.$currentRegion
-            .receive(on: DispatchQueue.main)
-            .sink { region in
-                self.currentLocationLabel.text = "\(region.name) \(region.district)"
+            .receive(on: DispatchQueue.global())
+            .filter { !$0.name.isEmpty }
+            .sink { [weak self] region in
+                DispatchQueue.main.async {
+                    self?.currentLocationLabel.text = "\(region.name) \(region.district)"
+                }
             }
             .store(in: &cancellables)
     }
@@ -148,21 +161,23 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             .store(in: &cancellables)
     }
     
-    #if DEBUG
-    func setCurrentLocation(_ location: String) {
-        DispatchQueue.main.async {
-            self.currentLocationLabel.text = location
-        }
+    private func bindSearchPool() {
+        viewModel.$pools
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
-    #endif
-    
-    
 }
+
+
+
 // MARK: - TableView Configure
 extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.pools.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,10 +185,27 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        let location = viewModel.pools[indexPath.row]
+        cell.configure(data: location)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
     
+}
+
+// MARK: - Test Stub
+extension PoolListViewController {
+    
+    #if DEBUG
+    func setCurrentLocation(_ location: String) {
+        DispatchQueue.main.async {
+            self.currentLocationLabel.text = location
+        }
+    }
+    #endif
 }
 
 // MARK: - Preview
@@ -184,7 +216,7 @@ struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let viewController = PoolListViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = PoolListViewModel()
+    static let viewModel = PoolListViewModel(locationManager: locationManager)
     
     static var previews: some View {
         UIViewControllerPreview {
@@ -192,9 +224,8 @@ struct SearchPoolViewController_Previews: PreviewProvider {
         }
         .ignoresSafeArea()
         .onAppear(perform: {
-            viewController.setCurrentLocation("서울특별시 구로구")
+            viewModel.currentLoction = .init(latitude: 35.570137, longitude: 126.977127)
         })
     }
 }
 #endif
-

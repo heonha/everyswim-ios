@@ -8,23 +8,17 @@
 import UIKit
 import SnapKit
 
-struct Pool {
-  let name: String
-  let address: String
-}
-
-
 final class PoolMediumCell: UITableViewCell, ReuseableObject {
     
     static var reuseId: String = "PoolMediumCell"
     
     private var titleLabel = ViewFactory
-        .label("수영장")
+        .label("000 수영장")
         .font(.custom(.sfProBold, size: 16))
         .textAlignemnt(.left)
     
     private var addressLabel = ViewFactory
-        .label("서울시 구로구")
+        .label("--시 --구 --동")
         .font(.custom(.sfProLight, size: 14))
         .foregroundColor(.secondaryLabel)
         .textAlignemnt(.left)
@@ -41,14 +35,14 @@ final class PoolMediumCell: UITableViewCell, ReuseableObject {
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
-        contentView.backgroundColor = UIColor(hex: "92B9E7", alpha: 0.5)
+        contentView.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(data: Pool) {
+    func configure(data: NaverLocation) {
         self.titleLabel.text = data.name
         self.addressLabel.text = data.address
     }
@@ -79,6 +73,19 @@ final class PoolMediumCell: UITableViewCell, ReuseableObject {
     
 }
 
+// MARK: - Test Stub
+extension PoolMediumCell {
+#if targetEnvironment(simulator)
+
+    func configureForUITest(name: String, address: String) {
+        self.titleLabel.text = name
+        self.addressLabel.text = address
+    }
+    
+#endif
+}
+
+
 // MARK: - Preview
 #if DEBUG
 import SwiftUI
@@ -86,8 +93,6 @@ import SwiftUI
 struct PoolMediumCell_Previews: PreviewProvider {
     
     static let view = PoolMediumCell()
-    static let data = Pool(name: "구로 50플러스 수영장", 
-                           address: "서울특별시 구로구 오류로 36-25 50플러스남부캠퍼스(지하2층)")
     
     static var previews: some View {
         UIViewPreview {
@@ -96,7 +101,7 @@ struct PoolMediumCell_Previews: PreviewProvider {
         .frame(height: 60)
         .frame(width: 393)
         .onAppear {
-            view.configure(data: data)
+            view.configureForUITest(name: "수영장", address: "서울시 구로구")
         }
     }
 }

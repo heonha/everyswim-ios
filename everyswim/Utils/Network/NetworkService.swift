@@ -74,7 +74,7 @@ final class NetworkService: RestProtocol {
             
             tryDataTaskPublisher(request: request)
                 .decode(type: T.self, decoder: JSONDecoder())
-                .receive(on: RunLoop.main)
+                .receive(on: DispatchQueue.global())
                 .sink(receiveCompletion: { (completion) in
                     if case let .failure(error) = completion {
                         switch error {
@@ -123,6 +123,7 @@ extension NetworkService {
                 guard 200...299 ~= httpResponse.statusCode else {
                     throw NetworkError.statusCode(httpResponse.statusCode)
                 }
+                
                 return data
             }
     }

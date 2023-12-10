@@ -11,6 +11,8 @@ import Combine
 
 class PoolListViewModel {
     
+    let locationManager: DeviceLocationManager
+
     private var cancellables = Set<AnyCancellable>()
     
     private struct Constant {
@@ -21,37 +23,108 @@ class PoolListViewModel {
 
     @Published var currentRegion: City
     @Published var currentLoction: CLLocationCoordinate2D
+    
+    @Published var pools: [NaverLocation] = []
 
-    init(currentRegion: City = .init(name: "서울시", district:"강남구"), currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0)) {
+    init(locationManager: DeviceLocationManager, 
+         currentRegion: City = .init(code: 0, name: "", district:""),
+         currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0)) {
+        
+        self.locationManager = locationManager
         self.currentRegion = currentRegion
         self.currentLoction = currentLocation
+        observeCurrentRegion()
+        observeCurrentLocation()
+    }
+    
+    /// 현위치가 바뀌면 장소를 재검색합니다.
+    private func observeCurrentRegion() {
+        $currentRegion
+            .receive(on: DispatchQueue.main)
+            .filter { !$0.name.isEmpty }
+            .sink { [weak self] city in
+                self?.requestLocationQuery()
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// 현위치가 바뀌면 장소를 재검색합니다.
+    private func observeCurrentLocation() {
+        locationManager.locationPublisher
+            .receive(on: DispatchQueue.main)
+            .replaceError(with: .init(latitude: 0, longitude: 0))
+            .sink(receiveValue: { [weak self] coordinator in
+                self?.currentLoction = coordinator
+                self?.getAddressFromCoordinator(coordinator)
+            })
+            .store(in: &cancellables)
+    }
+    
+    func replaceSimpleCityName(city: String) -> String {
+        let city = city
+            .replacingOccurrences(of: "특별시", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "광역시", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "특별자치도", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "특례시", with: "시", options: .regularExpression, range: nil)
+
+        
+        return city
+    }
+    
+    /// 구가 있는 도시 인지 확인함
+    func isHasGu(cityCode: Int) -> Bool {
+        if cityCode < 29 {
+            return true
+        } else {
+            return false
+        }
     }
     
     /// 장소를 검색 합니다.
-    func requestLocationQuery(queryString: String, displayCount: Int = 10, startCount: Int = 1) {
-        let url = "\(Constant.baseUrl)?query=\(queryString)&display=\(displayCount)&start=\(startCount)"
+    func requestLocationQuery(queryString: String? = nil, displayCount: Int = 5, startCount: Int = 1) {
+        var queryString = queryString
+        if queryString == nil {
+            if isHasGu(cityCode: currentRegion.code) {
+                queryString = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
+            } else {
+                queryString = "\(currentRegion.district)수영장"
+            }
+        }
+        
+        guard let queryString = queryString else { return }
+                
+        let parameters: [String: Any] = [
+            "display": displayCount,
+            "start": startCount,
+            "query": queryString
+        ]
         
         networkService.request(method: .GET,
                                headerType: .naverDevInfo(clientId: SecretConstant.NAVER_DEV_CLIENT_ID,
                                                          clientSecret: SecretConstant.NAVER_DEV_CLIENT_SECRET),
-                               urlString: url,
+                               urlString: Constant.baseUrl,
                                endPoint: "",
-                               parameters: [:],
+                               parameters: parameters,
                                returnType: NaverLocationResponse.self)
             .receive(on: DispatchQueue.main)
+            .map(\.items)
+            .map {
+                $0.filter { $0.isPool }
+            }
             .sink { completion in
                 switch completion {
                 case .finished:
                     return
                 case .failure(let error):
-                    print("ERROR: \(error.localizedDescription)")
+                    print("ERROR: \(error) \(error.localizedDescription)")
                 }
-            } receiveValue: { responseData in
-                print(responseData)
+            } receiveValue: { [weak self] locations in
+                self?.pools = locations
             }
             .store(in: &cancellables)
     }
 
+    /// 좌표값을 기준으로 주소를 가져옵니다.
     func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
         let baseUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
 
@@ -81,11 +154,51 @@ class PoolListViewModel {
                 print("ERROR: \(error.localizedDescription)")
             }
         } receiveValue: { [weak self] regionData in
-            print(regionData)
-            self?.currentRegion = .init(name: regionData.city, district: regionData.district)
+            guard let self = self else {return}
+            let cityCode = cityNameToCode(city: regionData.city)
+            self.currentRegion = .init(code: cityCode, name: regionData.city, district: regionData.district)
         }
         .store(in: &cancellables)
     }
-
     
+    private func cityNameToCode(city: String) -> Int {
+        
+        let cities = [
+            "서울" : 11,
+            "부산" : 21,
+            "인천" : 22,
+            "대구" : 23,
+            "광주" : 24,
+            "대전" : 25,
+            "울산" : 26,
+            "경기" : 31,
+            "강원" : 32,
+            "충북" : 33,
+            "충남" : 34,
+            "전북" : 35,
+            "전남" : 36,
+            "경북" : 37,
+            "경남" : 38,
+            "제주" : 39,
+            "세종" : 41
+        ]
+        
+        let cityCode = cities.first { key, value in
+            areFirstTwoCharactersEqual(city, key)
+        }
+        
+        guard let cityCode = cityCode else { return 0 }
+        
+        return cityCode.value
+        
+    }
+    
+    
+    func areFirstTwoCharactersEqual(_ str1: String, _ str2: String) -> Bool {
+        guard str1.count >= 2 && str2.count >= 2 else {
+            return false
+        }
+        
+        return str1.prefix(2) == str2.prefix(2)
+    }
 }
