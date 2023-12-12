@@ -82,10 +82,22 @@ final class DashboardViewController: UIViewController, CombineCancellable {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if viewModel.needsProfileUpdate() {
+            headerView.setProfileData()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         hideNavigationBar(true)
         updateChallangeView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.cancellables = .init()
     }
     
 }
@@ -101,7 +113,7 @@ extension DashboardViewController {
     }
     
     private func bindUpdateProfile() {
-        AuthManager.shared.$isSignIn
+        AuthManager.shared.isSignIn
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.headerView.setProfileData()

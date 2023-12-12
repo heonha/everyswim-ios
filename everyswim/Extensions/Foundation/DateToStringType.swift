@@ -56,7 +56,7 @@ enum DateToStringType {
         case .date:
             return "yyyy-M-d"
         case .timeStamp:
-            return "yyyy-MM-dd E HH:mm"
+            return "yyyy-MM-dd E HH:mm:ss"
         case .fullDateKr:
             return "yyyy년 M월 d일 EEEE a h시 m분"
         case .dateKr:

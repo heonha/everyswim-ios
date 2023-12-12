@@ -18,6 +18,8 @@ final class DashboardViewModel: ObservableObject {
     private var hkManager: HealthKitManager?
     private var kcals: [HKNormalStatus] = []
     private var stroke: [HKNormalStatus] = []
+    private var needUpdateProfile = false
+    private var profileLastUpdateDate: String = ""
     
     // MARK: Swimming Model
     @Published private(set) var swimRecords: [SwimMainData]
@@ -26,6 +28,8 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
 
+    private(set) var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Never>(nil)
+    
     // MARK: Recommand Model (Networking)
     private let recommandDataService = RecommandDataService()
     
@@ -64,6 +68,18 @@ final class DashboardViewModel: ObservableObject {
         self.getRecommandVideos()
         self.getRecommandCommunity()
     }
+    
+    // MARK: - UserProfile
+    func needsProfileUpdate() -> Bool {
+        guard let profile = authManager.user.value else { return false }
+        if profile.lastUpdated != self.profileLastUpdateDate {
+            self.profileLastUpdateDate = profile.lastUpdated
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     // MARK: - Recommand Data Methods
     func getRecommandVideos() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import FirebaseAuth
 
 final class AuthManager {
@@ -20,10 +21,10 @@ final class AuthManager {
     
     static let shared = AuthManager()
     
-    @Published var isSignIn: Bool = false
+    var isSignIn = CurrentValueSubject<Bool, Never>(false)
     
     private var currentUser: User?
-    private var user: UserProfile?
+    private(set) var user = CurrentValueSubject<UserProfile?, Never>(nil)
     
     private init(apple: AppleSignInHelper = .init(), fbCredentialService: FirebaseAuthService = .init(), fireStoreService: FireStoreDBService = .init()) {
         self.appleSignService = apple
@@ -36,16 +37,16 @@ final class AuthManager {
     /// 로그인
     func signIn(with user: UserProfile) {
         print(user)
-        self.isSignIn = true
-        self.user = user
+        self.isSignIn.send(true)
+        self.user.send(user)
     }
     
     /// 로그아웃
     func signOut() async throws {
         do {
             try await fbCredentialService.signOut()
-            self.user = nil
-            self.isSignIn = false
+            self.user.send(nil)
+            self.isSignIn.send(false)
         } catch {
             throw error
         }
@@ -59,7 +60,6 @@ final class AuthManager {
         try await fireStoreService.deleteUserProfile(user: user)
         try await fbCredentialService.deleteAccount(user: user)
     }
-    
     
     // MARK: - Manage Session
     
@@ -76,8 +76,8 @@ final class AuthManager {
                     throw SignInError.sessionExpired
                 }
                 let userProfile = try await fetchCurrentUserData()
-                self.user = userProfile
-                self.isSignIn = true
+                self.user.send(userProfile)
+                self.isSignIn.send(true)
             } catch {
                 do {
                     try await fbCredentialService.signOut()
@@ -88,6 +88,13 @@ final class AuthManager {
         }
     }
     
+    func updateCurrentUserProfile() {
+        Task {
+            let profile = try await fetchCurrentUserData()
+            self.user.send(profile)
+        }
+    }
+
     /// Firebase에서 인증된 Current User 가져오기
     func fetchCurrentUserData() async throws -> UserProfile {
         do {
@@ -110,15 +117,19 @@ final class AuthManager {
     }
     
     func getMyInfoProfile() -> MyInfoProfile {
-        guard getSignInState() == true, let user = user else {
-            return MyInfoProfile(name: "로그아웃 물개", email: "로그인 하기", imageUrl: nil)
+        guard getSignInState() == true, let user = user.value else {
+            return MyInfoProfile(name: "로그아웃 물개", 
+                                 email: "로그인 하기",
+                                 imageUrl: nil)
         }
         
-        return MyInfoProfile(name: user.name ?? "알 수 없는 이름", email: user.email ?? "알수없는 이메일", imageUrl: user.profileImageUrl)
+        return MyInfoProfile(name: user.name ?? "알 수 없는 이름", 
+                             email: user.email ?? "알수없는 이메일",
+                             imageUrl: user.profileImageUrl)
     }
     
     func getUserProfile() throws -> UserProfile {
-        guard let user = user else { throw AuthManagerError.failToFetchUserProfile()}
+        guard let user = user.value else { throw AuthManagerError.failToFetchUserProfile()}
         return user
     }
     
@@ -147,7 +158,6 @@ final class AuthManager {
     }
     
 }
-
 
 
 protocol ESError: Error {

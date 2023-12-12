@@ -13,17 +13,31 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
     
     private let authManager: AuthManager
     
-    var isSignInPublisher = AnyPublisher<Bool, Never>.init(AuthManager.shared.$isSignIn)
-    @Published var myinfoProfile: MyInfoProfile? = nil
+    var isSignInPublisher: AnyPublisher<Bool, Never> {
+        return AuthManager.shared.isSignIn.eraseToAnyPublisher()
+    }
+    
+    private(set) var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Never>(nil)
     
     init(authManager: AuthManager = .shared) {
         self.authManager = authManager
         super.init()
         observeSignInState()
+        observeUserProfile()
     }
     
     func fetchUserProfile() {
-        self.myinfoProfile = authManager.getMyInfoProfile()
+        let profile = authManager.getMyInfoProfile()
+        self.myinfoProfile.send(profile)
+    }
+    
+    private func observeUserProfile() {
+        authManager.user
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] profile in
+                self?.fetchUserProfile()
+            }
+            .store(in: &cancellables)
     }
 
     func getButtonListData() -> [MyInfoButtonType] {
@@ -40,8 +54,8 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
         }
     }
     
-    func observeSignInState() {
-        authManager.$isSignIn
+    private func observeSignInState() {
+        authManager.isSignIn
             .receive(on: DispatchQueue.main)
             .sink { [weak self] signIn in
                 self?.fetchUserProfile()
@@ -50,7 +64,7 @@ final class MyInfoViewModel: BaseViewModel, CombineCancellable {
     }
     
     func getSessionState() -> Bool {
-        return authManager.isSignIn
+        return authManager.isSignIn.value
     }
         
 }

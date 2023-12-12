@@ -14,28 +14,35 @@ final class SetProfileViewModel: ObservableObject {
     private let firebaseAuth = FirebaseAuthService()
     private let firebaseStorage = FirebaseStorageService()
     
-    
+
+    private let authManager = AuthManager.shared
     weak var parentViewController: SetProfileViewController?
     
-    @Published var name: String = ""
     private var currentImage: UIImage?
+
+    @Published var name: String = ""
     @Published var image: UIImage?
-    @Published var isLoaded: Bool = false
+    @Published var isLoading: Bool = true
     
     init() {
-        fetchCurrentProfileData()
+        updateProfileData()
     }
     
-    private func fetchCurrentProfileData() {
+    func updateProfileData() {
+        let profile = authManager.getMyInfoProfile()
+            fetchCurrentProfileData(profile: profile)
+    }
+    
+    private func fetchCurrentProfileData(profile: MyInfoProfile) {
+        
         DispatchQueue.main.async {
-            let userProfile = try? AuthManager.shared.getUserProfile()
-            self.name = userProfile?.name ?? "알수없는 이름"
-            let imageUrl = URL(string: userProfile?.profileImageUrl ?? "")
+            self.name = profile.name
+            let imageUrl = URL(string: profile.imageUrl ?? "")
             let imageView = UIImageView()
             imageView.sd_setImage(with: imageUrl)
             self.image = imageView.image
             self.currentImage = imageView.image
-            self.isLoaded = true
+            self.isLoading = false
         }
     }
 
@@ -53,15 +60,19 @@ final class SetProfileViewModel: ObservableObject {
         }
     }
     
+    private func updateImage(image: UIImage?) {
+        
+    }
+    
     /// 유저 프로필 데이터 업데이트
     func changeProfile(name: String) async throws {
         print(#function)
+        self.isLoading = true
         do {
             guard let uid = AuthManager.shared.getUID() else {
                 throw SetProfileError.uidIsNil()
             }
             
-            print("\(#function) uid: \(uid)")
             var urlString: String?
             
             if let currentHash = currentImage?.hashValue {
@@ -89,7 +100,10 @@ final class SetProfileViewModel: ObservableObject {
 
             print("DEBUG: 유저 프로필을 업데이트합니다.")
             try await fireStore.updateUserProfile(uid: uid, name: name, profileImageUrl: urlString)
+            self.authManager.updateCurrentUserProfile()
+            self.isLoading = false
         } catch {
+            self.isLoading = false
             throw error
         }
     }

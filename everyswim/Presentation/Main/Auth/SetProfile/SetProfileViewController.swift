@@ -20,6 +20,8 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     private let type: SetProfileViewControllerType
     
     var cancellables: Set<AnyCancellable> = .init()
+    private let loadingIndicator = LoadingIndicatorView(indicator: .init(style: .large, color: .white),
+                                                        withBackground: true)
     
     // MARK: - Views
     private let titleView = MidTitleVStack(title: "프로필 설정",
@@ -68,7 +70,7 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setCurrentProfile()
-
+        isLoadingHandler()
     }
     
     override func viewDidLayoutSubviews() {
@@ -86,10 +88,10 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
     
     private func setCurrentProfile() {
         if type == .changeProfile {
-            if viewModel.isLoaded {
+            if !viewModel.isLoading {
                 updateProfile()
             } else {
-                viewModel.$isLoaded
+                viewModel.$isLoading
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] _ in
                         guard let self = self else {return}
@@ -98,7 +100,19 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
                     .store(in: &cancellables)
             }
         }
-
+    }
+    
+    private func isLoadingHandler() {
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.loadingIndicator.show()
+                } else {
+                    self?.loadingIndicator.hide()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func updateProfile() {
@@ -131,6 +145,11 @@ final class SetProfileViewController: BaseViewController, CombineCancellable {
      
         textField.snp.makeConstraints { make in
             make.height.equalTo(40)
+        }
+        
+        view.addSubview(loadingIndicator)
+        loadingIndicator.snp.makeConstraints { make in
+            make.edges.equalTo(view)
         }
         
     }

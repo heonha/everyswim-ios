@@ -90,7 +90,7 @@ extension MyInfoProfileView {
     }
     
     private func observeUserProfile() {
-        viewModel.$myinfoProfile
+        viewModel.myinfoProfile
             .receive(on: DispatchQueue.main)
             .sink { wrappedProfile in
                 guard let profileData = wrappedProfile else {return}

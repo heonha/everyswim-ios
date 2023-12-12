@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class DashboardHeaderView: UIView {
     
     private let viewModel: DashboardViewModel
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var title: UILabel = ViewFactory
         .label("반가워요")
@@ -63,7 +66,7 @@ final class DashboardHeaderView: UIView {
                                               placeholderImage: nil,
                                               options: [.progressiveLoad],
                                               completed: { (_, error, _, _) in
-                if let error = error { return }
+                guard error != nil else { return }
                 
                 self.layoutIfNeeded()
             })
@@ -71,6 +74,14 @@ final class DashboardHeaderView: UIView {
             let defaultProfileImage = UIImage()
             self.profileImageView.image = defaultProfileImage
         }
+    }
+    
+    private func observeUserProfileState() {
+        viewModel.myinfoProfile
+            .sink { [weak self] _ in
+                self?.setProfileData()
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Layout
