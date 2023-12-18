@@ -90,6 +90,7 @@ class PoolListViewModel {
         }
     }
     
+    /// `KakaoAPI` 키워드 장소 검색을 요청합니다.
     func findLocation(queryString: String? = nil, displayCount: Int = 15, startCount: Int = 1) {
         var queryString = queryString
         if queryString == nil {
@@ -116,52 +117,6 @@ class PoolListViewModel {
 
         
     }
-    
-    /// 장소를 검색 합니다.
-    func requestLocationQuery(queryString: String? = nil, displayCount: Int = 5, startCount: Int = 1) {
-        var queryString = queryString
-        if queryString == nil {
-            if isHasGu(cityCode: currentRegion.code) {
-                queryString = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
-            } else {
-                queryString = "\(currentRegion.district)수영장"
-            }
-        }
-        
-        guard let queryString = queryString else { return }
-                
-        let parameters: [String: Any] = [
-            "display": displayCount,
-            "start": startCount,
-            "query": queryString
-        ]
-        
-        networkService.request(method: .GET,
-                               headerType: .naverDevInfo(clientId: SecretConstant.NAVER_DEV_CLIENT_ID,
-                                                         clientSecret: SecretConstant.NAVER_DEV_CLIENT_SECRET),
-                               urlString: Constant.baseUrl,
-                               endPoint: "",
-                               parameters: parameters,
-                               returnType: NaverLocationResponse.self)
-            .receive(on: DispatchQueue.main)
-            .map(\.items)
-            .map {
-                $0.filter { $0.isPool }
-            }
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    return
-                case .failure(let error):
-                    print("ERROR: \(error) \(error.localizedDescription)")
-                }
-            } receiveValue: { [weak self] locations in
-                self?.pools = []
-                // self?.pools = locations
-            }
-            .store(in: &cancellables)
-    }
-
     /// 좌표값을 기준으로 주소를 가져옵니다.
     func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
         let baseUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
@@ -229,7 +184,6 @@ class PoolListViewModel {
         
         return cityCode.value
     }
-    
     
     func areFirstTwoCharactersEqual(_ str1: String, _ str2: String) -> Bool {
         guard str1.count >= 2 && str2.count >= 2 else {
