@@ -19,18 +19,18 @@ class PoolListViewModel {
 
     private let networkService: NetworkService
     
-    var regions: CurrentValueSubject<[Region], Never> {
+    var regions: CurrentValueSubject<[KrRegions], Never> {
         return regionSearchManager.regionsSubject
     }
     
-    @Published var currentRegion: RegionViewModel
+    @Published var currentRegion: SingleRegion
     @Published var currentLoction: CLLocationCoordinate2D
     @Published var pools: [KakaoPlace] = []
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
          networkService: NetworkService = .shared,
-         currentRegion: RegionViewModel = .init(code: 0, name: "", district:""),
+         currentRegion: SingleRegion = .init(code: 0, name: "", district:""),
          currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0),
          regionSearchManager: RegionSearchManager
     ) {
@@ -115,78 +115,19 @@ class PoolListViewModel {
     }
     
     /// 좌표값을 기준으로 주소를 가져옵니다.
-    func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
-        let baseUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
-
-        let parameters = [
-            "coords": "\(coordinator.longitude),\(coordinator.latitude)",
-            "output": "json",
-            "orders": "legalcode"
-        ]
-        
-        networkService.request(method: .GET,
-                               headerType: .naverOpenApiInfo(clientId: SecretConstant.NAVER_API_CLIENT_ID,
-                                                             clientSecret: SecretConstant.NAVER_API_CLIENT_SECRET),
-                               urlString: baseUrl,
-                               endPoint: "",
-                               parameters: parameters,
-                               returnType: NaverReverseGCResponse.self)
-        .compactMap(\.results.first?.region)
-        .map({ region -> (city: String, district: String) in
-            return (region.area1.name, region.area2.name)
-        })
-        .receive(on: DispatchQueue.main)
-        .sink { completion in
-            switch completion {
-            case .finished:
-                return
+    public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
+        regionSearchManager.getAddressFromCoordinator(coordinator) { result in
+            switch result {
+            case .success(let regionData):
+                self.currentRegion = regionData
             case .failure(let error):
-                print("ERROR: \(error.localizedDescription)")
+                print("좌표값 기준으로 주소가져오기 에러: \(error)")
             }
-        } receiveValue: { [weak self] regionData in
-            guard let self = self else {return}
-            let cityCode = cityNameToCode(city: regionData.city)
-            self.currentRegion = .init(code: cityCode, name: regionData.city, district: regionData.district)
         }
-        .store(in: &cancellables)
     }
-    
-    func cityNameToCode(city: String) -> Int {
-        
-        let cities = [
-            "서울" : 11,
-            "부산" : 21,
-            "인천" : 22,
-            "대구" : 23,
-            "광주" : 24,
-            "대전" : 25,
-            "울산" : 26,
-            "경기" : 31,
-            "강원" : 32,
-            "충북" : 33,
-            "충남" : 34,
-            "전북" : 35,
-            "전남" : 36,
-            "경북" : 37,
-            "경남" : 38,
-            "제주" : 39,
-            "세종" : 41
-        ]
-        
-        let cityCode = cities.first { key, value in
-            areFirstTwoCharactersEqual(city, key)
-        }
-        
-        guard let cityCode = cityCode else { return 0 }
-        
-        return cityCode.value
+
+    public func cityNameToCode(city: String) -> Int {
+        regionSearchManager.cityNameToCode(city: city)
     }
-    
-    func areFirstTwoCharactersEqual(_ str1: String, _ str2: String) -> Bool {
-        guard str1.count >= 2 && str2.count >= 2 else {
-            return false
-        }
-        
-        return str1.prefix(2) == str2.prefix(2)
-    }
+
 }

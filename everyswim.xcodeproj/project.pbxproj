@@ -104,7 +104,7 @@
 		396D939F2B18A6DC0013060E /* Pods_everyswim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867C0C3D7451916ADD06C832 /* Pods_everyswim.framework */; };
 		396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* MapViewController.swift */; };
 		396D93A42B18A8760013060E /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A32B18A8760013060E /* MapViewModel.swift */; };
-		39700A6A2B25EB72009D9C3D /* RegionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* RegionResponse.swift */; };
+		39700A6A2B25EB72009D9C3D /* KrRegionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */; };
 		39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */; };
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
@@ -133,6 +133,9 @@
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
 		399732282B302FDD008B5C11 /* KakaoPlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732272B302FDD008B5C11 /* KakaoPlacesManager.swift */; };
 		3997322A2B3036A6008B5C11 /* KakaoPlaceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732292B3036A6008B5C11 /* KakaoPlaceManagerTests.swift */; };
+		3997322C2B305066008B5C11 /* KakaoPlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997322B2B305066008B5C11 /* KakaoPlaceResponse.swift */; };
+		3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */; };
+		399732312B305731008B5C11 /* SingleRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732302B305731008B5C11 /* SingleRegion.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
@@ -148,7 +151,6 @@
 		39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */; };
 		39A606A62A6D12C900049B5A /* SwimLapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A52A6D12C900049B5A /* SwimLapEvent.swift */; };
 		39A606A82A6D12E400049B5A /* HKWorkoutEventType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */; };
-		39A647802B25674D007B08B5 /* NaverReverseGCResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6477F2B25674D007B08B5 /* NaverReverseGCResponse.swift */; };
 		39A647872B256CF5007B08B5 /* LocationResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A647862B256CF5007B08B5 /* LocationResponseTests.swift */; };
 		39ADB27D2A4AE4FB00AED318 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ADB27C2A4AE4FA00AED318 /* AppConstant.swift */; };
 		39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */; };
@@ -185,7 +187,6 @@
 		39EC71CD2B022DCF008A6386 /* UserDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */; };
 		39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */; };
 		39F05D4A2B18DC3E0041FF58 /* SecretConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F05D492B18DC3E0041FF58 /* SecretConstant.swift */; };
-		39F05D4F2B18DEBB0041FF58 /* NaverLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F05D4E2B18DEBB0041FF58 /* NaverLocationResponse.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
 		39F599862A9B5CB000738334 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599852A9B5CB000738334 /* DashboardViewController.swift */; };
@@ -298,7 +299,7 @@
 		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
 		396D93A12B18A7CF0013060E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		396D93A32B18A8760013060E /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		39700A692B25EB72009D9C3D /* RegionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionResponse.swift; sourceTree = "<group>"; };
+		39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrRegionsResponse.swift; sourceTree = "<group>"; };
 		39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListViewController.swift; sourceTree = "<group>"; };
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
@@ -329,6 +330,9 @@
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
 		399732272B302FDD008B5C11 /* KakaoPlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlacesManager.swift; sourceTree = "<group>"; };
 		399732292B3036A6008B5C11 /* KakaoPlaceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceManagerTests.swift; sourceTree = "<group>"; };
+		3997322B2B305066008B5C11 /* KakaoPlaceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceResponse.swift; sourceTree = "<group>"; };
+		3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoRegionResponse.swift; sourceTree = "<group>"; };
+		399732302B305731008B5C11 /* SingleRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRegion.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
@@ -343,7 +347,6 @@
 		39A606A32A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKSwimmingStrokeStyle+Extension.swift"; sourceTree = "<group>"; };
 		39A606A52A6D12C900049B5A /* SwimLapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimLapEvent.swift; sourceTree = "<group>"; };
 		39A606A72A6D12E400049B5A /* HKWorkoutEventType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKWorkoutEventType+Extension.swift"; sourceTree = "<group>"; };
-		39A6477F2B25674D007B08B5 /* NaverReverseGCResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverReverseGCResponse.swift; sourceTree = "<group>"; };
 		39A647862B256CF5007B08B5 /* LocationResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponseTests.swift; sourceTree = "<group>"; };
 		39ADB27C2A4AE4FA00AED318 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		39B0C3992AAC78F9004E0985 /* RecommandVideoReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandVideoReusableCell.swift; sourceTree = "<group>"; };
@@ -379,7 +382,6 @@
 		39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteView.swift; sourceTree = "<group>"; };
 		39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteViewModel.swift; sourceTree = "<group>"; };
 		39F05D492B18DC3E0041FF58 /* SecretConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretConstant.swift; sourceTree = "<group>"; };
-		39F05D4E2B18DEBB0041FF58 /* NaverLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverLocationResponse.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		39F599852A9B5CB000738334 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -433,7 +435,6 @@
 				39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */,
 				393F88472B24BFBA00C67FAA /* RegionSearchManager.swift */,
 				39B6E6082B1C956E009140F8 /* RegionListCell.swift */,
-				39700A692B25EB72009D9C3D /* RegionResponse.swift */,
 				39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */,
 			);
 			path = Region;
@@ -745,6 +746,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
 				398BD2992B189D3C00970E23 /* NaverMap */,
 				39B6E6012B1C8A2C009140F8 /* SearchPool */,
 				3922D5712A74B1C500257164 /* HealthKit */,
@@ -794,9 +796,9 @@
 			children = (
 				396D93A12B18A7CF0013060E /* MapViewController.swift */,
 				396D93A32B18A8760013060E /* MapViewModel.swift */,
-				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
-				39F05D4B2B18DEAC0041FF58 /* Model */,
-				399732272B302FDD008B5C11 /* KakaoPlacesManager.swift */,
+				399732302B305731008B5C11 /* SingleRegion.swift */,
+				399732322B30574A008B5C11 /* KrAPI */,
+				3997322D2B3051F6008B5C11 /* KakaoAPI */,
 			);
 			path = NaverMap;
 			sourceTree = "<group>";
@@ -829,6 +831,24 @@
 				398B1BD02A4851A800E0FA9B /* Info.plist */,
 			);
 			path = everyswim;
+			sourceTree = "<group>";
+		};
+		3997322D2B3051F6008B5C11 /* KakaoAPI */ = {
+			isa = PBXGroup;
+			children = (
+				399732272B302FDD008B5C11 /* KakaoPlacesManager.swift */,
+				3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */,
+				3997322B2B305066008B5C11 /* KakaoPlaceResponse.swift */,
+			);
+			path = KakaoAPI;
+			sourceTree = "<group>";
+		};
+		399732322B30574A008B5C11 /* KrAPI */ = {
+			isa = PBXGroup;
+			children = (
+				39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */,
+			);
+			path = KrAPI;
 			sourceTree = "<group>";
 		};
 		39B0C3962AAC6FBE004E0985 /* RecommandCollection */ = {
@@ -968,15 +988,6 @@
 				39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */,
 			);
 			path = UserDelete;
-			sourceTree = "<group>";
-		};
-		39F05D4B2B18DEAC0041FF58 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				39F05D4E2B18DEBB0041FF58 /* NaverLocationResponse.swift */,
-				39A6477F2B25674D007B08B5 /* NaverReverseGCResponse.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		39F5997D2A9B56CA00738334 /* UIKit */ = {
@@ -1286,6 +1297,7 @@
 				399732282B302FDD008B5C11 /* KakaoPlacesManager.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */,
+				399732312B305731008B5C11 /* SingleRegion.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
@@ -1303,7 +1315,7 @@
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				393F88482B24BFBA00C67FAA /* RegionSearchManager.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
-				39700A6A2B25EB72009D9C3D /* RegionResponse.swift in Sources */,
+				39700A6A2B25EB72009D9C3D /* KrRegionsResponse.swift in Sources */,
 				391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */,
 				39DBB31E2AC6E650003B5213 /* ActivityTypeSegmentControl.swift in Sources */,
 				393351582AFA5B810014D37A /* RecommandDataService.swift in Sources */,
@@ -1313,6 +1325,7 @@
 				3980FC572AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift in Sources */,
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */,
+				3997322C2B305066008B5C11 /* KakaoPlaceResponse.swift in Sources */,
 				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
 				3933514E2AFA575E0014D37A /* NetworkError.swift in Sources */,
 				392CBFFC2B0CD88B001CB22F /* UIScrollView+Extension.swift in Sources */,
@@ -1355,10 +1368,10 @@
 				39CC3DBE2AC587BB00C8BC10 /* CombineCancellable.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
+				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				393351512AFA577E0014D37A /* HttpMethod.swift in Sources */,
-				39F05D4F2B18DEBB0041FF58 /* NaverLocationResponse.swift in Sources */,
 				39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
@@ -1373,7 +1386,6 @@
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
 				39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */,
-				39A647802B25674D007B08B5 /* NaverReverseGCResponse.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				393BDF5A2AF780FB0060AE58 /* BarChallengeCell.swift in Sources */,
 				39318E842AFCF0030089AEC4 /* AuthManager.swift in Sources */,

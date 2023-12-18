@@ -21,9 +21,9 @@ final class KakaoPlacesManager {
                                      countOfPage: Int = 15,
                                      coordinator: CLLocationCoordinate2D?,
                                      completion: @escaping (Result<[KakaoPlace], Error>) -> Void) {
-        // let groupCode = ["CT1", "PO3"]
-        
+
         let urlString = "https://dapi.kakao.com/v2/local/search/keyword.json"
+        
         let apikey = SecretConstant.KAKAO_REST_API_KEY
         
         var parameters: [String: Any] = [
@@ -33,8 +33,8 @@ final class KakaoPlacesManager {
         ]
         
         if let coordinator = coordinator {
-            parameters["x"] = coordinator.longitude.toDouble()
-            parameters["y"] = coordinator.latitude.toDouble()
+            parameters["x"] = coordinator.longitude
+            parameters["y"] = coordinator.latitude
         }
         
         networkService.request(method: .GET, 
@@ -61,53 +61,6 @@ final class KakaoPlacesManager {
         })
         .store(in: &cancellables)
         
-        
     }
     
-}
-
-struct KakaoPlaceResponse: Codable {
-    let places: [KakaoPlace]
-    
-    enum CodingKeys: String, CodingKey {
-        case places = "documents"
-    }
-}
-
-struct KakaoPlace: Codable {
-    let id: String
-      let placeName: String
-      let categoryName: String
-      let categoryGroupCode: String
-      let categoryGroupName: String
-      let phone: String
-      let addressName: String
-      let roadAddressName: String
-      let x: String
-      let y: String
-      let placeURL: String
-      let distance: String?
-
-      enum CodingKeys: String, CodingKey {
-          case id
-          case placeName = "place_name"
-          case categoryName = "category_name"
-          case categoryGroupCode = "category_group_code"
-          case categoryGroupName = "category_group_name"
-          case phone
-          case addressName = "address_name"
-          case roadAddressName = "road_address_name"
-          case x
-          case y
-          case placeURL = "place_url"
-          case distance
-      }
-}
-
-
-
-extension CLLocationDegrees {
-    func toDouble() -> Double {
-        return Double(self)
-    }
 }

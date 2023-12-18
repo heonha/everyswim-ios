@@ -14,11 +14,11 @@ final class DistrictListViewcontroller: BaseViewController {
     
     private let tableView = UITableView()
 
-    private let region: Region
+    private let region: KrRegions
     private let viewModel: PoolListViewModel
 
     // MARK: - Init & Lifecycles
-    init(region: Region, viewModel: PoolListViewModel) {
+    init(region: KrRegions, viewModel: PoolListViewModel) {
         self.region = region
         self.viewModel = viewModel
         super.init()
@@ -89,7 +89,7 @@ extension DistrictListViewcontroller: UITableViewDelegate, UITableViewDataSource
         let selectedDistrict = region.districts[indexPath.row]
         let selectedRegion = region.name
         let code = viewModel.cityNameToCode(city: selectedRegion)
-        let data = RegionViewModel(code: code, name: selectedRegion, district: selectedDistrict)
+        let data = SingleRegion(code: code, name: selectedRegion, district: selectedDistrict)
         viewModel.currentRegion = data
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -105,7 +105,7 @@ struct DistrictListViewcontroller_Previews: PreviewProvider {
     static let viewController = DistrictListViewcontroller(region: region, viewModel: viewModel)
     static let viewModel = PoolListViewModel(locationManager: .init(),
                                              regionSearchManager: .init())
-    static let region = Region(code: "0", name: "서울시", districts: ["구로구", "강남구", "강서구"])
+    static let region = KrRegions(code: "0", name: "서울시", districts: ["구로구", "강남구", "강서구"])
     
     static var previews: some View {
         UIViewControllerPreview {
