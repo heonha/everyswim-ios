@@ -11,7 +11,7 @@ enum HttpHeader {
     
     case applicationJson
     case applicationxwwwformurlencoded
-    
+    case applicationJsonWithAuthorization(apikey: String)
     ///"Content-Type": "application/x-www-form-urlencoded",
     ///"Authorization": "Basic \(encodedToken)",
     case basicTokenHeader(clientId: String, clientSecret: String)
@@ -26,6 +26,10 @@ enum HttpHeader {
         switch self {
         case .applicationJson:
             return  ["Content-Type": "application/json"]
+            
+        case .applicationJsonWithAuthorization(let apikey):
+            return  ["Content-Type": "application/json",
+                     "Authorization": apikey]
             
         case .applicationxwwwformurlencoded:
             return  ["Content-Type": "application/x-www-form-urlencoded"]

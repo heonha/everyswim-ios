@@ -49,7 +49,7 @@ final class LocationResponseTests: XCTestCase {
 
         // when
         do {
-            let locationData = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let locationData = try JSONDecoder().decode(NaverLocationResponse.self, from: jsonData)
 
             // then
             XCTAssertFalse(locationData.items.isEmpty, "위치 데이터가 비어있습니다.")
@@ -91,7 +91,7 @@ final class LocationResponseTests: XCTestCase {
 
         // when
         do {
-            let locationData = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let locationData = try JSONDecoder().decode(NaverLocationResponse.self, from: jsonData)
 
             // then
             XCTAssertFalse(locationData.items.isEmpty, "위치 데이터가 비어있습니다.")
@@ -131,7 +131,7 @@ final class LocationResponseTests: XCTestCase {
         
         // when
         do {
-            let locationData = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let locationData = try JSONDecoder().decode(NaverLocationResponse.self, from: jsonData)
 
             // then
             XCTAssertFalse(locationData.items.isEmpty, "장소 데이터가 비어있습니다.")
@@ -173,7 +173,7 @@ final class LocationResponseTests: XCTestCase {
         
         // when
         do {
-            let locationData = try JSONDecoder().decode(LocationResponse.self, from: jsonData)
+            let locationData = try JSONDecoder().decode(NaverLocationResponse.self, from: jsonData)
 
             // then
             XCTAssertFalse(locationData.items.isEmpty, "장소 데이터가 비어있습니다.")

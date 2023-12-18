@@ -13,7 +13,8 @@ class PoolListViewModel {
     
     let locationManager: DeviceLocationManager
     private let regionSearchManager: RegionSearchManager
-    
+    private let kakaoLocationManager = KakaoLocationManager()
+
     private var cancellables = Set<AnyCancellable>()
     
     private struct Constant {
@@ -28,7 +29,7 @@ class PoolListViewModel {
     
     @Published var currentRegion: RegionViewModel
     @Published var currentLoction: CLLocationCoordinate2D
-    @Published var pools: [NaverLocation] = []
+    @Published var pools: [KakaoPlace] = []
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
@@ -53,7 +54,7 @@ class PoolListViewModel {
             .receive(on: DispatchQueue.main)
             .filter { !$0.name.isEmpty }
             .sink { [weak self] city in
-                self?.requestLocationQuery()
+                self?.findLocation()
             }
             .store(in: &cancellables)
     }
@@ -87,6 +88,33 @@ class PoolListViewModel {
         } else {
             return false
         }
+    }
+    
+    func findLocation(queryString: String? = nil, displayCount: Int = 15, startCount: Int = 1) {
+        var queryString = queryString
+        if queryString == nil {
+            if isHasGu(cityCode: currentRegion.code) {
+                queryString = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
+            } else {
+                queryString = "\(currentRegion.district)수영장"
+            }
+        }
+        guard let queryString = queryString else { return }
+        
+        kakaoLocationManager.findPlaceFromKeyword(query: queryString, 
+                                                  numberOfPage: startCount,
+                                                  countOfPage: displayCount,
+                                                  coordinator: currentLoction) { [weak self] result in
+            switch result {
+            case .success(let places):
+                self?.pools = places
+            case .failure(let error):
+                self?.pools = []
+                print("ERROR\(error)")
+            }
+        }
+
+        
     }
     
     /// 장소를 검색 합니다.
@@ -128,7 +156,8 @@ class PoolListViewModel {
                     print("ERROR: \(error) \(error.localizedDescription)")
                 }
             } receiveValue: { [weak self] locations in
-                self?.pools = locations
+                self?.pools = []
+                // self?.pools = locations
             }
             .store(in: &cancellables)
     }

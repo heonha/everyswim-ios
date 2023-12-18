@@ -35,7 +35,7 @@ class RegionSearchManagerTests: XCTestCase {
         regionSearchManager.getAllRegions()
         
         // Then
-        regionSearchManager.$regions
+        regionSearchManager.regionsSubject
             .receive(on: DispatchQueue.global())
             .filter { !$0.isEmpty }
             .sink { region in

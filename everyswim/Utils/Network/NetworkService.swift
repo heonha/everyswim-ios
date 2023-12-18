@@ -100,6 +100,9 @@ extension NetworkService {
         var queryString = ""
         
         if !parameters.isEmpty {
+            
+            
+            
             queryString += "?"
             for parameter in parameters {
                 queryString += "\(parameter.key)=\(parameter.value)&"

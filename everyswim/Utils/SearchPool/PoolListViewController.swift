@@ -177,6 +177,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
     private func bindSearchPool() {
         viewModel.$pools
             .receive(on: DispatchQueue.main)
+            .filter{ !$0.isEmpty }
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }

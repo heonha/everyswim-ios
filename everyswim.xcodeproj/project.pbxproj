@@ -131,6 +131,8 @@
 		398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */; };
 		398ED71C2B00B3790068CAD0 /* FireStoreDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */; };
 		399168DE2A53FB4400D0B3F9 /* HKNormalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */; };
+		399732282B302FDD008B5C11 /* KakaoLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732272B302FDD008B5C11 /* KakaoLocationManager.swift */; };
+		3997322A2B3036A6008B5C11 /* KakaoPlaceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732292B3036A6008B5C11 /* KakaoPlaceManagerTests.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
@@ -325,6 +327,8 @@
 		398ED7152B00925C0068CAD0 /* MyInfoProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfile.swift; sourceTree = "<group>"; };
 		398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreDBService.swift; sourceTree = "<group>"; };
 		399168DD2A53FB4400D0B3F9 /* HKNormalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNormalStatus.swift; sourceTree = "<group>"; };
+		399732272B302FDD008B5C11 /* KakaoLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocationManager.swift; sourceTree = "<group>"; };
+		399732292B3036A6008B5C11 /* KakaoPlaceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceManagerTests.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
@@ -654,6 +658,7 @@
 				393F88572B24C28C00C67FAA /* RegionSearchModelTests.swift */,
 				39A647862B256CF5007B08B5 /* LocationResponseTests.swift */,
 				390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */,
+				399732292B3036A6008B5C11 /* KakaoPlaceManagerTests.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 				396D93A32B18A8760013060E /* MapViewModel.swift */,
 				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
 				39F05D4B2B18DEAC0041FF58 /* Model */,
+				399732272B302FDD008B5C11 /* KakaoLocationManager.swift */,
 			);
 			path = NaverMap;
 			sourceTree = "<group>";
@@ -1218,6 +1224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */,
+				3997322A2B3036A6008B5C11 /* KakaoPlaceManagerTests.swift in Sources */,
 				393F88582B24C28C00C67FAA /* RegionSearchModelTests.swift in Sources */,
 				39A647872B256CF5007B08B5 /* LocationResponseTests.swift in Sources */,
 				393F88502B24C27200C67FAA /* everyswim_tests.swift in Sources */,
@@ -1276,6 +1283,7 @@
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
 				390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */,
+				399732282B302FDD008B5C11 /* KakaoLocationManager.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
 				39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,

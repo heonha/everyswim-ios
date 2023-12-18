@@ -42,9 +42,9 @@ final class PoolMediumCell: UITableViewCell, ReuseableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(data: NaverLocation) {
-        self.titleLabel.text = data.name
-        self.addressLabel.text = data.address
+    func configure(data: KakaoPlace) {
+        self.titleLabel.text = data.placeName
+        self.addressLabel.text = data.roadAddressName
     }
     
     private func layout() {

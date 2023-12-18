@@ -27,8 +27,6 @@ final class MapViewModel: CombineCancellable {
         self.getCurrentLocation()
         self.observeCurrentLocation()
     }
-    
-
 
 }
 
@@ -55,6 +53,5 @@ extension MapViewModel {
             })
             .store(in: &cancellables)
     }
-    
     
 }
