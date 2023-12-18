@@ -12,7 +12,7 @@ import Combine
 
 class KakaoPlaceManagerTests: XCTestCase {
     
-    var sut: KakaoLocationManager!
+    var sut: KakaoPlacesManager!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {

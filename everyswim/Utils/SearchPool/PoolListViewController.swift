@@ -140,7 +140,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
         bindSearchPool()
         bindTouchGestures()
     }
-    
+
     private func bindPushNaverMapView() {
         showMapLabel.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)

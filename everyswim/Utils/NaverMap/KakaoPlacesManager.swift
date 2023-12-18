@@ -1,5 +1,5 @@
 //
-//  KakaoLocationManager.swift
+//  KakaoPlacesManager.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/18/23.
@@ -9,21 +9,14 @@ import Foundation
 import Combine
 import CoreLocation
 
-struct Place {
-    let name: String
-    let id: String
-    let coordinator: CLLocationCoordinate2D
-}
-
-final class KakaoLocationManager {
+final class KakaoPlacesManager {
     
     private var cancellables = Set<AnyCancellable>()
     
     private let networkService = NetworkService.shared
     
-    @Published var places = [KakaoPlace]()
-    
-    public func findPlaceFromKeyword(query: String, 
+    /// 키워드 및 장소를 기준으로 주변 수영장을 가져옵니다.
+    public func findPlaceFromKeyword(query: String,
                                      numberOfPage: Int = 1, 
                                      countOfPage: Int = 15,
                                      coordinator: CLLocationCoordinate2D?,
@@ -51,6 +44,7 @@ final class KakaoLocationManager {
                                parameters: parameters,
                                returnType: KakaoPlaceResponse.self)
         .map(\.places)
+        .map { $0.filter { $0.categoryName.contains("수영장")} }
         .receive(on: DispatchQueue.global())
         .timeout(20, scheduler: DispatchQueue.global())
         .sink(receiveCompletion: { result in
@@ -69,7 +63,6 @@ final class KakaoLocationManager {
         
         
     }
-    
     
 }
 

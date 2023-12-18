@@ -13,13 +13,9 @@ class PoolListViewModel {
     
     let locationManager: DeviceLocationManager
     private let regionSearchManager: RegionSearchManager
-    private let kakaoLocationManager = KakaoLocationManager()
+    private let kakaoLocationManager = KakaoPlacesManager()
 
     private var cancellables = Set<AnyCancellable>()
-    
-    private struct Constant {
-        static let baseUrl = "https://openapi.naver.com/v1/search/local.json"
-    }
 
     private let networkService: NetworkService
     
@@ -117,6 +113,7 @@ class PoolListViewModel {
 
         
     }
+    
     /// 좌표값을 기준으로 주소를 가져옵니다.
     func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
         let baseUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc"
