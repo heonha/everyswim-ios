@@ -179,7 +179,6 @@ final class ActivityViewModel: ObservableObject, UseCancellables {
         let weekday = calendar.component(.weekday, from: todaydate) // 이번주 요일
         let distanceTodayToSunday: Int = -(weekday - 1)
         let weeksFirstDay = calendar.date(byAdding: .day, value: distanceTodayToSunday, to: today)!
-        
 
         weekList.append(weeksFirstDay)
         pickerWeeks.append("이번 주")
@@ -188,7 +187,6 @@ final class ActivityViewModel: ObservableObject, UseCancellables {
         let numberOfWeeks = calendar.component(.weekOfMonth, from: Date()) // 이번주 주차
         if numberOfWeeks != 1 {
             
-
             for weeknumber in 1..<numberOfWeeks {
                 let beforeWeeksFirstDay = calendar.date(byAdding: .day, value: -7 * weeknumber, to: weeksFirstDay)!
                 let beforeWeeksLastDay = calendar.date(byAdding: .day, value: -1 * weeknumber, to: weeksFirstDay)!
@@ -197,7 +195,6 @@ final class ActivityViewModel: ObservableObject, UseCancellables {
                 let weeksLastDayString = beforeWeeksLastDay.toString(.dayDotMonth)
                 let weeksRangeString = "\(weeksFirstDayString) ~ \(weeksLastDayString)"
                 
-                let beforeNumberOfWeek = calendar.component(.weekOfMonth, from: beforeWeeksFirstDay) // 주 번호
                 let weekString = -(weeknumber - numberOfWeeks)
                 pickerWeeks.append("\(weekString)주차 (\(weeksRangeString))")
                 weekList.append(beforeWeeksFirstDay)
@@ -210,5 +207,4 @@ final class ActivityViewModel: ObservableObject, UseCancellables {
         
     }
 
-    
 }

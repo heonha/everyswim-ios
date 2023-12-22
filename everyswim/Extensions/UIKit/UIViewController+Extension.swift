@@ -14,9 +14,7 @@ extension UIViewController {
         self.view.backgroundColor = backgroundColor
     }
     
-    
     // MARK: - Naviagtion VC
-    
     func push(_ viewController: UIViewController, animated: Bool) {
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
@@ -25,7 +23,6 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: animated)
     }
 
-    
     func hideNavigationBar(_ isHide: Bool) {
         self.navigationController?.isNavigationBarHidden = isHide
     }
@@ -43,7 +40,5 @@ extension UIViewController {
         }
         target.present(alert, animated: true)
     }
-    
-    
     
 }

@@ -238,9 +238,7 @@ final class ActivityDetailViewController: UIViewController {
         }
     }
     
-    
     // MARK: - UPDATE UI
-    
     /// 데이터 받아서 UI 업데이트
     private func updateUI() {
         let weekday = self.data.startDate.toString(.weekdayTime)
@@ -340,4 +338,3 @@ struct ActivityDetailViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

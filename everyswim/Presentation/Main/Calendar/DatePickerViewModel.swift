@@ -44,7 +44,6 @@ final class DatePickerViewModel: ObservableObject {
     private var hkManager: HealthKitManager?
     private var hkDataStore = SwimDataStore.shared
     
-    
     // MARK: - Init
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
         hkManager = healthKitManager
@@ -56,7 +55,6 @@ final class DatePickerViewModel: ObservableObject {
 }
 
 extension DatePickerViewModel {
-
 
     // MARK: - Appearances
     /// 달력의 날짜 셀 사이즈
@@ -124,7 +122,7 @@ extension DatePickerViewModel {
     private func observeCurrentMonth() {
         self.$currentMonth
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] intValue in
+            .sink { [weak self] _ in
                 guard let self = self else {return}
                 dayInCarendar = extractDayInMonth()
             }
@@ -140,7 +138,7 @@ extension DatePickerViewModel {
     func setTargetMonthData() {
         self.dataInSelectedMonth.removeAll()
         DispatchQueue.main.async {
-            let dataInSelectedMonth = self.allEventData.filter{ self.isSameMonth($0.eventDate, self.selectedDate) }
+            let dataInSelectedMonth = self.allEventData.filter { self.isSameMonth($0.eventDate, self.selectedDate) }
             self.dataInSelectedMonth = dataInSelectedMonth
             self.sortArray()
         }
@@ -185,7 +183,6 @@ extension DatePickerViewModel {
         isMonthlyRecord = true
         HapticManager.triggerHapticFeedback(style: .light)
     }
-    
     
     // MARK: - Calendar Data Handlers
     func isSameDay(_ date1: Date, _ date2: Date) -> Bool {
@@ -256,6 +253,5 @@ extension DatePickerViewModel {
         
         return days
     }
-    
     
 }

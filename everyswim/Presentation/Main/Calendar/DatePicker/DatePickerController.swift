@@ -41,11 +41,7 @@ final class DatePickerController: UIViewController {
         super.viewWillAppear(animated)
         updateDatePickerLayout()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
+
 }
 
 extension DatePickerController {
@@ -159,4 +155,3 @@ struct WorkoutDatePickerController_Previews: PreviewProvider {
     }
 }
 #endif
-

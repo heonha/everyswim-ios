@@ -45,7 +45,6 @@ final class DateRecordListView: UIView {
         .spacing(16)
         .addSubviews([title, UIView.spacer(), monthlyToggleButton])
 
-    
     init(viewModel: DatePickerViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
@@ -131,4 +130,3 @@ struct DateRecordListView_Previews: PreviewProvider {
     }
 }
 #endif
-

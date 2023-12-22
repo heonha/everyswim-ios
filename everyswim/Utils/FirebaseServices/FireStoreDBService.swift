@@ -31,7 +31,7 @@ final class FireStoreDBService {
             try userProfileCollection.document(user.uid).setData(from: userProfile)
         } catch {
             let eserror = error as? ESError
-            print("DEBUG: 유저정보 저장 오류: \(eserror?.message)")
+            print("DEBUG: 유저정보 저장 오류: \(String(describing: eserror?.message))")
             throw error
         }
     }
@@ -44,13 +44,15 @@ final class FireStoreDBService {
             try await userProfileCollection.document(uid).updateData(updateData)
         } catch {
             let eserror = error as? ESError
-            print("DEBUG: 유저정보 저장 오류: \(eserror?.message)")
+            print("DEBUG: 유저정보 저장 오류: \(String(describing: eserror?.message))")
             throw error
         }
     }
     
     /// 업데이트 프로필 데이터 핸들링
-    private func makeUpdateUserProfileData(uid: String, name: String, profileImageUrl: String?) -> [AnyHashable : Any] {
+    private func makeUpdateUserProfileData(uid: String, 
+                                           name: String,
+                                           profileImageUrl: String?) -> [AnyHashable: Any] {
         guard let profileImageUrl = profileImageUrl else {
             return ["name": name,
                     "lastUpdated": Date().toString(.timeStamp)]
@@ -86,7 +88,6 @@ final class FireStoreDBService {
     }
     
 }
-
 
 extension FireStoreDBService {
     
@@ -133,7 +134,4 @@ extension FireStoreDBService {
         }
     }
 
-
-    
-    
 }

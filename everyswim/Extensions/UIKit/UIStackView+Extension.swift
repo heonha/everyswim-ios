@@ -49,7 +49,6 @@ extension UIStackView {
         return self as! T
     }
     
-    
     func spacing<T: UIStackView>(_ spacing: CGFloat) -> T {
         self.spacing = spacing
         return self as! T

@@ -44,7 +44,6 @@ final class RecommandDataService: UseCancellables {
             .store(in: &cancellables)
     }
     
-    
     // 추천 영상 API호출 -> 데이터 반환
     func fetchCommunity(completion: @escaping ([CommunityCollectionData]) -> Void) {
         networkService.request(method: .GET, 
@@ -68,6 +67,5 @@ final class RecommandDataService: UseCancellables {
             }
             .store(in: &cancellables)
     }
-    
     
 }

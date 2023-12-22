@@ -34,7 +34,7 @@ final class MyInfoViewModel: BaseViewModel, UseCancellables {
     private func observeUserProfile() {
         authManager.user
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] profile in
+            .sink { [weak self] _ in
                 self?.fetchUserProfile()
             }
             .store(in: &cancellables)
@@ -57,7 +57,7 @@ final class MyInfoViewModel: BaseViewModel, UseCancellables {
     private func observeSignInState() {
         authManager.isSignIn
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] signIn in
+            .sink { [weak self] _ in
                 self?.fetchUserProfile()
             }
             .store(in: &cancellables)

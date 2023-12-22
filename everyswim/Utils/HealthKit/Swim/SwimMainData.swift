@@ -79,9 +79,9 @@ struct SwimMainData: Identifiable {
         return (duration: duration, distance: distance, lap: "\(lap)")
     }
     
-    static func placeholderSimpleRecords() -> (duration: String, 
+    static func placeholderSimpleRecords() -> (duration: String,
                                                distance: String,
-                                               lap: String){
+                                               lap: String) {
         let duration = "1시간 10분"
         let distance = "600"
         let lap = 20.description

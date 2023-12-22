@@ -15,7 +15,6 @@ enum AppSymbol {
     case targetEdit
 }
 
-
 extension AppSymbol {
     
     func getSymbol(size: CGSize, color: UIColor) -> UIImage? {

@@ -33,7 +33,6 @@ extension Date {
         return (dateFormatter.string(from: self), timeFormatter.string(from: self))
     }
 
-    
     func toLocalTime() -> Date {
         let timezoneOffset = TimeZone.current.secondsFromGMT()
         let epochDate = self.timeIntervalSince1970

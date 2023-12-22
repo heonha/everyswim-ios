@@ -99,5 +99,4 @@ final class FirebaseAuthService {
         return hashString
     }
     
-    
 }

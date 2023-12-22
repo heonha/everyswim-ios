@@ -85,7 +85,6 @@ extension PoolMediumCell {
 #endif
 }
 
-
 // MARK: - Preview
 #if targetEnvironment(simulator)
 import SwiftUI
@@ -106,4 +105,3 @@ struct PoolMediumCell_Previews: PreviewProvider {
     }
 }
 #endif
-

@@ -49,7 +49,6 @@ class SwimDataManager {
         return workouts
     }
     
-    
     func createSwimMainData(_ workouts: [HKWorkout]) -> [SwimMainData] {
         var swimmingData: [SwimMainData] = []
 
@@ -92,7 +91,6 @@ class SwimDataManager {
         
         return swimmingData
     }
-    
     
     @available (iOS 16.0, *)
     func allStatDataHandler(_ record: HKWorkout) -> SwimStatisticsData {
@@ -156,7 +154,6 @@ extension SwimDataManager {
         return events
     }
     
-    
     func mergeLaps(data: [HKWorkoutEvent]?) -> [Lap] {
         guard let data = data else { return [] }
         
@@ -184,5 +181,4 @@ extension SwimDataManager {
         
     }
 
-    
 }

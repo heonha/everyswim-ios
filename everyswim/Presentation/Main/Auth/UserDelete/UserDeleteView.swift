@@ -79,7 +79,6 @@ final class UserDeleteView: UIView, UseCancellables {
         .distribution(.fillEqually)
         .alignment(.center)
     
-    
     // MARK: - Init & Lifecycle
     init(target: UserDeleteViewController, viewModel: UserDeleteViewModel) {
         self.viewModel = viewModel
@@ -104,7 +103,6 @@ final class UserDeleteView: UIView, UseCancellables {
         deleteAction()
         backAction()
     }
-    
 
     private func layout() {
         

@@ -170,7 +170,6 @@ extension DashboardViewController {
             .store(in: &cancellables)
     }
     
-    
     // MARK: - Configures
     private func configure() {
         configureRecommandCollectionView()
@@ -404,7 +403,10 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         switch recommandSections[indexPath.section] {
         // 추천영상
         case .video:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, for: indexPath) as? RecommandVideoReusableCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, 
+                                                                for: indexPath) as? RecommandVideoReusableCell else {
+                return UICollectionViewCell()
+            }
 
             let cellViewModel = viewModel.recommandVideos[indexPath.item]
             cell.configure(viewModel: cellViewModel)

@@ -24,21 +24,21 @@ final class MyInfoButtonList: UIView, UseCancellables {
     
     private lazy var firstSectionView = ViewFactory
         .vStack()
-        .addSubviews(buttons.filter{ $0.getSection() == .first })
+        .addSubviews(buttons.filter { $0.getSection() == .first })
         .spacing(12)
         .alignment(.fill)
         .distribution(.equalCentering)
     
     private lazy var secondSectionView = ViewFactory
         .vStack()
-        .addSubviews(buttons.filter{ $0.getSection() == .second })
+        .addSubviews(buttons.filter { $0.getSection() == .second })
         .spacing(12)
         .alignment(.fill)
         .distribution(.equalCentering)
     
     private lazy var thirdSectionView = ViewFactory
         .vStack()
-        .addSubviews(buttons.filter{ $0.getSection() == .third })
+        .addSubviews(buttons.filter { $0.getSection() == .third })
         .spacing(12)
         .alignment(.fill)
         .distribution(.equalCentering)
@@ -123,7 +123,6 @@ final class MyInfoButtonList: UIView, UseCancellables {
         return self.buttons
     }
     
-    
 }
 
 #if DEBUG
@@ -137,4 +136,3 @@ struct MyInfoButtonList_Previews: PreviewProvider {
     }
 }
 #endif
-

@@ -15,7 +15,7 @@ final class SignInViewController: UIViewController, UseCancellables {
     
     private let viewModel: SignInViewModel
 
-    //MARK: - Views
+    // MARK: - Views
     private let titleLabel = ViewFactory
         .label("EverySwim")
         .font(.custom(.sfProBlack, size: 56))
@@ -52,7 +52,6 @@ final class SignInViewController: UIViewController, UseCancellables {
         .distribution(.fillEqually)
         .spacing(20)
 
-    
     // MARK: - Init & Lift Cycles
     init(viewModel: SignInViewModel) {
         self.viewModel = viewModel
@@ -94,7 +93,6 @@ final class SignInViewController: UIViewController, UseCancellables {
             make.height.equalTo(54)
             make.width.equalTo(signInButtonVStack)
         }
-        
         
         guestSignInButtonLabel.snp.makeConstraints { make in
             make.center.equalTo(guestSignInButton)
@@ -184,4 +182,3 @@ struct SignInViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

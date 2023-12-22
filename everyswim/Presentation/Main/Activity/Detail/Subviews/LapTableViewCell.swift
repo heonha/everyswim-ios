@@ -45,7 +45,6 @@ class LapTableViewCell: UITableViewCell, ReuseableObject {
         layout()
     }
     
-    
     func layout() {
         contentView.addSubview(mainHStack)
         mainHStack.snp.makeConstraints { make in
@@ -58,12 +57,10 @@ class LapTableViewCell: UITableViewCell, ReuseableObject {
         lapNoLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
-
         
         strokeStyleLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
-
         
         poolDistanceLabel.snp.makeConstraints { make in
             make.width.equalTo(50)

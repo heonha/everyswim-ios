@@ -104,7 +104,6 @@ extension HealthKitManager {
     func checkAuthorizationStatus() -> HKAuthorizationStatus? {
         return healthStore?.authorizationStatus(for: .workoutType())
     }
-
     
     func requestAuthorization() async -> Bool {
         let write: Set<HKSampleType> = [.workoutType()]

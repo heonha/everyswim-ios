@@ -9,7 +9,6 @@ import Foundation
 import FirebaseAuth
 import AuthenticationServices
 
-
 final class AppleSignInHelper {
     
     // MARK: Constant
@@ -21,7 +20,7 @@ final class AppleSignInHelper {
     private let firebaseAuthService: FirebaseAuthService
 
     // Nonce
-    fileprivate var currentNonce: String? = nil
+    fileprivate var currentNonce: String?
     
     // MARK: - Init
     init(firebaseAuthService: FirebaseAuthService = .init()) {

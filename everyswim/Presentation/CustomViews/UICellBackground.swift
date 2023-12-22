@@ -49,7 +49,6 @@ final class UICellBackground: UIView {
         }
     }
 
-    
 }
 
 #if DEBUG

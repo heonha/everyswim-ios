@@ -93,7 +93,6 @@ final class DatePickerDayCell: UICollectionViewCell {
             make.edges.equalTo(circleContainer).inset(circleInset)
         }
 
-
     }
     
     private func configure() {
@@ -134,4 +133,3 @@ final class DatePickerDayCell: UICollectionViewCell {
     }
     
 }
-

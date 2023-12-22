@@ -22,7 +22,7 @@ enum DateToStringType {
     /// "yyyy.MM"
     case yearMonth
     
-    ///"M월 d일"
+    /// "M월 d일"
     case monthDayKr
     
     /// "M월"

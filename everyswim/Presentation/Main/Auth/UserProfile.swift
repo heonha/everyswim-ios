@@ -19,7 +19,12 @@ struct UserProfile: Codable {
     let signUpDate: String
     let lastUpdated: String
     
-    init(email: String?, providerId: String, name: String?, profileImageUrl: String?, signUpDate: String, lastUpdated: String) {
+    init(email: String?, 
+         providerId: String,
+         name: String?,
+         profileImageUrl: String?,
+         signUpDate: String,
+         lastUpdated: String) {
         self.name = name
         self.email = email
         self.providerId = providerId

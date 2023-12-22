@@ -32,7 +32,6 @@ final class DatePickerHeader: UIView {
         return hstack
     }()
     
-    
     private lazy var monthChangeButtonsView: UIView = {
         
         let before = UIButton()
@@ -111,7 +110,6 @@ final class DatePickerHeader: UIView {
     @objc func forewardMonth() {
         viewModel.changeCurrentMonth(.increase)
     }
-    
     
     private func configure() {
         

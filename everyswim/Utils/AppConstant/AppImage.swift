@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 enum AppImage {
     
     case appleHealth
@@ -22,7 +21,6 @@ enum AppImage {
     
     case chevronRight
     
-    
     func getImage() -> UIImage {
         switch self {
         case .appleHealth:
@@ -32,7 +30,6 @@ enum AppImage {
         case .swimMaker:
             return UIImage(named: "swim-maker")!
             
-            
         case .listbulletRectangle:
             return UIImage(systemName: "list.bullet.rectangle")!
         case .calendar:
@@ -41,7 +38,6 @@ enum AppImage {
             return UIImage(systemName: "figure.pool.swim") ?? UIImage()
         case .personCircleFill:
             return UIImage(systemName: "person.circle.fill")!
-            
             
         case .chevronRight:
             return UIImage(systemName: "chevron.right")!

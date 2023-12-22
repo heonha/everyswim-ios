@@ -56,7 +56,6 @@ final class ActivityViewController: UIViewController, UseCancellables {
     // 주간 활동
     private lazy var activitySectionView = ActivitySectionView()
 
-    
     // MARK: - Initializer
     init(viewModel: ActivityViewModel = .init()) {
         self.viewModel = viewModel
@@ -160,7 +159,6 @@ final class ActivityViewController: UIViewController, UseCancellables {
             make.bottom.equalTo(contentView)
         }
         
-
     }
     
     // MARK: - Bind (Subscribers)
@@ -239,7 +237,7 @@ final class ActivityViewController: UIViewController, UseCancellables {
     private func bindPresentedData() {
         viewModel.$presentedData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] data in
+            .sink { [weak self] _ in
                 self?.tableView.reloadData()
                 self?.updateTableViewSize()
             }
@@ -371,7 +369,6 @@ extension ActivityViewController: UITableViewDataSource {
     }
     
 }
-
 
 // MARK: - Previewer
 #if DEBUG

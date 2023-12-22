@@ -114,4 +114,3 @@ struct DistrictListViewcontroller_Previews: PreviewProvider {
     }
 }
 #endif
-

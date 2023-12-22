@@ -36,7 +36,6 @@ final class AnimateRingUIView: UIView {
                             radius: self.circleSize / 2,
                             isAnimate: false)
     }()
-
     
     private lazy var progressCircle: UIView = {
         return createCircle(progress: data.progress(),

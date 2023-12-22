@@ -1,4 +1,3 @@
-
 //  SetProfileViewController.swift
 //  everyswim
 //
@@ -48,10 +47,8 @@ final class SetProfileViewController: BaseViewController, UseCancellables {
         .addSubviews([titleView, profileImageView, textField, nextButton])
         .distribution(.equalCentering)
         .spacing(20)
-    
 
     // MARK: - Init & LifeCycles
-    
     init(viewModel: SetProfileViewModel, type: SetProfileViewControllerType) {
         self.viewModel = viewModel
         self.type = type
@@ -166,7 +163,7 @@ final class SetProfileViewController: BaseViewController, UseCancellables {
             .store(in: &cancellables)
         
         textField.publisher(for: \.text)
-            .compactMap{ $0 }
+            .compactMap { $0 }
             .sink { [unowned self] text in
                 self.viewModel.name = text
             }
@@ -275,7 +272,6 @@ enum SetProfileError: ESError {
 
 }
 
-
 // MARK: - Preview
 #if DEBUG
 import SwiftUI
@@ -291,4 +287,3 @@ struct SetProfileViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

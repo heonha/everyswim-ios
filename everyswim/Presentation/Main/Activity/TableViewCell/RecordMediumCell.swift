@@ -35,7 +35,6 @@ final class RecordMediumCell: UITableViewCell, ReuseableObject {
         return imageView
     }()
     
-
     // MARK: TitleLabels
     private lazy var titleLabels = ViewFactory
         .vStack()
@@ -204,4 +203,3 @@ struct SwimRecordMediumCell_Previews: PreviewProvider {
     }
 }
 #endif
-

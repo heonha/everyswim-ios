@@ -23,7 +23,6 @@ struct BaseText: View {
     
     typealias Body = Content
     
-
 }
 
 struct BaseText_Previews: PreviewProvider {

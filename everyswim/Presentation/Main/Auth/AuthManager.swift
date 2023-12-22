@@ -159,7 +159,6 @@ final class AuthManager {
     
 }
 
-
 protocol ESError: Error {
     var message: String { get }
     var location: String { get }

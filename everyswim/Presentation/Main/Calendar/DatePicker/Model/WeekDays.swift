@@ -20,7 +20,6 @@ enum Weekdays: Int {
     case sat
     case error
     
-    
     var color: Color {
         switch self {
         case .sun: return Color.red

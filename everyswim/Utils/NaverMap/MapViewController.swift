@@ -111,7 +111,6 @@ extension MapViewController: NMFAuthManagerDelegate {
 
 }
 
-
 // MARK: - Preview
 #if DEBUG
 import SwiftUI
@@ -130,4 +129,3 @@ struct MapViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

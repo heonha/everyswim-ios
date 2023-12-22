@@ -152,4 +152,3 @@ struct MyInfoProfileView_Previews: PreviewProvider {
     }
 }
 #endif
-

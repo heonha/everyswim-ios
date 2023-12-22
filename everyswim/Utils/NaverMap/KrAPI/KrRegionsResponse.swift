@@ -16,4 +16,3 @@ struct KrRegions: Codable {
     let name: String
     let districts: [String]
 }
-

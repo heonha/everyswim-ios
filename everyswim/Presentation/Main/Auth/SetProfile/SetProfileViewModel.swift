@@ -14,7 +14,6 @@ final class SetProfileViewModel: ObservableObject {
     private let firebaseAuth = FirebaseAuthService()
     private let firebaseStorage = FirebaseStorageService()
     
-
     private let authManager = AuthManager.shared
     weak var parentViewController: SetProfileViewController?
     

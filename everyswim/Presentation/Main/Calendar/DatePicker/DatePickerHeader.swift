@@ -32,7 +32,6 @@ final class DatePickerHeader: UIView {
         return hstack
     }()
     
-    
     private lazy var monthChangeButtonsView: UIView = {
         
         let before = UIButton()
@@ -113,7 +112,6 @@ final class DatePickerHeader: UIView {
         viewModel.currentMonth += 1
     }
     
-    
     private func configure() {
         
     }
@@ -139,7 +137,6 @@ final class DatePickerHeader: UIView {
             make.horizontalEdges.equalTo(backgroundView)
         }
     }
-    
     
 }
 

@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import Combine
 
-
 final class SetGoalCell: UICollectionViewCell, ReuseableObject, UseCancellables {
     var cancellables: Set<AnyCancellable> = .init()
     
@@ -18,7 +17,6 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, UseCancellables 
     var type: MyGoalType = .distance
     var viewModel: SetGoalViewModel?
     var parent: SetGoalViewController?
-    
     
     // MARK: - Views
     private lazy var mainTitleLabel = ViewFactory
@@ -75,7 +73,6 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, UseCancellables 
         .spacing(8)
         .alignment(.center)
 
-    
     private lazy var vstack = ViewFactory.vStack()
         .addSubviews([titleLabel, middleVStack, subtitleLabel])
         .spacing(16)
@@ -223,8 +220,7 @@ final class SetGoalCell: UICollectionViewCell, ReuseableObject, UseCancellables 
             self.amountLabel.text = viewModel.count.description
         }
     }
-    
-    
+
 }
 
 // MARK: - Preview
@@ -239,4 +235,3 @@ struct SetGoalView_Previews: PreviewProvider {
     }
 }
 #endif
-

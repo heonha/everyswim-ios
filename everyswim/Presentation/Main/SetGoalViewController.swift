@@ -107,8 +107,6 @@ extension SetGoalViewController: UICollectionViewDataSource {
         cell.viewModel = viewModel
         cell.updateCell(viewModel: viewModel)
         
-        // TODO: + - 버튼 액션
-        
         return cell
     }
     
@@ -126,4 +124,3 @@ struct SetGoalViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

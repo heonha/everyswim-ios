@@ -10,7 +10,9 @@ disabled_rules: # Default Rules에서 비활성화할 규칙
     - force_unwrapping
     
     - empty_count
-        
+    
+    - legacy_constructor
+    
 opt_in_rules:
   # .count==0 보다는 .isEmpty를 사용하는 것이 좋습니다. https://realm.github.io/SwiftLint/empty_count.html
   - empty_count
@@ -22,6 +24,7 @@ opt_in_rules:
 excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
   - Carthage
   - Pods
+  - everyswim-tests
 
 
 identifier_name:
@@ -33,8 +36,14 @@ identifier_name:
     - GlobalAPIKey
     - x
     - y
+    - vc
+    - sv
+    - iv
+    - nc
+    - cv
 
 line_length: 200
+
 # they can set both implicitly with an array
 type_body_length:
   - 300 # warning

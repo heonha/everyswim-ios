@@ -52,8 +52,6 @@ final class LoadingIndicatorView: UIView {
         indicator.hide()
     }
     
-    
-    
 }
 
 final class LoadingIndicator: UIActivityIndicatorView {
@@ -87,4 +85,3 @@ final class LoadingIndicator: UIActivityIndicatorView {
     }
     
 }
-

@@ -63,7 +63,6 @@ final class DatePickerReuseCell: UICollectionViewCell {
         }
     }
     
-    
 }
 
 enum DatePickerEventType {

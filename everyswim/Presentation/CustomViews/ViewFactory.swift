@@ -34,7 +34,6 @@ enum ViewFactory {
         return sv
     }
     
-    
     static func label(_ text: String = "") -> UILabel {
         let label = UILabel()
         label.text = text

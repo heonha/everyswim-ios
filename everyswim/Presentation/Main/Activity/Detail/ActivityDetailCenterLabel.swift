@@ -141,7 +141,6 @@ extension ActivityDetailCenterLabel {
         }
         
     }
-
     
 }
 
@@ -163,4 +162,3 @@ struct DetailRecordLabel_Previews: PreviewProvider {
     }
 }
 #endif
-

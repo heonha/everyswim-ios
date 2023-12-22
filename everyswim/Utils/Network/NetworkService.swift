@@ -25,7 +25,7 @@ final class NetworkService: RestProtocol {
                     headerType: HttpHeader,
                     urlString baseUrl: String,
                     endPoint: String,
-                    parameters: [String : Any],
+                    parameters: [String: Any],
                     cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
                     returnType: T.Type) -> Future<T, Error> where T: Decodable {
         return Future<T, Error> { [weak self] promise in
@@ -100,10 +100,8 @@ extension NetworkService {
         var queryString = ""
         
         if !parameters.isEmpty {
-            
-            
-            
             queryString += "?"
+            
             for parameter in parameters {
                 queryString += "\(parameter.key)=\(parameter.value)&"
             }
@@ -132,4 +130,3 @@ extension NetworkService {
     }
     
 }
-

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ChallangeRing: Identifiable {
     
     let id = UUID()

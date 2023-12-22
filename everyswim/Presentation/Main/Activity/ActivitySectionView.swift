@@ -16,7 +16,6 @@ final class ActivitySectionView: UIView {
         .font(.custom(.sfProMedium, size: 18))
         .foregroundColor(AppUIColor.label)
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
@@ -59,4 +58,3 @@ struct ActivitySectionView_Previews: PreviewProvider {
     }
 }
 #endif
-

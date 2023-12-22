@@ -15,8 +15,7 @@ final class EmptyRecordCell: UITableViewCell {
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 18))
         .foregroundColor(AppUIColor.grayTint)
-    
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
@@ -73,4 +72,3 @@ struct EmptyRecordCell_Previews: PreviewProvider {
     }
 }
 #endif
-

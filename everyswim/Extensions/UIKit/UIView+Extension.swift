@@ -106,17 +106,14 @@ extension UIView {
         self.clipsToBounds = isTrue
         return self as! T
     }
-
     
 }
-
 
 extension UIView {
     
     func gesturePublisher(_ type: GestureType = .tap()) -> GesturePublisher {
         return GesturePublisher(view: self, type: type)
     }
-    
     
     static func divider(width: CGFloat? = nil, height: CGFloat? = nil) -> UIView {
         let divider = UIView(frame: .zero)

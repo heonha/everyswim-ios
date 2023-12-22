@@ -25,17 +25,11 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - LifeCycles
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     // MARK: - Setup
-    
     func actionMaker(index: Int) -> UIAction {
         guard let type = ActivityDataRange(rawValue: index) else {fatalError("타입에러")}
         
-        return UIAction {[weak self] action in
+        return UIAction {[weak self] _ in
             self?.segmentAction(type: type)
         }
     }
@@ -73,12 +67,12 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
     private func configureSegmentAppearances() {
         selectedSegmentTintColor = AppUIColor.secondaryBlue
         
-        let normalTitleAttributes: [NSAttributedString.Key : Any] = [
+        let normalTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.custom(.sfProLight, size: 14),
             .foregroundColor: UIColor.black
         ]
         
-        let selectedTitleAttributes: [NSAttributedString.Key : Any] = [
+        let selectedTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.custom(.sfProBold, size: 14),
             .foregroundColor: UIColor.white
         ]

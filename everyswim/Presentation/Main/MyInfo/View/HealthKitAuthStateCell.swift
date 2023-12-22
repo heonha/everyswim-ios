@@ -44,7 +44,6 @@ final class HealthKitAuthStateCell: UIView {
         .setSymbolImage(systemName: "arrow.clockwise.circle.fill",
                         color: .init(hex: "000000", alpha: 0.4))
 
-    
     init() {
         super.init(frame: .zero)
         configure()
@@ -105,4 +104,3 @@ struct HealthKitAuthStateCell_Previews: PreviewProvider {
     }
 }
 #endif
-

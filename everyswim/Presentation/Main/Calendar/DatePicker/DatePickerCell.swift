@@ -5,7 +5,6 @@
 //  Created by HeonJin Ha on 9/17/23.
 //
 
-
 import UIKit
 import SnapKit
 
@@ -37,7 +36,6 @@ final class DatePickerCell: UIView {
         .cornerRadius((viewModel.getCellSize().width - (circleInset * 2)) / 2)
         .shadow(color: .black, x: 0, y: 0)
         
-    
     init(viewModel: DatePickerViewModel, value: DateValue) {
         self.viewModel = viewModel
         self.value = value
@@ -47,10 +45,6 @@ final class DatePickerCell: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
     
     private func layout() {

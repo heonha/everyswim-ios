@@ -85,7 +85,6 @@ extension MyInfoButton {
     
 }
 
-
 #if DEBUG
 import SwiftUI
 
@@ -99,4 +98,3 @@ struct MyInfoButton_Previews: PreviewProvider {
     }
 }
 #endif
-

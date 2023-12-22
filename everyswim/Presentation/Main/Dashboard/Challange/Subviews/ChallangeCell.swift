@@ -32,7 +32,6 @@ final class ChallangeCell: UIView {
                 alignment: .center)
         .setEdgeInset(.all(6))
 
-    
     init(data: ChallangeRing) {
         self.data = data
         super.init(frame: .zero)
@@ -71,7 +70,6 @@ extension ChallangeCell {
     }
 
 }
-
 
 #if DEBUG
 import SwiftUI

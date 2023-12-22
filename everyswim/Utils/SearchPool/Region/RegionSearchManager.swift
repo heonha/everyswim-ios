@@ -111,30 +111,29 @@ class RegionSearchManager {
         
     }
     
-    
     public func cityNameToCode(city: String) -> Int {
         
         let cities = [
-            "서울" : 11,
-            "부산" : 21,
-            "인천" : 22,
-            "대구" : 23,
-            "광주" : 24,
-            "대전" : 25,
-            "울산" : 26,
-            "경기" : 31,
-            "강원" : 32,
-            "충북" : 33,
-            "충남" : 34,
-            "전북" : 35,
-            "전남" : 36,
-            "경북" : 37,
-            "경남" : 38,
-            "제주" : 39,
-            "세종" : 41
+            "서울": 11,
+            "부산": 21,
+            "인천": 22,
+            "대구": 23,
+            "광주": 24,
+            "대전": 25,
+            "울산": 26,
+            "경기": 31,
+            "강원": 32,
+            "충북": 33,
+            "충남": 34,
+            "전북": 35,
+            "전남": 36,
+            "경북": 37,
+            "경남": 38,
+            "제주": 39,
+            "세종": 41
         ]
         
-        let cityCode = cities.first { key, value in
+        let cityCode = cities.first { key, _ in
             areFirstTwoCharactersEqual(city, key)
         }
         

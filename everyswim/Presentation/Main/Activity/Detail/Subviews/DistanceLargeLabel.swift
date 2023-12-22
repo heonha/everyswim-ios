@@ -75,4 +75,3 @@ struct DistanceLargeLabel_Previews: PreviewProvider {
     }
 }
 #endif
-

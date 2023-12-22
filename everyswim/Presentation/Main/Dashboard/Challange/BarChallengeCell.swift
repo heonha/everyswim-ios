@@ -29,7 +29,6 @@ final class BarChallangeCell: UIView {
         .textAlignemnt(.left)
         .contentHuggingPriority(.init(rawValue: 249), for: .horizontal) as! UILabel
     
-    
     private lazy var textHStack = ViewFactory.hStack()
         .addSubviews([title, countText])
         .alignment(.center)
@@ -43,7 +42,6 @@ final class BarChallangeCell: UIView {
                 spacing: 4,
                 alignment: .center)
         .distribution(.fillProportionally)
-
     
     init(data: ChallangeRing) {
         self.data = data
@@ -116,7 +114,6 @@ extension BarChallangeCell {
     }
 
 }
-
 
 #if DEBUG
 import SwiftUI

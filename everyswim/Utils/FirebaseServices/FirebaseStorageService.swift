@@ -61,7 +61,6 @@ final class FirebaseStorageService {
             throw error
         }
     }
-    
 
 }
 

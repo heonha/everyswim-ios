@@ -21,7 +21,6 @@ final class BaseTableView: UITableView {
     
 }
 
-
 final class ScrollViewInTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {

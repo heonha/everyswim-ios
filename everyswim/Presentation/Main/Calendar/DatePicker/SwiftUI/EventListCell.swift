@@ -39,7 +39,6 @@ struct EventListCell: View {
             Divider()
                 .padding(8)
 
-            
             contentView
             
             Spacer()

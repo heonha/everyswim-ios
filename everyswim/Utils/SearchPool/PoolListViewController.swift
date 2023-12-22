@@ -54,7 +54,6 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     
     private let viewModel: PoolListViewModel
     
-    
     // MARK: - Init & LifeCycles
     init(viewModel: PoolListViewModel) {
         self.viewModel = viewModel
@@ -145,8 +144,6 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         }
     }
     
-    
-    
     // MARK: - Bind
     private func bind() {
         bindCurrentLocation()
@@ -192,7 +189,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     private func bindSearchPool() {
         viewModel.$pools
             .receive(on: DispatchQueue.main)
-            .filter{ !$0.isEmpty }
+            .filter { !$0.isEmpty }
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -217,8 +214,6 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     }
     
 }
-
-
 
 // MARK: - TableView Configure
 extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {

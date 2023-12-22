@@ -44,7 +44,8 @@ extension UILabel {
                         let index = text.distance(from: text.startIndex, to: spaceIndex)
                         print("\(index) \(text.endIndex)")
                         print(separate.description.count)
-                        attrString.addAttributes([.font: font, .foregroundColor: color], range: NSMakeRange(index, separate.description.count))
+                        attrString.addAttributes([.font: font, .foregroundColor: color], 
+                                                 range: NSMakeRange(index, separate.description.count))
                     }
                 }
             }

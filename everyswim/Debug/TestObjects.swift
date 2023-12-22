@@ -70,7 +70,6 @@ enum TestObjects {
                         laps.append(lap)
                     }
                     
-                    
                     let swimData = SwimMainData(id: UUID(),
                                                 duration: Double.random(in: 1000...10000), // 랜덤한 수영 시간 생성
                                                 startDate: startDateStr.toDateWithTime()!,
@@ -86,8 +85,6 @@ enum TestObjects {
         }
         return swimmingData
     }()
-    
-    
     
     static let swimSummaryData = SwimSummaryViewModel(count: 3, distance: "650", distanceUnit: "M", averagePace: "3'22''", time: "30:00", lap: "10")
     

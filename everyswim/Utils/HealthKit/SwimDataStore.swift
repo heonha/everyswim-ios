@@ -37,7 +37,6 @@ final class SwimDataStore: ObservableObject {
     
     func getWeeklyData(date: Date = Date()) -> [SwimMainData] {
         
-        
         let data = swimmingData.value
             .filter { data in
                 Calendar.isSameWeek(left: date, right: data.startDate)
@@ -90,8 +89,7 @@ final class SwimDataStore: ObservableObject {
             distanceString = distance.toRoundupString(maxDigit: 0)
         }
         
-        var lapUnit = "lap"
-        var lapString = laps.description
+        let lapString = laps.description
         
         let summary = SwimSummaryViewModel(count: count,
                                       distance: distanceString,

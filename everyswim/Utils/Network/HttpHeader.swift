@@ -12,11 +12,11 @@ enum HttpHeader {
     case applicationJson
     case applicationxwwwformurlencoded
     case applicationJsonWithAuthorization(apikey: String)
-    ///"Content-Type": "application/x-www-form-urlencoded",
-    ///"Authorization": "Basic \(encodedToken)",
+    /// "Content-Type": "application/x-www-form-urlencoded",
+    /// "Authorization": "Basic \(encodedToken)",
     case basicTokenHeader(clientId: String, clientSecret: String)
     
-    ///"Authorization": "Bearer \(encodedToken)",
+    /// "Authorization": "Bearer \(encodedToken)",
     case bearerTokenHeader(token: String)
     
     case naverDevInfo(clientId: String, clientSecret: String)
@@ -40,7 +40,7 @@ enum HttpHeader {
             
             return [
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": "Basic \(encodedToken)",
+                "Authorization": "Basic \(encodedToken)"
             ]
         case .bearerTokenHeader(let token):
             return ["Authorization": "Bearer \(token)"]

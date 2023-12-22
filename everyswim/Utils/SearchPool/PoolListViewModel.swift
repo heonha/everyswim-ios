@@ -30,7 +30,7 @@ class PoolListViewModel {
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
          networkService: NetworkService = .shared,
-         currentRegion: SingleRegion = .init(code: 0, name: "", district:""),
+         currentRegion: SingleRegion = .init(code: 0, name: "", district: ""),
          currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0),
          regionSearchManager: RegionSearchManager
     ) {
@@ -111,7 +111,6 @@ class PoolListViewModel {
             }
         }
 
-        
     }
     
     /// 좌표값을 기준으로 주소를 가져옵니다.

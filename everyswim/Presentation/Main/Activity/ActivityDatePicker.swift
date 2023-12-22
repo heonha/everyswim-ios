@@ -109,7 +109,6 @@ final class ActivityDatePicker: UIViewController, UseCancellables {
             }
             .store(in: &cancellables)
         
-        
     }
     
     // MARK: - Helpers
@@ -124,9 +123,7 @@ final class ActivityDatePicker: UIViewController, UseCancellables {
         return pickerView
     }
     
-    
     // MARK: Picker State
-    
     func selectCurrentIndex() {
         switch viewModel.selectedSegment {
         case .weekly:
@@ -179,7 +176,6 @@ final class ActivityDatePicker: UIViewController, UseCancellables {
         }
 
     }
-
 
 }
 // MARK: - PickerView Delegate
@@ -292,4 +288,3 @@ struct ActivityDatePicker_Previews: PreviewProvider {
     }
 }
 #endif
-

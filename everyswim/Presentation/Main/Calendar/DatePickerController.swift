@@ -60,7 +60,6 @@ extension DatePickerController {
         configureRecordListView()
     }
     
-    
     /// 날짜 CollectionView 구성
     private func configureDayView() {
         dayView.delegate = self
@@ -166,7 +165,7 @@ extension DatePickerController {
         
         viewModel.$selectedDate
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] event in
+            .sink { [weak self] _ in
                 self?.recordListView.getTableView().reloadData()
             }
             .store(in: &cancellables)
@@ -279,7 +278,9 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func createSwimRecordSmallCell(data: [SwimMainData]? ,tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    func createSwimRecordSmallCell(data: [SwimMainData]?,
+                                   tableView: UITableView,
+                                   indexPath: IndexPath) -> UITableViewCell {
         
         guard let data = data else { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordSmallCell.reuseId,

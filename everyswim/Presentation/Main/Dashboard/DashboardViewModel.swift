@@ -80,7 +80,6 @@ final class DashboardViewModel: ObservableObject {
         }
     }
     
-    
     // MARK: - Recommand Data Methods
     func getRecommandVideos() {
         recommandDataService.fetchVideo { [weak self] videoData in
@@ -209,15 +208,4 @@ final class DashboardViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
-    
-// #if DEBUG
-//     func testFetchRingData() -> [ChallangeRing] {
-//         return [
-//             ChallangeRing(type: .distance, count: 1680, maxCount: 2000),
-//             ChallangeRing(type: .lap, count: 45, maxCount: 80),
-//             ChallangeRing(type: .countPerWeek, count: 2, maxCount: 10)
-//         ]
-//     }
-// #endif
-    
 }

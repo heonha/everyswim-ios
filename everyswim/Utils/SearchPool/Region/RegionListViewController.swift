@@ -101,7 +101,6 @@ extension RegionListViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-
 // MARK: - Preview
 #if DEBUG
 import SwiftUI
@@ -120,4 +119,3 @@ struct RegionListViewController_Previews: PreviewProvider {
     }
 }
 #endif
-

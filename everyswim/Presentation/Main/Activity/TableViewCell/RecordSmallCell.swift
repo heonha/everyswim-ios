@@ -39,7 +39,6 @@ final class RecordSmallCell: UITableViewCell {
         .setEdgeInset(.horizontal(24))
     }()
     
-    
     // MARK: DayView (Left)
     private lazy var dayView: UIStackView = {
         let vstack = ViewFactory
@@ -87,7 +86,6 @@ final class RecordSmallCell: UITableViewCell {
         return divider
     }()
     
-    
     // MARK: 우측 이미지
     private lazy var rightLabel: UIView = {
         if self.showRelativedate {
@@ -123,7 +121,6 @@ final class RecordSmallCell: UITableViewCell {
         self.configure()
     }
 
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
