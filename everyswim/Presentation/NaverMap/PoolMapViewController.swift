@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  PoolMapViewController.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/30/23.
@@ -10,14 +10,15 @@ import SnapKit
 import NMapsMap
 import Combine
 
-final class MapViewController: BaseViewController {
+final class PoolMapViewController: BaseViewController {
     
     private var cancellables: Set<AnyCancellable> = .init()
-    private let viewModel: MapViewModel
+    private let viewModel: PoolMapViewModel
     
     private lazy var mapView = NMFNaverMapView(frame: view.frame)
-    
-    init(viewModel: MapViewModel) {
+    private var markers = [NMFMarker]()
+
+    init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -40,21 +41,37 @@ final class MapViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindCurrentLocation()
+        bindSearchPool()
     }
 
+    // MARK: - Configure
     private func configure() {
+        configureNMapAuth()
+        configureNMapView()
+    }
+    
+    private func configureNMapAuth() {
         NMFAuthManager.shared().delegate = self
+    }
+    
+    private func configureNMapView() {
         mapView.showLocationButton = true
         mapView.showScaleBar = false
     }
     
+    // MARK: - Layout
     private func layout() {
+        layoutMapView()
+    }
+    
+    private func layoutMapView() {
         view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
     }
     
+    // MARK: - Helpers
     private func getLocation() {
         viewModel.getCurrentLocation()
     }
@@ -77,15 +94,35 @@ final class MapViewController: BaseViewController {
         self.mapView.mapView.positionMode = .normal
     }
     
-}
-
-extension MapViewController: NMFAuthManagerDelegate {
+    /// 지도에 마커 추가하기.
+    public func placeMarker(locations: [KakaoPlace]) {
+        markers.removeAll()
+        locations.forEach { place in
+            print("장소 마커 추가: \(place.placeName)")
+            print("\(place.x) \(place.y)")
+            let marker = setMarkerOnMap(title: place.placeName, place.y.toDouble(), place.x.toDouble())
+            marker.mapView = mapView.mapView
+            self.markers.append(marker)
+        }
+    }
     
-    func placeMarker(title: String, _ lat: CGFloat, _ lng: CGFloat) {
+    private func bindSearchPool() {
+        viewModel.$pools
+            .receive(on: DispatchQueue.main)
+            .filter { !$0.isEmpty }
+            .sink { [weak self] pools in
+                guard let self = self else { return }
+                placeMarker(locations: pools)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// `Map Marker` 추가 메소드
+    func setMarkerOnMap(title: String, _ lat: CGFloat, _ lon: CGFloat) -> NMFMarker {
         let marker = NMFMarker()
-        marker.position = NMGLatLng(lat: lat, lng: lng)
-        marker.captionText = "구로 50플러스 수영장"
-        marker.mapView = mapView.mapView
+        marker.position = NMGLatLng(lat: lat, lng: lon)
+        marker.captionText = title
+        print("DEBUG_MARKER: title - \(title), Position- \(marker.position)")
         
         let image = UIImage.init(named: "swim-maker")!
         let makerImage = NMFOverlayImage(image: image, reuseIdentifier: "swim-maker")
@@ -98,17 +135,22 @@ extension MapViewController: NMFAuthManagerDelegate {
         marker.isHideCollidedMarkers = true
         
         marker.iconTintColor = UIColor.blue
+        return marker
     }
+    
+}
+
+// MARK: - MapView Auth Delegate
+extension PoolMapViewController: NMFAuthManagerDelegate {
     
     func authorized(_ state: NMFAuthState, error: Error?) {
         if let error = error {
             print("AuthError: \(error.localizedDescription)")
             return
         }
-        
         print("STATE: \(state)")
     }
-
+    
 }
 
 // MARK: - Preview
@@ -117,9 +159,9 @@ import SwiftUI
 
 struct MapViewController_Previews: PreviewProvider {
     
-    static let viewController = MapViewController(viewModel: viewModel)
+    static let viewController = PoolMapViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = MapViewModel(locationManager: locationManager)
+    static let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {

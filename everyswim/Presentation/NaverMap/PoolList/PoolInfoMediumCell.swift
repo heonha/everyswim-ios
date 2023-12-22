@@ -1,5 +1,5 @@
 //
-//  PoolMediumCell.swift
+//  PoolInfoMediumCell.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/3/23.
@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class PoolMediumCell: UITableViewCell, ReuseableObject {
+final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
     
-    static var reuseId: String = "PoolMediumCell"
+    static var reuseId: String = "PoolInfoMediumCell"
     
     private var titleLabel = ViewFactory
         .label("000 수영장")
@@ -74,7 +74,7 @@ final class PoolMediumCell: UITableViewCell, ReuseableObject {
 }
 
 // MARK: - Test Stub
-extension PoolMediumCell {
+extension PoolInfoMediumCell {
 #if targetEnvironment(simulator)
 
     func configureForUITest(name: String, address: String) {
@@ -91,7 +91,7 @@ import SwiftUI
 
 struct PoolMediumCell_Previews: PreviewProvider {
     
-    static let view = PoolMediumCell()
+    static let view = PoolInfoMediumCell()
     
     static var previews: some View {
         UIViewPreview {

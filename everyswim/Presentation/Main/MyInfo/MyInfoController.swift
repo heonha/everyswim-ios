@@ -22,8 +22,7 @@ final class MyInfoController: UIViewController {
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
-    // MARK:  INIT & Lifecycles
-    
+    // MARK: INIT & Lifecycles
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         configure()
@@ -136,7 +135,7 @@ final class MyInfoController: UIViewController {
                 
                 let regionSearchManager = RegionSearchManager()
                 let locationManager = DeviceLocationManager()
-                let viewModel = PoolListViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
+                let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
                 let vc = PoolListViewController(viewModel: viewModel)
                 let nc = UINavigationController(rootViewController: vc)
                 nc.modalPresentationStyle = .overFullScreen

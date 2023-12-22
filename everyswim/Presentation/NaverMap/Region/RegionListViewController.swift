@@ -1,25 +1,24 @@
 //
-//  DistrictListViewcontroller.swift
+//  RegionListViewController.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/10/23.
 //
 
-import Foundation
-
 import UIKit
 import SnapKit
+import Combine
 
-final class DistrictListViewcontroller: BaseViewController {
+final class RegionListViewController: BaseViewController {
+    
+    private let viewModel: PoolMapViewModel
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private let tableView = UITableView()
-
-    private let region: KrRegions
-    private let viewModel: PoolListViewModel
-
-    // MARK: - Init & Lifecycles
-    init(region: KrRegions, viewModel: PoolListViewModel) {
-        self.region = region
+    
+    // MARK: - Init & LifeCycles
+    init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -31,6 +30,7 @@ final class DistrictListViewcontroller: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        bind()
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,7 +41,7 @@ final class DistrictListViewcontroller: BaseViewController {
     // MARK: - Configures
     private func configure() {
         configureNavigation()
-        tableViewConfigure()
+        configureTableView()
     }
     
     private func configureNavigation() {
@@ -49,7 +49,7 @@ final class DistrictListViewcontroller: BaseViewController {
         self.navigationItem.backButtonDisplayMode = .generic
     }
     
-    private func tableViewConfigure() {
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RegionListCell.self, forCellReuseIdentifier: RegionListCell.reuseId)
@@ -62,20 +62,29 @@ final class DistrictListViewcontroller: BaseViewController {
         }
     }
     
+    private func bind() {
+        viewModel.regions
+            .receive(on: DispatchQueue.main)
+            .filter { !$0.isEmpty }
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    
 }
 
-// MARK: - TableView
-extension DistrictListViewcontroller: UITableViewDelegate, UITableViewDataSource {
+extension RegionListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return region.districts.count
+        return viewModel.regions.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RegionListCell.reuseId, for: indexPath) as? RegionListCell else { return UITableViewCell() }
         
-        let district = region.districts[indexPath.row]
-        cell.configure(title: district)
+        let region = viewModel.regions.value[indexPath.row]
+        cell.configure(title: region.name)
         
         return cell
     }
@@ -85,12 +94,9 @@ extension DistrictListViewcontroller: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedDistrict = region.districts[indexPath.row]
-        let selectedRegion = region.name
-        let code = viewModel.cityNameToCode(city: selectedRegion)
-        let data = SingleRegion(code: code, name: selectedRegion, district: selectedDistrict)
-        viewModel.currentRegion = data
-        self.navigationController?.popToRootViewController(animated: true)
+        let region = viewModel.regions.value[indexPath.row]
+        let vc = DistrictListViewcontroller(region: region, viewModel: viewModel)
+        self.push(vc, animated: true)
     }
     
 }
@@ -99,12 +105,11 @@ extension DistrictListViewcontroller: UITableViewDelegate, UITableViewDataSource
 #if DEBUG
 import SwiftUI
 
-struct DistrictListViewcontroller_Previews: PreviewProvider {
+struct RegionListViewController_Previews: PreviewProvider {
     
-    static let viewController = DistrictListViewcontroller(region: region, viewModel: viewModel)
-    static let viewModel = PoolListViewModel(locationManager: .init(),
+    static let viewController = RegionListViewController(viewModel: viewModel)
+    static let viewModel = PoolMapViewModel(locationManager: .init(),
                                              regionSearchManager: .init())
-    static let region = KrRegions(code: "0", name: "서울시", districts: ["구로구", "강남구", "강서구"])
     
     static var previews: some View {
         UIViewControllerPreview {

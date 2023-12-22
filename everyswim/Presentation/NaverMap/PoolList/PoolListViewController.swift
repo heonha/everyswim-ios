@@ -11,7 +11,9 @@ import Combine
 import CoreLocation
 
 final class PoolListViewController: BaseViewController, UseCancellables {
+    
     var cancellables: Set<AnyCancellable> = .init()
+    private var naverMapViewController: PoolMapViewController?
     
     private let titleLabel = ViewFactory.label("현재 위치")
         .font(.custom(.sfProMedium, size: 14))
@@ -52,10 +54,10 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     
     private let tableView = UITableView()
     
-    private let viewModel: PoolListViewModel
+    private let viewModel: PoolMapViewModel
     
     // MARK: - Init & LifeCycles
-    init(viewModel: PoolListViewModel) {
+    init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -83,8 +85,8 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PoolMediumCell.self,
-                           forCellReuseIdentifier: PoolMediumCell.reuseId)
+        tableView.register(PoolInfoMediumCell.self,
+                           forCellReuseIdentifier: PoolInfoMediumCell.reuseId)
     }
     
     // MARK: - Layout
@@ -159,9 +161,10 @@ final class PoolListViewController: BaseViewController, UseCancellables {
             .sink { [weak self] _ in
                 guard let self = self else {return}
                 let locationManager = DeviceLocationManager()
-                let viewModel = MapViewModel(locationManager: locationManager)
-                let naverMapView = MapViewController(viewModel: viewModel)
-                push(naverMapView, animated: true)
+                naverMapViewController = PoolMapViewController(viewModel: viewModel)
+                guard let naverMapViewController = naverMapViewController else {return}
+                naverMapViewController.placeMarker(locations: viewModel.pools)
+                push(naverMapViewController, animated: true)
             }
             .store(in: &cancellables)
     }
@@ -191,7 +194,8 @@ final class PoolListViewController: BaseViewController, UseCancellables {
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] _ in
-                self?.tableView.reloadData()
+                guard let self = self else { return }
+                tableView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -223,7 +227,7 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolMediumCell.reuseId, for: indexPath) as? PoolMediumCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolInfoMediumCell.reuseId, for: indexPath) as? PoolInfoMediumCell else {
             return UITableViewCell()
         }
         
@@ -258,7 +262,7 @@ struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let viewController = PoolListViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = PoolListViewModel(locationManager: locationManager, regionSearchManager: .init())
+    static let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {

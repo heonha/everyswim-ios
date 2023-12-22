@@ -11,7 +11,7 @@
 		3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */; };
 		3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */; };
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
-		390A0B202B25851200F30C80 /* PoolListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */; };
+		390A0B202B25851200F30C80 /* PoolMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */; };
 		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
 		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
 		390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */; };
@@ -103,8 +103,7 @@
 		396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */; };
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
-		396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* MapViewController.swift */; };
-		396D93A42B18A8760013060E /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A32B18A8760013060E /* MapViewModel.swift */; };
+		396D93A22B18A7CF0013060E /* PoolMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* PoolMapViewController.swift */; };
 		39700A6A2B25EB72009D9C3D /* KrRegionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */; };
 		39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */; };
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
@@ -165,7 +164,7 @@
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
 		39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */; };
 		39B6E6032B1C8A37009140F8 /* PoolListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */; };
-		39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */; };
+		39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */; };
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
@@ -215,7 +214,7 @@
 		3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModel.swift; sourceTree = "<group>"; };
+		390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
 		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
 		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
@@ -299,8 +298,7 @@
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D93982B18A6CD0013060E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
-		396D93A12B18A7CF0013060E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		396D93A32B18A8760013060E /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		396D93A12B18A7CF0013060E /* PoolMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewController.swift; sourceTree = "<group>"; };
 		39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrRegionsResponse.swift; sourceTree = "<group>"; };
 		39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListViewController.swift; sourceTree = "<group>"; };
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
@@ -362,7 +360,7 @@
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationManager.swift; sourceTree = "<group>"; };
 		39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewController.swift; sourceTree = "<group>"; };
-		39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMediumCell.swift; sourceTree = "<group>"; };
+		39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolInfoMediumCell.swift; sourceTree = "<group>"; };
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
@@ -439,6 +437,7 @@
 		390A0B1E2B2584AF00F30C80 /* Region */ = {
 			isa = PBXGroup;
 			children = (
+				399732302B305731008B5C11 /* SingleRegion.swift */,
 				39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */,
 				393F88472B24BFBA00C67FAA /* RegionSearchManager.swift */,
 				39B6E6082B1C956E009140F8 /* RegionListCell.swift */,
@@ -745,6 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
+				398BD2992B189D3C00970E23 /* NaverMap */,
 				39CC3DB82AC5857200C8BC10 /* BaseObjects */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
 			);
@@ -755,8 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
-				398BD2992B189D3C00970E23 /* NaverMap */,
-				39B6E6012B1C8A2C009140F8 /* SearchPool */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
 				3922D5732A74B1FA00257164 /* AppConstant */,
@@ -802,9 +800,10 @@
 		398BD2992B189D3C00970E23 /* NaverMap */ = {
 			isa = PBXGroup;
 			children = (
-				396D93A12B18A7CF0013060E /* MapViewController.swift */,
-				396D93A32B18A8760013060E /* MapViewModel.swift */,
-				399732302B305731008B5C11 /* SingleRegion.swift */,
+				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
+				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
+				39B6E6012B1C8A2C009140F8 /* PoolList */,
+				390A0B1E2B2584AF00F30C80 /* Region */,
 				399732322B30574A008B5C11 /* KrAPI */,
 				3997322D2B3051F6008B5C11 /* KakaoAPI */,
 			);
@@ -882,15 +881,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		39B6E6012B1C8A2C009140F8 /* SearchPool */ = {
+		39B6E6012B1C8A2C009140F8 /* PoolList */ = {
 			isa = PBXGroup;
 			children = (
 				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
-				390A0B1F2B25851200F30C80 /* PoolListViewModel.swift */,
-				39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */,
-				390A0B1E2B2584AF00F30C80 /* Region */,
+				39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */,
 			);
-			path = SearchPool;
+			path = PoolList;
 			sourceTree = "<group>";
 		};
 		39BC26972AAD7EE1007432B5 /* Subviews */ = {
@@ -1300,7 +1297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				390A0B202B25851200F30C80 /* PoolListViewModel.swift in Sources */,
+				390A0B202B25851200F30C80 /* PoolMapViewModel.swift in Sources */,
 				398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
@@ -1407,7 +1404,7 @@
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */,
 				392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */,
-				396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */,
+				396D93A22B18A7CF0013060E /* PoolMapViewController.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceLargeLabel.swift in Sources */,
@@ -1420,7 +1417,7 @@
 				39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* UseCancellables.swift in Sources */,
-				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
+				39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
@@ -1450,7 +1447,6 @@
 				393351532AFA57910014D37A /* HttpHeader.swift in Sources */,
 				396CE8582AB56C8B00EB66BE /* BaseScrollView.swift in Sources */,
 				390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */,
-				396D93A42B18A8760013060E /* MapViewModel.swift in Sources */,
 				397AB5AD2A68F61A008015F2 /* AppPersistantKey.swift in Sources */,
 				396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */,
 				396D2AB22A5673680042D4D4 /* HKCalculator.swift in Sources */,

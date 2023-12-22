@@ -9,15 +9,16 @@ import Foundation
 import CoreLocation
 import Combine
 
-class PoolListViewModel {
+class PoolMapViewModel {
     
     let locationManager: DeviceLocationManager
     private let regionSearchManager: RegionSearchManager
     private let kakaoLocationManager = KakaoPlacesManager()
 
     private var cancellables = Set<AnyCancellable>()
-
     private let networkService: NetworkService
+    
+    @Published var searchText: String = ""
     
     var regions: CurrentValueSubject<[KrRegions], Never> {
         return regionSearchManager.regionsSubject
@@ -40,6 +41,7 @@ class PoolListViewModel {
         self.currentRegion = currentRegion
         self.currentLoction = currentLocation
         self.regionSearchManager = regionSearchManager
+        getCurrentLocation()
         observeCurrentRegion()
         observeCurrentLocation()
     }
@@ -49,7 +51,7 @@ class PoolListViewModel {
         $currentRegion
             .receive(on: DispatchQueue.main)
             .filter { !$0.name.isEmpty }
-            .sink { [weak self] city in
+            .sink { [weak self] _ in
                 self?.findLocation()
             }
             .store(in: &cancellables)
@@ -129,4 +131,14 @@ class PoolListViewModel {
         regionSearchManager.cityNameToCode(city: city)
     }
 
+}
+
+// MARK: - Map
+extension PoolMapViewModel {
+    
+    func getCurrentLocation() {
+        locationManager.requestLocationAuthorization()
+    }
+    
+    
 }
