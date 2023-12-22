@@ -62,11 +62,11 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
     private func configureButtons() {
         let cases = ActivityDataRange.allCases
         
-        for c in cases {
-            let action = actionMaker(index: c.rawValue)
-            self.insertSegment(action: action, at: c.rawValue, animated: true)
-            self.setAction(action, forSegmentAt: c.rawValue)
-            setTitle(c.segmentTitle, forSegmentAt: c.rawValue)
+        for singleCase in cases {
+            let action = actionMaker(index: singleCase.rawValue)
+            self.insertSegment(action: action, at: singleCase.rawValue, animated: true)
+            self.setAction(action, forSegmentAt: singleCase.rawValue)
+            setTitle(singleCase.segmentTitle, forSegmentAt: singleCase.rawValue)
         }
     }
     

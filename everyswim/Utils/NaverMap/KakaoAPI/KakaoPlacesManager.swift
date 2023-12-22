@@ -24,7 +24,7 @@ final class KakaoPlacesManager {
 
         let urlString = "https://dapi.kakao.com/v2/local/search/keyword.json"
         
-        let apikey = SecretConstant.KAKAO_REST_API_KEY
+        let apikey = SecretConstant.kakaoRestAPIKey
         
         var parameters: [String: Any] = [
             "query": query,

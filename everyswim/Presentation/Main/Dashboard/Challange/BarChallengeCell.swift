@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class BarChallangeCell: UIView {
-    
+
     private var data: ChallangeRing
     
     private let shadowView = UIView()

@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class everyswim_tests: XCTestCase {
+final class EveryswimTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

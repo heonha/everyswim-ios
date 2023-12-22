@@ -10,8 +10,8 @@ import Foundation
 extension Calendar {
     
     static func getCurrntWeekNumber(from date: Date = Date(), component: Calendar.Component = .weekOfYear) -> Int {
-        let Calendar =  Calendar.current
-        let currentWeek = Calendar.component(component, from: date)
+        let calendar =  Calendar.current
+        let currentWeek = calendar.component(component, from: date)
         return currentWeek
     }
     

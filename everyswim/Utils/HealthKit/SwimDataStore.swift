@@ -78,13 +78,12 @@ final class SwimDataStore: ObservableObject {
         var laps = totalData
             .reduce(Int(0)) { $0 + $1.laps.count }
 
-        
         var distanceUnit = "m"
         
         var distanceString = ""
         
         if distance > 10000 {
-            distance = distance / 1000
+            distance /= 1000
             distanceUnit = "km"
             distanceString = distance.toRoundupString(maxDigit: 1)
         } else {

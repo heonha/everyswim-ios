@@ -202,7 +202,7 @@ extension DashboardViewController {
         
         challangeViewsLayout(contentView: contentView, spacing: spacing, height: 220)
         
-        RecommandCollectionViewLayout(contentView: contentView, spacing: spacing, height: 600)
+        recommandCollectionViewLayout(contentView: contentView, spacing: spacing, height: 600)
     }
     
     private func scrollViewLayout() {
@@ -238,7 +238,6 @@ extension DashboardViewController {
             make.horizontalEdges.equalTo(recentRecordView)
         }
         
-        
         lastWorkoutCell.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(recentRecordView)
         }
@@ -254,7 +253,10 @@ extension DashboardViewController {
         }
     }
     
-    private func RecommandCollectionViewLayout(contentView: UIView, spacing: CGFloat, height: CGFloat) {
+    private func recommandCollectionViewLayout(contentView: UIView,
+                                               spacing: CGFloat,
+                                               height: CGFloat) {
+        
         contentView.addSubview(recommandCollectionView)
 
         recommandCollectionView.isScrollEnabled = false
@@ -369,7 +371,10 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
                         at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
         
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecommandCollectionViewHeader.reuseId, for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
+        guard let header = collectionView
+            .dequeueReusableSupplementaryView(ofKind: kind, 
+                                              withReuseIdentifier: RecommandCollectionViewHeader.reuseId,
+                                              for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
         let section = recommandSections[indexPath.section]
         header.configure(title: section.title, subtitle: section.subtitle)
