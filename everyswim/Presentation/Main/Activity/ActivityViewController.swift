@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ActivityViewController: UIViewController, CombineCancellable {
+final class ActivityViewController: UIViewController, UseCancellables {
     
     private let viewModel: ActivityViewModel
     

@@ -14,7 +14,7 @@ enum SetProfileViewControllerType {
     case changeProfile
 }
 
-final class SetProfileViewController: BaseViewController, CombineCancellable {
+final class SetProfileViewController: BaseViewController, UseCancellables {
     
     private let viewModel: SetProfileViewModel
     private let type: SetProfileViewControllerType

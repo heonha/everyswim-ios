@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class ActivityViewModel: ObservableObject, CombineCancellable {
+final class ActivityViewModel: ObservableObject, UseCancellables {
 
     var cancellables: Set<AnyCancellable> = .init()
     

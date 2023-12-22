@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import CoreLocation
 
-final class MapViewModel: CombineCancellable {
+final class MapViewModel: UseCancellables {
     
     var cancellables: Set<AnyCancellable> = .init()
     private let locationManager: DeviceLocationManager

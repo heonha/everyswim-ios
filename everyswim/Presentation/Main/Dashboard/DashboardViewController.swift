@@ -10,7 +10,7 @@ import SnapKit
 import Combine
 import SDWebImage
 
-final class DashboardViewController: UIViewController, CombineCancellable {
+final class DashboardViewController: UIViewController, UseCancellables {
     
     private let viewModel: DashboardViewModel
     

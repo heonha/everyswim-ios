@@ -10,7 +10,7 @@ import SnapKit
 import SDWebImage
 import Combine
 
-class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, CombineCancellable {
+class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, UseCancellables {
     
     var cancellables: Set<AnyCancellable> = .init()
     

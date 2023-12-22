@@ -48,7 +48,6 @@ final class DistrictListViewcontroller: BaseViewController {
         self.navigationItem.title = "지역 선택"
         self.navigationItem.backButtonDisplayMode = .generic
     }
-
     
     private func tableViewConfigure() {
         tableView.delegate = self

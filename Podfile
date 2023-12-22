@@ -4,8 +4,15 @@ platform :ios, '15.0'
 target 'everyswim' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
+
   # Pods for everyswim
-    pod 'NMapsMap'
+  pod 'NMapsMap'
+
+  target 'everyswim-tests' do
+    inherit! :search_paths
+    # Pods for testing
+
+
+  end
 
 end

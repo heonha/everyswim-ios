@@ -30,7 +30,6 @@ final class MapViewController: BaseViewController {
         super.viewDidLoad()
         configure()
         getLocation()
-        placeMarker(37.4883558, 126.8418947)
     }
     
     override func viewDidLayoutSubviews() {
@@ -43,10 +42,6 @@ final class MapViewController: BaseViewController {
         bindCurrentLocation()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     private func configure() {
         NMFAuthManager.shared().delegate = self
         mapView.showLocationButton = true
@@ -86,7 +81,7 @@ final class MapViewController: BaseViewController {
 
 extension MapViewController: NMFAuthManagerDelegate {
     
-    func placeMarker(_ lat: CGFloat, _ lng: CGFloat) {
+    func placeMarker(title: String, _ lat: CGFloat, _ lng: CGFloat) {
         let marker = NMFMarker()
         marker.position = NMGLatLng(lat: lat, lng: lng)
         marker.captionText = "구로 50플러스 수영장"

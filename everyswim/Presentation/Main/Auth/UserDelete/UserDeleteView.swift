@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class UserDeleteView: UIView, CombineCancellable {
+final class UserDeleteView: UIView, UseCancellables {
     
     private let viewModel: UserDeleteViewModel
     private let parentViewController: UserDeleteViewController

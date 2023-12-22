@@ -86,8 +86,6 @@ final class MyInfoController: UIViewController {
         }
     }
     
-
-    
     private func bindButtonsAction() {
         
         // 프로필 변경

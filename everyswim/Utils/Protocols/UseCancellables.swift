@@ -1,5 +1,5 @@
 //
-//  CombineCancellable.swift
+//  UseCancellables.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/28/23.
@@ -7,6 +7,6 @@
 
 import Combine
 
-protocol CombineCancellable {
+protocol UseCancellables {
     var cancellables: Set<AnyCancellable> { get set }
 }

@@ -10,7 +10,7 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolListViewController: BaseViewController, CombineCancellable {
+final class PoolListViewController: BaseViewController, UseCancellables {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let titleLabel = ViewFactory.label("현재 위치")
@@ -78,15 +78,24 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
     
     // MARK: - Configurations
     private func configure() {
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PoolMediumCell.self, 
+        tableView.register(PoolMediumCell.self,
                            forCellReuseIdentifier: PoolMediumCell.reuseId)
     }
     
     // MARK: - Layout
     private func layout() {
-        
+        layoutCurrentLocationView()
+        layoutTableView()
+        layoutButtons()
+    }
+
+    private func layoutCurrentLocationView() {
         view.addSubview(locationVStack)
         
         locationVStack.snp.makeConstraints { make in
@@ -106,7 +115,9 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.height.equalTo(30)
             make.width.equalTo(120)
         }
-        
+    }
+    
+    private func layoutTableView() {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
@@ -114,7 +125,9 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-
+    }
+    
+    private func layoutButtons() {
         view.addSubview(showMapLabel)
         showMapLabel.snp.makeConstraints { make in
             make.height.equalTo(44)
@@ -131,6 +144,8 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
+    
+    
     
     // MARK: - Bind
     private func bind() {
@@ -207,6 +222,7 @@ final class PoolListViewController: BaseViewController, CombineCancellable {
 
 // MARK: - TableView Configure
 extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.pools.count
     }

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class MyInfoViewModel: BaseViewModel, CombineCancellable {
+final class MyInfoViewModel: BaseViewModel, UseCancellables {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let authManager: AuthManager

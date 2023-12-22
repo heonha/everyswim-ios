@@ -10,7 +10,7 @@ import SnapKit
 import Combine
 import AuthenticationServices
 
-final class SignInViewController: UIViewController, CombineCancellable {
+final class SignInViewController: UIViewController, UseCancellables {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: SignInViewModel
