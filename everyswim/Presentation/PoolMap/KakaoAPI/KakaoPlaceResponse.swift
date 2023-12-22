@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct KakaoPlaceResponse: Codable {
     let places: [KakaoPlace]
@@ -28,6 +29,11 @@ struct KakaoPlace: Codable {
     let y: String
     let placeURL: String
     let distance: String?
+    
+    func getCoordinator() -> CLLocationCoordinate2D? {
+        guard let lat = y.toDouble(), let lon = x.toDouble() else {return nil}
+        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
     
     func distanceWithUnit() -> String {
         guard let distance = distance else {return ""}

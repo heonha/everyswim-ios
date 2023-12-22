@@ -36,7 +36,7 @@ final class RegionListCell: UITableViewCell, ReuseableObject {
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
-        contentView.backgroundColor = .systemBackground
+        self.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +46,10 @@ final class RegionListCell: UITableViewCell, ReuseableObject {
     // MARK: - Configures
     func configure(title: String) {
         self.titleLabel.text = title
+    }
+    
+    func hideArrow() {
+        self.rightImageView.isHidden = true
     }
     
     // MARK: - Layout

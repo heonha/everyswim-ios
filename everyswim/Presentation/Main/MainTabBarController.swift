@@ -47,19 +47,19 @@ extension MainTabBarController {
         let calendarSymbol = AppImage.calendar.getImage()
         let myInfoSymbol = AppImage.personCircleFill.getImage()
         
-        let dashboardNC = BaseNavigationController(rootViewController: dashboardView)
+        let dashboardNC = RootNavigationViewController(rootViewController: dashboardView)
         dashboardNC.isNavigationBarHidden = true
         dashboardNC.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 0)
 
-        let recordNC = BaseNavigationController(rootViewController: recordView)
+        let recordNC = RootNavigationViewController(rootViewController: recordView)
         recordNC.isNavigationBarHidden = true
         recordNC.tabBarItem = .init(title: "기록", image: eventSymbol, tag: 1)
 
-        let calendarNC = BaseNavigationController(rootViewController: calendarView)
+        let calendarNC = RootNavigationViewController(rootViewController: calendarView)
         calendarNC.isNavigationBarHidden = true
         calendarNC.tabBarItem = .init(title: "캘린더", image: calendarSymbol, tag: 2)
 
-        let myInfoNC = BaseNavigationController(rootViewController: myInfoView)
+        let myInfoNC = RootNavigationViewController(rootViewController: myInfoView)
         myInfoNC.isNavigationBarHidden = true
         myInfoNC.tabBarItem = .init(title: "내 정보", image: myInfoSymbol, tag: 3)
         

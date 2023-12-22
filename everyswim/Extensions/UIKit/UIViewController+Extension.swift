@@ -41,4 +41,8 @@ extension UIViewController {
         target.present(alert, animated: true)
     }
     
+    func setNaviagationTitle(title: String) {
+        self.navigationItem.title = title
+    }
+    
 }

@@ -17,6 +17,8 @@ final class RegionListViewController: BaseViewController {
     
     private let tableView = UITableView()
     
+    private let myRegionButton = RegionListCell(style: .default, reuseIdentifier: nil)
+    
     // MARK: - Init & LifeCycles
     init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
@@ -42,6 +44,12 @@ final class RegionListViewController: BaseViewController {
     private func configure() {
         configureNavigation()
         configureTableView()
+        configureMyRegionButton()
+    }
+    
+    func configureMyRegionButton() {
+        myRegionButton.configure(title: "현재 지역으로 돌아가기")
+        myRegionButton.hideArrow()
     }
     
     private func configureNavigation() {
@@ -56,13 +64,30 @@ final class RegionListViewController: BaseViewController {
     }
     
     private func layout() {
+        view.addSubview(myRegionButton)
         view.addSubview(tableView)
+        
+        myRegionButton.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(50)
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.top.equalTo(myRegionButton.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(view)
         }
     }
     
     private func bind() {
+        
+        myRegionButton.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewModel.resetCurrentLocation()
+                self?.dismiss(animated: true)
+            }
+            .store(in: &cancellables)
+        
         viewModel.regions
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }

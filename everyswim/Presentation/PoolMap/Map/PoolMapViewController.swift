@@ -11,13 +11,14 @@ import NMapsMap
 import Combine
 
 final class PoolMapViewController: BaseViewController {
-    
+
     private var cancellables: Set<AnyCancellable> = .init()
     private let viewModel: PoolMapViewModel
     
     private lazy var mapView = NMFNaverMapView(frame: view.frame)
     private var markers = [NMFMarker]()
 
+    // MARK: - Init
     init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -27,6 +28,7 @@ final class PoolMapViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -40,12 +42,12 @@ final class PoolMapViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bindCurrentLocation()
         bindSearchPool()
     }
 
     // MARK: - Configure
     private func configure() {
+        setNaviagationTitle(title: "수영장 찾기")
         configureNMapAuth()
         configureNMapView()
     }
@@ -67,7 +69,7 @@ final class PoolMapViewController: BaseViewController {
     private func layoutMapView() {
         view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -76,22 +78,26 @@ final class PoolMapViewController: BaseViewController {
         viewModel.getCurrentLocation()
     }
     
-    private func bindCurrentLocation() {
-        viewModel.$currentLoction
+    private func moveCurrentLocation() {
+        viewModel.$targetCurrentLocation
             .receive(on: DispatchQueue.main)
             .filter { $0.latitude != CGFloat(0) && $0.longitude != CGFloat(0) }
+            .prefix(1)
             .sink { [weak self] location in
-                self?.moveToCurrentLocation(location)
+                self?.moveToCoordinator(location)
             }
             .store(in: &cancellables)
     }
     
-    private func moveToCurrentLocation(_ location: CLLocationCoordinate2D) {
-        let naverMapLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
-        let cameraUpdate = NMFCameraUpdate(scrollTo: naverMapLocation)
-        mapView.mapView.moveCamera(cameraUpdate)
-        cameraUpdate.animation = .easeIn
-        self.mapView.mapView.positionMode = .normal
+    public func moveToCoordinator(_ location: CLLocationCoordinate2D) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let mapView = self.mapView.mapView
+            let naverMapLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
+            let cameraUpdate = NMFCameraUpdate(scrollTo: naverMapLocation)
+            cameraUpdate.animation = .easeIn
+            mapView.moveCamera(cameraUpdate)
+            mapView.positionMode = .normal
+        }
     }
     
     /// 지도에 마커 추가하기.

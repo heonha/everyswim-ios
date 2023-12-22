@@ -106,7 +106,7 @@
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
 		396D93A22B18A7CF0013060E /* PoolMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* PoolMapViewController.swift */; };
-		39700A6A2B25EB72009D9C3D /* KrRegionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */; };
+		39700A6A2B25EB72009D9C3D /* RegionAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* RegionAPIResponse.swift */; };
 		39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */; };
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
@@ -173,7 +173,7 @@
 		39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */; };
 		39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */; };
 		39CC3DB52AC5834700C8BC10 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */; };
-		39CC3DB72AC5851B00C8BC10 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */; };
+		39CC3DB72AC5851B00C8BC10 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */; };
 		39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */; };
 		39CC3DBE2AC587BB00C8BC10 /* UseCancellables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */; };
 		39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBF2AC59BD200C8BC10 /* ActivityDetailViewController.swift */; };
@@ -303,7 +303,7 @@
 		396D93982B18A6CD0013060E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
 		396D93A12B18A7CF0013060E /* PoolMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewController.swift; sourceTree = "<group>"; };
-		39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrRegionsResponse.swift; sourceTree = "<group>"; };
+		39700A692B25EB72009D9C3D /* RegionAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionAPIResponse.swift; sourceTree = "<group>"; };
 		39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListViewController.swift; sourceTree = "<group>"; };
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 		39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableObject.swift; sourceTree = "<group>"; };
 		39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCancellables.swift; sourceTree = "<group>"; };
 		39CC3DBF2AC59BD200C8BC10 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 		390A0B1E2B2584AF00F30C80 /* Region */ = {
 			isa = PBXGroup;
 			children = (
+				399732322B30574A008B5C11 /* RegionAPI */,
 				399732302B305731008B5C11 /* SingleRegion.swift */,
 				39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */,
 				393F88472B24BFBA00C67FAA /* RegionSearchManager.swift */,
@@ -748,7 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
-				398BD2992B189D3C00970E23 /* NaverMap */,
+				398BD2992B189D3C00970E23 /* PoolMap */,
 				39CC3DB82AC5857200C8BC10 /* BaseObjects */,
 				392083CD2A4885FC00E591A8 /* CustomViews */,
 			);
@@ -801,17 +802,16 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		398BD2992B189D3C00970E23 /* NaverMap */ = {
+		398BD2992B189D3C00970E23 /* PoolMap */ = {
 			isa = PBXGroup;
 			children = (
-				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
-				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
-				39B6E6012B1C8A2C009140F8 /* PoolList */,
+				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
+				39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */,
+				39B6E6012B1C8A2C009140F8 /* Map */,
 				390A0B1E2B2584AF00F30C80 /* Region */,
-				399732322B30574A008B5C11 /* KrAPI */,
 				3997322D2B3051F6008B5C11 /* KakaoAPI */,
 			);
-			path = NaverMap;
+			path = PoolMap;
 			sourceTree = "<group>";
 		};
 		398DFB432AA9DBC200BDEB8E /* Challange */ = {
@@ -854,12 +854,12 @@
 			path = KakaoAPI;
 			sourceTree = "<group>";
 		};
-		399732322B30574A008B5C11 /* KrAPI */ = {
+		399732322B30574A008B5C11 /* RegionAPI */ = {
 			isa = PBXGroup;
 			children = (
-				39700A692B25EB72009D9C3D /* KrRegionsResponse.swift */,
+				39700A692B25EB72009D9C3D /* RegionAPIResponse.swift */,
 			);
-			path = KrAPI;
+			path = RegionAPI;
 			sourceTree = "<group>";
 		};
 		39B0C3962AAC6FBE004E0985 /* RecommandCollection */ = {
@@ -885,13 +885,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		39B6E6012B1C8A2C009140F8 /* PoolList */ = {
+		39B6E6012B1C8A2C009140F8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
-				39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */,
+				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
+				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
 			);
-			path = PoolList;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		39BC26972AAD7EE1007432B5 /* Subviews */ = {
@@ -929,11 +929,11 @@
 		39CC3DB82AC5857200C8BC10 /* BaseObjects */ = {
 			isa = PBXGroup;
 			children = (
+				39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */,
 				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
 				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
 				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
-				39CC3DB62AC5851B00C8BC10 /* BaseNavigationController.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
 				3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */,
 			);
@@ -1369,11 +1369,11 @@
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
 				39D472622AF9096000A153CA /* RecommandCollectionViewHeader.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
-				39CC3DB72AC5851B00C8BC10 /* BaseNavigationController.swift in Sources */,
+				39CC3DB72AC5851B00C8BC10 /* RootNavigationViewController.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				393F88482B24BFBA00C67FAA /* RegionSearchManager.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
-				39700A6A2B25EB72009D9C3D /* KrRegionsResponse.swift in Sources */,
+				39700A6A2B25EB72009D9C3D /* RegionAPIResponse.swift in Sources */,
 				391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */,
 				39DBB31E2AC6E650003B5213 /* ActivityTypeSegmentControl.swift in Sources */,
 				393351582AFA5B810014D37A /* RecommandDataService.swift in Sources */,

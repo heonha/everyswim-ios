@@ -90,7 +90,8 @@ extension DistrictListViewcontroller: UITableViewDelegate, UITableViewDataSource
         let code = viewModel.cityNameToCode(city: selectedRegion)
         let data = SingleRegion(code: code, name: selectedRegion, district: selectedDistrict)
         viewModel.currentRegion = data
-        self.navigationController?.popToRootViewController(animated: true)
+        viewModel.customLoationMode = true
+        self.dismiss(animated: true)
     }
     
 }

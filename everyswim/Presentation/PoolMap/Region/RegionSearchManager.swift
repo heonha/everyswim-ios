@@ -57,7 +57,7 @@ class RegionSearchManager {
                      urlString: Constant.citiesBaseUrl,
                      endPoint: "",
                      parameters: [:],
-                     returnType: KrRegionsResponse.self)
+                     returnType: RegionAPIResponse.self)
             .receive(on: DispatchQueue.main)
             .filter { !$0.cities.isEmpty }
             .map(\.cities)

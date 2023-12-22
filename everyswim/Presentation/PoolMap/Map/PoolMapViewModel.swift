@@ -24,8 +24,14 @@ class PoolMapViewModel {
         return regionSearchManager.regionsSubject
     }
     
+    /// 타 지역 검색 시 true 현지역인 경우 false
+    @Published var customLoationMode = false
+    
+    /// 현재 지역 (GPS 기준)
+    private var currentLocation: CLLocationCoordinate2D?
+    
     @Published var currentRegion: SingleRegion
-    @Published var currentLoction: CLLocationCoordinate2D
+    @Published var targetCurrentLocation: CLLocationCoordinate2D
     @Published var pools: [KakaoPlace] = []
 
     // MARK: - Init & Lifecycles
@@ -38,7 +44,8 @@ class PoolMapViewModel {
         self.locationManager = locationManager
         self.networkService = networkService
         self.currentRegion = currentRegion
-        self.currentLoction = currentLocation
+        self.currentLocation = currentLocation
+        self.targetCurrentLocation = currentLocation
         self.regionSearchManager = regionSearchManager
         getCurrentLocation()
         observeCurrentRegion()
@@ -63,7 +70,8 @@ class PoolMapViewModel {
             .receive(on: DispatchQueue.main)
             .replaceError(with: .init(latitude: 0, longitude: 0))
             .sink(receiveValue: { [weak self] coordinator in
-                self?.currentLoction = coordinator
+                self?.targetCurrentLocation = coordinator
+                self?.currentLocation = coordinator
                 self?.getAddressFromCoordinator(coordinator)
             })
             .store(in: &cancellables)
@@ -79,8 +87,15 @@ class PoolMapViewModel {
         return city
     }
     
-    /// 구가 있는 도시 인지 확인함
-    func isHasGu(cityCode: Int) -> Bool {
+    /// `현 위치`로 리셋
+    public func resetCurrentLocation() {
+        guard let currentLocation = currentLocation else { return}
+        self.targetCurrentLocation = currentLocation
+        self.customLoationMode = false
+    }
+    
+    /// `구가 있는 도시` 인지 확인
+    private func isHasGu(cityCode: Int) -> Bool {
         if cityCode < 29 {
             return true
         } else {
@@ -100,19 +115,22 @@ class PoolMapViewModel {
         }
         guard let queryString = queryString else { return }
         
-        kakaoLocationManager.findPlaceFromKeyword(query: queryString, 
-                                                  numberOfPage: startCount,
-                                                  countOfPage: displayCount,
-                                                  coordinator: currentLoction) { [weak self] result in
-            switch result {
-            case .success(let places):
-                self?.pools = places
-            case .failure(let error):
-                self?.pools = []
-                print("ERROR\(error)")
+        kakaoLocationManager
+            .findPlaceFromKeyword(query: queryString,
+                                  numberOfPage: startCount,
+                                  countOfPage: displayCount,
+                                  coordinator: targetCurrentLocation,
+                                  sort: customLoationMode ? .accuracy : .distance
+            ) { [weak self] result in
+                switch result {
+                case .success(let places):
+                    self?.pools = places
+                case .failure(let error):
+                    self?.pools = []
+                    print("ERROR\(error)")
+                }
             }
-        }
-
+        
     }
     
     /// 좌표값을 기준으로 주소를 가져옵니다.

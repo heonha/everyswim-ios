@@ -11,6 +11,11 @@ import CoreLocation
 
 final class KakaoPlacesManager {
     
+    enum KakaoPlaceSort: String {
+        case accuracy
+        case distance
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     
     private let networkService = NetworkService.shared
@@ -20,12 +25,13 @@ final class KakaoPlacesManager {
                                      numberOfPage: Int = 1, 
                                      countOfPage: Int = 15,
                                      coordinator: CLLocationCoordinate2D?,
+                                     sort: KakaoPlaceSort = .distance,
                                      completion: @escaping (Result<[KakaoPlace], Error>) -> Void) {
 
         let urlString = "https://dapi.kakao.com/v2/local/search/keyword.json"
         
         let apikey = SecretConstant.kakaoRestAPIKey
-        let sort = "distance"
+        let sort = sort.rawValue
         
         var parameters: [String: Any] = [
             "query": query,

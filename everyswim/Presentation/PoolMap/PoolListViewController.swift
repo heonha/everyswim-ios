@@ -19,23 +19,8 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     private let viewModel: PoolMapViewModel
     
     private lazy var naverMapViewController = PoolMapViewController(viewModel: viewModel)
-    
-    // MARK: - UI
-    private let titleLabel = ViewFactory.label("현재 위치")
-        .font(.custom(.sfProMedium, size: 14))
-        .textAlignemnt(.center)
-    
-    private let currentLocationLabel = ViewFactory.label("--시 --구")
-        .font(.custom(.sfProMedium, size: 16))
-        .textAlignemnt(.center)
-    
-    private let searchLocationLabel = ViewFactory.label("다른지역 찾기")
-        .font(.custom(.sfProBold, size: 14))
-        .textAlignemnt(.center)
-        .backgroundColor(.secondarySystemFill)
-        .shadow()
-        .cornerRadius(8)
-    
+        
+    // MARK: StackViews
     private lazy var locationVStack = ViewFactory.vStack()
         .addSubviews([titleLabel, currentLocationLabel, searchLocationLabel])
         .alignment(.center)
@@ -43,21 +28,30 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         .setEdgeInset(.vertical(8))
         .backgroundColor(.secondarySystemBackground)
         .cornerRadius(8)
-
-    private let showMapLabel = ViewFactory.label("􀙊 지도에서 찾기")
-        .font(.custom(.sfProBold, size: 16))
-        .textAlignemnt(.center)
-        .backgroundColor(AppUIColor.skyBackground)
-        .shadow()
-        .cornerRadius(8)
     
-    private let dismissButton = ViewFactory.label("나가기")
-        .font(.custom(.sfProBold, size: 16))
+    // MARK: SubViews
+    private let titleLabel = ViewFactory
+        .label("위치")
+        .font(.custom(.sfProMedium, size: 14))
         .textAlignemnt(.center)
-        .backgroundColor(AppUIColor.skyBackground)
+    
+    private let currentLocationLabel = ViewFactory
+        .label("--시 --구")
+        .font(.custom(.sfProMedium, size: 16))
+        .textAlignemnt(.center)
+    
+    private let searchLocationLabel = ViewFactory
+        .label("다른지역 찾기")
+        .font(.custom(.sfProBold, size: 14))
+        .textAlignemnt(.center)
+        .backgroundColor(.secondarySystemFill)
         .shadow()
-        .cornerRadius(8)
+        .cornerRadius(8) as! UILabel
 
+    private let showMapButton = UIImageView()
+        .setSymbolImage(systemName: "map", color: .label)
+        .contentMode(.scaleAspectFit)
+    
     // MARK: - Init & LifeCycles
     init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
@@ -82,6 +76,12 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     // MARK: - Configurations
     private func configure() {
         configureTableView()
+        configureNavigationBar()
+    }
+    
+    private func configureNavigationBar() {
+        let showMapButton = UIBarButtonItem(customView: showMapButton)
+        self.navigationItem.rightBarButtonItem = showMapButton
     }
     
     private func configureTableView() {
@@ -95,7 +95,16 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     private func layout() {
         layoutCurrentLocationView()
         layoutTableView()
-        layoutButtons()
+    }
+    
+    private func dismissGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissAction))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true)
     }
 
     private func layoutCurrentLocationView() {
@@ -130,24 +139,6 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         }
     }
     
-    private func layoutButtons() {
-        view.addSubview(showMapLabel)
-        showMapLabel.snp.makeConstraints { make in
-            make.height.equalTo(44)
-            make.width.equalTo(130)
-            make.trailing.equalTo(view).inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-        
-        view.addSubview(dismissButton)
-        dismissButton.snp.makeConstraints { make in
-            make.height.equalTo(44)
-            make.width.equalTo(80)
-            make.leading.equalTo(view).inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-    }
-    
     // MARK: - Bind
     private func bind() {
         bindCurrentLocation()
@@ -158,7 +149,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     }
 
     private func bindPushNaverMapView() {
-        showMapLabel.gesturePublisher(.tap())
+        showMapButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
@@ -179,7 +170,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     }
         
     private func bindCurrentLocation() {
-        viewModel.$currentLoction
+        viewModel.$targetCurrentLocation
             .receive(on: DispatchQueue.main)
             .filter { $0.latitude != CGFloat(0) && $0.longitude != CGFloat(0) }
             .sink { [weak self] coordinator in
@@ -200,18 +191,14 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     }
     
     private func bindTouchGestures() {
+        /// `지역 선택하기` 버튼
         searchLocationLabel.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
-                let vc = RegionListViewController(viewModel: self.viewModel)
-                self.push(vc, animated: true)
-            }
-            .store(in: &cancellables)
-        
-        dismissButton.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.dismiss(animated: true)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                let vc = RegionListViewController(viewModel: viewModel)
+                let nc = RootNavigationViewController(rootViewController: vc)
+                present(nc, animated: true)
             }
             .store(in: &cancellables)
     }
@@ -232,11 +219,19 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let location = viewModel.pools[indexPath.row]
         cell.configure(data: location)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let coordinator = viewModel.pools[indexPath.row].getCoordinator() else { return }
+        push(naverMapViewController, animated: true)
+        self.naverMapViewController.moveToCoordinator(coordinator)
     }
     
 }
@@ -259,17 +254,18 @@ import SwiftUI
 
 struct SearchPoolViewController_Previews: PreviewProvider {
     
+    static let navigationController = RootNavigationViewController(rootViewController: viewController)
     static let viewController = PoolListViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
     static let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {
-            viewController
+            navigationController
         }
         .ignoresSafeArea()
         .onAppear(perform: {
-            viewModel.currentLoction = .init(latitude: 35.570137, longitude: 126.977127)
+            viewModel.targetCurrentLocation = .init(latitude: 35.570137, longitude: 126.977127)
         })
     }
 }

@@ -1,5 +1,5 @@
 //
-//  KrRegionsResponse.swift
+//  RegionAPIResponse.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/10/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KrRegionsResponse: Codable {
+struct RegionAPIResponse: Codable {
     let cities: [KrRegions]
 }
 

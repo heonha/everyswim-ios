@@ -86,7 +86,6 @@ final class MyInfoController: UIViewController {
     }
     
     private func bindButtonsAction() {
-        
         // 프로필 변경
         buttonList.getButton(type: .changeUserInfo)
             .gesturePublisher(.tap())
@@ -132,14 +131,11 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                
                 let regionSearchManager = RegionSearchManager()
                 let locationManager = DeviceLocationManager()
                 let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
                 let vc = PoolListViewController(viewModel: viewModel)
-                let nc = UINavigationController(rootViewController: vc)
-                nc.modalPresentationStyle = .overFullScreen
-                self.present(nc, animated: true)
+                self.push(vc, animated: true)
             }
             .store(in: &cancellables)
         
