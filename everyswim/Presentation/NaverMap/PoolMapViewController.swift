@@ -98,14 +98,16 @@ final class PoolMapViewController: BaseViewController {
     public func placeMarker(locations: [KakaoPlace]) {
         markers.removeAll()
         locations.forEach { place in
-            print("장소 마커 추가: \(place.placeName)")
-            print("\(place.x) \(place.y)")
-            let marker = setMarkerOnMap(title: place.placeName, place.y.toDouble(), place.x.toDouble())
-            marker.mapView = mapView.mapView
-            self.markers.append(marker)
+            if let lat = place.y.toDouble(),
+               let lon = place.x.toDouble() {
+                let marker = setMarkerOnMap(title: place.placeName, lat: lat, lon: lon)
+                marker.mapView = mapView.mapView
+                self.markers.append(marker)
+            }
         }
     }
     
+    /// 수영장 ViewModel이 변경 될 때마다 업데이트
     private func bindSearchPool() {
         viewModel.$pools
             .receive(on: DispatchQueue.main)
@@ -118,7 +120,7 @@ final class PoolMapViewController: BaseViewController {
     }
     
     /// `Map Marker` 추가 메소드
-    func setMarkerOnMap(title: String, _ lat: CGFloat, _ lon: CGFloat) -> NMFMarker {
+    func setMarkerOnMap(title: String, lat: CGFloat, lon: CGFloat) -> NMFMarker {
         let marker = NMFMarker()
         marker.position = NMGLatLng(lat: lat, lng: lon)
         marker.captionText = title

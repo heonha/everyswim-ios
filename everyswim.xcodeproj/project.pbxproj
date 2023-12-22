@@ -86,6 +86,8 @@
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
 		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
 		39535D492B35541E00612B83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39535D482B35541E00612B83 /* .swiftlint.yml */; };
+		39535D4D2B35755700612B83 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4C2B35755700612B83 /* ViewProtocol.swift */; };
+		39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */; };
 		3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */; };
 		39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */; };
 		39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE02A52CACB00986E01 /* HealthKitManager.swift */; };
@@ -278,6 +280,8 @@
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
 		39535D482B35541E00612B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		39535D4C2B35755700612B83 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
+		39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldProtocol.swift; sourceTree = "<group>"; };
 		3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRecordType.swift; sourceTree = "<group>"; };
 		39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonType.swift; sourceTree = "<group>"; };
 		39572CE02A52CACB00986E01 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -916,6 +920,8 @@
 			children = (
 				39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */,
 				39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */,
+				39535D4C2B35755700612B83 /* ViewProtocol.swift */,
+				39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1328,6 +1334,7 @@
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */,
 				39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */,
+				39535D4D2B35755700612B83 /* ViewProtocol.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
 				39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */,
@@ -1417,6 +1424,7 @@
 				39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39CC3DBE2AC587BB00C8BC10 /* UseCancellables.swift in Sources */,
+				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,

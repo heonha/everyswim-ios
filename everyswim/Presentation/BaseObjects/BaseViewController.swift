@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, BaseTextFieldProtocol {
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -24,9 +24,9 @@ class BaseViewController: UIViewController {
         view.backgroundColor = .systemBackground
     }
     
-    @objc 
+    @objc
     func textFieldHideKeyboard() {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
 }

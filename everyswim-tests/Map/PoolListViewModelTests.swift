@@ -37,7 +37,7 @@ class PoolListViewModelTests: XCTestCase {
         let expectation = expectation(description: "Fetching regions")
 
         // When
-        sut.requestLocationQuery(queryString: "서울시구로구수영장", displayCount: 5, startCount: 1)
+        sut.findLocation(queryString: "서울시구로구수영장")
         
         // Then
         sut.$pools

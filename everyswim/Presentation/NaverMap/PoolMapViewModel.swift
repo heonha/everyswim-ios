@@ -33,8 +33,7 @@ class PoolMapViewModel {
          networkService: NetworkService = .shared,
          currentRegion: SingleRegion = .init(code: 0, name: "", district: ""),
          currentLocation: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0),
-         regionSearchManager: RegionSearchManager
-    ) {
+         regionSearchManager: RegionSearchManager) {
         
         self.locationManager = locationManager
         self.networkService = networkService
@@ -44,6 +43,7 @@ class PoolMapViewModel {
         getCurrentLocation()
         observeCurrentRegion()
         observeCurrentLocation()
+        
     }
     
     /// 현위치가 바뀌면 장소를 재검색합니다.
@@ -139,6 +139,5 @@ extension PoolMapViewModel {
     func getCurrentLocation() {
         locationManager.requestLocationAuthorization()
     }
-    
     
 }

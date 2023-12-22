@@ -25,11 +25,13 @@ final class KakaoPlacesManager {
         let urlString = "https://dapi.kakao.com/v2/local/search/keyword.json"
         
         let apikey = SecretConstant.kakaoRestAPIKey
+        let sort = "distance"
         
         var parameters: [String: Any] = [
             "query": query,
             "size": countOfPage,
-            "page": numberOfPage
+            "page": numberOfPage,
+            "sort": sort
         ]
         
         if let coordinator = coordinator {

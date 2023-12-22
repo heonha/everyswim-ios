@@ -13,8 +13,14 @@ import CoreLocation
 final class PoolListViewController: BaseViewController, UseCancellables {
     
     var cancellables: Set<AnyCancellable> = .init()
-    private var naverMapViewController: PoolMapViewController?
     
+    private let tableView = UITableView()
+    
+    private let viewModel: PoolMapViewModel
+    
+    private lazy var naverMapViewController = PoolMapViewController(viewModel: viewModel)
+    
+    // MARK: - UI
     private let titleLabel = ViewFactory.label("현재 위치")
         .font(.custom(.sfProMedium, size: 14))
         .textAlignemnt(.center)
@@ -51,11 +57,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         .backgroundColor(AppUIColor.skyBackground)
         .shadow()
         .cornerRadius(8)
-    
-    private let tableView = UITableView()
-    
-    private let viewModel: PoolMapViewModel
-    
+
     // MARK: - Init & LifeCycles
     init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
@@ -160,9 +162,6 @@ final class PoolListViewController: BaseViewController, UseCancellables {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
-                let locationManager = DeviceLocationManager()
-                naverMapViewController = PoolMapViewController(viewModel: viewModel)
-                guard let naverMapViewController = naverMapViewController else {return}
                 naverMapViewController.placeMarker(locations: viewModel.pools)
                 push(naverMapViewController, animated: true)
             }

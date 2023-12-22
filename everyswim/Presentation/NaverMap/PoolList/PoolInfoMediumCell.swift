@@ -23,8 +23,22 @@ final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
         .foregroundColor(.secondaryLabel)
         .textAlignemnt(.left)
     
-    private lazy var labelVStack = ViewFactory.vStack()
-        .addSubviews([titleLabel, addressLabel, UIView.spacer()])
+    private var distanceLabel = ViewFactory
+        .label("--- m")
+        .font(.custom(.sfProLight, size: 14))
+        .foregroundColor(.secondaryLabel)
+        .textAlignemnt(.right)
+    
+    private lazy var topHStack = ViewFactory
+        .hStack()
+        .addSubviews([titleLabel, distanceLabel])
+        .spacing(8)
+        .alignment(.fill)
+        .distribution(.fillProportionally)
+    
+    private lazy var labelVStack = ViewFactory
+        .vStack()
+        .addSubviews([topHStack, addressLabel, UIView.spacer()])
         .alignment(.firstBaseline)
         .distribution(.fillProportionally)
     
@@ -45,6 +59,7 @@ final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
     func configure(data: KakaoPlace) {
         self.titleLabel.text = data.placeName
         self.addressLabel.text = data.roadAddressName
+        self.distanceLabel.text = data.distanceWithUnit()
     }
     
     private func layout() {
@@ -67,6 +82,11 @@ final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
         addressLabel.snp.makeConstraints { make in
             make.height.equalTo(40).priority(.low)
             make.horizontalEdges.equalTo(labelVStack)
+        }
+        
+        distanceLabel.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(titleLabel)
         }
 
     }

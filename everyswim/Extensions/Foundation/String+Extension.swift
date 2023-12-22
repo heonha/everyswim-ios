@@ -50,9 +50,8 @@ extension String {
         return doubleData / 10_000_000
     }
     
-    func toDouble() -> Double {
+    func toDouble() -> Double? {
         return Double(self) ?? 0
     }
-    
     
 }
