@@ -14,10 +14,8 @@ enum ChangeMonthType {
     case decrease
 }
 
-final class DatePickerViewModel: ObservableObject {
-    
-    private var cancellables = Set<AnyCancellable>()
-    
+final class DatePickerViewModel: BaseViewModel {
+        
     private var cellWidth = AppConstant.deviceSize.width / 7.2
     
     // MARK: - 달력 데이터
@@ -47,6 +45,7 @@ final class DatePickerViewModel: ObservableObject {
     // MARK: - Init
     init(healthKitManager: HealthKitManager = HealthKitManager()) {
         hkManager = healthKitManager
+        super.init()
         observeCurrentMonth()
         dayInCarendar = self.extractDayInMonth()
         observeSwimData()

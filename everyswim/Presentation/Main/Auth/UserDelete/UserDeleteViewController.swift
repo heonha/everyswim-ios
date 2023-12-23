@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class UserDeleteViewController: BaseViewController, UseCancellables {
-    var cancellables: Set<AnyCancellable> = .init()
+final class UserDeleteViewController: BaseViewController {
     
     private let viewModel: UserDeleteViewModel
     

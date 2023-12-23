@@ -12,7 +12,6 @@ import Combine
 
 final class PoolMapViewController: BaseViewController {
 
-    private var cancellables: Set<AnyCancellable> = .init()
     private let viewModel: PoolMapViewModel
     private lazy var mapView = NaverMapView(currentLocation: viewModel.targetCurrentLocation)
 

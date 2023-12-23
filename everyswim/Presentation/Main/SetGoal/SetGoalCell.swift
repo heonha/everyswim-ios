@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 import Combine
 
-final class SetGoalCell: UICollectionViewCell, ReuseableObject, UseCancellables {
+final class SetGoalCell: UICollectionViewCell, ReuseableCell {
+    
     var cancellables: Set<AnyCancellable> = .init()
     
     static var reuseId: String = "SetGoalCell"

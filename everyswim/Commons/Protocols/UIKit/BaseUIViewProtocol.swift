@@ -8,6 +8,8 @@
 import Foundation
 
 protocol BaseUIViewProtocol {
+    
     func configure()
     func layout()
+    
 }

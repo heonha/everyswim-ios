@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SetGoalViewModel {
+final class SetGoalViewModel: BaseViewModel {
     
     // Data
     private var userData = UserData.shared
@@ -19,7 +19,8 @@ final class SetGoalViewModel {
     let cellIndex = 0
     let cellCount = 3
     
-    init() {
+    override init() {
+        super.init()
         setData()
     }
     

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RegionListCell: UITableViewCell, ReuseableObject {
+final class RegionListCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "RegionListCell"
     

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
+final class PoolInfoMediumCell: UITableViewCell, ReuseableCell {
     
     // MARK: Properties
     static var reuseId: String = "PoolInfoMediumCell"

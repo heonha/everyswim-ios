@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ActivityDatePicker: UIViewController, UseCancellables {
+final class ActivityDatePicker: UIViewController {
     
     var cancellables: Set<AnyCancellable> = .init()
 

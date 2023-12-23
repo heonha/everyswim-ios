@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LapTableViewCell: UITableViewCell, ReuseableObject {
+class LapTableViewCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "LapTableViewCell"
     

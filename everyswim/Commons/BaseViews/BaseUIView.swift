@@ -32,7 +32,6 @@ class BaseUIView: UIView {
         self.contentView.backgroundColor = .clear
     }
     
-    
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()

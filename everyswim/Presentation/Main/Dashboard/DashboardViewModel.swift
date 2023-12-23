@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class DashboardViewModel: ObservableObject {
+final class DashboardViewModel {
         
     private var cancellables = Set<AnyCancellable>()
     private var authManager = AuthManager.shared

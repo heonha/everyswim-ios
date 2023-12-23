@@ -10,7 +10,7 @@ import SnapKit
 import SDWebImage
 import Combine
 
-class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, UseCancellables {
+class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableCell {
     
     var cancellables: Set<AnyCancellable> = .init()
     
@@ -70,28 +70,28 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableObject, Use
 
     }
     
-    func configure(viewModel: RecommandCollectionProtocol) {
-        let url = URL(string: viewModel.imageUrl)
+    func setData(data: RecommandCollectionProtocol) {
+        let url = URL(string: data.imageUrl)
         let placeholderImage = UIImage(named: "photo")
         self.imageView.sd_setImage(with: url, placeholderImage: placeholderImage)
         
-        if let title = viewModel.title {
+        if let title = data.title {
             self.titleLabel.text = title
         }
         
-        if let subtitle = viewModel.subtitle {
+        if let subtitle = data.subtitle {
             self.subtitleLabel.text = subtitle
         }
         
         self.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                let url = URL.init(string: viewModel.url)!
+                let url = URL.init(string: data.url)!
                 UIApplication.shared.open(url)
             }
             .store(in: &cancellables)
     }
-    
+
 }
 
 #if DEBUG

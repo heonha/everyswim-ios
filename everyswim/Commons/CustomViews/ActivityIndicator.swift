@@ -1,5 +1,5 @@
 //
-//  LoadingIndicator.swift
+//  ActivityIndicatorView.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/17/23.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class LoadingIndicatorView: UIView {
+final class ActivityIndicatorView: UIView {
     
-    let indicator: LoadingIndicator
+    let indicator: ActivityIndicator
     private let contentView = UIView()
     
-    init(indicator: LoadingIndicator, withBackground: Bool) {
+    init(indicator: ActivityIndicator, withBackground: Bool) {
         self.indicator = indicator
         super.init(frame: .zero)
         
@@ -54,33 +54,38 @@ final class LoadingIndicatorView: UIView {
     
 }
 
-final class LoadingIndicator: UIActivityIndicatorView {
+final class ActivityIndicator: UIActivityIndicatorView {
     
     init(style: UIActivityIndicatorView.Style = .medium, color: UIColor) {
         super.init(style: style)
-        configure(color: color)
+        configure()
+        setColor(color: color)
     }
     
     override init(style: UIActivityIndicatorView.Style = .medium) {
         super.init(style: style)
-        self.configure()
+        configure()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure(color: UIColor = AppUIColor.primary) {
-        self.color = color
+    private func configure() {
         self.hidesWhenStopped = true
     }
     
-    func show() {
+    // MARK: - Public
+    public func setColor(color: UIColor = AppUIColor.primary) {
+        self.color = color
+    }
+    
+    public func show() {
         self.isHidden = false
         self.startAnimating()
     }
     
-    func hide() {
+    public func hide() {
         self.isHidden = true
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class MyInfoButtonList: UIView, UseCancellables {
+final class MyInfoButtonList: UIView {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let viewModel: MyInfoViewModel

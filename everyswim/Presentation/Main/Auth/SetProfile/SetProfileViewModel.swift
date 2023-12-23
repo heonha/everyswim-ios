@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-final class SetProfileViewModel: ObservableObject {
+final class SetProfileViewModel: BaseViewModel {
     
     private let fireStore = FireStoreDBService()
     private let firebaseAuth = FirebaseAuthService()
@@ -21,9 +21,9 @@ final class SetProfileViewModel: ObservableObject {
 
     @Published var name: String = ""
     @Published var image: UIImage?
-    @Published var isLoading: Bool = true
     
-    init() {
+    override init() {
+        super.init()
         updateProfileData()
     }
     
@@ -41,7 +41,7 @@ final class SetProfileViewModel: ObservableObject {
             imageView.sd_setImage(with: imageUrl)
             self.image = imageView.image
             self.currentImage = imageView.image
-            self.isLoading = false
+            self.isLoading.send(false)
         }
     }
 
@@ -66,7 +66,7 @@ final class SetProfileViewModel: ObservableObject {
     /// 유저 프로필 데이터 업데이트
     func changeProfile(name: String) async throws {
         print(#function)
-        self.isLoading = true
+        self.isLoading.send(true)
         do {
             guard let uid = AuthManager.shared.getUID() else {
                 throw SetProfileError.uidIsNil()
@@ -100,9 +100,9 @@ final class SetProfileViewModel: ObservableObject {
             print("DEBUG: 유저 프로필을 업데이트합니다.")
             try await fireStore.updateUserProfile(uid: uid, name: name, profileImageUrl: urlString)
             self.authManager.updateCurrentUserProfile()
-            self.isLoading = false
+            self.isLoading.send(false)
         } catch {
-            self.isLoading = false
+            self.isLoading.send(false)
             throw error
         }
     }

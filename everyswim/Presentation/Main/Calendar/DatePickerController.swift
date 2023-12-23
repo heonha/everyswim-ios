@@ -14,7 +14,7 @@ final class DatePickerController: UIViewController {
     private let viewModel: DatePickerViewModel
     private var cancellables: Set<AnyCancellable>
     private var selectedIndexPath: IndexPath?
-    private let loadingIndicator = LoadingIndicator()
+    private let loadingIndicator = ActivityIndicator()
     private var isFirstRun = true
     
     private lazy var pickerHeader = DatePickerHeader(viewModel: viewModel)

@@ -8,9 +8,7 @@
 import Foundation
 import Combine
 
-final class ActivityViewModel: ObservableObject, UseCancellables {
-
-    var cancellables: Set<AnyCancellable> = .init()
+final class ActivityViewModel: BaseViewModel {
     
     private let healthStore = SwimDataStore.shared
     
@@ -43,8 +41,6 @@ final class ActivityViewModel: ObservableObject, UseCancellables {
     @Published var selectedDate: Date = Date()
     
     // MARK: - Pickers Data
-    init() {
-    }
     
     func updateDate() {
         setYearAndMonthsPickerTitle()

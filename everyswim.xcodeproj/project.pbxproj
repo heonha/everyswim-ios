@@ -91,7 +91,6 @@
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
 		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
 		39535D492B35541E00612B83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39535D482B35541E00612B83 /* .swiftlint.yml */; };
-		39535D4D2B35755700612B83 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4C2B35755700612B83 /* ViewProtocol.swift */; };
 		39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */; };
 		3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */; };
 		39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */; };
@@ -123,7 +122,7 @@
 		397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397CC73A2A87792700C5D90D /* DatePickerEventData.swift */; };
 		3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */; };
 		3980FC572AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */; };
-		3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */; };
+		3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */; };
 		3983ED672B088D00000E64CF /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983ED662B088D00000E64CF /* FirebaseStorageService.swift */; };
 		398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398665212AFA492F00BBD7FE /* RecommandSection.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
@@ -169,18 +168,18 @@
 		39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */; };
 		39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */; };
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
+		39B59CD32B370B630078B937 /* BaseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */; };
 		39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */; };
 		39B6E6032B1C8A37009140F8 /* PoolListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */; };
 		39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */; };
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
-		39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */; };
+		39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */; };
 		39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */; };
 		39CC3DB52AC5834700C8BC10 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */; };
 		39CC3DB72AC5851B00C8BC10 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */; };
 		39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */; };
-		39CC3DBE2AC587BB00C8BC10 /* UseCancellables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */; };
 		39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DBF2AC59BD200C8BC10 /* ActivityDetailViewController.swift */; };
 		39CC3DC42AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DC32AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift */; };
 		39D472602AF901E200A153CA /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 39D4725F2AF901E200A153CA /* SDWebImage */; };
@@ -290,7 +289,6 @@
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
 		39535D482B35541E00612B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		39535D4C2B35755700612B83 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldProtocol.swift; sourceTree = "<group>"; };
 		3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRecordType.swift; sourceTree = "<group>"; };
 		39572CDD2A52C6E400986E01 /* MyInfoButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonType.swift; sourceTree = "<group>"; };
@@ -325,7 +323,7 @@
 		397CC73A2A87792700C5D90D /* DatePickerEventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventData.swift; sourceTree = "<group>"; };
 		3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoProfileView.swift; sourceTree = "<group>"; };
 		3980FC562AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerFlowLayout.swift; sourceTree = "<group>"; };
-		3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		3983ED662B088D00000E64CF /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		398665212AFA492F00BBD7FE /* RecommandSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandSection.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* everyswim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = everyswim.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,18 +370,18 @@
 		39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthStateCell.swift; sourceTree = "<group>"; };
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
+		39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerProtocol.swift; sourceTree = "<group>"; };
 		39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationManager.swift; sourceTree = "<group>"; };
 		39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewController.swift; sourceTree = "<group>"; };
 		39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolInfoMediumCell.swift; sourceTree = "<group>"; };
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
-		39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableObject.swift; sourceTree = "<group>"; };
+		39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		39CC3DB42AC5834700C8BC10 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
-		39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCancellables.swift; sourceTree = "<group>"; };
 		39CC3DBF2AC59BD200C8BC10 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		39CC3DC32AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailCenterLabel.swift; sourceTree = "<group>"; };
 		39D472612AF9096000A153CA /* RecommandCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandCollectionViewHeader.swift; sourceTree = "<group>"; };
@@ -451,7 +449,7 @@
 		390848A72B36F53600BDD317 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */,
+				39B59CD52B370D0F0078B937 /* UIKit */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -522,7 +520,7 @@
 			children = (
 				39F599872A9B6B2300738334 /* ViewFactory.swift */,
 				398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */,
-				3980FC582AB6EE1C00E4A8DE /* LoadingIndicator.swift */,
+				3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */,
 				39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */,
 			);
 			path = CustomViews;
@@ -643,14 +641,14 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		39318EAA2AFD04D10089AEC4 /* FirebaseServices */ = {
+		39318EAA2AFD04D10089AEC4 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				392BF3DB2AFE529800ADAE49 /* FirebaseAuthService.swift */,
 				398ED71B2B00B3790068CAD0 /* FireStoreDBService.swift */,
 				3983ED662B088D00000E64CF /* FirebaseStorageService.swift */,
 			);
-			path = FirebaseServices;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		3933514F2AFA576F0014D37A /* Network */ = {
@@ -784,8 +782,6 @@
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
 				398BD2992B189D3C00970E23 /* PoolMap */,
-				39CC3DB82AC5857200C8BC10 /* BaseObjects */,
-				392083CD2A4885FC00E591A8 /* CustomViews */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -793,14 +789,11 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
+				39B59CD42B370BD30078B937 /* Location */,
 				3922D5712A74B1C500257164 /* HealthKit */,
-				39318EAA2AFD04D10089AEC4 /* FirebaseServices */,
+				39318EAA2AFD04D10089AEC4 /* Firebase */,
 				3922D5732A74B1FA00257164 /* AppConstant */,
 				3933514F2AFA576F0014D37A /* Network */,
-				39CC3DAD2AC5490B00C8BC10 /* Protocols */,
-				396CE8522AB568E200EB66BE /* Gesture */,
-				397AB5A82A68204E008015F2 /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -866,6 +859,7 @@
 				3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */,
 				3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */,
 				398B1BB22A483E0C00E0FA9B /* Presentation */,
+				39CC3DB82AC5857200C8BC10 /* Commons */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				39437DA02A48948E00FDA9DA /* Secrets */,
@@ -920,6 +914,54 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		39B59CD42B370BD30078B937 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		39B59CD52B370D0F0078B937 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */,
+				39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */,
+				39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */,
+				39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		39B59CD62B370D510078B937 /* BaseViews */ = {
+			isa = PBXGroup;
+			children = (
+				390848A52B36F40300BDD317 /* BaseUIView.swift */,
+				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
+				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
+				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
+				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
+			);
+			path = BaseViews;
+			sourceTree = "<group>";
+		};
+		39B59CD72B370D630078B937 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */,
+				39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */,
+			);
+			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		39B59CD82B370D6E0078B937 /* BaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
+			);
+			path = BaseModels;
+			sourceTree = "<group>";
+		};
 		39B6E6012B1C8A2C009140F8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,31 +994,18 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		39CC3DAD2AC5490B00C8BC10 /* Protocols */ = {
+		39CC3DB82AC5857200C8BC10 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				39CC3DAE2AC5491800C8BC10 /* ReuseableObject.swift */,
-				39CC3DBD2AC587BB00C8BC10 /* UseCancellables.swift */,
-				39535D4C2B35755700612B83 /* ViewProtocol.swift */,
-				39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		39CC3DB82AC5857200C8BC10 /* BaseObjects */ = {
-			isa = PBXGroup;
-			children = (
+				397AB5A82A68204E008015F2 /* HapticManager.swift */,
+				39B59CD72B370D630078B937 /* BaseVC */,
+				39B59CD62B370D510078B937 /* BaseViews */,
+				39B59CD82B370D6E0078B937 /* BaseModels */,
+				392083CD2A4885FC00E591A8 /* CustomViews */,
+				396CE8522AB568E200EB66BE /* Gesture */,
 				390848A72B36F53600BDD317 /* Protocols */,
-				39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */,
-				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
-				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
-				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
-				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
-				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
-				3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */,
-				390848A52B36F40300BDD317 /* BaseUIView.swift */,
 			);
-			path = BaseObjects;
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		39DBB3252AC6F291003B5213 /* Activity */ = {
@@ -1356,7 +1385,7 @@
 				397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
-				3980FC592AB6EE1C00E4A8DE /* LoadingIndicator.swift in Sources */,
+				3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */,
 				3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */,
 				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
 				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,
@@ -1373,8 +1402,7 @@
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
 				39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */,
-				39CC3DAF2AC5491800C8BC10 /* ReuseableObject.swift in Sources */,
-				39535D4D2B35755700612B83 /* ViewProtocol.swift in Sources */,
+				39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
 				391C12C32A593103001C2286 /* Int+Extension.swift in Sources */,
 				39F599882A9B6B2300738334 /* ViewFactory.swift in Sources */,
@@ -1467,7 +1495,6 @@
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
 				39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
-				39CC3DBE2AC587BB00C8BC10 /* UseCancellables.swift in Sources */,
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
@@ -1478,6 +1505,7 @@
 				39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
+				39B59CD32B370B630078B937 /* BaseViewControllerProtocol.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,
 				3983ED672B088D00000E64CF /* FirebaseStorageService.swift in Sources */,

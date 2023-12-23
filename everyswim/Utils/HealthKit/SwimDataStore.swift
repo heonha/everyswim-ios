@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-final class SwimDataStore: ObservableObject {
+final class SwimDataStore {
     
     static let shared = SwimDataStore()
     

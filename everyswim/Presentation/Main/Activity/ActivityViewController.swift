@@ -9,12 +9,10 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ActivityViewController: UIViewController, UseCancellables {
+final class ActivityViewController: BaseViewController {
     
     private let viewModel: ActivityViewModel
-    
-    var cancellables: Set<AnyCancellable> = .init()
-    
+        
     private let scrollView = BaseScrollView()
     
     private lazy var segmentControl = ActivityTypeSegmentControl(viewModel: viewModel)
@@ -59,7 +57,7 @@ final class ActivityViewController: UIViewController, UseCancellables {
     // MARK: - Initializer
     init(viewModel: ActivityViewModel = .init()) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {

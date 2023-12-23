@@ -10,7 +10,7 @@ import SnapKit
 import Combine
 import SDWebImage
 
-final class MyInfoProfileView: UIView, UseCancellables {
+final class MyInfoProfileView: UIView {
     
     private let viewModel: MyInfoViewModel
     private let parentViewController: MyInfoController

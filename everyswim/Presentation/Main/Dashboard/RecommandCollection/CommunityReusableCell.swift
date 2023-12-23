@@ -10,7 +10,7 @@ import SnapKit
 import SDWebImage
 import Combine
 
-class CommunityReusableCell: UICollectionViewListCell, ReuseableObject, UseCancellables {
+class CommunityReusableCell: UICollectionViewListCell, ReuseableCell {
     
     var cancellables: Set<AnyCancellable> = .init()
     

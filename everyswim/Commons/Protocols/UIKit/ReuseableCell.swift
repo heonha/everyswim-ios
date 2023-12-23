@@ -7,6 +7,8 @@
 
 import Foundation
 
-protocol ReuseableObject {
+protocol ReuseableCell {
+    
     static var reuseId: String { get }
+        
 }

@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class BaseViewController: UIViewController, BaseTextFieldProtocol {
+    
+    var cancellables = Set<AnyCancellable>()
     
     init() {
         super.init(nibName: nil, bundle: nil)

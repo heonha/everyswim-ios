@@ -10,12 +10,10 @@ import SnapKit
 import Combine
 import SDWebImage
 
-final class DashboardViewController: UIViewController, UseCancellables {
+final class DashboardViewController: BaseViewController {
     
     private let viewModel: DashboardViewModel
-    
-    var cancellables: Set<AnyCancellable> = .init()
-        
+            
     // MARK: - Views
     private let scrollView: BaseScrollView = BaseScrollView()
         .showsVerticalScrollIndicator(false)
@@ -62,8 +60,7 @@ final class DashboardViewController: UIViewController, UseCancellables {
     // MARK: - Init & LifeCycles
     init(viewModel: DashboardViewModel? = nil) {
         self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())
-        super.init(nibName: nil, bundle: nil)
-
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -409,7 +406,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             }
 
             let cellViewModel = viewModel.recommandVideos[indexPath.item]
-            cell.configure(viewModel: cellViewModel)
+            cell.setData(data: cellViewModel)
             return cell
         
         // 수영 커뮤니티

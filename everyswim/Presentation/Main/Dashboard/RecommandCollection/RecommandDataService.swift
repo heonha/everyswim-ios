@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class RecommandDataService: UseCancellables {
+final class RecommandDataService {
     
     var cancellables: Set<AnyCancellable> = .init()
     

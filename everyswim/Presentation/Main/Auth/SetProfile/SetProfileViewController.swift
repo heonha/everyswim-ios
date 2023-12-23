@@ -8,19 +8,17 @@ import SnapKit
 import Combine
 import PhotosUI
 
-enum SetProfileViewControllerType {
-    case signUp
-    case changeProfile
-}
-
-final class SetProfileViewController: BaseViewController, UseCancellables {
+final class SetProfileViewController: BaseViewController {
+    
+    enum SetProfileViewControllerType {
+        case signUp
+        case changeProfile
+    }
     
     private let viewModel: SetProfileViewModel
     private let type: SetProfileViewControllerType
     
-    var cancellables: Set<AnyCancellable> = .init()
-    private let loadingIndicator = LoadingIndicatorView(indicator: .init(style: .large, color: .white),
-                                                        withBackground: true)
+    private let loadingIndicator = ActivityIndicatorView(indicator: .init(style: .large, color: .white), withBackground: true)
     
     // MARK: - Views
     private let titleView = MidTitleVStack(title: "프로필 설정",
@@ -85,10 +83,10 @@ final class SetProfileViewController: BaseViewController, UseCancellables {
     
     private func setCurrentProfile() {
         if type == .changeProfile {
-            if !viewModel.isLoading {
+            if !viewModel.isLoading.value {
                 updateProfile()
             } else {
-                viewModel.$isLoading
+                viewModel.isLoading
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] _ in
                         guard let self = self else {return}
@@ -100,7 +98,7 @@ final class SetProfileViewController: BaseViewController, UseCancellables {
     }
     
     private func isLoadingHandler() {
-        viewModel.$isLoading
+        viewModel.isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
                 if isLoading {

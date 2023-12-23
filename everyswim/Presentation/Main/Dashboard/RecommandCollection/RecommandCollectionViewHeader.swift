@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableObject {
+class RecommandCollectionViewHeader: UICollectionReusableView, ReuseableCell {
     
     static var reuseId: String = "RecommandCollectionViewHeader"
     

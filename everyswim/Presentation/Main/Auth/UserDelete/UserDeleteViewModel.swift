@@ -8,12 +8,13 @@
 import Foundation
 import FirebaseAuth
 
-final class UserDeleteViewModel: ObservableObject {
+final class UserDeleteViewModel: BaseViewModel {
 
     private let authManager: AuthManager
     
     init(authManager: AuthManager = .shared) {
         self.authManager = authManager
+        super.init()
     }
     
     func deleteAccount() async throws {

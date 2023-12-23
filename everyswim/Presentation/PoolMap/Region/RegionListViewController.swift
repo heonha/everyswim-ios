@@ -12,9 +12,7 @@ import Combine
 final class RegionListViewController: BaseViewController {
     
     private let viewModel: PoolMapViewModel
-    
-    private var cancellables = Set<AnyCancellable>()
-    
+        
     private let tableView = UITableView()
     
     private let myRegionButton = RegionListCell(style: .default, reuseIdentifier: nil)

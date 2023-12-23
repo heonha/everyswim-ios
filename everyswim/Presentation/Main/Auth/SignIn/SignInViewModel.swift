@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import AuthenticationServices
 
-class SignInViewModel: ObservableObject {
+class SignInViewModel: BaseViewModel {
     
     private let appleSignService: AppleSignInHelper
     private let authManager = AuthManager.shared
@@ -17,6 +17,7 @@ class SignInViewModel: ObservableObject {
     // MARK: - Init
     init(appleSignService: AppleSignInHelper = .init()) {
         self.appleSignService = appleSignService
+        super.init()
     }
     
     // MARK: - SignIn with Apple

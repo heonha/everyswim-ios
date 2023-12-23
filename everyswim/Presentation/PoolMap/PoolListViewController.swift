@@ -10,10 +10,8 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolListViewController: BaseViewController, UseCancellables {
-    
-    var cancellables: Set<AnyCancellable> = .init()
-    
+final class PoolListViewController: BaseViewController {
+        
     private let tableView = UITableView()
     
     private let viewModel: PoolMapViewModel
