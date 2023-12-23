@@ -52,7 +52,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         .setSymbolImage(systemName: "map", color: .label)
         .contentMode(.scaleAspectFit)
     
-    // MARK: - Init & LifeCycles
+    // MARK: - Init
     init(viewModel: PoolMapViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -62,6 +62,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -73,7 +74,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
         layout()
     }
     
-    // MARK: - Configurations
+    // MARK: - configure
     private func configure() {
         configureTableView()
         configureNavigationBar()
@@ -153,7 +154,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
-                naverMapViewController.placeMarker(locations: viewModel.pools)
+                naverMapViewController.placeMarker(from: viewModel.places)
                 push(naverMapViewController, animated: true)
             }
             .store(in: &cancellables)
@@ -180,7 +181,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
     }
     
     private func bindSearchPool() {
-        viewModel.$pools
+        viewModel.$places
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] _ in
@@ -209,7 +210,7 @@ final class PoolListViewController: BaseViewController, UseCancellables {
 extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.pools.count
+        return viewModel.places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -217,7 +218,7 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let location = viewModel.pools[indexPath.row]
+        let location = viewModel.places[indexPath.row]
         cell.configure(data: location)
         
         return cell
@@ -229,9 +230,9 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let coordinator = viewModel.pools[indexPath.row].getCoordinator() else { return }
-        push(naverMapViewController, animated: true)
-        self.naverMapViewController.moveToCoordinator(coordinator)
+        guard let coordinator = viewModel.places[indexPath.row].getCoordinator() else { return }
+        self.push(naverMapViewController, animated: true)
+        self.naverMapViewController.updateCamera(coordinator)
     }
     
 }

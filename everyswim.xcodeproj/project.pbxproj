@@ -11,6 +11,11 @@
 		3905CFE02A9B512700CF4AB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */; };
 		3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */; };
 		3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */; };
+		390848A42B36F38200BDD317 /* NaverMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A32B36F38200BDD317 /* NaverMapView.swift */; };
+		390848A62B36F40300BDD317 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A52B36F40300BDD317 /* BaseUIView.swift */; };
+		390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */; };
+		390848AC2B36FB7500BDD317 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AB2B36FB7500BDD317 /* MapMarker.swift */; };
+		390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AE2B37015200BDD317 /* TestLocationObject.swift */; };
 		390A0B202B25851200F30C80 /* PoolMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */; };
 		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
 		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
@@ -216,6 +221,11 @@
 		3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		390848A32B36F38200BDD317 /* NaverMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapView.swift; sourceTree = "<group>"; };
+		390848A52B36F40300BDD317 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewProtocol.swift; sourceTree = "<group>"; };
+		390848AB2B36FB7500BDD317 /* MapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
+		390848AE2B37015200BDD317 /* TestLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationObject.swift; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
 		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -438,6 +448,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390848A72B36F53600BDD317 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		390848AA2B36FB6B00BDD317 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				390848AB2B36FB7500BDD317 /* MapMarker.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		390848AD2B37013800BDD317 /* TestObject */ = {
+			isa = PBXGroup;
+			children = (
+				390848AE2B37015200BDD317 /* TestLocationObject.swift */,
+			);
+			path = TestObject;
+			sourceTree = "<group>";
+		};
 		390A0B1E2B2584AF00F30C80 /* Region */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +869,7 @@
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				39437DA02A48948E00FDA9DA /* Secrets */,
+				390848AD2B37013800BDD317 /* TestObject */,
 				398B1BC92A484D5500E0FA9B /* Resources */,
 				391C12BD2A592A0F001C2286 /* Debug */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
@@ -888,6 +923,8 @@
 		39B6E6012B1C8A2C009140F8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				390848A32B36F38200BDD317 /* NaverMapView.swift */,
+				390848AA2B36FB6B00BDD317 /* Protocols */,
 				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
 				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
 			);
@@ -929,6 +966,7 @@
 		39CC3DB82AC5857200C8BC10 /* BaseObjects */ = {
 			isa = PBXGroup;
 			children = (
+				390848A72B36F53600BDD317 /* Protocols */,
 				39CC3DB62AC5851B00C8BC10 /* RootNavigationViewController.swift */,
 				39A111FE2AB2FDA900D57FB4 /* BaseViewModel.swift */,
 				396CE8572AB56C8B00EB66BE /* BaseScrollView.swift */,
@@ -936,6 +974,7 @@
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
 				3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */,
+				390848A52B36F40300BDD317 /* BaseUIView.swift */,
 			);
 			path = BaseObjects;
 			sourceTree = "<group>";
@@ -1308,6 +1347,7 @@
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
 				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
+				390848AC2B36FB7500BDD317 /* MapMarker.swift in Sources */,
 				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
@@ -1350,7 +1390,9 @@
 				39CC3DC42AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
+				390848A62B36F40300BDD317 /* BaseUIView.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
+				390848A42B36F38200BDD317 /* NaverMapView.swift in Sources */,
 				390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */,
 				399732282B302FDD008B5C11 /* KakaoPlacesManager.swift in Sources */,
 				398DFB3E2AA982CA00BDEB8E /* ChallangeCell.swift in Sources */,
@@ -1370,6 +1412,7 @@
 				39D472622AF9096000A153CA /* RecommandCollectionViewHeader.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				39CC3DB72AC5851B00C8BC10 /* RootNavigationViewController.swift in Sources */,
+				390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				393F88482B24BFBA00C67FAA /* RegionSearchManager.swift in Sources */,
 				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
@@ -1400,6 +1443,7 @@
 				390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */,
+				390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */,
 				39B377482AD2B27E00F37C27 /* IsHidden.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,

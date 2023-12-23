@@ -16,17 +16,17 @@ struct KakaoPlaceResponse: Codable {
     }
 }
 
-struct KakaoPlace: Codable {
+struct KakaoPlace: Codable, MapMarkerModel {
     let id: String
-    let placeName: String
+    var placeName: String
     let categoryName: String
     let categoryGroupCode: String
     let categoryGroupName: String
     let phone: String
     let addressName: String
     let roadAddressName: String
-    let x: String
-    let y: String
+    var x: String
+    var y: String
     let placeURL: String
     let distance: String?
     

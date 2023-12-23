@@ -14,9 +14,7 @@ final class PoolMapViewController: BaseViewController {
 
     private var cancellables: Set<AnyCancellable> = .init()
     private let viewModel: PoolMapViewModel
-    
-    private lazy var mapView = NMFNaverMapView(frame: view.frame)
-    private var markers = [NMFMarker]()
+    private lazy var mapView = NaverMapView(currentLocation: viewModel.targetCurrentLocation)
 
     // MARK: - Init
     init(viewModel: PoolMapViewModel) {
@@ -33,6 +31,7 @@ final class PoolMapViewController: BaseViewController {
         super.viewDidLoad()
         configure()
         getLocation()
+        bind()
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,25 +39,9 @@ final class PoolMapViewController: BaseViewController {
         layout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        bindSearchPool()
-    }
-
     // MARK: - Configure
     private func configure() {
         setNaviagationTitle(title: "수영장 찾기")
-        configureNMapAuth()
-        configureNMapView()
-    }
-    
-    private func configureNMapAuth() {
-        NMFAuthManager.shared().delegate = self
-    }
-    
-    private func configureNMapView() {
-        mapView.showLocationButton = true
-        mapView.showScaleBar = false
     }
     
     // MARK: - Layout
@@ -73,77 +56,46 @@ final class PoolMapViewController: BaseViewController {
         }
     }
     
-    // MARK: - Helpers
-    private func getLocation() {
-        viewModel.getCurrentLocation()
+    // MARK: - Bind
+    private func bind() {
+        bindUpdateCameraToGPSLocation()
+        bindUpdateMapMarker()
     }
     
-    private func moveCurrentLocation() {
+    /// 유저 위치로 카메라 이동 (1회)
+    private func bindUpdateCameraToGPSLocation() {
         viewModel.$targetCurrentLocation
             .receive(on: DispatchQueue.main)
             .filter { $0.latitude != CGFloat(0) && $0.longitude != CGFloat(0) }
             .prefix(1)
             .sink { [weak self] location in
-                self?.moveToCoordinator(location)
+                self?.mapView.updateCamera(location)
             }
             .store(in: &cancellables)
-    }
-    
-    public func moveToCoordinator(_ location: CLLocationCoordinate2D) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let mapView = self.mapView.mapView
-            let naverMapLocation = NMGLatLng(lat: location.latitude, lng: location.longitude)
-            let cameraUpdate = NMFCameraUpdate(scrollTo: naverMapLocation)
-            cameraUpdate.animation = .easeIn
-            mapView.moveCamera(cameraUpdate)
-            mapView.positionMode = .normal
-        }
-    }
-    
-    /// 지도에 마커 추가하기.
-    public func placeMarker(locations: [KakaoPlace]) {
-        markers.removeAll()
-        locations.forEach { place in
-            if let lat = place.y.toDouble(),
-               let lon = place.x.toDouble() {
-                let marker = setMarkerOnMap(title: place.placeName, lat: lat, lon: lon)
-                marker.mapView = mapView.mapView
-                self.markers.append(marker)
-            }
-        }
     }
     
     /// 수영장 ViewModel이 변경 될 때마다 업데이트
-    private func bindSearchPool() {
-        viewModel.$pools
+    private func bindUpdateMapMarker() {
+        viewModel.$places
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] pools in
-                guard let self = self else { return }
-                placeMarker(locations: pools)
+                self?.mapView.placeMarker(locations: pools)
             }
             .store(in: &cancellables)
     }
     
-    /// `Map Marker` 추가 메소드
-    func setMarkerOnMap(title: String, lat: CGFloat, lon: CGFloat) -> NMFMarker {
-        let marker = NMFMarker()
-        marker.position = NMGLatLng(lat: lat, lng: lon)
-        marker.captionText = title
-        print("DEBUG_MARKER: title - \(title), Position- \(marker.position)")
-        
-        let image = UIImage.init(named: "swim-maker")!
-        let makerImage = NMFOverlayImage(image: image, reuseIdentifier: "swim-maker")
-        marker.iconImage = makerImage
-        marker.width = 40
-        marker.height = 50
-        
-        marker.iconPerspectiveEnabled = true
-        marker.isHideCollidedSymbols = true
-        marker.isHideCollidedMarkers = true
-        
-        marker.iconTintColor = UIColor.blue
-        return marker
+    // MARK: - ETC Methods
+    private func getLocation() {
+        viewModel.getCurrentLocation()
+    }
+    
+    public func placeMarker(from locations: [MapMarkerModel]) {
+        mapView.placeMarker(locations: locations)
+    }
+    
+    public func updateCamera(_ location: CLLocationCoordinate2D) {
+        mapView.updateCamera(location)
     }
     
 }

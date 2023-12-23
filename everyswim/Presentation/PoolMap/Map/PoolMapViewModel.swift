@@ -24,15 +24,22 @@ class PoolMapViewModel {
         return regionSearchManager.regionsSubject
     }
     
-    /// 타 지역 검색 시 true 현지역인 경우 false
-    @Published var customLoationMode = false
-    
     /// 현재 지역 (GPS 기준)
     private var currentLocation: CLLocationCoordinate2D?
+
+    /// 현위치 기준모드인지 확인
+    /// - 타 지역 검색 시 true
+    /// - 현 GPS 지역인 경우 false
+    @Published var customLoationMode = false
     
+    /// targetCurrentLocation데이터를 기준으로 변환된 지역객체.
     @Published var currentRegion: SingleRegion
+    
+    /// 검색기준 Location
     @Published var targetCurrentLocation: CLLocationCoordinate2D
-    @Published var pools: [KakaoPlace] = []
+    
+    /// 위치 검색결과
+    @Published var places: [KakaoPlace] = []
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
@@ -47,10 +54,15 @@ class PoolMapViewModel {
         self.currentLocation = currentLocation
         self.targetCurrentLocation = currentLocation
         self.regionSearchManager = regionSearchManager
+        
         getCurrentLocation()
+        observe()
+    }
+    
+    // MARK: - Observe
+    private func observe() {
         observeCurrentRegion()
         observeCurrentLocation()
-        
     }
     
     /// 현위치가 바뀌면 장소를 재검색합니다.
@@ -124,9 +136,9 @@ class PoolMapViewModel {
             ) { [weak self] result in
                 switch result {
                 case .success(let places):
-                    self?.pools = places
+                    self?.places = places
                 case .failure(let error):
-                    self?.pools = []
+                    self?.places = []
                     print("ERROR\(error)")
                 }
             }
@@ -145,6 +157,7 @@ class PoolMapViewModel {
         }
     }
 
+    /// "시 / 도" 이름을 코드로 변환합니다.
     public func cityNameToCode(city: String) -> Int {
         regionSearchManager.cityNameToCode(city: city)
     }

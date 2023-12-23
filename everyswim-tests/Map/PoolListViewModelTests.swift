@@ -40,7 +40,7 @@ class PoolListViewModelTests: XCTestCase {
         sut.findLocation(queryString: "서울시구로구수영장")
         
         // Then
-        sut.$pools
+        sut.$places
             .receive(on: DispatchQueue.global())
             .filter { !$0.isEmpty }
             .sink { locations in
