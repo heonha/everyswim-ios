@@ -10,16 +10,17 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolListViewController: BaseViewController {
+final class PoolListViewController: BaseViewController, MessageObservable {
         
     private let tableView = UITableView()
     
-    private let viewModel: PoolMapViewModel
+    var viewModel: PoolMapViewModel
     
     private lazy var naverMapViewController = PoolMapViewController(viewModel: viewModel)
         
     // MARK: StackViews
-    private lazy var locationVStack = ViewFactory.vStack()
+    private lazy var locationVStack = ViewFactory
+        .vStack()
         .addSubviews([titleLabel, currentLocationLabel, searchLocationLabel])
         .alignment(.center)
         .distribution(.fillEqually)
@@ -65,10 +66,6 @@ final class PoolListViewController: BaseViewController {
         super.viewDidLoad()
         configure()
         bind()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         layout()
     }
     
@@ -145,6 +142,7 @@ final class PoolListViewController: BaseViewController {
         bindPushNaverMapView()
         bindSearchPool()
         bindTouchGestures()
+        observeMessage(viewModel: viewModel)
     }
 
     private func bindPushNaverMapView() {
@@ -185,6 +183,18 @@ final class PoolListViewController: BaseViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func observeMessage<T: BaseViewModel>(viewModel: T) {
+        viewModel.isPresentMessage
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                presentMessage(title: viewModel.presentMessage.value)
+                viewModel.isPresentMessage.send(false)
             }
             .store(in: &cancellables)
     }

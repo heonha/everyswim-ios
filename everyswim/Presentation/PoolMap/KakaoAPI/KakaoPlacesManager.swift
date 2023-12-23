@@ -54,7 +54,6 @@ final class KakaoPlacesManager {
         .map(\.places)
         .map { $0.filter { $0.categoryName.contains("수영장")} }
         .receive(on: DispatchQueue.global())
-        .timeout(20, scheduler: DispatchQueue.global())
         .sink(receiveCompletion: { result in
             switch result {
             case .finished:

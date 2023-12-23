@@ -10,12 +10,11 @@ import SwiftUI
 import SnapKit
 import Combine
 
-final class MyInfoController: UIViewController {
+final class MyInfoController: BaseViewController {
 
     private let viewModel = MyInfoViewModel()
     private let scrollView = BaseScrollView()
     private let bottomSpacer = UIView.spacer()
-    private var cancellables = Set<AnyCancellable>()
     
     private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
     private lazy var profileView = MyInfoProfileView(viewModel: viewModel, target: self)
@@ -23,10 +22,14 @@ final class MyInfoController: UIViewController {
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
     // MARK: INIT & Lifecycles
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configure()
         layout()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         hideNavigationBar(false)
     }
     
@@ -122,7 +125,7 @@ final class MyInfoController: UIViewController {
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                print("Health Refresh")
+                self.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
             }
             .store(in: &cancellables)
         

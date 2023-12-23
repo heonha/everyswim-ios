@@ -170,6 +170,8 @@
 		39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A82AB5C2C700915C3D /* AppImage.swift */; };
 		39B59CD32B370B630078B937 /* BaseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */; };
 		39B59CDA2B3718180078B937 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CD92B3718180078B937 /* ActivityView.swift */; };
+		39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDB2B372F5F0078B937 /* MessageView.swift */; };
+		39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDD2B373BF20078B937 /* MessageObservable.swift */; };
 		39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */; };
 		39B6E6032B1C8A37009140F8 /* PoolListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */; };
 		39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */; };
@@ -373,6 +375,8 @@
 		39B437A82AB5C2C700915C3D /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerProtocol.swift; sourceTree = "<group>"; };
 		39B59CD92B3718180078B937 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		39B59CDB2B372F5F0078B937 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		39B59CDD2B373BF20078B937 /* MessageObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageObservable.swift; sourceTree = "<group>"; };
 		39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationManager.swift; sourceTree = "<group>"; };
 		39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewController.swift; sourceTree = "<group>"; };
 		39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolInfoMediumCell.swift; sourceTree = "<group>"; };
@@ -452,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				39B59CD52B370D0F0078B937 /* UIKit */,
+				39B59CDD2B373BF20078B937 /* MessageObservable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				398DFB3F2AA9D06300BDEB8E /* UICellBackground.swift */,
 				3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */,
 				39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */,
+				39B59CDB2B372F5F0078B937 /* MessageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
+				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
 				39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */,
 				39B6E6012B1C8A2C009140F8 /* Map */,
 				390A0B1E2B2584AF00F30C80 /* Region */,
@@ -969,7 +976,6 @@
 			children = (
 				390848AA2B36FB6B00BDD317 /* Protocols */,
 				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
-				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
 				390848A32B36F38200BDD317 /* NaverMapView.swift */,
 			);
 			path = Map;
@@ -1437,6 +1443,7 @@
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				39B0C39C2AAC7DCF004E0985 /* VideoCollectionData.swift in Sources */,
+				39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */,
 				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
 				39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */,
 				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
@@ -1498,6 +1505,7 @@
 				39DBB3202AC6E899003B5213 /* ActivityDetailCenterDataView.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
 				39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */,
+				39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */,

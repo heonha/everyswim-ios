@@ -9,13 +9,12 @@ import Foundation
 import CoreLocation
 import Combine
 
-class PoolMapViewModel {
+class PoolMapViewModel: BaseViewModel {
     
     let locationManager: DeviceLocationManager
     private let regionSearchManager: RegionSearchManager
     private let kakaoLocationManager = KakaoPlacesManager()
 
-    private var cancellables = Set<AnyCancellable>()
     private let networkService: NetworkService
     
     @Published var searchText: String = ""
@@ -54,7 +53,7 @@ class PoolMapViewModel {
         self.currentLocation = currentLocation
         self.targetCurrentLocation = currentLocation
         self.regionSearchManager = regionSearchManager
-        
+        super.init()
         getCurrentLocation()
         observe()
     }
@@ -104,9 +103,9 @@ class PoolMapViewModel {
             
             if isHasGu {
                 let simpleCityName = regionSearchManager.replaceSimpleCityName(city: currentRegion.name)
-                query = "\(simpleCityName)\(district)"
+                query = "\(simpleCityName)\(district)수영장"
             } else {
-                query = "\(district)"
+                query = "\(district)수영장"
             }
         }
         return query
@@ -127,7 +126,7 @@ class PoolMapViewModel {
                 case .success(let places):
                     self?.places = places
                 case .failure(let error):
-                    // TODO: 에러 문구 띄우기
+                    self?.sendMessage(message: error.localizedDescription)
                     self?.places = []
                 }
             }

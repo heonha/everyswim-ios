@@ -74,6 +74,8 @@ final class NetworkService: RestProtocol {
             
             tryDataTaskPublisher(request: request)
                 .decode(type: T.self, decoder: JSONDecoder())
+                .timeout(10, scheduler: DispatchQueue.global())
+                .retry(2)
                 .receive(on: DispatchQueue.global())
                 .sink(receiveCompletion: { (completion) in
                     if case let .failure(error) = completion {

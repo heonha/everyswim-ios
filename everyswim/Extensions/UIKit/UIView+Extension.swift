@@ -107,6 +107,11 @@ extension UIView {
         return self as! T
     }
     
+    public func isHidden<T: UIView>(_ isHidden: Bool) -> T {
+        self.isHidden = isHidden
+        return self as! T
+    }
+    
 }
 
 extension UIView {
