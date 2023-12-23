@@ -923,10 +923,10 @@
 		39B6E6012B1C8A2C009140F8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				390848A32B36F38200BDD317 /* NaverMapView.swift */,
 				390848AA2B36FB6B00BDD317 /* Protocols */,
 				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
 				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
+				390848A32B36F38200BDD317 /* NaverMapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";

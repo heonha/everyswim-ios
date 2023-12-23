@@ -90,7 +90,7 @@ final class PoolMapViewController: BaseViewController {
         viewModel.getCurrentLocation()
     }
     
-    public func placeMarker(from locations: [MapMarkerModel]) {
+    public func placeMarker(from locations: [MapPlace]) {
         mapView.placeMarker(locations: locations)
     }
     

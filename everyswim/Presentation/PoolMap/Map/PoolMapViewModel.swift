@@ -27,7 +27,7 @@ class PoolMapViewModel {
     /// 현재 지역 (GPS 기준)
     private var currentLocation: CLLocationCoordinate2D?
 
-    /// 현위치 기준모드인지 확인
+    /// `현위치 기준모드인지 확인`
     /// - 타 지역 검색 시 true
     /// - 현 GPS 지역인 경우 false
     @Published var customLoationMode = false
@@ -39,7 +39,7 @@ class PoolMapViewModel {
     @Published var targetCurrentLocation: CLLocationCoordinate2D
     
     /// 위치 검색결과
-    @Published var places: [KakaoPlace] = []
+    @Published var places: [MapPlace] = []
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
@@ -115,22 +115,26 @@ class PoolMapViewModel {
         }
     }
     
-    /// `KakaoAPI` 키워드 장소 검색을 요청합니다.
-    func findLocation(queryString: String? = nil, displayCount: Int = 15, startCount: Int = 1) {
-        var queryString = queryString
-        if queryString == nil {
+    private func buildQueryString(from query: String) -> String {
+        var query = query
+        if query.isEmpty {
             if isHasGu(cityCode: currentRegion.code) {
-                queryString = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
+                query = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
             } else {
-                queryString = "\(currentRegion.district)수영장"
+                query = "\(currentRegion.district)수영장"
             }
         }
-        guard let queryString = queryString else { return }
-        
+        return query
+    }
+    
+    /// `KakaoAPI` 키워드 장소 검색을 요청합니다.
+    func findLocation(query: String = "", startCount: Int = 1) {
+
+        let queryString = buildQueryString(from: query)
+
         kakaoLocationManager
             .findPlaceFromKeyword(query: queryString,
                                   numberOfPage: startCount,
-                                  countOfPage: displayCount,
                                   coordinator: targetCurrentLocation,
                                   sort: customLoationMode ? .accuracy : .distance
             ) { [weak self] result in
@@ -139,7 +143,6 @@ class PoolMapViewModel {
                     self?.places = places
                 case .failure(let error):
                     self?.places = []
-                    print("ERROR\(error)")
                 }
             }
         

@@ -99,7 +99,7 @@ final class PoolInfoMediumCell: UITableViewCell, ReuseableObject {
     }
     
     // MARK: - Configure
-    func configure(data: KakaoPlace) {
+    func configure(data: MapPlace) {
         self.titleLabel.text = data.placeName
         self.distanceLabel.text = data.distanceWithUnit()
         

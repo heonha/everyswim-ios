@@ -219,7 +219,7 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let location = viewModel.places[indexPath.row]
-        cell.configure(data: location)
+        cell.configure(data: location as! KakaoPlace)
         
         return cell
     }

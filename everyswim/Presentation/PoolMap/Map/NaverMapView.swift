@@ -81,7 +81,7 @@ final class NaverMapView: BaseUIView, BaseUIViewProtocol {
     }
     
     /// 지도 마커 업데이트.
-    public func placeMarker(locations: [MapMarkerModel]) {
+    public func placeMarker(locations: [MapPlace]) {
         self.markers.removeAll()
         locations.forEach { place in
             if let lat = place.y.toDouble(),
