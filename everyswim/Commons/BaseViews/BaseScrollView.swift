@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class BaseScrollView: UIScrollView {
+class BaseScrollView: UIScrollView {
     
     var contentView: UIView
     private var inset: UIEdgeInsets

@@ -8,12 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    
-    convenience init(backgroundColor: UIColor) {
-        self.init()
-        self.view.backgroundColor = backgroundColor
-    }
-    
+
     // MARK: - Naviagtion VC
     func push(_ viewController: UIViewController, animated: Bool) {
         self.navigationController?.pushViewController(viewController, animated: animated)

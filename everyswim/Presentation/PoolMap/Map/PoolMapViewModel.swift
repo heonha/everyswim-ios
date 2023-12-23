@@ -88,40 +88,25 @@ class PoolMapViewModel {
             })
             .store(in: &cancellables)
     }
-    
-    func replaceSimpleCityName(city: String) -> String {
-        let city = city
-            .replacingOccurrences(of: "특별시", with: "시", options: .regularExpression, range: nil)
-            .replacingOccurrences(of: "광역시", with: "시", options: .regularExpression, range: nil)
-            .replacingOccurrences(of: "특별자치도", with: "시", options: .regularExpression, range: nil)
-            .replacingOccurrences(of: "특례시", with: "시", options: .regularExpression, range: nil)
-        
-        return city
-    }
-    
+
     /// `현 위치`로 리셋
     public func resetCurrentLocation() {
         guard let currentLocation = currentLocation else { return}
         self.targetCurrentLocation = currentLocation
         self.customLoationMode = false
     }
-    
-    /// `구가 있는 도시` 인지 확인
-    private func isHasGu(cityCode: Int) -> Bool {
-        if cityCode < 29 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
+
     private func buildQueryString(from query: String) -> String {
         var query = query
         if query.isEmpty {
-            if isHasGu(cityCode: currentRegion.code) {
-                query = "\(replaceSimpleCityName(city: currentRegion.name))\(currentRegion.district)수영장"
+            let isHasGu = regionSearchManager.isHasGu(cityCode: currentRegion.code)
+            let district = currentRegion.district
+            
+            if isHasGu {
+                let simpleCityName = regionSearchManager.replaceSimpleCityName(city: currentRegion.name)
+                query = "\(simpleCityName)\(district)"
             } else {
-                query = "\(currentRegion.district)수영장"
+                query = "\(district)"
             }
         }
         return query
@@ -142,6 +127,7 @@ class PoolMapViewModel {
                 case .success(let places):
                     self?.places = places
                 case .failure(let error):
+                    // TODO: 에러 문구 띄우기
                     self?.places = []
                 }
             }

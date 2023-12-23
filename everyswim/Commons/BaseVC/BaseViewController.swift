@@ -8,13 +8,13 @@
 import UIKit
 import Combine
 
-class BaseViewController: UIViewController, BaseTextFieldProtocol {
+class BaseViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(backgroundColor: UIColor = .systemBackground) {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = backgroundColor
     }
     
     required init?(coder: NSCoder) {

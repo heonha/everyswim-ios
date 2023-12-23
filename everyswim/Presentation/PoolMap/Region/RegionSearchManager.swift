@@ -153,4 +153,24 @@ class RegionSearchManager {
     enum RegionSearchError: Error {
         case responseIsNil
     }
+    
+    /// `구가 있는 도시` 인지 확인
+    public func isHasGu(cityCode: Int) -> Bool {
+        if cityCode < 29 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func replaceSimpleCityName(city: String) -> String {        
+        let city = city
+            .replacingOccurrences(of: "특별시", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "광역시", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "특별자치도", with: "시", options: .regularExpression, range: nil)
+            .replacingOccurrences(of: "특례시", with: "시", options: .regularExpression, range: nil)
+        
+        return city
+    }
+    
 }
