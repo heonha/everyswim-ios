@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PoolInfoMediumCell: UITableViewCell, ReuseableCell {
+final class PoolMediumCell: UITableViewCell, ReuseableCell {
     
     // MARK: Properties
     static var reuseId: String = "PoolInfoMediumCell"
@@ -113,7 +113,7 @@ final class PoolInfoMediumCell: UITableViewCell, ReuseableCell {
 }
 
 // MARK: - Test Stub
-extension PoolInfoMediumCell {
+extension PoolMediumCell {
 #if targetEnvironment(simulator)
 
     func configureForUITest(name: String, address: String, distnace: String) {
@@ -131,9 +131,9 @@ import SwiftUI
 
 struct PoolMediumCell_Previews: PreviewProvider {
     
-    static let view = PoolInfoMediumCell()
-    static let view2 = PoolInfoMediumCell()
-    static let view3 = PoolInfoMediumCell()
+    static let view = PoolMediumCell()
+    static let view2 = PoolMediumCell()
+    static let view3 = PoolMediumCell()
 
     static var previews: some View {
         

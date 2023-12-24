@@ -12,7 +12,7 @@ import Combine
 
 class PoolListViewModelTests: XCTestCase {
     
-    var sut: PoolMapViewModel!
+    var sut: PoolViewModel!
     var regionSearchManager: RegionSearchManager!
     var locationManager: DeviceLocationManager!
     var cancellables: Set<AnyCancellable>!
@@ -21,7 +21,7 @@ class PoolListViewModelTests: XCTestCase {
         super.setUp()
         locationManager = .init()
         regionSearchManager = .init()
-        sut = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
+        sut = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
         cancellables = Set<AnyCancellable>()
     }
     

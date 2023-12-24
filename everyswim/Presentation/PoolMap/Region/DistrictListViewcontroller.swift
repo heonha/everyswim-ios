@@ -15,10 +15,10 @@ final class DistrictListViewcontroller: BaseViewController {
     private let tableView = UITableView()
 
     private let region: KrRegions
-    private let viewModel: PoolMapViewModel
+    private let viewModel: PoolViewModel
 
     // MARK: - Init & Lifecycles
-    init(region: KrRegions, viewModel: PoolMapViewModel) {
+    init(region: KrRegions, viewModel: PoolViewModel) {
         self.region = region
         self.viewModel = viewModel
         super.init()
@@ -103,7 +103,7 @@ import SwiftUI
 struct DistrictListViewcontroller_Previews: PreviewProvider {
     
     static let viewController = DistrictListViewcontroller(region: region, viewModel: viewModel)
-    static let viewModel = PoolMapViewModel(locationManager: .init(),
+    static let viewModel = PoolViewModel(locationManager: .init(),
                                              regionSearchManager: .init())
     static let region = KrRegions(code: "0", name: "서울시", districts: ["구로구", "강남구", "강서구"])
     

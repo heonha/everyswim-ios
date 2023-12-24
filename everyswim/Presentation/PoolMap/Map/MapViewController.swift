@@ -1,5 +1,5 @@
 //
-//  PoolMapViewController.swift
+//  MapViewController.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 11/30/23.
@@ -10,13 +10,13 @@ import SnapKit
 import NMapsMap
 import Combine
 
-final class PoolMapViewController: BaseViewController {
+final class MapViewController: BaseViewController {
 
-    private let viewModel: PoolMapViewModel
+    private let viewModel: PoolViewModel
     private lazy var mapView = NaverMapView(currentLocation: viewModel.targetCurrentLocation)
 
     // MARK: - Init
-    init(viewModel: PoolMapViewModel) {
+    init(viewModel: PoolViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -100,7 +100,7 @@ final class PoolMapViewController: BaseViewController {
 }
 
 // MARK: - MapView Auth Delegate
-extension PoolMapViewController: NMFAuthManagerDelegate {
+extension MapViewController: NMFAuthManagerDelegate {
     
     func authorized(_ state: NMFAuthState, error: Error?) {
         if let error = error {
@@ -118,9 +118,9 @@ import SwiftUI
 
 struct MapViewController_Previews: PreviewProvider {
     
-    static let viewController = PoolMapViewController(viewModel: viewModel)
+    static let viewController = MapViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: .init())
+    static let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {

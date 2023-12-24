@@ -169,8 +169,8 @@ final class MyInfoButtonList: BaseUIView {
     private func buttonSearchForPool() {
         let regionSearchManager = RegionSearchManager()
         let locationManager = DeviceLocationManager()
-        let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
-        let vc = PoolListViewController(viewModel: viewModel)
+        let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
+        let vc = PoolSearchViewController(viewModel: viewModel)
         self.parentVC?.push(vc, animated: true)
     }
 

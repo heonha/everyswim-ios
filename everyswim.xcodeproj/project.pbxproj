@@ -16,7 +16,7 @@
 		390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */; };
 		390848AC2B36FB7500BDD317 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AB2B36FB7500BDD317 /* MapMarker.swift */; };
 		390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AE2B37015200BDD317 /* TestLocationObject.swift */; };
-		390A0B202B25851200F30C80 /* PoolMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */; };
+		390A0B202B25851200F30C80 /* PoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolViewModel.swift */; };
 		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
 		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
 		390C618D2AF3AD1A0061E6D4 /* SetGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */; };
@@ -109,7 +109,7 @@
 		396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */; };
 		396D2ACA2A56C8E50042D4D4 /* SwimMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2AC92A56C8E50042D4D4 /* SwimMainData.swift */; };
 		396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */; };
-		396D93A22B18A7CF0013060E /* PoolMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* PoolMapViewController.swift */; };
+		396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396D93A12B18A7CF0013060E /* MapViewController.swift */; };
 		39700A6A2B25EB72009D9C3D /* RegionAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A692B25EB72009D9C3D /* RegionAPIResponse.swift */; };
 		39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */; };
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
@@ -173,8 +173,8 @@
 		39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDB2B372F5F0078B937 /* MessageView.swift */; };
 		39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDD2B373BF20078B937 /* MessageObservable.swift */; };
 		39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */; };
-		39B6E6032B1C8A37009140F8 /* PoolListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */; };
-		39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */; };
+		39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */; };
+		39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */; };
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
@@ -229,7 +229,7 @@
 		390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewProtocol.swift; sourceTree = "<group>"; };
 		390848AB2B36FB7500BDD317 /* MapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
 		390848AE2B37015200BDD317 /* TestLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationObject.swift; sourceTree = "<group>"; };
-		390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewModel.swift; sourceTree = "<group>"; };
+		390A0B1F2B25851200F30C80 /* PoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
 		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
 		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 		396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		396D93982B18A6CD0013060E /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		396D939C2B18A6D70013060E /* NMapsGeometry.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsGeometry.xcframework; path = Pods/NMapsGeometry/framework/NMapsGeometry.xcframework; sourceTree = "<group>"; };
-		396D93A12B18A7CF0013060E /* PoolMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMapViewController.swift; sourceTree = "<group>"; };
+		396D93A12B18A7CF0013060E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39700A692B25EB72009D9C3D /* RegionAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionAPIResponse.swift; sourceTree = "<group>"; };
 		39700A6B2B25EBD7009D9C3D /* RegionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListViewController.swift; sourceTree = "<group>"; };
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
@@ -379,8 +379,8 @@
 		39B59CDB2B372F5F0078B937 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		39B59CDD2B373BF20078B937 /* MessageObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageObservable.swift; sourceTree = "<group>"; };
 		39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationManager.swift; sourceTree = "<group>"; };
-		39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewController.swift; sourceTree = "<group>"; };
-		39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolInfoMediumCell.swift; sourceTree = "<group>"; };
+		39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchViewController.swift; sourceTree = "<group>"; };
+		39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMediumCell.swift; sourceTree = "<group>"; };
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
@@ -459,14 +459,6 @@
 			children = (
 				39B59CD52B370D0F0078B937 /* UIKit */,
 				39B59CDD2B373BF20078B937 /* MessageObservable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		390848AA2B36FB6B00BDD317 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				390848AB2B36FB7500BDD317 /* MapMarker.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -553,12 +545,6 @@
 			isa = PBXGroup;
 			children = (
 				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
-				3922D56E2A74B0DA00257164 /* Dashboard */,
-				396088502A8F6E5E00FF2289 /* Calendar */,
-				392083BE2A485BA800E591A8 /* MyInfo */,
-				39318E822AFCEFEC0089AEC4 /* Auth */,
-				390C61892AF3A9950061E6D4 /* SetGoal */,
-				39DBB3252AC6F291003B5213 /* Activity */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -639,7 +625,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		39318E822AFCEFEC0089AEC4 /* Auth */ = {
+		39318E822AFCEFEC0089AEC4 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
 				39FADBE32B0A1CFD00C90B19 /* SignIn */,
@@ -649,7 +635,7 @@
 				392BF3D72AFE4B6600ADAE49 /* UserProfile.swift */,
 				390C618F2AF3B9FF0061E6D4 /* UserData.swift */,
 			);
-			path = Auth;
+			path = Sign;
 			sourceTree = "<group>";
 		};
 		39318EAA2AFD04D10089AEC4 /* Firebase */ = {
@@ -792,6 +778,12 @@
 			isa = PBXGroup;
 			children = (
 				3922D56F2A74B14A00257164 /* Main */,
+				3922D56E2A74B0DA00257164 /* Dashboard */,
+				396088502A8F6E5E00FF2289 /* Calendar */,
+				392083BE2A485BA800E591A8 /* MyInfo */,
+				39318E822AFCEFEC0089AEC4 /* Sign */,
+				390C61892AF3A9950061E6D4 /* SetGoal */,
+				39DBB3252AC6F291003B5213 /* Activity */,
 				398BD2992B189D3C00970E23 /* PoolMap */,
 			);
 			path = Presentation;
@@ -844,9 +836,9 @@
 		398BD2992B189D3C00970E23 /* PoolMap */ = {
 			isa = PBXGroup;
 			children = (
-				39B6E6022B1C8A37009140F8 /* PoolListViewController.swift */,
-				390A0B1F2B25851200F30C80 /* PoolMapViewModel.swift */,
-				39B6E6042B1C8B18009140F8 /* PoolInfoMediumCell.swift */,
+				39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */,
+				390A0B1F2B25851200F30C80 /* PoolViewModel.swift */,
+				39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */,
 				39B6E6012B1C8A2C009140F8 /* Map */,
 				390A0B1E2B2584AF00F30C80 /* Region */,
 				3997322D2B3051F6008B5C11 /* KakaoAPI */,
@@ -977,9 +969,9 @@
 		39B6E6012B1C8A2C009140F8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				390848AA2B36FB6B00BDD317 /* Protocols */,
-				396D93A12B18A7CF0013060E /* PoolMapViewController.swift */,
+				396D93A12B18A7CF0013060E /* MapViewController.swift */,
 				390848A32B36F38200BDD317 /* NaverMapView.swift */,
+				390848AB2B36FB7500BDD317 /* MapMarker.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1383,7 +1375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				390A0B202B25851200F30C80 /* PoolMapViewModel.swift in Sources */,
+				390A0B202B25851200F30C80 /* PoolViewModel.swift in Sources */,
 				398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
@@ -1393,7 +1385,7 @@
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
-				39B6E6032B1C8A37009140F8 /* PoolListViewController.swift in Sources */,
+				39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
@@ -1496,7 +1488,7 @@
 				392457282A545016006E3071 /* HealthKitError.swift in Sources */,
 				39CC3DC02AC59BD200C8BC10 /* ActivityDetailViewController.swift in Sources */,
 				392BF3DA2AFE506D00ADAE49 /* SignInError.swift in Sources */,
-				396D93A22B18A7CF0013060E /* PoolMapViewController.swift in Sources */,
+				396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */,
 				39B59CDA2B3718180078B937 /* ActivityView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
@@ -1511,7 +1503,7 @@
 				39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
-				39B6E6052B1C8B18009140F8 /* PoolInfoMediumCell.swift in Sources */,
+				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,

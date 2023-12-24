@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 
-class PoolMapViewModel: BaseViewModel {
+class PoolViewModel: BaseViewModel {
     
     let locationManager: DeviceLocationManager
     private let regionSearchManager: RegionSearchManager
@@ -153,7 +153,7 @@ class PoolMapViewModel: BaseViewModel {
 }
 
 // MARK: - Map
-extension PoolMapViewModel {
+extension PoolViewModel {
     
     func getCurrentLocation() {
         locationManager.requestLocationAuthorization()

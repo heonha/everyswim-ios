@@ -11,14 +11,14 @@ import Combine
 
 final class RegionListViewController: BaseViewController {
     
-    private let viewModel: PoolMapViewModel
+    private let viewModel: PoolViewModel
         
     private let tableView = UITableView()
     
     private let myRegionButton = RegionListCell(style: .default, reuseIdentifier: nil)
     
     // MARK: - Init & LifeCycles
-    init(viewModel: PoolMapViewModel) {
+    init(viewModel: PoolViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -131,7 +131,7 @@ import SwiftUI
 struct RegionListViewController_Previews: PreviewProvider {
     
     static let viewController = RegionListViewController(viewModel: viewModel)
-    static let viewModel = PoolMapViewModel(locationManager: .init(),
+    static let viewModel = PoolViewModel(locationManager: .init(),
                                              regionSearchManager: .init())
     
     static var previews: some View {

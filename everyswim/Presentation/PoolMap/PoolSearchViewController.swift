@@ -10,13 +10,13 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolListViewController: BaseViewController, MessageObservable {
+final class PoolSearchViewController: BaseViewController, MessageObservable {
         
     private let tableView = UITableView()
     
-    var viewModel: PoolMapViewModel
+    private let viewModel: PoolViewModel
     
-    private lazy var naverMapViewController = PoolMapViewController(viewModel: viewModel)
+    private lazy var naverMapViewController = MapViewController(viewModel: viewModel)
         
     // MARK: StackViews
     private lazy var locationVStack = ViewFactory
@@ -52,7 +52,7 @@ final class PoolListViewController: BaseViewController, MessageObservable {
         .contentMode(.scaleAspectFit)
     
     // MARK: - Init
-    init(viewModel: PoolMapViewModel) {
+    init(viewModel: PoolViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -83,8 +83,8 @@ final class PoolListViewController: BaseViewController, MessageObservable {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PoolInfoMediumCell.self,
-                           forCellReuseIdentifier: PoolInfoMediumCell.reuseId)
+        tableView.register(PoolMediumCell.self,
+                           forCellReuseIdentifier: PoolMediumCell.reuseId)
     }
     
     // MARK: - Layout
@@ -215,14 +215,14 @@ final class PoolListViewController: BaseViewController, MessageObservable {
 }
 
 // MARK: - TableView Configure
-extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
+extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolInfoMediumCell.reuseId, for: indexPath) as? PoolInfoMediumCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolMediumCell.reuseId, for: indexPath) as? PoolMediumCell else {
             return UITableViewCell()
         }
         
@@ -246,7 +246,7 @@ extension PoolListViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - Test Stub
-extension PoolListViewController {
+extension PoolSearchViewController {
     
     #if DEBUG
     func setCurrentLocation(_ location: String) {
@@ -264,9 +264,9 @@ import SwiftUI
 struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let navigationController = RootNavigationViewController(rootViewController: viewController)
-    static let viewController = PoolListViewController(viewModel: viewModel)
+    static let viewController = PoolSearchViewController(viewModel: viewModel)
     static let locationManager = DeviceLocationManager()
-    static let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: .init())
+    static let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
         UIViewControllerPreview {
