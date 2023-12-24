@@ -180,6 +180,7 @@
 		39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceView.swift */; };
 		39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */; };
 		39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */; };
+		39C4CF392B38846900F49A1A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF382B38846900F49A1A /* DashboardView.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
 		39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */; };
 		39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */; };
@@ -389,6 +390,7 @@
 		39C4CF302B38251A00F49A1A /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWebViewController.swift; sourceTree = "<group>"; };
 		39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		39C4CF382B38846900F49A1A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
 		39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
+				39C4CF382B38846900F49A1A /* DashboardView.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
@@ -1422,6 +1425,7 @@
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
+				39C4CF392B38846900F49A1A /* DashboardView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				393351552AFA57F90014D37A /* CommunityCollectionData.swift in Sources */,
 				394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */,
