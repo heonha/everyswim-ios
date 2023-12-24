@@ -102,12 +102,12 @@ final class PoolMediumCell: UITableViewCell, ReuseableCell {
     func configure(data: MapPlace) {
         self.titleLabel.text = data.placeName
         self.distanceLabel.text = data.distanceWithUnit()
-        
-        self.addressLabel.text = data.roadAddressName
-        if data.roadAddressName.isEmpty {
+        let roadAddress = data.roadAddressName
+        if roadAddress.isEmpty {
             self.addressLabel.text = data.addressName
+        } else {
+            self.addressLabel.text = data.roadAddressName
         }
-        
     }
     
 }

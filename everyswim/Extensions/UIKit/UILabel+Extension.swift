@@ -29,6 +29,11 @@ extension UILabel {
         return self
     }
     
+    func numberOfLines(_ amount: Int) -> UILabel {
+        self.numberOfLines = amount
+        return self
+    }
+    
     func setSecondaryAttributeText(separate: String = " ", font: UIFont, color: UIColor) {
         let fitstString = separate.first!
         

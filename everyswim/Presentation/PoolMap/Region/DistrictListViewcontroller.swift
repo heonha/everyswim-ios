@@ -103,7 +103,7 @@ import SwiftUI
 struct DistrictListViewcontroller_Previews: PreviewProvider {
     
     static let viewController = DistrictListViewcontroller(region: region, viewModel: viewModel)
-    static let viewModel = PoolViewModel(locationManager: .init(),
+    static let viewModel = PoolViewModel(locationManager: .shared,
                                              regionSearchManager: .init())
     static let region = KrRegions(code: "0", name: "서울시", districts: ["구로구", "강남구", "강서구"])
     

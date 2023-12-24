@@ -35,8 +35,8 @@ class PoolViewModel: BaseViewModel {
     @Published var currentRegion: SingleRegion
     
     /// 검색기준 Location
-    @Published var targetCurrentLocation: CLLocationCoordinate2D
-    
+    @Published var targetCurrentLocation: CLLocationCoordinate2D = .init(latitude: 37.5087, longitude: 126.8673)
+
     /// 위치 검색결과
     @Published var places: [MapPlace] = []
 
@@ -113,21 +113,24 @@ class PoolViewModel: BaseViewModel {
     
     /// `KakaoAPI` 키워드 장소 검색을 요청합니다.
     func findLocation(query: String = "", startCount: Int = 1) {
-
+        self.isLoading.send(true)
         let queryString = buildQueryString(from: query)
-
+        
         kakaoLocationManager
             .findPlaceFromKeyword(query: queryString,
                                   numberOfPage: startCount,
                                   coordinator: targetCurrentLocation,
                                   sort: customLoationMode ? .accuracy : .distance
             ) { [weak self] result in
+                self?.isLoading.send(false)
                 switch result {
                 case .success(let places):
                     self?.places = places
                 case .failure(let error):
-                    self?.sendMessage(message: error.localizedDescription)
+                    self?.isPresentMessage.send(true)
+                    self?.sendMessage(message: "\(error)")
                     self?.places = []
+                    self?.isLoading.send(false)
                 }
             }
         
@@ -135,12 +138,20 @@ class PoolViewModel: BaseViewModel {
     
     /// 좌표값을 기준으로 주소를 가져옵니다.
     public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
-        regionSearchManager.getAddressFromCoordinator(coordinator) { result in
+        self.isLoading.send(true)
+        guard !coordinator.latitude.isZero || !coordinator.latitude.isZero else {
+            self.isLoading.send(false)
+            return
+        }
+        self.regionSearchManager.getAddressFromCoordinator(coordinator) { [weak self] result in
             switch result {
             case .success(let regionData):
-                self.currentRegion = regionData
+                self?.currentRegion = regionData
             case .failure(let error):
                 print("좌표값 기준으로 주소가져오기 에러: \(error)")
+                self?.presentMessage.send("\(error.localizedDescription)")
+                self?.isPresentMessage.send(true)
+                self?.isLoading.send(false)
             }
         }
     }

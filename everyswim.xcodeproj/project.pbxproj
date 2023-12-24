@@ -14,7 +14,7 @@
 		390848A42B36F38200BDD317 /* NaverMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A32B36F38200BDD317 /* NaverMapView.swift */; };
 		390848A62B36F40300BDD317 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A52B36F40300BDD317 /* BaseUIView.swift */; };
 		390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */; };
-		390848AC2B36FB7500BDD317 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AB2B36FB7500BDD317 /* MapMarker.swift */; };
+		390848AC2B36FB7500BDD317 /* MapPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AB2B36FB7500BDD317 /* MapPlace.swift */; };
 		390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AE2B37015200BDD317 /* TestLocationObject.swift */; };
 		390A0B202B25851200F30C80 /* PoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolViewModel.swift */; };
 		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
@@ -171,12 +171,16 @@
 		39B59CD32B370B630078B937 /* BaseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */; };
 		39B59CDA2B3718180078B937 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CD92B3718180078B937 /* ActivityView.swift */; };
 		39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDB2B372F5F0078B937 /* MessageView.swift */; };
-		39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B59CDD2B373BF20078B937 /* MessageObservable.swift */; };
 		39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */; };
 		39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */; };
 		39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */; };
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
+		39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceView.swift */; };
+		39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */; };
+		39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */; };
+		39C4CF392B38846900F49A1A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF382B38846900F49A1A /* DashboardView.swift */; };
+		39C4CF3B2B388DF300F49A1A /* ObservableMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
 		39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */; };
 		39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */; };
@@ -227,7 +231,7 @@
 		390848A32B36F38200BDD317 /* NaverMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMapView.swift; sourceTree = "<group>"; };
 		390848A52B36F40300BDD317 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewProtocol.swift; sourceTree = "<group>"; };
-		390848AB2B36FB7500BDD317 /* MapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
+		390848AB2B36FB7500BDD317 /* MapPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlace.swift; sourceTree = "<group>"; };
 		390848AE2B37015200BDD317 /* TestLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationObject.swift; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
@@ -377,12 +381,16 @@
 		39B59CD22B370B630078B937 /* BaseViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerProtocol.swift; sourceTree = "<group>"; };
 		39B59CD92B3718180078B937 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		39B59CDB2B372F5F0078B937 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		39B59CDD2B373BF20078B937 /* MessageObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageObservable.swift; sourceTree = "<group>"; };
 		39B6E5FF2B1C80D6009140F8 /* DeviceLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationManager.swift; sourceTree = "<group>"; };
 		39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchViewController.swift; sourceTree = "<group>"; };
 		39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMediumCell.swift; sourceTree = "<group>"; };
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
+		39C4CF302B38251A00F49A1A /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWebViewController.swift; sourceTree = "<group>"; };
+		39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		39C4CF382B38846900F49A1A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableMessage.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
 		39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
@@ -458,7 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				39B59CD52B370D0F0078B937 /* UIKit */,
-				39B59CDD2B373BF20078B937 /* MessageObservable.swift */,
+				39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -533,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
+				39C4CF382B38846900F49A1A /* DashboardView.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
 				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
 				398DFB432AA9DBC200BDEB8E /* Challange */,
@@ -945,6 +954,7 @@
 				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
+				39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */,
 			);
 			path = BaseViews;
 			sourceTree = "<group>";
@@ -971,7 +981,9 @@
 			children = (
 				396D93A12B18A7CF0013060E /* MapViewController.swift */,
 				390848A32B36F38200BDD317 /* NaverMapView.swift */,
-				390848AB2B36FB7500BDD317 /* MapMarker.swift */,
+				39C4CF302B38251A00F49A1A /* PlaceView.swift */,
+				39C4CF342B3854AD00F49A1A /* WebView */,
+				39C4CF352B3854BB00F49A1A /* Protocol */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -984,6 +996,22 @@
 				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		39C4CF342B3854AD00F49A1A /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		39C4CF352B3854BB00F49A1A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				390848AB2B36FB7500BDD317 /* MapPlace.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		39C5884B2AC6773E00B6C992 /* Detail */ = {
@@ -1380,13 +1408,14 @@
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
 				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
-				390848AC2B36FB7500BDD317 /* MapMarker.swift in Sources */,
+				390848AC2B36FB7500BDD317 /* MapPlace.swift in Sources */,
 				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */,
+				39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */,
@@ -1396,6 +1425,7 @@
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
+				39C4CF392B38846900F49A1A /* DashboardView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				393351552AFA57F90014D37A /* CommunityCollectionData.swift in Sources */,
 				394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */,
@@ -1405,6 +1435,7 @@
 				396D2AC82A56B9440042D4D4 /* SwimStatisticsData.swift in Sources */,
 				39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */,
 				39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */,
+				39C4CF3B2B388DF300F49A1A /* ObservableMessage.swift in Sources */,
 				39318EA52AFCF8570089AEC4 /* SignInViewController.swift in Sources */,
 				39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */,
 				396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */,
@@ -1421,6 +1452,7 @@
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				39CC3DC42AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
+				39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
 				390848A62B36F40300BDD317 /* BaseUIView.swift in Sources */,
 				397CC73B2A87792700C5D90D /* DatePickerEventData.swift in Sources */,
@@ -1433,6 +1465,7 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
+				39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */,
 				392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
@@ -1500,7 +1533,6 @@
 				39DBB3202AC6E899003B5213 /* ActivityDetailCenterDataView.swift in Sources */,
 				396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */,
 				39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */,
-				39B59CDE2B373BF20078B937 /* MessageObservable.swift in Sources */,
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,

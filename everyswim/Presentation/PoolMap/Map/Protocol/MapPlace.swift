@@ -1,5 +1,5 @@
 //
-//  MapMarker.swift
+//  MapPlace.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/23/23.
@@ -9,12 +9,15 @@ import Foundation
 import CoreLocation
 
 protocol MapPlace {
+    var id: String { get }
     var placeName: String { get set }
     var x: String { get set }
     var y: String { get set }
     var distance: String? { get set }
     var addressName: String { get set }
     var roadAddressName: String { get set }
+    var placeURL: String { get }
+    var phone: String { get }
 }
 
 extension MapPlace {

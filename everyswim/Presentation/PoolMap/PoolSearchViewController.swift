@@ -10,11 +10,11 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolSearchViewController: BaseViewController, MessageObservable {
+final class PoolSearchViewController: BaseViewController, ObservableMessage {
         
-    private let tableView = UITableView()
+    private let tableView = BaseTableView(frame: .zero, style: .plain)
     
-    private let viewModel: PoolViewModel
+    var viewModel: PoolViewModel
     
     private lazy var naverMapViewController = MapViewController(viewModel: viewModel)
         
@@ -69,10 +69,23 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureLocationAccessDenyState()
+    }
+    
     // MARK: - configure
     private func configure() {
         configureTableView()
         configureNavigationBar()
+    }
+    
+    private func configureLocationAccessDenyState() {
+        let manager = DeviceLocationManager.shared
+        if !manager.isDidAuthorization {
+            self.currentLocationLabel.text = "아래 버튼을 눌러 지역을 선택하세요."
+            self.searchLocationLabel.text = "지역 선택"
+        }
     }
     
     private func configureNavigationBar() {
@@ -142,9 +155,38 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
         bindPushNaverMapView()
         bindSearchPool()
         bindTouchGestures()
-        observeMessage(viewModel: viewModel)
+        bindMessage()
+        bindIsLoading()
+    }
+    
+    /// 로딩중이면 로딩인디케이터 표시
+    private func bindIsLoading() {
+        viewModel.isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                switch isLoading {
+                case true:
+                    self?.tableView.activityIndicator.show()
+                case false:
+                    self?.tableView.activityIndicator.hide()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func bindMessage() {
+        viewModel.isPresentMessage
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                presentMessage(title: viewModel.presentMessage.value)
+                viewModel.isPresentMessage.send(false)
+            }
+            .store(in: &cancellables)
     }
 
+    /// [제스쳐] 맵 버튼 누르면  맵 뷰 열기.
     private func bindPushNaverMapView() {
         showMapButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -156,6 +198,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             .store(in: &cancellables)
     }
     
+    /// [Observe] 지역 변경 감지해서 현재지역 라벨 업데이트.
     private func bindCurrentRegion() {
         viewModel.$currentRegion
             .receive(on: DispatchQueue.main)
@@ -166,6 +209,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             .store(in: &cancellables)
     }
         
+    /// [Observe] 타겟 지역 변겸 감지해서 타지역 검색
     private func bindCurrentLocation() {
         viewModel.$targetCurrentLocation
             .receive(on: DispatchQueue.main)
@@ -186,19 +230,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             }
             .store(in: &cancellables)
     }
-    
-    func observeMessage<T: BaseViewModel>(viewModel: T) {
-        viewModel.isPresentMessage
-            .filter { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else {return}
-                presentMessage(title: viewModel.presentMessage.value)
-                viewModel.isPresentMessage.send(false)
-            }
-            .store(in: &cancellables)
-    }
-    
+        
     private func bindTouchGestures() {
         /// `지역 선택하기` 버튼
         searchLocationLabel.gesturePublisher(.tap())
@@ -218,10 +250,18 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
 extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        guard !viewModel.places.isEmpty else { return 1 }
+        
         return viewModel.places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard !viewModel.places.isEmpty else {
+            return BaseEmptyTableViewCell()
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolMediumCell.reuseId, for: indexPath) as? PoolMediumCell else {
             return UITableViewCell()
         }
@@ -233,14 +273,18 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard !viewModel.places.isEmpty else { return tableView.bounds.height }
         return 65
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let data = viewModel.places[indexPath.row]
         guard let coordinator = viewModel.places[indexPath.row].getCoordinator() else { return }
         self.push(naverMapViewController, animated: true)
         self.naverMapViewController.updateCamera(coordinator)
+        self.naverMapViewController.selectMarker(target: data)
+
     }
     
 }
@@ -265,7 +309,7 @@ struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let navigationController = RootNavigationViewController(rootViewController: viewController)
     static let viewController = PoolSearchViewController(viewModel: viewModel)
-    static let locationManager = DeviceLocationManager()
+    static let locationManager = DeviceLocationManager.shared
     static let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {

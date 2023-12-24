@@ -168,7 +168,7 @@ final class MyInfoButtonList: BaseUIView {
     /// 수영장 찾기 VC Present
     private func buttonSearchForPool() {
         let regionSearchManager = RegionSearchManager()
-        let locationManager = DeviceLocationManager()
+        let locationManager = DeviceLocationManager.shared
         let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
         let vc = PoolSearchViewController(viewModel: viewModel)
         self.parentVC?.push(vc, animated: true)

@@ -71,7 +71,10 @@ final class ActivityView: BaseScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
-        layoutLoaded = true
+        if !layoutLoaded {
+            layoutLoaded = true
+            remakeTableViewSize()
+        }
     }
     
     // MARK: - Configure
@@ -87,6 +90,7 @@ final class ActivityView: BaseScrollView {
         
         // 이번주 기록 가져오기
         recordHStack.setData(viewModel.summaryData)
+        
     }
     
     private func configureScrollView() {
@@ -124,16 +128,14 @@ final class ActivityView: BaseScrollView {
     }
     
     private func observeScrollViewSwipe() {
-        self
-            .gesturePublisher(.swipe(.init(), direction: .left))
+        gesturePublisher(.swipe(.init(), direction: .left))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.leftSwipeAction()
             }
             .store(in: &cancellables)
         
-        self
-            .gesturePublisher(.swipe(.init(), direction: .right))
+        gesturePublisher(.swipe(.init(), direction: .right))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.rightSwipeAction()
@@ -148,7 +150,7 @@ final class ActivityView: BaseScrollView {
             }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.reloadTableView()
+                self?.updateTableViewSize()
             }
             .store(in: &cancellables)
     }
@@ -191,14 +193,14 @@ final class ActivityView: BaseScrollView {
     }
     
     /// 테이블 뷰 사이즈 업데이트 (Cell의 수에 따라)
-    private func reloadTableView() {
+    private func updateTableViewSize() {
         self.tableView.reloadData()
-        self.updateTableViewSize()
+        self.remakeTableViewSize()
     }
     
     /// Cell 갯수에 따라서 TableView 크기를 업데이트
     /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
-    func updateTableViewSize() {
+    func remakeTableViewSize() {
         let count = viewModel.presentedData.count
         let cellHeight: CGFloat = 121.0
         
@@ -211,7 +213,11 @@ final class ActivityView: BaseScrollView {
             return
         }
         
-        let maxSize = CGFloat(count) * cellHeight
+        var maxSize = CGFloat(count) * cellHeight
+        if maxSize <= AppConstant.deviceSize.height / 2.5 {
+            maxSize = AppConstant.deviceSize.height / 2.5
+        }
+        
         tableView.snp.remakeConstraints { make in
             make.top.equalTo(activitySectionView.snp.bottom)
             make.horizontalEdges.equalTo(contentView)

@@ -9,9 +9,8 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class DashboardViewModel {
+final class DashboardViewModel: BaseViewModel {
         
-    private var cancellables = Set<AnyCancellable>()
     private var authManager = AuthManager.shared
     
     // MARK: Health Data
@@ -58,6 +57,7 @@ final class DashboardViewModel {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager()
+        super.init()
         Task {
             await loadHealthCollection()
             await fetchSwimmingData()
