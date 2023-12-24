@@ -145,6 +145,8 @@ class PoolViewModel: BaseViewModel {
                 self?.currentRegion = regionData
             case .failure(let error):
                 print("좌표값 기준으로 주소가져오기 에러: \(error)")
+                self?.presentMessage.send("\(error.localizedDescription)")
+                self?.isPresentMessage.send(true)
                 self?.isLoading.send(false)
             }
         }

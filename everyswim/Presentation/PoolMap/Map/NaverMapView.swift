@@ -45,13 +45,14 @@ final class NaverMapView: BaseUIView, BaseUIViewProtocol {
         NMFAuthManager.shared().delegate = parentVC
     }
     
+    /// [Config] Map View
     private func configureNMapView() {
         rootMapView.mapView.touchDelegate = parentVC
         rootMapView.showLocationButton = true
         rootMapView.showScaleBar = false
     }
     
-    /// 마커 기본 설정
+    /// [Marker] 기본 설정
     private func configureMarker(title: String, marker: NMFMarker) {
         marker.captionText = title
         marker.iconImage = makerImageView

@@ -80,6 +80,7 @@ class RegionSearchManager {
     public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D,
                                           completion: @escaping (Result<SingleRegion, Error>) -> Void) {
         
+        guard !coordinator.latitude.isZero || !coordinator.longitude.isZero else { return }
         let apikey = SecretConstant.kakaoRestAPIKey
         let urlString = Constant.gcBaseUrl
         
