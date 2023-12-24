@@ -14,6 +14,7 @@ final class MyInfoView: BaseScrollView {
     private let viewModel: MyInfoViewModel
     private let bottomSpacer = UIView.spacer()
     
+    private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
     private lazy var profileView = MyInfoProfileView(viewModel: viewModel, parentVC: parentVC)
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel, parentVC: parentVC)
     private lazy var healthStateCell = HealthKitAuthStateCell()
@@ -33,12 +34,31 @@ final class MyInfoView: BaseScrollView {
         
     // MARK: - Layout
     private func layout() {
-        layoutProfileView(dependency: contentView)
+        layoutHeaderView(dependency: contentView)
+        layoutProfileView(dependency: headerView)
         layoutHealthStateCell(dependency: profileView)
         layoutButtonList(dependency: healthStateCell)
         layoutBottomSpacer()
     }
-
+    
+    private func layoutHeaderView(dependency: UIView) {
+        self.contentView.addSubview(headerView)
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(dependency).inset(10)
+            make.height.equalTo(44)
+            make.horizontalEdges.equalTo(contentView)
+        }
+    }
+    
+    // 프로필 뷰
+    private func layoutProfileView(dependency: UIView) {
+        self.contentView.addSubview(profileView)
+        profileView.snp.makeConstraints { make in
+            make.top.equalTo(dependency.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(contentView)
+        }
+    }
+    
     // 버튼 리스트 Container
     private func layoutButtonList(dependency: UIView) {
         self.contentView.addSubview(buttonList)
@@ -59,16 +79,7 @@ final class MyInfoView: BaseScrollView {
             make.horizontalEdges.equalTo(self).inset(20)
         }
     }
-    
-    // 프로필 뷰
-    private func layoutProfileView(dependency: UIView) {
-        self.contentView.addSubview(profileView)
-        profileView.snp.makeConstraints { make in
-            make.top.equalTo(dependency).offset(10)
-            make.horizontalEdges.equalTo(contentView)
-        }
-    }
-    
+
     // 최하단 스페이서
     private func layoutBottomSpacer() {
         self.contentView.addSubview(bottomSpacer)
