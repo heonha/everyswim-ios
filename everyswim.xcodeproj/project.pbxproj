@@ -1184,8 +1184,8 @@
 				398B1B9D2A483DA300E0FA9B /* Sources */,
 				398B1B9E2A483DA300E0FA9B /* Frameworks */,
 				398B1B9F2A483DA300E0FA9B /* Resources */,
-				392F750A2B354EB200979408 /* Swift Lint */,
 				291F1DFD1358C1C65046A5EB /* [CP] Embed Pods Frameworks */,
+				392F750A2B354EB200979408 /* Swift Lint */,
 			);
 			buildRules = (
 			);

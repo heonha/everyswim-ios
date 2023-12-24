@@ -9,9 +9,8 @@ import UIKit
 import SnapKit
 import Combine
 
-final class MyInfoButtonList: UIView {
-    var cancellables: Set<AnyCancellable> = .init()
-    
+final class MyInfoButtonList: BaseUIView {
+
     private let viewModel: MyInfoViewModel
     
     private let background = UIView()
@@ -43,9 +42,10 @@ final class MyInfoButtonList: UIView {
         .alignment(.fill)
         .distribution(.equalCentering)
     
+    // MARK: - Init
     init(viewModel: MyInfoViewModel) {
         self.viewModel = viewModel
-        super.init(frame: .zero)
+        super.init()
         layout()
     }
     
@@ -53,6 +53,7 @@ final class MyInfoButtonList: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - LifeCycles
     override func layoutSubviews() {
         super.layoutSubviews()
         subview()
@@ -77,6 +78,7 @@ final class MyInfoButtonList: UIView {
         buttons.forEach { $0.isHidden = !signIn }
     }
     
+    // MARK: - Layout
     private func layout() {
         self.addSubview(background)
         background.addSubview(firstSectionView)

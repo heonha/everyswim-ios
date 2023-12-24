@@ -210,4 +210,3 @@ struct EventListUICell_Previews: PreviewProvider {
     }
 }
 #endif
-

@@ -13,7 +13,6 @@ import SDWebImage
 final class MyInfoProfileView: BaseUIView {
     
     private let viewModel: MyInfoViewModel
-    private let parentViewController: MyInfoController
         
     private let guestProfileImage = AppImage.defaultUserProfileImage.getImage()
     
@@ -48,8 +47,7 @@ final class MyInfoProfileView: BaseUIView {
         .distribution(.fill)
         .alignment(.center)
     
-    init(viewModel: MyInfoViewModel, target: MyInfoController) {
-        self.parentViewController = target
+    init(viewModel: MyInfoViewModel) {
         self.viewModel = viewModel
         super.init()
         layout()
@@ -62,53 +60,11 @@ final class MyInfoProfileView: BaseUIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setSuperViewHeight()
-        observeTapGesture()
-        observeUserProfile()
     }
     
 }
 
 extension MyInfoProfileView {
-    
-    private func observeTapGesture() {
-        self.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else {return}
-                let signInState = viewModel.getSessionState()
-                print("DEBUG: Tap 세션상태 \(signInState)")
-                if !signInState {
-                    let signInVC = SignInViewController(viewModel: .init())
-                    signInVC.modalPresentationStyle = .fullScreen
-                    self.parentViewController.present(signInVC, animated: true)
-                }
-                
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func observeUserProfile() {
-        viewModel.myinfoProfile
-            .receive(on: DispatchQueue.main)
-            .sink { wrappedProfile in
-                guard let profileData = wrappedProfile else {return}
-                self.profileNameLabel.text = profileData.name
-                self.profileEmail.text = profileData.email
-                
-                guard let imageUrlString = profileData.imageUrl,
-                      imageUrlString.isEmpty == false else {
-                    self.profileImage.image = self.guestProfileImage
-                    return
-                }
-                
-                let imageUrl = URL(string: imageUrlString)
-                
-                self.profileImage.sd_setImage(with: imageUrl,
-                                          placeholderImage: nil,
-                                          options: [.progressiveLoad])
-            }
-            .store(in: &cancellables)
-    }
     
     private func layout() {
         self.addSubview(profileView)
@@ -136,6 +92,26 @@ extension MyInfoProfileView {
         }
     }
     
+    public func setProfileNameLabel(text: String) {
+        self.profileNameLabel.text = text
+    }
+    
+    public func setProfileEmailLabel(text: String) {
+        self.profileEmail.text = text
+    }
+    
+    public func setProfileImage(image: UIImage) {
+        self.profileImage.image = image
+    }
+    
+    public func setProfileImage(imageUrl: String) {
+        let imageUrl = URL(string: imageUrl)
+        
+        self.profileImage.sd_setImage(with: imageUrl,
+                                  placeholderImage: nil,
+                                  options: [.progressiveLoad])
+    }
+    
 }
 
 #if DEBUG
@@ -148,7 +124,7 @@ struct MyInfoProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView(viewModel: viewModel, target: vc)
+            MyInfoProfileView(viewModel: viewModel)
         }
         .frame(height: 150)
     }

@@ -68,25 +68,27 @@ struct SwimMainData: Identifiable {
         return startDate.toString(.dayDotMonth)
     }
     
-    func getSimpleRecords() -> (duration: String, 
-                                distance: String,
-                                lap: String) {
+    func getSimpleRecords() -> SimpleRecord {
         
         let duration = self.duration.toRelativeTime(.hourMinute)
         let distance = self.unwrappedDistance.toRoundupString()
         let lap = self.laps.count.description
         
-        return (duration: duration, distance: distance, lap: "\(lap)")
+        return SimpleRecord(duration: duration, distance: distance, lap: "\(lap)")
     }
     
-    static func placeholderSimpleRecords() -> (duration: String,
-                                               distance: String,
-                                               lap: String) {
+    static func placeholderSimpleRecords() -> SimpleRecord {
         let duration = "1시간 10분"
         let distance = "600"
         let lap = 20.description
         
-        return (duration: duration, distance: distance, lap: lap)
+        return SimpleRecord(duration: duration, distance: distance, lap: lap)
+    }
+    
+    struct SimpleRecord {
+        let duration: String
+        let distance: String
+        let lap: String
     }
     
 }

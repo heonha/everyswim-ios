@@ -5,18 +5,16 @@
 //  Created by HeonJin Ha on 12/24/23.
 //
 
-import Foundation
-
 import UIKit
 import SnapKit
 
 final class MyInfoView: BaseScrollView {
     
-    private let parentVC: MyInfoController!
-    private let viewModel: MyInfoViewModel!
+    weak var parentVC: MyInfoController?
+    private let viewModel: MyInfoViewModel
     private let bottomSpacer = UIView.spacer()
     
-    private lazy var profileView = MyInfoProfileView(viewModel: viewModel, target: parentVC)
+    private lazy var profileView = MyInfoProfileView(viewModel: viewModel)
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
 
@@ -82,118 +80,134 @@ final class MyInfoView: BaseScrollView {
     }
     
     private func bindButtonsAction() {
-        bindChangeProfileAction()
-        bindSyncHealthAction()
-        bindEditChallangeAction()
-        bindButtonFetchHealthData()
-        bindButtonSearchForPool()
-        bindButtonLogout()
-        bindButtonsDeleteAccount()
+        
+        // Health State Cell
+        observeButtonFetchHealthData()
+        
+        // Button List
+        observeButtonAction(buttonType: .changeUserInfo, action: changeProfileAction)
+        observeButtonAction(buttonType: .syncHealth, action: syncHealthAction)
+        observeButtonAction(buttonType: .editChallange, action: editChallangeAction)
+        observeButtonAction(buttonType: .searchForPool, action: buttonSearchForPool)
+        observeButtonAction(buttonType: .logout, action: buttonLogout)
+        observeButtonAction(buttonType: .deleteAccount, action: buttonsDeleteAccount)
+        
+        // Profile View
+        observeTapGesture()
+        observeUserProfile()
     }
     
-    func bindChangeProfileAction() {
-        // 프로필 변경
-        buttonList.getButton(type: .changeUserInfo)
+    // MARK: - ObserveButtonActions
+    private func observeButtonAction(buttonType: MyInfoButtonType, action: @escaping () -> Void) {
+        buttonList.getButton(type: buttonType)
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                let viewModel = SetProfileViewModel()
-                let setProfileVC = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
-                self?.parentVC.present(setProfileVC, animated: true)
+                guard self != nil else { return }
+                action()
             }
             .store(in: &cancellables)
     }
     
-    private func bindSyncHealthAction() {
-        // 건강 연동
-        buttonList.getButton(type: .syncHealth)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let vc = UIViewController()
-                self.parentVC.navigationController?.pushViewController(vc, animated: true)
-            }
-            .store(in: &cancellables)
+    /// 프로필 변경 VC Present
+    private func changeProfileAction() {
+        let viewModel = SetProfileViewModel()
+        let setProfileVC = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
+        self.parentVC?.present(setProfileVC, animated: true)
     }
     
-    private func bindEditChallangeAction() {
-        // 목표 수정
-        buttonList.getButton(type: .editChallange)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let vc = SetGoalViewController()
-                self.parentVC.present(vc, animated: true)
-            }
-            .store(in: &cancellables)
+    /// 건강 연동 창 VC Present
+    private func syncHealthAction() {
+        let vc = UIViewController()
+        self.parentVC?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func bindButtonFetchHealthData() {
-        // 헬스데이터 가져오기
+    /// 목표 수정 VC Present
+    private func editChallangeAction() {
+        let vc = SetGoalViewController()
+        self.parentVC?.present(vc, animated: true)
+    }
+    
+    /// 건강 데이터 동기화
+    private func observeButtonFetchHealthData() {
         healthStateCell.getRefreshButton()
             .gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                self.parentVC.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
+                self.parentVC?.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
             }
             .store(in: &cancellables)
     }
     
-    private func bindButtonSearchForPool() {
-        // 맵 뷰
-        buttonList.getButton(type: .searchForPool)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let regionSearchManager = RegionSearchManager()
-                let locationManager = DeviceLocationManager()
-                let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
-                let vc = PoolListViewController(viewModel: viewModel)
-                self.parentVC.push(vc, animated: true)
-            }
-            .store(in: &cancellables)
+    private func buttonSearchForPool() {
+        let regionSearchManager = RegionSearchManager()
+        let locationManager = DeviceLocationManager()
+        let viewModel = PoolMapViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
+        let vc = PoolListViewController(viewModel: viewModel)
+        self.parentVC?.push(vc, animated: true)
     }
     
-    private func bindButtonLogout() {
-        // 로그아웃
-        buttonList.getButton(type: .logout)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.presentSignOutAlert()
-            }
-            .store(in: &cancellables)
+    private func buttonLogout() {
+        self.presentSignOutAlert()
     }
     
-    private func bindButtonsDeleteAccount() {
-        // 탈퇴
-        buttonList.getButton(type: .deleteAccount)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                let deleteVC = UserDeleteViewController()
-                self?.parentVC.push(deleteVC, animated: true)
-            }
-            .store(in: &cancellables)
+    private func buttonsDeleteAccount() {
+        let deleteVC = UserDeleteViewController()
+        self.parentVC?.push(deleteVC, animated: true)
     }
     
+    /// 로그아웃 알럿 Present
     private func presentSignOutAlert() {
-        let alert = UIAlertController(title: "알림",
-                                      message: "로그아웃 하시겠습니까?",
-                                      preferredStyle: .alert)
+        guard let parentVC = parentVC else { return }
         
-        let logoutAction = UIAlertAction(title: "로그아웃",
-                                         style: .destructive) { _ in
+        let logout = UIAlertAction(title: "로그아웃", style: .destructive) { _ in
             self.viewModel.signOut()
             self.scrollToTop()
         }
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        alert.addAction(logoutAction)
-        alert.addAction(cancelAction)
-        
-        self.parentVC.present(alert, animated: true)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let actions = [logout, cancel]
+
+        self.parentVC?.presentAlert(title: "알림",
+                                    message: "로그아웃 하시겠습니까?",
+                                    target: parentVC,
+                                    action: actions)
+    }
+    
+    private func observeTapGesture() {
+        self.gesturePublisher(.tap())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                let signInState = viewModel.getSessionState()
+                print("DEBUG: Tap 세션상태 \(signInState)")
+                if !signInState {
+                    let signInVC = SignInViewController(viewModel: .init())
+                    signInVC.modalPresentationStyle = .fullScreen
+                    parentVC?.present(signInVC, animated: true)
+                }
+                
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func observeUserProfile() {
+        viewModel.myinfoProfile
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] wrappedProfile in
+                guard let self = self else { return }
+                guard let profileData = wrappedProfile else { return }
+                self.profileView.setProfileNameLabel(text: profileData.name)
+                self.profileView.setProfileEmailLabel(text: profileData.email)
+                
+                guard let imageUrl = profileData.imageUrl, !imageUrl.isEmpty else {
+                    let defaultImage = AppImage.defaultUserProfileImage.getImage()
+                    self.profileView.setProfileImage(image: defaultImage)
+                    return
+                }
+                
+                self.profileView.setProfileImage(imageUrl: imageUrl)
+            }
+            .store(in: &cancellables)
     }
     
 }

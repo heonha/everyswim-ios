@@ -27,7 +27,6 @@ final class MyInfoController: BaseViewController {
     }
     
     // MARK: - Lifecycles
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -63,6 +62,10 @@ final class MyInfoController: BaseViewController {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
+    }
+    
+    public func scrollToTop() {
+        mainView.scrollToTop()
     }
         
 }
