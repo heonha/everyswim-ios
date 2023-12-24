@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class BaseScrollView: UIScrollView {
     
+    var cancellables = Set<AnyCancellable>()
     var contentView: UIView
     private var inset: UIEdgeInsets
     

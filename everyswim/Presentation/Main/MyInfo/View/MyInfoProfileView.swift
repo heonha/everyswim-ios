@@ -10,13 +10,11 @@ import SnapKit
 import Combine
 import SDWebImage
 
-final class MyInfoProfileView: UIView {
+final class MyInfoProfileView: BaseUIView {
     
     private let viewModel: MyInfoViewModel
     private let parentViewController: MyInfoController
-    
-    var cancellables: Set<AnyCancellable> = .init()
-    
+        
     private let guestProfileImage = AppImage.defaultUserProfileImage.getImage()
     
     private lazy var profileImage = UIImageView()
@@ -53,7 +51,7 @@ final class MyInfoProfileView: UIView {
     init(viewModel: MyInfoViewModel, target: MyInfoController) {
         self.parentViewController = target
         self.viewModel = viewModel
-        super.init(frame: .zero)
+        super.init()
         layout()
     }
     
@@ -144,9 +142,13 @@ extension MyInfoProfileView {
 import SwiftUI
 
 struct MyInfoProfileView_Previews: PreviewProvider {
+    
+    static let viewModel = MyInfoViewModel()
+    static let vc = MyInfoController(viewModel: viewModel)
+    
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView(viewModel: .init(), target: .init())
+            MyInfoProfileView(viewModel: viewModel, target: vc)
         }
         .frame(height: 150)
     }

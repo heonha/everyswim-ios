@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class BaseUIView: UIView {
     
+    var cancellables = Set<AnyCancellable>()
     let contentView = UIView()
     
     // MARK: - Init

@@ -10,9 +10,7 @@ import SnapKit
 import Combine
 
 final class ActivityView: BaseScrollView {
-    
-    private var cancellables = Set<AnyCancellable>()
-    
+        
     private var parentVC: ActivityViewController
     
     private let viewModel: ActivityViewModel
