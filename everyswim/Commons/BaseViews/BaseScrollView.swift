@@ -18,20 +18,21 @@ class BaseScrollView: UIScrollView {
         self.contentView = contentView
         self.inset = inset
         super.init(frame: .zero)
-        configure()
-        layout()
+        baseConfigure()
+        layoutContentView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    private func baseConfigure() {
         self.backgroundColor = .systemBackground
         self.showsVerticalScrollIndicator = false
+        self.isScrollEnabled = true
     }
     
-    private func layout() {
+    private func layoutContentView() {
         self.addSubview(contentView)
         
         contentView.snp.makeConstraints { make in

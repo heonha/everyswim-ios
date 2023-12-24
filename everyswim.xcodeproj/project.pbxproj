@@ -473,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				390848AE2B37015200BDD317 /* TestLocationObject.swift */,
+				391C12BE2A592A24001C2286 /* TestObjects.swift */,
 			);
 			path = TestObject;
 			sourceTree = "<group>";
@@ -501,14 +502,13 @@
 			path = SetGoal;
 			sourceTree = "<group>";
 		};
-		391C12BD2A592A0F001C2286 /* Debug */ = {
+		391C12BD2A592A0F001C2286 /* Previews */ = {
 			isa = PBXGroup;
 			children = (
-				391C12BE2A592A24001C2286 /* TestObjects.swift */,
 				39F5998B2A9B6BE600738334 /* UIViewControllerPreview.swift */,
 				39F5998D2A9B6C3800738334 /* UIViewPreview.swift */,
 			);
-			path = Debug;
+			path = Previews;
 			sourceTree = "<group>";
 		};
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
@@ -797,6 +797,7 @@
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				391C12BD2A592A0F001C2286 /* Previews */,
 				39B59CD42B370BD30078B937 /* Location */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* Firebase */,
@@ -871,10 +872,9 @@
 				39CC3DB82AC5857200C8BC10 /* Commons */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
-				39437DA02A48948E00FDA9DA /* Secrets */,
 				390848AD2B37013800BDD317 /* TestObject */,
+				39437DA02A48948E00FDA9DA /* Secrets */,
 				398B1BC92A484D5500E0FA9B /* Resources */,
-				391C12BD2A592A0F001C2286 /* Debug */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
 				39318E9E2AFCF13B0089AEC4 /* GoogleService-Info.plist */,
 				398B1BD02A4851A800E0FA9B /* Info.plist */,

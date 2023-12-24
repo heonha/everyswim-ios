@@ -16,12 +16,12 @@ final class MyInfoController: BaseViewController {
     private let scrollView = BaseScrollView()
     private let bottomSpacer = UIView.spacer()
     
-    private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
-    private lazy var profileView = MyInfoProfileView(viewModel: viewModel, target: self)
+    private lazy var profileView = MyInfoProfileView(viewModel: viewModel,
+                                                     target: self)
     private lazy var buttonList = MyInfoButtonList(viewModel: viewModel)
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
-    // MARK: INIT & Lifecycles
+    // MARK: - INIT & Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -36,59 +36,81 @@ final class MyInfoController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         bindButtonsAction()
-        scrollToTop()
+        scrollView.scrollToTop()
         self.navigationItem.title = "내 정보"
     }
     
+    // MARK: - Configure
     private func configure() {
-        scrollView.isScrollEnabled = true
-        scrollView.showsVerticalScrollIndicator = false
+        
     }
-    
-    private func scrollToTop() {
-        self.scrollView.scrollToTop()
-    }
-    
+
+    // MARK: - Layout
     private func layout() {
+        layoutScrollView()
+        layoutProfileView(dependency: scrollView.contentView)
+        layoutHealthStateCell(dependency: profileView)
+        layoutButtonList(dependency: healthStateCell)
+        layoutBottomSpacer()
+    }
+    
+    // ScrollView (Root)
+    private func layoutScrollView() {
         self.view.addSubview(scrollView)
-        
-        self.scrollView.contentView.addSubview(headerView)
-        self.scrollView.contentView.addSubview(profileView)
-        self.scrollView.contentView.addSubview(healthStateCell)
-        self.scrollView.contentView.addSubview(buttonList)
-        self.scrollView.contentView.addSubview(bottomSpacer)
-        
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
-                
-        headerView.snp.makeConstraints { make in
-            make.top.equalTo(scrollView.contentView)
-            make.horizontalEdges.equalTo(scrollView.contentView)
-        }
-        
-        profileView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(scrollView.contentView)
-        }
-        
-        healthStateCell.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.bottom).offset(10)
-            make.centerX.equalTo(scrollView.contentView)
-            make.height.equalTo(70)
-            make.horizontalEdges.equalTo(scrollView).inset(20)
-        }
-                        
+    }
+    
+    // 버튼 리스트 Container
+    private func layoutButtonList(dependency: UIView) {
+        self.scrollView.contentView.addSubview(buttonList)
         buttonList.snp.makeConstraints { make in
-            make.top.equalTo(healthStateCell.snp.bottom).offset(10)
+            make.top.equalTo(dependency.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(scrollView).inset(20)
             make.bottom.equalToSuperview().inset(50)
         }
     }
     
+    // 건강데이터 연동 상태 셀
+    private func layoutHealthStateCell(dependency: UIView) {
+        self.scrollView.contentView.addSubview(healthStateCell)
+        healthStateCell.snp.makeConstraints { make in
+            make.top.equalTo(dependency.snp.bottom).offset(10)
+            make.centerX.equalTo(scrollView.contentView)
+            make.height.equalTo(70)
+            make.horizontalEdges.equalTo(scrollView).inset(20)
+        }
+    }
+    
+    // 프로필 뷰
+    private func layoutProfileView(dependency: UIView) {
+        self.scrollView.contentView.addSubview(profileView)
+        profileView.snp.makeConstraints { make in
+            make.top.equalTo(dependency).offset(10)
+            make.horizontalEdges.equalTo(scrollView.contentView)
+        }
+    }
+    
+    // 최하단 스페이서
+    private func layoutBottomSpacer() {
+        self.scrollView.contentView.addSubview(bottomSpacer)
+    }
+    
+    // MARK: - Bind Buttons
     private func bindButtonsAction() {
+        bindChangeProfileAction()
+        bindSyncHealthAction()
+        bindEditChallangeAction()
+        bindButtonFetchHealthData()
+        bindButtonSearchForPool()
+        bindButtonLogout()
+        bindButtonsDeleteAccount()
+    }
+    
+    func bindChangeProfileAction() {
         // 프로필 변경
         buttonList.getButton(type: .changeUserInfo)
             .gesturePublisher(.tap())
@@ -99,7 +121,9 @@ final class MyInfoController: BaseViewController {
                 self?.present(setProfileVC, animated: true)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindSyncHealthAction() {
         // 건강 연동
         buttonList.getButton(type: .syncHealth)
             .gesturePublisher(.tap())
@@ -109,7 +133,9 @@ final class MyInfoController: BaseViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindEditChallangeAction() {
         // 목표 수정
         buttonList.getButton(type: .editChallange)
             .gesturePublisher(.tap())
@@ -119,7 +145,9 @@ final class MyInfoController: BaseViewController {
                 self.present(vc, animated: true)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindButtonFetchHealthData() {
         // 헬스데이터 가져오기
         healthStateCell.getRefreshButton()
             .gesturePublisher(.tap())
@@ -128,7 +156,9 @@ final class MyInfoController: BaseViewController {
                 self.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindButtonSearchForPool() {
         // 맵 뷰
         buttonList.getButton(type: .searchForPool)
             .gesturePublisher(.tap())
@@ -141,7 +171,9 @@ final class MyInfoController: BaseViewController {
                 self.push(vc, animated: true)
             }
             .store(in: &cancellables)
-        
+    }
+    
+    private func bindButtonLogout() {
         // 로그아웃
         buttonList.getButton(type: .logout)
             .gesturePublisher(.tap())
@@ -150,7 +182,9 @@ final class MyInfoController: BaseViewController {
                 self?.presentSignOutAlert()
             }
             .store(in: &cancellables)
-
+    }
+    
+    private func bindButtonsDeleteAccount() {
         // 탈퇴
         buttonList.getButton(type: .deleteAccount)
             .gesturePublisher(.tap())
@@ -170,7 +204,7 @@ final class MyInfoController: BaseViewController {
         let logoutAction = UIAlertAction(title: "로그아웃",
                                          style: .destructive) { _ in
             self.viewModel.signOut()
-            self.scrollToTop()
+            self.scrollView.scrollToTop()
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
