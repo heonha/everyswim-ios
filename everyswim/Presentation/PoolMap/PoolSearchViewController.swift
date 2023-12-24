@@ -10,11 +10,11 @@ import SnapKit
 import Combine
 import CoreLocation
 
-final class PoolSearchViewController: BaseViewController, MessageObservable {
+final class PoolSearchViewController: BaseViewController, ObservableMessage {
         
     private let tableView = BaseTableView(frame: .zero, style: .plain)
     
-    private let viewModel: PoolViewModel
+    var viewModel: PoolViewModel
     
     private lazy var naverMapViewController = MapViewController(viewModel: viewModel)
         
@@ -155,7 +155,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
         bindPushNaverMapView()
         bindSearchPool()
         bindTouchGestures()
-        observeMessage(viewModel: viewModel)
+        bindMessage()
         bindIsLoading()
     }
     
@@ -170,6 +170,18 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
                 case false:
                     self?.tableView.activityIndicator.hide()
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func bindMessage() {
+        viewModel.isPresentMessage
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else {return}
+                presentMessage(title: viewModel.presentMessage.value)
+                viewModel.isPresentMessage.send(false)
             }
             .store(in: &cancellables)
     }
@@ -218,19 +230,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             }
             .store(in: &cancellables)
     }
-    
-    func observeMessage<T: BaseViewModel>(viewModel: T) {
-        viewModel.isPresentMessage
-            .filter { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self = self else {return}
-                presentMessage(title: viewModel.presentMessage.value)
-                viewModel.isPresentMessage.send(false)
-            }
-            .store(in: &cancellables)
-    }
-    
+        
     private func bindTouchGestures() {
         /// `지역 선택하기` 버튼
         searchLocationLabel.gesturePublisher(.tap())

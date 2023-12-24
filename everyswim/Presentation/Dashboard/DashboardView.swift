@@ -36,26 +36,28 @@ final class DashboardView: BaseScrollView {
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()
     
-    /// 섹션
+    /// 섹션 종류
     var recommandSections = RecommandSection.allCases
     
-    /// 추천 CollectionView 초기화
+    /// 추천 CollectionView
     private lazy var recommandCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
             self.parentVC?.createBasicListLayout(section: sectionIndex)
         }
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isScrollEnabled = true
         return collectionView
     }()
     
+    // MARK: - Init
     init(viewModel: DashboardViewModel, parentVC: DashboardViewController?) {
         self.viewModel = viewModel
         self.parentVC = parentVC
         super.init()
         configure()
         layout()
-        bind()
+        observe()
     }
     
     required init?(coder: NSCoder) {
@@ -68,6 +70,7 @@ final class DashboardView: BaseScrollView {
         configureRecommandCollectionView()
     }
     
+    /// [Config] base View (self)
     private func configureBase() {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
@@ -75,6 +78,7 @@ final class DashboardView: BaseScrollView {
         self.backgroundColor = .systemBackground
     }
     
+    /// [Config] CollectionView
     private func configureRecommandCollectionView() {
         recommandCollectionView.dataSource = parentVC
         recommandCollectionView.delegate = parentVC
@@ -88,17 +92,17 @@ final class DashboardView: BaseScrollView {
                                          forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
     }
 
-    // MARK: - Bind
-    private func bind() {
-        bindUpdateProfile()
-        bindRecommandVideoSucceed()
-        bindRecommandCommunitySucceed()
-        bindLastWorkout()
-        bindLastWorkoutGesture()
+    // MARK: - Observe
+    private func observe() {
+        observeUpdateProfile()
+        observeRecommandVideoSucceed()
+        observeRecommandCommunitySucceed()
+        observeLastWorkout()
+        observeLastWorkoutGesture()
     }
     
     /// 프로필 업데이트
-    private func bindUpdateProfile() {
+    private func observeUpdateProfile() {
         AuthManager.shared.isSignIn
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -108,7 +112,7 @@ final class DashboardView: BaseScrollView {
     }
     
     /// 추천 비디오 로드 완료시 리로드
-    private func bindRecommandVideoSucceed() {
+    private func observeRecommandVideoSucceed() {
         viewModel.$recommandVideoSuccessed
             .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
@@ -122,7 +126,7 @@ final class DashboardView: BaseScrollView {
     }
     
     /// 추천 커뮤니티 로드 완료시 리로드
-    private func bindRecommandCommunitySucceed() {
+    private func observeRecommandCommunitySucceed() {
         viewModel.$recommandCommunitySuccessed
             .receive(on: DispatchQueue.global())
             .sink { [weak self] value in
@@ -136,7 +140,7 @@ final class DashboardView: BaseScrollView {
     }
     
     /// 최근 운동기록 데이터 업데이트
-    private func bindLastWorkout() {
+    private func observeLastWorkout() {
         viewModel.$lastWorkout
             .receive(on: DispatchQueue.main)
             .sink {[unowned self] data in
@@ -147,7 +151,7 @@ final class DashboardView: BaseScrollView {
             .store(in: &cancellables)
     }
     
-    private func bindLastWorkoutGesture() {
+    private func observeLastWorkoutGesture() {
         // 최근 운동기록 제스쳐
         lastWorkoutCell.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -164,17 +168,14 @@ final class DashboardView: BaseScrollView {
     // MARK: - Layout
     private func layout() {
         let spacing: CGFloat = 28
-                
-        headerViewLayout(height: 80)
-        
-        recentRecordViewLayout(height: 100)
-        
-        challangeViewsLayout(spacing: spacing, height: 220)
-        
-        recommandCollectionViewLayout(spacing: spacing, height: 600)
+        layoutHeaderView(height: 80)
+        layoutRecentRecordView(height: 100)
+        layoutChallangeViews(spacing: spacing, height: 220)
+        layoutRecommandCollectionView(spacing: spacing, height: 600)
     }
     
-    private func headerViewLayout(height: CGFloat) {
+    /// [Layout] HeaderView
+    private func layoutHeaderView(height: CGFloat) {
         contentView.addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.top.equalTo(contentView)
@@ -183,8 +184,9 @@ final class DashboardView: BaseScrollView {
             make.height.equalTo(height)
         }
     }
-    
-    private func recentRecordViewLayout(height: CGFloat) {
+
+    /// [Layout] RecentRecordView
+    private func layoutRecentRecordView(height: CGFloat) {
         contentView.addSubview(recentRecordView)
         
         recentRecordView.snp.makeConstraints { make in
@@ -202,7 +204,8 @@ final class DashboardView: BaseScrollView {
         }
     }
     
-    private func challangeViewsLayout(spacing: CGFloat, height: CGFloat) {
+    /// [Layout] ChallangeView
+    private func layoutChallangeViews(spacing: CGFloat, height: CGFloat) {
         contentView.addSubview(challangeViews)
         
         challangeViews.snp.makeConstraints { make in
@@ -212,11 +215,10 @@ final class DashboardView: BaseScrollView {
         }
     }
     
-    private func recommandCollectionViewLayout(spacing: CGFloat,
+    /// [Layout] RecommandCollectionView
+    private func layoutRecommandCollectionView(spacing: CGFloat,
                                                height: CGFloat) {
-        
         contentView.addSubview(recommandCollectionView)
-
         recommandCollectionView.isScrollEnabled = false
         recommandCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)

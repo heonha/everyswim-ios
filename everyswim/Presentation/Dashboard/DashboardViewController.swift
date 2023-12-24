@@ -10,14 +10,6 @@ import SnapKit
 import Combine
 import SDWebImage
 
-protocol ObservableMessage {
-    associatedtype ViewModelType: BaseViewModel
-    var cancellables: Set<AnyCancellable> {get set}
-    var viewModel: ViewModelType { get set }
-    func observeMessage()
-    func presentMessage(title: String)
-}
-
 final class DashboardViewController: BaseViewController, ObservableMessage {
     
     var viewModel: DashboardViewModel
@@ -37,8 +29,7 @@ final class DashboardViewController: BaseViewController, ObservableMessage {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configure()
-        observe()
+        bind()
     }
     
     override func viewWillLayoutSubviews() {
@@ -68,11 +59,11 @@ final class DashboardViewController: BaseViewController, ObservableMessage {
 extension DashboardViewController {
     
     // MARK: - Bind
-    func observe() {
-        observeMessage()
+    func bind() {
+        bindMessage()
     }
     
-    func observeMessage() {
+    func bindMessage() {
         viewModel.isPresentMessage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isPresent in
@@ -82,10 +73,6 @@ extension DashboardViewController {
                 }
             }
             .store(in: &cancellables)
-    }
-    
-    // MARK: - Configures
-    private func configure() {
     }
     
     // MARK: - Layout
