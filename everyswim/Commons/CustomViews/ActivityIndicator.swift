@@ -80,6 +80,10 @@ final class ActivityIndicator: UIActivityIndicatorView {
         self.color = color
     }
     
+    public func setBackgroundColor(color: UIColor = .init(hex: "FFFFFF", alpha: 0.4)) {
+        self.backgroundColor = color
+    }
+    
     public func show() {
         self.isHidden = false
         self.startAnimating()

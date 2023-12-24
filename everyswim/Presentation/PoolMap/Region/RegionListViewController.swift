@@ -131,7 +131,7 @@ import SwiftUI
 struct RegionListViewController_Previews: PreviewProvider {
     
     static let viewController = RegionListViewController(viewModel: viewModel)
-    static let viewModel = PoolViewModel(locationManager: .init(),
+    static let viewModel = PoolViewModel(locationManager: .shared,
                                              regionSearchManager: .init())
     
     static var previews: some View {

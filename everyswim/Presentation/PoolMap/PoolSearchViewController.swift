@@ -12,7 +12,7 @@ import CoreLocation
 
 final class PoolSearchViewController: BaseViewController, MessageObservable {
         
-    private let tableView = UITableView()
+    private let tableView = BaseTableView(frame: .zero, style: .plain)
     
     private let viewModel: PoolViewModel
     
@@ -143,8 +143,25 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
         bindSearchPool()
         bindTouchGestures()
         observeMessage(viewModel: viewModel)
+        bindIsLoading()
+    }
+    
+    /// 로딩중이면 로딩인디케이터 표시
+    private func bindIsLoading() {
+        viewModel.isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                switch isLoading {
+                case true:
+                    self?.tableView.activityIndicator.show()
+                case false:
+                    self?.tableView.activityIndicator.hide()
+                }
+            }
+            .store(in: &cancellables)
     }
 
+    /// [제스쳐] 맵 버튼 누르면  맵 뷰 열기.
     private func bindPushNaverMapView() {
         showMapButton.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
@@ -156,6 +173,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             .store(in: &cancellables)
     }
     
+    /// [Observe] 지역 변경 감지해서 현재지역 라벨 업데이트.
     private func bindCurrentRegion() {
         viewModel.$currentRegion
             .receive(on: DispatchQueue.main)
@@ -166,6 +184,7 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
             .store(in: &cancellables)
     }
         
+    /// [Observe] 타겟 지역 변겸 감지해서 타지역 검색
     private func bindCurrentLocation() {
         viewModel.$targetCurrentLocation
             .receive(on: DispatchQueue.main)
@@ -238,9 +257,12 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let data = viewModel.places[indexPath.row]
         guard let coordinator = viewModel.places[indexPath.row].getCoordinator() else { return }
         self.push(naverMapViewController, animated: true)
         self.naverMapViewController.updateCamera(coordinator)
+        self.naverMapViewController.selectMarker(target: data)
+
     }
     
 }
@@ -265,7 +287,7 @@ struct SearchPoolViewController_Previews: PreviewProvider {
     
     static let navigationController = RootNavigationViewController(rootViewController: viewController)
     static let viewController = PoolSearchViewController(viewModel: viewModel)
-    static let locationManager = DeviceLocationManager()
+    static let locationManager = DeviceLocationManager.shared
     static let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: .init())
     
     static var previews: some View {
