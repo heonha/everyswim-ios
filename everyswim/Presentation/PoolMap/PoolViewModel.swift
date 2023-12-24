@@ -35,8 +35,8 @@ class PoolViewModel: BaseViewModel {
     @Published var currentRegion: SingleRegion
     
     /// 검색기준 Location
-    @Published var targetCurrentLocation: CLLocationCoordinate2D
-    
+    @Published var targetCurrentLocation: CLLocationCoordinate2D = .init(latitude: 37.5087, longitude: 126.8673)
+
     /// 위치 검색결과
     @Published var places: [MapPlace] = []
 
@@ -139,6 +139,10 @@ class PoolViewModel: BaseViewModel {
     /// 좌표값을 기준으로 주소를 가져옵니다.
     public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D) {
         self.isLoading.send(true)
+        guard !coordinator.latitude.isZero || !coordinator.latitude.isZero else {
+            self.isLoading.send(false)
+            return
+        }
         self.regionSearchManager.getAddressFromCoordinator(coordinator) { [weak self] result in
             switch result {
             case .success(let regionData):

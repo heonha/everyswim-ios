@@ -179,6 +179,7 @@
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceView.swift */; };
 		39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */; };
+		39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */; };
 		39CC3DAC2AC5480E00C8BC10 /* RecordMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */; };
 		39CC3DAF2AC5491800C8BC10 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */; };
 		39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */; };
@@ -387,6 +388,7 @@
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39C4CF302B38251A00F49A1A /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWebViewController.swift; sourceTree = "<group>"; };
+		39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		39CC3DAB2AC5480E00C8BC10 /* RecordMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMediumCell.swift; sourceTree = "<group>"; };
 		39CC3DAE2AC5491800C8BC10 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		39CC3DB22AC564D900C8BC10 /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 				39238E692B04E78E004E28E5 /* BaseTextField.swift */,
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
+				39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */,
 			);
 			path = BaseViews;
 			sourceTree = "<group>";
@@ -1457,6 +1460,7 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
+				39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */,
 				392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,

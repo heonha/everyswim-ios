@@ -69,10 +69,23 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureLocationAccessDenyState()
+    }
+    
     // MARK: - configure
     private func configure() {
         configureTableView()
         configureNavigationBar()
+    }
+    
+    private func configureLocationAccessDenyState() {
+        let manager = DeviceLocationManager.shared
+        if !manager.isDidAuthorization {
+            self.currentLocationLabel.text = "아래 버튼을 눌러 지역을 선택하세요."
+            self.searchLocationLabel.text = "지역 선택"
+        }
     }
     
     private func configureNavigationBar() {
@@ -237,10 +250,18 @@ final class PoolSearchViewController: BaseViewController, MessageObservable {
 extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        guard !viewModel.places.isEmpty else { return 1 }
+        
         return viewModel.places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard !viewModel.places.isEmpty else {
+            return BaseEmptyTableViewCell()
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolMediumCell.reuseId, for: indexPath) as? PoolMediumCell else {
             return UITableViewCell()
         }
@@ -252,6 +273,7 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard !viewModel.places.isEmpty else { return tableView.bounds.height }
         return 65
     }
     

@@ -20,7 +20,7 @@ final class DeviceLocationManager: NSObject {
         locationSubject.eraseToAnyPublisher()
     }
     
-    var isDidAuthorization = false
+    var isDidAuthorization: Bool = false
     
     private override init() {
         super.init()
