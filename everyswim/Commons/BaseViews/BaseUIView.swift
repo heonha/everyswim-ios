@@ -17,6 +17,7 @@ class BaseUIView: UIView {
     // MARK: - Init
     init(backgroundColor: UIColor = .systemBackground) {
         super.init(frame: .zero)
+        layoutContentView()
         setBackgroundColor(backgroundColor)
     }
     
@@ -37,7 +38,6 @@ class BaseUIView: UIView {
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
-        layoutContentView()
     }
     
     private func layoutContentView() {

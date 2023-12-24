@@ -17,7 +17,7 @@ final class SetGoalCell: UICollectionViewCell, ReuseableCell {
     
     var type: MyGoalType = .distance
     var viewModel: SetGoalViewModel?
-    var parent: SetGoalViewController?
+    weak var parent: SetGoalViewController?
     
     // MARK: - Views
     private lazy var mainTitleLabel = ViewFactory

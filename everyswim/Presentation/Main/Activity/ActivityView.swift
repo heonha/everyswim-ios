@@ -11,7 +11,7 @@ import Combine
 
 final class ActivityView: BaseScrollView {
         
-    private var parentVC: ActivityViewController
+    private weak var parentVC: ActivityViewController?
     
     private let viewModel: ActivityViewModel
     
@@ -56,7 +56,7 @@ final class ActivityView: BaseScrollView {
     private lazy var tableView = BaseTableView()
     
     // MARK: - INIT
-    init(viewModel: ActivityViewModel, parentVC: ActivityViewController) {
+    init(viewModel: ActivityViewModel, parentVC: ActivityViewController?) {
         self.viewModel = viewModel
         self.parentVC = parentVC
         super.init()
