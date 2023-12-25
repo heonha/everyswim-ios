@@ -53,7 +53,7 @@ final class ActivityView: BaseScrollView {
         .alignment(.center)
         .distribution(.fillProportionally)
         
-    private lazy var tableView = BaseTableView()
+    lazy var tableView = BaseTableView()
     
     // MARK: - INIT
     init(viewModel: ActivityViewModel, parentVC: ActivityViewController?) {

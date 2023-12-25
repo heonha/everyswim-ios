@@ -11,7 +11,7 @@ import SnapKit
 final class BaseEmptyTableViewCell: UITableViewCell {
     
     private let titleLabel = ViewFactory
-        .label("결과가 없습니다.")
+        .label("")
         .font(.custom(.sfProMedium, size: 16))
         .numberOfLines(0)
         .foregroundColor(.secondaryLabel)
@@ -32,16 +32,15 @@ final class BaseEmptyTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        
+        self.backgroundColor = .tertiarySystemFill
     }
     
     public func setTitle(_ title: String,
-                         font: UIFont = .custom(.sfProMedium, size: 16)) -> BaseEmptyTableViewCell {
+                         font: UIFont = .custom(.sfProMedium, size: 16)) {
         self.titleLabel.text = title
         self.titleLabel.font = font
-        return self
     }
-    
+
     private func layout() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in

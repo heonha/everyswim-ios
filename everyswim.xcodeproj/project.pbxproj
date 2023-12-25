@@ -142,6 +142,7 @@
 		3997322C2B305066008B5C11 /* KakaoPlaceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997322B2B305066008B5C11 /* KakaoPlaceResponse.swift */; };
 		3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */; };
 		399732312B305731008B5C11 /* SingleRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732302B305731008B5C11 /* SingleRegion.swift */; };
+		3998C03C2B39882C00BE6F98 /* PoolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
@@ -353,6 +354,7 @@
 		3997322B2B305066008B5C11 /* KakaoPlaceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceResponse.swift; sourceTree = "<group>"; };
 		3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoRegionResponse.swift; sourceTree = "<group>"; };
 		399732302B305731008B5C11 /* SingleRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRegion.swift; sourceTree = "<group>"; };
+		3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchView.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */,
+				3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */,
 				390A0B1F2B25851200F30C80 /* PoolViewModel.swift */,
 				39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */,
 				39B6E6012B1C8A2C009140F8 /* Map */,
@@ -1493,6 +1496,7 @@
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */,
 				3997322C2B305066008B5C11 /* KakaoPlaceResponse.swift in Sources */,
+				3998C03C2B39882C00BE6F98 /* PoolSearchView.swift in Sources */,
 				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
 				3933514E2AFA575E0014D37A /* NetworkError.swift in Sources */,
 				392CBFFC2B0CD88B001CB22F /* UIScrollView+Extension.swift in Sources */,

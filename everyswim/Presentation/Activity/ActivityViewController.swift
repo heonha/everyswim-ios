@@ -29,8 +29,8 @@ final class ActivityViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        bind()
         layout()
+        bind()
     }
     
     override func viewWillLayoutSubviews() {
@@ -102,7 +102,8 @@ extension ActivityViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.presentedData.isEmpty {
-            return EmptyRecordCell.withType(.normal)
+            let emptyCell = BaseEmptyTableViewCell()
+            return emptyCell
         }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId, 
