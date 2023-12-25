@@ -69,7 +69,7 @@ final class DashboardHeaderView: UIView {
                                               options: [.progressiveLoad],
                                               completed: { (_, error, _, _) in
                 guard error != nil else {
-                    self.parentVC?.presentMessage(title: "\(error!.localizedDescription)")
+                    self.parentVC?.presentMessage(title: "\(String(describing: error?.localizedDescription))")
                     return
                 }
                 
