@@ -51,8 +51,10 @@ final class KakaoPlacesManager {
                                endPoint: "",
                                parameters: parameters,
                                returnType: KakaoPlaceResponse.self)
+        .delay(for: 1, scheduler: DispatchQueue.main)
         .map(\.places)
         .map { $0.filter { $0.categoryName.contains("수영장")} }
+        .retry(2)
         .receive(on: DispatchQueue.global())
         .sink(receiveCompletion: { result in
             switch result {

@@ -27,7 +27,7 @@ struct KakaoPlace: Codable, MapPlace {
     var roadAddressName: String
     var x: String
     var y: String
-    let placeURL: String
+    var placeURL: String
     var distance: String?
     
     enum CodingKeys: String, CodingKey {

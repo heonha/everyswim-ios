@@ -79,6 +79,8 @@ final class NetworkService: RestProtocol {
                 .receive(on: DispatchQueue.global())
                 .sink(receiveCompletion: { (completion) in
                     if case let .failure(error) = completion {
+                        print("APIERROR: \(error), \(String(describing: request.url?.absoluteString))")
+                        print(error.localizedDescription)
                         switch error {
                         case let decodingError as DecodingError:
                             promise(.failure(decodingError))

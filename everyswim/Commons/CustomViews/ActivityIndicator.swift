@@ -12,13 +12,9 @@ final class ActivityIndicatorView: UIView {
     let indicator: ActivityIndicator
     private let contentView = UIView()
     
-    init(indicator: ActivityIndicator, withBackground: Bool) {
+    init(indicator: ActivityIndicator, withBackground: UIColor = .clear) {
         self.indicator = indicator
         super.init(frame: .zero)
-        
-        if withBackground {
-            backgroundColor = .init(hex: "000000", alpha: 0.2)
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -37,7 +33,7 @@ final class ActivityIndicatorView: UIView {
         }
         contentView.addSubview(indicator)
         indicator.snp.makeConstraints { make in
-            make.size.equalTo(50)
+            make.size.lessThanOrEqualTo(self)
             make.center.equalTo(contentView)
         }
     }
@@ -80,6 +76,10 @@ final class ActivityIndicator: UIActivityIndicatorView {
         self.color = color
     }
     
+    public func setBackgroundColor(color: UIColor = .init(hex: "FFFFFF", alpha: 0.4)) {
+        self.backgroundColor = color
+    }
+    
     public func show() {
         self.isHidden = false
         self.startAnimating()
@@ -87,6 +87,7 @@ final class ActivityIndicator: UIActivityIndicatorView {
     
     public func hide() {
         self.isHidden = true
+        self.stopAnimating()
     }
     
 }

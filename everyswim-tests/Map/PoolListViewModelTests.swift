@@ -19,7 +19,7 @@ class PoolListViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        locationManager = .init()
+        locationManager = .shared
         regionSearchManager = .init()
         sut = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
         cancellables = Set<AnyCancellable>()
@@ -32,12 +32,13 @@ class PoolListViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_fetch_pool_list() {
+    /// 수영장 검색결과가 잘 받아와지는지 확인
+    func test_fetchingPool_returnsNonEmptyResults() {
         // Given
         let expectation = expectation(description: "Fetching regions")
 
         // When
-        sut.findLocation(queryString: "서울시구로구수영장")
+        sut.findLocation(query: "서울시구로구수영장")
         
         // Then
         sut.$places

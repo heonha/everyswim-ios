@@ -28,6 +28,7 @@ class RegionSearchManager {
         checkRegionCache()
     }
     
+    /// 캐시된 리전이 있는지 확인합니다.
     private func checkRegionCache() {
         let data = UserDefaults.standard.data(forKey: Constant.regionCacheKey)
         guard let data = data else {
@@ -45,11 +46,13 @@ class RegionSearchManager {
         regionsSubject.send(region)
     }
     
+    /// 리전데이터를 캐시합니다.
     private func cachingRegions(region: [KrRegions]) {
         let data = try? JSONEncoder().encode(region)
         UserDefaults.standard.setValue(data, forKey: Constant.regionCacheKey)
     }
     
+    /// [API Call] 모든 리전을 가져오고 캐시합니다.
     public func getAllRegions() {
         networkService
             .request(method: .GET,
@@ -60,6 +63,7 @@ class RegionSearchManager {
                      returnType: RegionAPIResponse.self)
             .receive(on: DispatchQueue.main)
             .filter { !$0.cities.isEmpty }
+            .prefix(1)
             .map(\.cities)
             .sink { completion in
                 print(completion)
@@ -72,11 +76,14 @@ class RegionSearchManager {
             .store(in: &cancellables)
     }
     
-    public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D, 
+    /// [API Call] Coordinator를 기준으로 주소를 가져옵니다.
+    public func getAddressFromCoordinator(_ coordinator: CLLocationCoordinate2D,
                                           completion: @escaping (Result<SingleRegion, Error>) -> Void) {
         
+        guard !coordinator.latitude.isZero || !coordinator.longitude.isZero else { return }
         let apikey = SecretConstant.kakaoRestAPIKey
         let urlString = Constant.gcBaseUrl
+        
         let parameters = [
             "x": coordinator.longitude,
             "y": coordinator.latitude
@@ -89,9 +96,10 @@ class RegionSearchManager {
                                parameters: parameters,
                                returnType: KakaoRegionResponse.self)
         .map(\.data)
-        .map { 
+        .map {
             $0.filter { region in region.regionType == "H" }
         }
+        .retry(3)
         .receive(on: DispatchQueue.main)
         .sink { result in
             switch result {
@@ -108,7 +116,6 @@ class RegionSearchManager {
             completion(.success(regionViewModel))
         }
         .store(in: &cancellables)
-        
     }
     
     public func cityNameToCode(city: String) -> Int {

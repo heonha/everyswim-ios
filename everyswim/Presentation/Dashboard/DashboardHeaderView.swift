@@ -12,6 +12,7 @@ import Combine
 final class DashboardHeaderView: UIView {
     
     private let viewModel: DashboardViewModel
+    private weak var parentVC: DashboardViewController?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -44,8 +45,9 @@ final class DashboardHeaderView: UIView {
         .addSubviews([vstack, profileImageView])
     
     // MARK: - Init
-    init(viewModel: DashboardViewModel) {
+    init(viewModel: DashboardViewModel, parentVC: DashboardViewController?) {
         self.viewModel = viewModel
+        self.parentVC = parentVC
         super.init(frame: .zero)
         layout()
     }
@@ -66,7 +68,10 @@ final class DashboardHeaderView: UIView {
                                               placeholderImage: nil,
                                               options: [.progressiveLoad],
                                               completed: { (_, error, _, _) in
-                guard error != nil else { return }
+                guard error != nil else {
+                    self.parentVC?.presentMessage(title: "\(String(describing: error?.localizedDescription))")
+                    return
+                }
                 
                 self.layoutIfNeeded()
             })
@@ -113,9 +118,13 @@ final class DashboardHeaderView: UIView {
 import SwiftUI
 
 struct HomeHeaderView_Previews: PreviewProvider {
+    
+    static let parentVC: DashboardViewController = .init(viewModel: viewModel)
+    static let viewModel = DashboardViewModel()
+    
     static var previews: some View {
         UIViewPreview {
-            DashboardHeaderView(viewModel: DashboardViewModel())
+            DashboardHeaderView(viewModel: DashboardViewModel(), parentVC: parentVC)
         }
     }
 }

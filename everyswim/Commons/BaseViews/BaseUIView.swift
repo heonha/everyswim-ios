@@ -36,10 +36,6 @@ class BaseUIView: UIView {
     }
     
     // MARK: - Layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     private func layoutContentView() {
         self.addSubview(contentView)
         contentView.snp.makeConstraints { make in

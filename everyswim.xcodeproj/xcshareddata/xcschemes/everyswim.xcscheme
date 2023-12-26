@@ -51,6 +51,17 @@
                ReferencedContainer = "container:everyswim.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "396BAE2E2B39A3AC007C1102"
+               BuildableName = "everyswim-UITests.xctest"
+               BlueprintName = "everyswim-UITests"
+               ReferencedContainer = "container:everyswim.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

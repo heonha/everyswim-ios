@@ -24,11 +24,6 @@ final class UserDeleteViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        textfieldHideKeyboardGesture(textfield: userDeleteView.getTextField())
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()

@@ -52,7 +52,7 @@ final class MessageView: UILabel {
                 self?.isHidden = true
             }
         }
-        timer?.resume() // 타이머 시작
+        timer?.resume()
         
     }
     
