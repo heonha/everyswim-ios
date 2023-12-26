@@ -124,16 +124,14 @@ final class ActivityView: BaseScrollView {
     }
     
     private func observeScrollViewSwipe() {
-        self
-            .gesturePublisher(.swipe(.init(), direction: .left))
+        gesturePublisher(.swipe(.init(), direction: .left))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.leftSwipeAction()
             }
             .store(in: &cancellables)
         
-        self
-            .gesturePublisher(.swipe(.init(), direction: .right))
+        gesturePublisher(.swipe(.init(), direction: .right))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.rightSwipeAction()
@@ -305,6 +303,7 @@ final class ActivityView: BaseScrollView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(activitySectionView.snp.bottom)
             make.horizontalEdges.equalTo(contentView)
+            make.height.greaterThanOrEqualTo(contentView).dividedBy(2)
             make.bottom.equalTo(contentView)
         }
 
