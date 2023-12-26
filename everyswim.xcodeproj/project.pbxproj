@@ -100,6 +100,10 @@
 		39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE92A52F0F700986E01 /* DashboardViewModel.swift */; };
 		396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */; };
 		396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */; };
+		396BAE322B39A3AC007C1102 /* EverySwimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE312B39A3AC007C1102 /* EverySwimUITests.swift */; };
+		396BAE342B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE332B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift */; };
+		396BAE3C2B39A488007C1102 /* ScreenIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE3B2B39A488007C1102 /* ScreenIdentifier.swift */; };
+		396BAE3E2B39A5DB007C1102 /* ActivityViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE3D2B39A5DB007C1102 /* ActivityViewUITests.swift */; };
 		396CE8512AB568DE00EB66BE /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8502AB568DE00EB66BE /* GestureType.swift */; };
 		396CE8542AB568EF00EB66BE /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8532AB568EF00EB66BE /* GesturePublisher.swift */; };
 		396CE8562AB568F800EB66BE /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CE8552AB568F800EB66BE /* GestureSubscription.swift */; };
@@ -223,6 +227,13 @@
 			remoteGlobalIDString = 398B1BA02A483DA300E0FA9B;
 			remoteInfo = everyswim;
 		};
+		396BAE352B39A3AC007C1102 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 398B1B992A483DA300E0FA9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 398B1BA02A483DA300E0FA9B;
+			remoteInfo = everyswim;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -308,6 +319,11 @@
 		39572CE92A52F0F700986E01 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		396BAE2F2B39A3AC007C1102 /* everyswim-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "everyswim-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		396BAE312B39A3AC007C1102 /* EverySwimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverySwimUITests.swift; sourceTree = "<group>"; };
+		396BAE332B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverySwimUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		396BAE3B2B39A488007C1102 /* ScreenIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenIdentifier.swift; sourceTree = "<group>"; };
+		396BAE3D2B39A5DB007C1102 /* ActivityViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewUITests.swift; sourceTree = "<group>"; };
 		396CE8502AB568DE00EB66BE /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
 		396CE8532AB568EF00EB66BE /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
 		396CE8552AB568F800EB66BE /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
@@ -439,6 +455,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		396BAE2C2B39A3AC007C1102 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398B1B9E2A483DA300E0FA9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -476,6 +499,7 @@
 		390848AD2B37013800BDD317 /* TestObject */ = {
 			isa = PBXGroup;
 			children = (
+				396BAE3A2B39A40F007C1102 /* UITest */,
 				390848AE2B37015200BDD317 /* TestLocationObject.swift */,
 				391C12BE2A592A24001C2286 /* TestObjects.swift */,
 			);
@@ -745,6 +769,24 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		396BAE302B39A3AC007C1102 /* everyswim-UITests */ = {
+			isa = PBXGroup;
+			children = (
+				396BAE312B39A3AC007C1102 /* EverySwimUITests.swift */,
+				396BAE332B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift */,
+				396BAE3D2B39A5DB007C1102 /* ActivityViewUITests.swift */,
+			);
+			path = "everyswim-UITests";
+			sourceTree = "<group>";
+		};
+		396BAE3A2B39A40F007C1102 /* UITest */ = {
+			isa = PBXGroup;
+			children = (
+				396BAE3B2B39A488007C1102 /* ScreenIdentifier.swift */,
+			);
+			path = UITest;
+			sourceTree = "<group>";
+		};
 		396CE8522AB568E200EB66BE /* Gesture */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +804,7 @@
 				39A5E8E02A502DA80062509F /* .gitignore */,
 				398F4F9A2ACD600F00ACCE70 /* everyswim */,
 				393F884E2B24C27200C67FAA /* everyswim-tests */,
+				396BAE302B39A3AC007C1102 /* everyswim-UITests */,
 				398B1BA22A483DA300E0FA9B /* Products */,
 				A491A234A0412181DC89240D /* Pods */,
 				C6EAC9CF4CAC1DC7F634BA59 /* Frameworks */,
@@ -773,6 +816,7 @@
 			children = (
 				398B1BA12A483DA300E0FA9B /* everyswim.app */,
 				393F884D2B24C27200C67FAA /* everyswim-tests.xctest */,
+				396BAE2F2B39A3AC007C1102 /* everyswim-UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1199,6 +1243,24 @@
 			productReference = 393F884D2B24C27200C67FAA /* everyswim-tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		396BAE2E2B39A3AC007C1102 /* everyswim-UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 396BAE372B39A3AC007C1102 /* Build configuration list for PBXNativeTarget "everyswim-UITests" */;
+			buildPhases = (
+				396BAE2B2B39A3AC007C1102 /* Sources */,
+				396BAE2C2B39A3AC007C1102 /* Frameworks */,
+				396BAE2D2B39A3AC007C1102 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				396BAE362B39A3AC007C1102 /* PBXTargetDependency */,
+			);
+			name = "everyswim-UITests";
+			productName = "everyswim-UITests";
+			productReference = 396BAE2F2B39A3AC007C1102 /* everyswim-UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		398B1BA02A483DA300E0FA9B /* everyswim */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 398B1BAF2A483DA400E0FA9B /* Build configuration list for PBXNativeTarget "everyswim" */;
@@ -1249,6 +1311,10 @@
 						CreatedOnToolsVersion = 15.1;
 						TestTargetID = 398B1BA02A483DA300E0FA9B;
 					};
+					396BAE2E2B39A3AC007C1102 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 398B1BA02A483DA300E0FA9B;
+					};
 					398B1BA02A483DA300E0FA9B = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -1275,12 +1341,20 @@
 			targets = (
 				398B1BA02A483DA300E0FA9B /* everyswim */,
 				393F884C2B24C27200C67FAA /* everyswim-tests */,
+				396BAE2E2B39A3AC007C1102 /* everyswim-UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		393F884B2B24C27200C67FAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		396BAE2D2B39A3AC007C1102 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1402,6 +1476,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		396BAE2B2B39A3AC007C1102 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				396BAE3E2B39A5DB007C1102 /* ActivityViewUITests.swift in Sources */,
+				396BAE342B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift in Sources */,
+				396BAE322B39A3AC007C1102 /* EverySwimUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		398B1B9D2A483DA300E0FA9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1414,6 +1498,7 @@
 				390848AC2B36FB7500BDD317 /* MapPlace.swift in Sources */,
 				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,
+				396BAE3C2B39A488007C1102 /* ScreenIdentifier.swift in Sources */,
 				396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */,
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */,
@@ -1591,6 +1676,11 @@
 			target = 398B1BA02A483DA300E0FA9B /* everyswim */;
 			targetProxy = 393F88512B24C27200C67FAA /* PBXContainerItemProxy */;
 		};
+		396BAE362B39A3AC007C1102 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 398B1BA02A483DA300E0FA9B /* everyswim */;
+			targetProxy = 396BAE352B39A3AC007C1102 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1652,6 +1742,55 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/everyswim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/everyswim";
+			};
+			name = Release;
+		};
+		396BAE382B39A3AC007C1102 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guin.everyswim-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = everyswim;
+			};
+			name = Debug;
+		};
+		396BAE392B39A3AC007C1102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZH5GA3W8UP;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guin.everyswim-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = everyswim;
 			};
 			name = Release;
 		};
@@ -1881,6 +2020,15 @@
 			buildConfigurations = (
 				393F88542B24C27200C67FAA /* Debug */,
 				393F88552B24C27200C67FAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		396BAE372B39A3AC007C1102 /* Build configuration list for PBXNativeTarget "everyswim-UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				396BAE382B39A3AC007C1102 /* Debug */,
+				396BAE392B39A3AC007C1102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

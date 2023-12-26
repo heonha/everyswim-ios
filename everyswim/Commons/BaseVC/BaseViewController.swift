@@ -18,20 +18,20 @@ class BaseViewController: UIViewController {
     init(backgroundColor: UIColor = .systemBackground) {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = backgroundColor
+        assignTextfieldHideKeyboardGesture()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func textfieldHideKeyboardGesture(textfield: UITextField) {
+    private func assignTextfieldHideKeyboardGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldHideKeyboard))
         view.addGestureRecognizer(tapGesture)
         view.backgroundColor = .systemBackground
     }
     
-    @objc
-    func textFieldHideKeyboard() {
+    @objc func textFieldHideKeyboard() {
         view.endEditing(true)
     }
     
@@ -51,7 +51,7 @@ class BaseViewController: UIViewController {
     
     private func setupMessage() {
         view.addSubview(messageView)
-        messageView.snp.makeConstraints { make in
+        messageView.snp.remakeConstraints { make in
             make.centerX.equalTo(view)
             make.bottom.equalTo(view).inset(100)
             make.height.greaterThanOrEqualTo(40)
@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
     /// 하단에 메시지를 띄웁니다.
     public func presentMessage(title: String) {
         let isContainView = view.subviews.contains(where: { view in
-            view.hashValue == self.messageView.hashValue
+            view === self.messageView
         })
         
         if !isContainView {

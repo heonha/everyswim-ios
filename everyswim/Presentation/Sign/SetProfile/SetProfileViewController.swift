@@ -18,7 +18,7 @@ final class SetProfileViewController: BaseViewController {
     private let viewModel: SetProfileViewModel
     private let type: SetProfileViewControllerType
     
-    private let loadingIndicator = ActivityIndicatorView(indicator: .init(style: .large, color: .white), withBackground: true)
+    private let loadingIndicator = ActivityIndicatorView(indicator: .init(style: .large, color: .white))
     
     // MARK: - Views
     private let titleView = MidTitleVStack(title: "프로필 설정",
@@ -124,7 +124,6 @@ final class SetProfileViewController: BaseViewController {
     
     private func configureTextField() {
         textField.delegate = self
-        textfieldHideKeyboardGesture(textfield: textField)
     }
     
     private func layout() {
