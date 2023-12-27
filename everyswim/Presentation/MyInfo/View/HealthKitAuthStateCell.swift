@@ -28,7 +28,7 @@ final class HealthKitAuthStateCell: UIView {
         .foregroundColor(.init(hex: "000000", alpha: 0.4))
     
     private let updatedTimeLabel = ViewFactory
-        .label("12:30")
+        .label("--:--")
         .font(.custom(.sfProMedium, size: 14))
         .foregroundColor(.init(hex: "000000", alpha: 0.4))
     
@@ -88,6 +88,10 @@ final class HealthKitAuthStateCell: UIView {
     
     func getRefreshButton() -> UIView {
         return self.refreshImageView
+    }
+    
+    func updateTimeLabel(dateString: String) {
+        
     }
     
 }

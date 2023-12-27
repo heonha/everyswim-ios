@@ -18,14 +18,14 @@ class BaseViewController: UIViewController {
     init(backgroundColor: UIColor = .systemBackground) {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = backgroundColor
-        assignTextfieldHideKeyboardGesture()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func assignTextfieldHideKeyboardGesture() {
+    /// TextField 사용 시 키보드 외 터치시 키보드를 내리도록 함.
+    func assignTextfieldHideKeyboardGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldHideKeyboard))
         view.addGestureRecognizer(tapGesture)
         view.backgroundColor = .systemBackground

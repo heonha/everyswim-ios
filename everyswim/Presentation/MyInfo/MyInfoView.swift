@@ -93,8 +93,8 @@ final class MyInfoView: BaseScrollView {
     private func bindButtonsAction() {
         
         // Health State Cell
+        observeFetchedHealthDate()
         observeButtonFetchHealthData()
-        
     }
     
     /// 건강 데이터 동기화
@@ -107,7 +107,24 @@ final class MyInfoView: BaseScrollView {
             }
             .store(in: &cancellables)
     }
-
+    
+    private func observeFetchedHealthDate() {
+        viewModel.lastHealthUpdateDate
+            .receive(on: DispatchQueue.main)
+            .replaceNil(with: "--:--")
+            .sink { [weak self] date in
+                self?.healthStateCell.updateTimeLabel(dateString: date)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func updateHealthTime() {
+        if let date = SwimDataStore.shared.lastUpdatedDate.value {
+            healthStateCell.updateTimeLabel(dateString: date.toString(.timeWithoutSeconds))
+        }
+        
+    }
+    
 }
 
 // MARK: - Preview

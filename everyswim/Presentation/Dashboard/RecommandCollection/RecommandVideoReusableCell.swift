@@ -35,6 +35,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableCell {
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
+        iv.backgroundColor = .secondarySystemFill
         return iv
     }()
     
@@ -72,8 +73,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableCell {
     
     func setData(data: RecommandCollectionProtocol) {
         let url = URL(string: data.imageUrl)
-        let placeholderImage = UIImage(named: "photo")
-        self.imageView.sd_setImage(with: url, placeholderImage: placeholderImage)
+        self.imageView.sd_setImage(with: url)
         
         if let title = data.title {
             self.titleLabel.text = title
@@ -86,7 +86,7 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableCell {
         self.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                let url = URL.init(string: data.url)!
+                guard let url = URL.init(string: data.url) else { return }
                 UIApplication.shared.open(url)
             }
             .store(in: &cancellables)

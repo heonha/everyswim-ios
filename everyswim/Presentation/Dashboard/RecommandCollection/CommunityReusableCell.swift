@@ -82,7 +82,7 @@ class CommunityReusableCell: UICollectionViewListCell, ReuseableCell {
     func configure(viewModel: RecommandCollectionProtocol) {
         let url = URL(string: viewModel.imageUrl)
         let placeholderImage = UIImage(named: "photo")
-        self.imageView.sd_setImage(with: url, placeholderImage: placeholderImage)
+        self.imageView.sd_setImage(with: url)
         
         if let title = viewModel.title {
             self.titleLabel.text = title
@@ -95,7 +95,7 @@ class CommunityReusableCell: UICollectionViewListCell, ReuseableCell {
         self.gesturePublisher(.tap())
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                let url = URL.init(string: viewModel.url)!
+                guard let url = URL.init(string: viewModel.url) else { return }
                 UIApplication.shared.open(url)
             }
             .store(in: &cancellables)

@@ -74,9 +74,9 @@ final class PoolSearchView: BaseUIView {
             self.searchLocationLabel.text = "지역 선택"
         }
     }
-
     
     private func configureTableView() {
+        print("CONFIGURE DELEGATES")
         tableView.delegate = parentVC
         tableView.dataSource = parentVC
         tableView.register(PoolMediumCell.self,

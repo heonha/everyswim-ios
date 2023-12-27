@@ -201,8 +201,10 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
         switch mainView.recommandSections[section] {
         case .video:
+            guard !viewModel.recommandVideos.isEmpty else {return 1}
             return viewModel.recommandVideos.count
         case .community:
+            guard !viewModel.recommandCommunities.isEmpty else {return 1}
             return viewModel.recommandCommunities.count
         }
     }
@@ -218,18 +220,31 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         switch mainView.recommandSections[indexPath.section] {
         // 추천영상
         case .video:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId, 
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId,
                                                                 for: indexPath) as? RecommandVideoReusableCell else {
                 return UICollectionViewCell()
+            }
+            
+            if viewModel.recommandVideos.isEmpty {
+                let dummyData = VideoCollectionData(id: "-", type: "", url: "", imageUrl: "")
+                cell.setData(data: dummyData)
+                return cell
             }
 
             let cellViewModel = viewModel.recommandVideos[indexPath.item]
             cell.setData(data: cellViewModel)
+            
             return cell
         
         // 수영 커뮤니티
         case .community:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityReusableCell.reuseId, for: indexPath) as? CommunityReusableCell else { return UICollectionViewCell() }
+            
+            if viewModel.recommandCommunities.isEmpty {
+                let dummyData = CommunityCollectionData(description: "", url: "", imageUrl: "")
+                cell.configure(viewModel: dummyData)
+                return cell
+            }
             
             let cellViewModel = viewModel.recommandCommunities[indexPath.item]
             cell.configure(viewModel: cellViewModel)

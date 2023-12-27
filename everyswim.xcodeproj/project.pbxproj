@@ -90,6 +90,7 @@
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
 		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
+		3951E6252B3AE6B400D1A424 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3951E6242B3AE6B400D1A424 /* EmptyCollectionViewCell.swift */; };
 		39535D492B35541E00612B83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39535D482B35541E00612B83 /* .swiftlint.yml */; };
 		39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */; };
 		3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */; };
@@ -308,6 +309,7 @@
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
+		3951E6242B3AE6B400D1A424 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		39535D482B35541E00612B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldProtocol.swift; sourceTree = "<group>"; };
 		3954EBB12A6E5F2700044125 /* ChallangeRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRecordType.swift; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 				39238E6B2B04EB05004E28E5 /* BaseImageView.swift */,
 				39CC3DBB2AC585AB00C8BC10 /* BaseTableView.swift */,
 				39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */,
+				3951E6242B3AE6B400D1A424 /* EmptyCollectionViewCell.swift */,
 			);
 			path = BaseViews;
 			sourceTree = "<group>";
@@ -1577,6 +1580,7 @@
 				39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */,
 				399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */,
 				39A111FF2AB2FDA900D57FB4 /* BaseViewModel.swift in Sources */,
+				3951E6252B3AE6B400D1A424 /* EmptyCollectionViewCell.swift in Sources */,
 				3980FC572AB6DDDA00E4A8DE /* DatePickerFlowLayout.swift in Sources */,
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */,

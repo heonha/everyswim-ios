@@ -16,6 +16,12 @@ final class MyInfoViewModel: BaseViewModel {
         return AuthManager.shared.isSignIn.eraseToAnyPublisher()
     }
     
+    var lastHealthUpdateDate: AnyPublisher<String?, Never> {
+        return SwimDataStore.shared.lastUpdatedDate
+            .map { $0?.toString(.timeWithoutSeconds) }
+            .eraseToAnyPublisher()
+    }
+    
     private(set) var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Never>(nil)
     
     init(authManager: AuthManager = .shared) {

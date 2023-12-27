@@ -42,6 +42,7 @@ final class MyInfoController: BaseViewController {
         super.viewDidAppear(true)
         mainView.scrollToTop()
         self.setNaviagationTitle(title: "내 정보")
+        mainView.updateHealthTime()
     }
     
     // MARK: - Configure

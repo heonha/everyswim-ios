@@ -15,5 +15,3 @@ protocol ObservableMessage: BaseViewController {
     func presentMessage(title: String)
     
 }
-
-

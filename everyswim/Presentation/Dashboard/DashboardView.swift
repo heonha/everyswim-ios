@@ -74,7 +74,6 @@ final class DashboardView: BaseScrollView {
     private func configureBase() {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
-        self.isPagingEnabled = true
         self.backgroundColor = .systemBackground
     }
     
@@ -90,6 +89,9 @@ final class DashboardView: BaseScrollView {
                                          forCellWithReuseIdentifier: RecommandVideoReusableCell.reuseId)
         recommandCollectionView.register(CommunityReusableCell.self,
                                          forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
+        recommandCollectionView.register(EmptyCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseID)
+
     }
 
     // MARK: - Observe
@@ -114,13 +116,10 @@ final class DashboardView: BaseScrollView {
     /// 추천 비디오 로드 완료시 리로드
     private func observeRecommandVideoSucceed() {
         viewModel.$recommandVideoSuccessed
-            .receive(on: DispatchQueue.global())
-            .sink { [weak self] value in
-                DispatchQueue.main.async {
-                    if value {
-                        self?.recommandCollectionView.reloadData()
-                    }
-                }
+            .filter { $0 == true }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.recommandCollectionView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -128,13 +127,10 @@ final class DashboardView: BaseScrollView {
     /// 추천 커뮤니티 로드 완료시 리로드
     private func observeRecommandCommunitySucceed() {
         viewModel.$recommandCommunitySuccessed
-            .receive(on: DispatchQueue.global())
-            .sink { [weak self] value in
-                DispatchQueue.main.async {
-                    if value {
-                        self?.recommandCollectionView.reloadData()
-                    }
-                }
+            .filter { $0 == true }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.recommandCollectionView.reloadData()
             }
             .store(in: &cancellables)
     }

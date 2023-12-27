@@ -12,7 +12,16 @@ final class SwimDataStore {
     
     static let shared = SwimDataStore()
     
-    private var swimmingData = CurrentValueSubject<[SwimMainData], Never>([])
+    lazy var lastUpdatedDate = CurrentValueSubject<Date?, Never>(Date()) {
+        willSet {
+            print("SETTED \(newValue)")
+        }
+    }
+    private var swimmingData = CurrentValueSubject<[SwimMainData], Never>([]) {
+        willSet {
+            self.lastUpdatedDate.send(Date())
+        }
+    }
     private(set) lazy var swimmingDataPubliser = AnyPublisher(self.swimmingData)
 
     private init() { }
@@ -22,7 +31,7 @@ final class SwimDataStore {
     }
     
     func getAllData() -> [SwimMainData] {
-    return swimmingData.value
+        return swimmingData.value
     }
     
     // MARK: - 일간, 주간, 월간, 연간, 요약 데이터 가져오기
