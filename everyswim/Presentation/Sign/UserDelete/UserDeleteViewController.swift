@@ -18,6 +18,7 @@ final class UserDeleteViewController: BaseViewController {
     init(viewModel: UserDeleteViewModel = .init()) {
         self.viewModel = viewModel
         super.init()
+        self.assignTextfieldHideKeyboardGesture()
     }
     
     required init?(coder: NSCoder) {

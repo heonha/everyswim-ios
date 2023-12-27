@@ -111,8 +111,6 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("set select cell")
-
         guard !viewModel.places.isEmpty else {
             return BaseEmptyTableViewCell()
         }
@@ -133,16 +131,14 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        print("will select")
         return indexPath
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select")
+        tableView.deselectRow(at: indexPath, animated: true)
         let place = viewModel.places[indexPath.row]
         guard let coordinator = place.getCoordinator() else { return }
         presentMapAndMoveToMarker(target: place, moveTo: coordinator)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /// 맵 뷰를 열고 선택한 마커로 카메라를 이동합니다.
