@@ -75,13 +75,11 @@ final class PoolSearchViewController: BaseViewController, ObservableMessage {
     
     /// 알림창 State Observe 및 띄우기
     func bindMessage() {
-        viewModel.isPresentMessage
-            .filter { $0 }
+        viewModel.isPresentMessagePublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] messageString in
                 guard let self = self else {return}
-                presentMessage(title: viewModel.presentMessage.value)
-                viewModel.isPresentMessage.send(false)
+                presentMessage(title: messageString)
             }
             .store(in: &cancellables)
     }

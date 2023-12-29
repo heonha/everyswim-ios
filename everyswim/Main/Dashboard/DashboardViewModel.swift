@@ -9,8 +9,14 @@ import SwiftUI
 import Combine
 import HealthKit
 
-final class DashboardViewModel: BaseViewModel {
-        
+final class DashboardViewModel: BaseViewModel, IOProtocol {
+    
+    struct Input {
+    }
+    
+    struct Output {
+    }
+
     private var authManager = AuthManager.shared
     
     // MARK: Health Data
@@ -67,6 +73,11 @@ final class DashboardViewModel: BaseViewModel {
         self.fetchRingData()
         self.getRecommandVideos()
         self.getRecommandCommunity()
+    }
+    
+    func transform(input: Input) -> Output {
+        
+        return Output()
     }
     
     // MARK: - UserProfile

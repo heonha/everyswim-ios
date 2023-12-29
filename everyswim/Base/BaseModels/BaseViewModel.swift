@@ -15,11 +15,23 @@ class BaseViewModel {
     var cancellables = Set<AnyCancellable>()
     
     /// 하단 메시지 이벤트
-    var isPresentMessage = CurrentValueSubject<Bool, Never>(false)
-    var presentMessage = CurrentValueSubject<String, Never>("")
+    private var isPresentMessageSubject = PassthroughSubject<Void, Never>()
+    private var presentMessageSubject = PassthroughSubject<String, Never>()
+    lazy var isPresentMessagePublisher: AnyPublisher<String, Never> = {
+        return Publishers
+            .CombineLatest(isPresentMessageSubject.eraseToAnyPublisher(),
+                           presentMessageSubject.eraseToAnyPublisher())
+            .filter { _, messageString in
+                !messageString.isEmpty
+            }
+            .map { return $1 }
+            .eraseToAnyPublisher()
+    }()
+    
     
     func sendMessage(message: String) {
-        self.presentMessage.send(message)
-        self.isPresentMessage.send(true)
+        self.presentMessageSubject.send(message)
+        self.isPresentMessageSubject.send()
     }
+
 }

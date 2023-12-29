@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DashboardView: BaseScrollView {
+final class DashboardScrollView: BaseScrollView {
     
     // MARK: - Init
     init() {

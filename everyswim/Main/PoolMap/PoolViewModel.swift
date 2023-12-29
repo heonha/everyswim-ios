@@ -127,10 +127,8 @@ class PoolViewModel: BaseViewModel {
                 case .success(let places):
                     self?.places = places
                 case .failure(let error):
-                    self?.isPresentMessage.send(true)
                     self?.sendMessage(message: "\(error)")
                     self?.places = []
-                    self?.isLoading.send(false)
                 }
             }
         
@@ -149,8 +147,7 @@ class PoolViewModel: BaseViewModel {
                 self?.currentRegion = regionData
             case .failure(let error):
                 print("좌표값 기준으로 주소가져오기 에러: \(error)")
-                self?.presentMessage.send("\(error.localizedDescription)")
-                self?.isPresentMessage.send(true)
+                self?.sendMessage(message: "\(error)")
                 self?.isLoading.send(false)
             }
         }

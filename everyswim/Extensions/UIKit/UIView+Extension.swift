@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Combine
+import CombineCocoa
 
 extension UIViewController {
     
@@ -134,6 +136,13 @@ extension UIView {
         }
         
         return divider
+    }
+    
+    func tapPublisher() -> AnyPublisher<Void, Never> {
+        let tapGesture = UITapGestureRecognizer(target: self, action: nil)
+        tapGesture.numberOfTapsRequired = 1
+        self.addGestureRecognizer(tapGesture)
+        return tapGesture.tapPublisher.map { _ in () }.eraseToAnyPublisher()
     }
 
 }

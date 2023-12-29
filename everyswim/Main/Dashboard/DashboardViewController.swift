@@ -10,12 +10,12 @@ import SnapKit
 import Combine
 import SDWebImage
 
-final class DashboardViewController: BaseViewController, ObservableMessage {
-    
-    var viewModel: DashboardViewModel
+final class DashboardViewController: BaseViewController {
+
+    private let viewModel: DashboardViewModel
             
-    private lazy var scrollView = DashboardView()
-    lazy var contentView = scrollView.contentView
+    private lazy var scrollView = DashboardScrollView()
+    private lazy var contentView = scrollView.contentView
 
     // MARK: - Views
     /// `상단 헤더 뷰` (프로필)
@@ -69,7 +69,6 @@ final class DashboardViewController: BaseViewController, ObservableMessage {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        bind()
         observe()
         layout()
     }
@@ -114,23 +113,6 @@ extension DashboardViewController {
         recommandCollectionView.register(EmptyCollectionViewCell.self,
                                          forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseID)
 
-    }
-    
-    // MARK: - Bind
-    func bind() {
-        bindMessage()
-    }
-    
-    func bindMessage() {
-        viewModel.isPresentMessage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isPresent in
-                guard let self = self else { return }
-                if isPresent {
-                    self.presentMessage(title: viewModel.presentMessage.value)
-                }
-            }
-            .store(in: &cancellables)
     }
     
     // MARK: - Layout
@@ -197,7 +179,7 @@ extension DashboardViewController {
     private func layoutRecommandCollectionView(spacing: CGFloat,
                                                height: CGFloat) {
         contentView.addSubview(recommandCollectionView)
-        recommandCollectionView.isScrollEnabled = false
+        recommandCollectionView.backgroundColor = .randomColor()
         recommandCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
