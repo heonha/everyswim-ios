@@ -52,12 +52,12 @@ final class RecordSmallCell: UITableViewCell {
     }()
     
     private lazy var dayLabel = ViewFactory
-        .label("")
+        .label("--.--")
         .font(.custom(.sfProMedium, size: 16))
         .foregroundColor(AppUIColor.primaryBlue)
     
     private lazy var weekdayLabel = ViewFactory
-        .label("")
+        .label("-요일")
         .font(.custom(.sfProLight, size: 12))
         .foregroundColor(AppUIColor.primaryBlue)
     
@@ -65,12 +65,12 @@ final class RecordSmallCell: UITableViewCell {
     private lazy var records = data.getSimpleRecords()
     
     private lazy var title = ViewFactory
-        .label("")
+        .label("-요일 수영")
         .font(.custom(.sfProMedium, size: 15))
         .foregroundColor(UIColor.black)
     
     private lazy var record = ViewFactory
-        .label("")
+        .label("-분 | -m |- Lap")
         .font(.custom(.sfProLight, size: 13))
         .foregroundColor(AppUIColor.primaryBlue)
     
@@ -140,7 +140,6 @@ extension RecordSmallCell {
     
     func updateRecord(data: SwimMainData) {
         let record = data.getSimpleRecords()
-        self.title.text = "\(record.duration) | \(record.distance)m | \(record.lap) Lap"
     }
 
     func updateData(_ data: SwimMainData) {
@@ -153,6 +152,7 @@ extension RecordSmallCell {
     
     private func configure() {
         self.selectedBackgroundView = UIView()
+        self.data = .init(id: .init(), duration: 0, startDate: Date(), endDate: Date(), detail: nil, laps: [])
     }
     
     private func setLayout() {

@@ -93,78 +93,76 @@ struct SwimMainData: Identifiable {
     
 }
 
-
-
 #if DEBUG
 extension SwimMainData: TestableObject {
     
-    static let examples: [SwimMainData] = SwimMainData.generateSwimmingData()
+    static var examples: [SwimMainData] = {
+          
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm"
 
-    static private func generateDate(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> Date? {
-        let dateString = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%02d", hour)):\(String(format: "%02d", minute))"
-        return dateString.toDateWithTime()
-    }
+           let calendar = Calendar.current
 
-    static private func generateLaps(startDate: Date) -> [Lap] {
-        var laps: [Lap] = []
-        let numLaps = Int.random(in: 1...20)
-        for lapIndex in 1...numLaps {
-            let lapStartDate = startDate.addingTimeInterval(Double(lapIndex) * Double.random(in: 15.0...120.0))
-            let lapEndDate = lapStartDate.addingTimeInterval(Double.random(in: 15.0...120.0))
-            let lapStyle: HKSwimmingStrokeStyle? = Int.random(in: 0...1) == 0 ? .freestyle : .breaststroke
+           var swimmingData: [SwimMainData] = []
 
-            let lap = Lap(index: lapIndex, dateInterval: DateInterval(start: lapStartDate, end: lapEndDate), style: lapStyle)
-            laps.append(lap)
-        }
-        return laps
-    }
+           let months = Array(1...12)
 
-    static private func generateSwimData(year: Int, month: Int, day: Int) -> SwimMainData {
-        let hour1 = Int.random(in: 0...23)
-        let minute1 = Int.random(in: 0...59)
-        let hour2 = hour1 + (Int.random(in: 0...1) == 0 ? 0 : 1)
-        let minute2 = Int.random(in: 0...59)
-
-        guard let startDate = generateDate(year: year, month: month, day: day, hour: hour1, minute: minute1),
-              let endDate = generateDate(year: year, month: month, day: day, hour: hour2, minute: minute2) else {
-            fatalError("Invalid date generated")
-        }
-
-        let laps = generateLaps(startDate: startDate)
-
-        return SwimMainData(id: UUID(),
-                            duration: Double.random(in: 1000...10000),
-                            startDate: startDate,
-                            endDate: endDate,
-                            detail: SwimStatisticsData(distance: Double.random(in: 500...1500),
-                                                       stroke: Double.random(in: 200...600),
-                                                       activeKcal: Double.random(in: 100...500),
-                                                       restKcal: Double.random(in: 50...200)),
-                            laps: laps)
-    }
-
-    static func generateSwimmingData() -> [SwimMainData] {
-        var swimmingData: [SwimMainData] = []
-        let calendar = Calendar.current
-
-        for year in 2020...2023 {
-            for month in 1...12 {
-                guard let firstDayOfMonth = generateDate(year: year, month: month, day: 1, hour: 0, minute: 0),
-                      let lastDayOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: firstDayOfMonth) else {
-                    continue
-                }
-
-                let daysInMonth = calendar.component(.day, from: lastDayOfMonth)
-                let numDataInMonth = Int.random(in: 1...9)
-
-                for _ in 1...numDataInMonth {
-                    let day = Int.random(in: 1...daysInMonth)
-                    let swimData = generateSwimData(year: year, month: month, day: day)
-                    swimmingData.append(swimData)
-                }
-            }
-        }
-        return swimmingData
-    }
+           for year in Array(2020...2023) {
+               for month in months {
+                   // Calculate the first day of the month
+                   var dateComponents = DateComponents()
+                   dateComponents.year = year
+                   dateComponents.month = month
+                   dateComponents.day = 1
+                   guard let firstDayOfMonth = calendar.date(from: dateComponents) else {
+                       continue
+                   }
+                   
+                   // Calculate the last day of the month
+                   guard let lastDayOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: firstDayOfMonth) else {
+                       continue
+                   }
+                   
+                   let daysInMonth = calendar.component(.day, from: lastDayOfMonth)
+                   let numDataInMonth = Int.random(in: 1...9) // 한 월에 생성할 데이터 개수 (1에서 9까지 랜덤)
+                   
+                   for _ in 1...numDataInMonth {
+                       let day = Int.random(in: 1...daysInMonth) // 월 내 랜덤한 날짜 선택
+                       let hour1 = Int.random(in: 0...23)
+                       let minute1 = Int.random(in: 0...59)
+                       let hour2 = hour1 + (Int.random(in: 0...1) == 0 ? 0 : 1) // 하루에 1개 또는 2개의 데이터 생성
+                       let minute2 = Int.random(in: 0...59)
+                       
+                       // 시작 시간과 종료 시간 생성
+                       let startDateStr = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%02d", hour1)):\(String(format: "%02d", minute1))"
+                       let endDateStr = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%02d", hour2)):\(String(format: "%02d", minute2))"
+                       
+                       // 랩 데이터 생성 (1개에서 5개의 랩 데이터 랜덤 생성)
+                       var laps: [Lap] = []
+                       let numLaps = Int.random(in: 1...20)
+                       for lapIndex in 1...numLaps {
+                           let lapStartDate = startDateStr.toDateWithTime()!.addingTimeInterval(Double(lapIndex) * Double.random(in: 15.0...120.0))
+                           let lapEndDate = lapStartDate.addingTimeInterval(Double.random(in: 15.0...120.0))
+                           let lapStyle: HKSwimmingStrokeStyle? = Int.random(in: 0...1) == 0 ? .freestyle : .breaststroke // 랜덤한 수영 스타일
+                           
+                           let lap = Lap(index: lapIndex, dateInterval: DateInterval(start: lapStartDate, end: lapEndDate), style: lapStyle)
+                           laps.append(lap)
+                       }
+                       
+                       let swimData = SwimMainData(id: UUID(),
+                                                   duration: Double.random(in: 1000...10000), // 랜덤한 수영 시간 생성
+                                                   startDate: startDateStr.toDateWithTime()!,
+                                                   endDate: endDateStr.toDateWithTime() ?? Date(),
+                                                   detail: SwimStatisticsData(distance: Double.random(in: 500...1500), // 랜덤한 수영 거리 생성
+                                                                              stroke: Double.random(in: 200...600), // 랜덤한 스트로크 수 생성
+                                                                              activeKcal: Double.random(in: 100...500), // 랜덤한 활동 열량 생성
+                                                                              restKcal: Double.random(in: 50...200)), // 랜덤한 휴식 열량 생성
+                                                   laps: laps)
+                       swimmingData.append(swimData)
+                   }
+               }
+           }
+           return swimmingData
+       }()
 }
 #endif

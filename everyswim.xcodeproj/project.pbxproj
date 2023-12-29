@@ -216,6 +216,7 @@
 		39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998D2A9B6C3800738334 /* UIViewPreview.swift */; };
 		39F599902A9B6E2000738334 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */; };
 		39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* RecordSmallCell.swift */; };
+		39F618082B3EC25E003F446C /* IOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F618072B3EC25E003F446C /* IOProtocol.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 		CFAFE20684BE58D4CCE4749D /* Pods_everyswim_tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3854DA5BAACC64846B2772 /* Pods_everyswim_tests.framework */; };
 /* End PBXBuildFile section */
@@ -439,6 +440,7 @@
 		39F5998D2A9B6C3800738334 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
 		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		39F599922A9B7BA000738334 /* RecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSmallCell.swift; sourceTree = "<group>"; };
+		39F618072B3EC25E003F446C /* IOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOProtocol.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 		424BA43FA5477F430C2EE4CE /* Pods-everyswim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim.release.xcconfig"; path = "Target Support Files/Pods-everyswim/Pods-everyswim.release.xcconfig"; sourceTree = "<group>"; };
 		4C93A378DA5C94464966D187 /* Pods-everyswim-tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim-tests.release.xcconfig"; path = "Target Support Files/Pods-everyswim-tests/Pods-everyswim-tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				39B59CD52B370D0F0078B937 /* UIKit */,
 				39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */,
 				390848AE2B37015200BDD317 /* TestableObject.swift */,
+				39F618072B3EC25E003F446C /* IOProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1622,6 +1625,7 @@
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
+				39F618082B3EC25E003F446C /* IOProtocol.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
