@@ -58,8 +58,7 @@ final class DashboardHeaderView: UIView {
     
     // MARK: - Setup
     /// 유저 프로필 데이터 셋업 (헤더)
-    public func setProfileData() {
-        let profile = viewModel.getUserProfile()
+    public func updateProfileData(profile: MyInfoProfile) {
         self.title.text = "반가워요, \(profile.name)"
         
         if let imageUrlString = profile.imageUrl {
@@ -79,14 +78,6 @@ final class DashboardHeaderView: UIView {
             let defaultProfileImage = UIImage()
             self.profileImageView.image = defaultProfileImage
         }
-    }
-    
-    private func observeUserProfileState() {
-        viewModel.myinfoProfile
-            .sink { [weak self] _ in
-                self?.setProfileData()
-            }
-            .store(in: &cancellables)
     }
     
     // MARK: - Layout

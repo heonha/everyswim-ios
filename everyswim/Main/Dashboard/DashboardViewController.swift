@@ -70,15 +70,18 @@ final class DashboardViewController: BaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configure()
-        observe()
         layout()
+        bind()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if viewModel.needsProfileUpdate() {
-            headerView.setProfileData()
+            let profile = viewModel.getUserProfile()
+            headerView.updateProfileData(profile: profile)
         }
+        
+        updateChallangeView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -184,60 +187,46 @@ extension DashboardViewController {
         }
 
     }
-
-    // MARK: - Observe
-    private func observe() {
-        observeUpdateProfile()
-        observeRecommandVideoSucceed()
-        observeLastWorkout()
-        observeLastWorkoutGesture()
-    }
     
-    /// 프로필 업데이트
-    private func observeUpdateProfile() {
-        AuthManager.shared.isSignIn
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.headerView.setProfileData()
-            }
-            .store(in: &cancellables)
-    }
-    
-    /// 추천 비디오 로드 완료시 리로드
-    private func observeRecommandVideoSucceed() {
-        viewModel.updateCollectionViewPublisher
+    // MARK: - Bind
+    private func bind() {
+        let input = DashboardViewModel
+            .Input(lastWorkoutCellTapped: lastWorkoutCell.tapPublisher())
+        
+        let output = viewModel.transform(input: input)
+        
+        /// 프로필 업데이트
+        output.updateCollectionViewPublisher
             .sink { [weak self] _ in
                 self?.recommandCollectionView.reloadData()
             }
             .store(in: &cancellables)
-    }
-    
-    /// 최근 운동기록 데이터 업데이트
-    private func observeLastWorkout() {
-        viewModel.$lastWorkout
-            .receive(on: DispatchQueue.main)
-            .sink {[unowned self] data in
-                if let data = data {
-                    lastWorkoutCell.updateData(data)
-                }
+        
+        /// 추천 비디오/커뮤니티 로드 완료시 리로드
+        output.updateProfileViewPublisher
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { [weak self] profile in
+                self?.headerView.updateProfileData(profile: profile)
+            })
+            .store(in: &cancellables)
+        
+        /// 최근 운동기록 데이터 업데이트
+        output.updateLastWorkoutPublisher
+            .sink { [weak self] data in
+                self?.lastWorkoutCell.updateData(data)
             }
             .store(in: &cancellables)
-    }
-    
-    private func observeLastWorkoutGesture() {
-        // 최근 운동기록 제스쳐
-        lastWorkoutCell.gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
+        
+        output.pushWorkoutDetailViewPublisher
             .sink { [weak self] _ in
                 guard let data = self?.viewModel.lastWorkout else { return }
-                
                 let detailVC = ActivityDetailViewController(data: data)
                 self?.push(detailVC, animated: true)
             }
             .store(in: &cancellables)
-
     }
-    
+
     // MARK: - Update UI
     private func updateChallangeView() {
         challangeViews.startCircleAnimation()

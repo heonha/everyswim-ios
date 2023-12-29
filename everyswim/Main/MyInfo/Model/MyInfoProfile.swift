@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct MyInfoProfile {
+struct MyInfoProfile: DefaultModelProtocol {
+    
     let name: String
     let email: String
     let imageUrl: String?
+    
+    static var `default`: MyInfoProfile = .init(name: "-", email: "-", imageUrl: nil)
+    
 }

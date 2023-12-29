@@ -12,9 +12,14 @@ import HealthKit
 final class DashboardViewModel: BaseViewModel, IOProtocol {
     
     struct Input {
+        let lastWorkoutCellTapped: AnyPublisher<Void, Never>
     }
     
     struct Output {
+        let updateCollectionViewPublisher: AnyPublisher<Void, Never>
+        let updateProfileViewPublisher: AnyPublisher<MyInfoProfile, Error>
+        let updateLastWorkoutPublisher: AnyPublisher<SwimMainData, Never>
+        let pushWorkoutDetailViewPublisher: AnyPublisher<Void, Never>
     }
 
     private var authManager = AuthManager.shared
@@ -33,22 +38,15 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
 
-    private(set) var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Never>(nil)
+    private var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Error>(nil)
     
     // MARK: Recommand Model (Networking)
     private let recommandDataService = RecommandDataService()
     
     /// 추천 수영 `영상` 데이터
     private(set) var recommandVideos = CurrentValueSubject<[VideoCollectionData], Never>(.init())
-    
     /// 추천 `커뮤니티` 데이터
     private(set) var recommandCommunities = CurrentValueSubject<[CommunityCollectionData], Never>(.init())
-    var updateCollectionViewPublisher: AnyPublisher<Void, Never> {
-        Publishers
-            .CombineLatest(recommandVideos.eraseToAnyPublisher(), recommandCommunities.eraseToAnyPublisher())
-            .map { _, _ in return () }
-            .eraseToAnyPublisher()
-    }
     
     // MARK: Ring Data
     private let emptyRing = [
@@ -84,12 +82,42 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     
     func transform(input: Input) -> Output {
         
-        return Output()
+        let updateCollectionView = Publishers
+            .CombineLatest(recommandVideos.eraseToAnyPublisher(), recommandCommunities.eraseToAnyPublisher())
+            .map { _, _ in return () }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        let updateProfileView = myinfoProfile
+            .compactMap { $0 }
+            .timeout(5, scheduler: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .catch { [weak self] error in
+                self?.sendMessage(message: "\(error)")
+                return Just(MyInfoProfile.default).setFailureType(to: Error.self)
+            }
+            .eraseToAnyPublisher()
+        
+        let updateLastWorkout = $lastWorkout
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        let pushWorkoutDetailView = input.lastWorkoutCellTapped
+            .filter { self.lastWorkout != nil }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        return Output(updateCollectionViewPublisher: updateCollectionView,
+                      updateProfileViewPublisher: updateProfileView,
+                      updateLastWorkoutPublisher: updateLastWorkout,
+                      pushWorkoutDetailViewPublisher: pushWorkoutDetailView
+        )
     }
     
     // MARK: - UserProfile
     func needsProfileUpdate() -> Bool {
-        guard let profile = authManager.user.value else { return false }
+        guard let profile = authManager.user.value else { return true }
         if profile.lastUpdated != self.profileLastUpdateDate {
             self.profileLastUpdateDate = profile.lastUpdated
             return true

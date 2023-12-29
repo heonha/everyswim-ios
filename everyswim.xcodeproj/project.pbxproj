@@ -181,6 +181,7 @@
 		39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */; };
 		39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */; };
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
+		39B7E6E52B3F1D8000138B63 /* DefaultModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7E6E42B3F1D8000138B63 /* DefaultModelProtocol.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
 		39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceView.swift */; };
 		39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */; };
@@ -407,6 +408,7 @@
 		39B6E6022B1C8A37009140F8 /* PoolSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchViewController.swift; sourceTree = "<group>"; };
 		39B6E6042B1C8B18009140F8 /* PoolMediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolMediumCell.swift; sourceTree = "<group>"; };
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
+		39B7E6E42B3F1D8000138B63 /* DefaultModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModelProtocol.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
 		39C4CF302B38251A00F49A1A /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWebViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */,
 				390848AE2B37015200BDD317 /* TestableObject.swift */,
 				39F618072B3EC25E003F446C /* IOProtocol.swift */,
+				39B7E6E42B3F1D8000138B63 /* DefaultModelProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1677,6 +1680,7 @@
 				39238E6E2B04F1A4004E28E5 /* SetProfileViewModel.swift in Sources */,
 				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
+				39B7E6E52B3F1D8000138B63 /* DefaultModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
