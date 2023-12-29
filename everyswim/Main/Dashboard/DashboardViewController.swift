@@ -13,13 +13,13 @@ import SDWebImage
 final class DashboardViewController: BaseViewController {
 
     private let viewModel: DashboardViewModel
-            
-    private lazy var scrollView = DashboardScrollView()
-    private lazy var contentView = scrollView.contentView
 
     // MARK: - Views
     /// `상단 헤더 뷰` (프로필)
     lazy var headerView = DashboardHeaderView(viewModel: viewModel, parentVC: self)
+    
+    private lazy var scrollView = DashboardScrollView()
+    private lazy var contentView = scrollView.contentView
     
     /// `최근 운동 기록 Views`
     private lazy var recentRecordView = ViewFactory
@@ -57,8 +57,8 @@ final class DashboardViewController: BaseViewController {
     }()
     
     // MARK: - Init & LifeCycles
-    init(viewModel: DashboardViewModel? = nil) {
-        self.viewModel = viewModel ?? DashboardViewModel(healthKitManager: HealthKitManager())
+    init(viewModel: DashboardViewModel) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -69,6 +69,7 @@ final class DashboardViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configure()
         observe()
         layout()
     }
@@ -83,11 +84,6 @@ final class DashboardViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         hideNavigationBar(true)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.cancellables = .init()
     }
     
 }
@@ -179,7 +175,6 @@ extension DashboardViewController {
     private func layoutRecommandCollectionView(spacing: CGFloat,
                                                height: CGFloat) {
         contentView.addSubview(recommandCollectionView)
-        recommandCollectionView.backgroundColor = .randomColor()
         recommandCollectionView.snp.makeConstraints { make in
             make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
@@ -194,7 +189,6 @@ extension DashboardViewController {
     private func observe() {
         observeUpdateProfile()
         observeRecommandVideoSucceed()
-        observeRecommandCommunitySucceed()
         observeLastWorkout()
         observeLastWorkoutGesture()
     }
@@ -211,20 +205,7 @@ extension DashboardViewController {
     
     /// 추천 비디오 로드 완료시 리로드
     private func observeRecommandVideoSucceed() {
-        viewModel.$recommandVideoSuccessed
-            .filter { $0 == true }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.recommandCollectionView.reloadData()
-            }
-            .store(in: &cancellables)
-    }
-    
-    /// 추천 커뮤니티 로드 완료시 리로드
-    private func observeRecommandCommunitySucceed() {
-        viewModel.$recommandCommunitySuccessed
-            .filter { $0 == true }
-            .receive(on: RunLoop.main)
+        viewModel.updateCollectionViewPublisher
             .sink { [weak self] _ in
                 self?.recommandCollectionView.reloadData()
             }
@@ -371,14 +352,16 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
     /// `섹션별 아이템 수` 정의
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        print("RECOMMAND SECTIONS: \(viewModel.recommandVideos)")
+        print("RECOMMAND SECTIONS: \(viewModel.recommandCommunities)")
+
         switch recommandSections[section] {
         case .video:
-            guard !viewModel.recommandVideos.isEmpty else {return 1}
-            return viewModel.recommandVideos.count
+            guard !viewModel.recommandVideos.value.isEmpty else {return 1}
+            return viewModel.recommandVideos.value.count
         case .community:
-            guard !viewModel.recommandCommunities.isEmpty else {return 1}
-            return viewModel.recommandCommunities.count
+            guard !viewModel.recommandCommunities.value.isEmpty else {return 1}
+            return viewModel.recommandCommunities.value.count
         }
     }
     
@@ -398,13 +381,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
                 return UICollectionViewCell()
             }
             
-            if viewModel.recommandVideos.isEmpty {
+            if viewModel.recommandVideos.value.isEmpty {
                 let dummyData = VideoCollectionData(id: "-", type: "", url: "", imageUrl: "")
                 cell.setData(data: dummyData)
                 return cell
             }
 
-            let cellViewModel = viewModel.recommandVideos[indexPath.item]
+            let cellViewModel = viewModel.recommandVideos.value[indexPath.item]
             cell.setData(data: cellViewModel)
             
             return cell
@@ -413,13 +396,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         case .community:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityReusableCell.reuseId, for: indexPath) as? CommunityReusableCell else { return UICollectionViewCell() }
             
-            if viewModel.recommandCommunities.isEmpty {
+            if viewModel.recommandCommunities.value.isEmpty {
                 let dummyData = CommunityCollectionData(description: "", url: "", imageUrl: "")
                 cell.configure(viewModel: dummyData)
                 return cell
             }
             
-            let cellViewModel = viewModel.recommandCommunities[indexPath.item]
+            let cellViewModel = viewModel.recommandCommunities.value[indexPath.item]
             cell.configure(viewModel: cellViewModel)
             return cell
         }
@@ -437,9 +420,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 import SwiftUI
 
 struct DashboardViewController_Previews: PreviewProvider {
+    
+    static let viewController = DashboardViewController(viewModel: viewModel)
+    static let viewModel = DashboardViewModel()
+    
     static var previews: some View {
         UIViewControllerPreview {
-            DashboardViewController()
+            viewController
         }
         .ignoresSafeArea()
     }

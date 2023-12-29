@@ -98,9 +98,12 @@ class RecommandVideoReusableCell: UICollectionViewListCell, ReuseableCell {
 import SwiftUI
 
 struct RecommandVideoReusableCell_Previews: PreviewProvider {
+    static let viewController = DashboardViewController(viewModel: viewModel)
+    static let viewModel = DashboardViewModel()
+    
     static var previews: some View {
         UIViewControllerPreview {
-            DashboardViewController()
+            viewController
         }
         .ignoresSafeArea()
     }

@@ -39,13 +39,17 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     private let recommandDataService = RecommandDataService()
     
     /// 추천 수영 `영상` 데이터
-    private(set) var recommandVideos = [VideoCollectionData]()
-    @Published private(set) var recommandVideoSuccessed = false
+    private(set) var recommandVideos = CurrentValueSubject<[VideoCollectionData], Never>(.init())
     
     /// 추천 `커뮤니티` 데이터
-    private(set) var recommandCommunities = [CommunityCollectionData]()
-    @Published private(set) var recommandCommunitySuccessed = false
-
+    private(set) var recommandCommunities = CurrentValueSubject<[CommunityCollectionData], Never>(.init())
+    var updateCollectionViewPublisher: AnyPublisher<Void, Never> {
+        Publishers
+            .CombineLatest(recommandVideos.eraseToAnyPublisher(), recommandCommunities.eraseToAnyPublisher())
+            .map { _, _ in return () }
+            .eraseToAnyPublisher()
+    }
+    
     // MARK: Ring Data
     private let emptyRing = [
         ChallangeRing(type: .distance, count: 0, maxCount: 1),
@@ -64,6 +68,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
         self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager()
         super.init()
+        
         Task {
             await loadHealthCollection()
             await fetchSwimmingData()
@@ -71,8 +76,10 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
         }
 
         self.fetchRingData()
-        self.getRecommandVideos()
-        self.getRecommandCommunity()
+        
+        getRecommandCommunity()
+        getRecommandVideos()
+
     }
     
     func transform(input: Input) -> Output {
@@ -92,23 +99,26 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     }
     
     // MARK: - Recommand Data Methods
-    func getRecommandVideos() {
-        recommandDataService.fetchVideo { [weak self] videoData in
-            self?.recommandVideos.removeAll()
-            videoData.forEach { data in
-                self?.recommandVideos.append(data)
+    private func getRecommandVideos() {
+        recommandDataService
+            .fetchVideo { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.recommandVideos.send(data)
+            case .failure(let error):
+                self?.sendMessage(message: "\(error):\(error.localizedDescription)")
             }
-            self?.recommandVideoSuccessed = true
         }
     }
     
-    func getRecommandCommunity() {
-        recommandDataService.fetchCommunity { [weak self] videoData in
-            self?.recommandCommunities.removeAll()
-            videoData.forEach { data in
-                self?.recommandCommunities.append(data)
+    private func getRecommandCommunity() {
+        recommandDataService.fetchCommunity { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.recommandCommunities.send(data)
+            case .failure(let error):
+                self?.sendMessage(message: "\(error):\(error.localizedDescription)")
             }
-            self?.recommandCommunitySuccessed = true
         }
     }
     

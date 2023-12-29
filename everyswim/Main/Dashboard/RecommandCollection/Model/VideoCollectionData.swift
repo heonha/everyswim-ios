@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct VideoCollectionResponse: Codable {
+struct VideoCollectionResponse: Decodable {
     let video: [VideoCollectionData]
 }
 
-struct VideoCollectionData: Codable, RecommandCollectionProtocol {
+struct VideoCollectionData: Decodable, RecommandCollectionProtocol {
     var title: String?
     var subtitle: String?
     let id: String

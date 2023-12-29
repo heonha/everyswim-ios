@@ -28,7 +28,6 @@ class BaseViewModel {
             .eraseToAnyPublisher()
     }()
     
-    
     func sendMessage(message: String) {
         self.presentMessageSubject.send(message)
         self.isPresentMessageSubject.send()

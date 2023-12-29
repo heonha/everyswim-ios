@@ -20,52 +20,55 @@ final class RecommandDataService {
         self.networkService = networkService
     }
     
-    // 추천 영상 API호출 -> 데이터 반환
-    func fetchVideo(completion: @escaping ([VideoCollectionData]) -> Void) {
-        networkService.request(method: .GET, 
+    private func fetchJSONData<T: Decodable>(endPoint: String, completion: @escaping(Result<T, Error>) -> Void) {
+        networkService.request(method: .GET,
                                headerType: .applicationJson,
                                urlString: baseUrl,
-                               endPoint: "/sources/video.json", 
+                               endPoint: endPoint,
                                parameters: [:],
                                cachePolicy: .reloadIgnoringCacheData,
-                               returnType: VideoCollectionResponse.self)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("❗️RecommandDataService-\(#function) Error: \(error.localizedDescription)")
-                }
-            } receiveValue: { response in
-                let videoData = response.video
-                completion(videoData)
+                               returnType: T.self)
+        .delay(for: 0.5, scheduler: DispatchQueue.global())
+        .receive(on: DispatchQueue.main)
+        .sink { result in
+            print(result)
+            switch result {
+            case .finished:
+                break
+            case .failure(let error):
+                completion(.failure(error))
             }
-            .store(in: &cancellables)
+        } receiveValue: { response in
+            let videoData = response
+            completion(.success(videoData))
+        }
+        .store(in: &cancellables)
     }
     
     // 추천 영상 API호출 -> 데이터 반환
-    func fetchCommunity(completion: @escaping ([CommunityCollectionData]) -> Void) {
-        networkService.request(method: .GET, 
-                               headerType: .applicationJson,
-                               urlString: baseUrl,
-                               endPoint: "/sources/community.json",
-                               parameters: [:],
-                               cachePolicy: .reloadIgnoringCacheData,
-                               returnType: CommunityCollectionResponse.self)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("❗️RecommandDataService-\(#function) Error: \(error.localizedDescription)")
-                }
-            } receiveValue: { response in
-                let communityData = response.community
-                completion(communityData)
+    func fetchVideo(completion: @escaping (Result<[VideoCollectionData], Error>) -> Void) {
+        fetchJSONData(endPoint: "/sources/video.json") { (result: Result<VideoCollectionResponse, Error>) in
+            switch result {
+            case .success(let response):
+                let data = response.video
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
             }
-            .store(in: &cancellables)
+        }
+    }
+    
+    // 추천 영상 API호출 -> 데이터 반환
+    func fetchCommunity(completion: @escaping (Result<[CommunityCollectionData], Error>) -> Void) {
+        fetchJSONData(endPoint: "/sources/community.json") { (result: Result<CommunityCollectionResponse, Error>) in
+            switch result {
+            case .success(let response):
+                let data = response.community
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
 }
