@@ -15,7 +15,8 @@
 		390848A62B36F40300BDD317 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A52B36F40300BDD317 /* BaseUIView.swift */; };
 		390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */; };
 		390848AC2B36FB7500BDD317 /* MapPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AB2B36FB7500BDD317 /* MapPlace.swift */; };
-		390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AE2B37015200BDD317 /* TestLocationObject.swift */; };
+		390848AF2B37015200BDD317 /* TestableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390848AE2B37015200BDD317 /* TestableObject.swift */; };
+		3908D3502B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3908D34F2B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift */; };
 		390A0B202B25851200F30C80 /* PoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B1F2B25851200F30C80 /* PoolViewModel.swift */; };
 		390A0B222B25AAB700F30C80 /* PoolListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */; };
 		390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */; };
@@ -245,7 +246,8 @@
 		390848A52B36F40300BDD317 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		390848A82B36F54200BDD317 /* BaseUIViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewProtocol.swift; sourceTree = "<group>"; };
 		390848AB2B36FB7500BDD317 /* MapPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlace.swift; sourceTree = "<group>"; };
-		390848AE2B37015200BDD317 /* TestLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationObject.swift; sourceTree = "<group>"; };
+		390848AE2B37015200BDD317 /* TestableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableObject.swift; sourceTree = "<group>"; };
+		3908D34F2B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Ext.swift"; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
 		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -494,6 +496,7 @@
 			children = (
 				39B59CD52B370D0F0078B937 /* UIKit */,
 				39C4CF3A2B388DF300F49A1A /* ObservableMessage.swift */,
+				390848AE2B37015200BDD317 /* TestableObject.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -502,10 +505,17 @@
 			isa = PBXGroup;
 			children = (
 				396BAE3A2B39A40F007C1102 /* UITest */,
-				390848AE2B37015200BDD317 /* TestLocationObject.swift */,
 				391C12BE2A592A24001C2286 /* TestObjects.swift */,
 			);
 			path = TestObject;
+			sourceTree = "<group>";
+		};
+		3908D34E2B3EB52700B25914 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				3908D34F2B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift */,
+			);
+			path = CoreLocation;
 			sourceTree = "<group>";
 		};
 		390A0B1E2B2584AF00F30C80 /* Region */ = {
@@ -576,14 +586,6 @@
 				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
 			);
 			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		3922D56F2A74B14A00257164 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		3922D5702A74B1B300257164 /* Foundation */ = {
@@ -831,10 +833,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		398B1BB22A483E0C00E0FA9B /* Presentation */ = {
+		398B1BB22A483E0C00E0FA9B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3922D56F2A74B14A00257164 /* Main */,
+				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
 				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
@@ -843,12 +845,13 @@
 				39DBB3252AC6F291003B5213 /* Activity */,
 				398BD2992B189D3C00970E23 /* PoolMap */,
 			);
-			path = Presentation;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		398B1BB52A483E4000E0FA9B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				397AB5A82A68204E008015F2 /* HapticManager.swift */,
 				391C12BD2A592A0F001C2286 /* Previews */,
 				39B59CD42B370BD30078B937 /* Location */,
 				3922D5712A74B1C500257164 /* HealthKit */,
@@ -862,6 +865,7 @@
 		398B1BB82A483E7B00E0FA9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3908D34E2B3EB52700B25914 /* CoreLocation */,
 				39F5997D2A9B56CA00738334 /* UIKit */,
 				3922D5702A74B1B300257164 /* Foundation */,
 			);
@@ -921,8 +925,8 @@
 				39572CE22A52CBA300986E01 /* everyswim.entitlements */,
 				3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */,
 				3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */,
-				398B1BB22A483E0C00E0FA9B /* Presentation */,
-				39CC3DB82AC5857200C8BC10 /* Commons */,
+				398B1BB22A483E0C00E0FA9B /* Main */,
+				39CC3DB82AC5857200C8BC10 /* Base */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				390848AD2B37013800BDD317 /* TestObject */,
@@ -1075,10 +1079,9 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		39CC3DB82AC5857200C8BC10 /* Commons */ = {
+		39CC3DB82AC5857200C8BC10 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				397AB5A82A68204E008015F2 /* HapticManager.swift */,
 				39B59CD72B370D630078B937 /* BaseVC */,
 				39B59CD62B370D510078B937 /* BaseViews */,
 				39B59CD82B370D6E0078B937 /* BaseModels */,
@@ -1086,7 +1089,7 @@
 				396CE8522AB568E200EB66BE /* Gesture */,
 				390848A72B36F53600BDD317 /* Protocols */,
 			);
-			path = Commons;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		39DBB3252AC6F291003B5213 /* Activity */ = {
@@ -1585,6 +1588,7 @@
 				396D2ACC2A56CB140042D4D4 /* StrokeStyle.swift in Sources */,
 				3954EBB22A6E5F2700044125 /* ChallangeRecordType.swift in Sources */,
 				3997322C2B305066008B5C11 /* KakaoPlaceResponse.swift in Sources */,
+				3908D3502B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift in Sources */,
 				3998C03C2B39882C00BE6F98 /* PoolSearchView.swift in Sources */,
 				390CEB242A82592A003198F6 /* DateValue.swift in Sources */,
 				3933514E2AFA575E0014D37A /* NetworkError.swift in Sources */,
@@ -1602,7 +1606,7 @@
 				390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */,
 				39F5998E2A9B6C3800738334 /* UIViewPreview.swift in Sources */,
 				39CC3DB32AC564D900C8BC10 /* CALayer+Extension.swift in Sources */,
-				390848AF2B37015200BDD317 /* TestLocationObject.swift in Sources */,
+				390848AF2B37015200BDD317 /* TestableObject.swift in Sources */,
 				39B377482AD2B27E00F37C27 /* IsHidden.swift in Sources */,
 				3905CFE22A9B52D800CF4AB4 /* AppDelegate.swift in Sources */,
 				39A606A22A6D09CB00049B5A /* DateToStringType.swift in Sources */,

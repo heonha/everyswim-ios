@@ -32,7 +32,9 @@ final class BaseEmptyTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        self.backgroundColor = .tertiarySystemFill
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        self.separatorInset = .zero
     }
     
     public func setTitle(_ title: String,

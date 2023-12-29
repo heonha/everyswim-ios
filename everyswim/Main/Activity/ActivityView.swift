@@ -105,6 +105,7 @@ final class ActivityView: BaseScrollView {
         tableView.register(RecordMediumCell.self, forCellReuseIdentifier: RecordMediumCell.reuseId)
         tableView.backgroundColor = AppUIColor.skyBackground
         tableView.isScrollEnabled = false
+        tableView.separatorColor = .clear
     }
     
     // MARK: - Observe
