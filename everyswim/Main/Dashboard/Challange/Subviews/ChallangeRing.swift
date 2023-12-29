@@ -81,3 +81,13 @@ struct ChallangeRing: Identifiable {
     }
 
 }
+
+extension ChallangeRing: TestableObject {
+    
+    static let examples: [ChallangeRing] = [
+        ChallangeRing(type: .distance, count: 2001, maxCount: 2000),
+        ChallangeRing(type: .lap, count: 45, maxCount: 60),
+        ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
+    ]
+    
+}

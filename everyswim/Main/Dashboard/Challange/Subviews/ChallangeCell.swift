@@ -77,7 +77,7 @@ import SwiftUI
 struct ChallangeCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            ChallangeCell(data: TestObjects.rings.first!)
+            ChallangeCell(data: ChallangeRing.examples.first!)
         }
     }
 }

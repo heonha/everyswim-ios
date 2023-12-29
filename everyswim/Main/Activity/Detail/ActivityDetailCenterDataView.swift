@@ -69,7 +69,7 @@ import SwiftUI
 struct ActivityDetailCenterDataView_Previews: PreviewProvider {
     
     static let view = ActivityDetailCenterDataView()
-    static let data = TestObjects.swimSummaryData
+    static let data = SwimSummaryViewModel.examples.first!
     
     static var previews: some View {
         UIViewPreview {

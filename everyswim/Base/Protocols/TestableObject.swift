@@ -12,7 +12,8 @@ import CoreLocation
 protocol TestableObject {
     associatedtype Example
     
-    static var example: Example { get }
+    static var examples: Example { get }
+
 }
 
 #endif

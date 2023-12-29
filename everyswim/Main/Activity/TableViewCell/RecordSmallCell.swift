@@ -196,7 +196,7 @@ import SwiftUI
 struct EventListUICell_Previews: PreviewProvider {
     
     static let view = RecordSmallCell()
-    static let data = TestObjects.swimmingData.first!
+    static let data = SwimMainData.examples.first!
     
     static var previews: some View {
         UIViewPreview {

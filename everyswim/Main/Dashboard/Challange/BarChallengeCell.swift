@@ -121,7 +121,7 @@ import SwiftUI
 struct BarChallangeCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            BarChallangeCell(data: TestObjects.rings.first!)
+            BarChallangeCell(data: ChallangeRing.examples.first!)
         }
         .padding(.horizontal)
         .frame(height: 65)

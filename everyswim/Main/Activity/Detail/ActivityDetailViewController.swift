@@ -328,7 +328,7 @@ import SwiftUI
 struct ActivityDetailViewController_Previews: PreviewProvider {
     
     static let viewController = ActivityDetailViewController(data: viewModel)
-    static let viewModel = TestObjects.swimmingData.first!
+    static let viewModel = SwimMainData.examples.first!
     
     static var previews: some View {
         UIViewControllerPreview {

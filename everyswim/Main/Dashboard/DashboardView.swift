@@ -31,7 +31,7 @@ final class DashboardView: BaseScrollView {
         .textAlignemnt(.left)
     
     /// [최근 운동 기록] `Cell`
-    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? TestObjects.swimmingData.first!, showDate: true)
+    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? SwimMainData.examples.first!, showDate: true)
     
     /// `목표 현황` View
     private var challangeViews = ChallangeCellContainer()

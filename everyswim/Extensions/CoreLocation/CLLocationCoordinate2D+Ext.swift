@@ -10,8 +10,8 @@ import Foundation
 import CoreLocation
 
 extension CLLocationCoordinate2D: TestableObject {
-    
-    static var example: CLLocationCoordinate2D = .init(latitude: 37.495368057754774, longitude: 126.88734144230949)
 
+    static var examples: [CLLocationCoordinate2D] = [.init(latitude: 37.495368057754774, longitude: 126.88734144230949)]
+    
 }
 #endif

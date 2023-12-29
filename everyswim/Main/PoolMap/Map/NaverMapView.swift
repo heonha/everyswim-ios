@@ -161,7 +161,7 @@ import SwiftUI
 
 struct NaverMapView_Previews: PreviewProvider {
     
-    static let view = NaverMapView(currentLocation: CLLocationCoordinate2D.example, parentVC: nil)
+    static let view = NaverMapView(currentLocation: CLLocationCoordinate2D.examples.first!, parentVC: nil)
     static let parentVC = MapViewController(viewModel: parentVCViewModel)
     static let parentVCViewModel = PoolViewModel(locationManager: .shared,
                                                     regionSearchManager: .init())

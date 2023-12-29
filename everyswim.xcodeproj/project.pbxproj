@@ -31,7 +31,6 @@
 		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
 		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
-		391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12BE2A592A24001C2286 /* TestObjects.swift */; };
 		391C12C32A593103001C2286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C22A593103001C2286 /* Int+Extension.swift */; };
 		391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C62A59374D001C2286 /* AppSymbol.swift */; };
 		392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */; };
@@ -250,7 +249,7 @@
 		3908D34F2B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Ext.swift"; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
-		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Presentation/Main/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
+		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Main/SetGoal/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
 		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
 		390C618F2AF3B9FF0061E6D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		390C61912AF3BA210061E6D4 /* SetGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewModel.swift; sourceTree = "<group>"; };
@@ -262,7 +261,6 @@
 		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
 		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
-		391C12BE2A592A24001C2286 /* TestObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObjects.swift; sourceTree = "<group>"; };
 		391C12C22A593103001C2286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		391C12C62A59374D001C2286 /* AppSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSymbol.swift; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
@@ -499,15 +497,6 @@
 				390848AE2B37015200BDD317 /* TestableObject.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		390848AD2B37013800BDD317 /* TestObject */ = {
-			isa = PBXGroup;
-			children = (
-				396BAE3A2B39A40F007C1102 /* UITest */,
-				391C12BE2A592A24001C2286 /* TestObjects.swift */,
-			);
-			path = TestObject;
 			sourceTree = "<group>";
 		};
 		3908D34E2B3EB52700B25914 /* CoreLocation */ = {
@@ -929,7 +918,7 @@
 				39CC3DB82AC5857200C8BC10 /* Base */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
-				390848AD2B37013800BDD317 /* TestObject */,
+				396BAE3A2B39A40F007C1102 /* UITest */,
 				39437DA02A48948E00FDA9DA /* Secrets */,
 				398B1BC92A484D5500E0FA9B /* Resources */,
 				398B1BAA2A483DA400E0FA9B /* Preview Content */,
@@ -1575,7 +1564,6 @@
 				390848A92B36F54200BDD317 /* BaseUIViewProtocol.swift in Sources */,
 				399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */,
 				393F88482B24BFBA00C67FAA /* RegionSearchManager.swift in Sources */,
-				391C12BF2A592A24001C2286 /* TestObjects.swift in Sources */,
 				39700A6A2B25EB72009D9C3D /* RegionAPIResponse.swift in Sources */,
 				391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */,
 				39DBB31E2AC6E650003B5213 /* ActivityTypeSegmentControl.swift in Sources */,
