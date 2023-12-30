@@ -24,6 +24,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
 
     private var authManager = AuthManager.shared
     
+    /// 섹션 종류
+    var recommandSections = RecommandSection.allCases
+    
     // MARK: Health Data
     private var hkManager: HealthKitManager?
     private var kcals: [HKNormalStatus] = []

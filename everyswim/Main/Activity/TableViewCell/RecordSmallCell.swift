@@ -114,11 +114,14 @@ final class RecordSmallCell: UITableViewCell {
         self.configure()
     }
     
-    init(data: SwimMainData, showDate: Bool = false, style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil) {
+    init(data: SwimMainData?, showDate: Bool = false, style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil) {
         self.data = data
         self.showRelativedate = showDate
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.configure()
+        if self.data == nil {
+            self.data = SwimMainData.examples.first!
+        }
     }
 
     required init?(coder: NSCoder) {

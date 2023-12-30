@@ -11,7 +11,6 @@ import Combine
 
 final class DashboardHeaderView: UIView {
     
-    private let viewModel: DashboardViewModel
     private weak var parentVC: DashboardViewController?
     
     private var cancellables = Set<AnyCancellable>()
@@ -45,9 +44,7 @@ final class DashboardHeaderView: UIView {
         .addSubviews([vstack, profileImageView])
     
     // MARK: - Init
-    init(viewModel: DashboardViewModel, parentVC: DashboardViewController?) {
-        self.viewModel = viewModel
-        self.parentVC = parentVC
+    init() {
         super.init(frame: .zero)
         layout()
     }
@@ -115,7 +112,7 @@ struct HomeHeaderView_Previews: PreviewProvider {
     
     static var previews: some View {
         UIViewPreview {
-            DashboardHeaderView(viewModel: DashboardViewModel(), parentVC: parentVC)
+            DashboardHeaderView()
         }
     }
 }

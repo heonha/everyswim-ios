@@ -219,6 +219,7 @@
 		39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599922A9B7BA000738334 /* RecordSmallCell.swift */; };
 		39F618082B3EC25E003F446C /* IOProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F618072B3EC25E003F446C /* IOProtocol.swift */; };
 		39F6180B2B3EC334003F446C /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 39F6180A2B3EC334003F446C /* CombineCocoa */; };
+		39FBFCE02B3FB74C00B10836 /* LastWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBFCDF2B3FB74C00B10836 /* LastWorkoutView.swift */; };
 		39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */; };
 		CFAFE20684BE58D4CCE4749D /* Pods_everyswim_tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3854DA5BAACC64846B2772 /* Pods_everyswim_tests.framework */; };
 /* End PBXBuildFile section */
@@ -444,6 +445,7 @@
 		39F5998F2A9B6E2000738334 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		39F599922A9B7BA000738334 /* RecordSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSmallCell.swift; sourceTree = "<group>"; };
 		39F618072B3EC25E003F446C /* IOProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOProtocol.swift; sourceTree = "<group>"; };
+		39FBFCDF2B3FB74C00B10836 /* LastWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastWorkoutView.swift; sourceTree = "<group>"; };
 		39FCBEEC2A8B81990073EE53 /* SwimDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataStore.swift; sourceTree = "<group>"; };
 		424BA43FA5477F430C2EE4CE /* Pods-everyswim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim.release.xcconfig"; path = "Target Support Files/Pods-everyswim/Pods-everyswim.release.xcconfig"; sourceTree = "<group>"; };
 		4C93A378DA5C94464966D187 /* Pods-everyswim-tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-everyswim-tests.release.xcconfig"; path = "Target Support Files/Pods-everyswim-tests/Pods-everyswim-tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -576,11 +578,8 @@
 			isa = PBXGroup;
 			children = (
 				39F599852A9B5CB000738334 /* DashboardViewController.swift */,
-				39C4CF382B38846900F49A1A /* DashboardScrollView.swift */,
 				39572CE92A52F0F700986E01 /* DashboardViewModel.swift */,
-				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
-				398DFB432AA9DBC200BDEB8E /* Challange */,
-				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
+				39B7E6E62B3F210C00138B63 /* SubViews */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1038,6 +1037,18 @@
 				39C4CF352B3854BB00F49A1A /* Protocol */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		39B7E6E62B3F210C00138B63 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				39C4CF382B38846900F49A1A /* DashboardScrollView.swift */,
+				3979A0642AA618930094D57A /* DashboardHeaderView.swift */,
+				39FBFCDF2B3FB74C00B10836 /* LastWorkoutView.swift */,
+				39B0C3962AAC6FBE004E0985 /* RecommandCollection */,
+				398DFB432AA9DBC200BDEB8E /* Challange */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		39BC26972AAD7EE1007432B5 /* Subviews */ = {
@@ -1572,6 +1583,7 @@
 				39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */,
 				392457262A545004006E3071 /* HKDateType.swift in Sources */,
 				39B0C39C2AAC7DCF004E0985 /* VideoCollectionData.swift in Sources */,
+				39FBFCE02B3FB74C00B10836 /* LastWorkoutView.swift in Sources */,
 				39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */,
 				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
 				39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */,

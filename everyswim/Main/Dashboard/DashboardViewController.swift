@@ -15,36 +15,19 @@ final class DashboardViewController: BaseViewController {
     private let viewModel: DashboardViewModel
 
     // MARK: - Views
-    /// `상단 헤더 뷰` (프로필)
-    lazy var headerView = DashboardHeaderView(viewModel: viewModel, parentVC: self)
-    
+    /// (메인) 스크롤 뷰
     private lazy var scrollView = DashboardScrollView()
     private lazy var contentView = scrollView.contentView
     
-    /// `최근 운동 기록 Views`
-    private lazy var recentRecordView = ViewFactory
-        .vStack(subviews: [eventTitle, lastWorkoutCell])
-        .distribution(.fill)
-        .alignment(.center)
-        .spacing(4)
+    /// 최상단 프로필
+    private lazy var headerProfileView = DashboardHeaderView()
+
+    /// 최근 운동 기록 View
+    private lazy var lastWorkoutView = LastWorkoutView()
     
-    /// [최근 운동 기록] Views - `title`
-    private let eventTitle = ViewFactory
-        .label("최근 기록")
-        .font(.custom(.sfProLight, size: 15))
-        .foregroundColor(.gray)
-        .textAlignemnt(.left)
-    
-    /// [최근 운동 기록] `Cell`
-    private lazy var lastWorkoutCell = RecordSmallCell(data: viewModel.lastWorkout ?? SwimMainData.examples.first!,
-                                                       showDate: true)
-    
-    /// `목표 현황` View
-    private var challangeViews = ChallangeCellContainer()
-    
-    /// 섹션 종류
-    var recommandSections = RecommandSection.allCases
-    
+    /// 이번주 목표 View
+    private var challangeCirclesView = ChallangeCellContainer()
+        
     /// 추천 CollectionView
     private lazy var recommandCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
@@ -76,11 +59,7 @@ final class DashboardViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if viewModel.needsProfileUpdate() {
-            let profile = viewModel.getUserProfile()
-            headerView.updateProfileData(profile: profile)
-        }
-        
+        checkNeedUpdateProfile()
         updateChallangeView()
     }
     
@@ -91,8 +70,9 @@ final class DashboardViewController: BaseViewController {
     
 }
 
+// MARK: - Configure
 extension DashboardViewController {
-    // MARK: - Configure
+    
     private func configure() {
         configureRecommandCollectionView()
     }
@@ -101,7 +81,7 @@ extension DashboardViewController {
     private func configureRecommandCollectionView() {
         recommandCollectionView.dataSource = self
         recommandCollectionView.delegate = self
-
+        
         recommandCollectionView.register(RecommandCollectionViewHeader.self,
                                          forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                          withReuseIdentifier: RecommandCollectionViewHeader.reuseId)
@@ -111,10 +91,13 @@ extension DashboardViewController {
                                          forCellWithReuseIdentifier: CommunityReusableCell.reuseId)
         recommandCollectionView.register(EmptyCollectionViewCell.self,
                                          forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseID)
-
+        
     }
     
-    // MARK: - Layout
+}
+
+// MARK: - Layout
+extension DashboardViewController {
     private func layout() {
         scrollViewLayout()
         let spacing: CGFloat = 28
@@ -135,8 +118,8 @@ extension DashboardViewController {
     
     /// [Layout] HeaderView
     private func layoutHeaderView(height: CGFloat) {
-        contentView.addSubview(headerView)
-        headerView.snp.makeConstraints { make in
+        contentView.addSubview(headerProfileView)
+        headerProfileView.snp.makeConstraints { make in
             make.top.equalTo(contentView)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
@@ -146,29 +129,22 @@ extension DashboardViewController {
 
     /// [Layout] RecentRecordView
     private func layoutRecentRecordView(height: CGFloat) {
-        contentView.addSubview(recentRecordView)
+        contentView.addSubview(lastWorkoutView)
         
-        recentRecordView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(4)
+        lastWorkoutView.snp.makeConstraints { make in
+            make.top.equalTo(headerProfileView.snp.bottom).offset(4)
             make.height.equalTo(height)
             make.horizontalEdges.equalTo(contentView).inset(20)
         }
-        
-        eventTitle.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(recentRecordView)
-        }
-        
-        lastWorkoutCell.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(recentRecordView)
-        }
+
     }
     
     /// [Layout] ChallangeView
     private func layoutChallangeViews(spacing: CGFloat, height: CGFloat) {
-        contentView.addSubview(challangeViews)
+        contentView.addSubview(challangeCirclesView)
         
-        challangeViews.snp.makeConstraints { make in
-            make.top.equalTo(recentRecordView.snp.bottom).offset(8)
+        challangeCirclesView.snp.makeConstraints { make in
+            make.top.equalTo(lastWorkoutView.snp.bottom).offset(8)
             make.height.equalTo(height)
             make.horizontalEdges.equalTo(contentView).inset(20)
         }
@@ -179,7 +155,7 @@ extension DashboardViewController {
                                                height: CGFloat) {
         contentView.addSubview(recommandCollectionView)
         recommandCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(challangeViews.snp.bottom).offset(spacing)
+            make.top.equalTo(challangeCirclesView.snp.bottom).offset(spacing)
             make.leading.equalTo(contentView)
             make.trailing.equalTo(contentView)
             make.height.equalTo(height)
@@ -191,7 +167,7 @@ extension DashboardViewController {
     // MARK: - Bind
     private func bind() {
         let input = DashboardViewModel
-            .Input(lastWorkoutCellTapped: lastWorkoutCell.tapPublisher())
+            .Input(lastWorkoutCellTapped: lastWorkoutView.lastWorkoutCell.tapPublisher())
         
         let output = viewModel.transform(input: input)
         
@@ -207,14 +183,14 @@ extension DashboardViewController {
             .sink(receiveCompletion: { error in
                 print(error)
             }, receiveValue: { [weak self] profile in
-                self?.headerView.updateProfileData(profile: profile)
+                self?.headerProfileView.updateProfileData(profile: profile)
             })
             .store(in: &cancellables)
         
         /// 최근 운동기록 데이터 업데이트
         output.updateLastWorkoutPublisher
             .sink { [weak self] data in
-                self?.lastWorkoutCell.updateData(data)
+                self?.lastWorkoutView.updateData(data)
             }
             .store(in: &cancellables)
         
@@ -229,13 +205,21 @@ extension DashboardViewController {
 
     // MARK: - Update UI
     private func updateChallangeView() {
-        challangeViews.startCircleAnimation()
+        challangeCirclesView.startCircleAnimation()
+    }
+    
+    /// 프로필 뷰의 업데이트가 필요한지 확인 합니다.
+    private func checkNeedUpdateProfile() {
+        if viewModel.needsProfileUpdate() {
+            let profile = viewModel.getUserProfile()
+            headerProfileView.updateProfileData(profile: profile)
+        }
+
     }
     
 }
 
 // MARK: - Recommand CollectionView Configurations
-
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     /// `레이아웃` 생성
@@ -333,7 +317,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
                                               withReuseIdentifier: RecommandCollectionViewHeader.reuseId,
                                               for: indexPath) as? RecommandCollectionViewHeader else {return UICollectionReusableView() }
         
-        let section = recommandSections[indexPath.section]
+        let section = viewModel.recommandSections[indexPath.section]
         header.configure(title: section.title, subtitle: section.subtitle)
         
         return header
@@ -344,7 +328,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         print("RECOMMAND SECTIONS: \(viewModel.recommandVideos)")
         print("RECOMMAND SECTIONS: \(viewModel.recommandCommunities)")
 
-        switch recommandSections[section] {
+        switch viewModel.recommandSections[section] {
         case .video:
             guard !viewModel.recommandVideos.value.isEmpty else {return 1}
             return viewModel.recommandVideos.value.count
@@ -356,13 +340,13 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     /// `섹션 수` 정의
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return recommandSections.count
+        return viewModel.recommandSections.count
     }
     
     /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch recommandSections[indexPath.section] {
+        switch viewModel.recommandSections[indexPath.section] {
         // 추천영상
         case .video:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommandVideoReusableCell.reuseId,
@@ -405,6 +389,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
 }
 
+// MARK: - Preview
 #if DEBUG
 import SwiftUI
 

@@ -93,6 +93,12 @@ struct SwimMainData: Identifiable {
     
 }
 
+extension SwimMainData: DefaultModelProtocol {
+
+    static var `default`: SwimMainData = SwimMainData.init(id: .init(), duration: 0, startDate: .init(), endDate: .init(), detail: nil, laps: [])
+    
+}
+
 #if DEBUG
 extension SwimMainData: TestableObject {
     
