@@ -206,24 +206,10 @@ extension DashboardViewController {
         /// 목표 Circle 애니메이션 재생.
         output.updateChallangeCircleAnimationPublisher
             .sink { [weak self] _ in
-                self?.updateChallangeView()
+                self?.challangeCirclesView.startCircleAnimation()
             }
             .store(in: &cancellables)
     }
-
-    // MARK: - Update UI
-    private func updateChallangeView() {
-        challangeCirclesView.startCircleAnimation()
-    }
-    
-    /// 프로필 뷰의 업데이트가 필요한지 확인 합니다.
-    // private func checkNeedUpdateProfile() {
-    //     if viewModel.needsProfileUpdate() {
-    //         let profile = viewModel.getUserProfile()
-    //         headerProfileView.updateProfileData(profile: profile)
-    //     }
-    // 
-    // }
     
 }
 

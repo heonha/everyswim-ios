@@ -94,13 +94,13 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        let updateProfileView =
-        Publishers
-            .CombineLatest(input.viewWillAppearPublisher, authManager.isSignIn)
+        let updateProfileView = Publishers
+            .CombineLatest(input.viewWillAppearPublisher, 
+                           authManager.isSignIn)
             .filter { _, isSignIn in
                 return isSignIn
             }
-            .compactMap { _, _ in
+            .compactMap { _ in
                 self.needsProfileUpdate()
             }
             .receive(on: DispatchQueue.main)
@@ -127,7 +127,6 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
                       updateLastWorkoutPublisher: updateLastWorkout,
                       updateChallangeCircleAnimationPublisher: updateChallangeCircleAnimationPublisher,
                       pushWorkoutDetailViewPublisher: pushWorkoutDetailView)
-        
     }
     
     // MARK: - UserProfile
