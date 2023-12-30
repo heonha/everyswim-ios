@@ -9,12 +9,12 @@ import SwiftUI
 import Combine
 import HealthKit
 
-enum ChangeMonthType {
-    case increase
-    case decrease
-}
-
 final class DatePickerViewModel: BaseViewModel {
+    
+    enum ChangeMonthType {
+        case increase
+        case decrease
+    }
         
     private var cellWidth = AppConstant.deviceSize.width / 7.2
     

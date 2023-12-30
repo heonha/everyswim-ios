@@ -206,7 +206,6 @@
 		39EC71CB2B0228D8008A6386 /* UserDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CA2B0228D8008A6386 /* UserDeleteViewController.swift */; };
 		39EC71CD2B022DCF008A6386 /* UserDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */; };
 		39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */; };
-		39ED3D452B37EE9D00546349 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ED3D442B37EE9D00546349 /* MyInfoView.swift */; };
 		39F05D4A2B18DC3E0041FF58 /* SecretConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F05D492B18DC3E0041FF58 /* SecretConstant.swift */; };
 		39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */; };
 		39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F599802A9B570D00738334 /* UIFont+Extension.swift */; };
@@ -433,7 +432,6 @@
 		39EC71CA2B0228D8008A6386 /* UserDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteViewController.swift; sourceTree = "<group>"; };
 		39EC71CC2B022DCF008A6386 /* UserDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteView.swift; sourceTree = "<group>"; };
 		39EC71CE2B02382F008A6386 /* UserDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeleteViewModel.swift; sourceTree = "<group>"; };
-		39ED3D442B37EE9D00546349 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		39F05D492B18DC3E0041FF58 /* SecretConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretConstant.swift; sourceTree = "<group>"; };
 		39F5997E2A9B56FC00738334 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		39F599802A9B570D00738334 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -554,7 +552,6 @@
 			isa = PBXGroup;
 			children = (
 				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
-				39ED3D442B37EE9D00546349 /* MyInfoView.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39FADBE52B0A1D5200C90B19 /* View */,
 				39FADBE42B0A1D3700C90B19 /* Model */,
@@ -1672,7 +1669,6 @@
 				3980FC532AB6A38C00E4A8DE /* MyInfoProfileView.swift in Sources */,
 				398DFB402AA9D06300BDEB8E /* UICellBackground.swift in Sources */,
 				39B0C39A2AAC78F9004E0985 /* RecommandVideoReusableCell.swift in Sources */,
-				39ED3D452B37EE9D00546349 /* MyInfoView.swift in Sources */,
 				3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */,
 				393BDF5A2AF780FB0060AE58 /* BarChallengeCell.swift in Sources */,
 				39318E842AFCF0030089AEC4 /* AuthManager.swift in Sources */,
