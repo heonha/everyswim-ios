@@ -56,25 +56,28 @@ final class DashboardHeaderView: UIView {
     // MARK: - Setup
     /// 유저 프로필 데이터 셋업 (헤더)
     public func updateProfileData(profile: MyInfoProfile) {
-        self.title.text = "반가워요, \(profile.name)"
+        self.title.text = "셋업됨, \(profile.name)"
         
-        if let imageUrlString = profile.imageUrl {
-            let imageUrl = URL(string: imageUrlString)
-            self.profileImageView.sd_setImage(with: imageUrl,
-                                              placeholderImage: nil,
-                                              options: [.progressiveLoad],
-                                              completed: { (_, error, _, _) in
-                guard error != nil else {
-                    self.parentVC?.presentMessage(title: "\(String(describing: error?.localizedDescription))")
-                    return
-                }
-                
-                self.layoutIfNeeded()
-            })
-        } else {
+        guard let imageUrlString = profile.imageUrl else {
             let defaultProfileImage = UIImage()
             self.profileImageView.image = defaultProfileImage
+            self.setNeedsLayout()
+            return
         }
+        
+        let imageUrl = URL(string: imageUrlString)
+        self.profileImageView.sd_setImage(with: imageUrl,
+                                          placeholderImage: nil,
+                                          options: [.progressiveLoad],
+                                          completed: { (_, error, _, _) in
+            if let error = error {
+                self.parentVC?.presentMessage(title: "프로필 이미지 불러오기 실패.\(String(describing: error))")
+                return
+            }
+            
+            self.setNeedsLayout()
+        })
+
     }
     
     // MARK: - Layout

@@ -12,14 +12,16 @@ import HealthKit
 final class DashboardViewModel: BaseViewModel, IOProtocol {
     
     struct Input {
+        let viewWillAppearPublisher: AnyPublisher<Void, Never>
         let lastWorkoutCellTapped: AnyPublisher<Void, Never>
     }
     
     struct Output {
         let updateCollectionViewPublisher: AnyPublisher<Void, Never>
-        let updateProfileViewPublisher: AnyPublisher<MyInfoProfile, Error>
+        let updateProfileViewPublisher: AnyPublisher<MyInfoProfile, Never>
         let updateLastWorkoutPublisher: AnyPublisher<SwimMainData, Never>
-        let pushWorkoutDetailViewPublisher: AnyPublisher<Void, Never>
+        let updateChallangeCircleAnimationPublisher: AnyPublisher<Void, Never>
+        let pushWorkoutDetailViewPublisher: AnyPublisher<SwimMainData, Never>
     }
 
     private var authManager = AuthManager.shared
@@ -31,26 +33,27 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     private var hkManager: HealthKitManager?
     private var kcals: [HKNormalStatus] = []
     private var stroke: [HKNormalStatus] = []
-    private var needUpdateProfile = false
     private var profileLastUpdateDate: String = ""
     
     // MARK: Swimming Model
     @Published private(set) var swimRecords: [SwimMainData]
     @Published private(set) var rings: [ChallangeRing] = []
-    @Published private(set) var lastWorkout: SwimMainData?
+    @Published private var lastWorkout: SwimMainData?
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
 
-    private var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Error>(nil)
+    private var myinfoProfile = PassthroughSubject<MyInfoProfile?, Never>()
     
     // MARK: Recommand Model (Networking)
     private let recommandDataService = RecommandDataService()
     
     /// 추천 수영 `영상` 데이터
     private(set) var recommandVideos = CurrentValueSubject<[VideoCollectionData], Never>(.init())
+    private let recommandVideosSuccess = PassthroughSubject<Void, Never>()
     /// 추천 `커뮤니티` 데이터
     private(set) var recommandCommunities = CurrentValueSubject<[CommunityCollectionData], Never>(.init())
-    
+    private let recommandCommunitiesSuccess = PassthroughSubject<Void, Never>()
+
     // MARK: Ring Data
     private let emptyRing = [
         ChallangeRing(type: .distance, count: 0, maxCount: 1),
@@ -80,25 +83,27 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
         
         getRecommandCommunity()
         getRecommandVideos()
-
     }
     
     func transform(input: Input) -> Output {
         
         let updateCollectionView = Publishers
-            .CombineLatest(recommandVideos.eraseToAnyPublisher(), recommandCommunities.eraseToAnyPublisher())
+            .CombineLatest(recommandVideosSuccess.eraseToAnyPublisher(),
+                           recommandCommunitiesSuccess.eraseToAnyPublisher())
             .map { _, _ in return () }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        let updateProfileView = myinfoProfile
-            .compactMap { $0 }
-            .timeout(5, scheduler: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
-            .catch { [weak self] error in
-                self?.sendMessage(message: "\(error)")
-                return Just(MyInfoProfile.default).setFailureType(to: Error.self)
+        let updateProfileView =
+        Publishers
+            .CombineLatest(input.viewWillAppearPublisher, authManager.isSignIn)
+            .filter { _, isSignIn in
+                return isSignIn
             }
+            .compactMap { _, _ in
+                self.needsProfileUpdate()
+            }
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
         let updateLastWorkout = $lastWorkout
@@ -106,27 +111,31 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        let pushWorkoutDetailView = input.lastWorkoutCellTapped
-            .filter { self.lastWorkout != nil }
+        let pushWorkoutDetailView = input
+            .lastWorkoutCellTapped
+            .compactMap { self.lastWorkout }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        let updateChallangeCircleAnimationPublisher = input
+            .viewWillAppearPublisher
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
         return Output(updateCollectionViewPublisher: updateCollectionView,
                       updateProfileViewPublisher: updateProfileView,
                       updateLastWorkoutPublisher: updateLastWorkout,
-                      pushWorkoutDetailViewPublisher: pushWorkoutDetailView
-        )
+                      updateChallangeCircleAnimationPublisher: updateChallangeCircleAnimationPublisher,
+                      pushWorkoutDetailViewPublisher: pushWorkoutDetailView)
+        
     }
     
     // MARK: - UserProfile
-    func needsProfileUpdate() -> Bool {
-        guard let profile = authManager.user.value else { return true }
-        if profile.lastUpdated != self.profileLastUpdateDate {
-            self.profileLastUpdateDate = profile.lastUpdated
-            return true
-        } else {
-            return false
-        }
+    func needsProfileUpdate() -> MyInfoProfile? {
+        guard let hasProfile = authManager.user.value else { return nil }
+        self.profileLastUpdateDate = hasProfile.lastUpdated
+        let profileModel = getUserProfile()
+        return profileModel
     }
     
     // MARK: - Recommand Data Methods
@@ -136,6 +145,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             switch result {
             case .success(let data):
                 self?.recommandVideos.send(data)
+                self?.recommandVideosSuccess.send(())
             case .failure(let error):
                 self?.sendMessage(message: "\(error):\(error.localizedDescription)")
             }
@@ -147,6 +157,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             switch result {
             case .success(let data):
                 self?.recommandCommunities.send(data)
+                self?.recommandCommunitiesSuccess.send(())
             case .failure(let error):
                 self?.sendMessage(message: "\(error):\(error.localizedDescription)")
             }

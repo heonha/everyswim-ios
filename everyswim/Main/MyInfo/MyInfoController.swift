@@ -58,6 +58,15 @@ final class MyInfoController: BaseViewController {
     private func configure() {
         
     }
+    
+    // MARK: bind
+    private func bind() {
+        let input = MyInfoViewModel
+            .Input(signOutTapPublisher: buttonList.getButton(type: .logout).tapPublisher())
+        
+        let output = viewModel.transform(input: input)
+    }
+    
 }
 
 // MARK: - Layout

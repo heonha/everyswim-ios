@@ -58,7 +58,7 @@ class BaseViewController: UIViewController {
             make.width.equalTo(view).dividedBy(1.3)
         }
     }
-    
+
     /// 하단에 메시지를 띄웁니다.
     public func presentMessage(title: String) {
         let isContainView = view.subviews.contains(where: { view in

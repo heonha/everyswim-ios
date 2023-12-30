@@ -8,7 +8,16 @@
 import UIKit
 import Combine
 
-final class MyInfoViewModel: BaseViewModel {
+final class MyInfoViewModel: BaseViewModel, IOProtocol {
+
+    struct Input {
+        let signOutTapPublisher: AnyPublisher<Void, Never>
+    }
+    
+    struct Output {
+        let profileUpdatePublisher: AnyPublisher<Bool, Never>
+        let logoutPublisher: AnyPublisher<Void, Never>
+    }
     
     private let authManager: AuthManager
     
@@ -31,7 +40,29 @@ final class MyInfoViewModel: BaseViewModel {
         observeUserProfile()
     }
     
-    func fetchUserProfile() {
+    func transform(input: Input) -> Output {
+        
+        let logoutPublisher = input.signOutTapPublisher
+            .map {
+                self.signOut()
+                return $0
+            }
+            .eraseToAnyPublisher()
+        
+        let profileUpdatePublisher = Publishers
+            .CombineLatest(AuthManager.shared.isSignIn, authManager.user.eraseToAnyPublisher())
+            .filter { $0 == true || $1 != nil }
+            .map { isSignIn, _ -> Bool in
+                if isSignIn { self.fetchUserProfile() }
+                return isSignIn
+            }
+            .eraseToAnyPublisher()
+        
+        return Output(profileUpdatePublisher: profileUpdatePublisher,
+                      logoutPublisher: logoutPublisher)
+    }
+    
+    private func fetchUserProfile() {
         let profile = authManager.getMyInfoProfile()
         self.myinfoProfile.send(profile)
     }
@@ -45,7 +76,7 @@ final class MyInfoViewModel: BaseViewModel {
             .store(in: &cancellables)
     }
 
-    func getButtonListData() -> [MyInfoButtonType] {
+    func getAllButtonType() -> [MyInfoButtonType] {
         return MyInfoButtonType.allCases
     }
     
@@ -55,6 +86,7 @@ final class MyInfoViewModel: BaseViewModel {
                 try await authManager.signOut()
             } catch {
                 print("DEBUG: 로그아웃 에러 \(error.localizedDescription)")
+                self.sendMessage(message: "\(error)")
             }
         }
     }

@@ -15,7 +15,7 @@ final class MyInfoButtonList: BaseUIView {
     private weak var parentVC: MyInfoController?
     
     private lazy var buttons: [MyInfoButton] = viewModel
-        .getButtonListData()
+        .getAllButtonType()
         .map { MyInfoButton($0) }
     
     private lazy var firstSectionView = ViewFactory
@@ -195,7 +195,7 @@ final class MyInfoButtonList: BaseUIView {
     }
     
     /// 로그아웃
-    private func buttonLogout() {
+    func buttonLogout() {
         self.presentSignOutAlert()
     }
     

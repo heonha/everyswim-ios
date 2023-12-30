@@ -27,7 +27,9 @@ final class DashboardViewController: BaseViewController {
     
     /// 이번주 목표 View
     private var challangeCirclesView = ChallangeCellContainer()
-        
+    
+    private let viewWillAppearPublisher = PassthroughSubject<Void, Never>()
+    
     /// 추천 CollectionView
     private lazy var recommandCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
@@ -59,8 +61,7 @@ final class DashboardViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkNeedUpdateProfile()
-        updateChallangeView()
+        viewWillAppearPublisher.send()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -167,24 +168,24 @@ extension DashboardViewController {
     // MARK: - Bind
     private func bind() {
         let input = DashboardViewModel
-            .Input(lastWorkoutCellTapped: lastWorkoutView.lastWorkoutCell.tapPublisher())
+            .Input(viewWillAppearPublisher: viewWillAppearPublisher.eraseToAnyPublisher(),
+                   lastWorkoutCellTapped: lastWorkoutView.lastWorkoutCell.tapPublisher())
         
         let output = viewModel.transform(input: input)
         
-        /// 프로필 업데이트
+        /// 추천 비디오/커뮤니티 로드 완료시 리로드
         output.updateCollectionViewPublisher
             .sink { [weak self] _ in
                 self?.recommandCollectionView.reloadData()
             }
             .store(in: &cancellables)
         
-        /// 추천 비디오/커뮤니티 로드 완료시 리로드
+        /// 프로필 업데이트
         output.updateProfileViewPublisher
-            .sink(receiveCompletion: { error in
-                print(error)
-            }, receiveValue: { [weak self] profile in
+            .sink { [weak self] profile in
+                print("Profile을 셋업합니다.")
                 self?.headerProfileView.updateProfileData(profile: profile)
-            })
+            }
             .store(in: &cancellables)
         
         /// 최근 운동기록 데이터 업데이트
@@ -194,11 +195,18 @@ extension DashboardViewController {
             }
             .store(in: &cancellables)
         
+        /// 최근 운동 DetailViewController Push
         output.pushWorkoutDetailViewPublisher
-            .sink { [weak self] _ in
-                guard let data = self?.viewModel.lastWorkout else { return }
+            .sink { [weak self] data in
                 let detailVC = ActivityDetailViewController(data: data)
                 self?.push(detailVC, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        /// 목표 Circle 애니메이션 재생.
+        output.updateChallangeCircleAnimationPublisher
+            .sink { [weak self] _ in
+                self?.updateChallangeView()
             }
             .store(in: &cancellables)
     }
@@ -209,13 +217,13 @@ extension DashboardViewController {
     }
     
     /// 프로필 뷰의 업데이트가 필요한지 확인 합니다.
-    private func checkNeedUpdateProfile() {
-        if viewModel.needsProfileUpdate() {
-            let profile = viewModel.getUserProfile()
-            headerProfileView.updateProfileData(profile: profile)
-        }
-
-    }
+    // private func checkNeedUpdateProfile() {
+    //     if viewModel.needsProfileUpdate() {
+    //         let profile = viewModel.getUserProfile()
+    //         headerProfileView.updateProfileData(profile: profile)
+    //     }
+    // 
+    // }
     
 }
 
