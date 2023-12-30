@@ -319,9 +319,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
 
     /// `섹션별 아이템 수` 정의
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("RECOMMAND SECTIONS: \(viewModel.recommandVideos)")
-        print("RECOMMAND SECTIONS: \(viewModel.recommandCommunities)")
-
         switch viewModel.recommandSections[section] {
         case .video:
             guard !viewModel.recommandVideos.value.isEmpty else {return 1}

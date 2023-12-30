@@ -26,9 +26,10 @@ final class RecommandDataService {
                                urlString: baseUrl,
                                endPoint: endPoint,
                                parameters: [:],
-                               cachePolicy: .reloadIgnoringCacheData,
+                               cachePolicy: .useProtocolCachePolicy,
                                returnType: T.self)
-        .delay(for: 0.5, scheduler: DispatchQueue.global())
+        .timeout(10, scheduler: DispatchQueue.global())
+        .retry(3)
         .receive(on: DispatchQueue.main)
         .sink { result in
             print(result)

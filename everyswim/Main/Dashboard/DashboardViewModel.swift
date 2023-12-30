@@ -88,9 +88,10 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     func transform(input: Input) -> Output {
         
         let updateCollectionView = Publishers
-            .CombineLatest(recommandVideosSuccess.eraseToAnyPublisher(),
-                           recommandCommunitiesSuccess.eraseToAnyPublisher())
-            .map { _, _ in return () }
+            .CombineLatest3(recommandVideosSuccess.eraseToAnyPublisher(),
+                           recommandCommunitiesSuccess.eraseToAnyPublisher(),
+                            input.viewWillAppearPublisher)
+            .map { _, _, _ in return () }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
@@ -147,19 +148,22 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
                 self?.recommandVideosSuccess.send(())
             case .failure(let error):
                 self?.sendMessage(message: "\(error):\(error.localizedDescription)")
+                return
             }
         }
     }
     
     private func getRecommandCommunity() {
-        recommandDataService.fetchCommunity { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.recommandCommunities.send(data)
-                self?.recommandCommunitiesSuccess.send(())
-            case .failure(let error):
-                self?.sendMessage(message: "\(error):\(error.localizedDescription)")
-            }
+        recommandDataService
+            .fetchCommunity { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.recommandCommunities.send(data)
+                    self?.recommandCommunitiesSuccess.send(())
+                case .failure(let error):
+                    self?.sendMessage(message: "\(error):\(error.localizedDescription)")
+                    return
+                }
         }
     }
     
