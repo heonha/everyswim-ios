@@ -209,6 +209,13 @@ extension DashboardViewController {
                 self?.challangeCirclesView.startCircleAnimation()
             }
             .store(in: &cancellables)
+        
+        output.updateRings
+            .sink { [weak self] _ in
+                self?.challangeCirclesView.updateRings()
+            }
+            .store(in: &cancellables)
+        
     }
     
 }

@@ -12,21 +12,7 @@ final class RecordSmallCell: UITableViewCell {
     
     static let reuseId = "RecordSmallCell"
     
-    var data: SwimMainData! {
-        didSet {
-            if let data = data {
-                self.dayLabel.text = data.getDayDotMonth()
-                self.weekdayLabel.text = data.getWeekDay()
-                self.title.text = "\(data.getWeekDay()) 수영"
-                self.record.text = "\(records.duration) | \(records.distance)m | \(records.lap) Lap"
-                
-                if self.showRelativedate {
-                    let label = self.rightLabel as! UILabel
-                    label.text = Date.relativeDate(from: data.startDate)
-                }
-            }
-        }
-    }
+    private var data: SwimMainData!
     
     private var showRelativedate: Bool = false
     
@@ -62,8 +48,6 @@ final class RecordSmallCell: UITableViewCell {
         .foregroundColor(AppUIColor.primaryBlue)
     
     // MARK: 수영 기록
-    private lazy var records = data.getSimpleRecords()
-    
     private lazy var title = ViewFactory
         .label("-요일 수영")
         .font(.custom(.sfProMedium, size: 15))
@@ -146,7 +130,16 @@ extension RecordSmallCell {
     }
 
     func updateData(_ data: SwimMainData) {
-        self.data = data
+        let records = data.getSimpleRecords()
+        self.dayLabel.text = data.getDayDotMonth()
+        self.weekdayLabel.text = data.getWeekDay()
+        self.title.text = "\(data.getWeekDay()) 수영"
+        self.record.text = "\(records.duration) | \(records.distance)m | \(records.lap) Lap"
+        
+        if self.showRelativedate {
+            let label = self.rightLabel as! UILabel
+            label.text = Date.relativeDate(from: data.startDate)
+        }
     }
     
     func getData() -> SwimMainData {

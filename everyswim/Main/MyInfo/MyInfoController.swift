@@ -150,7 +150,7 @@ extension MyInfoController {
         output.presentHealthDataUpdateAlert
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
-                self.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
+                self.presentMessage(title: "건강데이터를 동기화합니다.")
             }
             .store(in: &cancellables)
         
@@ -214,6 +214,19 @@ extension MyInfoController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] profile in
                 self?.profileView.updateUserProfile(profile)
+            }
+            .store(in: &cancellables)
+        
+        output.showLoadingIndicator
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.healthStateCell.showLoadingIndicator()
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self?.healthStateCell.hideLoadingIndicator()
+                    }
+                }
             }
             .store(in: &cancellables)
     }

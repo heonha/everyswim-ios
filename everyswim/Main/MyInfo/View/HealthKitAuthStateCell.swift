@@ -16,6 +16,8 @@ final class HealthKitAuthStateCell: UIView {
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 0, radius: 0.3)
         .cornerRadius(8)
     
+    let activityIndicator = ActivityIndicator()
+    
     private let healthImageView = UIImageView()
         .setImage(AppImage.appleHealth.getImage())
     
@@ -44,7 +46,7 @@ final class HealthKitAuthStateCell: UIView {
     private let refreshImageView = UIImageView()
         .setSymbolImage(systemName: "arrow.clockwise.circle.fill",
                         color: .init(hex: "000000", alpha: 0.4))
-
+    
     init() {
         super.init(frame: .zero)
         configure()
@@ -85,14 +87,33 @@ final class HealthKitAuthStateCell: UIView {
             make.trailing.equalTo(contentView).inset(20)
             make.centerY.equalTo(contentView)
         }
+        
+        setLoadingIndicator()
     }
     
     func getRefreshButtonTapPublisher() -> AnyPublisher<Void, Never> {
-        return self.refreshImageView.tapPublisher()
+        return self.tapPublisher()
     }
     
     func updateTimeLabel(dateString: String) {
-        
+        self.updatedTimeLabel.text = dateString
+    }
+    
+    private func setLoadingIndicator() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+            make.center.equalTo(contentView)
+        }
+    }
+    
+    func showLoadingIndicator() {
+        self.activityIndicator.setBackgroundColor()
+        self.activityIndicator.show()
+    }
+    
+    func hideLoadingIndicator() {
+        self.activityIndicator.hide()
     }
     
 }

@@ -10,11 +10,7 @@ import SnapKit
 
 final class AnimateRingUIView: UIView {
     
-    var data: ChallangeRing {
-        willSet {
-            print("SETTED")
-        }
-    }
+    var data: ChallangeRing
     
     private var showRing: Bool
     private var lineWidth: CGFloat
@@ -75,6 +71,16 @@ final class AnimateRingUIView: UIView {
 }
 
 extension AnimateRingUIView {
+    
+    func setData(_ data: ChallangeRing) {
+        self.data = data
+        self.progressCircle = createCircle(progress: data.progress(),
+                                           lineWidth: self.lineWidth,
+                                           lineColor: self.data.getCircleUIColor(),
+                                           radius: self.circleSize / 2)
+        text.text = data.progressPercentString()
+        layoutSubviews()
+    }
     
     func startCircleAnimation() {
         let targetLayer = progressCircle.layer.sublayers!.first!

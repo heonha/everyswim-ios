@@ -41,13 +41,9 @@ final class ChallangeCellContainer: UIView {
     init() {
         super.init(frame: .zero)
         layout()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         loadData()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -63,7 +59,7 @@ extension ChallangeCellContainer {
             }
     }
     
-    func loadData() {
+    private func loadData() {
         let goal = UserData.shared.goal
         let weeklyData = SwimDataStore.shared.getWeeklyData()
 
@@ -80,11 +76,16 @@ extension ChallangeCellContainer {
         let distance = ChallangeRing(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
         let lap = ChallangeRing(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
         let count = ChallangeRing(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
-
-        distanceCell = .init(data: distance)
-        lapCell = .init(data: lap)
-        countCell = .init(data: count)
         
+        distanceCell = .init(data: distance)
+        distanceCell?.id = "distance"
+
+        lapCell = .init(data: lap)
+        lapCell?.id = "lap"
+
+        countCell = .init(data: count)
+        countCell?.id = "count"
+
         self.cellVStack.addArrangedSubview(self.distanceCell!)
         self.cellVStack.addArrangedSubview(self.lapCell!)
         self.cellVStack.addArrangedSubview(self.countCell!)
@@ -104,6 +105,57 @@ extension ChallangeCellContainer {
             make.horizontalEdges.equalTo(cellVStack)
         }
 
+    }
+    
+    func updateRings() {
+        let goal = UserData.shared.goal
+        let weeklyData = SwimDataStore.shared.getWeeklyData()
+
+        #if DEBUG && targetEnvironment(simulator)
+        let distanceData = weeklyData
+            .compactMap { $0.unwrappedDistance }
+            .reduce(Double(300)) { $0 + $1 }
+        
+        let laps = weeklyData
+            .compactMap { $0.laps.count }
+            .reduce(Double(20)) { $0 + Double($1) }
+        
+        let counts = Double(weeklyData.count + 2)
+        #else
+        let distanceData = weeklyData
+            .compactMap { $0.unwrappedDistance }
+            .reduce(Double(0)) { $0 + $1 }
+        
+        let laps = weeklyData
+            .compactMap { $0.laps.count }
+            .reduce(Double(0)) { $0 + Double($1) }
+        
+        let counts = Double(weeklyData.count)
+        #endif
+        
+        let distance = ChallangeRing(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
+        let lap = ChallangeRing(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
+        let count = ChallangeRing(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
+        
+        guard let distanceCell = self.cellVStack.arrangedSubviews
+            .first { view in
+                view.id == "distance"
+            } as? BarChallangeCell else {return}
+        
+        guard let lapCell = self.cellVStack.arrangedSubviews
+            .first { view in
+                view.id == "lap"
+            } as? BarChallangeCell else {return}
+
+        guard let countsCell = self.cellVStack.arrangedSubviews
+            .first { view in
+                view.id == "count"
+            } as? BarChallangeCell else {return}
+
+        distanceCell.setData(distance)
+        lapCell.setData(lap)
+        countsCell.setData(count)
+        startCircleAnimation()
     }
     
     private func layout() {

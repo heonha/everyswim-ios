@@ -74,6 +74,7 @@ extension BarChallangeCell {
             amount = 0
         }
         self.countText.text = "\(data.progressLabel()) / \(amount.description) \(data.unit)"
+        circle.setData(data)
     }
 
     private func layout() {

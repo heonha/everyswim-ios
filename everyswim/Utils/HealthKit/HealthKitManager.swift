@@ -52,7 +52,8 @@ extension HealthKitManager {
         guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return }
         
         #if targetEnvironment(simulator)
-        let swimData = SwimMainData.examples
+        var swimData = SwimMainData.examples
+        swimData.sort { $0.startDate < $1.startDate }
         SwimDataStore.shared.sendSwimData(swimData)
         #else
         let swimData = swimDataManager.createSwimMainData(workouts)

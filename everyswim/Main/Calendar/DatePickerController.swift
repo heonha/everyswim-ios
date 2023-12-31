@@ -303,8 +303,7 @@ extension DatePickerController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? RecordSmallCell else { return }
-        guard let data = cell.data else { return }
-        
+        let data = cell.getData()
         let detailVC = ActivityDetailViewController(data: data)
         self.push(detailVC, animated: true)
     }

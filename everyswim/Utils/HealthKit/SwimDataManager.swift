@@ -89,6 +89,8 @@ class SwimDataManager {
             }
         }
         
+        swimmingData.sort { $0.startDate < $1.startDate }
+        
         return swimmingData
     }
     

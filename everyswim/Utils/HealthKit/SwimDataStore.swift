@@ -12,23 +12,28 @@ final class SwimDataStore {
     
     static let shared = SwimDataStore()
     
-    lazy var lastUpdatedDate = CurrentValueSubject<Date?, Never>(Date()) {
+    private var cancellables = Set<AnyCancellable>()
+    
+    lazy var lastUpdatedDate = CurrentValueSubject<Date?, Never>(nil) {
         willSet {
             print("SETTED \(newValue)")
         }
     }
-    private var swimmingData = CurrentValueSubject<[SwimMainData], Never>([]) {
-        willSet {
-            self.lastUpdatedDate.send(Date())
-        }
-    }
+    private var swimmingData = CurrentValueSubject<[SwimMainData], Never>([])
     private(set) lazy var swimmingDataPubliser = AnyPublisher(self.swimmingData)
+    var lastWorkoutData = CurrentValueSubject<SwimMainData?, Never>(nil)
+    let isLoading = CurrentValueSubject<Bool, Never>(false)
 
-    private init() { }
+    private init() { 
+        observeLastWorkoutData()
+    }
     
     func refreshSwimData() {
         Task {
+            self.isLoading.send(true)
             await HealthKitManager.shared.fetchSwimDataFromHealth()
+            self.lastUpdatedDate.send(Date())
+            self.isLoading.send(false)
         }
     }
     
@@ -74,6 +79,18 @@ final class SwimDataStore {
             .filter { current == $0.startDate.toString(.year) }
         
         return data
+    }
+    
+    func observeLastWorkoutData() {
+        self.swimmingData
+            .compactMap { data in
+                return data.last
+            }
+            .receive(on: DispatchQueue.global())
+            .sink { lastWorkoutData in
+                self.lastWorkoutData.send(lastWorkoutData)
+            }
+            .store(in: &cancellables)
     }
     
     /// `SummaryData` maker

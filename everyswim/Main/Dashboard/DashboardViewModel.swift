@@ -22,6 +22,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
         let updateLastWorkoutPublisher: AnyPublisher<SwimMainData, Never>
         let updateChallangeCircleAnimationPublisher: AnyPublisher<Void, Never>
         let pushWorkoutDetailViewPublisher: AnyPublisher<SwimMainData, Never>
+        let updateRings: AnyPublisher<Void, Never>
     }
 
     private var authManager = AuthManager.shared
@@ -36,7 +37,6 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     private var profileLastUpdateDate: String = ""
     
     // MARK: Swimming Model
-    @Published private(set) var swimRecords: [SwimMainData]
     @Published private(set) var rings: [ChallangeRing] = []
     @Published private var lastWorkout: SwimMainData?
     @Published private(set) var kcalPerWeek: Double = 0.0
@@ -54,6 +54,10 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     private(set) var recommandCommunities = CurrentValueSubject<[CommunityCollectionData], Never>(.init())
     private let recommandCommunitiesSuccess = PassthroughSubject<Void, Never>()
 
+    private var fetchedSwimData: AnyPublisher<Date?, Never> {
+        return SwimDataStore.shared.lastUpdatedDate.eraseToAnyPublisher()
+    }
+    
     // MARK: Ring Data
     private let emptyRing = [
         ChallangeRing(type: .distance, count: 0, maxCount: 1),
@@ -69,17 +73,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     // MARK: - Init
     init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
-        self.swimRecords = swimRecords ?? []
         self.hkManager = healthKitManager ?? HealthKitManager.shared
         super.init()
-        
-        Task {
-            await loadHealthCollection()
-            await fetchSwimmingData()
-            getLastWorkout()
-        }
-
-        self.fetchRingData()
+        SwimDataStore.shared.refreshSwimData()
         
         getRecommandCommunity()
         getRecommandVideos()
@@ -107,8 +103,21 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        let updateLastWorkout = $lastWorkout
-            .compactMap { $0 }
+        let updateLastWorkout =  SwimDataStore.shared.lastWorkoutData.eraseToAnyPublisher()
+            .compactMap { workoutData in
+                return workoutData
+            }
+            .map { data in
+                self.fetchRingData()
+                return data
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        let updateRings = SwimDataStore.shared.lastUpdatedDate
+            .map { _ in
+                return ()
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
@@ -127,7 +136,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
                       updateProfileViewPublisher: updateProfileView,
                       updateLastWorkoutPublisher: updateLastWorkout,
                       updateChallangeCircleAnimationPublisher: updateChallangeCircleAnimationPublisher,
-                      pushWorkoutDetailViewPublisher: pushWorkoutDetailView)
+                      pushWorkoutDetailViewPublisher: pushWorkoutDetailView,
+                      updateRings: updateRings
+        )
     }
     
     // MARK: - UserProfile
@@ -168,14 +179,14 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     }
     
     // MARK: - Workout Data Methods
-    func getLastWorkout() {
-        $swimRecords
-            .receive(on: DispatchQueue.main)
-            .map(\.first)
-            .sink { [weak self] data in
-                self?.lastWorkout = data
-            }.store(in: &cancellables)
-    }
+    // func getLastWorkout() {
+    //     $swimRecords
+    //         .receive(on: DispatchQueue.main)
+    //         .map(\.first)
+    //         .sink { [weak self] data in
+    //             self?.lastWorkout = data
+    //         }.store(in: &cancellables)
+    // }
 
     private func fetchSwimmingData() async {
        await hkManager?.fetchSwimDataFromHealth()
@@ -184,23 +195,23 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     
     /// 수영 데이터 가져오기
     private func subscribeSwimmingData() {
-        SwimDataStore.shared
-            .swimmingDataPubliser
-            .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error)
-                    return
-                }
-            } receiveValue: { [weak self] swimData in
-                DispatchQueue.main.async {
-                    self?.swimRecords = swimData
-                }
-            }
-            .store(in: &cancellables)
+        // SwimDataStore.shared
+        //     .swimmingDataPubliser
+        //     .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
+        //     .sink { completion in
+        //         switch completion {
+        //         case .finished:
+        //             break
+        //         case .failure(let error):
+        //             print(error)
+        //             return
+        //         }
+        //     } receiveValue: { [weak self] swimData in
+        //         DispatchQueue.main.async {
+        //             self?.swimRecords = swimData
+        //         }
+        //     }
+        //     .store(in: &cancellables)
     }
     
     /// 일반 건강 데이터 가져오기(수영 외)
@@ -259,7 +270,8 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     // MARK: - Ring Dada Methods
     /// Ring 데이터 가져오기
     func fetchRingData() {
-        self.$swimRecords
+        SwimDataStore.shared.swimmingDataPubliser
+            .receive(on: DispatchQueue.main)
             .sink { records in
                 let goal = UserData.shared.goal
                 let distance = records.reduce(0) { $0 + $1.unwrappedDistance }

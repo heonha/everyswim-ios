@@ -34,10 +34,12 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
         let pushDeleteAccountView: AnyPublisher<Void, Never>
         let presentNotValiableMessage: AnyPublisher<Void, Never>
         let updateSignState: AnyPublisher<Bool, Never>
+        let showLoadingIndicator: AnyPublisher<Bool, Never>
     }
     
     private let authManager: AuthManager
-    
+    let lastUpdateDatePublisher = SwimDataStore.shared.lastUpdatedDate.eraseToAnyPublisher()
+
     var isSignInPublisher: AnyPublisher<Bool, Never> {
         return AuthManager.shared.isSignIn.eraseToAnyPublisher()
     }
@@ -47,9 +49,7 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
             .map { $0?.toString(.timeWithoutSeconds) }
             .eraseToAnyPublisher()
     }
-    
-    // private(set) var myinfoProfile = CurrentValueSubject<MyInfoProfile?, Never>(nil)
-    
+        
     init(authManager: AuthManager = .shared) {
         self.authManager = authManager
         super.init()
@@ -73,7 +73,7 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
         let profileUpdated = Publishers
             .CombineLatest(AuthManager.shared.isSignIn, authManager.user.eraseToAnyPublisher())
             .filter { $0 == true || $1 != nil }
-            .compactMap { [weak self] isSignIn, _ in
+            .compactMap { [weak self] _, _ in
                 self?.authManager.getMyInfoProfile()
             }
             .eraseToAnyPublisher()
@@ -83,25 +83,24 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
         
         // MARK: - HealthData Update Output
         /// Swim Data 가져오기 완료시간을 리턴.
-        let healthDataUpdated =  Publishers
-            .CombineLatest(input.tappedHealthRefreshButton,
-                           SwimDataStore.shared.lastUpdatedDate)
-            .subscribe(on: DispatchQueue.global())
-            .map { _, date -> String in
-                if let date = date {
-                    return date.toString(.timeWithoutSeconds)
-                } else {
-                    return "동기화 실패"
-                }
-            }
+        ///
+
+        let healthDataUpdated =  lastUpdateDatePublisher
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .map { $0.toString(.timeWithoutSeconds)}
             .eraseToAnyPublisher()
         
         /// Swim Data 가져오기를 실행하고, ViewController에 시작되었음을 알림.
         let presentHealthDataUpdateAlert = input.tappedHealthRefreshButton
             .map {
+                print("건강 데이터를 동기화합니다.")
                 SwimDataStore.shared.refreshSwimData()
                 return $0
             }
+            .eraseToAnyPublisher()
+        
+        let showLoadingIndicator = SwimDataStore.shared.isLoading
             .eraseToAnyPublisher()
         
         // MARK: - Push & Present Output
@@ -144,18 +143,10 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
                       presentChangeUserInfoView: presentChangeUserInfoView,
                       pushDeleteAccountView: pushDeleteAccountView,
                       presentNotValiableMessage: presentNotValiableMessage,
-                      updateSignState: updateSignState
+                      updateSignState: updateSignState,
+                      showLoadingIndicator: showLoadingIndicator
         )
     }
-    // 
-    // private func observeUserProfile() {
-    //     authManager.user
-    //         .receive(on: DispatchQueue.main)
-    //         .sink { [weak self] _ in
-    //             self?.fetchUserProfile()
-    //         }
-    //         .store(in: &cancellables)
-    // }
     
     func signOut() {
         Task(priority: .userInitiated) {
@@ -167,18 +158,5 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
             }
         }
     }
-    // 
-    // private func observeSignInState() {
-    //     authManager.isSignIn
-    //         .receive(on: DispatchQueue.main)
-    //         .sink { [weak self] _ in
-    //             self?.fetchUserProfile()
-    //         }
-    //         .store(in: &cancellables)
-    // }
-    
-    func getSessionState() -> Bool {
-        return authManager.isSignIn.value
-    }
-        
+   
 }
