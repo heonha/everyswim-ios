@@ -336,7 +336,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     
     /// `Cell` 구성
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        print("Cell Reloaded")
         switch viewModel.recommandSections[indexPath.section] {
         // 추천영상
         case .video:

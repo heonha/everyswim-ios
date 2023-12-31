@@ -9,12 +9,10 @@ import UIKit
 import SnapKit
 import Combine
 
-final class DatePickerController: UIViewController {
+final class DatePickerController: BaseViewController {
     
     private let viewModel: DatePickerViewModel
-    private var cancellables: Set<AnyCancellable>
     private var selectedIndexPath: IndexPath?
-    private let loadingIndicator = ActivityIndicator()
     private var isFirstRun = true
     
     private lazy var pickerHeader = DatePickerHeader(viewModel: viewModel)
@@ -23,8 +21,7 @@ final class DatePickerController: UIViewController {
     
     init(viewModel: DatePickerViewModel = .init()) {
         self.viewModel = viewModel
-        self.cancellables = .init()
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         self.view.backgroundColor = .systemBackground
     }
     
@@ -65,7 +62,7 @@ extension DatePickerController {
         dayView.delegate = self
         dayView.dataSource = self
         dayView.register(DatePickerDayCell.self,
-                                   forCellWithReuseIdentifier: DatePickerDayCell.identifier)
+                         forCellWithReuseIdentifier: DatePickerDayCell.identifier)
         addSwipeForDayView()
     }
     
@@ -103,7 +100,6 @@ extension DatePickerController {
         self.view.addSubview(pickerHeader)
         self.view.addSubview(dayView)
         self.view.addSubview(recordListView)
-        self.view.addSubview(loadingIndicator)
         
         pickerHeader.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -122,10 +118,10 @@ extension DatePickerController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
-        loadingIndicator.snp.makeConstraints { make in
-            make.center.equalTo(view)
-            make.size.equalTo(30)
-        }
+        // loadingIndicator.snp.makeConstraints { make in
+        //     make.center.equalTo(view)
+        //     make.size.equalTo(30)
+        // }
     }
     
     private func updateDatePickerLayout() {

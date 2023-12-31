@@ -35,7 +35,7 @@ final class RecommandDataService {
             print(result)
             switch result {
             case .finished:
-                break
+                print("FetchJSONData is Success.")
             case .failure(let error):
                 completion(.failure(error))
             }

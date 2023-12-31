@@ -101,6 +101,7 @@
 		39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39572CE92A52F0F700986E01 /* DashboardViewModel.swift */; };
 		396387B02AC6BC7F00A490D1 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */; };
 		396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */; };
+		3965E5972B402E3800BEE131 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3965E5962B402E3800BEE131 /* LoaderViewController.swift */; };
 		396BAE322B39A3AC007C1102 /* EverySwimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE312B39A3AC007C1102 /* EverySwimUITests.swift */; };
 		396BAE342B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE332B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift */; };
 		396BAE3C2B39A488007C1102 /* ScreenIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396BAE3B2B39A488007C1102 /* ScreenIdentifier.swift */; };
@@ -252,7 +253,7 @@
 		3908D34F2B3EB54200B25914 /* CLLocationCoordinate2D+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Ext.swift"; sourceTree = "<group>"; };
 		390A0B1F2B25851200F30C80 /* PoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewModel.swift; sourceTree = "<group>"; };
 		390A0B212B25AAB700F30C80 /* PoolListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListViewModelTests.swift; sourceTree = "<group>"; };
-		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Main/SetGoal/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
+		390C618A2AF3A9B80061E6D4 /* SetGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetGoalViewController.swift; path = everyswim/Main/MyInfo/SetGoal/SetGoalViewController.swift; sourceTree = SOURCE_ROOT; };
 		390C618C2AF3AD1A0061E6D4 /* SetGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalCell.swift; sourceTree = "<group>"; };
 		390C618F2AF3B9FF0061E6D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		390C61912AF3BA210061E6D4 /* SetGoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalViewModel.swift; sourceTree = "<group>"; };
@@ -324,6 +325,7 @@
 		39572CE92A52F0F700986E01 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		3965E5962B402E3800BEE131 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		396BAE2F2B39A3AC007C1102 /* everyswim-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "everyswim-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		396BAE312B39A3AC007C1102 /* EverySwimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverySwimUITests.swift; sourceTree = "<group>"; };
 		396BAE332B39A3AC007C1102 /* EverySwimUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverySwimUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -555,6 +557,8 @@
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39FADBE52B0A1D5200C90B19 /* View */,
 				39FADBE42B0A1D3700C90B19 /* Model */,
+				398BD2992B189D3C00970E23 /* PoolMap */,
+				390C61892AF3A9950061E6D4 /* SetGoal */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -766,6 +770,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		3965E5952B402E2E00BEE131 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				3965E5962B402E3800BEE131 /* LoaderViewController.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
 		396BAE302B39A3AC007C1102 /* everyswim-UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -832,11 +844,9 @@
 				3905CFE42A9B538700CF4AB4 /* MainTabBarController.swift */,
 				3922D56E2A74B0DA00257164 /* Dashboard */,
 				396088502A8F6E5E00FF2289 /* Calendar */,
+				39DBB3252AC6F291003B5213 /* Activity */,
 				392083BE2A485BA800E591A8 /* MyInfo */,
 				39318E822AFCEFEC0089AEC4 /* Sign */,
-				390C61892AF3A9950061E6D4 /* SetGoal */,
-				39DBB3252AC6F291003B5213 /* Activity */,
-				398BD2992B189D3C00970E23 /* PoolMap */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1088,6 +1098,7 @@
 		39CC3DB82AC5857200C8BC10 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				3965E5952B402E2E00BEE131 /* Loader */,
 				39B59CD72B370D630078B937 /* BaseVC */,
 				39B59CD62B370D510078B937 /* BaseViews */,
 				39B59CD82B370D6E0078B937 /* BaseModels */,
@@ -1654,6 +1665,7 @@
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				393351512AFA577E0014D37A /* HttpMethod.swift in Sources */,
+				3965E5972B402E3800BEE131 /* LoaderViewController.swift in Sources */,
 				39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,

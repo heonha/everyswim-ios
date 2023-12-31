@@ -14,6 +14,7 @@ class BaseViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     
     private let messageView = MessageView()
+    private let loadingIndicator = ActivityIndicator()
 
     init(backgroundColor: UIColor = .systemBackground) {
         super.init(nibName: nil, bundle: nil)
