@@ -11,11 +11,7 @@ import Combine
 
 final class MyInfoButtonList: BaseUIView {
 
-    private let viewModel: MyInfoViewModel
-    private weak var parentVC: MyInfoController?
-    
-    private lazy var buttons: [MyInfoButton] = viewModel
-        .getAllButtonType()
+    private lazy var buttons: [MyInfoButton] = getAllButtonType()
         .map { MyInfoButton($0) }
     
     private lazy var firstSectionView = ViewFactory
@@ -40,12 +36,9 @@ final class MyInfoButtonList: BaseUIView {
         .distribution(.equalCentering)
     
     // MARK: - Init
-    init(viewModel: MyInfoViewModel, parentVC: MyInfoController?) {
-        self.viewModel = viewModel
-        self.parentVC = parentVC
+    init() {
         super.init()
         layout()
-        observe()
     }
     
     required init?(coder: NSCoder) {
@@ -55,25 +48,16 @@ final class MyInfoButtonList: BaseUIView {
     // MARK: - LifeCycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        observeLogInState()
+        switchVisableIconsFromSignInState(signIn: AuthManager.shared.getSignInState())
     }
     
-    private func observeLogInState() {
-        viewModel.isSignInPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] signIn in
-                self?.switchVisableIconsFromSignInState(signIn: signIn)
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func switchVisableIconsFromSignInState(signIn: Bool) {
-        let logoutbutton = self.getButton(type: .logout)
-        let changeInfo = self.getButton(type: .changeUserInfo)
-        let deleteAccount = self.getButton(type: .deleteAccount)
-
+    func switchVisableIconsFromSignInState(signIn: Bool) {
+        let logoutbutton = self.getButton(.logout)
+        let changeInfo = self.getButton(.changeUserInfo)
+        let deleteAccount = self.getButton(.deleteAccount)
         let buttons = [logoutbutton, changeInfo, deleteAccount]
         buttons.forEach { $0.isHidden = !signIn }
+        
     }
     
     // MARK: - Layout
@@ -102,128 +86,32 @@ final class MyInfoButtonList: BaseUIView {
             make.bottom.equalTo(contentView).inset(20)
         }
     }
+    
+    enum MyInfoButtonError: Error {
+        case invalidButton
+    }
 
-    func getButton(type: MyInfoButtonType) -> MyInfoButton {
-        let button = self.buttons.first { infoButton in
-            return type == infoButton.getType()
-        }
-        
-        if let button = button {
-            return button
-        } else {
-            return MyInfoButton(.setupAlert)
-        }
+    private func getButton(_ buttonType: MyInfoButtonType) -> MyInfoButton {
+        let button = self.buttons
+            .first { return buttonType == $0.getType() }
+        return button!
+    }
+    
+    private func getAllButtonType() -> [MyInfoButtonType] {
+        return MyInfoButtonType.allCases
+    }
+    
+    // MARK: - Public
+    func getButtonTapPublisher(_ type: MyInfoButtonType) -> AnyPublisher<Void, Never> {
+        let targetButton = getButton(type)
+        return targetButton.tapPublisher()
     }
     
     func getAllButton() -> [MyInfoButton] {
         return self.buttons
     }
-    
-    // MARK: - Observe
-    func observe() {
-        // Button List
-        observeButtonAction(buttonType: .changeUserInfo, action: changeProfileAction)
-        observeButtonAction(buttonType: .syncHealth, action: syncHealthAction)
-        observeButtonAction(buttonType: .editChallange, action: editChallangeAction)
-        observeButtonAction(buttonType: .searchForPool, action: buttonSearchForPool)
-        observeButtonAction(buttonType: .logout, action: buttonLogout)
-        observeButtonAction(buttonType: .deleteAccount, action: buttonsDeleteAccount)
-        
-        observeButtonAction(buttonType: .shareApp, action: presentShareAppAlert)
-        observeButtonAction(buttonType: .setupAlert, action: presentNotificationView)
-        observeButtonAction(buttonType: .sendContact, action: presentContactDeveloper)
-        observeButtonAction(buttonType: .questions, action: presentHelp)
-    }
-    
-    // MARK: - ObserveButtonActions
-    private func observeButtonAction(buttonType: MyInfoButtonType, action: @escaping () -> Void) {
-        getButton(type: buttonType)
-            .gesturePublisher(.tap())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard self != nil else { return }
-                action()
-            }
-            .store(in: &cancellables)
-    }
-    
-    /// 프로필 변경 VC Present
-    private func changeProfileAction() {
-        let viewModel = SetProfileViewModel()
-        let setProfileVC = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
-        self.parentVC?.present(setProfileVC, animated: true)
-    }
-    
-    /// 건강 연동 창 VC Present
-    private func syncHealthAction() {
-        parentVC?.presentMessage(title: "미구현(건강 미연동 시 사용)")
-    }
-    
-    /// 목표 수정 VC Present
-    private func editChallangeAction() {
-        let vc = SetGoalViewController()
-        self.parentVC?.present(vc, animated: true)
-    }
+            
 
-    /// 수영장 찾기 VC Present
-    private func buttonSearchForPool() {
-        let regionSearchManager = RegionSearchManager()
-        let locationManager = DeviceLocationManager.shared
-        let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
-        let vc = PoolSearchViewController(viewModel: viewModel)
-        self.parentVC?.push(vc, animated: true)
-    }
-
-    /// 앱 공유하기 알럿을 띄웁니다.
-    private func presentShareAppAlert() {
-        parentVC?.presentMessage(title: "미구현(앱 공유하기)")
-    }
-    
-    /// 알림설정 알럿을 띄웁니다.
-    private func presentNotificationView() {
-        parentVC?.presentMessage(title: "미구현(알림 설정)")
-    }
-    
-    /// 문의보내기 알럿을 띄웁니다.
-    private func presentContactDeveloper() {
-        parentVC?.presentMessage(title: "미구현(문의 보내기)")
-    }
-    
-    /// 도움말 VC를 띄웁니다.
-    private func presentHelp() {
-        parentVC?.presentMessage(title: "미구현(도움말)")
-    }
-    
-    /// 로그아웃
-    func buttonLogout() {
-        self.presentSignOutAlert()
-    }
-    
-    /// 탈퇴
-    private func buttonsDeleteAccount() {
-        let deleteVC = UserDeleteViewController()
-        self.parentVC?.push(deleteVC, animated: true)
-    }
-    
-    // MARK: - ETC
-    
-    /// 로그아웃 알럿 Present
-    private func presentSignOutAlert() {
-        guard let parentVC = parentVC else { return }
-        
-        let logout = UIAlertAction(title: "로그아웃", style: .destructive) { _ in
-            self.viewModel.signOut()
-            self.parentVC?.scrollToTop()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let actions = [logout, cancel]
-
-        self.parentVC?.presentAlert(title: "알림",
-                                    message: "로그아웃 하시겠습니까?",
-                                    target: parentVC,
-                                    action: actions)
-    }
-        
 }
 
 #if DEBUG
@@ -235,8 +123,8 @@ struct MyInfoButtonList_Previews: PreviewProvider {
     static let viewModel = MyInfoViewModel()
     
     static var previews: some View {
-        UIViewPreview {
-            MyInfoButtonList(viewModel: viewModel, parentVC: parentVC)
+        UIViewControllerPreview {
+            parentVC
         }
     }
 }

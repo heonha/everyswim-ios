@@ -43,7 +43,7 @@ final class DatePickerViewModel: BaseViewModel {
     private var hkDataStore = SwimDataStore.shared
     
     // MARK: - Init
-    init(healthKitManager: HealthKitManager = HealthKitManager()) {
+    init(healthKitManager: HealthKitManager = HealthKitManager.shared) {
         hkManager = healthKitManager
         super.init()
         observeCurrentMonth()
@@ -130,7 +130,7 @@ extension DatePickerViewModel {
     
     // MARK: - Data Handlers
     func loadSwimData() {
-        // await hkManager?.queryAllSwimmingData()
+        // await hkManager?.fetchSwimDataFromHealth()
     }
     
     /// 해당 월의 데이터를 셋팅합니다.

@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 final class MyInfoHeaderView: BaseUIView {
-    
-    private let viewModel: MyInfoViewModel
-    
+        
     // MARK: - Views
     private var levelLabel = ViewFactory
         .label("Level 1")
@@ -30,12 +28,10 @@ final class MyInfoHeaderView: BaseUIView {
         .alignment(.center)
     
     // MARK: - Init
-    init(viewModel: MyInfoViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init()
         configure()
         layout()
-
     }
     
     required init?(coder: NSCoder) {
@@ -83,7 +79,7 @@ import SwiftUI
 struct MyInfoHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            MyInfoHeaderView(viewModel: MyInfoViewModel())
+            MyInfoHeaderView()
         }
     }
 }

@@ -20,9 +20,11 @@ class HealthKitManager {
     
     private lazy var swimDataManager = SwimDataManager(store: healthStore)
     
+    static let shared = HealthKitManager()
+    
     var isAuth = false
     
-    init() {
+    private init() {
         if HKHealthStore.isHealthDataAvailable() {
             print("INIT: HealthKitManager")
             healthStore = HKHealthStore()
@@ -44,7 +46,7 @@ extension HealthKitManager {
         calculateNormalHealthData(dataType: dataType, queryRange: queryRange, completion: completion)
     }
     
-    func queryAllSwimmingData() async {
+    func fetchSwimDataFromHealth() async {
         if await !self.requestAuthorization() { return }
 
         guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return }

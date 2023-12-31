@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class HealthKitAuthStateCell: UIView {
     
@@ -86,8 +87,8 @@ final class HealthKitAuthStateCell: UIView {
         }
     }
     
-    func getRefreshButton() -> UIView {
-        return self.refreshImageView
+    func getRefreshButtonTapPublisher() -> AnyPublisher<Void, Never> {
+        return self.refreshImageView.tapPublisher()
     }
     
     func updateTimeLabel(dateString: String) {

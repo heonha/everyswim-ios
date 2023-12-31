@@ -16,7 +16,7 @@ final class DashboardHeaderView: UIView {
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var title: UILabel = ViewFactory
-        .label("반가워요")
+        .label("")
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(UIColor.secondaryLabel)
         .contentHuggingPriority(.init(rawValue: 251), for: .vertical)
@@ -56,7 +56,7 @@ final class DashboardHeaderView: UIView {
     // MARK: - Setup
     /// 유저 프로필 데이터 셋업 (헤더)
     public func updateProfileData(profile: MyInfoProfile) {
-        self.title.text = "셋업됨, \(profile.name)"
+        self.title.text = "안녕하세요, \(profile.name)"
         
         guard let imageUrlString = profile.imageUrl else {
             let defaultProfileImage = UIImage()

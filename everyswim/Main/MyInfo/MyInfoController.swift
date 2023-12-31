@@ -14,15 +14,15 @@ final class MyInfoController: BaseViewController {
     
     private let viewModel: MyInfoViewModel
     
+    private let excuteLogout = PassthroughSubject<Void, Never>()
+    
     // MARK: - Views
     private lazy var mainView = BaseScrollView()
     private lazy var contentView = mainView.contentView
-    
-    private let bottomSpacer = UIView.spacer()
-    
-    private lazy var headerView = MyInfoHeaderView(viewModel: viewModel)
-    private lazy var profileView = MyInfoProfileView(viewModel: viewModel, parentVC: self)
-    private lazy var buttonList = MyInfoButtonList(viewModel: viewModel, parentVC: self)
+        
+    private lazy var headerView = MyInfoHeaderView()
+    private lazy var profileView = MyInfoProfileView()
+    private lazy var buttonList = MyInfoButtonList()
     private lazy var healthStateCell = HealthKitAuthStateCell()
     
     // MARK: - INIT
@@ -38,8 +38,8 @@ final class MyInfoController: BaseViewController {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         layout()
+        bind()
     }
     
     override func viewWillLayoutSubviews() {
@@ -51,22 +51,8 @@ final class MyInfoController: BaseViewController {
         super.viewDidAppear(true)
         mainView.scrollToTop()
         self.setNaviagationTitle(title: "내 정보")
-        updateHealthTime()
     }
-    
-    // MARK: - Configure
-    private func configure() {
-        
-    }
-    
-    // MARK: bind
-    private func bind() {
-        let input = MyInfoViewModel
-            .Input(signOutTapPublisher: buttonList.getButton(type: .logout).tapPublisher())
-        
-        let output = viewModel.transform(input: input)
-    }
-    
+
 }
 
 // MARK: - Layout
@@ -132,10 +118,11 @@ extension MyInfoController {
 
     // 최하단 스페이서
     private func layoutBottomSpacer() {
+        let bottomSpacer = UIView.spacer()
         self.contentView.addSubview(bottomSpacer)
     }
 
-    public func scrollToTop() {
+    private func scrollToTop() {
         mainView.scrollToTop()
     }
         
@@ -144,43 +131,141 @@ extension MyInfoController {
 // MARK: - Observe
 extension MyInfoController {
     
-    private func observe() {
-        bindButtonsAction()
-    }
-    
-    private func bindButtonsAction() {
+    // MARK: bind
+    // swiftlint:disable:next function_body_length
+    private func bind() {
+        let input = MyInfoViewModel
+            .Input(tappedLogout: getButtonTapPublisher(.logout),
+                   excuteLogout: excuteLogout.eraseToAnyPublisher(),
+                   tappedHealthRefreshButton: healthStateCell.getRefreshButtonTapPublisher(),
+                   tappedSearchPoolButtonTapPublisher: getButtonTapPublisher(.searchForPool),
+                   tappedEditChallangeButtonPublisher: getButtonTapPublisher(.editChallange),
+                   tappedChangeUserInfoButtonPublisher: getButtonTapPublisher(.changeUserInfo),
+                   tappedDeleteAccountButtonPublisher: getButtonTapPublisher(.deleteAccount),
+                   tappedNotValiableMessageButtonPublisher: getButtonTapPublisher(.sendContact)
+            )
         
-        // Health State Cell
-        observeFetchedHealthDate()
-        observeButtonFetchHealthData()
-    }
-    
-    /// 건강 데이터 동기화
-    private func observeButtonFetchHealthData() {
-        healthStateCell.getRefreshButton()
-            .gesturePublisher(.tap())
+        let output = viewModel.transform(input: input)
+        
+        output.presentHealthDataUpdateAlert
             .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .sink { [unowned self] _ in
                 self.presentMessage(title: "건강데이터를 동기화합니다.\n(미구현)")
             }
             .store(in: &cancellables)
-    }
-    
-    private func observeFetchedHealthDate() {
-        viewModel.lastHealthUpdateDate
+        
+        output.healthDataUpdated
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] date in
+                self.healthStateCell.updateTimeLabel(dateString: date)
+            }
+            .store(in: &cancellables)
+        
+        output.pushSearchSwimPoolViewController
+            .sink { [unowned self] _ in
+                buttonSearchForPool()
+            }
+            .store(in: &cancellables)
+        
+        output.presentEditChallangeView
             .receive(on: DispatchQueue.main)
-            .replaceNil(with: "--:--")
-            .sink { [weak self] date in
-                self?.healthStateCell.updateTimeLabel(dateString: date)
+            .sink { [unowned self] _ in
+                let vc = SetGoalViewController()
+                self.present(vc, animated: true)
+            }
+            .store(in: &cancellables)
+        
+        output.presentNotValiableMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                self.presentMessage(title: "미구현")
+            }
+            .store(in: &cancellables)
+        
+        output.updateSignState
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                self.buttonList.layoutSubviews()
+            }
+            .store(in: &cancellables)
+        
+        output.presentLogoutAlert
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.presentSignOutAlert()
+            }
+            .store(in: &cancellables)
+        
+        output.presentChangeUserInfoView
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                presentChangeProfileView()
+            }
+            .store(in: &cancellables)
+        
+        output.pushDeleteAccountView
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                pushDeleteAccountView()
+            }
+            .store(in: &cancellables)
+        
+        output.profileUpdated
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] profile in
+                self?.profileView.updateUserProfile(profile)
             }
             .store(in: &cancellables)
     }
     
-    func updateHealthTime() {
-        if let date = SwimDataStore.shared.lastUpdatedDate.value {
-            healthStateCell.updateTimeLabel(dateString: date.toString(.timeWithoutSeconds))
+    /// buttonList 의 Button Tap Publisher를 가져옵니다.
+    private func getButtonTapPublisher(_ type: MyInfoButtonType) -> AnyPublisher<Void, Never> {
+        return buttonList.getButtonTapPublisher(type)
+    }
+    
+    // MARK: - ObserveButtonActions
+    /// 프로필 변경 VC Present
+    private func presentChangeProfileView() {
+        let viewModel = SetProfileViewModel()
+        let setProfileVC = SetProfileViewController(viewModel: viewModel, type: .changeProfile)
+        self.present(setProfileVC, animated: true)
+    }
+    
+    /// 목표 수정 VC Present
+    private func editChallangeAction() {
+        let vc = SetGoalViewController()
+        present(vc, animated: true)
+    }
+
+    /// 수영장 찾기 VC Present
+    private func buttonSearchForPool() {
+        let regionSearchManager = RegionSearchManager()
+        let locationManager = DeviceLocationManager.shared
+        let viewModel = PoolViewModel(locationManager: locationManager, regionSearchManager: regionSearchManager)
+        let vc = PoolSearchViewController(viewModel: viewModel)
+        push(vc, animated: true)
+    }
+    
+    /// 탈퇴하기 View Push
+    private func pushDeleteAccountView() {
+        let deleteVC = UserDeleteViewController()
+        push(deleteVC, animated: true)
+    }
+    
+    // MARK: - ETC
+    /// 로그아웃 알럿 Present
+    private func presentSignOutAlert() {
+        let logout = UIAlertAction(title: "로그아웃", style: .destructive) { _ in
+            self.viewModel.signOut()
+            self.scrollToTop()
         }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let actions = [logout, cancel]
         
+        self.presentAlert(title: "알림",
+                          message: "로그아웃 하시겠습니까?",
+                          target: self,
+                          action: actions)
     }
     
 }
@@ -191,12 +276,12 @@ import SwiftUI
 
 struct MyInfoController_Previews: PreviewProvider {
     
-    static let vc = MyInfoController(viewModel: viewModel)
+    static let viewController = MyInfoController(viewModel: viewModel)
     static let viewModel = MyInfoViewModel()
     
     static var previews: some View {
         UIViewControllerPreview {
-            vc
+            viewController
         }
     }
 }

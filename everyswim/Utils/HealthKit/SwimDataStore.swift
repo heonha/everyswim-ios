@@ -26,6 +26,12 @@ final class SwimDataStore {
 
     private init() { }
     
+    func refreshSwimData() {
+        Task {
+            await HealthKitManager.shared.fetchSwimDataFromHealth()
+        }
+    }
+    
     func sendSwimData(_ data: [SwimMainData]) {
         swimmingData.send(data)
     }

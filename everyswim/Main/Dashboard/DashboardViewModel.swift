@@ -70,7 +70,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     init(swimRecords: [SwimMainData]? = nil, healthKitManager: HealthKitManager? = nil) {
         self.rings = emptyRing
         self.swimRecords = swimRecords ?? []
-        self.hkManager = healthKitManager ?? HealthKitManager()
+        self.hkManager = healthKitManager ?? HealthKitManager.shared
         super.init()
         
         Task {
@@ -178,7 +178,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     }
 
     private func fetchSwimmingData() async {
-       await hkManager?.queryAllSwimmingData()
+       await hkManager?.fetchSwimDataFromHealth()
        subscribeSwimmingData()
     }
     
