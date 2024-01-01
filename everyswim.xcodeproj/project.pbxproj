@@ -29,7 +29,7 @@
 		391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F42AC7E93A00190D35 /* Calendar+Extension.swift */; };
 		391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */; };
 		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
-		391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* ChallangeRing.swift */; };
+		391C12B02A58D73F001C2286 /* RingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12AF2A58D73F001C2286 /* RingViewModel.swift */; };
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
 		391C12C32A593103001C2286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C22A593103001C2286 /* Int+Extension.swift */; };
 		391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C62A59374D001C2286 /* AppSymbol.swift */; };
@@ -89,7 +89,7 @@
 		393F88582B24C28C00C67FAA /* RegionSearchModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F88572B24C28C00C67FAA /* RegionSearchModelTests.swift */; };
 		3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */; };
 		394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */; };
-		394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */; };
+		394853C72AA8A92600DF7199 /* AnimateRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394853C62AA8A92600DF7199 /* AnimateRing.swift */; };
 		3951E6252B3AE6B400D1A424 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3951E6242B3AE6B400D1A424 /* EmptyCollectionViewCell.swift */; };
 		39535D492B35541E00612B83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 39535D482B35541E00612B83 /* .swiftlint.yml */; };
 		39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */; };
@@ -263,7 +263,7 @@
 		391678F42AC7E93A00190D35 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryViewModel.swift; sourceTree = "<group>"; };
 		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
-		391C12AF2A58D73F001C2286 /* ChallangeRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallangeRing.swift; sourceTree = "<group>"; };
+		391C12AF2A58D73F001C2286 /* RingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingViewModel.swift; sourceTree = "<group>"; };
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		391C12C22A593103001C2286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		391C12C62A59374D001C2286 /* AppSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSymbol.swift; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		393F88572B24C28C00C67FAA /* RegionSearchModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSearchModelTests.swift; sourceTree = "<group>"; };
 		3944F0AB2AA5D8AF00C6B933 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		394853C42AA89AAC00DF7199 /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
-		394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRingUIView.swift; sourceTree = "<group>"; };
+		394853C62AA8A92600DF7199 /* AnimateRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateRing.swift; sourceTree = "<group>"; };
 		3951E6242B3AE6B400D1A424 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		39535D482B35541E00612B83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		39535D4E2B3576B000612B83 /* BaseTextFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldProtocol.swift; sourceTree = "<group>"; };
@@ -1062,8 +1062,8 @@
 			isa = PBXGroup;
 			children = (
 				398DFB3D2AA982CA00BDEB8E /* ChallangeCell.swift */,
-				391C12AF2A58D73F001C2286 /* ChallangeRing.swift */,
-				394853C62AA8A92600DF7199 /* AnimateRingUIView.swift */,
+				391C12AF2A58D73F001C2286 /* RingViewModel.swift */,
+				394853C62AA8A92600DF7199 /* AnimateRing.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1540,7 +1540,7 @@
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */,
 				3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */,
-				391C12B02A58D73F001C2286 /* ChallangeRing.swift in Sources */,
+				391C12B02A58D73F001C2286 /* RingViewModel.swift in Sources */,
 				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */,
@@ -1548,7 +1548,7 @@
 				39C4CF392B38846900F49A1A /* DashboardScrollView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
 				393351552AFA57F90014D37A /* CommunityCollectionData.swift in Sources */,
-				394853C72AA8A92600DF7199 /* AnimateRingUIView.swift in Sources */,
+				394853C72AA8A92600DF7199 /* AnimateRing.swift in Sources */,
 				39B437A92AB5C2C700915C3D /* AppImage.swift in Sources */,
 				391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */,
 				3944F0AC2AA5D8AF00C6B933 /* UIView+Extension.swift in Sources */,

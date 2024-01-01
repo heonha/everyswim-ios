@@ -127,7 +127,7 @@ extension DashboardViewController {
             make.height.equalTo(height)
         }
     }
-
+    
     /// [Layout] RecentRecordView
     private func layoutRecentRecordView(height: CGFloat) {
         contentView.addSubview(lastWorkoutView)
@@ -137,7 +137,7 @@ extension DashboardViewController {
             make.height.equalTo(height)
             make.horizontalEdges.equalTo(contentView).inset(20)
         }
-
+        
     }
     
     /// [Layout] ChallangeView
@@ -162,15 +162,20 @@ extension DashboardViewController {
             make.height.equalTo(height)
             make.bottom.equalTo(contentView)
         }
-
+        
     }
+}
+
+// MARK: - Bind
+extension DashboardViewController {
     
-    // MARK: - Bind
     private func bind() {
+        // MARK: Inputs
         let input = DashboardViewModel
             .Input(viewWillAppearPublisher: viewWillAppearPublisher.eraseToAnyPublisher(),
                    lastWorkoutCellTapped: lastWorkoutView.lastWorkoutCell.tapPublisher())
         
+        // MARK: Outputs
         let output = viewModel.transform(input: input)
         
         /// 추천 비디오/커뮤니티 로드 완료시 리로드

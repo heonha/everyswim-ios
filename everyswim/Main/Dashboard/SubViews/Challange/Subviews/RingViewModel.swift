@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChallangeRing: Identifiable {
+struct RingViewModel: Identifiable {
     
     let id = UUID()
     let type: ChallangeRecordType
@@ -82,12 +82,12 @@ struct ChallangeRing: Identifiable {
 
 }
 
-extension ChallangeRing: TestableObject {
+extension RingViewModel: TestableObject {
     
-    static let examples: [ChallangeRing] = [
-        ChallangeRing(type: .distance, count: 2001, maxCount: 2000),
-        ChallangeRing(type: .lap, count: 45, maxCount: 60),
-        ChallangeRing(type: .countPerWeek, count: 2, maxCount: 3)
+    static let examples: [RingViewModel] = [
+        RingViewModel(type: .distance, count: 2001, maxCount: 2000),
+        RingViewModel(type: .lap, count: 45, maxCount: 60),
+        RingViewModel(type: .countPerWeek, count: 2, maxCount: 3)
     ]
     
 }

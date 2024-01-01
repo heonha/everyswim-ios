@@ -12,9 +12,9 @@ final class ChallangeCellContainer: UIView {
     
     private let backgroundView = UIView()
     
-    var countCell: BarChallangeCell?
-    var distanceCell: BarChallangeCell?
-    var lapCell: BarChallangeCell?
+    var countCell: ChallangeBar?
+    var distanceCell: ChallangeBar?
+    var lapCell: ChallangeBar?
     
     private let titleLabel: UILabel = {
         let title: String = "이번 주의 수영"
@@ -73,9 +73,9 @@ extension ChallangeCellContainer {
         
         let counts = Double(weeklyData.count)
         
-        let distance = ChallangeRing(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
-        let lap = ChallangeRing(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
-        let count = ChallangeRing(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
+        let distance = RingViewModel(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
+        let lap = RingViewModel(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
+        let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
         
         distanceCell = .init(data: distance)
         distanceCell?.id = "distance"
@@ -133,24 +133,24 @@ extension ChallangeCellContainer {
         let counts = Double(weeklyData.count)
         #endif
         
-        let distance = ChallangeRing(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
-        let lap = ChallangeRing(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
-        let count = ChallangeRing(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
+        let distance = RingViewModel(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
+        let lap = RingViewModel(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
+        let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
         
         guard let distanceCell = self.cellVStack.arrangedSubviews
             .first { view in
                 view.id == "distance"
-            } as? BarChallangeCell else {return}
+            } as? ChallangeBar else {return}
         
         guard let lapCell = self.cellVStack.arrangedSubviews
             .first { view in
                 view.id == "lap"
-            } as? BarChallangeCell else {return}
+            } as? ChallangeBar else {return}
 
         guard let countsCell = self.cellVStack.arrangedSubviews
             .first { view in
                 view.id == "count"
-            } as? BarChallangeCell else {return}
+            } as? ChallangeBar else {return}
 
         distanceCell.setData(distance)
         lapCell.setData(lap)

@@ -8,15 +8,18 @@
 import UIKit
 import SnapKit
 
-final class AnimateRingUIView: UIView {
+final class AnimateRing: UIView {
     
-    var data: ChallangeRing
+    private var data: RingViewModel
     
     private var showRing: Bool
     private var lineWidth: CGFloat
     private var linePadding: CGFloat
     private var circleSize: CGFloat
     private var fontSize: CGFloat
+    
+    //
+    private var progressLayer: CAShapeLayer?
     
     private lazy var backgroundView = {
         let zstack = UIView()
@@ -45,7 +48,7 @@ final class AnimateRingUIView: UIView {
         .font(.custom(.sfProBold, size: fontSize))
         .textAlignemnt(.center)
     
-    init(data: ChallangeRing,
+    init(data: RingViewModel,
          lineWidth: CGFloat = 4,
          linePadding: CGFloat = 16,
          circleSize: CGFloat = 40,
@@ -70,17 +73,7 @@ final class AnimateRingUIView: UIView {
     
 }
 
-extension AnimateRingUIView {
-    
-    func setData(_ data: ChallangeRing) {
-        self.data = data
-        self.progressCircle = createCircle(progress: data.progress(),
-                                           lineWidth: self.lineWidth,
-                                           lineColor: self.data.getCircleUIColor(),
-                                           radius: self.circleSize / 2)
-        text.text = data.progressPercentString()
-        layoutSubviews()
-    }
+extension AnimateRing {
     
     func startCircleAnimation() {
         let targetLayer = progressCircle.layer.sublayers!.first!
@@ -122,21 +115,39 @@ extension AnimateRingUIView {
                               lineColor: UIColor,
                               radius: CGFloat = 50,
                               isAnimate: Bool = true) -> UIView {
-        
         let view = UIView()
         let segmentPath = createSegment(startAngle: -90,
                                         endAngle: (progress * 360) - 90,
                                         radius: radius,
                                         superViewLayer: view.layer)
         
-        let segmentLayer = createLayer(path: segmentPath, 
+        let segmentLayer = createLayer(path: segmentPath,
                                        lineColor: lineColor,
                                        isAnimate: isAnimate)
         
         view.layer.addSublayer(segmentLayer)
+        self.progressLayer = segmentLayer
         
         return view
     }
+    
+    func updateProgressCircle(data: RingViewModel) {
+        self.data = data
+        self.text.text = data.progressPercentString()
+        
+        let newSegmentPath = createSegment(startAngle: -90,
+                                           endAngle: (data.progress() * 360) - 90,
+                                           radius: self.circleSize / 2,
+                                           superViewLayer: progressCircle.layer)
+        
+        if let segmentLayer = self.progressLayer {
+            segmentLayer.path = newSegmentPath.cgPath
+            segmentLayer.strokeColor = data.getCircleUIColor().cgColor
+            
+            removeAnimation(to: segmentLayer)
+            addAnimation(to: segmentLayer, duration: 0.8)
+        }
+     }
     
     private func createLayer(path segmentPath: UIBezierPath, 
                              lineColor: UIColor,
@@ -191,13 +202,20 @@ import SwiftUI
 
 struct AnimateRingUIView_Previews: PreviewProvider {
     
-    static let challange = ChallangeRing(type: .distance, count: 50, maxCount: 100)
-    
+    static let view = AnimateRing(data: challange, circleSize: 50)
+    static let challange = RingViewModel(type: .distance, count: 30, maxCount: 100)
+    static let updatedChallange = RingViewModel(type: .distance, count: 80, maxCount: 100)
+
     static var previews: some View {
         UIViewPreview {
-            AnimateRingUIView(data: challange, circleSize: 50)
+            view
         }
         .frame(width: 100, height: 100)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                view.updateProgressCircle(data: updatedChallange)
+            }
+        }
 
     }
 }

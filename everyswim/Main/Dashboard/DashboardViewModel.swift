@@ -37,7 +37,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     private var profileLastUpdateDate: String = ""
     
     // MARK: Swimming Model
-    @Published private(set) var rings: [ChallangeRing] = []
+    @Published private(set) var rings: [RingViewModel] = []
     @Published private var lastWorkout: SwimMainData?
     @Published private(set) var kcalPerWeek: Double = 0.0
     @Published private(set) var strokePerMonth: Double = 0.0
@@ -60,9 +60,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     
     // MARK: Ring Data
     private let emptyRing = [
-        ChallangeRing(type: .distance, count: 0, maxCount: 1),
-        ChallangeRing(type: .lap, count: 0, maxCount: 1),
-        ChallangeRing(type: .countPerWeek, count: 0, maxCount: 1)
+        RingViewModel(type: .distance, count: 0, maxCount: 1),
+        RingViewModel(type: .lap, count: 0, maxCount: 1),
+        RingViewModel(type: .countPerWeek, count: 0, maxCount: 1)
     ]
     
     // MARK: - 유저 정보 가져오기.
@@ -103,13 +103,12 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
+        /// 마지막 운동 기록 변동 감시 및 업데이트
         let updateLastWorkout =  SwimDataStore.shared.lastWorkoutData.eraseToAnyPublisher()
-            .compactMap { workoutData in
-                return workoutData
-            }
-            .map { data in
+            .compactMap { $0 }
+            .map { workoutData in
                 self.fetchRingData()
-                return data
+                return workoutData
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -179,41 +178,6 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     }
     
     // MARK: - Workout Data Methods
-    // func getLastWorkout() {
-    //     $swimRecords
-    //         .receive(on: DispatchQueue.main)
-    //         .map(\.first)
-    //         .sink { [weak self] data in
-    //             self?.lastWorkout = data
-    //         }.store(in: &cancellables)
-    // }
-
-    private func fetchSwimmingData() async {
-       await hkManager?.fetchSwimDataFromHealth()
-       subscribeSwimmingData()
-    }
-    
-    /// 수영 데이터 가져오기
-    private func subscribeSwimmingData() {
-        // SwimDataStore.shared
-        //     .swimmingDataPubliser
-        //     .throttle(for: 120, scheduler: DispatchQueue.main, latest: true)
-        //     .sink { completion in
-        //         switch completion {
-        //         case .finished:
-        //             break
-        //         case .failure(let error):
-        //             print(error)
-        //             return
-        //         }
-        //     } receiveValue: { [weak self] swimData in
-        //         DispatchQueue.main.async {
-        //             self?.swimRecords = swimData
-        //         }
-        //     }
-        //     .store(in: &cancellables)
-    }
-    
     /// 일반 건강 데이터 가져오기(수영 외)
     func loadHealthCollection() async {
         self.kcals = []
@@ -279,9 +243,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
                 let count = records.count
                 
                 self.rings =  [
-                    ChallangeRing(type: .distance, count: distance, maxCount: goal.distancePerWeek.toDouble()),
-                    ChallangeRing(type: .lap, count: lap.toDouble(), maxCount: goal.lapTimePerWeek.toDouble()),
-                    ChallangeRing(type: .countPerWeek, count: count.toDouble(), maxCount: goal.countPerWeek.toDouble())
+                    RingViewModel(type: .distance, count: distance, maxCount: goal.distancePerWeek.toDouble()),
+                    RingViewModel(type: .lap, count: lap.toDouble(), maxCount: goal.lapTimePerWeek.toDouble()),
+                    RingViewModel(type: .countPerWeek, count: count.toDouble(), maxCount: goal.countPerWeek.toDouble())
                 ]
             }.store(in: &cancellables)
     }

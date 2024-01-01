@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class BarChallangeCell: UIView {
+final class ChallangeBar: UIView {
 
-    private var data: ChallangeRing
+    private var data: RingViewModel
     
     private let shadowView = UIView()
     private let backgroundView = UIView()
@@ -33,9 +33,8 @@ final class BarChallangeCell: UIView {
         .addSubviews([title, countText])
         .alignment(.center)
     
-    lazy var circle = AnimateRingUIView(data: data,
-                                        circleSize: circleSize)
-        .contentHuggingPriority(.init(rawValue: 251), for: .horizontal) as! AnimateRingUIView
+    lazy var circle = AnimateRing(data: data, circleSize: circleSize)
+        .contentHuggingPriority(.init(rawValue: 251), for: .horizontal) as! AnimateRing
     
     lazy var contentHStack = ViewFactory
         .hStack(subviews: [textHStack, circle],
@@ -43,7 +42,7 @@ final class BarChallangeCell: UIView {
                 alignment: .center)
         .distribution(.fillProportionally)
     
-    init(data: ChallangeRing) {
+    init(data: RingViewModel) {
         self.data = data
         super.init(frame: .zero)
         self.setContentHuggingPriority(.init(251), for: .horizontal)
@@ -57,9 +56,10 @@ final class BarChallangeCell: UIView {
         
 }
 
-extension BarChallangeCell {
+// MARK: - Configure (set Data)
+extension ChallangeBar {
     
-    func setData(_ data: ChallangeRing) {
+    func setData(_ data: RingViewModel) {
         self.data = data
         let goal = UserData.shared.goal
         var amount: Int = 0
@@ -74,9 +74,13 @@ extension BarChallangeCell {
             amount = 0
         }
         self.countText.text = "\(data.progressLabel()) / \(amount.description) \(data.unit)"
-        circle.setData(data)
+        circle.updateProgressCircle(data: data)
     }
+    
+}
 
+extension ChallangeBar {
+    // MARK: - Layouts
     private func layout() {
         
         shadowView.layer.cornerRadius = 8
@@ -122,7 +126,7 @@ import SwiftUI
 struct BarChallangeCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            BarChallangeCell(data: ChallangeRing.examples.first!)
+            ChallangeBar(data: RingViewModel.examples.first!)
         }
         .padding(.horizontal)
         .frame(height: 65)

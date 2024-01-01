@@ -10,7 +10,7 @@ import SnapKit
 
 final class ChallangeCell: UIView {
     
-    private var data: ChallangeRing
+    private var data: RingViewModel
     
     private let backgroundView = UICellBackground()
     
@@ -23,7 +23,7 @@ final class ChallangeCell: UIView {
         .label("\(data.progressLabel()) \(data.unit)")
         .font(.custom(.sfProMedium, size: 14))
     
-    lazy var circle = AnimateRingUIView(data: data, 
+    lazy var circle = AnimateRing(data: data, 
                                         circleSize: 40)
     
     lazy var vstack = ViewFactory
@@ -32,7 +32,7 @@ final class ChallangeCell: UIView {
                 alignment: .center)
         .setEdgeInset(.all(6))
 
-    init(data: ChallangeRing) {
+    init(data: RingViewModel) {
         self.data = data
         super.init(frame: .zero)
         self.setContentHuggingPriority(.init(251), for: .horizontal)
@@ -47,7 +47,7 @@ final class ChallangeCell: UIView {
 
 extension ChallangeCell {
     
-    func setData(_ data: ChallangeRing) {
+    func setData(_ data: RingViewModel) {
         self.data = data
     }
 
@@ -77,7 +77,7 @@ import SwiftUI
 struct ChallangeCell_Previews: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
-            ChallangeCell(data: ChallangeRing.examples.first!)
+            ChallangeCell(data: RingViewModel.examples.first!)
         }
     }
 }
