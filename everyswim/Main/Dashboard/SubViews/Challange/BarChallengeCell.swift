@@ -61,7 +61,7 @@ extension ChallangeBar {
     
     func setData(_ data: RingViewModel) {
         self.data = data
-        let goal = UserData.shared.goal
+        let goal = UserData.shared.goal.value
         var amount: Int = 0
         switch data.type {
         case .distance:

@@ -57,14 +57,7 @@ struct RingViewModel: Identifiable {
     }
     
     func getCircleUIColor() -> UIColor {
-        switch progress() {
-        case 0...0.69:
-            return AppUIColor.circleBlue
-        case 0.70...1.0:
-            return AppUIColor.circleGreen
-        default:
-            return AppUIColor.circleGreen
-        }
+            return AppUIColor.primaryBlue
     }
     
     var keyIcon: String {

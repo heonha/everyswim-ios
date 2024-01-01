@@ -26,9 +26,9 @@ final class SetGoalViewModel: BaseViewModel {
     
     private func setData() {
         let goal = userData.goal
-        self.count = goal.countPerWeek
-        self.distance = goal.distancePerWeek / count
-        self.lap = goal.lapTimePerWeek / count
+        self.count = goal.value.countPerWeek
+        self.distance = goal.value.distancePerWeek / count
+        self.lap = goal.value.lapTimePerWeek / count
     }
     
     func getTitles(_ type: MyGoalType) -> SetGoalText {
@@ -46,12 +46,13 @@ final class SetGoalViewModel: BaseViewModel {
         let distancePerWeek = distance * count
         let lapTimePerWeek = lap * count
         let countPerWeek = count
-        userData.goal = .init(distancePerWeek: distancePerWeek, lapTimePerWeek: lapTimePerWeek, countPerWeek: countPerWeek)
+        let newGoal = GoalPerWeek(distancePerWeek: distancePerWeek, lapTimePerWeek: lapTimePerWeek, countPerWeek: countPerWeek)
+        userData.goal.send(newGoal)
         userData.saveGoalData()
     }
     
     func getCurrentData() -> GoalPerWeek {
-        return userData.goal
+        return userData.goal.value
     }
     
 }

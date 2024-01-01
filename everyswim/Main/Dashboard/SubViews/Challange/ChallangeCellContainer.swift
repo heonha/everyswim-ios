@@ -73,9 +73,9 @@ extension ChallangeCellContainer {
         
         let counts = Double(weeklyData.count)
         
-        let distance = RingViewModel(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
-        let lap = RingViewModel(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
-        let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
+        let distance = RingViewModel(type: .distance, count: distanceData, maxCount: Double(goal.value.distancePerWeek))
+        let lap = RingViewModel(type: .lap, count: laps, maxCount: Double(goal.value.lapTimePerWeek))
+        let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.value.countPerWeek))
         
         distanceCell = .init(data: distance)
         distanceCell?.id = "distance"
@@ -108,7 +108,7 @@ extension ChallangeCellContainer {
     }
     
     func updateRings() {
-        let goal = UserData.shared.goal
+        let goal = UserData.shared.goal.value
         let weeklyData = SwimDataStore.shared.getWeeklyData()
 
         #if DEBUG && targetEnvironment(simulator)
@@ -132,7 +132,6 @@ extension ChallangeCellContainer {
         
         let counts = Double(weeklyData.count)
         #endif
-        
         let distance = RingViewModel(type: .distance, count: distanceData, maxCount: Double(goal.distancePerWeek))
         let lap = RingViewModel(type: .lap, count: laps, maxCount: Double(goal.lapTimePerWeek))
         let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))

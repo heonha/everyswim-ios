@@ -113,7 +113,9 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        let updateRings = SwimDataStore.shared.lastUpdatedDate
+        let updateRings = Publishers
+            .CombineLatest(SwimDataStore.shared.lastUpdatedDate,
+                           UserData.shared.goal.eraseToAnyPublisher())
             .map { _ in
                 return ()
             }
@@ -237,7 +239,7 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
         SwimDataStore.shared.swimmingDataPubliser
             .receive(on: DispatchQueue.main)
             .sink { records in
-                let goal = UserData.shared.goal
+                let goal = UserData.shared.goal.value
                 let distance = records.reduce(0) { $0 + $1.unwrappedDistance }
                 let lap = records.reduce(0) { $0 + $1.laps.count }
                 let count = records.count

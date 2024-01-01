@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 final class UserData {
     
-    var goal = GoalPerWeek(distancePerWeek: 1500, lapTimePerWeek: 60, countPerWeek: 3)
+    var goal = CurrentValueSubject<GoalPerWeek, Never>(GoalPerWeek(distancePerWeek: 1500, lapTimePerWeek: 60, countPerWeek: 3))
     
     struct Constant {
         static let goalDefaultsKey = "user_goal"
@@ -27,7 +28,7 @@ final class UserData {
         
         do {
             let data = try JSONDecoder().decode(GoalPerWeek.self, from: goal)
-            self.goal = data
+            self.goal.send(data)
         } catch {
             print(error)
         }
@@ -37,11 +38,11 @@ final class UserData {
         let distancePerWeek = distance * countPerWeek
         let lapPerWeek = lap * countPerWeek
         let goal = GoalPerWeek(distancePerWeek: distancePerWeek, lapTimePerWeek: lapPerWeek, countPerWeek: countPerWeek)
-        self.goal = goal
+        self.goal.send(goal)
     }
     
     func saveGoalData() {
-        let data = try? JSONEncoder().encode(goal)
+        let data = try? JSONEncoder().encode(goal.value)
         UserDefaults.standard.setValue(data, forKey: Constant.goalDefaultsKey)
         self.loadGoalData()
     }
