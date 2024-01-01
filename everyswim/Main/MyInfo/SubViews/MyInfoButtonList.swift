@@ -119,7 +119,7 @@ import SwiftUI
 
 struct MyInfoButtonList_Previews: PreviewProvider {
     
-    static let parentVC = MyInfoController(viewModel: viewModel)
+    static let parentVC = MyInfoViewController(viewModel: viewModel)
     static let viewModel = MyInfoViewModel()
     
     static var previews: some View {

@@ -154,7 +154,7 @@
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
 		399EFFDB2AAE03D100DE7E12 /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */; };
 		399EFFDD2AAE040D00DE7E12 /* DatePickerDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFDC2AAE040D00DE7E12 /* DatePickerDayCell.swift */; };
-		39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */; };
+		39A111F52AB2F2C600D57FB4 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F42AB2F2C600D57FB4 /* MyInfoViewController.swift */; };
 		39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */; };
 		39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */; };
 		39A111FD2AB2FD0300D57FB4 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */; };
@@ -382,7 +382,7 @@
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
 		399EFFDC2AAE040D00DE7E12 /* DatePickerDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDayCell.swift; sourceTree = "<group>"; };
-		39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoController.swift; sourceTree = "<group>"; };
+		39A111F42AB2F2C600D57FB4 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		39A111FA2AB2FCA500D57FB4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
@@ -553,10 +553,10 @@
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
-				39A111F42AB2F2C600D57FB4 /* MyInfoController.swift */,
+				39A111F42AB2F2C600D57FB4 /* MyInfoViewController.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
-				39FADBE52B0A1D5200C90B19 /* View */,
 				39FADBE42B0A1D3700C90B19 /* Model */,
+				39FADBE52B0A1D5200C90B19 /* SubViews */,
 				398BD2992B189D3C00970E23 /* PoolMap */,
 				390C61892AF3A9950061E6D4 /* SetGoal */,
 			);
@@ -1217,7 +1217,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		39FADBE52B0A1D5200C90B19 /* View */ = {
+		39FADBE52B0A1D5200C90B19 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				39A111F82AB2F85B00D57FB4 /* MyInfoHeaderView.swift */,
@@ -1226,7 +1226,7 @@
 				3980FC522AB6A38C00E4A8DE /* MyInfoProfileView.swift */,
 				39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */,
 			);
-			path = View;
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		A491A234A0412181DC89240D /* Pods */ = {
@@ -1526,7 +1526,7 @@
 				398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */,
 				39F5998C2A9B6BE600738334 /* UIViewControllerPreview.swift in Sources */,
 				39238E6A2B04E78E004E28E5 /* BaseTextField.swift in Sources */,
-				39A111F52AB2F2C600D57FB4 /* MyInfoController.swift in Sources */,
+				39A111F52AB2F2C600D57FB4 /* MyInfoViewController.swift in Sources */,
 				390848AC2B36FB7500BDD317 /* MapPlace.swift in Sources */,
 				39318EA12AFCF26F0089AEC4 /* AppleSignInHelper.swift in Sources */,
 				39318EA72AFCF8BB0089AEC4 /* SignInViewModel.swift in Sources */,

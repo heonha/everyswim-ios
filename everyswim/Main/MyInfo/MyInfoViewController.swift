@@ -1,5 +1,5 @@
 //
-//  MyInfoController.swift
+//  MyInfoViewController.swift
 //  swimmers
 //
 //  Created by HeonJin Ha on 9/14/23.
@@ -10,7 +10,7 @@ import SwiftUI
 import SnapKit
 import Combine
 
-final class MyInfoController: BaseViewController {
+final class MyInfoViewController: BaseViewController {
     
     private let viewModel: MyInfoViewModel
     
@@ -56,7 +56,7 @@ final class MyInfoController: BaseViewController {
 }
 
 // MARK: - Layout
-extension MyInfoController {
+extension MyInfoViewController {
     
     private func layout() {
         layoutScrollView()
@@ -129,7 +129,7 @@ extension MyInfoController {
 }
 
 // MARK: - Observe
-extension MyInfoController {
+extension MyInfoViewController {
     
     // MARK: bind
     // swiftlint:disable:next function_body_length
@@ -289,7 +289,7 @@ import SwiftUI
 
 struct MyInfoController_Previews: PreviewProvider {
     
-    static let viewController = MyInfoController(viewModel: viewModel)
+    static let viewController = MyInfoViewController(viewModel: viewModel)
     static let viewModel = MyInfoViewModel()
     
     static var previews: some View {

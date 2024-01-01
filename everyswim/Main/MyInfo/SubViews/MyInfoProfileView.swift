@@ -132,7 +132,7 @@ import SwiftUI
 struct MyInfoProfileView_Previews: PreviewProvider {
     
     static let viewModel = MyInfoViewModel()
-    static let vc = MyInfoController(viewModel: viewModel)
+    static let vc = MyInfoViewController(viewModel: viewModel)
     
     static var previews: some View {
         UIViewPreview {

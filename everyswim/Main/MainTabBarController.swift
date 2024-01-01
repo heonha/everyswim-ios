@@ -17,7 +17,7 @@ final class MainTabBarController: UITabBarController {
     private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
     
     private let myInfoViewModel = MyInfoViewModel()
-    private lazy var myInfoView = MyInfoController(viewModel: myInfoViewModel)
+    private lazy var myInfoView = MyInfoViewController(viewModel: myInfoViewModel)
     private lazy var calendarView = DatePickerController()
 
     init(authService: AuthManager) {

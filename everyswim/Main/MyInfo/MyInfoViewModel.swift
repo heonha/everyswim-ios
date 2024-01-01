@@ -83,8 +83,6 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
         
         // MARK: - HealthData Update Output
         /// Swim Data 가져오기 완료시간을 리턴.
-        ///
-
         let healthDataUpdated =  lastUpdateDatePublisher
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
