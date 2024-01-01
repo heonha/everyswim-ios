@@ -137,6 +137,7 @@ extension MyInfoViewController {
         let input = MyInfoViewModel
             .Input(tappedLogout: getButtonTapPublisher(.logout),
                    excuteLogout: excuteLogout.eraseToAnyPublisher(),
+                   tappedLoginButton: profileView.tapPublisher(),
                    tappedHealthRefreshButton: healthStateCell.getRefreshButtonTapPublisher(),
                    tappedSearchPoolButtonTapPublisher: getButtonTapPublisher(.searchForPool),
                    tappedEditChallangeButtonPublisher: getButtonTapPublisher(.editChallange),
@@ -189,6 +190,13 @@ extension MyInfoViewController {
             }
             .store(in: &cancellables)
         
+        output.presentLoginViewController
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                self.presentLoginViewController()
+            }
+            .store(in: &cancellables)
+        
         output.presentLogoutAlert
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -237,6 +245,14 @@ extension MyInfoViewController {
     }
     
     // MARK: - ObserveButtonActions
+    
+    /// 로그인 VC Present
+    private func presentLoginViewController() {
+        let viewModel = SignInViewModel()
+        let loginVC = SignInViewController(viewModel: viewModel)
+        self.present(loginVC, animated: true)
+    }
+    
     /// 프로필 변경 VC Present
     private func presentChangeProfileView() {
         let viewModel = SetProfileViewModel()

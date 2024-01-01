@@ -19,10 +19,11 @@ final class MyInfoProfileView: BaseUIView {
         .contentMode(.scaleAspectFill)
         .backgroundColor(AppUIColor.secondaryBlue)
         .shadow(color: .black, alpha: 0.2, x: 0.3, y: 0.3, blur: 1, spread: 1, radius: 1)
+        .isHidden(true)
         .cornerRadius(30) as! UIImageView
     
     private lazy var profileNameLabel = ViewFactory
-        .label(" ") // 프로필 이름
+        .label("로그인하고 내 데이터를 관리해보세요.") // 프로필 이름
         .font(.custom(.sfProBold, size: 20))
         .foregroundColor(AppUIColor.label)
     
@@ -34,7 +35,7 @@ final class MyInfoProfileView: BaseUIView {
         .cornerRadius(8)
         .shadow()
 
-    private lazy var profileEmail = ViewFactory
+    lazy var profileEmail = ViewFactory
         .label("로그인하기")
         .font(.custom(.sfProLight, size: 15))
         .foregroundColor(.secondaryLabel)
@@ -110,7 +111,15 @@ final class MyInfoProfileView: BaseUIView {
     
     // MARK: - Observe
     
-    public func updateUserProfile(_ profileData: MyInfoProfile) {
+    func updateUserProfile(_ profileData: MyInfoProfile) {
+        
+        guard AuthManager.shared.isSignIn.value == true else {
+            setProfileNameLabel(text: "로그인하고 내 데이터를 관리해보세요.")
+            profileImage.isHidden = true
+            return
+        }
+        
+        profileImage.isHidden = false
         setProfileNameLabel(text: profileData.name)
         setProfileEmailLabel(text: profileData.email)
         
@@ -132,13 +141,21 @@ import SwiftUI
 struct MyInfoProfileView_Previews: PreviewProvider {
     
     static let viewModel = MyInfoViewModel()
-    static let vc = MyInfoViewController(viewModel: viewModel)
+    static let view = MyInfoProfileView()
+    static let userData = MyInfoProfile.examples.first!
+    static let isLogin = true
     
     static var previews: some View {
         UIViewPreview {
-            MyInfoProfileView()
+            view
         }
-        .frame(height: 150)
+        .frame(width: 393, height: 150)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                AuthManager.shared.isSignIn.send(isLogin)
+                view.updateUserProfile(userData)
+            }
+        }
     }
 }
 #endif

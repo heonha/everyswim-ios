@@ -13,6 +13,7 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
     struct Input {
         let tappedLogout: AnyPublisher<Void, Never>
         let excuteLogout: AnyPublisher<Void, Never>
+        let tappedLoginButton: AnyPublisher<Void, Never>
         let tappedHealthRefreshButton: AnyPublisher<Void, Never>
         let tappedSearchPoolButtonTapPublisher: AnyPublisher<Void, Never>
         let tappedEditChallangeButtonPublisher: AnyPublisher<Void, Never>
@@ -27,6 +28,7 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
         let logoutSuccessed: AnyPublisher<Void, Never>
         let presentLogoutAlert: AnyPublisher<Void, Never>
         let healthDataUpdated: AnyPublisher<String, Never>
+        let presentLoginViewController: AnyPublisher<Void, Never>
         let presentHealthDataUpdateAlert: AnyPublisher<Void, Never>
         let pushSearchSwimPoolViewController: AnyPublisher<Void, Never>
         let presentEditChallangeView: AnyPublisher<Void, Never>
@@ -102,6 +104,16 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
             .eraseToAnyPublisher()
         
         // MARK: - Push & Present Output
+        
+        let presentLoginViewController = Publishers
+            .CombineLatest(AuthManager.shared.isSignIn.eraseToAnyPublisher(), 
+                           input.tappedLoginButton)
+            .compactMap { isSign, _ -> Void? in
+                guard isSign == false else { return nil }
+                return ()
+            }
+            .eraseToAnyPublisher()
+        
         let pushSearchSwimPoolViewController = input
             .tappedSearchPoolButtonTapPublisher
             .eraseToAnyPublisher()
@@ -135,6 +147,7 @@ final class MyInfoViewModel: BaseViewModel, IOProtocol {
                       logoutSuccessed: logoutSuccessed,
                       presentLogoutAlert: presentLogoutAlert,
                       healthDataUpdated: healthDataUpdated,
+                      presentLoginViewController: presentLoginViewController,
                       presentHealthDataUpdateAlert: presentHealthDataUpdateAlert,
                       pushSearchSwimPoolViewController: pushSearchSwimPoolViewController,
                       presentEditChallangeView: presentEditChallangeView,
