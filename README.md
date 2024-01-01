@@ -13,12 +13,19 @@
 - UIKit (with SnapKit)
 
 #### 개발 기능
-- 수영 기록 확인 및 목표 설정 (From Apple Health)
+**수영 기록**  
+- 수영 기록 확인 (From Apple Health)
+- 수영 목표 설정
+**로그인**
 - 애플 로그인
+
+**수영장 찾기 & 맵**
+- 수영장 맵 구현: NMapsMap (네이버 지도 SDK)
+- 가까운 수영장 찾기: Kakao Open API
 
 #### 개발 중인 기능
 - 내 수영장 등록
-- 수영장 찾기 (네이버 지도 및 수영장 리스트)
+- 수영 페이스 계산 알고리즘 구현
 
 #### Stacks
 - Combine
