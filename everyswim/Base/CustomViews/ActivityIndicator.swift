@@ -7,6 +7,37 @@
 
 import UIKit
 
+final class ActivityIndicatorViewController: UIViewController {
+    
+    private let loadingIndicator: ActivityIndicator = .init(style: .medium)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        layoutLoadingIndicator()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.show()
+    }
+    
+    private func layoutLoadingIndicator() {
+        view.addSubview(loadingIndicator)
+        loadingIndicator.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
+    }
+    
+    func show() {
+        loadingIndicator.show()
+    }
+    
+    func hide() {
+        loadingIndicator.hide()
+    }
+    
+}
+
 final class ActivityIndicatorView: UIView {
     
     let indicator: ActivityIndicator
@@ -91,3 +122,31 @@ final class ActivityIndicator: UIActivityIndicatorView {
     }
     
 }
+
+// MARK: - Preview
+#if DEBUG
+import SwiftUI
+
+struct ActivityIndicatorViewController_Previews: PreviewProvider {
+    
+    static let viewController = ActivityIndicatorViewController()
+    // static let viewModel = <#ViewModel#>
+    
+    static var previews: some View {
+        UIViewControllerPreview {
+            viewController
+        }
+        .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                viewController.show()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    viewController.hide()
+                }
+            }
+            
+            
+        }
+    }
+}
+#endif

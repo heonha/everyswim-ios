@@ -27,9 +27,7 @@ final class DashboardViewController: BaseViewController {
     
     /// 이번주 목표 View
     private var challangeCirclesView = ChallangeCellContainer()
-    
-    private let viewWillAppearPublisher = PassthroughSubject<Void, Never>()
-    
+        
     /// 추천 CollectionView
     private lazy var recommandCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in

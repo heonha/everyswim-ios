@@ -6,60 +6,136 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
-final class ActivityViewModel: BaseViewModel {
+final class ActivityViewModel: BaseViewModel, IOProtocol {
     
+    struct Input {
+        let viewWillAppeared: AnyPublisher<Void, Never>
+        let selectedSegment: AnyPublisher<Int, Never>
+        let tappedTitleMenu: AnyPublisher<Void, Never>
+        let viewSwipedRight: AnyPublisher<Void, Never>
+        let viewSwipedLeft: AnyPublisher<Void, Never>
+        let scrollViewLayoutLoaded: AnyPublisher<Bool, Never>
+        let selectedDateInDatePicker: AnyPublisher<Void, Never>
+    }
+    
+    struct Output {
+        let presentDatePicker: AnyPublisher<ActivityDataRange, Never>
+        let changeSegment: AnyPublisher<ActivityDataRange, Never>
+        let changeSegmentRight: AnyPublisher<Int, Never>
+        let changeSegmentLeft: AnyPublisher<Int, Never>
+        let remakeTableViewLayout: AnyPublisher<Void, Never>
+        let updateSummaryData: AnyPublisher<SwimSummaryViewModel, Never>
+        let updateDataFromSelectedDate: AnyPublisher<(ActivityDataRange, Date), Never>
+        let updateLoadingState: AnyPublisher<Bool, Never>
+    }
+        
     private let healthStore = SwimDataStore.shared
     
     @Published var summaryData: SwimSummaryViewModel?
-    @Published var presentedData: [SwimMainData] = []
-    @Published var selectedSegment: ActivityDataRange = .monthly
-    @Published var weekList: [Date] = []
+    private (set)var presentedData = CurrentValueSubject<[SwimMainData], Never>([])
+    private var selectedSegmentSubject = CurrentValueSubject<ActivityDataRange, Never>(.monthly)
 
     // MARK: - Picker Objects
-    var pickerYears = [String]()
-    var pickerMonths = [String]()
-    var pickerWeeks = [String]() {
-        willSet {
-            print("PICKERWEEKS: \(newValue)")
-        }
-    }
-
-    var leftString = "" {
-        willSet {
-            print("LEFT: \(newValue)")
-        }
-    }
-    
-    var rightString: String = "" {
-        willSet {
-            print("RIGHT: \(newValue)")
-        }
-    }
-    
     @Published var selectedDate: Date = Date()
+    
+    override init() {
+        super.init()
+    }
     
     // MARK: - Pickers Data
     
-    func updateDate() {
-        setYearAndMonthsPickerTitle()
-    }
-    
-    func resetData() {
-        self.leftString = ""
-        self.rightString = ""
-        self.selectedDate = Date()
-        self.selectedSegment = .monthly
-    }
-    
-    func resetPickerData() {
-        self.leftString = ""
-        self.rightString = ""
-    }
-    
-    func getData(_ type: ActivityDataRange) {
+    // swiftlint:disable:next function_body_length
+    func transform(input: Input) -> Output {
         
+        let changeSegment = Publishers
+            .CombineLatest(input.selectedSegment, input.viewWillAppeared)
+            .compactMap { index, _ in
+               return ActivityDataRange(rawValue: index)
+            }
+            .map { [weak self] type in
+                self?.isLoading.send(true)
+                self?.segmentAction(type: type)
+                return type
+            }
+            .eraseToAnyPublisher()
+        
+        let presentDatePicker = input.tappedTitleMenu
+            .compactMap { _ in
+                return self.selectedSegmentSubject.value
+            }
+            .eraseToAnyPublisher()
+        
+        let changeSegmentLeft = Publishers
+            .CombineLatest(input.viewSwipedLeft, input.selectedSegment)
+            .map { [unowned self] _, selectedSegment -> Int in
+                let index = selectedSegment + 1
+                guard let selected = ActivityDataRange(rawValue: index) else { return 3 }
+                let type =  ActivityDataRange(rawValue: selectedSegment)!
+                self.segmentAction(type: type)
+                return selectedSegment
+            }
+            .eraseToAnyPublisher()
+        
+        let changeSegmentRight =  Publishers
+            .CombineLatest(input.viewSwipedRight, input.selectedSegment)
+            .map { [unowned self] _, selectedSegment -> Int in
+                let type =  ActivityDataRange(rawValue: selectedSegment)!
+                self.segmentAction(type: type)
+                return selectedSegment
+            }
+            .eraseToAnyPublisher()
+        
+        let remakeTableViewLayout = input.scrollViewLayoutLoaded
+            .compactMap { isLoaded -> Void? in
+                guard isLoaded == true else { return nil }
+            }
+            .eraseToAnyPublisher()
+        let updateSummaryData = $summaryData
+            .compactMap { data in
+                return data
+            }
+            .eraseToAnyPublisher()
+        
+        let updateDataFromSelectedDate = input
+            .selectedDateInDatePicker
+            .receive(on: DispatchQueue.main)
+            .compactMap { _ in
+                print("전달")
+                let selectedSegment = self.selectedSegmentSubject.value
+                return (selectedSegment, Date())
+            }
+            .eraseToAnyPublisher()
+        
+        let initSelectedSegment = input.viewWillAppeared
+            .map { _ in
+                return
+            }
+        
+        let updateLoadingState = isLoading
+            .eraseToAnyPublisher()
+
+        return Output(presentDatePicker: presentDatePicker,
+                      changeSegment: changeSegment,
+                      changeSegmentRight: changeSegmentRight,
+                      changeSegmentLeft: changeSegmentLeft,
+                      remakeTableViewLayout: remakeTableViewLayout,
+                      updateSummaryData: updateSummaryData,
+                      updateDataFromSelectedDate: updateDataFromSelectedDate,
+                      updateLoadingState: updateLoadingState
+        )
+    }
+
+    // MARK: Methods
+    private func segmentAction(type: ActivityDataRange) {
+        self.getData(type)
+        self.selectedSegmentSubject.send(type)
+    }
+
+    private func getData(_ type: ActivityDataRange) {
+        self.isLoading.send(true)
         var totalData: [SwimMainData]
         
         switch type {
@@ -72,135 +148,23 @@ final class ActivityViewModel: BaseViewModel {
         case .total:
             totalData = healthStore.getAllData()
         }
-        self.presentedData = []
+        
         setSummaryData()
-        self.presentedData = totalData
+        DispatchQueue.main.async {
+            self.presentedData.send(totalData)
+            self.isLoading.send(false)
+        }
     }
     
-    func setSummaryData() {
-        $presentedData
+    private func setSummaryData() {
+        presentedData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.summaryData = self?.healthStore.getSummaryData(data)
             }
             .store(in: &cancellables)
     }
-    
-    // 선택한 데이터 불러오기
-    func updateSelectedRangesData(left: String, right: String? = nil) {
         
-        switch selectedSegment {
-        case .weekly:
-            let selectedIndex = pickerWeeks
-                .firstIndex(of: left)
-            
-            guard let selectedIndex = selectedIndex else {
-                let fetchedData = healthStore.getWeeklyData(date: Date())
-                self.presentedData = fetchedData
-                return
-            }
-            
-            let selectedDate = weekList[selectedIndex]
-            self.selectedDate = selectedDate
-            let fetchedData = healthStore.getWeeklyData(date: selectedDate)
-            self.presentedData = fetchedData
-
-        case .monthly:
-            let year = leftString
-            let month = rightString
-            
-            guard let selectedDate = "\(year)-\(month)-01".toDate() else {
-                return
-            }
-            self.selectedDate = selectedDate
-            let fetchedData = healthStore.getMonthlyData(selectedDate)
-            self.presentedData = fetchedData
-        case .yearly:
-            let year = left
-            guard let selectedDate = "\(year)-01-01".toDate() else {
-                return
-            }
-            self.selectedDate = selectedDate
-            self.presentedData = healthStore.getYearlyData(selectedDate)
-        case .total:
-            return
-        }
-        
-    }
-    
     // MARK: - Picker Objects
     
-    // 월간, 연간 Picker데이터 셋업
-    private func setYearAndMonthsPickerTitle() {
-        
-        for year in 2016...2023 {
-            pickerYears.append("\(year)")
-        }
-        
-        for month in 1...12 {
-            if month < 10 {
-                pickerMonths.append("0\(month)")
-            } else {
-                pickerMonths.append("\(month)")
-            }
-        }
-        
-    }
-    
-    /// 월의 몇주차인지를 구하고 picker에 추가합니다.
-    func setMonthOfWeekNumber() {
-        let data = calculateMonthOfWeekNumber()
-        self.weekList = .init()
-        self.pickerWeeks = .init()
-        
-        self.weekList = data.weekList
-        self.pickerWeeks = data.pickerWeeks
-    }
-    
-    /// 오늘이 월의 몇주차인지 계산하고 지난 주차와 이번 주를 반환합니다.
-    private func calculateMonthOfWeekNumber() -> (pickerWeeks: [String], weekList: [Date]) {
-        let today = Date()
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: today)
-        let month = calendar.component(.month, from: today)
-        let day = calendar.component(.day, from: Date())
-        let todayComponents = DateComponents(year: year, month: month, day: day, hour: 0, minute: 0, second: 0).setGMT9()
-        
-        var pickerWeeks: [String] = []
-        var weekList: [Date] = []
-        
-        guard let todaydate = calendar.date(from: todayComponents) else { return (pickerWeeks: pickerWeeks, weekList: weekList) }
-        
-        // MARK: 이번 주 구하기
-        let weekday = calendar.component(.weekday, from: todaydate) // 이번주 요일
-        let distanceTodayToSunday: Int = -(weekday - 1)
-        let weeksFirstDay = calendar.date(byAdding: .day, value: distanceTodayToSunday, to: today)!
-
-        weekList.append(weeksFirstDay)
-        pickerWeeks.append("이번 주")
-        
-        // MARK: 지난 주 구하기
-        let numberOfWeeks = calendar.component(.weekOfMonth, from: Date()) // 이번주 주차
-        if numberOfWeeks != 1 {
-            
-            for weeknumber in 1..<numberOfWeeks {
-                let beforeWeeksFirstDay = calendar.date(byAdding: .day, value: -7 * weeknumber, to: weeksFirstDay)!
-                let beforeWeeksLastDay = calendar.date(byAdding: .day, value: -1 * weeknumber, to: weeksFirstDay)!
-                
-                let weeksFirstDayString = beforeWeeksFirstDay.toString(.dayDotMonth)
-                let weeksLastDayString = beforeWeeksLastDay.toString(.dayDotMonth)
-                let weeksRangeString = "\(weeksFirstDayString) ~ \(weeksLastDayString)"
-                
-                let weekString = -(weeknumber - numberOfWeeks)
-                pickerWeeks.append("\(weekString)주차 (\(weeksRangeString))")
-                weekList.append(beforeWeeksFirstDay)
-            }
-            pickerWeeks.reverse()
-            weekList.reverse()
-        }
-        
-        return (pickerWeeks: pickerWeeks, weekList: weekList)
-        
-    }
-
 }

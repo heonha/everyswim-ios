@@ -131,6 +131,7 @@
 		3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */; };
 		3983ED672B088D00000E64CF /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983ED662B088D00000E64CF /* FirebaseStorageService.swift */; };
 		398665222AFA492F00BBD7FE /* RecommandSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398665212AFA492F00BBD7FE /* RecommandSection.swift */; };
+		398876FF2B4A946B0064F457 /* ActivityDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398876FE2B4A946B0064F457 /* ActivityDatePickerViewModel.swift */; };
 		398B1BA92A483DA400E0FA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BA82A483DA400E0FA9B /* Assets.xcassets */; };
 		398B1BAC2A483DA400E0FA9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */; };
 		398B1BB72A483E4E00E0FA9B /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B1BB62A483E4E00E0FA9B /* AppColor.swift */; };
@@ -358,6 +359,7 @@
 		3980FC582AB6EE1C00E4A8DE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		3983ED662B088D00000E64CF /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		398665212AFA492F00BBD7FE /* RecommandSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandSection.swift; sourceTree = "<group>"; };
+		398876FE2B4A946B0064F457 /* ActivityDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDatePickerViewModel.swift; sourceTree = "<group>"; };
 		398B1BA12A483DA300E0FA9B /* everyswim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = everyswim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		398B1BA82A483DA400E0FA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398B1BAB2A483DA400E0FA9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -553,7 +555,6 @@
 		392083BE2A485BA800E591A8 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
-				39A111F42AB2F2C600D57FB4 /* MyInfoViewController.swift */,
 				39A111FC2AB2FD0300D57FB4 /* MyInfoViewModel.swift */,
 				39FADBE42B0A1D3700C90B19 /* Model */,
 				39FADBE52B0A1D5200C90B19 /* SubViews */,
@@ -804,6 +805,15 @@
 				396CE8552AB568F800EB66BE /* GestureSubscription.swift */,
 			);
 			path = Gesture;
+			sourceTree = "<group>";
+		};
+		398877002B4A95CA0064F457 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				39B377402AD2608500F37C27 /* ActivityDatePicker.swift */,
+				398876FE2B4A946B0064F457 /* ActivityDatePickerViewModel.swift */,
+			);
+			path = DatePicker;
 			sourceTree = "<group>";
 		};
 		398B1B982A483DA300E0FA9B = {
@@ -1114,10 +1124,11 @@
 			children = (
 				396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */,
 				39B59CD92B3718180078B937 /* ActivityView.swift */,
-				39B377402AD2608500F37C27 /* ActivityDatePicker.swift */,
 				396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */,
-				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
+				398877002B4A95CA0064F457 /* DatePicker */,
+				39A111F42AB2F2C600D57FB4 /* MyInfoViewController.swift */,
 				39DBB31D2AC6E650003B5213 /* ActivityTypeSegmentControl.swift */,
+				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
 				39E0B0C12B13946600046680 /* TableViewCell */,
 				39C5884B2AC6773E00B6C992 /* Detail */,
 				39B377452AD2B26B00F37C27 /* Model */,
@@ -1669,6 +1680,7 @@
 				39B6E6002B1C80D6009140F8 /* DeviceLocationManager.swift in Sources */,
 				39F599932A9B7BA000738334 /* RecordSmallCell.swift in Sources */,
 				39FCBEED2A8B81990073EE53 /* SwimDataStore.swift in Sources */,
+				398876FF2B4A946B0064F457 /* ActivityDatePickerViewModel.swift in Sources */,
 				39B59CD32B370B630078B937 /* BaseViewControllerProtocol.swift in Sources */,
 				391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */,
 				396387B22AC6CA2100A490D1 /* ActivityViewModel.swift in Sources */,

@@ -144,5 +144,12 @@ extension UIView {
         self.addGestureRecognizer(tapGesture)
         return tapGesture.tapPublisher.map { _ in () }.eraseToAnyPublisher()
     }
+    
+    func swipePublisher(direction: UISwipeGestureRecognizer.Direction) -> AnyPublisher<Void, Never> {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: nil)
+        swipeGesture.direction = direction
+        self.addGestureRecognizer(swipeGesture)
+        return swipeGesture.swipePublisher.map { _ in return () }.eraseToAnyPublisher()
+    }
 
 }

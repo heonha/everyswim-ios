@@ -18,7 +18,6 @@ final class SetProfileViewController: BaseViewController {
     private let viewModel: SetProfileViewModel
     private let type: SetProfileViewControllerType
     
-    private let loadingIndicator = ActivityIndicatorView(indicator: .init(style: .large, color: .white))
     
     // MARK: - Views
     private let titleView = MidTitleVStack(title: "프로필 설정",

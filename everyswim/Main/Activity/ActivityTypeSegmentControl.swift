@@ -26,38 +26,20 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
     }
     
     // MARK: - Setup
-    func actionMaker(index: Int) -> UIAction {
-        guard let type = ActivityDataRange(rawValue: index) else {fatalError("타입에러")}
-        
-        return UIAction {[weak self] _ in
-            self?.segmentAction(type: type)
-        }
-    }
-    
+
     private func configure() {
         configureButtons()
         configureSegmentAppearances()
-        selectSegment(index: 1)
+        self.selectedSegmentIndex = 1
     }
-    
-    private func segmentAction(type: ActivityDataRange) {
-        self.viewModel.getData(type)
-        self.viewModel.resetPickerData()
-        self.viewModel.selectedSegment = type
-    }
-    
-    func selectSegment(index: Int) {
-        selectedSegmentIndex = index
-        let type = ActivityDataRange.init(rawValue: index)!
-        viewModel.selectedSegment = type
-        segmentAction(type: type)
-    }
-    
+
     private func configureButtons() {
         let cases = ActivityDataRange.allCases
         
         for singleCase in cases {
-            let action = actionMaker(index: singleCase.rawValue)
+            let type = ActivityDataRange(rawValue: singleCase.rawValue)
+            let action = UIAction { _ in
+            }
             self.insertSegment(action: action, at: singleCase.rawValue, animated: true)
             self.setAction(action, forSegmentAt: singleCase.rawValue)
             setTitle(singleCase.segmentTitle, forSegmentAt: singleCase.rawValue)

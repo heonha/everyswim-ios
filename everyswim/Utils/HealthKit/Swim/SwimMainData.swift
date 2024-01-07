@@ -113,7 +113,7 @@ extension SwimMainData: TestableObject {
 
            let months = Array(1...12)
 
-           for year in Array(2020...2023) {
+           for year in Array(2020...2024) {
                for month in months {
                    // Calculate the first day of the month
                    var dateComponents = DateComponents()

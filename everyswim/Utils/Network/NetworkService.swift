@@ -21,6 +21,7 @@ final class NetworkService: RestProtocol {
         cancellables = .init()
     }
     
+    // swiftlint:disable:next function_parameter_count
     func request<T>(method: HttpMethod,
                     headerType: HttpHeader,
                     urlString baseUrl: String,

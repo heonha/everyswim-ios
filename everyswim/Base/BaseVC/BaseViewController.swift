@@ -14,11 +14,18 @@ class BaseViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     
     private let messageView = MessageView()
-    private let loadingIndicator = ActivityIndicator()
+    let loadingIndicator = ActivityIndicatorView(indicator: .init(style: .large, color: .gray))
 
+    var viewWillAppearPublisher = PassthroughSubject<Void, Never>()
+    
     init(backgroundColor: UIColor = .systemBackground) {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = backgroundColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewWillAppearPublisher.send(())
     }
 
     required init?(coder: NSCoder) {
@@ -59,6 +66,13 @@ class BaseViewController: UIViewController {
             make.width.equalTo(view).dividedBy(1.3)
         }
     }
+    
+    func layoutLoadingIndicator(targetView: UIView) {
+        targetView.addSubview(loadingIndicator)
+        loadingIndicator.snp.makeConstraints { make in
+            make.edges.equalTo(targetView)
+        }
+    }
 
     /// 하단에 메시지를 띄웁니다.
     public func presentMessage(title: String) {
@@ -72,7 +86,21 @@ class BaseViewController: UIViewController {
         
         messageView.present(title: title)
     }
-  
+    
+    // public func setupLoadingIndicator() {
+    //     let isContainView = view.subviews.contains(where: { view in
+    //         view === self.loadingIndicator
+    //     })
+    //     
+    //     if !isContainView {
+    //         layoutLoadingIndicator(targetView: <#T##UIView#>, )
+    //     }
+    // }
+    // 
+    // func showIndicator() {
+    //     
+    // }
+
 }
 
 // MARK: - Preview
