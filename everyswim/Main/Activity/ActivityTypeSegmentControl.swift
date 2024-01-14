@@ -10,13 +10,10 @@ import SnapKit
 import Combine
 
 final class ActivityTypeSegmentControl: UISegmentedControl {
-        
-    private let viewModel: ActivityViewModel
-    
+            
     // MARK: - Initializer
     
-    init(viewModel: ActivityViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(frame: .zero)
         configure()
     }
@@ -37,7 +34,6 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
         let cases = ActivityDataRange.allCases
         
         for singleCase in cases {
-            let type = ActivityDataRange(rawValue: singleCase.rawValue)
             let action = UIAction { _ in
             }
             self.insertSegment(action: action, at: singleCase.rawValue, animated: true)

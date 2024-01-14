@@ -33,7 +33,7 @@ final class ActivitySectionView: UIView {
     }
     
     func updateTitle(_ title: String) {
-        self.activityTitle.text = title
+        self.activityTitle.text = "\(title) 수영기록"
     }
     
 }

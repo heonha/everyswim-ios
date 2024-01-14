@@ -42,5 +42,5 @@ class BaseUIView: UIView {
             make.edges.equalTo(self)
         }
     }
-    
+
 }

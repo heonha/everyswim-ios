@@ -18,38 +18,15 @@ final class ActivityViewController: BaseViewController {
     
     private lazy var activityDatePickerViewModel = ActivityDatePickerViewModel()
 
-    private lazy var segmentControl = ActivityTypeSegmentControl(viewModel: viewModel)
+    private lazy var segmentControl = ActivityTypeSegmentControl()
     
-    private lazy var activitySectionView = ActivitySectionView()
+    private lazy var bottomSectionTitle = ActivitySectionView()
 
-    let titleLabel = ViewFactory
-        .label("이번 주")
-        .font(.custom(.sfProBold, size: 17))
-        .foregroundColor(.secondaryLabel)
-    
-    let titleLabelSybmol = UIImageView()
-        .setSymbolImage(systemName: "chevron.down", color: AppUIColor.grayTint)
-        .contentMode(.scaleAspectFit)
-        .setSize(width: 20, height: 20)
-    
-    lazy var titleMenu = ViewFactory.hStack()
-        .addSubviews([titleLabel, titleLabelSybmol])
-        .spacing(4)
-        .alignment(.center)
-        .distribution(.fillProportionally)
 
-     lazy var distanceStack = DistanceLargeLabel()
-    
-     lazy var recordHStack = ActivityDetailCenterDataView()
-    
-     lazy var recordMainStack = ViewFactory.vStack()
-        .addSubviews([titleMenu, distanceStack, recordHStack])
-        .spacing(30)
-        .alignment(.center)
-        .distribution(.fillProportionally)
+    private lazy var summaryView = ActivitySummaryView()
     
     private lazy var mainVStack = ViewFactory.vStack()
-        .addSubviews([segmentControl, recordMainStack])
+        .addSubviews([segmentControl, summaryView])
         .spacing(30)
         .alignment(.center)
         .distribution(.fillProportionally)
@@ -86,9 +63,6 @@ final class ActivityViewController: BaseViewController {
         
         // TableView
         configureTableView()
-        
-        // 이번주 기록 가져오기
-        recordHStack.setData(viewModel.summaryData)
     }
     
     /// 테이블 뷰 사이즈 업데이트 (Cell의 수에 따라)
@@ -105,7 +79,7 @@ final class ActivityViewController: BaseViewController {
         
         guard count != 0 else {
             tableView.snp.remakeConstraints { make in
-                make.top.equalTo(activitySectionView.snp.bottom)
+                make.top.equalTo(bottomSectionTitle.snp.bottom)
                 make.horizontalEdges.equalTo(contentView)
                 make.bottom.equalTo(contentView)
             }
@@ -118,7 +92,7 @@ final class ActivityViewController: BaseViewController {
         }
         
         tableView.snp.remakeConstraints { make in
-            make.top.equalTo(activitySectionView.snp.bottom)
+            make.top.equalTo(bottomSectionTitle.snp.bottom)
             make.horizontalEdges.equalTo(contentView)
             make.height.equalTo(maxSize)
         }
@@ -139,38 +113,14 @@ final class ActivityViewController: BaseViewController {
         let input = ActivityViewModel.Input(
             viewWillAppeared: viewWillAppearPublisher.eraseToAnyPublisher(),
             selectedSegment: segmentControl.selectedSegmentIndexPublisher,
-            tappedTitleMenu: titleMenu.tapPublisher(),
+            tappedTitleMenu: summaryView.titleMenu.tapPublisher(),
             viewSwipedRight: scrollView.rightSwipePublisher,
             viewSwipedLeft: scrollView.leftSwipePublisher,
             scrollViewLayoutLoaded: scrollView.layoutLoaded.eraseToAnyPublisher()
         )
         
         let output = viewModel.transform(input: input)
-        
-        // Title 버튼 탭
-        output.presentDatePicker
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] type, date in
-                // self.presentDatePicker(type: type, date: date)
-            }
-            .store(in: &cancellables)
-        
-        // Swipe Left
-        output.changeSegmentLeft
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] index in
-                leftSwipeAction(selectedIndex: index)
-            }
-            .store(in: &cancellables)
-        
-        // Swipe Right
-        output.changeSegmentRight
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] index in
-                rightSwipeAction(selectedIndex: index)
-            }
-            .store(in: &cancellables)
-        
+
         output.remakeTableViewLayout
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
@@ -181,9 +131,15 @@ final class ActivityViewController: BaseViewController {
         output.updateSummaryData
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
-                distanceStack.setData(data.distance, unit: data.distanceUnit)
-                recordHStack.setData(data)
+                summaryView.setData(data)
                 remakeTableViewSize()
+            }
+            .store(in: &cancellables)
+        
+        output.changeSegment
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] data in
+                bottomSectionTitle.updateTitle(data.segmentTitle)
             }
             .store(in: &cancellables)
         
@@ -224,6 +180,7 @@ extension ActivityViewController {
     
     private func layout() {
         self.view.addSubview(scrollView)
+        self.view.addSubview(summaryView)
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
@@ -231,22 +188,30 @@ extension ActivityViewController {
         }
         
         layoutMainStackView()
-        layoutSubStackView()
         layoutSegmentControll()
+        layoutSummaryView()
         layoutActivitySectionView()
         layoutTableView()
         layoutLoadingIndicator(targetView: view)
     }
     
+    private func layoutSummaryView() {
+        summaryView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(300)
+        }
+    }
+    
     private func layoutActivitySectionView() {
-        contentView.addSubview(activitySectionView)
-        activitySectionView.snp.makeConstraints { make in
-            make.top.equalTo(recordHStack.snp.bottom).offset(16)
+        contentView.addSubview(bottomSectionTitle)
+        bottomSectionTitle.snp.makeConstraints { make in
+            make.top.equalTo(summaryView.snp.bottom).offset(16)
             make.horizontalEdges.equalTo(contentView)
             make.height.equalTo(50)
         }
         
-        activitySectionView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        bottomSectionTitle.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
     }
     
     private func layoutSegmentControll() {
@@ -264,24 +229,11 @@ extension ActivityViewController {
             make.centerX.equalTo(contentView)
         }
     }
-    
-    private func layoutSubStackView() {
-        // Distance Stack
-        distanceStack.snp.makeConstraints { make in
-            make.height.equalTo(100)
-        }
-        
-        // RecordHStack
-        recordHStack.snp.makeConstraints { make in
-            make.width.equalTo(mainVStack).inset(30)
-            make.height.equalTo(70)
-        }
-    }
-    
+
     private func layoutTableView() {
         contentView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(activitySectionView.snp.bottom)
+            make.top.equalTo(bottomSectionTitle.snp.bottom)
             make.horizontalEdges.equalTo(contentView)
             make.height.greaterThanOrEqualTo(contentView).dividedBy(2)
             make.bottom.equalTo(contentView)

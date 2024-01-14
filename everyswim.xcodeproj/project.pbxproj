@@ -150,6 +150,7 @@
 		3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */; };
 		399732312B305731008B5C11 /* SingleRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732302B305731008B5C11 /* SingleRegion.swift */; };
 		3998C03C2B39882C00BE6F98 /* PoolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */; };
+		399CC8B22B541295008CD258 /* ActivitySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CC8B12B541295008CD258 /* ActivitySummaryView.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
@@ -380,6 +381,7 @@
 		3997322E2B305724008B5C11 /* KakaoRegionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoRegionResponse.swift; sourceTree = "<group>"; };
 		399732302B305731008B5C11 /* SingleRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRegion.swift; sourceTree = "<group>"; };
 		3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchView.swift; sourceTree = "<group>"; };
+		399CC8B12B541295008CD258 /* ActivitySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySummaryView.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
@@ -1125,6 +1127,7 @@
 			children = (
 				396387AF2AC6BC7F00A490D1 /* ActivityViewController.swift */,
 				396387B12AC6CA2100A490D1 /* ActivityViewModel.swift */,
+				399CC8B12B541295008CD258 /* ActivitySummaryView.swift */,
 				39DBB3212AC6EE3C003B5213 /* ActivitySectionView.swift */,
 				39B59CD92B3718180078B937 /* ActivityScrollView.swift */,
 				39DBB31D2AC6E650003B5213 /* ActivityTypeSegmentControl.swift */,
@@ -1660,6 +1663,7 @@
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceLargeLabel.swift in Sources */,
+				399CC8B22B541295008CD258 /* ActivitySummaryView.swift in Sources */,
 				398B1BC82A484D1300E0FA9B /* AppFont.swift in Sources */,
 				39389FD42AB34BA900497402 /* DatePickerViewModel.swift in Sources */,
 				39572CEA2A52F0F700986E01 /* DashboardViewModel.swift in Sources */,
