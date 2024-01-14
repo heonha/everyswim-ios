@@ -1,5 +1,5 @@
 //
-//  ActivityView.swift
+//  ActivityScrollView.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/23/23.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ActivityView: BaseScrollView {
+final class ActivityScrollView: BaseScrollView {
     
     var layoutLoaded = CurrentValueSubject<Bool, Never>(false)
     lazy var leftSwipePublisher = self.swipePublisher(direction: .left)

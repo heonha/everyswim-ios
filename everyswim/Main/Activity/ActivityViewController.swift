@@ -13,16 +13,14 @@ final class ActivityViewController: BaseViewController {
     
     private let viewModel: ActivityViewModel
    
-    private lazy var mainScrollView = ActivityView()
-    private lazy var contentView = mainScrollView.contentView
+    private lazy var scrollView = ActivityScrollView()
+    private lazy var contentView = scrollView.contentView
     
-    private lazy var activityDatePicker = ActivityDatePicker(viewModel: activityDatePickerViewModel)
     private lazy var activityDatePickerViewModel = ActivityDatePickerViewModel()
 
     private lazy var segmentControl = ActivityTypeSegmentControl(viewModel: viewModel)
     
     private lazy var activitySectionView = ActivitySectionView()
-    // let activityIndicatorVC = ActivityIndicatorViewController()
 
     let titleLabel = ViewFactory
         .label("이번 주")
@@ -142,28 +140,18 @@ final class ActivityViewController: BaseViewController {
             viewWillAppeared: viewWillAppearPublisher.eraseToAnyPublisher(),
             selectedSegment: segmentControl.selectedSegmentIndexPublisher,
             tappedTitleMenu: titleMenu.tapPublisher(),
-            viewSwipedRight: mainScrollView.rightSwipePublisher,
-            viewSwipedLeft: mainScrollView.leftSwipePublisher,
-            scrollViewLayoutLoaded: mainScrollView.layoutLoaded.eraseToAnyPublisher(),
-            selectedDateInDatePicker: activityDatePicker.applyButton.tapPublisher()
+            viewSwipedRight: scrollView.rightSwipePublisher,
+            viewSwipedLeft: scrollView.leftSwipePublisher,
+            scrollViewLayoutLoaded: scrollView.layoutLoaded.eraseToAnyPublisher()
         )
         
         let output = viewModel.transform(input: input)
         
+        // Title 버튼 탭
         output.presentDatePicker
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] type in
-                self.presentDatePicker(type: type)
-            }
-            .store(in: &cancellables)
-        
-        output.changeSegment
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] type in
-                titleLabelSybmol.isHidden = false
-                activityDatePicker.setSegmentIndex(type)
-                updateTitles(tag: type)
-                reloadTableViewCellAndSize()
+            .sink { [unowned self] type, date in
+                // self.presentDatePicker(type: type, date: date)
             }
             .store(in: &cancellables)
         
@@ -199,36 +187,19 @@ final class ActivityViewController: BaseViewController {
             }
             .store(in: &cancellables)
         
-        output.updateDataFromSelectedDate
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] segment, date in
-                guard let self = self else {return}
-                updateTitles(tag: segment, date: date)
-                activityDatePicker.dismiss(animated: true)
-            }
-            .store(in: &cancellables)
-        
         output.updateLoadingState
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] isLoading in
                 print("LOADING STATE: \(isLoading)")
                 if isLoading {
                     self.loadingIndicator.show()
-                    // self.activityIndicatorVC.modalPresentationStyle = .fullScreen
-                    // self.present(activityIndicatorVC, animated: false)
                 } else {
                     self.loadingIndicator.hide()
-                    // self.activityIndicatorVC.dismiss(animated: false)
                 }
             }
             .store(in: &cancellables)
     }
 
-    private func presentDatePicker(type: ActivityDataRange) {
-        if type == .total { return }
-        self.present(activityDatePicker, animated: true)
-    }
-    
     @objc func leftSwipeAction(selectedIndex: Int) {
         print("INDEX:\(selectedIndex)")
         segmentControl.selectedSegmentIndex = selectedIndex
@@ -246,46 +217,14 @@ final class ActivityViewController: BaseViewController {
 extension ActivityViewController {
     // MARK: - Swipe Gestures & Actions
 
-    /// 상단 ----년의 기록 타이틀 업데이트
-    func updateTitles(tag: ActivityDataRange, date: Date = Date()) {
-        switch tag {
-        case .weekly:
-            if activityDatePickerViewModel.leftString.isEmpty {
-                self.titleLabel.text = "이번 주"
-                self.activitySectionView.updateTitle("이번 주 수영 기록")
-            } else {
-                self.titleLabel.text = activityDatePickerViewModel.leftString
-                self.activitySectionView.updateTitle("\(activityDatePickerViewModel.leftString) 수영 기록")
-            }
-            self.titleLabelSybmol.isHidden = false
-        case .monthly:
-            let year = date.toString(.year)
-            let month = date.toString(.monthKr)
-            self.titleLabel.text = "\(year)년 \(month)"
-            self.titleLabelSybmol.isHidden = false
-            self.activitySectionView.updateTitle("\(year)년 \(month)의 수영")
-            
-        case .yearly:
-            let year = date.toString(.year)
-            self.titleLabel.text = "\(year)년 기록"
-            self.titleLabelSybmol.isHidden = false
-            self.activitySectionView.updateTitle("\(year)년의 수영")
-            
-        case .total:
-            self.titleLabel.text = "전체 기록"
-            self.titleLabelSybmol.isHidden = true
-            self.activitySectionView.updateTitle("전체 수영기록")
-        }
-    }
-
 }
 
 // MARK: Layouts
 extension ActivityViewController {
     
     private func layout() {
-        self.view.addSubview(mainScrollView)
-        mainScrollView.snp.makeConstraints { make in
+        self.view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview()

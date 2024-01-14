@@ -18,17 +18,15 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         let viewSwipedRight: AnyPublisher<Void, Never>
         let viewSwipedLeft: AnyPublisher<Void, Never>
         let scrollViewLayoutLoaded: AnyPublisher<Bool, Never>
-        let selectedDateInDatePicker: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        let presentDatePicker: AnyPublisher<ActivityDataRange, Never>
+        let presentDatePicker: AnyPublisher<(ActivityDataRange, Date), Never>
         let changeSegment: AnyPublisher<ActivityDataRange, Never>
         let changeSegmentRight: AnyPublisher<Int, Never>
         let changeSegmentLeft: AnyPublisher<Int, Never>
         let remakeTableViewLayout: AnyPublisher<Void, Never>
         let updateSummaryData: AnyPublisher<SwimSummaryViewModel, Never>
-        let updateDataFromSelectedDate: AnyPublisher<(ActivityDataRange, Date), Never>
         let updateLoadingState: AnyPublisher<Bool, Never>
     }
         
@@ -62,9 +60,11 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
             }
             .eraseToAnyPublisher()
         
-        let presentDatePicker = input.tappedTitleMenu
+        // 타이틀 메뉴 탭 -> present Datepicker
+        let presentDatePicker = input
+            .tappedTitleMenu
             .compactMap { _ in
-                return self.selectedSegmentSubject.value
+                return (self.selectedSegmentSubject.value, self.selectedDate)
             }
             .eraseToAnyPublisher()
         
@@ -98,17 +98,7 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
                 return data
             }
             .eraseToAnyPublisher()
-        
-        let updateDataFromSelectedDate = input
-            .selectedDateInDatePicker
-            .receive(on: DispatchQueue.main)
-            .compactMap { _ in
-                print("전달")
-                let selectedSegment = self.selectedSegmentSubject.value
-                return (selectedSegment, Date())
-            }
-            .eraseToAnyPublisher()
-        
+                
         let initSelectedSegment = input.viewWillAppeared
             .map { _ in
                 return
@@ -123,7 +113,6 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
                       changeSegmentLeft: changeSegmentLeft,
                       remakeTableViewLayout: remakeTableViewLayout,
                       updateSummaryData: updateSummaryData,
-                      updateDataFromSelectedDate: updateDataFromSelectedDate,
                       updateLoadingState: updateLoadingState
         )
     }
