@@ -14,21 +14,30 @@ final class ActivityDatePickerViewModel: BaseViewModel, IOProtocol {
     var weekList = CurrentValueSubject<[Date], Never>([])
     var components = CurrentValueSubject<[String], Never>([""])
     var rows = CurrentValueSubject<[[String]], Never>([[""], [""]])
+    private var range: ActivityDataRange?
+    
+    var selectedLeftRow: String = ""
+    var selectedRightRow: String?
     
     struct Input {
 
     }
     
     struct Output {
+        
     }
     
     func transform(input: Input) -> Output {
         return Output()
     }
     
-    func getPickerComponents(_ type: ActivityDataRange) {
-        
-        switch type {
+    func getDateRange() -> ActivityDataRange? {
+        return self.range
+    }
+    
+    func getPickerComponents(_ range: ActivityDataRange) {
+        self.range = range
+        switch range {
         case .weekly:
             self.setMonthOfWeekNumber()
         case .monthly:
@@ -41,50 +50,7 @@ final class ActivityDatePickerViewModel: BaseViewModel, IOProtocol {
         
     }
     
-    // 선택한 데이터 불러오기
-    func updateSelectedRangesData(selectedDataRange: ActivityDataRange, left: String, right: String? = nil)  {
-        // 
-        // switch selectedDataRange {
-        // case .weekly:
-        //     let selectedIndex = pickerWeeks
-        //         .firstIndex(of: left)
-        //     
-        //     guard let selectedIndex = selectedIndex else {
-        //         let weeklyData = healthStore.getWeeklyData(date: Date())
-        //         return weeklyData
-        //     }
-        //     
-        //     let selectedDate = weekList[selectedIndex]
-        //     self.selectedDate = selectedDate
-        //     let fetchedData = healthStore.getWeeklyData(date: selectedDate)
-        //     // self.presentedData = fetchedData
-        // 
-        // case .monthly:
-        //     let year = leftString
-        //     let month = rightString
-        //     
-        //     guard let selectedDate = "\(year)-\(month)-01".toDate() else {
-        //         return
-        //     }
-        //     self.selectedDate = selectedDate
-        //     let fetchedData = healthStore.getMonthlyData(selectedDate)
-        //     // self.presentedData.send(fetchedData)
-        // case .yearly:
-        //     let year = left
-        //     guard let selectedDate = "\(year)-01-01".toDate() else {
-        //         return
-        //     }
-        //     self.selectedDate = selectedDate
-        //     
-        //     let yearlyData = healthStore.getYearlyData(selectedDate)
-        //     // self.presentedData.send(yearlyData)
-        // case .total:
-        //     return
-        // }
-        // 
-    }
-    
-    private func setYear()  {
+    private func setYear() {
         let components = ["year"]
         var rows: [[String]] = [[]]
         let currentYear = Date().toString(.year).toInt() ?? 2023
@@ -169,6 +135,44 @@ final class ActivityDatePickerViewModel: BaseViewModel, IOProtocol {
         }
         
         return (pickerWeeks: pickerWeeks, weekList: weekList)
+        
+    }
+    
+    func updateSelectedRangesData(selectedDataRange: ActivityDataRange, left: String, right: String? = nil) -> ActivityDatePickerViewData? {
+        
+        switch selectedDataRange {
+        case .weekly:
+            let selectedIndex = rows.value[0].firstIndex(of: left)
+
+            guard let selectedIndex = selectedIndex else {
+                print("selected Index가 nil 입니다.")
+                return nil
+            }
+            let selectedLabel = rows.value[0][selectedIndex]
+            let selectedDate = weekList.value[selectedIndex]
+            return ActivityDatePickerViewData(range: selectedDataRange, date: selectedDate, titleLabel: "\(selectedLabel)")
+            
+        case .monthly:
+            let year = left
+            let month = right!
+        
+            guard let selectedDate = "\(year)-\(month)-01".toDate() else {
+                print("selected Date가 nil 입니다.")
+                return nil
+            }
+            return ActivityDatePickerViewData(range: selectedDataRange, date: selectedDate, titleLabel: "\(year)년 \(month)월")
+            
+        case .yearly:
+            let year = left
+            guard let selectedDate = "\(year)-01-01".toDate() else {
+                print("selected Date가 nil 입니다.")
+                return nil
+            }
+            return ActivityDatePickerViewData(range: selectedDataRange, date: selectedDate, titleLabel: "\(year)년")
+            
+        case .total:
+            return nil
+        }
         
     }
 

@@ -9,10 +9,6 @@ import UIKit
 import SnapKit
 import CombineCocoa
 
-protocol BaseDatePickerDelegate {
-    func receivedData(data: Date)
-}
-
 class BaseDatePickerViewcontroller: BaseViewController, UISheetPresentationControllerDelegate {
 
     static let exampleComponent = ["comp1", "comp2"]
@@ -23,9 +19,7 @@ class BaseDatePickerViewcontroller: BaseViewController, UISheetPresentationContr
     
     var components: [String] = []
     var rows: [[String]] = [[]]
-    
-    var delegate: BaseDatePickerDelegate?
-    
+        
     // MARK: - Init
     init(rowHeight: CGFloat = 50) {
         self.rowHeight = rowHeight
@@ -49,7 +43,7 @@ class BaseDatePickerViewcontroller: BaseViewController, UISheetPresentationContr
 
     }
 
-    private func layout() {
+    func layout() {
         self.view.addSubview(datePicker)
         datePicker.snp.makeConstraints { make in
             make.height.equalTo(300)

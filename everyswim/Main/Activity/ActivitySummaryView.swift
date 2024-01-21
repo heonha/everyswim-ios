@@ -76,6 +76,7 @@ final class ActivitySummaryView: BaseUIView {
     
     func setTitle(_ title: String) {
         self.titleLabel.text = title
+        print("타이틀변경: \(title)")
     }
     
 }

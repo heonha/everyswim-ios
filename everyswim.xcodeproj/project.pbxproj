@@ -33,6 +33,7 @@
 		391C12B62A590D3E001C2286 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12B52A590D3E001C2286 /* Double+Extension.swift */; };
 		391C12C32A593103001C2286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C22A593103001C2286 /* Int+Extension.swift */; };
 		391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391C12C62A59374D001C2286 /* AppSymbol.swift */; };
+		3920246E2B5D558A005F62F3 /* ActivityDatePickerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920246D2B5D558A005F62F3 /* ActivityDatePickerViewData.swift */; };
 		392083B22A4853F800E591A8 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */; };
 		392083B32A4853F800E591A8 /* SF-Pro-Text-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */; };
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
@@ -270,6 +271,7 @@
 		391C12B52A590D3E001C2286 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		391C12C22A593103001C2286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		391C12C62A59374D001C2286 /* AppSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSymbol.swift; sourceTree = "<group>"; };
+		3920246D2B5D558A005F62F3 /* ActivityDatePickerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDatePickerViewData.swift; sourceTree = "<group>"; };
 		392083AE2A4853F800E591A8 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		392083AF2A4853F800E591A8 /* SF-Pro-Text-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Black.otf"; sourceTree = "<group>"; };
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				399CC8B32B541AB3008CD258 /* BaseDatePicker.swift */,
 				39B377402AD2608500F37C27 /* ActivityDatePickerViewController.swift */,
 				398876FE2B4A946B0064F457 /* ActivityDatePickerViewModel.swift */,
+				3920246D2B5D558A005F62F3 /* ActivityDatePickerViewData.swift */,
 			);
 			path = DatePicker;
 			sourceTree = "<group>";
@@ -1556,6 +1559,7 @@
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */,
+				3920246E2B5D558A005F62F3 /* ActivityDatePickerViewData.swift in Sources */,
 				3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */,
 				391C12B02A58D73F001C2286 /* RingViewModel.swift in Sources */,
 				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,

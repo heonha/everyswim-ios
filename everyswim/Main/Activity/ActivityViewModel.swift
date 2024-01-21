@@ -21,7 +21,7 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
     }
     
     struct Output {
-        let presentDatePicker: AnyPublisher<(ActivityDataRange, Date), Never>
+        let presentDatePicker: AnyPublisher<ActivityDataRange, Never>
         let changeSegment: AnyPublisher<ActivityDataRange, Never>
         let remakeTableViewLayout: AnyPublisher<Void, Never>
         let updateSummaryData: AnyPublisher<(SwimSummaryViewModel?, ActivityDataRange), Never>
@@ -30,12 +30,12 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         
     private let healthStore = SwimDataStore.shared
     
+    private var targetDate = CurrentValueSubject<ActivityDatePickerViewData?, Never>(nil)
     private (set) var summaryData = CurrentValueSubject<SwimSummaryViewModel?, Never>(nil)
     private (set) var presentedData = CurrentValueSubject<[SwimMainData], Never>([])
     private var selectedSegmentSubject = CurrentValueSubject<ActivityDataRange, Never>(.monthly)
 
     // MARK: - Picker Objects
-    @Published var selectedDate: Date = Date()
     
     override init() {
         super.init()
@@ -61,8 +61,11 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         // 타이틀 메뉴 탭 -> present Datepicker
         let presentDatePicker = input
             .tappedTitleMenu
+            .filter { _ in
+                self.selectedSegmentSubject.value == .total ? false : true
+            }
             .compactMap { _ in
-                return (self.selectedSegmentSubject.value, self.selectedDate)
+                return self.selectedSegmentSubject.value
             }
             .eraseToAnyPublisher()
         
@@ -92,6 +95,7 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
     private func segmentAction(type: ActivityDataRange) {
         self.isLoading.send(true)
         self.getData(type)
+        self.targetDate.send(nil)
         self.selectedSegmentSubject.send(type)
         self.isLoading.send(false)
     }
@@ -126,7 +130,31 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
             }
             .store(in: &cancellables)
     }
+    
+    func getPresentedDate() -> ActivityDatePickerViewData? {
+        return self.targetDate.value
+    }
         
     // MARK: - Picker Objects
+    // 선택한 데이터 불러오기
+    func updateSelectedRangesData(_ data: ActivityDatePickerViewData) {
+        let date = data.date
         
+        switch data.range {
+        case .weekly:
+            let fetchedData = healthStore.getWeeklyData(date: date)
+            self.presentedData.send(fetchedData)
+        case .monthly:
+            let fetchedData = healthStore.getMonthlyData(date)
+            self.presentedData.send(fetchedData)
+        case .yearly:
+            let yearlyData = healthStore.getYearlyData(date)
+            self.presentedData.send(yearlyData)
+        case .total:
+            return
+        }
+        
+        self.targetDate.send(data)
+    }
+
 }

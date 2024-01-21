@@ -129,9 +129,8 @@ final class ActivityViewController: BaseViewController {
         
         output.updateSummaryData
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] data, range in
+            .sink { [unowned self] data, _ in
                 summaryView.setSummaryData(data)
-                summaryView.setTitle(range.segmentTitle)
                 remakeTableViewSize()
             }
             .store(in: &cancellables)
@@ -139,28 +138,31 @@ final class ActivityViewController: BaseViewController {
         output.changeSegment
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] data in
-                bottomSectionTitle.updateTitle(data.segmentTitle)
+                summaryView.setTitle(data.segmentSubtitle)
+                bottomSectionTitle.updateTitle(data.segmentSubtitle)
             }
             .store(in: &cancellables)
         
         output.updateLoadingState
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] isLoading in
+            .sink { [weak self] isLoading in
                 print("LOADING STATE: \(isLoading)")
                 if isLoading {
-                    self.loadingIndicator.show()
+                    self?.loadingIndicator.show()
                 } else {
-                    self.loadingIndicator.hide()
+                    self?.loadingIndicator.hide()
                 }
             }
             .store(in: &cancellables)
         
         output.presentDatePicker
             .receive(on: DispatchQueue.main)
-            .sink { dateRange, date in
+            .sink { dateRange in
                 let viewModel = ActivityDatePickerViewModel()
                 let vc = ActivityDatePickerViewController(viewModel: viewModel)
                 vc.setDateRange(dateRange)
+                let data = self.viewModel.getPresentedDate()
+                vc.selectPicker(to: data?.date, title: data?.titleLabel)
                 vc.delegate = self
                 self.present(vc, animated: true)
             }
@@ -180,10 +182,12 @@ final class ActivityViewController: BaseViewController {
 
 }
 
-extension ActivityViewController: BaseDatePickerDelegate {
+extension ActivityViewController: ActivityDatePickerViewControllerDelegate {
     
-    func receivedData(data: Date) {
-        
+    func receivedData(data: ActivityDatePickerViewData) {
+        print("데이터를 받았습니다. \(data)")
+        viewModel.updateSelectedRangesData(data)
+        summaryView.setTitle(data.titleLabel)
     }
     
 }
@@ -257,7 +261,6 @@ extension ActivityViewController {
             make.height.greaterThanOrEqualTo(contentView).dividedBy(2)
             make.bottom.equalTo(contentView)
         }
-
     }
     
 }

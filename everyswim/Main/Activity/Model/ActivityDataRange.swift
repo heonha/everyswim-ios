@@ -25,4 +25,17 @@ enum ActivityDataRange: Int, CaseIterable {
             return "전체"
         }
     }
+    
+    var segmentSubtitle: String {
+        switch self {
+        case .weekly:
+            return "이번 주"
+        case .monthly:
+            return "이번 달"
+        case .yearly:
+            return "올해"
+        case .total:
+            return "전체"
+        }
+    }
 }

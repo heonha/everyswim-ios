@@ -130,7 +130,6 @@ import SwiftUI
 struct ActivityIndicatorViewController_Previews: PreviewProvider {
     
     static let viewController = ActivityIndicatorViewController()
-    // static let viewModel = <#ViewModel#>
     
     static var previews: some View {
         UIViewControllerPreview {
@@ -144,7 +143,6 @@ struct ActivityIndicatorViewController_Previews: PreviewProvider {
                     viewController.hide()
                 }
             }
-            
             
         }
     }
