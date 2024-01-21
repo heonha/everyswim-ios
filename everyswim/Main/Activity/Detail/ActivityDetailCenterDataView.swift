@@ -69,7 +69,7 @@ import SwiftUI
 struct ActivityDetailCenterDataView_Previews: PreviewProvider {
     
     static let view = ActivityDetailCenterDataView()
-    static let data = SwimSummaryViewModel.examples.first!
+    static let data = SwimSummaryViewModel.examples.first
     
     static var previews: some View {
         UIViewPreview {
@@ -77,7 +77,7 @@ struct ActivityDetailCenterDataView_Previews: PreviewProvider {
         }
         .frame(height: 100)
         .onAppear {
-            self.view.setData(self.data)
+            self.view.setData(data)
         }
     }
 }

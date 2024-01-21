@@ -151,6 +151,7 @@
 		399732312B305731008B5C11 /* SingleRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399732302B305731008B5C11 /* SingleRegion.swift */; };
 		3998C03C2B39882C00BE6F98 /* PoolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */; };
 		399CC8B22B541295008CD258 /* ActivitySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CC8B12B541295008CD258 /* ActivitySummaryView.swift */; };
+		399CC8B42B541AB3008CD258 /* BaseDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CC8B32B541AB3008CD258 /* BaseDatePicker.swift */; };
 		399CFBF02ACD613B00B2043B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 399CFBEF2ACD613B00B2043B /* SnapKit */; };
 		399EFFD72AADF0AB00DE7E12 /* DatePickerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */; };
 		399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */; };
@@ -172,7 +173,7 @@
 		39B0C39C2AAC7DCF004E0985 /* VideoCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C39B2AAC7DCF004E0985 /* VideoCollectionData.swift */; };
 		39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B21F082AFBA32400B5BD2F /* RecommandCollectionProtocol.swift */; };
 		39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B21F0A2AFBA93F00B5BD2F /* CommunityReusableCell.swift */; };
-		39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377402AD2608500F37C27 /* ActivityDatePicker.swift */; };
+		39B377412AD2608500F37C27 /* ActivityDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377402AD2608500F37C27 /* ActivityDatePickerViewController.swift */; };
 		39B377482AD2B27E00F37C27 /* IsHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B377472AD2B27E00F37C27 /* IsHidden.swift */; };
 		39B4379F2AB5BA4B00915C3D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */; };
 		39B437A72AB5BEFA00915C3D /* HealthKitAuthStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */; };
@@ -382,6 +383,7 @@
 		399732302B305731008B5C11 /* SingleRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleRegion.swift; sourceTree = "<group>"; };
 		3998C03B2B39882C00BE6F98 /* PoolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolSearchView.swift; sourceTree = "<group>"; };
 		399CC8B12B541295008CD258 /* ActivitySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySummaryView.swift; sourceTree = "<group>"; };
+		399CC8B32B541AB3008CD258 /* BaseDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDatePicker.swift; sourceTree = "<group>"; };
 		399EFFD62AADF0AB00DE7E12 /* DatePickerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerHeader.swift; sourceTree = "<group>"; };
 		399EFFD82AADF0CC00DE7E12 /* DatePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		399EFFDA2AAE03D100DE7E12 /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
@@ -402,7 +404,7 @@
 		39B0C39B2AAC7DCF004E0985 /* VideoCollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionData.swift; sourceTree = "<group>"; };
 		39B21F082AFBA32400B5BD2F /* RecommandCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandCollectionProtocol.swift; sourceTree = "<group>"; };
 		39B21F0A2AFBA93F00B5BD2F /* CommunityReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityReusableCell.swift; sourceTree = "<group>"; };
-		39B377402AD2608500F37C27 /* ActivityDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDatePicker.swift; sourceTree = "<group>"; };
+		39B377402AD2608500F37C27 /* ActivityDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDatePickerViewController.swift; sourceTree = "<group>"; };
 		39B377472AD2B27E00F37C27 /* IsHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHidden.swift; sourceTree = "<group>"; };
 		39B4379E2AB5BA4B00915C3D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		39B437A62AB5BEFA00915C3D /* HealthKitAuthStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAuthStateCell.swift; sourceTree = "<group>"; };
@@ -813,7 +815,8 @@
 		398877002B4A95CA0064F457 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
-				39B377402AD2608500F37C27 /* ActivityDatePicker.swift */,
+				399CC8B32B541AB3008CD258 /* BaseDatePicker.swift */,
+				39B377402AD2608500F37C27 /* ActivityDatePickerViewController.swift */,
 				398876FE2B4A946B0064F457 /* ActivityDatePickerViewModel.swift */,
 			);
 			path = DatePicker;
@@ -1585,6 +1588,7 @@
 				3905CFE52A9B538700CF4AB4 /* MainTabBarController.swift in Sources */,
 				394853C52AA89AAC00DF7199 /* UIBezierPath+Extension.swift in Sources */,
 				39CC3DC42AC5A30900C8BC10 /* ActivityDetailCenterLabel.swift in Sources */,
+				399CC8B42B541AB3008CD258 /* BaseDatePicker.swift in Sources */,
 				397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */,
 				39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */,
 				399EFFD92AADF0CC00DE7E12 /* DatePickerController.swift in Sources */,
@@ -1597,7 +1601,7 @@
 				39700A6C2B25EBD7009D9C3D /* RegionListViewController.swift in Sources */,
 				399732312B305731008B5C11 /* SingleRegion.swift in Sources */,
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
-				39B377412AD2608500F37C27 /* ActivityDatePicker.swift in Sources */,
+				39B377412AD2608500F37C27 /* ActivityDatePickerViewController.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
 				39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */,
 				392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */,

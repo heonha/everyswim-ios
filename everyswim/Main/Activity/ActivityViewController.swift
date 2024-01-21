@@ -22,7 +22,6 @@ final class ActivityViewController: BaseViewController {
     
     private lazy var bottomSectionTitle = ActivitySectionView()
 
-
     private lazy var summaryView = ActivitySummaryView()
     
     private lazy var mainVStack = ViewFactory.vStack()
@@ -130,8 +129,9 @@ final class ActivityViewController: BaseViewController {
         
         output.updateSummaryData
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] data in
-                summaryView.setData(data)
+            .sink { [unowned self] data, range in
+                summaryView.setSummaryData(data)
+                summaryView.setTitle(range.segmentTitle)
                 remakeTableViewSize()
             }
             .store(in: &cancellables)
@@ -154,6 +154,17 @@ final class ActivityViewController: BaseViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        output.presentDatePicker
+            .receive(on: DispatchQueue.main)
+            .sink { dateRange, date in
+                let viewModel = ActivityDatePickerViewModel()
+                let vc = ActivityDatePickerViewController(viewModel: viewModel)
+                vc.setDateRange(dateRange)
+                vc.delegate = self
+                self.present(vc, animated: true)
+            }
+            .store(in: &cancellables)
     }
 
     @objc func leftSwipeAction(selectedIndex: Int) {
@@ -167,6 +178,14 @@ final class ActivityViewController: BaseViewController {
         HapticManager.triggerHapticFeedback(style: .rigid)
     }
 
+}
+
+extension ActivityViewController: BaseDatePickerDelegate {
+    
+    func receivedData(data: Date) {
+        
+    }
+    
 }
 
 // MARK: Configure

@@ -24,14 +24,14 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         let presentDatePicker: AnyPublisher<(ActivityDataRange, Date), Never>
         let changeSegment: AnyPublisher<ActivityDataRange, Never>
         let remakeTableViewLayout: AnyPublisher<Void, Never>
-        let updateSummaryData: AnyPublisher<SwimSummaryViewModel, Never>
+        let updateSummaryData: AnyPublisher<(SwimSummaryViewModel?, ActivityDataRange), Never>
         let updateLoadingState: AnyPublisher<Bool, Never>
     }
         
     private let healthStore = SwimDataStore.shared
     
-    @Published var summaryData: SwimSummaryViewModel?
-    private (set)var presentedData = CurrentValueSubject<[SwimMainData], Never>([])
+    private (set) var summaryData = CurrentValueSubject<SwimSummaryViewModel?, Never>(nil)
+    private (set) var presentedData = CurrentValueSubject<[SwimMainData], Never>([])
     private var selectedSegmentSubject = CurrentValueSubject<ActivityDataRange, Never>(.monthly)
 
     // MARK: - Picker Objects
@@ -45,11 +45,12 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
     
     // swiftlint:disable:next function_body_length
     func transform(input: Input) -> Output {
+        
         // segment changed
         let changeSegment = Publishers
             .CombineLatest(input.selectedSegment, input.viewWillAppeared)
-            .compactMap { index, _ in
-               return ActivityDataRange(rawValue: index)
+            .compactMap { index, _ -> ActivityDataRange? in
+                return .init(rawValue: index)
             }
             .map { [weak self] type in
                 self?.segmentAction(type: type)
@@ -71,10 +72,9 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
             }
             .eraseToAnyPublisher()
         
-        let updateSummaryData = $summaryData
-            .compactMap { data in
-                return data
-            }
+        let updateSummaryData = Publishers
+            .CombineLatest(summaryData.eraseToAnyPublisher(), selectedSegmentSubject.eraseToAnyPublisher())
+            .compactMap { ($0, $1) }
             .eraseToAnyPublisher()
                 
         let updateLoadingState = isLoading
@@ -111,7 +111,6 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         }
         
         setSummaryData()
-        
         DispatchQueue.main.async {
             self.presentedData.send(totalData)
         }
@@ -121,11 +120,13 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
         presentedData
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                self?.summaryData = self?.healthStore.getSummaryData(data)
+                guard let self = self else { return }
+                let summaryData = healthStore.getSummaryData(data)
+                self.summaryData.send(summaryData)
             }
             .store(in: &cancellables)
     }
         
     // MARK: - Picker Objects
-    
+        
 }

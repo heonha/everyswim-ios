@@ -68,9 +68,14 @@ final class ActivitySummaryView: BaseUIView {
         }
     }
     
-    func setData(_ data: SwimSummaryViewModel) {
+    func setSummaryData(_ data: SwimSummaryViewModel?) {
+        guard let data = data else { return }
         distanceLabel.setData(data.distance, unit: data.distanceUnit)
         recordHStackView.setData(data)
+    }
+    
+    func setTitle(_ title: String) {
+        self.titleLabel.text = title
     }
     
 }
