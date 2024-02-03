@@ -8,27 +8,32 @@
 import Foundation
 import Combine
 
-final class ActivityDatePickerViewModel: BaseViewModel, IOProtocol {
+final class ActivityDatePickerViewModel: BaseViewModel {
     
     private let healthStore = SwimDataStore.shared
-    var weekList = CurrentValueSubject<[Date], Never>([])
-    var components = CurrentValueSubject<[String], Never>([""])
-    var rows = CurrentValueSubject<[[String]], Never>([[""], [""]])
+    private var weekList = CurrentValueSubject<[Date], Never>([])
+    private var components = CurrentValueSubject<[String], Never>([""])
+    private var rows = CurrentValueSubject<[[String]], Never>([[""], [""]])
     private var range: ActivityDataRange?
     
     var selectedLeftRow: String = ""
     var selectedRightRow: String?
     
     struct Input {
-
+        let applyButtonTap: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        
+        let runApplyAction: AnyPublisher<Void, Never>
     }
     
+    // MARK: - Public
     func transform(input: Input) -> Output {
-        return Output()
+        let runApplyAction = input.applyButtonTap
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        return Output(runApplyAction: runApplyAction)
     }
     
     func getDateRange() -> ActivityDataRange? {
@@ -50,6 +55,19 @@ final class ActivityDatePickerViewModel: BaseViewModel, IOProtocol {
         
     }
     
+    func getRows() -> [[String]] {
+        return self.rows.value
+    }
+    
+    func getWeekList() -> [Date] {
+        return self.weekList.value
+    }
+    
+    func getComponents() -> [String] {
+        return self.components.value
+    }
+    
+    // MARK: Private
     private func setYear() {
         let components = ["year"]
         var rows: [[String]] = [[]]

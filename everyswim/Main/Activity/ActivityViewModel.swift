@@ -45,7 +45,6 @@ final class ActivityViewModel: BaseViewModel, IOProtocol {
     
     // swiftlint:disable:next function_body_length
     func transform(input: Input) -> Output {
-        
         // segment changed
         let changeSegment = Publishers
             .CombineLatest(input.selectedSegment, input.viewWillAppeared)

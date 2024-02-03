@@ -43,15 +43,20 @@ enum ViewFactory {
         return label
     }
     
-    static func buttonWithText1(_ text: String) -> UILabel {
-        let button = ViewFactory
-            .label(text)
-            .font(.custom(.sfProBold, size: 18))
-            .textAlignemnt(.center)
-            .foregroundColor(.white)
-            .backgroundColor(AppUIColor.secondaryBlue)
-            .cornerRadius(4) as! UILabel
+    static func buttonWithText1(_ text: String) -> UIButton {
         
+        let button = UIButton()
+            .cornerRadius(4)
+            .backgroundColor(AppUIColor.secondaryBlue) as! UIButton
+
+        button.setTitle(text, for: .normal)
+        let attrString = NSAttributedString(string: text, attributes: [
+            .font: UIFont.custom(.sfProBold, size: 18),
+            .foregroundColor: UIColor.white
+        ])
+        
+        button.setAttributedTitle(attrString, for: .normal)
+
         button.snp.makeConstraints { make in
             make.height.equalTo(44)
         }
