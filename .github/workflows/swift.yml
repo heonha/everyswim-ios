@@ -1,22 +1,41 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Swift
+# name: Swift
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   build:
+
+#     runs-on: macos-latest
+
+#     steps:
+#     - uses: swift-actions/setup-swift@v1
+#     - name: Build
+#       run: swift build -v
+#     - name: Run tests
+#       run: swift test -v
+
+name: Run Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ develop ]
 
 jobs:
-  build:
-
+  build:  
     runs-on: macos-latest
-
     steps:
-    - uses: swift-actions/setup-swift@v1
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - uses: actions/checkout@v3
+    - name: Build Xcode
+      run: | 
+        xcodebuild clean test -project everyswim-ios.xcworkspace \
+        -scheme everyswim \
+        -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest'
