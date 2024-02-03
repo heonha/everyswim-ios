@@ -37,5 +37,5 @@ jobs:
     - name: Build Xcode
       run: | 
         ls 
-        xcodebuild clean test -project /path/to/everyswim-ios.xcworkspace -scheme everyswim-ios -destination "platform=iOS Simulator,name=iPhone 14,OS=latest"
+        xcodebuild clean test -project ./everyswim-ios.xcworkspace -scheme everyswim-ios -destination "platform=iOS Simulator,name=iPhone 14,OS=latest"
 
