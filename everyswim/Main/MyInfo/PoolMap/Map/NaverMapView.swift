@@ -10,12 +10,12 @@ import SnapKit
 import NMapsMap
 
 final class NaverMapView: BaseUIView, BaseUIViewProtocol {
-    
+
     private weak var parentVC: MapViewController?
     lazy var rootMapView = NMFNaverMapView(frame: contentView.frame)
-    var markers = [NMFMarker]()
+    private var markers = [NMFMarker]()
     
-    private lazy var placeView = PlaceView(parentVC: parentVC)
+    private lazy var placeInformationView = PlaceInformationView(parentVC: parentVC)
     private let markerImage = UIImage.init(named: "swim-maker")!
     private lazy var makerImageView = NMFOverlayImage(image: markerImage, reuseIdentifier: "swim-maker")
 
@@ -71,8 +71,8 @@ final class NaverMapView: BaseUIView, BaseUIViewProtocol {
     }
     
     private func layoutPlaceView() {
-        contentView.addSubview(placeView)
-        placeView.snp.makeConstraints { make in
+        contentView.addSubview(placeInformationView)
+        placeInformationView.snp.makeConstraints { make in
             make.height.equalTo(100)
             make.horizontalEdges.equalTo(contentView).inset(20)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(20)
@@ -87,7 +87,6 @@ final class NaverMapView: BaseUIView, BaseUIViewProtocol {
     }
     
     // MARK: - Marker
-    
     /// `Map Marker` 단일 추가 메소드
     public func setMarkerOnMap(place: MapPlace) -> NMFMarker {
         let marker = NMFMarker()
@@ -130,13 +129,13 @@ final class NaverMapView: BaseUIView, BaseUIViewProtocol {
     
     /// 하단 장소 정보 뷰 보이기
     public func showPlaceInfoView(place: MapPlace) {
-        self.placeView.isHidden = false
-        self.placeView.setData(data: place)
+        self.placeInformationView.isHidden = false
+        self.placeInformationView.setData(data: place)
     }
     
     /// 하단 장소 정보 뷰 숨기기
     public func hidePlaceInfoView() {
-        self.placeView.isHidden = true
+        self.placeInformationView.isHidden = true
     }
     
     // MARK: - Camera

@@ -74,7 +74,7 @@ final class MapViewController: BaseViewController {
     
     /// 수영장 ViewModel이 변경 될 때마다 업데이트
     private func bindUpdateMapMarker() {
-        viewModel.$places
+        viewModel.places
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] pools in
@@ -84,7 +84,6 @@ final class MapViewController: BaseViewController {
     }
 
     // MARK: - ETC Methods
-    
     /// GPS Location 정보를 가져옵니다.
     private func getLocation() {
         viewModel.getCurrentLocation()

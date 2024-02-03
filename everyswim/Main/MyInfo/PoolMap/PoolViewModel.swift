@@ -38,7 +38,7 @@ class PoolViewModel: BaseViewModel {
     @Published var targetCurrentLocation: CLLocationCoordinate2D = .init(latitude: 37.5087, longitude: 126.8673)
 
     /// 위치 검색결과
-    @Published var places: [MapPlace] = []
+    private(set) var places = CurrentValueSubject<[MapPlace], Never>([])
 
     // MARK: - Init & Lifecycles
     init(locationManager: DeviceLocationManager,
@@ -81,9 +81,10 @@ class PoolViewModel: BaseViewModel {
             .receive(on: DispatchQueue.main)
             .replaceError(with: .init(latitude: 0, longitude: 0))
             .sink(receiveValue: { [weak self] coordinator in
-                self?.targetCurrentLocation = coordinator
-                self?.currentLocation = coordinator
-                self?.getAddressFromCoordinator(coordinator)
+                guard let self = self else {return}
+                targetCurrentLocation = coordinator
+                currentLocation = coordinator
+                getAddressFromCoordinator(coordinator)
             })
             .store(in: &cancellables)
     }
@@ -125,10 +126,10 @@ class PoolViewModel: BaseViewModel {
                 self?.isLoading.send(false)
                 switch result {
                 case .success(let places):
-                    self?.places = places
+                    self?.places.value = places
                 case .failure(let error):
                     self?.sendMessage(message: "\(error)")
-                    self?.places = []
+                    self?.places.send([])
                 }
             }
         

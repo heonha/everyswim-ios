@@ -90,7 +90,7 @@ final class PoolSearchViewController: BaseViewController, ObservableMessage {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else {return}
-                self.naverMapViewController.placeMarker(from: viewModel.places)
+                self.naverMapViewController.placeMarker(from: viewModel.places.value)
                 self.push(naverMapViewController, animated: true)
             }
             .store(in: &cancellables)
@@ -103,13 +103,15 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard !viewModel.places.isEmpty else { return 1 }
+        guard !viewModel.places.value.isEmpty else { return 1 }
         
-        return viewModel.places.count
+        return viewModel.places.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !viewModel.places.isEmpty else {
+        let places = viewModel.places.value
+        
+        guard !places.isEmpty else {
             return BaseEmptyTableViewCell()
         }
         
@@ -117,14 +119,15 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let location = viewModel.places[indexPath.row]
+        let location = places[indexPath.row]
         cell.configure(data: location as! KakaoPlace)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard !viewModel.places.isEmpty else { return tableView.bounds.height }
+        let places = viewModel.places.value
+        guard !places.isEmpty else { return tableView.bounds.height }
         return 65
     }
     
@@ -134,7 +137,8 @@ extension PoolSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let place = viewModel.places[indexPath.row]
+        let places = viewModel.places.value
+        let place = places[indexPath.row]
         guard let coordinator = place.getCoordinator() else { return }
         presentMapAndMoveToMarker(target: place, moveTo: coordinator)
     }

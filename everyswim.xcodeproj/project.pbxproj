@@ -188,7 +188,7 @@
 		39B6E6092B1C956E009140F8 /* RegionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6E6082B1C956E009140F8 /* RegionListCell.swift */; };
 		39B7E6E52B3F1D8000138B63 /* DefaultModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7E6E42B3F1D8000138B63 /* DefaultModelProtocol.swift */; };
 		39BB6D0D2A8CBE2A00DCF8B1 /* WeekDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */; };
-		39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceView.swift */; };
+		39C4CF312B38251A00F49A1A /* PlaceInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF302B38251A00F49A1A /* PlaceInformationView.swift */; };
 		39C4CF332B38384900F49A1A /* PlaceWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */; };
 		39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */; };
 		39C4CF392B38846900F49A1A /* DashboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C4CF382B38846900F49A1A /* DashboardScrollView.swift */; };
@@ -420,7 +420,7 @@
 		39B6E6082B1C956E009140F8 /* RegionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListCell.swift; sourceTree = "<group>"; };
 		39B7E6E42B3F1D8000138B63 /* DefaultModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultModelProtocol.swift; sourceTree = "<group>"; };
 		39BB6D0C2A8CBE2A00DCF8B1 /* WeekDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDays.swift; sourceTree = "<group>"; };
-		39C4CF302B38251A00F49A1A /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		39C4CF302B38251A00F49A1A /* PlaceInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInformationView.swift; sourceTree = "<group>"; };
 		39C4CF322B38384900F49A1A /* PlaceWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceWebViewController.swift; sourceTree = "<group>"; };
 		39C4CF362B387BA000F49A1A /* BaseEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		39C4CF382B38846900F49A1A /* DashboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScrollView.swift; sourceTree = "<group>"; };
@@ -1058,7 +1058,7 @@
 			children = (
 				396D93A12B18A7CF0013060E /* MapViewController.swift */,
 				390848A32B36F38200BDD317 /* NaverMapView.swift */,
-				39C4CF302B38251A00F49A1A /* PlaceView.swift */,
+				39C4CF302B38251A00F49A1A /* PlaceInformationView.swift */,
 				39C4CF342B3854AD00F49A1A /* WebView */,
 				39C4CF352B3854BB00F49A1A /* Protocol */,
 			);
@@ -1555,7 +1555,7 @@
 				39572CE12A52CACB00986E01 /* HealthKitManager.swift in Sources */,
 				39B6E6032B1C8A37009140F8 /* PoolSearchViewController.swift in Sources */,
 				397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */,
-				39C4CF312B38251A00F49A1A /* PlaceView.swift in Sources */,
+				39C4CF312B38251A00F49A1A /* PlaceInformationView.swift in Sources */,
 				398DFB422AA9D73C00BDEB8E /* ChallangeCellContainer.swift in Sources */,
 				39A111FB2AB2FCA500D57FB4 /* UIImageView+Extension.swift in Sources */,
 				3980FC592AB6EE1C00E4A8DE /* ActivityIndicator.swift in Sources */,

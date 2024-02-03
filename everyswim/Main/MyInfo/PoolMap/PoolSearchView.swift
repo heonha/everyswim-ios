@@ -114,7 +114,7 @@ final class PoolSearchView: BaseUIView {
     }
     
     private func bindSearchPool() {
-        viewModel.$places
+        viewModel.places
             .receive(on: DispatchQueue.main)
             .filter { !$0.isEmpty }
             .sink { [weak self] _ in

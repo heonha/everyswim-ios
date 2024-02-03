@@ -1,5 +1,5 @@
 //
-//  PlaceView.swift
+//  PlaceInformationView.swift
 //  everyswim
 //
 //  Created by HeonJin Ha on 12/24/23.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PlaceView: BaseUIView {
+final class PlaceInformationView: BaseUIView {
     
     private weak var parentVC: BaseViewController?
     
