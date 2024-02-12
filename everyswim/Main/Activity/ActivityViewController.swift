@@ -187,7 +187,6 @@ final class ActivityViewController: BaseViewController {
             }
             .removeDuplicates()
             .sink { isTop in
-                print("ISTOP: \(isTop)")
                 let bgColor = isTop ? UIColor.systemBackground : AppUIColor.skyBackground
                 self.scrollView.backgroundColor = bgColor
             }
@@ -195,7 +194,6 @@ final class ActivityViewController: BaseViewController {
     }
     
     @objc func leftSwipeAction(selectedIndex: Int) {
-        print("INDEX:\(selectedIndex)")
         segmentControl.selectedSegmentIndex = selectedIndex
         HapticManager.triggerHapticFeedback(style: .rigid)
     }
@@ -319,7 +317,6 @@ extension ActivityViewController: UITableViewDataSource {
             return 1
         } else {
             let presentCount = viewModel.presentedData.value.count
-            print("새로운 셀 갯수: \(presentCount)")
             return presentCount
         }
     }
@@ -327,7 +324,7 @@ extension ActivityViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataCount = viewModel.presentedData.value.count
         
-        if dataCount == 0 || indexPath.row > (dataCount - 1) {
+        if dataCount == 0 {
             let emptyCell = BaseEmptyTableViewCell()
             return emptyCell
         }
@@ -338,14 +335,9 @@ extension ActivityViewController: UITableViewDataSource {
         
         let data = viewModel.presentedData.value[indexPath.row]
         cell.setData(data)
-        print("CELL IS SETTED")
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 100
-    }
-    
+        
 }
 
 // MARK: - Previewer
