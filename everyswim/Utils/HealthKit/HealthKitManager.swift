@@ -9,79 +9,103 @@ import HealthKit
 import SwiftUI
 import CoreLocation
 
-class HealthKitManager {
+final class HealthKitManager {
     
-    typealias HKStatCollectionQuery = HKStatisticsCollectionQuery
-    typealias HKStatCollection = HKStatisticsCollection
-    typealias HKDataTypeId = HKQuantityTypeIdentifier
+    private var healthStore: HKHealthStore?
     
-    private let healthStore: HKHealthStore?
-    private var query: HKStatCollectionQuery?
+    private var query: HKStatisticsCollectionQuery?
     
     private lazy var swimDataManager = SwimDataManager(store: healthStore)
     
     static let shared = HealthKitManager()
     
-    var isAuth = false
-    
     private init() {
-        if HKHealthStore.isHealthDataAvailable() {
-            print("INIT: HealthKitManager")
-            healthStore = HKHealthStore()
-        } else {
-            healthStore = nil
-        }
+        checkHealthDataSupportDevice()
     }
     
     deinit {
-        print("DEUBG DEINIT: HealthKitManager")
+        print("DEINIT: HealthKitManager")
     }
     
 }
 
-// MARK: - Swimming Data Getter
+// MARK: - 수영 데이터 관리
 extension HealthKitManager {
-    
-    func getHealthData(dataType: HKQueryDataType, queryRange: HKDateType, completion: @escaping (HKStatCollection?) -> Void) {
+
+    /// Health Data 가져오기 (일반 / 수영 제외)
+    func getHealthData(dataType: HKQueryDataType,
+                       queryRange: HKDateType,
+                       completion: @escaping (HKStatisticsCollection?) -> Void) {
         calculateNormalHealthData(dataType: dataType, queryRange: queryRange, completion: completion)
     }
     
-    func fetchSwimDataFromHealth() async {
-        if await !self.requestAuthorization() { return }
-
-        guard let workouts = await swimDataManager.readSwimmingWorkoutData() else { return }
+    /// 수영 데이터 가져와서 데이터 스토어로 보내기
+    func fetchSwimData() async {
+        // 건강 인증상태 확인
+        guard await self.checkAllWorkoutDataAuthorization() else { return }
         
-        #if targetEnvironment(simulator)
+        // 수영 데이터 가져오기
+        guard let workouts = try? await swimDataManager.fetchSwimDataFromDevice() else { return }
+        
+        // 데이터 스토어에 수영 데이터 보내기
+        sendToSwimDataStore(data: workouts)
+    }
+    
+    /// HealthData Support 되는 기기인지 체크
+    private func checkHealthDataSupportDevice() {
+        if HKHealthStore.isHealthDataAvailable() {
+            self.healthStore = HKHealthStore()
+        } else {
+            self.healthStore = nil
+        }
+    }
+    
+    /// 수영 데이터 스토어로 데이터 보내기.
+    private func sendToSwimDataStore(data: [HKWorkout]) {
+    #if !targetEnvironment(simulator)
+        // 실물 기기
+        let swimData = swimDataManager.transformHKWorkoutToSwimData(data)
+        SwimDataStore.shared.sendSwimData(swimData)
+    #else
+        // 시뮬레이터
         var swimData = SwimMainData.examples
         swimData.sort { $0.startDate < $1.startDate }
         SwimDataStore.shared.sendSwimData(swimData)
-        #else
-        let swimData = swimDataManager.createSwimMainData(workouts)
-        #endif
-        SwimDataStore.shared.sendSwimData(swimData)
+    #endif
     }
     
 }
 
-// MARK: - Allstat Logics
+// MARK: - 일반 건강 데이터 가져오기
 extension HealthKitManager {
     
     /// 기본 데이터 쿼리 (kcal, stroke, kcal)
     private func calculateNormalHealthData(dataType: HKQueryDataType,
                                            queryRange: HKDateType,
-                                           completion: @escaping (HKStatCollection?) -> Void) {
+                                           completion: @escaping (HKStatisticsCollection?) -> Void) {
 
-        guard let healthDataType = dataType.dataType() else { completion(nil); return }
+        // 데이터 타입 확인
+        guard let healthDataType = dataType.dataType() else {
+            completion(nil)
+            return
+        }
         
-        let startDate = Calendar.current.date(byAdding: .day, value: queryRange.value(), to: Date())
+        // 시작 날짜
+        let startDate = Calendar.current.date(byAdding: .day,
+                                              value: queryRange.value(), to: Date())
+        // 자정으로 시간 설정
         let anchorDate = Date.mondayAt12AM()
+        
+        // 1일로 날짜 설정.
         let daily = DateComponents(day: 1)
+        
+        // Start Date로 부터 종료일 (오늘)까지의 쿼리
         let predicate = HKQuery.predicateForSamples(withStart: startDate,
                                                     end: Date(),
                                                     options: .strictStartDate)
         
-        // 쿼리 수행
-        query = HKStatCollectionQuery(quantityType: healthDataType,
+        // 특정 조건으로 쿼리 생성 (Predicate)
+        query = HKStatisticsCollectionQuery(quantityType: healthDataType,
                                       quantitySamplePredicate: predicate,
                                       options: .cumulativeSum,
                                       anchorDate: anchorDate,
@@ -92,25 +116,28 @@ extension HealthKitManager {
             return
         }
         
+        // 쿼리 초기화
         query.initialResultsHandler = { _, staticsCollection, _ in
             completion(staticsCollection)
         }
         
+        // 쿼리 실행
         healthStore?.execute(query)
     }
     
 }
 
-// MARK: - 권한 관련
+// MARK: - 건강 권한 관련
 extension HealthKitManager {
 
     func checkAuthorizationStatus() -> HKAuthorizationStatus? {
         return healthStore?.authorizationStatus(for: .workoutType())
     }
     
-    func requestAuthorization() async -> Bool {
+    /// 운동 데이터 R/W 권한 확인
+    func checkAllWorkoutDataAuthorization() async -> Bool {
         let write: Set<HKSampleType> = [.workoutType()]
-        let read: Set = queryDataTypeForSwimming()
+        let read: Set = queryTargetDataTypes()
         
         let res: ()? = try? await healthStore?.requestAuthorization(toShare: write, read: read)
         guard res != nil else {
@@ -148,22 +175,26 @@ extension HealthKitManager {
 // MARK: Query Helper
 extension HealthKitManager {
     
-    func excuteQuery(healthStore: HKHealthStore?, query: HKStatCollectionQuery?) {
+    func excuteQuery(healthStore: HKHealthStore?, query: HKStatisticsCollectionQuery?) {
         if let healthStore = healthStore, let query = query {
             healthStore.execute(query)
         }
     }
     
-    private func queryDataTypeForSwimming() -> Set<HKObjectType> {
+    private func queryTargetDataTypes() -> Set<HKObjectType> {
         let set: Set = [
+            // 운동 타입
             .workoutType(),
+            
+            // 일반
             HKSeriesType.activitySummaryType(),
             HKSeriesType.workoutRoute(),
             HKSeriesType.workoutType(),
-            // 활동
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.activeEnergyBurned)!, // 활동 에너지
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.swimmingStrokeCount)!, // 스트로크
-            HKObjectType.quantityType(forIdentifier: HKDataTypeId.distanceSwimming)! // 수영 거리
+            
+            // 수영 관련
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!, // 활동 에너지
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.swimmingStrokeCount)!, // 스트로크
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceSwimming)! // 수영 거리
         ]
         
         return set

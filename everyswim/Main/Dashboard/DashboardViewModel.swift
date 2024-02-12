@@ -180,55 +180,71 @@ final class DashboardViewModel: BaseViewModel, IOProtocol {
     }
     
     // MARK: - Workout Data Methods
+    
     /// 일반 건강 데이터 가져오기(수영 외)
-    func loadHealthCollection() async {
+    func fetchNormalHealthData() async {
         self.kcals = []
         self.stroke = []
         
         guard let hkManager = hkManager else { return }
         
-        let isAuthed = await hkManager.requestAuthorization()
+        let isAuthed = await hkManager.checkAllWorkoutDataAuthorization()
         
-        if isAuthed {
-            hkManager.getHealthData(dataType: .kcal, queryRange: .week) { result in
-                if let statCollection = result {
-                    self.updateUIFromStatistics(statCollection, type: .kcal, queryRange: .week)
-                } else {
-                    print("Collection 가져오기실패")
-                }
-            }
-        } else {
+        guard isAuthed else {
             print("DEBUG: Health 일반 데이터 권한이 거부되었습니다.")
+            return
+        }
+        
+        hkManager.getHealthData(dataType: .kcal, queryRange: .week) { result in
+            guard let statCollection = result else {
+                print("Collection 가져오기실패")
+                return
+            }
+            
+            self.updateUIFromStatistics(statCollection, type: .kcal, queryRange: .week)
+
         }
     }
     
     /// Statistics 가져오기
-    func updateUIFromStatistics(_ statCollection: HKStatisticsCollection,
-                                type: HKQueryDataType,
-                                queryRange: HKDateType) {
+    private func updateUIFromStatistics(_ statCollection: HKStatisticsCollection,
+                                        type: HKQueryDataType,
+                                        queryRange: HKDateType) {
         
-        guard let startDate = Calendar.current.date(byAdding: .day,
-                                                    value: queryRange.value(),
-                                                    to: Date()) else { return }
+        /// 시작일 지정 (Date)
+        let startDate = Calendar.current.date(byAdding: .day,
+                                              value: queryRange.value(),
+                                              to: Date())
+        guard let startDate = startDate else { return }
+        
+        /// 종료일 지정 (오늘)
         let endDate = Date()
         
-        statCollection.enumerateStatistics(from: startDate, to: endDate) { statCollection, _ in
-            
+        /// 시작일 ~ 종료일까지 열거 (현재 데이터는 kcal)
+        /// returns -> HKStatistics
+        statCollection.enumerateStatistics(from: startDate, to: endDate) {[weak self] statCollection, _ in
             switch type {
             case .kcal:
-                let count = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
-                guard let count = count else { return }
-                let data = HKNormalStatus(count: count, date: statCollection.startDate)
-                self.kcals.append(data)
-                
-                DispatchQueue.main.async {
-                    self.kcalPerWeek = self.kcals.reduce(0) { partialResult, kcal in
-                        partialResult + kcal.count
-                    }
-                }
+                self?.fetchKcal(from: statCollection)
             default:
                 print("DEBUG: \(#function) 알수없는 오류. default에 도달했습니다.")
                 return
+            }
+        }
+    }
+    
+    /// Kcal
+    private func fetchKcal(from statCollection: HKStatistics) {
+        /// 칼로리 데이터를 합치고 Double로 변환
+        let totalKcal = statCollection.sumQuantity()?.doubleValue(for: .kilocalorie())
+        guard let totalKcal = totalKcal else { return }
+        
+        let data = HKNormalStatus(count: totalKcal, date: statCollection.startDate)
+        self.kcals.append(data)
+        
+        DispatchQueue.main.async {
+            self.kcalPerWeek = self.kcals.reduce(0) { partialResult, kcal in
+                partialResult + kcal.count
             }
         }
     }

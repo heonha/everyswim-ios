@@ -31,7 +31,7 @@ final class SwimDataStore {
     func refreshSwimData() {
         Task {
             self.isLoading.send(true)
-            await HealthKitManager.shared.fetchSwimDataFromHealth()
+            await HealthKitManager.shared.fetchSwimData()
             self.lastUpdatedDate.send(Date())
             self.isLoading.send(false)
         }

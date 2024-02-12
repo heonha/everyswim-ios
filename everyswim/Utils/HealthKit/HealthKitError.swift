@@ -12,4 +12,5 @@ enum HealthKitError: Error {
     case healthStoreIsNil
     case hkObjectTypeError
     case deniedAuthrization
+    case dataFetchError
 }

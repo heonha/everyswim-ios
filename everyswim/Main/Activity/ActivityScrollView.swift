@@ -40,9 +40,18 @@ final class ActivityScrollView: BaseScrollView {
     }
     
     private func configureScrollView() {
+        // self.delegate = self
         isScrollEnabled = true
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
     }
 
 }
+
+// extension ActivityScrollView: UIScrollViewDelegate {
+//     
+//     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+//         
+//     }
+//     
+// }

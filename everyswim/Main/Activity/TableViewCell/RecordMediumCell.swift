@@ -12,6 +12,8 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "SwimRecordMediumCell"
     
+    static let cellHeight: CGFloat = 120.0
+    
     private lazy var mainVStack = ViewFactory.vStack()
         .addSubviews([profileStackView, recordStackView])
         .distribution(.fillProportionally)

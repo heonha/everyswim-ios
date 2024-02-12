@@ -9,47 +9,65 @@ import Foundation
 import HealthKit
 
 class SwimDataManager {
-
+    
     private var healthStore: HKHealthStore?
     
     init(store: HKHealthStore?) {
         self.healthStore = store
     }
     
-    func readSwimmingWorkoutData() async -> [HKWorkout]? {
+}
+
+extension SwimDataManager {
+    
+    /// 기기에서 수영 데이터 가져오기
+    func fetchSwimDataFromDevice() async throws -> [HKWorkout]? {
 
         let swimming = HKQuery.predicateForWorkouts(with: .swimming)
+        let sort: [NSSortDescriptor]? = [.init(keyPath: \HKSample.startDate, ascending: false)]
         
-        let sortDescriptors: [NSSortDescriptor]? = [.init(keyPath: \HKSample.startDate, ascending: false)]
-        
-        let samples = try? await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
-            
-            let query = HKSampleQuery(sampleType: .workoutType(),
-                                      predicate: swimming,
-                                      limit: HKObjectQueryNoLimit,
-                                      sortDescriptors: sortDescriptors) { _, samples, error in
-                if let error = error {
-                    print("Swimming 가져오기 Error: \(error.localizedDescription).")
-                    continuation.resume(throwing: error)
-                    return
-                }
-                
-                guard let samples = samples else { print("수영 데이터 샘플값이 nil입니다."); return }
-                
-                continuation.resume(returning: samples)
+        do {
+            let samples = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
+                let query = makeSwimmingDataQuery(workoutType: swimming, sort: sort, continuation: continuation)
+                healthStore?.execute(query)
             }
-
-            healthStore?.execute(query)
+            
+            guard let workouts = samples as? [HKWorkout] else {
+                throw HealthKitError.dataFetchError
+            }
+            
+            return workouts
+        } catch {
+            throw error
         }
         
-        guard let workouts = samples as? [HKWorkout] else {
-            return nil
-        }
-        
-        return workouts
     }
     
-    func createSwimMainData(_ workouts: [HKWorkout]) -> [SwimMainData] {
+    /// 수영데이터 쿼리 수행
+    private func makeSwimmingDataQuery(workoutType: NSPredicate,
+                                       sort sortDescriptors: [NSSortDescriptor]?,
+                                       continuation: CheckedContinuation<[HKSample], Error>) -> HKSampleQuery {
+        
+        let query = HKSampleQuery(sampleType: .workoutType(),
+                                  predicate: workoutType,
+                                  limit: HKObjectQueryNoLimit,
+                                  sortDescriptors: sortDescriptors) { _, samples, error in
+            if let error = error {
+                print("Swimming 가져오기 Error: \(error.localizedDescription).")
+                continuation.resume(throwing: error)
+                return
+            }
+            
+            guard let samples = samples else { print("수영 데이터 샘플값이 nil입니다."); return }
+            
+            continuation.resume(returning: samples)
+        }
+        
+        return query
+    }
+    
+    /// Health에서 가져온 Raw 데이터로 Swim Main Data를 생성합니다.
+    func transformHKWorkoutToSwimData(_ workouts: [HKWorkout]) -> [SwimMainData] {
         var swimmingData: [SwimMainData] = []
 
         for workout in workouts {
@@ -58,9 +76,8 @@ class SwimDataManager {
             let duration = workout.duration
             let startDate = workout.startDate
             let endDate = workout.endDate
-            // let workoutEvent = getWorkoutEvents(workout)
+            let workoutEvent = getWorkoutEvents(workout)
             let laps = mergeLaps(data: workout.workoutEvents)
-            // 거리
             
             if #available(iOS 16.0, *) {
                 let allStat = allStatDataHandler(workout)
@@ -68,14 +85,15 @@ class SwimDataManager {
                                                 stroke: allStat.stroke,
                                                 activeKcal: allStat.activeKcal,
                                                 restKcal: allStat.restKcal)
+                
                 let data = SwimMainData(id: id,
                                     duration: duration,
                                     startDate: startDate,
                                     endDate: endDate,
                                     detail: detail,
                                     laps: laps)
-                swimmingData.append(data)
                 
+                swimmingData.append(data)
             } else {
                 let data = SwimMainData(id: id,
                                     duration: duration,
@@ -156,6 +174,7 @@ extension SwimDataManager {
         return events
     }
     
+    /// 랩을 계산
     func mergeLaps(data: [HKWorkoutEvent]?) -> [Lap] {
         guard let data = data else { return [] }
         
@@ -179,6 +198,7 @@ extension SwimDataManager {
             }
         }
         
+        print("✅LAPS: \(laps)")
         return laps
         
     }

@@ -8,20 +8,21 @@
 import UIKit
 import SnapKit
 import Combine
+import CombineCocoa
 
 final class ActivityViewController: BaseViewController {
     
     private let viewModel: ActivityViewModel
-   
+    
     private lazy var scrollView = ActivityScrollView()
     private lazy var contentView = scrollView.contentView
     
     private lazy var activityDatePickerViewModel = ActivityDatePickerViewModel()
-
+    
     private lazy var segmentControl = ActivityTypeSegmentControl()
     
     private lazy var bottomSectionTitle = ActivitySectionView()
-
+    
     private lazy var summaryView = ActivitySummaryView()
     
     private lazy var mainVStack = ViewFactory.vStack()
@@ -29,9 +30,9 @@ final class ActivityViewController: BaseViewController {
         .spacing(30)
         .alignment(.center)
         .distribution(.fillProportionally)
-        
+    
     private lazy var tableView = BaseTableView()
-        
+    
     // MARK: - Initializer
     init(viewModel: ActivityViewModel = .init()) {
         self.viewModel = viewModel
@@ -48,13 +49,14 @@ final class ActivityViewController: BaseViewController {
         configure()
         layout()
         bind()
+        observe()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.hideNavigationBar(false)
     }
-
+    
     // MARK: - Configure & Layout
     private func configure() {
         // Navigation Title
@@ -73,10 +75,10 @@ final class ActivityViewController: BaseViewController {
     /// Cell 갯수에 따라서 TableView 크기를 업데이트
     /// (Scrollview In Scrollview이기 때문에 tableView의 ContentSize를 유동적으로 변화하게함)
     private func remakeTableViewSize() {
-        let count = viewModel.presentedData.value.count
-        let cellHeight: CGFloat = 121.0
+        let dataCount = viewModel.presentedData.value.count
+        let cellHeight: CGFloat = RecordMediumCell.cellHeight
         
-        guard count != 0 else {
+        guard dataCount != 0 else {
             tableView.snp.remakeConstraints { make in
                 make.top.equalTo(bottomSectionTitle.snp.bottom)
                 make.horizontalEdges.equalTo(contentView)
@@ -85,7 +87,7 @@ final class ActivityViewController: BaseViewController {
             return
         }
         
-        var maxSize = CGFloat(count) * cellHeight
+        var maxSize = CGFloat(dataCount) * cellHeight
         if maxSize <= AppConstant.deviceSize.height / 2.5 {
             maxSize = AppConstant.deviceSize.height / 2.5
         }
@@ -94,7 +96,10 @@ final class ActivityViewController: BaseViewController {
             make.top.equalTo(bottomSectionTitle.snp.bottom)
             make.horizontalEdges.equalTo(contentView)
             make.height.equalTo(maxSize)
+            make.bottom.equalTo(contentView)
         }
+        
+        self.tableView.reloadData()
     }
     
     // MARK: - Bind (Subscribers)
@@ -105,6 +110,7 @@ final class ActivityViewController: BaseViewController {
         tableView.backgroundColor = AppUIColor.skyBackground
         tableView.isScrollEnabled = false
         tableView.separatorColor = .clear
+        scrollView.backgroundColor = AppUIColor.skyBackground
     }
     
     // swiftlint:disable:next function_body_length
@@ -119,7 +125,7 @@ final class ActivityViewController: BaseViewController {
         )
         
         let output = viewModel.transform(input: input)
-
+        
         output.remakeTableViewLayout
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] _ in
@@ -151,6 +157,8 @@ final class ActivityViewController: BaseViewController {
                     self?.loadingIndicator.show()
                 } else {
                     self?.loadingIndicator.hide()
+                    self?.remakeTableViewSize()
+                    
                 }
             }
             .store(in: &cancellables)
@@ -168,7 +176,24 @@ final class ActivityViewController: BaseViewController {
             }
             .store(in: &cancellables)
     }
-
+    
+    // MARK: Observe
+    private func observe() {
+        // didTopScroll from Observe ScrollView Offset
+        self.scrollView.contentOffsetPublisher
+            .receive(on: DispatchQueue.main)
+            .map { point -> Bool in
+                return point.y < 40
+            }
+            .removeDuplicates()
+            .sink { isTop in
+                print("ISTOP: \(isTop)")
+                let bgColor = isTop ? UIColor.systemBackground : AppUIColor.skyBackground
+                self.scrollView.backgroundColor = bgColor
+            }
+            .store(in: &cancellables)
+    }
+    
     @objc func leftSwipeAction(selectedIndex: Int) {
         print("INDEX:\(selectedIndex)")
         segmentControl.selectedSegmentIndex = selectedIndex
@@ -179,7 +204,7 @@ final class ActivityViewController: BaseViewController {
         segmentControl.selectedSegmentIndex = selectedIndex
         HapticManager.triggerHapticFeedback(style: .rigid)
     }
-
+    
 }
 
 extension ActivityViewController: ActivityDatePickerViewControllerDelegate {
@@ -195,7 +220,7 @@ extension ActivityViewController: ActivityDatePickerViewControllerDelegate {
 // MARK: Configure
 extension ActivityViewController {
     // MARK: - Swipe Gestures & Actions
-
+    
 }
 
 // MARK: Layouts
@@ -252,7 +277,7 @@ extension ActivityViewController {
             make.centerX.equalTo(contentView)
         }
     }
-
+    
     private func layoutTableView() {
         contentView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -269,7 +294,7 @@ extension ActivityViewController {
 extension ActivityViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return RecordMediumCell.cellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -287,26 +312,38 @@ extension ActivityViewController: UITableViewDelegate {
 extension ActivityViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.presentedData.value.isEmpty {
+        
+        let dataCount = viewModel.presentedData.value.count
+        
+        if dataCount == 0 {
             return 1
         } else {
-            return viewModel.presentedData.value.count
+            let presentCount = viewModel.presentedData.value.count
+            print("새로운 셀 갯수: \(presentCount)")
+            return presentCount
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if viewModel.presentedData.value.isEmpty {
+        let dataCount = viewModel.presentedData.value.count
+        
+        if dataCount == 0 || indexPath.row > (dataCount - 1) {
             let emptyCell = BaseEmptyTableViewCell()
             return emptyCell
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId, 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordMediumCell.reuseId,
                                                        for: indexPath) as? RecordMediumCell else { return EmptyRecordCell()
         }
         
         let data = viewModel.presentedData.value[indexPath.row]
         cell.setData(data)
+        print("CELL IS SETTED")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100
     }
     
 }

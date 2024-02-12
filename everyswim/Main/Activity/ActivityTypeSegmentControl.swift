@@ -27,6 +27,7 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
     private func configure() {
         configureButtons()
         configureSegmentAppearances()
+        self.backgroundColor = AppUIColor.primaryBackgorund
         self.selectedSegmentIndex = 1
     }
 
