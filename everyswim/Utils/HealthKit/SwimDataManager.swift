@@ -78,6 +78,7 @@ extension SwimDataManager {
             let endDate = workout.endDate
             let workoutEvent = getWorkoutEvents(workout)
             let laps = mergeLaps(data: workout.workoutEvents)
+            print("LENGTHMETA: \(workout.metadata?["HKMetadataKeyLapLength"])")
             
             if #available(iOS 16.0, *) {
                 let allStat = allStatDataHandler(workout)
@@ -182,20 +183,21 @@ extension SwimDataManager {
         var lapCount: Int = 0
         
         for datum in data {
-            if datum.type == .lap {
+            // if !datum.type == .lap {
+            //     continue
+        // }
                 lapCount += 1
-                
+            let poolLength = datum.metadata?["HKMetadataKeyLapLength"] as? Int
+            
                 if let styleNo = datum.metadata?["HKSwimmingStrokeStyle"] as? Int {
                     let style = HKSwimmingStrokeStyle(rawValue: styleNo)
-                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: style)
+                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: style, eventType: datum.type, poolLength: poolLength)
                     laps.append(newLap)
                 } else {
-                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: nil)
+                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: nil, eventType: datum.type,  poolLength: poolLength)
                     laps.append(newLap)
                 }
-            } else {
-                continue
-            }
+
         }
         
         print("✅LAPS: \(laps)")

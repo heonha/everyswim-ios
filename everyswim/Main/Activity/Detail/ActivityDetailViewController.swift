@@ -83,6 +83,7 @@ final class ActivityDetailViewController: UIViewController {
     // MARK: - Init & LifeCycles
     init(data: SwimMainData) {
         self.data = data
+        print("랩데이터: \(data.laps)")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -116,14 +117,20 @@ final class ActivityDetailViewController: UIViewController {
         self.hideNavigationBar(true)
     }
     
-    // MARK: - 구현
+    // MARK: - Configure
     private func configure() {
         self.navigationItem.title = "-"
         self.view.backgroundColor = .systemBackground
         
+        configureLapTableView()
+    }
+    
+    private func configureLapTableView() {
         self.lapTableView.delegate = self
         self.lapTableView.dataSource = self
         self.lapTableView.register(LapTableViewCell.self, forCellReuseIdentifier: LapTableViewCell.reuseId)
+        self.lapTableView.isScrollEnabled = false
+        self.lapTableView.isUserInteractionEnabled = false
     }
  
     // MARK: Layout
