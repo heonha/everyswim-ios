@@ -41,4 +41,23 @@ extension TimeInterval {
         return formattedString
     }
     
+    func toLapTime(_ type: RelativeTimeType, unitStyle: DateComponentsFormatter.UnitsStyle = .full) -> String {
+        
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = type.unit
+        formatter.unitsStyle = unitStyle
+        formatter.calendar = calendar
+        formatter.maximumUnitCount = 2
+
+        var formattedString = formatter.string(from: self)!
+        formattedString = formattedString.replacingOccurrences(of: "분", with: "'")
+        formattedString = formattedString.replacingOccurrences(of: "초", with: "''")
+
+        
+        return formattedString
+    }
+    
 }

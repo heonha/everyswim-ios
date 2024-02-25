@@ -39,7 +39,7 @@
 		392083B42A4853F800E591A8 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */; };
 		392083B52A4853F800E591A8 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */; };
 		3921EE1B2B09BB7600FEDD8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */; };
-		3922D57F2A74B62900257164 /* Lap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* Lap.swift */; };
+		3922D57F2A74B62900257164 /* LapSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D57E2A74B62900257164 /* LapSegment.swift */; };
 		3922D5862A74E95400257164 /* SwimDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922D5852A74E95400257164 /* SwimDataManager.swift */; };
 		39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E652B04E33A004E28E5 /* SetProfileViewController.swift */; };
 		39238E682B04E3D1004E28E5 /* MidTitleVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */; };
@@ -278,7 +278,7 @@
 		392083B02A4853F800E591A8 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		392083B12A4853F800E591A8 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		3921EE1A2B09BB7600FEDD8D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		3922D57E2A74B62900257164 /* Lap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lap.swift; sourceTree = "<group>"; };
+		3922D57E2A74B62900257164 /* LapSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapSegment.swift; sourceTree = "<group>"; };
 		3922D5852A74E95400257164 /* SwimDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimDataManager.swift; sourceTree = "<group>"; };
 		39238E652B04E33A004E28E5 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		39238E672B04E3D1004E28E5 /* MidTitleVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidTitleVStack.swift; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 				396D2AC72A56B9440042D4D4 /* SwimStatisticsData.swift */,
 				396D2ACB2A56CB140042D4D4 /* StrokeStyle.swift */,
 				39A606A52A6D12C900049B5A /* SwimLapEvent.swift */,
-				3922D57E2A74B62900257164 /* Lap.swift */,
+				3922D57E2A74B62900257164 /* LapSegment.swift */,
 			);
 			path = Swim;
 			sourceTree = "<group>";
@@ -1621,7 +1621,7 @@
 				39B59CDC2B372F5F0078B937 /* MessageView.swift in Sources */,
 				39389FCC2AB33B6A00497402 /* MyInfoButtonList.swift in Sources */,
 				39B21F092AFBA32400B5BD2F /* RecommandCollectionProtocol.swift in Sources */,
-				3922D57F2A74B62900257164 /* Lap.swift in Sources */,
+				3922D57F2A74B62900257164 /* LapSegment.swift in Sources */,
 				39D472622AF9096000A153CA /* RecommandCollectionViewHeader.swift in Sources */,
 				39572CE62A52D01200986E01 /* Date+Extension.swift in Sources */,
 				39CC3DB72AC5851B00C8BC10 /* RootNavigationViewController.swift in Sources */,

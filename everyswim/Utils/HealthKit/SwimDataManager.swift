@@ -24,7 +24,7 @@ extension SwimDataManager {
     func fetchSwimDataFromDevice() async throws -> [HKWorkout]? {
 
         let swimming = HKQuery.predicateForWorkouts(with: .swimming)
-        let sort: [NSSortDescriptor]? = [.init(keyPath: \HKSample.startDate, ascending: false)]
+        let sort: [NSSortDescriptor]? = [.init(keyPath: \HKSample.endDate, ascending: false)]
         
         do {
             let samples = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKSample], Error>) in
@@ -176,32 +176,58 @@ extension SwimDataManager {
     }
     
     /// 랩을 계산
-    func mergeLaps(data: [HKWorkoutEvent]?) -> [Lap] {
+    func mergeLaps(data: [HKWorkoutEvent]?) -> [LapSegment] {
         guard let data = data else { return [] }
         
-        var laps: [Lap] = []
+        // - m당 시간 (초) = 총 수영시간 (초) / 총 수영거리
+        // - 25m 페이스:  m당 시간(초) * 25
+        // - 100m 페이스: m당 시간(초) * 100
+        
+        print("LapRawData: \(data)")
+        
+        var lapSegments: [LapSegment] = []
+        var laps: [LapSegment.Lap] = []
         var lapCount: Int = 0
         
         for datum in data {
-            // if !datum.type == .lap {
-            //     continue
-        // }
+            if datum.type == .segment {
+                let newLap = LapSegment(index: lapCount, dateInterval: datum.dateInterval, eventType: datum.type, laps: [])
                 lapCount += 1
-            let poolLength = datum.metadata?["HKMetadataKeyLapLength"] as? Int
+                lapSegments.append(newLap)
+            }
             
-                if let styleNo = datum.metadata?["HKSwimmingStrokeStyle"] as? Int {
-                    let style = HKSwimmingStrokeStyle(rawValue: styleNo)
-                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: style, eventType: datum.type, poolLength: poolLength)
-                    laps.append(newLap)
-                } else {
-                    let newLap = Lap(index: lapCount, dateInterval: datum.dateInterval, style: nil, eventType: datum.type,  poolLength: poolLength)
-                    laps.append(newLap)
+            if datum.type == .lap {
+                // let poolLength = datum.metadata?["HKMetadataKeyLapLength"] as? Int
+                guard let styleNo = datum.metadata?["HKSwimmingStrokeStyle"] as? Int else {
+                    print("ERROR: 유효하지 않은 StyleNo.")
+                    continue
                 }
-
+                let style = HKSwimmingStrokeStyle(rawValue: styleNo)
+                let newLap = LapSegment.Lap(style: style, interval: datum.dateInterval)
+                laps.append(newLap)
+            }
         }
         
-        print("✅LAPS: \(laps)")
-        return laps
+        for segmentIndex in 0..<lapSegments.count {
+            let currentSegment = lapSegments[segmentIndex]
+            var lapsToRemove: [Int] = [] // 제거할 laps의 인덱스를 저장할 배열
+            
+            for lapIndex in 0..<laps.count {
+                let lap = laps[lapIndex]
+                if currentSegment.dateInterval.contains(lap.interval.start) && currentSegment.dateInterval.contains(lap.interval.end) {
+                    lapSegments[segmentIndex].laps.append(lap)
+                    lapsToRemove.append(lapIndex)
+                }
+            }
+            
+            // 제거할 Lap들을 laps 배열에서 제거, 역순으로 제거하여 인덱스 문제 방지
+            for lapIndex in lapsToRemove.reversed() {
+                laps.remove(at: lapIndex)
+            }
+        }
+
+        print("✅LAPS: \(lapSegments)")
+        return lapSegments
         
     }
 

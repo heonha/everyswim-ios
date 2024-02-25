@@ -23,9 +23,9 @@ enum HKCalculator {
         return date
     }
     
-    static func timeHandler(from startDate: Date, to endDate: Date) -> String {
-        let start = startDate.toString(.timeWithoutSeconds)
-        let end = endDate.toString(.timeWithoutSeconds)
+    static func timeHandler(from startDate: Date, to endDate: Date, stringType: DateToStringType = .timeWithoutSeconds) -> String {
+        let start = startDate.toString(stringType)
+        let end = endDate.toString(stringType)
         
         return "\(start) ~ \(end)"
     }

@@ -8,12 +8,22 @@
 import UIKit
 import SnapKit
 
-class LapTableViewCell: UITableViewCell, ReuseableCell {
+final class LapTableViewCell: UITableViewCell, ReuseableCell {
     
     static var reuseId: String = "LapTableViewCell"
     let cellHeight: CGFloat = 60.0
     
     private var data: SwimMainData?
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        layout()
+        setLegend()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let lapNoLabel = ViewFactory
         .label("1")
@@ -32,7 +42,7 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
         .contentHuggingPriority(.init(rawValue: 249), for: .horizontal) as! UILabel
 
     private let durationLabel = ViewFactory
-        .label("00:00 ~ 00:00")
+        .label("") // 00:00 ~ 00:00
         .font(.custom(.sfProLight, size: 16))
         .adjustsFontSizeToFitWidth(true)
         .contentHuggingPriority(.init(rawValue: 249), for: .horizontal) as! UILabel
@@ -40,7 +50,7 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
     private lazy var durationVStack = ViewFactory.vStack()
         .spacing(2)
         .distribution(.fillEqually)
-        .addSubviews([paceLabel, durationLabel])
+        .addSubviews([paceLabel])
     
     private let poolDistanceLabel = ViewFactory
         .label("- m")
@@ -52,12 +62,7 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
         .addSubviews([lapNoLabel, strokeStyleLabel, durationVStack, poolDistanceLabel])
         .spacing(16)
         .distribution(.fillProportionally)
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layout()
-    }
-    
+
     func layout() {
         contentView.addSubview(mainHStack)
         mainHStack.snp.makeConstraints { make in
@@ -68,13 +73,9 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
         }
         
         paceLabel.snp.makeConstraints { make in
-            make.height.equalTo(mainHStack).dividedBy(2.1)
+            make.height.equalTo(mainHStack)
         }
-        
-        durationLabel.snp.makeConstraints { make in
-            make.height.equalTo(mainHStack).dividedBy(2.1)
-        }
-        
+
         lapNoLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
         }
@@ -89,17 +90,13 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
         
     }
     
-    func setData(lapData: Lap) {
+    func setData(lapData: LapSegment) {
         self.lapNoLabel.text = lapData.index.description
-        self.strokeStyleLabel.text = lapData.style?.name
-        self.paceLabel.text = lapData.dateInterval.duration.toRelativeTime(.hourMinuteSeconds, unitStyle: .short)
-        self.durationLabel.text = HKCalculator.timeHandler(from: lapData.dateInterval.start, to: lapData.dateInterval.end)
+        self.strokeStyleLabel.text = lapData.laps.first?.style?.name
         
-        if let poolLength = lapData.poolLength {
-            self.poolDistanceLabel.text = "\(poolLength) m"
-        } else {
-            self.poolDistanceLabel.text = "? m"
-        }
+        self.paceLabel.text = lapData.pace()
+        
+        self.poolDistanceLabel.text = "\(lapData.poolLength) m"
         
         if self.strokeStyleLabel.text == nil {
             self.strokeStyleLabel.text = lapData.eventType?.name
@@ -111,7 +108,7 @@ class LapTableViewCell: UITableViewCell, ReuseableCell {
     func setLegend() {
         self.lapNoLabel.text = "랩"
         self.strokeStyleLabel.text = "영법"
-        self.paceLabel.text = "페이스"
+        self.paceLabel.text = "평균 페이스 (25m)"
         self.poolDistanceLabel.text = "거리"
         
         [lapNoLabel, strokeStyleLabel, paceLabel, poolDistanceLabel]

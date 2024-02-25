@@ -14,7 +14,7 @@ struct SwimMainData: Identifiable {
     let startDate: Date
     let endDate: Date
     let detail: SwimStatisticsData?
-    let laps: [Lap]
+    let laps: [LapSegment]
     
     /// HH시간 mm분 ss초
     var durationString: String {
@@ -144,14 +144,14 @@ extension SwimMainData: TestableObject {
                        let endDateStr = "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%02d", hour2)):\(String(format: "%02d", minute2))"
                        
                        // 랩 데이터 생성 (1개에서 5개의 랩 데이터 랜덤 생성)
-                       var laps: [Lap] = []
+                       var laps: [LapSegment] = []
                        let numLaps = Int.random(in: 1...20)
                        for lapIndex in 1...numLaps {
                            let lapStartDate = startDateStr.toDateWithTime()!.addingTimeInterval(Double(lapIndex) * Double.random(in: 15.0...120.0))
                            let lapEndDate = lapStartDate.addingTimeInterval(Double.random(in: 15.0...120.0))
                            let lapStyle: HKSwimmingStrokeStyle? = Int.random(in: 0...1) == 0 ? .freestyle : .breaststroke // 랜덤한 수영 스타일
                            
-                           let lap = Lap(index: lapIndex, dateInterval: DateInterval(start: lapStartDate, end: lapEndDate), style: lapStyle)
+                           let lap = LapSegment(index: lapIndex, dateInterval: DateInterval(start: lapStartDate, end: lapEndDate), style: lapStyle, laps: [])
                            laps.append(lap)
                        }
                        
