@@ -7,7 +7,12 @@
 
 import Foundation
 
-enum ActivityDataRange: Int, CaseIterable {
+enum ActivityDataRange: Int, CaseIterable, Identifiable {
+    
+    var id: Int {
+        return self.rawValue
+    }
+    
     case weekly
     case monthly
     case yearly

@@ -125,6 +125,7 @@
 		3978447D2BA5743A00D1D1D3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978447C2BA5743A00D1D1D3 /* MainView.swift */; };
 		397844812BA57E1500D1D1D3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844802BA57E1500D1D1D3 /* HomeView.swift */; };
 		397844842BA5825000D1D1D3 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844832BA5825000D1D1D3 /* Font+Ext.swift */; };
+		397844882BA5A25400D1D1D3 /* TotalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844872BA5A25400D1D1D3 /* TotalRecordView.swift */; };
 		3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* DashboardHeaderView.swift */; };
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSort.swift */; };
@@ -360,6 +361,7 @@
 		3978447C2BA5743A00D1D1D3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		397844802BA57E1500D1D1D3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		397844832BA5825000D1D1D3 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
+		397844872BA5A25400D1D1D3 /* TotalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRecordView.swift; sourceTree = "<group>"; };
 		3979A0642AA618930094D57A /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSort.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			children = (
 				3978447C2BA5743A00D1D1D3 /* MainView.swift */,
 				397844852BA5949500D1D1D3 /* Home */,
+				397844862BA5A24500D1D1D3 /* Record */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -846,6 +849,14 @@
 				397844802BA57E1500D1D1D3 /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		397844862BA5A24500D1D1D3 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				397844872BA5A25400D1D1D3 /* TotalRecordView.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		398877002B4A95CA0064F457 /* DatePicker */ = {
@@ -1725,6 +1736,7 @@
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				39F618082B3EC25E003F446C /* IOProtocol.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
+				397844882BA5A25400D1D1D3 /* TotalRecordView.swift in Sources */,
 				392BF3D82AFE4B6600ADAE49 /* UserProfile.swift in Sources */,
 				390C61922AF3BA210061E6D4 /* SetGoalViewModel.swift in Sources */,
 				393351512AFA577E0014D37A /* HttpMethod.swift in Sources */,

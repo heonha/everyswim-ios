@@ -154,7 +154,7 @@ extension RecordSmallCell {
     private func setLayout() {
         mainView.layer.cornerRadius = 12
         mainView.layer.setFigmaShadow(alpha: 0.22, x: 0, y: 0, blur: 2, spread: 0, radius: 12)
-        mainView.backgroundColor = UIColor.systemBackground
+        mainView.backgroundColor = UIColor.systemFill
 
         bodyView.addArrangedSubview(title)
         bodyView.addArrangedSubview(record)
