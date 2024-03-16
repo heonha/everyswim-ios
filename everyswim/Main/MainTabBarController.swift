@@ -13,9 +13,12 @@ final class MainTabBarController: UITabBarController {
     private let authService: AuthManager
     private lazy var recordView = ActivityViewController()
     
-    private let dashboardViewModel = DashboardViewModel()
-    private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
+    // private let dashboardViewModel = DashboardViewModel()
+    // private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
     
+    private lazy var dashboardView = UIHostingController(rootView: HomeView())
+    // private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
+
     private let myInfoViewModel = MyInfoViewModel()
     private lazy var myInfoView = MyInfoViewController(viewModel: myInfoViewModel)
     private lazy var calendarView = DatePickerController()
@@ -53,7 +56,7 @@ extension MainTabBarController {
         
         let dashboardNC = RootNavigationViewController(rootViewController: dashboardView)
         dashboardNC.isNavigationBarHidden = true
-        dashboardNC.tabBarItem = .init(title: "대시보드", image: homeSymbol, tag: 0)
+        dashboardNC.tabBarItem = .init(title: "홈", image: homeSymbol, tag: 0)
 
         let recordNC = RootNavigationViewController(rootViewController: recordView)
         recordNC.isNavigationBarHidden = true

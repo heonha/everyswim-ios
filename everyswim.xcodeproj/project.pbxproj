@@ -122,6 +122,9 @@
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
 		397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397598302AC40D7500AD693B /* EmptyRecordCell.swift */; };
+		3978447D2BA5743A00D1D1D3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978447C2BA5743A00D1D1D3 /* MainView.swift */; };
+		397844812BA57E1500D1D1D3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844802BA57E1500D1D1D3 /* HomeView.swift */; };
+		397844842BA5825000D1D1D3 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844832BA5825000D1D1D3 /* Font+Ext.swift */; };
 		3979A0652AA618930094D57A /* DashboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3979A0642AA618930094D57A /* DashboardHeaderView.swift */; };
 		397AB5A92A68204E008015F2 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5A82A68204E008015F2 /* HapticManager.swift */; };
 		397AB5AB2A68F5B4008015F2 /* RecordSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397AB5AA2A68F5B4008015F2 /* RecordSort.swift */; };
@@ -354,6 +357,9 @@
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
 		397598302AC40D7500AD693B /* EmptyRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordCell.swift; sourceTree = "<group>"; };
+		3978447C2BA5743A00D1D1D3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		397844802BA57E1500D1D1D3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		397844832BA5825000D1D1D3 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		3979A0642AA618930094D57A /* DashboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHeaderView.swift; sourceTree = "<group>"; };
 		397AB5A82A68204E008015F2 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		397AB5AA2A68F5B4008015F2 /* RecordSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSort.swift; sourceTree = "<group>"; };
@@ -817,6 +823,31 @@
 			path = Gesture;
 			sourceTree = "<group>";
 		};
+		3978447B2BA5742200D1D1D3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3978447C2BA5743A00D1D1D3 /* MainView.swift */,
+				397844852BA5949500D1D1D3 /* Home */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		397844822BA5824800D1D1D3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				397844832BA5825000D1D1D3 /* Font+Ext.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		397844852BA5949500D1D1D3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				397844802BA57E1500D1D1D3 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		398877002B4A95CA0064F457 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +921,7 @@
 		398B1BB82A483E7B00E0FA9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				397844822BA5824800D1D1D3 /* SwiftUI */,
 				39F6180C2B3ECDB3003F446C /* CombineCocoa */,
 				3908D34E2B3EB52700B25914 /* CoreLocation */,
 				39F5997D2A9B56CA00738334 /* UIKit */,
@@ -951,6 +983,7 @@
 				39572CE22A52CBA300986E01 /* everyswim.entitlements */,
 				3905CFE12A9B52D800CF4AB4 /* AppDelegate.swift */,
 				3905CFDF2A9B512700CF4AB4 /* SceneDelegate.swift */,
+				3978447B2BA5742200D1D1D3 /* UI */,
 				398B1BB22A483E0C00E0FA9B /* Main */,
 				39CC3DB82AC5857200C8BC10 /* Base */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
@@ -1570,6 +1603,7 @@
 				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */,
+				397844812BA57E1500D1D1D3 /* HomeView.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
 				39C4CF392B38846900F49A1A /* DashboardScrollView.swift in Sources */,
 				39572CDE2A52C6E400986E01 /* MyInfoButtonType.swift in Sources */,
@@ -1612,6 +1646,7 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePickerViewController.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
+				3978447D2BA5743A00D1D1D3 /* MainView.swift in Sources */,
 				39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */,
 				392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
@@ -1727,6 +1762,7 @@
 				3933514C2AFA574B0014D37A /* RestProtocol.swift in Sources */,
 				398ED7162B00925C0068CAD0 /* MyInfoProfile.swift in Sources */,
 				39238E6E2B04F1A4004E28E5 /* SetProfileViewModel.swift in Sources */,
+				397844842BA5825000D1D1D3 /* Font+Ext.swift in Sources */,
 				390C618B2AF3A9B80061E6D4 /* SetGoalViewController.swift in Sources */,
 				396D2AC52A567B2A0042D4D4 /* TimeInterval+Extension.swift in Sources */,
 				39B7E6E52B3F1D8000138B63 /* DefaultModelProtocol.swift in Sources */,
@@ -2011,7 +2047,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2062,7 +2098,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

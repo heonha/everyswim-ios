@@ -16,7 +16,11 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.backgroundColor = .white
+        window?.backgroundColor = UIColor.systemBackground
+        
+        // let mainVC = UIHostingController(rootView: MainView())
+        // window?.rootViewController = mainVC
+        // window?.makeKeyAndVisible()
 
         if self.isTestMode {
             let viewModel = SetProfileViewModel()
