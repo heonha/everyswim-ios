@@ -124,10 +124,10 @@ extension RecordSmallCell {
     func updateTitle(data: SwimMainData) {
         self.title.text = "\(data.getWeekDay()) 수영"
     }
-    
-    func updateRecord(data: SwimMainData) {
-        let record = data.getSimpleRecords()
-    }
+
+    // func updateRecord(data: SwimMainData) {
+    //     let record = data.getSimpleRecords()
+    // }
 
     func updateData(_ data: SwimMainData) {
         let records = data.getSimpleRecords()

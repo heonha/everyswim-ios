@@ -110,7 +110,6 @@ final class MyInfoButtonList: BaseUIView {
     func getAllButton() -> [MyInfoButton] {
         return self.buttons
     }
-            
 
 }
 

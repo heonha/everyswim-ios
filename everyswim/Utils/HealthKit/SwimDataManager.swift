@@ -76,9 +76,9 @@ extension SwimDataManager {
             let duration = workout.duration
             let startDate = workout.startDate
             let endDate = workout.endDate
-            let workoutEvent = getWorkoutEvents(workout)
+            // let workoutEvent = getWorkoutEvents(workout)
             let laps = mergeLaps(data: workout.workoutEvents)
-            print("LENGTHMETA: \(workout.metadata?["HKMetadataKeyLapLength"])")
+            print("LENGTHMETA: \(workout.metadata?["HKMetadataKeyLapLength"] ?? "nil")")
             
             if #available(iOS 16.0, *) {
                 let allStat = allStatDataHandler(workout)

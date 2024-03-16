@@ -56,7 +56,6 @@ extension TimeInterval {
         formattedString = formattedString.replacingOccurrences(of: "분", with: "'")
         formattedString = formattedString.replacingOccurrences(of: "초", with: "''")
 
-        
         return formattedString
     }
     

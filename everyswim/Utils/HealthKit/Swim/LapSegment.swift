@@ -31,7 +31,7 @@ struct LapSegment {
         
         let totalDuration = dateInterval.duration.toInt().toDouble()
         let totalLength = poolLength.toDouble()
-        let dividerLength = distance.toDouble()
+        // let dividerLength = distance.toDouble()
 
         let ddd = totalDuration / totalLength
         let aaa = ddd * distance.toDouble()

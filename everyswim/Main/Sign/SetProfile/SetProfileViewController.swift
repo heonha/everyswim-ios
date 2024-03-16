@@ -18,7 +18,6 @@ final class SetProfileViewController: BaseViewController {
     private let viewModel: SetProfileViewModel
     private let type: SetProfileViewControllerType
     
-    
     // MARK: - Views
     private let titleView = MidTitleVStack(title: "프로필 설정",
                                            subtitle: "나의 프로필 사진과 이름을 입력하세요")

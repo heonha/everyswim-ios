@@ -15,6 +15,14 @@ disabled_rules: # Default Rules에서 비활성화할 규칙
     
     - class_delegate_protocol
     
+    - identifier_name # 2글자 기본 값
+    
+    - line_length # Line당 길이 약 120글자가 기본값
+    
+    - superfluous_disable_command
+    
+    - function_parameter_count
+    
 opt_in_rules:
   # .count==0 보다는 .isEmpty를 사용하는 것이 좋습니다. https://realm.github.io/SwiftLint/empty_count.html
   - empty_count
@@ -28,25 +36,6 @@ excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선
   - Pods
   - everyswim-tests
 
-
-identifier_name:
-  min_length: # only min_length
-    error: 2 # only error
-  excluded: # excluded via string array
-    - id
-    - URL
-    - GlobalAPIKey
-    - x
-    - y
-    - vc
-    - sv
-    - iv
-    - nc
-    - cv
-
-line_length: 200
-
-# they can set both implicitly with an array
-type_body_length:
-  - 300 # warning
-  - 400 # error
+file_length:
+  - 500 # warning
+  - 800 # error

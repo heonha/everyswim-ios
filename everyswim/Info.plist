@@ -2,29 +2,36 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>everyswim</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>everyswim</string>
+			</array>
+		</dict>
+	</array>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
+	<key>NMFClientId</key>
+	<string>cd92f7ybte</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>place.map.kakao.com</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>근처 수영장을 확인하기 위해 권한을 요청합니다.</string>
-	<key>NMFClientId</key>
-	<string>cd92f7ybte</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>프로필 사진을 추가하기 위해 앨범 접근 권한을 요청 합니다.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>프로필 사진을 추가하기 위해 사진 추가 접근 권한을 요청 합니다.</string>
-	<key>MKDirectionsApplicationSupportedModes</key>
-	<array/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GodoB.otf</string>

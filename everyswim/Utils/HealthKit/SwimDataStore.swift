@@ -106,7 +106,7 @@ final class SwimDataStore {
         var distance = totalData
             .reduce(Double(0)) { $0 + $1.unwrappedDistance }
         
-        var laps = totalData
+        let laps = totalData
             .reduce(Int(0)) { $0 + $1.laps.count }
 
         var distanceUnit = "m"

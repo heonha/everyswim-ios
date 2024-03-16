@@ -137,19 +137,19 @@ extension ChallangeCellContainer {
         let count = RingViewModel(type: .countPerWeek, count: counts, maxCount: Double(goal.countPerWeek))
         
         guard let distanceCell = self.cellVStack.arrangedSubviews
-            .first { view in
+            .first(where: { view in
                 view.id == "distance"
-            } as? ChallangeBar else {return}
+            }) as? ChallangeBar else {return}
         
         guard let lapCell = self.cellVStack.arrangedSubviews
-            .first { view in
+            .first(where: { view in
                 view.id == "lap"
-            } as? ChallangeBar else {return}
+            }) as? ChallangeBar else {return}
 
         guard let countsCell = self.cellVStack.arrangedSubviews
-            .first { view in
+            .first(where: { view in
                 view.id == "count"
-            } as? ChallangeBar else {return}
+            }) as? ChallangeBar else {return}
 
         distanceCell.setData(distance)
         lapCell.setData(lap)

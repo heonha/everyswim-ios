@@ -81,7 +81,7 @@ class CommunityReusableCell: UICollectionViewListCell, ReuseableCell {
     
     func configure(viewModel: RecommandCollectionProtocol) {
         let url = URL(string: viewModel.imageUrl)
-        let placeholderImage = UIImage(named: "photo")
+        // let placeholderImage = UIImage(named: "photo")
         self.imageView.sd_setImage(with: url)
         
         if let title = viewModel.title {
