@@ -120,7 +120,7 @@ final class RecordMediumCell: UITableViewCell, ReuseableCell {
     private func configure() {
         self.backgroundColor = .clear
         self.selectedBackgroundView = UIView()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .primaryBackground
         contentView.layer.setFigmaShadow(color: .black, x: 0, y: 0, spread: 0)
         contentView.layer.cornerRadius = 12
         rightLabel.adjustsFontSizeToFitWidth = true

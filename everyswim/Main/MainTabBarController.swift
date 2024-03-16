@@ -13,11 +13,10 @@ final class MainTabBarController: UITabBarController {
     private let authService: AuthManager
     private lazy var recordView = ActivityViewController()
     
-    // private let dashboardViewModel = DashboardViewModel()
+    private let dashboardViewModel = DashboardViewModel()
     // private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
     
     private lazy var dashboardView = UIHostingController(rootView: HomeView())
-    // private lazy var dashboardView = DashboardViewController(viewModel: dashboardViewModel)
 
     private let myInfoViewModel = MyInfoViewModel()
     private lazy var myInfoView = MyInfoViewController(viewModel: myInfoViewModel)

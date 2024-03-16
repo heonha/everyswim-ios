@@ -107,10 +107,10 @@ final class ActivityViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RecordMediumCell.self, forCellReuseIdentifier: RecordMediumCell.reuseId)
-        tableView.backgroundColor = AppUIColor.skyBackground
+        tableView.backgroundColor = .systemBackground
         tableView.isScrollEnabled = false
         tableView.separatorColor = .clear
-        scrollView.backgroundColor = AppUIColor.skyBackground
+        scrollView.backgroundColor = .systemBackground
     }
     
     // swiftlint:disable:next function_body_length

@@ -13,7 +13,7 @@ final class MyInfoButton: UIView {
     private let type: MyInfoButtonType
     
     private var background = UIView()
-        .backgroundColor(.white)
+        .backgroundColor(.systemBackground)
         .cornerRadius(12)
     
     private lazy var symbol = UIImageView()

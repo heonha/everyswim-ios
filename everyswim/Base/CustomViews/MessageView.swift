@@ -24,7 +24,7 @@ final class MessageView: UILabel {
         self.text = "메세지 입니다."
         self.font = .custom(.sfProMedium, size: 16)
         self.textAlignment = .center
-        self.textColor = .white
+        self.textColor = .label
         self.layer.cornerRadius = 12
         self.clipsToBounds = true
         self.backgroundColor = .init(hex: "000000", alpha: 0.65)

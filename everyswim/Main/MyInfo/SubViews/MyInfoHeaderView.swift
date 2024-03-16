@@ -18,7 +18,7 @@ final class MyInfoHeaderView: BaseUIView {
     
     private lazy var levelView = UIView()
         .cornerRadius(6)
-        .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
+        .backgroundColor(.secondaryLabel)
         .subview(levelLabel)
         .shadow(color: .black, alpha: 0.1, x: 0.3, y: 0.3, blur: 1)
 

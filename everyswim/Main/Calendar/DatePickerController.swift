@@ -22,7 +22,7 @@ final class DatePickerController: BaseViewController {
     init(viewModel: DatePickerViewModel = .init()) {
         self.viewModel = viewModel
         super.init()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .init(hex: "2B303C")
     }
     
     required init?(coder: NSCoder) {
@@ -107,6 +107,7 @@ extension DatePickerController {
         }
         
         dayView.setContentCompressionResistancePriority(.init(751), for: .vertical)
+        
         dayView.snp.makeConstraints { make in
             make.top.equalTo(pickerHeader.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
@@ -117,11 +118,7 @@ extension DatePickerController {
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
-        // loadingIndicator.snp.makeConstraints { make in
-        //     make.center.equalTo(view)
-        //     make.size.equalTo(30)
-        // }
+
     }
     
     private func updateDatePickerLayout() {

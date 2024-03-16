@@ -52,7 +52,7 @@ enum ViewFactory {
         button.setTitle(text, for: .normal)
         let attrString = NSAttributedString(string: text, attributes: [
             .font: UIFont.custom(.sfProBold, size: 18),
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.label
         ])
         
         button.setAttributedTitle(attrString, for: .normal)

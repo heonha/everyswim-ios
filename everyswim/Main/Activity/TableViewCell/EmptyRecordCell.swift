@@ -14,7 +14,7 @@ final class EmptyRecordCell: UITableViewCell {
         .label()
         .textAlignemnt(.center)
         .font(.custom(.sfProLight, size: 18))
-        .foregroundColor(AppUIColor.grayTint)
+        .foregroundColor(AppUIColor.secondaryLabel)
         
     override func layoutSubviews() {
         super.layoutSubviews()

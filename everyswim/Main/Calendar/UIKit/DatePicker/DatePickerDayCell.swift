@@ -29,10 +29,7 @@ final class DatePickerDayCell: UICollectionViewCell {
         }
     }
     
-    lazy var textColor = viewModel
-        .isSameDay(dateValue.date, viewModel.selectedDate)
-    ? UIColor.black
-    : UIColor.systemBlue
+    lazy var textColor = UIColor.label
     
     var circleInset: CGFloat = 8
     var dayViewInset: CGFloat = 10
@@ -46,9 +43,9 @@ final class DatePickerDayCell: UICollectionViewCell {
         .font(.custom(.sfProBold, size: 16))
         .foregroundColor(textColor)
         .textAlignemnt(.center)
-    
+
     lazy var circleContainer = UIView()
-        .backgroundColor(.white)
+        .backgroundColor(.clear)
     
     lazy var circleShadowView = UIView()
         .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
@@ -97,7 +94,6 @@ final class DatePickerDayCell: UICollectionViewCell {
     
     private func configure() {
         dayView.layer.cornerRadius = viewModel.getCornerRadiusForDayCell(rootViewSize: contentView.frame.size.width, inset: dayViewInset)
-        dayView.clipsToBounds = true
         
         circleShadowView.layer.cornerRadius =  self.circleShadowView.frame.width / 2
     }
@@ -119,17 +115,53 @@ final class DatePickerDayCell: UICollectionViewCell {
     private func updateCell(type: DatePickerEventType) {
         switch type {
         case .hasEvent:
-            self.dayView.textColor = AppUIColor.whithThickMaterialColor
-            self.dayView.backgroundColor = AppUIColor.primaryBlue
+            self.dayView.textColor = UIColor.label
+            self.dayView.backgroundColor = .clear
+            self.dayView.layer.borderWidth = 2
+            self.dayView.layer.borderColor = UIColor.init(hex: "1288EC").cgColor
             
         case .noEvent:
-            self.dayView.textColor = UIColor(hex: "000000", alpha: 0.7)
-            self.dayView.backgroundColor = .white
+            self.dayView.textColor = UIColor.label
+            self.dayView.backgroundColor = .clear
+            self.dayView.layer.borderWidth = 0
+            self.dayView.layer.borderColor = .none
             
         case .empty:
             self.dayView.text = ""
-            self.dayView.backgroundColor = .white
+            self.dayView.backgroundColor = .clear
+            self.dayView.layer.borderWidth = 0
+            self.dayView.layer.borderColor = .none
+
         }
     }
     
+    func applyGradientBorder(to view: UIView, colors: [CGColor], width: CGFloat) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = colors
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.lineWidth = width
+        shapeLayer.path = UIBezierPath(rect: view.bounds).cgPath
+        shapeLayer.fillColor = nil
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        gradientLayer.mask = shapeLayer
+        
+        view.layer.addSublayer(gradientLayer)
+    }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct DatePickerDayCell_Previews: PreviewProvider {
+    static var previews: some View {
+        UIViewControllerPreview {
+            DatePickerController(viewModel: DatePickerViewModel())
+        }
+        .ignoresSafeArea()
+    }
+}
+#endif

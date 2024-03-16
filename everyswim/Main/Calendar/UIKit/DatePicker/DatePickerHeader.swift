@@ -61,7 +61,7 @@ final class DatePickerHeader: UIView {
                 let label = ViewFactory
                     .label(weekday)
                     .font(.custom(.sfProBold, size: 14))
-                    .foregroundColor(AppUIColor.grayTint)
+                    .foregroundColor(UIColor.secondaryLabel)
                     .textAlignemnt(.center)
                 
                 return label
@@ -127,6 +127,8 @@ final class DatePickerHeader: UIView {
         self.addSubview(backgroundView)
         self.addSubview(vstack)
         
+        self.backgroundColor = .init(hex: "2B303C")
+        
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -135,6 +137,7 @@ final class DatePickerHeader: UIView {
             make.top.equalTo(backgroundView)
             make.horizontalEdges.equalTo(backgroundView)
         }
+        
     }
     
 }

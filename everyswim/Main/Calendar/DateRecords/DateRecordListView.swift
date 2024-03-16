@@ -57,7 +57,7 @@ final class DateRecordListView: UIView {
     }
     
     private func configure() {
-        self.backgroundColor = AppUIColor.skyBackground
+        self.backgroundColor = AppUIColor.primaryBackgorund
         self.addSubview(contentView)
         self.contentView.addSubview(headerView)
         self.contentView.addSubview(tableView)

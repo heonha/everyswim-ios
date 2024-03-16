@@ -31,7 +31,7 @@ final class MyInfoProfileView: BaseUIView {
         .addSubviews([UIView.spacer(),
                       profileEmail,
                       UIView.spacer()])
-        .backgroundColor(AppUIColor.whiteUltraThinMaterialColor)
+        .backgroundColor(AppUIColor.secondaryBackground)
         .cornerRadius(8)
         .shadow()
 

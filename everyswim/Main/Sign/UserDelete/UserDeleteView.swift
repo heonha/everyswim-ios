@@ -231,7 +231,7 @@ final class UserDeleteView: UIView {
     private func enableDeleteButton() {
         isDeleteButtonEnable = true
         deleteButton.backgroundColor = AppUIColor.primaryBlue
-        deleteButton.textColor = .white
+        deleteButton.textColor = .label
     }
     
     /// 탈퇴하기 버튼 비활성화

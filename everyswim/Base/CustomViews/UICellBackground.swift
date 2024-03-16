@@ -36,9 +36,9 @@ final class UICellBackground: UIView {
     }
     
     private func draw() {
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = cornerRadius
         view.layer.setFigmaShadow(color: .black, alpha: Float(shadowOpacity), x: shadowLocation.x, y: shadowLocation.y, blur: shadowRadius, radius: shadowRadius)
         

@@ -20,13 +20,13 @@ extension UIImageView {
         return self
     }
     
-    func setSymbolImage(systemName: String, color: UIColor = .black) -> UIImageView {
+    func setSymbolImage(systemName: String, color: UIColor = .label) -> UIImageView {
         let image = UIImage(systemName: systemName)?.withTintColor(color, renderingMode: .alwaysOriginal)
         self.image = image
         return self
     }
     
-    func updateSymbolImage(systemName: String, color: UIColor = .black) {
+    func updateSymbolImage(systemName: String, color: UIColor = .label) {
         let image = UIImage(systemName: systemName)?.withTintColor(color, renderingMode: .alwaysOriginal)
         self.image = image
     }

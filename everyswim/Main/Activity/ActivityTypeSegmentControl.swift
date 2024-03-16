@@ -48,12 +48,12 @@ final class ActivityTypeSegmentControl: UISegmentedControl {
         
         let normalTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.custom(.sfProLight, size: 14),
-            .foregroundColor: UIColor.black
+            .foregroundColor: UIColor.label
         ]
         
         let selectedTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.custom(.sfProBold, size: 14),
-            .foregroundColor: UIColor.white
+            .foregroundColor: UIColor.label
         ]
 
         setTitleTextAttributes(normalTitleAttributes, for: .normal)
