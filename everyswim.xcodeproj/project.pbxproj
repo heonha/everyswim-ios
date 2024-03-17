@@ -26,6 +26,8 @@
 		390CEB242A82592A003198F6 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CEB232A82592A003198F6 /* DateValue.swift */; };
 		390E79532AECB37C009B4243 /* DateComponents+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79522AECB37C009B4243 /* DateComponents+Extension.swift */; };
 		390E79552AECB4DF009B4243 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E79542AECB4DF009B4243 /* Calendar+extension.swift */; };
+		390F0F3D2BA72D4000ABBC86 /* LargeSwimCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F3C2BA72D4000ABBC86 /* LargeSwimCard.swift */; };
+		390F0F3F2BA72E7500ABBC86 /* MediumSwimCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F3E2BA72E7500ABBC86 /* MediumSwimCard.swift */; };
 		391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F42AC7E93A00190D35 /* Calendar+Extension.swift */; };
 		391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */; };
 		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
@@ -269,6 +271,8 @@
 		390CEB232A82592A003198F6 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		390E79522AECB37C009B4243 /* DateComponents+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Extension.swift"; sourceTree = "<group>"; };
 		390E79542AECB4DF009B4243 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
+		390F0F3C2BA72D4000ABBC86 /* LargeSwimCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSwimCard.swift; sourceTree = "<group>"; };
+		390F0F3E2BA72E7500ABBC86 /* MediumSwimCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumSwimCard.swift; sourceTree = "<group>"; };
 		391678F42AC7E93A00190D35 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryViewModel.swift; sourceTree = "<group>"; };
 		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
@@ -847,6 +851,8 @@
 			isa = PBXGroup;
 			children = (
 				397844802BA57E1500D1D1D3 /* HomeView.swift */,
+				390F0F3C2BA72D4000ABBC86 /* LargeSwimCard.swift */,
+				390F0F3E2BA72E7500ABBC86 /* MediumSwimCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1614,6 +1620,7 @@
 				39238E662B04E33A004E28E5 /* SetProfileViewController.swift in Sources */,
 				39F5997F2A9B56FC00738334 /* UIColor+Extension.swift in Sources */,
 				392CBFFA2B0CD34C001CB22F /* SetGoalText.swift in Sources */,
+				390F0F3D2BA72D4000ABBC86 /* LargeSwimCard.swift in Sources */,
 				397844812BA57E1500D1D1D3 /* HomeView.swift in Sources */,
 				39A111F92AB2F85B00D57FB4 /* MyInfoHeaderView.swift in Sources */,
 				39C4CF392B38846900F49A1A /* DashboardScrollView.swift in Sources */,
@@ -1733,6 +1740,7 @@
 				39EC71CF2B02382F008A6386 /* UserDeleteViewModel.swift in Sources */,
 				39535D4F2B3576B000612B83 /* BaseTextFieldProtocol.swift in Sources */,
 				39B6E6052B1C8B18009140F8 /* PoolMediumCell.swift in Sources */,
+				390F0F3F2BA72E7500ABBC86 /* MediumSwimCard.swift in Sources */,
 				39CC3DBC2AC585AB00C8BC10 /* BaseTableView.swift in Sources */,
 				39F618082B3EC25E003F446C /* IOProtocol.swift in Sources */,
 				3997322F2B305724008B5C11 /* KakaoRegionResponse.swift in Sources */,
