@@ -563,6 +563,13 @@
 			path = SetGoal;
 			sourceTree = "<group>";
 		};
+		390F0F402BA7327E00ABBC86 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		391C12BD2A592A0F001C2286 /* Previews */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +842,7 @@
 				3978447C2BA5743A00D1D1D3 /* MainView.swift */,
 				397844852BA5949500D1D1D3 /* Home */,
 				397844862BA5A24500D1D1D3 /* Record */,
+				390F0F402BA7327E00ABBC86 /* Calendar */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -929,7 +937,6 @@
 				39B59CD42B370BD30078B937 /* Location */,
 				3922D5712A74B1C500257164 /* HealthKit */,
 				39318EAA2AFD04D10089AEC4 /* Firebase */,
-				3922D5732A74B1FA00257164 /* AppConstant */,
 				3933514F2AFA576F0014D37A /* Network */,
 			);
 			path = Utils;
@@ -1004,6 +1011,7 @@
 				398B1BB22A483E0C00E0FA9B /* Main */,
 				39CC3DB82AC5857200C8BC10 /* Base */,
 				398B1BB52A483E4000E0FA9B /* Utils */,
+				3922D5732A74B1FA00257164 /* AppConstant */,
 				398B1BB82A483E7B00E0FA9B /* Extensions */,
 				396BAE3A2B39A40F007C1102 /* UITest */,
 				39437DA02A48948E00FDA9DA /* Secrets */,

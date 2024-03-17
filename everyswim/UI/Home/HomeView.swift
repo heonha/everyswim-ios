@@ -15,9 +15,9 @@ struct HomeView: View {
             VStack(spacing: 24) {
                 welcomeCard()
                 
-                LargeSwimCard(title: "오늘의 수영")
-                
-                MediumSwimCard(title: "이번주 수영")
+                MediumSwimCard(title: "오늘의 수영")
+
+                LargeSwimCard(title: "이번주 수영")
                 
                 Spacer()
             }

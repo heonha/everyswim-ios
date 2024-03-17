@@ -137,7 +137,6 @@ struct TotalRecordView: View {
                     
                     Spacer()
                     
-                    
                     VStack {
                         recordVStack(title: "페이스", value: "1’22’’")
                         recordVStack(title: "칼로리", value: "1234")
@@ -167,7 +166,7 @@ struct TotalRecordView: View {
                 
                 Text(value)
                     .font(.custom(.sfProBold, size: 16))
-                    .foregroundStyle(Color.init(uiColor: .init(hex: "4489F0")))
+                    .foregroundStyle(AppColor.labelTint)
             }
         }
     }

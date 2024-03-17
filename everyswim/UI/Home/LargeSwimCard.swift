@@ -15,7 +15,7 @@ struct LargeSwimCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
-                .font(.custom(.sfProBold, size: 22))
+                .font(.custom(.sfProBold, size: 20))
                 .foregroundStyle(Color.white.opacity(0.8))
 
             contentView()
@@ -33,11 +33,9 @@ extension LargeSwimCard {
         Group {
                 GeometryReader { geometry in
                     ZStack {
-                        // 배경
-                            LinearGradient(colors: [.init(uiColor: .init(hex: "0080EC", alpha: 0.9)),
-                                                    .init(uiColor: .init(hex: "2083B9", alpha: 0.9)) ],
-                                           startPoint: .topLeading,
-                                           endPoint: .bottomTrailing)
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Material.ultraThinMaterial)
+
                         ZStack {
                             HStack {
                                 // Left
@@ -47,10 +45,10 @@ extension LargeSwimCard {
                                 // Right
                                 // 우측 시간, 랩, 페이스 칼로리 뷰
                                 VStack(spacing: 4) {
-                                    inCardRecord(title: "시간", record: "1:20:35", axis: .horizontal)
-                                    inCardRecord(title: "랩", record: "25", axis: .horizontal)
-                                    inCardRecord(title: "페이스", record: "1'22''/25m", axis: .horizontal)
-                                    inCardRecord(title: "칼로리", record: "1,250 kcal", axis: .horizontal)
+                                    inCardRecord(title: "시간", record: "1:20:35")
+                                    inCardRecord(title: "랩", record: "25")
+                                    inCardRecord(title: "페이스", record: "1'22''/25m")
+                                    inCardRecord(title: "칼로리", record: "1,250 kcal")
                                 }
                                 .frame(width: (geometry.size.width / 1.8) - 40)
                             }
@@ -59,7 +57,6 @@ extension LargeSwimCard {
                         .padding(.vertical, 18)
 
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
             }
             .frame(height: 160)
         }
@@ -72,6 +69,8 @@ extension LargeSwimCard {
                     .font(.custom(.sfProBold, size: 44))
                 Text("Meters")
                     .font(.custom(.sfProBold, size: 16))
+                    .foregroundStyle(Color.secondary)
+
             }
             
             Spacer()
@@ -87,12 +86,12 @@ extension LargeSwimCard {
     // 시간 랩 페이스 칼로리 등...
     // Vertical, Horizontal로 나뉨
     private func inCardRecord(title: String,
-                              record: String,
-                              axis: Axis) -> some View {
+                              record: String) -> some View {
         ZStack {
             GeometryReader { geometry in
                 ZStack {
                     Rectangle().fill(.clear)
+                    
                     VStack {
                         horizontalInCard(title, value: record, geometry: geometry)
                     }
@@ -107,29 +106,20 @@ extension LargeSwimCard {
             HStack(spacing: 4) {
                 Text(title)
                     .font(.custom(.sfProBold, size: 13))
+                    .foregroundStyle(Color.secondary)
                     .frame(width: geometry.size.width / 2.5)
                 
                 HStack(alignment: .center) {
                     Spacer()
                     Text(value)
                         .font(.custom(.sfProBold, size: 14))
+                        .foregroundStyle(AppColor.labelTint)
                     Spacer()
                 }
 
             }
         }
     }
-    // 
-    // private func verticalInCard(_ title: String, value: String, geometry: GeometryProxy) -> some View {
-    //     VStack(spacing: 0) {
-    //         Text(title)
-    //             .font(.custom(.sfProMedium, size: 13))
-    //             .frame(width: .infinity, height: geometry.size.height / 2)
-    //         Text(value)
-    //             .font(.custom(.sfProBold, size: 16))
-    //             .frame(width: .infinity, height: geometry.size.height / 2)
-    //     }
-    // }
 
 }
 

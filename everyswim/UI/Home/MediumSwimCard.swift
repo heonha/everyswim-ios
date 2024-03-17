@@ -14,7 +14,7 @@ struct MediumSwimCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
-                .font(.custom(.sfProBold, size: 22))
+                .font(.custom(.sfProBold, size: 20))
                 .foregroundStyle(Color.white.opacity(0.8))
             weekSwimCardContents()
         }
@@ -30,8 +30,7 @@ extension MediumSwimCard {
         Group {
                 GeometryReader { geometry in
                     ZStack {
-                        LinearGradient(colors: [.init(uiColor: .init(hex: "2B303C", alpha: 0.9)),
-                                                .init(uiColor: .init(hex: "474C5A", alpha: 0.9)) ],
+                        LinearGradient(colors: AppColor.Gradient.first,
                                        startPoint: .topLeading,
                                        endPoint: .bottomTrailing)
                         ZStack {
@@ -47,21 +46,18 @@ extension MediumSwimCard {
                                     
                                     Spacer()
                                 }
-                                /// - 우측
-                                ///     - 시간, 랩, 페이스, 칼로리
-                                ///     - pt- 14, 16, bold
-                                
+
                                 HStack(spacing: 4) {
                                     VStack(alignment: .center, spacing: 12) {
-                                        inCardRecord(title: "시간", record: "1:20:35", axis: .vertical)
+                                        inCardRecord(title: "시간", record: "1:20:35")
 
-                                        inCardRecord(title: "랩", record: "25", axis: .vertical)
+                                        inCardRecord(title: "랩", record: "25")
                                     }
                                     
                                     VStack(spacing: 12) {
-                                        inCardRecord(title: "페이스", record: "1'22''/25m", axis: .vertical)
+                                        inCardRecord(title: "페이스", record: "1'22''/25m")
                                         
-                                        inCardRecord(title: "칼로리", record: "1,250 kcal", axis: .vertical)
+                                        inCardRecord(title: "칼로리", record: "1,250 kcal")
                                     }
                                 }
                                 .frame(width: (geometry.size.width / 1.6) - 44)
@@ -81,8 +77,7 @@ extension MediumSwimCard {
     // 시간 랩 페이스 칼로리 등...
     // Vertical, Horizontal로 나뉨
     private func inCardRecord(title: String,
-                              record: String,
-                              axis: Axis) -> some View {
+                              record: String) -> some View {
         ZStack {
             GeometryReader { geometry in
                 ZStack {
@@ -93,29 +88,11 @@ extension MediumSwimCard {
                 }
             }
         }
-        
-    }
-    
-    // Horizontal 기록 (작은 카드용)
-    private func horizontalInCard(_ title: String, value: String, geometry: GeometryProxy) -> some View {
-        ZStack {
-            HStack(spacing: 4) {
-                Text(title)
-                    .font(.custom(.sfProBold, size: 13))
-                    .frame(width: geometry.size.width / 2.5)
-                
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text(value)
-                        .font(.custom(.sfProBold, size: 14))
-                    Spacer()
-                }
-
-            }
-        }
     }
 
-    private func verticalInCard(_ title: String, value: String, geometry: GeometryProxy) -> some View {
+    private func verticalInCard(_ title: String, 
+                                value: String,
+                                geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             Text(title)
                 .font(.custom(.sfProMedium, size: 13))
@@ -129,5 +106,5 @@ extension MediumSwimCard {
 }
 
 #Preview {
-    HomeView()
+    MediumSwimCard(title: "이번 주 수영")
 }
