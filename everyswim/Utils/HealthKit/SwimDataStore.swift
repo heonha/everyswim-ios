@@ -19,7 +19,7 @@ final class SwimDataStore {
             print("SETTED \(newValue)")
         }
     }
-    private var swimmingData = CurrentValueSubject<[SwimMainData], Never>([])
+    private(set) var swimmingData = CurrentValueSubject<[SwimMainData], Never>([])
     private(set) lazy var swimmingDataPubliser = AnyPublisher(self.swimmingData)
     var lastWorkoutData = CurrentValueSubject<SwimMainData?, Never>(nil)
     let isLoading = CurrentValueSubject<Bool, Never>(false)
