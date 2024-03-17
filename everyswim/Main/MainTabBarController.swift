@@ -20,8 +20,10 @@ final class MainTabBarController: UITabBarController {
 
     private let myInfoViewModel = MyInfoViewModel()
     private lazy var myInfoView = MyInfoViewController(viewModel: myInfoViewModel)
-    private lazy var calendarView = DatePickerController()
+    // private lazy var calendarView = DatePickerController()
 
+    private lazy var calendarView = UIHostingController(rootView: EventDatePickerContainer())
+    
     init(authService: AuthManager) {
         self.authService = authService
         super.init(nibName: nil, bundle: nil)

@@ -31,6 +31,7 @@
 		390F0F512BA733BC00ABBC86 /* EventDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F482BA733BC00ABBC86 /* EventDatePicker.swift */; };
 		390F0F522BA733BC00ABBC86 /* EventDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F492BA733BC00ABBC86 /* EventDatePickerViewModel.swift */; };
 		390F0F532BA733BC00ABBC86 /* EventDatePickerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F4B2BA733BC00ABBC86 /* EventDatePickerContainer.swift */; };
+		390F0F5F2BA73C4F00ABBC86 /* RecordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F0F5E2BA73C4F00ABBC86 /* RecordCard.swift */; };
 		391678F52AC7E93A00190D35 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F42AC7E93A00190D35 /* Calendar+Extension.swift */; };
 		391678F72AC7F34B00190D35 /* SwimSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */; };
 		391678F92AC7F35600190D35 /* ActivityDataRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391678F82AC7F35600190D35 /* ActivityDataRange.swift */; };
@@ -127,7 +128,6 @@
 		39700A702B25F571009D9C3D /* DistrictListViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */; };
 		3975982D2AC3F6B500AD693B /* DatePickerEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */; };
 		397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397598302AC40D7500AD693B /* EmptyRecordCell.swift */; };
-		3978447D2BA5743A00D1D1D3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978447C2BA5743A00D1D1D3 /* MainView.swift */; };
 		397844812BA57E1500D1D1D3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844802BA57E1500D1D1D3 /* HomeView.swift */; };
 		397844842BA5825000D1D1D3 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844832BA5825000D1D1D3 /* Font+Ext.swift */; };
 		397844882BA5A25400D1D1D3 /* TotalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397844872BA5A25400D1D1D3 /* TotalRecordView.swift */; };
@@ -279,6 +279,7 @@
 		390F0F482BA733BC00ABBC86 /* EventDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePicker.swift; sourceTree = "<group>"; };
 		390F0F492BA733BC00ABBC86 /* EventDatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePickerViewModel.swift; sourceTree = "<group>"; };
 		390F0F4B2BA733BC00ABBC86 /* EventDatePickerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePickerContainer.swift; sourceTree = "<group>"; };
+		390F0F5E2BA73C4F00ABBC86 /* RecordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCard.swift; sourceTree = "<group>"; };
 		391678F42AC7E93A00190D35 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		391678F62AC7F34B00190D35 /* SwimSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwimSummaryViewModel.swift; sourceTree = "<group>"; };
 		391678F82AC7F35600190D35 /* ActivityDataRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataRange.swift; sourceTree = "<group>"; };
@@ -368,7 +369,6 @@
 		39700A6F2B25F571009D9C3D /* DistrictListViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListViewcontroller.swift; sourceTree = "<group>"; };
 		3975982C2AC3F6B500AD693B /* DatePickerEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerEventType.swift; sourceTree = "<group>"; };
 		397598302AC40D7500AD693B /* EmptyRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordCell.swift; sourceTree = "<group>"; };
-		3978447C2BA5743A00D1D1D3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		397844802BA57E1500D1D1D3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		397844832BA5825000D1D1D3 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		397844872BA5A25400D1D1D3 /* TotalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRecordView.swift; sourceTree = "<group>"; };
@@ -848,7 +848,6 @@
 		3978447B2BA5742200D1D1D3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				3978447C2BA5743A00D1D1D3 /* MainView.swift */,
 				397844852BA5949500D1D1D3 /* Home */,
 				397844862BA5A24500D1D1D3 /* Record */,
 				390F0F402BA7327E00ABBC86 /* Calendar */,
@@ -878,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				397844872BA5A25400D1D1D3 /* TotalRecordView.swift */,
+				390F0F5E2BA73C4F00ABBC86 /* RecordCard.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -1682,7 +1682,6 @@
 				39A606A42A6D12A300049B5A /* HKSwimmingStrokeStyle+Extension.swift in Sources */,
 				39B377412AD2608500F37C27 /* ActivityDatePickerViewController.swift in Sources */,
 				39B21F0B2AFBA93F00B5BD2F /* CommunityReusableCell.swift in Sources */,
-				3978447D2BA5743A00D1D1D3 /* MainView.swift in Sources */,
 				39C4CF372B387BA000F49A1A /* BaseEmptyTableViewCell.swift in Sources */,
 				392CBFF82B0CD343001CB22F /* GoalPerWeek.swift in Sources */,
 				397598312AC40D7500AD693B /* EmptyRecordCell.swift in Sources */,
@@ -1747,6 +1746,7 @@
 				396D93A22B18A7CF0013060E /* MapViewController.swift in Sources */,
 				39B59CDA2B3718180078B937 /* ActivityScrollView.swift in Sources */,
 				39F599812A9B570D00738334 /* UIFont+Extension.swift in Sources */,
+				390F0F5F2BA73C4F00ABBC86 /* RecordCard.swift in Sources */,
 				391C12C72A59374D001C2286 /* AppSymbol.swift in Sources */,
 				39DBB3242AC6EF0F003B5213 /* DistanceLargeLabel.swift in Sources */,
 				399CC8B22B541295008CD258 /* ActivitySummaryView.swift in Sources */,

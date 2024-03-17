@@ -75,11 +75,12 @@ struct TotalRecordView: View {
                 .font(.custom(.sfProBold, size: 18))
                 .frame(height: 50)
             
-            recordCard()
-                .padding(.horizontal)
+            RecordCard(record: .default)
 
             Spacer()
         }
+        .padding(.horizontal)
+
     }
     
     private func subRecordCell(title: String, value: String) -> some View {
@@ -91,84 +92,6 @@ struct TotalRecordView: View {
                 .foregroundStyle(Color.secondary)
         }
         .frame(width: AppConstant.deviceSize.width / 5)
-    }
-    
-    private func recordCard() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.init(uiColor: .systemFill))
-            
-            HStack {
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .fill(Color.clear)
-                    VStack {
-                        Text("9월 6일 수요일")
-                            .font(.custom(.sfProBold, size: 14))
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .trailing) {
-                            Text("1,500")
-                                .font(.custom(.sfProBold, size: 32))
-
-                            Text("Meters")
-                                .font(.custom(.sfProBold, size: 14))
-                                .foregroundStyle(Color.secondary)
-
-                        }
-                        
-                        Spacer()
-                        
-                    }
-                }
-                .frame(width: AppConstant.deviceSize.width / 3)
-                
-                Spacer()
-                
-                HStack {
-                    
-                    Spacer()
-
-                    VStack {
-                        recordVStack(title: "시간", value: "00:00")
-                        recordVStack(title: "랩", value: "25")
-                    }
-                    
-                    Spacer()
-                    
-                    VStack {
-                        recordVStack(title: "페이스", value: "1’22’’")
-                        recordVStack(title: "칼로리", value: "1234")
-                    }
-                    
-                    Spacer()
-
-                }
-                .frame(width: .infinity)
-                
-                Spacer()
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 14)
-        }
-        .frame(height: 120)
-    }
-    
-    private func recordVStack(title: String, value: String) -> some View {
-        ZStack(alignment: .leading) {
-            Rectangle()
-                .fill(Color.clear)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(title)
-                    .font(.custom(.sfProBold, size: 14))
-                
-                Text(value)
-                    .font(.custom(.sfProBold, size: 16))
-                    .foregroundStyle(AppColor.labelTint)
-            }
-        }
     }
 
 }

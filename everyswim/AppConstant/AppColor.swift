@@ -40,6 +40,7 @@ enum AppColor {
     
     static let labelTint = Color.init(uiColor: .init(hex: "4489F0"))
     static let grayTint = Color.init(uiColor: .init(hex: "3C3C43", alpha: 0.6))
+    static let darkGrayTint = Color.init(uiColor: .init(hex: "2B303C"))
 
     struct Gradient {
         static let first: [Color] = [.init(uiColor: .init(hex: "0080EC", alpha: 0.9)),
@@ -47,6 +48,10 @@ enum AppColor {
         
         static let second: [Color] = [.init(uiColor: .init(hex: "2B303C", alpha: 0.9)),
                                       .init(uiColor: .init(hex: "474C5A", alpha: 0.9))]
+        
+        static let calendarDayTint: [Color] = [.init(uiColor: .init(hex: "1288EC", alpha: 0.9)),
+                                     .init(uiColor: .init(hex: "68B7FF", alpha: 0.9)) ]
+
     }
     
 }

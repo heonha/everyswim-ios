@@ -8,6 +8,19 @@
 import Foundation
 import HealthKit
 
+// MARK: - Preview
+#if DEBUG && targetEnvironment(simulator)
+import SwiftUI
+
+struct RecordCard_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        RecordCard(record: SwimMainData.default)
+            .padding(.horizontal)
+    }
+}
+#endif
+
 struct SwimMainData: Identifiable {
     let id: UUID
     let duration: TimeInterval
@@ -16,11 +29,19 @@ struct SwimMainData: Identifiable {
     let detail: SwimStatisticsData?
     let laps: [LapSegment]
     
+    var lapCount: String {
+        laps.filter { $0.eventType == .segment }.count.description
+    }
+    
     /// HH시간 mm분 ss초
     var durationString: String {
         return duration.toRelativeTime(.hourMinute, unitStyle: .full)
     }
     
+    var durationString2: String {
+        return duration.toRelativeTime(.hourMinute, unitStyle: .short)
+    }
+
     var unwrappedDistance: Double {
         if let distance = detail?.distance {
             return distance
@@ -52,7 +73,6 @@ struct SwimMainData: Identifiable {
     /// distance + m
     var distanceString: String {
         var distance = unwrappedDistance.toRoundupString()
-        distance += " m"
         return distance
     }
     
@@ -95,7 +115,7 @@ struct SwimMainData: Identifiable {
 
 extension SwimMainData: DefaultModelProtocol {
 
-    static var `default`: SwimMainData = SwimMainData.init(id: .init(), duration: 0, startDate: .init(), endDate: .init(), detail: nil, laps: [])
+    static var `default`: SwimMainData = SwimMainData.init(id: .init(), duration: 3690, startDate: .init(), endDate: .init(), detail: .init(distance: 1500, stroke: 300, activeKcal: 300, restKcal: 200), laps: [])
     
 }
 

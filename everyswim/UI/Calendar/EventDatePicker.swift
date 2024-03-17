@@ -39,12 +39,20 @@ extension EventDatePicker {
             VStack(spacing: 4) {
                 headerView()
                 
-                weekdayTitleView()
-                
-                carendarDaysGrid()
-                    .transition(.slide)
-                
-                Spacer()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(AppColor.darkGrayTint)
+                    
+                    VStack {
+                        weekdayTitleView()
+                        
+                        carendarDaysGrid()
+                            .transition(.slide)
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 8)
+                }
             }
         }
     }
@@ -98,7 +106,7 @@ extension EventDatePicker {
             ForEach(Weekdays.values, id: \.self) { weekDay in
                 Text(weekDay)
                     .font(.custom(.sfProBold, size: 14))
-                    .foregroundColor(AppColor.grayTint)
+                    .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity)
             }
         }
@@ -136,8 +144,12 @@ extension EventDatePicker {
     }
     
     private func dayViewBackground(_ value: DateValue) -> some View {
-        Circle()
-            .fill(Color.white)
+        let circleColor = LinearGradient(colors: AppColor.Gradient.calendarDayTint,
+                                         startPoint: .topLeading,
+                                         endPoint: .bottomTrailing)
+        return Circle()
+            .stroke(lineWidth: 2.0)
+            .fill(circleColor)
             .border(.clear)
             .padding(.horizontal, 4)
             .opacity(viewModel.isSameDay(value.date, viewModel.currentDate) ? 1 : 0)
@@ -147,7 +159,9 @@ extension EventDatePicker {
     
     private func eventDayCell(_ value: DateValue) -> some View {
         let textColor = Color.white
-        let circleColor = tintColor
+        let circleColor = LinearGradient(colors: AppColor.Gradient.calendarDayTint,
+                                         startPoint: .topLeading,
+                                         endPoint: .bottomTrailing)
         
         return ZStack {
             Circle()
@@ -163,7 +177,7 @@ extension EventDatePicker {
     }
     
     private func noEventDayCell(_ value: DateValue) -> some View {
-        let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.black : .primary
+        let textColor = viewModel.isSameDay(value.date, viewModel.currentDate) ? Color.white : .primary
         
         return ZStack {
             Text("\(value.day)")
@@ -177,12 +191,6 @@ extension EventDatePicker {
     
 }
 
-// #if DEBUG
-// struct WorkoutDatePicker_Previews: PreviewProvider {
-//     
-//     static var previews: some View {
-//         EventDatePicker(viewModel: .init(initialValue: EventDatePickerViewModel()))
-//     }
-//     
-// }
-// #endif
+#Preview {
+    EventDatePicker(viewModel: .init(initialValue: .init()))
+}

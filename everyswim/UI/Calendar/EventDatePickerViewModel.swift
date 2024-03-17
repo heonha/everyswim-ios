@@ -19,7 +19,7 @@ final class EventDatePickerViewModel: ObservableObject {
     
     @Published var presentedEventData: [DatePickerEventData] = []
     @Published var allEventData: [DatePickerEventData] = []
-    @Published private var allWorkoutData: [SwimMainData] = []
+    @Published private(set) var allWorkoutData: [SwimMainData] = []
     
     private var hkManager: HealthKitManager?
     
